@@ -69,6 +69,7 @@ RUN apt-get update \
 
 ENV CHROME_PATH=/usr/bin/chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV CHROMIUM_USER_DATA_DIR=/data/.chromium
 
 WORKDIR /app
 
