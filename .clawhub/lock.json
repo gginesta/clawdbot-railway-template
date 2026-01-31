@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "todoist": {
+      "version": "0.2.1",
+      "installedAt": 1769843769965
+    },
+    "email": {
+      "version": "1.1.0",
+      "installedAt": 1769843782403
+    },
+    "todo": {
+      "version": "1.1.0",
+      "installedAt": 1769843799003
+    },
+    "notion-skill": {
+      "version": "1.0.0",
+      "installedAt": 1769843812666
+    },
+    "n8n-workflow-automation": {
+      "version": "1.0.0",
+      "installedAt": 1769843830038
+    },
+    "task": {
+      "version": "0.1.0",
+      "installedAt": 1769843831296
+    }
+  }
+}
