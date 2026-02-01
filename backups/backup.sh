@@ -15,6 +15,7 @@ tar -czf "$BACKUP_FILE" \
   --exclude='browser/*/user-data/*/Cache' \
   --exclude='browser/*/user-data/*/Code Cache' \
   --exclude='lost+found' \
+  --exclude='workspace/backups/*.tar.gz' \
   -C /data \
   workspace \
   .openclaw/openclaw.json \

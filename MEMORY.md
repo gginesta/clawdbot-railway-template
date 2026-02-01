@@ -143,10 +143,27 @@
 | `browser.noSandbox` | `true` | Required for Railway containers |
 | `commands.restart` | `true` | Allow /restart command |
 | `heartbeat.every` | `1h` | Periodic check-ins |
-| `contextPruning.mode` | `cache-ttl` | Prune old context after 1h |
+| `contextPruning.mode` | `cache-ttl` | Prune old context after 4h (was 1h) |
 | `subagents.model` | `qwen-portal/coder-model` | Cheap model for background tasks |
 | `subagents.maxConcurrent` | `8` | Parallel subagents allowed |
 | `gateway.controlUi.dangerouslyDisableDeviceAuth` | `true` | ⚠️ Needed for web access, mitigated by VPN |
+
+---
+
+## 🐢 Project Team (TMNT Theme)
+
+**Hierarchy:** Guillermo → Molty (coordinator) → Project Leads
+
+| Project | Lead | Type | Emoji |
+|---------|------|------|-------|
+| **Master** | Molty | Meta (frameworks, settings) | 🦎 |
+| **Personal** | April | Personal (fitness, family, admin) | 📰 |
+| **Brinc** | Raphael | Corporate | 🔴 |
+| **Cerebro** | Leonardo | Venture | 🔵 |
+| **Tinker Labs** | Donatello | Research/Incubation | 🟣 |
+| **Mana Capital** | Michelangelo | Investment/PE | 🟠 |
+
+**Notion Mission Control:** https://www.notion.so/Molty-s-Mission-Control-2fa39dd69afd80be89dae91e20d30a38
 
 ---
 
@@ -183,6 +200,12 @@
 6. **Zombie processes happen** — Chromium crashes leave defunct processes. They're cosmetic and clear on redeploy.
 
 7. **Git remote URLs shouldn't contain tokens** — Store tokens in credential files with proper permissions (600).
+
+### Day 2 (2026-02-01)
+
+8. **Context TTL causes memory loss** — 1h TTL was too aggressive. Increased to 4h. Session JSONL files retain full history for recovery if needed.
+
+9. **Always use HKT** — Guillermo is in Hong Kong (UTC+8). Use HKT when discussing times.
 
 ---
 
