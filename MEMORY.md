@@ -57,9 +57,9 @@
 | OpenAI Codex | OpenClaw auth (OAuth) | ✅ |
 | OpenRouter | Config env | ✅ |
 | Qwen Portal | OpenClaw auth (OAuth) | ✅ |
-| xAI (Grok) | last30days .env | ✅ |
+| xAI (Grok) | Config env + last30days .env | ✅ |
 | Brave Search | Config env | ✅ |
-| Gemini | Memory search (free tier) | ✅ |
+| Gemini | Memory search embeddings (text-embedding-004, free!) | ✅ |
 | GitHub | ~/.config/git/credentials | ✅ |
 | Telegram Bot | Config (botToken) | ✅ |
 
