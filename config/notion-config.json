@@ -10,11 +10,43 @@
     "projects": "2fa39dd6-9afd-8170-a882-c8301833cfa7",
     "tasks": "2fa39dd6-9afd-81b0-893c-f0971657882b"
   },
-  "project_ids": {
-    "cerebro": "2fa39dd6-9afd-8141-b811-fa2ec8bdac52",
-    "brinc": "2fa39dd6-9afd-8145-b5fb-ee8afec96e49",
-    "investor": "2fa39dd6-9afd-8156-b41c-ec757558f640",
-    "personal": "2fa39dd6-9afd-813c-97ab-ff7825b6389c"
+  "projects": {
+    "master": {
+      "id": "2fa39dd6-9afd-8146-b6a1-cf4b07fb4352",
+      "lead": "Molty",
+      "emoji": "🦎",
+      "type": "Meta/Personal"
+    },
+    "personal": {
+      "id": "2fa39dd6-9afd-8105-a24b-fb66621aaf24",
+      "lead": "Molty",
+      "emoji": "👤",
+      "type": "Meta/Personal"
+    },
+    "brinc": {
+      "id": "2fa39dd6-9afd-81cc-b62b-dca8f0c4f44b",
+      "lead": "Raphael",
+      "emoji": "🏢",
+      "type": "Corporate"
+    },
+    "cerebro": {
+      "id": "2fa39dd6-9afd-81e7-b73b-c440d9797eef",
+      "lead": "Leonardo",
+      "emoji": "🧠",
+      "type": "Venture"
+    },
+    "tinker_labs": {
+      "id": "2fa39dd6-9afd-8172-8a88-dc3d1ecd94ea",
+      "lead": "Donatello",
+      "emoji": "🔬",
+      "type": "Research & Incubation"
+    },
+    "mana_capital": {
+      "id": "2fa39dd6-9afd-81da-9c31-c355405ad5d3",
+      "lead": "Michelangelo",
+      "emoji": "💰",
+      "type": "Investment & PE"
+    }
   },
   "url": "https://www.notion.so/Molty-s-Mission-Control-2fa39dd69afd80be89dae91e20d30a38"
 }
