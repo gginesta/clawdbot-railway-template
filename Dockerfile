@@ -44,6 +44,7 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 ENV CHROMIUM_USER_DATA_DIR=/data/.chromium
 ENV SYNCTHING_HOME=/data/.syncthing
 ENV STNODEFAULTFOLDER=1
+ENV GIT_CONFIG_GLOBAL=/data/.config/git/config
 
 WORKDIR /app
 
