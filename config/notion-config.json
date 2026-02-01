@@ -1,0 +1,20 @@
+{
+  "workspace": {
+    "name": "Guillermo's Notion",
+    "id": "375629bd-cc72-4ad8-a3be-84139fa2fb3b"
+  },
+  "pages": {
+    "mission_control": "2fa39dd6-9afd-80be-89da-e91e20d30a38"
+  },
+  "databases": {
+    "projects": "2fa39dd6-9afd-8170-a882-c8301833cfa7",
+    "tasks": "2fa39dd6-9afd-81b0-893c-f0971657882b"
+  },
+  "project_ids": {
+    "cerebro": "2fa39dd6-9afd-8141-b811-fa2ec8bdac52",
+    "brinc": "2fa39dd6-9afd-8145-b5fb-ee8afec96e49",
+    "investor": "2fa39dd6-9afd-8156-b41c-ec757558f640",
+    "personal": "2fa39dd6-9afd-813c-97ab-ff7825b6389c"
+  },
+  "url": "https://www.notion.so/Molty-s-Mission-Control-2fa39dd69afd80be89dae91e20d30a38"
+}
