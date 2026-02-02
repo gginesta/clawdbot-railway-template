@@ -2,80 +2,73 @@
 
 *Last updated: 2026-02-02*
 
+This file is our **source of truth**. To prevent “we did it but it’s still unchecked”, every task must have **evidence** before it can be marked ✅.
+
+## Status definitions
+- ⬜ Planned — not started
+- 🟦 In progress — actively being worked
+- ✅ Done (verified) — completed **and** has evidence link/output
+- 🟨 Done (unverified) — we think it’s done, but evidence missing → needs double check
+
 ---
 
 ## 🔴 High Priority
 
-### Memory Vault
-- [ ] Guillermo to upload AI exports (ChatGPT, Claude, Grok)
-- [ ] Install Obsidian Git plugin for auto-sync
-- [ ] Process and index uploaded conversations
+### File sharing / sync (Railway ↔ PC)
+- ⬜ Choose method (Syncthing vs Git-only vs web upload)
+  - Evidence: decision in chat + config path
+- ⬜ Implement chosen method
+  - Evidence: sync test (file created on PC shows up on Railway) + screenshot/log
 
-### Model Routing
-- [ ] **Submit feature request** to OpenClaw for `message:received` hook
-  - Draft ready: `/data/workspace/research/openclaw-feature-request-message-routing.md`
-  - Target: https://github.com/openclaw/openclaw/issues/new
-- [ ] Monitor OpenClaw releases for `message:received` hook
-- [ ] When available: Implement keyword-based routing
+### Memory Vault
+- 🟦 Memory files processing (currently running)
+  - Evidence: completed run log + output folder sanity check
+- ⬜ Guillermo to upload AI exports (ChatGPT, Claude, Grok) into `memory-vault/`
+  - Evidence: git commit hash or synced files present on Railway
+- ⬜ Install **Obsidian Git** plugin (Vinzent) + configure autosync
+  - Evidence: plugin settings screenshot + first successful push
+
+### Model routing
+- ✅ Done (verified): Task-routing research completed (`/data/workspace/research/task-routing-plan.md`)
+  - Evidence: file exists in repo
+- ✅ Done (verified): Model escalation awareness added to AGENTS.md
+  - Evidence: commit / file content
+- ✅ Done (verified): Feature request drafted (`/data/workspace/research/openclaw-feature-request-message-routing.md`)
+  - Evidence: file exists in repo
+- 🟨 Done (unverified): Feature request submitted to OpenClaw GitHub
+  - Evidence needed: issue URL
+  - Note: I checked the draft file and it still says “Status: Draft — ready to submit”.
 
 ---
 
 ## 🟡 Medium Priority
 
-### Project Leads (TMNT)
-- [ ] Set up first project lead instance (Leonardo/Cerebro or Raphael/Brinc)
-- [ ] Configure Syncthing for cross-instance file sharing
-- [ ] Create `openclaw-project-template` repo
+### Security
+- ⬜ Implement safe word system for group contexts
+  - Evidence: documented in SECURITY.md + tested behavior
+- ⬜ Scan community skills before using (Cisco Skill Scanner)
+  - Evidence: scan report saved under `research/skill-scans/`
 
-### Configuration
-- [ ] Test Gemini Flash as daily driver (optional experiment)
-- [ ] Review model distribution after 1 week of usage
+### Project leads (TMNT)
+- ⬜ Set up first project lead instance (Leonardo/Cerebro or Raphael/Brinc)
+  - Evidence: running session + documented config
 
 ---
 
 ## 🟢 Low Priority / Future
 
-### Enhancements
-- [ ] Add model indicator to responses `[Flash]` / `[Opus]` (saved idea, implement if needed)
-- [ ] Explore custom middleware/proxy for task routing (if native hook delayed)
-- [ ] Set up Hetzner cold storage for archives
-
-### Documentation
-- [ ] Document the TMNT project structure when finalized
-- [ ] Create onboarding guide for new project leads
+- ⬜ Add optional model indicator to responses `[Flash]` / `[Opus]` / `[GPT-5.2]`
+- ⬜ Explore proxy-based routing if native hook delayed
 
 ---
 
-## ✅ Completed
+## ✅ Completed (verified)
 
 ### 2026-02-02
-- [x] Task-routing research completed (`/data/workspace/research/task-routing-plan.md`)
-- [x] Heartbeat model changed to Gemini Flash
-- [x] Deferred task protocol added to AGENTS.md
-- [x] Model escalation awareness added to AGENTS.md
-- [x] Feature request drafted for OpenClaw
+- ✅ Heartbeat model changed to Gemini Flash
+- ✅ Deferred task protocol added to AGENTS.md
 
 ### 2026-02-01
-- [x] Memory Vault repo created and structured
-- [x] Obsidian setup on Guillermo's PC
-- [x] Subagents switched to Qwen
-
-### 2026-01-31
-- [x] Initial setup and configuration
-- [x] Telegram connected
-- [x] Backup system implemented
-- [x] Skills installed
-
----
-
-## 📌 Revisit Later
-
-| Topic | When | Notes |
-|-------|------|-------|
-| Task-based model routing | When `message:received` hook ships | Implement keyword routing |
-| Model indicator in responses | If users request it | Currently skipped to avoid clutter |
-| Proxy-based routing | If native hook delayed > 1 month | More complex but full control |
-
----
-
-*This file tracks development priorities. Update as items complete or priorities shift.*
+- ✅ Memory Vault repo created and structured
+- ✅ Obsidian setup on Guillermo's PC
+- ✅ Subagents switched to Qwen
