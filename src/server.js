@@ -94,8 +94,125 @@ function isConfigured() {
 let gatewayProc = null;
 let gatewayStarting = null;
 
+// Optional sidecars (Tailscale + Syncthing)
+// Railway sometimes ignores Docker CMD and runs this wrapper directly.
+// To keep VPN-only file sharing working in that case, we can launch sidecars here.
+let tailscaledProc = null;
+let tailscaleUpProc = null;
+let syncthingProc = null;
+
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+function envFlag(name, defaultValue = false) {
+  const v = process.env[name];
+  if (v == null) return defaultValue;
+  return ["1", "true", "yes", "on"].includes(String(v).toLowerCase());
+}
+
+async function waitForUnixSocket(socketPath, timeoutMs = 20_000) {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    try {
+      const st = fs.statSync(socketPath);
+      if (st.isSocket()) return true;
+    } catch {
+      // not ready
+    }
+    await sleep(150);
+  }
+  return false;
+}
+
+async function startTailscale() {
+  // Allow disabling if the user ends up running supervisord instead.
+  if (envFlag("OPENCLAW_DISABLE_WRAPPER_SIDEcars", false)) return;
+
+  const authKey = process.env.TAILSCALE_AUTHKEY;
+  if (!authKey) return; // only start if configured
+  if (tailscaledProc) return;
+
+  const stateDir = process.env.TAILSCALE_STATE_DIR || "/data/.tailscale";
+  const socketPath = "/tmp/tailscaled.sock";
+
+  try {
+    fs.mkdirSync(stateDir, { recursive: true });
+  } catch (e) {
+    console.error(`[tailscale] failed to create state dir ${stateDir}: ${String(e)}`);
+  }
+
+  console.log(`[tailscale] starting tailscaled (userspace) state=${stateDir}`);
+  tailscaledProc = childProcess.spawn(
+    "/usr/sbin/tailscaled",
+    [
+      `--state=${path.join(stateDir, "tailscaled.state")}`,
+      `--socket=${socketPath}`,
+      "--tun=userspace-networking",
+    ],
+    { stdio: "inherit", env: { ...process.env } },
+  );
+
+  tailscaledProc.on("exit", (code, signal) => {
+    console.error(`[tailscale] tailscaled exited code=${code} signal=${signal}`);
+    tailscaledProc = null;
+  });
+
+  // Bring it up (best-effort; don't crash the wrapper if it fails)
+  const ok = await waitForUnixSocket(socketPath, 30_000);
+  if (!ok) {
+    console.error("[tailscale] tailscaled socket did not appear; skipping tailscale up");
+    return;
+  }
+
+  const hostname = process.env.TAILSCALE_HOSTNAME;
+  const args = [
+    `--socket=${socketPath}`,
+    "up",
+    `--authkey=${authKey}`,
+    ...(hostname ? [`--hostname=${hostname}`] : []),
+    "--accept-dns=false",
+    "--accept-routes=false",
+    "--shields-up",
+  ];
+
+  console.log("[tailscale] running: tailscale " + args.join(" "));
+  tailscaleUpProc = childProcess.spawn("/usr/bin/tailscale", args, { stdio: "inherit" });
+  tailscaleUpProc.on("exit", (code, signal) => {
+    if (code === 0) console.log("[tailscale] up complete");
+    else console.error(`[tailscale] up failed code=${code} signal=${signal}`);
+    tailscaleUpProc = null;
+  });
+}
+
+async function startSyncthing() {
+  if (envFlag("OPENCLAW_DISABLE_WRAPPER_SIDEcars", false)) return;
+
+  // Only start if user wants it; default on when using the template.
+  const enabled = envFlag("SYNCTHING_ENABLED", true);
+  if (!enabled) return;
+  if (syncthingProc) return;
+
+  const home = process.env.SYNCTHING_HOME || "/data/.syncthing";
+  const gui = process.env.SYNCTHING_GUI_ADDRESS || "0.0.0.0:8384";
+
+  try {
+    fs.mkdirSync(home, { recursive: true });
+  } catch {
+    // ignore
+  }
+
+  console.log(`[syncthing] starting (home=${home} gui=${gui})`);
+  syncthingProc = childProcess.spawn(
+    "/usr/bin/syncthing",
+    ["serve", `--home=${home}`, `--gui-address=${gui}`, "--no-browser"],
+    { stdio: "inherit", env: { ...process.env } },
+  );
+
+  syncthingProc.on("exit", (code, signal) => {
+    console.error(`[syncthing] exited code=${code} signal=${signal}`);
+    syncthingProc = null;
+  });
 }
 
 async function waitForGatewayReady(opts = {}) {
@@ -968,6 +1085,11 @@ const server = app.listen(PORT, "0.0.0.0", () => {
   if (!SETUP_PASSWORD) {
     console.warn("[wrapper] WARNING: SETUP_PASSWORD is not set; /setup will error.");
   }
+  // Sidecars: best-effort. If Railway is running the wrapper directly (common),
+  // this is what makes Syncthing + Tailscale actually come up.
+  startTailscale().catch((e) => console.error(`[tailscale] startup error: ${String(e)}`));
+  startSyncthing().catch((e) => console.error(`[syncthing] startup error: ${String(e)}`));
+
   // Don't start gateway unless configured; proxy will ensure it starts.
 });
 
