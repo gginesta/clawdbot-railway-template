@@ -177,7 +177,6 @@ async function startTailscale() {
   const hostname = process.env.TAILSCALE_HOSTNAME;
   const args = [
     `--socket=${socketPath}`,
-    "--timeout=30s",
     "up",
     "--reset",
     `--authkey=${authKey}`,
