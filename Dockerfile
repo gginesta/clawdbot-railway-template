@@ -117,22 +117,30 @@ RUN printf '%s\n' \
   '#!/usr/bin/env bash' \
   'set -euo pipefail' \
   '' \
+  'echo "[tailscale-up] starting"' \
   ': "${TAILSCALE_AUTHKEY:?TAILSCALE_AUTHKEY is required}"' \
   'mkdir -p "${TAILSCALE_STATE_DIR:-/data/.tailscale}"' \
   '' \
   '# Wait for tailscaled socket' \
-  'for i in $(seq 1 50); do' \
+  'for i in $(seq 1 200); do' \
   '  if [ -S /tmp/tailscaled.sock ]; then break; fi' \
+  '  if [ $i -eq 200 ]; then echo "[tailscale-up] ERROR: tailscaled socket not found" >&2; exit 1; fi' \
   '  sleep 0.1' \
   'done' \
   '' \
   'HOSTNAME_ARG=""' \
   'if [ -n "${TAILSCALE_HOSTNAME:-}" ]; then HOSTNAME_ARG="--hostname=${TAILSCALE_HOSTNAME}"; fi' \
   '' \
-  'exec tailscale --socket=/tmp/tailscaled.sock up \' \
+  '# Try tailscale up (supervisord will retry if this exits non-zero)' \
+  'set -x' \
+  'tailscale --socket=/tmp/tailscaled.sock up \' \
   '  --authkey="${TAILSCALE_AUTHKEY}" \' \
   '  ${HOSTNAME_ARG} \' \
   '  --accept-dns=false --accept-routes=false --shields-up' \
+  'set +x' \
+  '' \
+  'echo "[tailscale-up] up complete; status:"' \
+  'tailscale --socket=/tmp/tailscaled.sock status || true' \
   > /usr/local/bin/tailscale-up.sh \
   && chmod +x /usr/local/bin/tailscale-up.sh
 
