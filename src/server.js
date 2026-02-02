@@ -182,7 +182,6 @@ async function startTailscale() {
     ...(hostname ? [`--hostname=${hostname}`] : []),
     "--accept-dns=false",
     "--accept-routes=false",
-    "--shields-up",
   ];
 
   console.log("[tailscale] running: tailscale " + args.join(" "));

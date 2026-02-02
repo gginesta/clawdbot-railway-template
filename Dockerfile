@@ -136,7 +136,7 @@ RUN printf '%s\n' \
   'tailscale --socket=/tmp/tailscaled.sock up \' \
   '  --authkey="${TAILSCALE_AUTHKEY}" \' \
   '  ${HOSTNAME_ARG} \' \
-  '  --accept-dns=false --accept-routes=false --shields-up' \
+  '  --accept-dns=false --accept-routes=false' \
   'set +x' \
   '' \
   'echo "[tailscale-up] up complete; status:"' \
