@@ -199,6 +199,19 @@ async function startTailscale() {
       } catch {
         // ignore
       }
+
+      // On some platforms (esp. userspace networking), inbound connections to
+      // local services can be unreliable unless we explicitly proxy via `tailscale serve`.
+      // Expose Syncthing GUI over the tailnet.
+      try {
+        childProcess.spawnSync(
+          "/usr/bin/tailscale",
+          [`--socket=${socketPath}`, "serve", "--bg", "--tcp=8384", "127.0.0.1:8384"],
+          { stdio: "inherit" },
+        );
+      } catch {
+        // ignore
+      }
     } else {
       console.error(`[tailscale] up failed code=${code} signal=${signal}`);
     }
