@@ -114,6 +114,69 @@ Skills provide your tools. When you need one, check its `SKILL.md`. Keep local n
 - **Discord links:** Wrap multiple links in `<>` to suppress embeds: `<https://example.com>`
 - **WhatsApp:** No headers — use **bold** or CAPS for emphasis
 
+## ⏰ Deferred Tasks - "Do This Later"
+
+When your human asks you to complete a task later (tonight, tomorrow, next week), follow this protocol:
+
+### Step 1: Assess Complexity
+
+| Complexity | Examples | Model to Use |
+|------------|----------|--------------|
+| **Simple** | Reminders, status checks, file checks | `qwen-portal/coder-model` or `google/gemini-2.5-flash` |
+| **Medium** | Summaries, research, writing | `anthropic/claude-sonnet-4` or `openai-codex/gpt-5.2` |
+| **Complex** | Strategy docs, deep analysis, coding projects | `anthropic/claude-opus-4-5` |
+
+### Step 2: Confirm Schedule
+
+Always confirm before creating the job:
+
+```
+Scheduled for [TIME] HKT:
+• Task: [clear description]
+• Model: [model based on complexity]
+• Output: [file path if applicable]
+• Notify: Telegram when complete
+
+Confirm or adjust?
+```
+
+### Step 3: Create Cron Job
+
+After confirmation, create an isolated cron job:
+
+```javascript
+cron.add({
+  schedule: { kind: "at", atMs: [timestamp] },
+  sessionTarget: "isolated",
+  payload: {
+    kind: "agentTurn",
+    message: "[task description with full context]",
+    model: "[appropriate model]",
+    deliver: true,
+    channel: "telegram"
+  }
+})
+```
+
+### Key Principles
+
+- **Isolated sessions** (`sessionTarget: "isolated"`) — don't pollute main conversation
+- **Match model to task** — don't wake Opus for simple checks
+- **Include context** — the isolated session won't have our conversation history
+- **Always notify** — deliver results to Telegram so human knows it's done
+- **Confirm first** — let human adjust time/model before scheduling
+
+### Scheduling Keywords
+
+| Phrase | Default Time (HKT) |
+|--------|-------------------|
+| "tonight" / "overnight" | 03:00 |
+| "tomorrow morning" | 09:00 |
+| "later today" | +4 hours |
+| "in X hours/minutes" | Current + X |
+
+---
+
 ## 💓 Heartbeats - Be Proactive!
 
 When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
