@@ -127,11 +127,20 @@ async function waitForUnixSocket(socketPath, timeoutMs = 20_000) {
 
 async function startTailscale() {
   // Allow disabling if the user ends up running supervisord instead.
-  if (envFlag("OPENCLAW_DISABLE_WRAPPER_SIDEcars", false)) return;
+  if (envFlag("OPENCLAW_DISABLE_WRAPPER_SIDEcars", false)) {
+    console.log("[tailscale] wrapper sidecars disabled via OPENCLAW_DISABLE_WRAPPER_SIDEcars");
+    return;
+  }
 
   const authKey = process.env.TAILSCALE_AUTHKEY;
-  if (!authKey) return; // only start if configured
-  if (tailscaledProc) return;
+  if (!authKey) {
+    console.log("[tailscale] TAILSCALE_AUTHKEY not set; skipping tailscale startup");
+    return;
+  }
+  if (tailscaledProc) {
+    console.log("[tailscale] already running; skipping");
+    return;
+  }
 
   const stateDir = process.env.TAILSCALE_STATE_DIR || "/data/.tailscale";
   const socketPath = "/tmp/tailscaled.sock";
@@ -186,12 +195,21 @@ async function startTailscale() {
 }
 
 async function startSyncthing() {
-  if (envFlag("OPENCLAW_DISABLE_WRAPPER_SIDEcars", false)) return;
+  if (envFlag("OPENCLAW_DISABLE_WRAPPER_SIDEcars", false)) {
+    console.log("[syncthing] wrapper sidecars disabled via OPENCLAW_DISABLE_WRAPPER_SIDEcars");
+    return;
+  }
 
   // Only start if user wants it; default on when using the template.
   const enabled = envFlag("SYNCTHING_ENABLED", true);
-  if (!enabled) return;
-  if (syncthingProc) return;
+  if (!enabled) {
+    console.log("[syncthing] SYNCTHING_ENABLED=false; skipping syncthing startup");
+    return;
+  }
+  if (syncthingProc) {
+    console.log("[syncthing] already running; skipping");
+    return;
+  }
 
   const home = process.env.SYNCTHING_HOME || "/data/.syncthing";
   const gui = process.env.SYNCTHING_GUI_ADDRESS || "0.0.0.0:8384";
