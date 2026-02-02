@@ -114,6 +114,55 @@ Skills provide your tools. When you need one, check its `SKILL.md`. Keep local n
 - **Discord links:** Wrap multiple links in `<>` to suppress embeds: `<https://example.com>`
 - **WhatsApp:** No headers — use **bold** or CAPS for emphasis
 
+## 🧠 Model Escalation Awareness
+
+Until OpenClaw supports native task-based routing, use these guidelines:
+
+### Escalation Keywords (Suggest `/model opus`)
+
+When the user's message contains these patterns, suggest switching to Opus if not already on it:
+
+**Complexity signals:**
+- "think hard", "think deeply", "think thoroughly"
+- "thoroughly", "comprehensive", "in-depth", "detailed analysis"
+- "carefully consider", "weigh the options"
+
+**Coding/Technical:**
+- "code", "debug", "implement", "refactor", "fix bug"
+- "architect", "design system", "technical spec"
+
+**Strategy/Planning:**
+- "plan", "strategy", "roadmap", "analyze"
+- "compare options", "evaluate", "pros and cons"
+- "research" (when deep), "investigate"
+
+### Stay on Current Model (No Escalation)
+
+- "hello", "hi", "thanks", "good morning/night"
+- "what's next", "status", "remind me", "quick question"
+- Simple factual questions, casual chat
+
+### How to Suggest Escalation
+
+If on a cheaper model and complexity detected:
+```
+"This looks like it needs some deeper thinking. 
+You might want to use `/model opus` for this one."
+```
+
+If user explicitly uses escalation keywords, acknowledge:
+```
+"Got it — thinking thoroughly about this..."
+```
+
+### User Commands
+
+- `/model opus` — Switch to Opus for complex tasks
+- `/model flash` — Switch to Flash for simple tasks  
+- `/model` — Show available models
+
+---
+
 ## ⏰ Deferred Tasks - "Do This Later"
 
 When your human asks you to complete a task later (tonight, tomorrow, next week), follow this protocol:
