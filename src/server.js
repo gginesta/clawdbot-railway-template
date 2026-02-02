@@ -1100,6 +1100,8 @@ const server = app.listen(PORT, "0.0.0.0", () => {
   console.log(`[wrapper] workspace dir: ${WORKSPACE_DIR}`);
   console.log(`[wrapper] gateway token: ${OPENCLAW_GATEWAY_TOKEN ? "(set)" : "(missing)"}`);
   console.log(`[wrapper] gateway target: ${GATEWAY_TARGET}`);
+  console.log(`[wrapper] tailscale authkey: ${process.env.TAILSCALE_AUTHKEY ? "(set)" : "(missing)"}`);
+  console.log(`[wrapper] syncthing enabled: ${envFlag("SYNCTHING_ENABLED", true) ? "true" : "false"}`);
   if (!SETUP_PASSWORD) {
     console.warn("[wrapper] WARNING: SETUP_PASSWORD is not set; /setup will error.");
   }
