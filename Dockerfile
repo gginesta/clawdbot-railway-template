@@ -133,7 +133,7 @@ RUN printf '%s\n' \
   '' \
   '# Try tailscale up (supervisord will retry if this exits non-zero)' \
   'set -x' \
-  'tailscale --socket=/tmp/tailscaled.sock up \' \
+  'tailscale --socket=/tmp/tailscaled.sock --timeout=30s up --reset \' \
   '  --authkey="${TAILSCALE_AUTHKEY}" \' \
   '  ${HOSTNAME_ARG} \' \
   '  --accept-dns=false --accept-routes=false' \
