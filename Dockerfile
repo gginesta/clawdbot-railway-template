@@ -71,17 +71,17 @@ RUN apt-get update \
     syncthing \
     supervisor \
   && rm -rf /var/lib/apt/lists/*
-+
-+# Install Tailscale (Debian repo does not include it by default)
-+RUN set -eux; \
-+  mkdir -p /usr/share/keyrings; \
-+  curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg \
-+    -o /usr/share/keyrings/tailscale-archive-keyring.gpg; \
-+  curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list \
-+    -o /etc/apt/sources.list.d/tailscale.list; \
-+  apt-get update; \
-+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tailscale; \
-+  rm -rf /var/lib/apt/lists/*
+
+# Install Tailscale (Debian repo does not include it by default)
+RUN set -eux; \
+  mkdir -p /usr/share/keyrings; \
+  curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg \
+    -o /usr/share/keyrings/tailscale-archive-keyring.gpg; \
+  curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list \
+    -o /etc/apt/sources.list.d/tailscale.list; \
+  apt-get update; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tailscale; \
+  rm -rf /var/lib/apt/lists/*
 
 ENV CHROME_PATH=/usr/bin/chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
