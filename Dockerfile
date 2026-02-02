@@ -141,6 +141,7 @@ RUN printf '%s\n' \
   '' \
   'echo "[tailscale-up] up complete; status:"' \
   'tailscale --socket=/tmp/tailscaled.sock status || true' \
+  'tailscale --socket=/tmp/tailscaled.sock set --shields-up=false || true' \
   > /usr/local/bin/tailscale-up.sh \
   && chmod +x /usr/local/bin/tailscale-up.sh
 

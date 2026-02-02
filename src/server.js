@@ -187,8 +187,21 @@ async function startTailscale() {
   console.log("[tailscale] running: tailscale " + args.join(" "));
   tailscaleUpProc = childProcess.spawn("/usr/bin/tailscale", args, { stdio: "inherit" });
   tailscaleUpProc.on("exit", (code, signal) => {
-    if (code === 0) console.log("[tailscale] up complete");
-    else console.error(`[tailscale] up failed code=${code} signal=${signal}`);
+    if (code === 0) {
+      console.log("[tailscale] up complete");
+      // Ensure we didn't persist shields-up from a previous run.
+      try {
+        childProcess.spawnSync(
+          "/usr/bin/tailscale",
+          [`--socket=${socketPath}`, "set", "--shields-up=false"],
+          { stdio: "inherit" },
+        );
+      } catch {
+        // ignore
+      }
+    } else {
+      console.error(`[tailscale] up failed code=${code} signal=${signal}`);
+    }
     tailscaleUpProc = null;
   });
 }
