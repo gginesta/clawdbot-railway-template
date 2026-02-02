@@ -25,8 +25,8 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
   - Evidence: completed run log + output folder sanity check
 - ⬜ Guillermo to upload AI exports (ChatGPT, Claude, Grok) into `memory-vault/`
   - Evidence: git commit hash or synced files present on Railway
-- ⬜ Install **Obsidian Git** plugin (Vinzent) + configure autosync
-  - Evidence: plugin settings screenshot + first successful push
+- 🟦 Install **Obsidian Git** plugin (Vinzent) + configure autosync
+  - Evidence: plugin installed screenshot ✅ + first successful push
 
 ### Model routing
 - ✅ Done (verified): Task-routing research completed (`/data/workspace/research/task-routing-plan.md`)
@@ -35,9 +35,8 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
   - Evidence: commit / file content
 - ✅ Done (verified): Feature request drafted (`/data/workspace/research/openclaw-feature-request-message-routing.md`)
   - Evidence: file exists in repo
-- 🟨 Done (unverified): Feature request submitted to OpenClaw GitHub
-  - Evidence needed: issue URL
-  - Note: I checked the draft file and it still says “Status: Draft — ready to submit”.
+- ✅ Done (verified): Comment submitted to OpenClaw PR re: message hooks/model override
+  - Evidence: https://github.com/openclaw/openclaw/pull/6797#issuecomment-3832944084
 
 ---
 
