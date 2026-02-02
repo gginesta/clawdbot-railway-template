@@ -66,6 +66,7 @@ RUN apt-get update \
     libxrandr2 \
     xdg-utils \
     syncthing \
+    tailscale \
     supervisor \
   && rm -rf /var/lib/apt/lists/*
 
@@ -76,6 +77,9 @@ ENV CHROMIUM_USER_DATA_DIR=/data/.chromium
 # Syncthing config - data persists on Railway volume
 ENV SYNCTHING_HOME=/data/.syncthing
 ENV STNODEFAULTFOLDER=1
+
+# Tailscale state (persist on Railway volume)
+ENV TAILSCALE_STATE_DIR=/data/.tailscale
 
 WORKDIR /app
 
@@ -94,6 +98,30 @@ COPY src ./src
 
 # Supervisor config for running multiple processes
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Helper to bring Tailscale up on container start (userspace networking; no /dev/net/tun needed)
+RUN printf '%s\n' \
+  '#!/usr/bin/env bash' \
+  'set -euo pipefail' \
+  '' \
+  ': "${TAILSCALE_AUTHKEY:?TAILSCALE_AUTHKEY is required}"' \
+  'mkdir -p "${TAILSCALE_STATE_DIR:-/data/.tailscale}"' \
+  '' \
+  '# Wait for tailscaled socket' \
+  'for i in $(seq 1 50); do' \
+  '  if [ -S /tmp/tailscaled.sock ]; then break; fi' \
+  '  sleep 0.1' \
+  'done' \
+  '' \
+  'HOSTNAME_ARG=""' \
+  'if [ -n "${TAILSCALE_HOSTNAME:-}" ]; then HOSTNAME_ARG="--hostname=${TAILSCALE_HOSTNAME}"; fi' \
+  '' \
+  'exec tailscale --socket=/tmp/tailscaled.sock up \' \
+  '  --authkey="${TAILSCALE_AUTHKEY}" \' \
+  '  ${HOSTNAME_ARG} \' \
+  '  --accept-dns=false --accept-routes=false --shields-up' \
+  > /usr/local/bin/tailscale-up.sh \
+  && chmod +x /usr/local/bin/tailscale-up.sh
 
 # The wrapper listens on this port
 ENV OPENCLAW_PUBLIC_PORT=8080
