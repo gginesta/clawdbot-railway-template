@@ -648,6 +648,82 @@ Each command agent can spawn specialized employees:
 
 ---
 
+## 11. Task Management: Mission Control vs Notion
+
+### Bhanu's Mission Control (Custom React + Convex)
+
+From his screenshot, the UI has three panels:
+
+**Left: AGENTS**
+- List of all agents with status badges (idle/working/active)
+- Click to see agent details and current task
+
+**Center: MISSION QUEUE (Kanban)**
+| INBOX | ASSIGNED | IN PROGRESS | REVIEW | DONE |
+|-------|----------|-------------|--------|------|
+| Unassigned tasks | Has owner | Being worked | Needs approval | Complete |
+
+**Right: LIVE FEED**
+- Real-time activity stream
+- "Quill commented on 'Write Customer Case Studies'"
+- "Friday commented on 'Design Expansion Revenue Mechanics'"
+- Updates via WebSocket (instant)
+
+### Technology Comparison
+
+| Feature | Bhanu's Mission Control | Our Notion Setup |
+|---------|------------------------|------------------|
+| **Real-time updates** | ✅ Instant (WebSocket) | ⚠️ Polling/manual refresh |
+| **Agent status** | ✅ Live (idle/working) | ❌ Not available |
+| **Kanban board** | ✅ Built-in | ✅ Notion boards work |
+| **Activity feed** | ✅ Real-time stream | ⚠️ Activity log exists but not live |
+| **@mentions** | ✅ Notifies agents | ⚠️ Notion comments, but no agent integration |
+| **Thread subscriptions** | ✅ Auto-subscribe on interaction | ❌ Manual follows |
+| **Setup effort** | ❌ Custom dev required | ✅ Already exists |
+| **Cost** | Free tier (Convex) + dev time | Free (Notion) |
+| **API access** | ✅ Full control | ⚠️ Notion API limitations |
+
+### Recommendation: Phased Approach
+
+**Phase 1-2: Notion is good enough**
+- We already have Notion set up (Molty's Mission Control page)
+- Kanban boards work for task tracking
+- Daily notes + Memory Vault handle memory
+- Focus on getting agents working first
+
+**Phase 3+: Consider Custom UI if:**
+- You want real-time agent status (who's working now)
+- Live activity feed becomes critical
+- @mentions need instant delivery (not heartbeat-based)
+- Scale to 10+ agents with high activity
+
+### Hybrid Option: Discord as Live Layer
+
+Instead of building custom UI, use Discord for real-time features:
+
+| Need | Notion | Discord |
+|------|--------|---------|
+| Task tracking | ✅ Kanban boards | ❌ Not ideal |
+| Deliverables | ✅ Documents | ❌ Not ideal |
+| Real-time chat | ❌ Slow | ✅ Instant |
+| @mentions | ⚠️ Delayed | ✅ Instant (ish) |
+| Activity feed | ⚠️ Not live | ✅ Channels are live |
+| Agent status | ❌ No | ✅ Bot presence/roles |
+
+**Verdict:** Use **Notion for structure** (tasks, docs, memory) + **Discord for coordination** (chat, @mentions, live updates). This gives 80% of Mission Control's benefits without custom development.
+
+### If You Want Custom Mission Control Later
+
+Bhanu's stack:
+- **Frontend:** React
+- **Backend:** Convex (real-time serverless DB)
+- **Schema:** 6 tables (agents, tasks, messages, activities, documents, notifications)
+- **Dev time:** Weeks to build properly
+
+For us, this would be a **Month 3+ project** after the core agent system is solid.
+
+---
+
 ## Appendix A: Config Template
 
 See `/data/workspace/research/tmnt-team-architecture/config-template.json5`
