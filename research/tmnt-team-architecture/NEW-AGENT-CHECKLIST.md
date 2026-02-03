@@ -1,250 +1,217 @@
-# New Agent Checklist
+# 🆕 New Project Lead Checklist
 
-*Time estimate: ~1 hour per agent*
-
----
-
-## Prerequisites (One-Time Setup — Already Done ✅)
-
-- [x] Railway account with payment method
-- [x] Tailscale account
-- [x] Discord server created
-- [x] API keys generated (Anthropic, OpenAI, OpenRouter, Brave)
-- [x] Memory Vault structure set up
-- [x] Molty (coordinator) instance running
+*Standard Operating Procedure for spinning up a new TMNT Project Lead*
 
 ---
 
-## Per-Agent Checklist
+## Pre-Deployment (Coordinator - Molty)
 
-### 1. Railway Setup (~10 min)
+### 1. Identity Design
+- [ ] Choose agent name and emoji
+- [ ] Draft SOUL.md with:
+  - Identity (name, role, emoji, archetype)
+  - Personality traits
+  - Communication style
+  - Domain boundaries
+  - Hierarchy (reports to Molty, escalation paths)
+- [ ] Prepare USER.md (copy from template, adjust if needed)
+- [ ] Prepare IDENTITY.md
 
-- [ ] **Duplicate service** in Railway dashboard
-  - Go to TMNT project → Molty service → Settings → Duplicate
-  - Name: `[agent-name]-service` (e.g., `raphael-service`)
-  
-- [ ] **Configure environment variables**
-  ```
-  OPENCLAW_DATA=/data
-  NODE_ENV=production
-  ```
+### 2. Discord Setup
+- [ ] Create Discord bot at https://discord.com/developers/applications
+  - Name: `{AgentName}-Bot`
+  - Enable: MESSAGE CONTENT INTENT (required!)
+  - Generate token and save securely
+- [ ] Invite bot to TMNT Squad server with permissions:
+  - Send Messages, Read Message History, Add Reactions, Use External Emojis, Attach Files
+- [ ] Create agent-specific channels:
+  - `#{project}-general` (team discussions)
+  - `#{project}-private` (bot-only, Molty + agent)
+- [ ] Configure channel permissions
+- [ ] Store token in `/data/.openclaw/credentials/discord-{agent}-bot.json`
 
-- [ ] **Attach volume**
-  - Create new volume: `[agent-name]-data`
-  - Mount path: `/data`
+---
 
-- [ ] **Set domain** (optional)
-  - Generate Railway domain or custom subdomain
+## Railway Deployment (Human - Guillermo)
 
-### 2. API Keys (~5 min)
+### 3. Create Railway Project (~15 min)
+- [ ] Create new project in Railway dashboard
+- [ ] Deploy from `gginesta/clawdbot-railway-template`
+- [ ] Create `/data` volume and mount it
 
-- [ ] **Create unique API keys** for the agent:
-  - Anthropic: https://console.anthropic.com/settings/keys
-  - OpenAI: https://platform.openai.com/api-keys
-  - OpenRouter: https://openrouter.ai/keys
-  - Brave: https://brave.com/search/api/
-  
-- [ ] **Document keys** in secure location (not in git!)
+### 4. Configure Environment Variables
 
-### 3. Discord Bot (~10 min)
+**Required:**
+| Variable | Value | Notes |
+|----------|-------|-------|
+| `OPENCLAW_GATEWAY_TOKEN` | *generate new* | `openssl rand -base64 24 \| tr -d '/+='` |
+| `OPENCLAW_GATEWAY_PORT` | `18789` | Must match internal port, NOT 8080! |
+| `OPENCLAW_PUBLIC_PORT` | `8080` | Railway's external port |
+| `OPENCLAW_STATE_DIR` | `/data/.openclaw` | |
+| `OPENCLAW_WORKSPACE_DIR` | `/data/workspace` | |
+| `ANTHROPIC_API_KEY` | *your key* | Same as Molty |
+| `GOOGLE_API_KEY` | *your key* | For memory search |
 
-- [ ] **Create bot** at https://discord.com/developers/applications
-  - Name: `[Agent-Name]-Bot` (e.g., `Raphael-Bot`)
-  - Add bot user
-  - Copy token
-  
-- [ ] **Set permissions**
-  - Send Messages, Read Message History, Add Reactions
-  - Use Embed Links, Attach Files
-  
-- [ ] **Invite to server**
-  - Generate OAuth2 URL with bot scope
-  - Add to TMNT HQ server
+**Optional (copy from Molty):**
+- `TAILSCALE_AUTHKEY` - For mesh network
+- `TAILSCALE_HOSTNAME` - e.g., `raphael-railway`
 
-- [ ] **Create channels** (if not existing)
-  - `#[project]-general`
-  - `#[project]-private`
-  
-- [ ] **Configure channel permissions**
-  - Restrict to: Guillermo, Agent bot, Molty bot
+### 5. Handle Port Conflict Issue
 
-### 4. Agent Workspace (~15 min)
+⚠️ **CRITICAL**: The config file must NOT have `gateway.bind` set!
 
-- [ ] **Create workspace files** on the new instance:
+If you see "Gateway failed to start: Port 8080 already in use":
+1. Go to `/setup` → Config Editor
+2. Remove the entire `"bind": "..."` line from gateway section
+3. Save and let it restart
 
-```
-/data/workspace/
-├── AGENTS.md        ← Copy from Molty, customize
-├── SOUL.md          ← Agent-specific personality
-├── USER.md          ← Copy from Molty (same user)
-├── IDENTITY.md      ← Agent identity
-├── SECURITY.md      ← Copy from Molty
-├── TOOLS.md         ← Agent-specific tools
-├── HEARTBEAT.md     ← Agent-specific checks
-└── memory/          ← Daily notes folder
-```
+The setup proxy uses 8080, gateway uses 18789 internally. They coexist when `bind` is not specified (defaults to loopback).
 
-- [ ] **Create SOUL.md** from template:
-  - `/data/workspace/research/tmnt-team-architecture/templates/SOUL-[agent].md`
+### 6. Initial Config Fix
 
-- [ ] **Create IDENTITY.md**:
-```markdown
-# IDENTITY.md
+After first deployment, the config needs these changes:
+- Remove `gateway.bind` if present (causes port conflict)
+- Add `gateway.controlUi.dangerouslyDisableDeviceAuth: true` (needed for web UI)
 
-- **Name:** [Agent Name]
-- **Project:** [Project Name]
-- **Emoji:** [Emoji]
-- **Role:** [Brief role description]
-- **Reports to:** Molty 🦎
-```
-
-### 5. OpenClaw Config (~10 min)
-
-- [ ] **Create openclaw.json** at `/data/.openclaw/openclaw.json`:
-
-```jsonc
-{
-  "version": "1.0",
-  "agent": {
-    "name": "[agent-name]",
-    "emoji": "[emoji]"
-  },
+Minimal working gateway section:
+```json
+"gateway": {
+  "port": 18789,
+  "mode": "local",
   "auth": {
-    "anthropic": { "apiKey": "[AGENT_ANTHROPIC_KEY]" },
-    "openai": { "apiKey": "[AGENT_OPENAI_KEY]" },
-    "openrouter": { "apiKey": "[AGENT_OPENROUTER_KEY]" }
+    "mode": "token",
+    "token": "YOUR_GATEWAY_TOKEN"
   },
-  "model": {
-    "default": "anthropic/claude-sonnet-4"
-  },
-  "discord": {
-    "botToken": "[AGENT_DISCORD_BOT_TOKEN]",
-    "bindings": [
-      {
-        "channelId": "[GENERAL_CHANNEL_ID]",
-        "allowFrom": ["[GUILLERMO_DISCORD_ID]", "[MOLTY_BOT_ID]"]
-      },
-      {
-        "channelId": "[PRIVATE_CHANNEL_ID]",
-        "allowFrom": ["[GUILLERMO_DISCORD_ID]", "[MOLTY_BOT_ID]"]
-      }
-    ]
-  },
-  "heartbeat": {
-    "every": "1h"
-  },
-  "browser": {
-    "headless": true,
-    "noSandbox": true,
-    "defaultProfile": "openclaw"
-  },
-  "contextPruning": {
-    "mode": "cache-ttl",
-    "cacheTtlMinutes": 240
+  "controlUi": {
+    "dangerouslyDisableDeviceAuth": true
   }
 }
 ```
 
-### 6. Tailscale (~5 min)
+---
 
-- [ ] **Install Tailscale** on the instance
-  - Should be in Dockerfile already
-  
-- [ ] **Join mesh network**
-  ```bash
-  tailscale up --authkey=[TAILSCALE_AUTH_KEY] --hostname=[agent-name]
-  ```
+## Agent Configuration (Human via webchat OR Coordinator via Discord)
 
-- [ ] **Verify connectivity**
-  ```bash
-  # From Molty:
-  ping [agent-name].tailnet
-  ```
+### 7. Access Agent Webchat
+- URL: `https://{project}.up.railway.app/openclaw/?token={GATEWAY_TOKEN}`
 
-### 7. Memory Vault Sync (~5 min)
+### 8. Install Identity Files
 
-- [ ] **Configure Syncthing** to sync Memory Vault
-  - Add `/data/shared/memory-vault` folder
-  - Connect to existing Syncthing cluster
-  
-- [ ] **Verify sync**
-  - Check that project folders appear
-  - Verify correct permissions
+Send to agent webchat:
+```
+Save this as /data/workspace/SOUL.md:
+[paste SOUL.md content]
 
-### 8. SSH Access for Molty (~5 min)
+Save this as /data/workspace/USER.md:
+[paste USER.md content]
 
-- [ ] **Generate SSH key pair** (if not using existing)
-  
-- [ ] **Add Molty's public key** to agent's `~/.ssh/authorized_keys`
+Save this as /data/workspace/IDENTITY.md:
+[paste IDENTITY.md content]
 
-- [ ] **Test SSH from Molty**
-  ```bash
-  ssh [agent-name].tailnet
-  ```
+Delete /data/workspace/BOOTSTRAP.md if it exists.
+```
 
-### 9. Testing (~15 min)
+### 9. Add Discord Channel
 
-- [ ] **Start OpenClaw**
-  ```bash
-  openclaw gateway start
-  ```
+Send to agent:
+```
+Use gateway config.patch to add Discord:
+{
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "botToken": "[THEIR_BOT_TOKEN]",
+      "dmPolicy": "allowlist",
+      "guildPolicy": "allowlist",
+      "allowedGuilds": ["1468161542473121932"]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "discord": {
+        "enabled": true
+      }
+    }
+  }
+}
+```
 
-- [ ] **Test Discord**
-  - Send message in agent's channel
-  - Verify response
-  
-- [ ] **Test from Molty**
-  - SSH into agent instance
-  - Check logs: `openclaw status`
-  - Send test message via gateway API
-
-- [ ] **Verify Memory Vault access**
-  - Agent can read shared resources
-  - Agent can write to own project folder
-  - Agent CANNOT write to other project folders
-
-### 10. Documentation (~5 min)
-
-- [ ] **Update SPEC.md** with new agent details
-
-- [ ] **Add to Molty's MEMORY.md**
-  - Agent name, instance URL, Discord channels, etc.
-
-- [ ] **Create agent's first daily note**
-  - `/data/shared/memory-vault/daily/YYYY/MM/YYYY-MM-DD-[agent].md`
+### 10. Verify Discord Connection
+- Check Railway logs for "Discord connected"
+- Send test message in `#{project}-private`
+- Confirm agent responds
 
 ---
 
-## Post-Deployment
+## Post-Deployment (Coordinator - Molty)
 
-- [ ] **Introduce agent to Guillermo** in Discord
-- [ ] **Brief agent** on current project status
-- [ ] **Molty verifies** all access controls working
-- [ ] **First task** to test end-to-end workflow
+### 11. Security Audit
+- [ ] Run `openclaw doctor` via agent
+- [ ] Check for config warnings
+- [ ] Verify permissions on `/data/.openclaw` (should be 700)
+- [ ] Ensure credentials directory exists
+
+### 12. Full Onboarding Briefing
+
+Message agent in Discord with:
+1. **Team Architecture** - TMNT hierarchy, who reports to whom
+2. **Memory Vault** - Where their files live, what they can/can't see
+3. **Communication Protocols** - How to reach Molty, Guillermo
+4. **Domain Boundaries** - What's in scope, what requires escalation
+5. **Tools Overview** - What tools they have access to
+
+### 13. Create Agent's Workspace Structure
+```
+/data/workspace/
+├── SOUL.md
+├── USER.md
+├── IDENTITY.md
+├── AGENTS.md
+├── TOOLS.md
+├── memory/
+│   └── YYYY-MM-DD.md
+└── [project-specific folders]
+```
+
+### 14. Test Core Functions
+- [ ] Can read/write files
+- [ ] Can respond in Discord
+- [ ] Memory search working
+- [ ] Can spawn sub-agents (if applicable)
+
+### 15. Update Documentation
+- [ ] Add to MEMORY.md team roster
+- [ ] Update SPEC.md if architecture changed
+- [ ] Record any issues/lessons in memory/YYYY-MM-DD.md
 
 ---
 
-## Rollback Plan
+## Lessons Learned
 
-If something goes wrong:
+### Railway Container Issues
+1. **Port 8080 conflict**: Setup server uses 8080, gateway should use different internal port (18789). Never set `OPENCLAW_GATEWAY_PORT=8080`.
 
-1. **Railway**: Delete service, volume persists
-2. **Discord**: Remove bot from server
-3. **Tailscale**: Remove device from network
-4. **Memory Vault**: Agent's writes are isolated, no cleanup needed
+2. **Syncthing conflicts**: If you see "Error opening database: resource temporarily unavailable", Syncthing has a lock issue. Usually resolves on redeploy.
+
+3. **Tailscale routing**: Tailscale mesh between Railway containers may not work immediately. Use public URLs or Discord for cross-agent communication.
+
+4. **Config validation**: `gateway.bind: "all"` is INVALID! Omit the bind key entirely or use valid values: `"auto"`, `"lan"`, `"loopback"`, `"custom"`, `"tailnet"`.
+
+### Discord Configuration
+1. **MESSAGE CONTENT INTENT required**: Without this, bot won't see message content
+2. **Channel IDs vs Names**: Use channel names in `allowedChannels`, guild IDs in `allowedGuilds`
+3. **Bot needs to be invited**: Generate OAuth URL with correct permissions
+
+### Time Estimates
+| Task | Time |
+|------|------|
+| Discord bot setup | 10 min |
+| Railway project + deploy | 15 min |
+| Config fixes | 10 min |
+| Identity files | 5 min |
+| Testing | 10 min |
+| **Total** | **~50 min** |
 
 ---
 
-## Quick Reference: IDs Needed
-
-| Item | Where to Find |
-|------|---------------|
-| Discord Channel ID | Right-click channel → Copy ID (enable Developer Mode) |
-| Discord User ID | Right-click user → Copy ID |
-| Discord Bot Token | Discord Developer Portal → Bot → Token |
-| Tailscale Auth Key | Tailscale Admin → Settings → Keys |
-| API Keys | Each provider's dashboard |
-
----
-
-*Last updated: 2026-02-03*
+*Version: 2026-02-03 | Updated after Raphael deployment*

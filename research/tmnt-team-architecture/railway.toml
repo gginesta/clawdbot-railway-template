@@ -1,0 +1,23 @@
+# Railway configuration for OpenClaw agent instances
+# This will prompt for required variables on first deploy
+
+[build]
+builder = "dockerfile"
+
+[deploy]
+healthcheckPath = "/setup/healthz"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+
+# Variables - Railway prompts for any without defaults
+[variables]
+PORT = "8080"
+OPENCLAW_GATEWAY_PORT = "8080"
+OPENCLAW_PUBLIC_PORT = "8080"
+OPENCLAW_STATE_DIR = "/data/.openclaw"
+OPENCLAW_WORKSPACE_DIR = "/data/workspace"
+
+# These will prompt the user (no default = must provide)
+# OPENCLAW_GATEWAY_TOKEN = ""  # User's auth password
+# ANTHROPIC_API_KEY = ""       # Required for Claude models
+# GOOGLE_API_KEY = ""          # For memory search embeddings (optional)
