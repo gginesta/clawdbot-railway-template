@@ -4,6 +4,7 @@
 - **What to call them:** Guillermo
 - **Pronouns:** *(not specified yet)*
 - **Timezone:** GMT+8 (Hong Kong) — **Always use HKT when discussing times!**
+- **⏰ IMPORTANT:** Think in HKT, not UTC. Your system clock shows UTC but Guillermo lives in HKT. Morning = 6am-12pm HKT, Night = 10pm-6am HKT.
 - **Platform:** Windows PC (not Mac!)
 - **Notes:** 
   - Curious by nature
