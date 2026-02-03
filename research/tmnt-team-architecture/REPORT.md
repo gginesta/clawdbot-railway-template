@@ -28,20 +28,90 @@ This report analyzes architecture options for deploying a multi-agent AI team (T
 
 ## 1. Inspiration: Bhanu Teja's Mission Control
 
-Bhanu Teja (founder of SiteGPT) built a system where **10 AI agents work together like a real team**:
+Bhanu Teja (founder of SiteGPT) built a system where **10 AI agents work together like a real team**. Full guide saved to: `Materials and frameworks/Research/The Complete Guide to Building Mission Control...`
 
-### Key Principles from His Approach:
-- **Departmental Structure**: Agents organized by function (Engineering, Marketing, Sales, etc.)
-- **Persistent Memory**: Each agent reads `AGENTS.md` on startup — the "operating manual"
-- **Isolation + Coordination**: Agents make independent decisions but share a workspace
-- **Configuration-driven**: JSON config defines models, channels, tools, prompts per agent
-- **Hierarchy**: CEO agent coordinates, department heads execute, specialists contribute
+### His Squad (10 Agents)
+| Agent | Role | Session Key |
+|-------|------|-------------|
+| Jarvis | Squad Lead (coordinator) | `agent:main:main` |
+| Shuri | Product Analyst | `agent:product-analyst:main` |
+| Fury | Customer Researcher | `agent:customer-researcher:main` |
+| Vision | SEO Analyst | `agent:seo-analyst:main` |
+| Loki | Content Writer | `agent:content-writer:main` |
+| Quill | Social Media Manager | `agent:social-media-manager:main` |
+| Wanda | Designer | `agent:designer:main` |
+| Pepper | Email Marketing | `agent:email-marketing:main` |
+| Friday | Developer | `agent:developer:main` |
+| Wong | Documentation | `agent:notion-agent:main` |
 
-### What Makes It Work:
-1. **Clear responsibilities** — each agent knows its domain
-2. **Shared context files** — `AGENTS.md`, `SOUL.md`, workspace files
-3. **Communication channels** — Slack/Discord for organized discussions
-4. **Human oversight** — CEO (human) + coordinator agent review key decisions
+### Key Architecture Insights
+
+#### 1. **Heartbeat System (15-minute staggered)**
+Agents don't run 24/7 — they wake every 15 minutes via cron:
+```
+:00 Pepper wakes → checks @mentions → checks tasks → HEARTBEAT_OK
+:02 Shuri wakes → same process
+:04 Friday wakes → same process
+...staggered to avoid resource spikes
+```
+
+#### 2. **Memory Stack (3 layers)**
+| Layer | File | Purpose |
+|-------|------|---------|
+| Working Memory | `/memory/WORKING.md` | Current task state — read FIRST on wake |
+| Daily Notes | `/memory/YYYY-MM-DD.md` | Raw log of what happened |
+| Long-term | `MEMORY.md` | Curated lessons, decisions, stable facts |
+
+**Golden Rule:** "If you want to remember something, write it to a file. Mental notes don't survive session restarts."
+
+#### 3. **SOUL.md = Identity**
+Each agent has a distinct personality:
+- Loki: Pro-Oxford comma, anti-passive voice
+- Fury: Every claim comes with receipts (sources, confidence)
+- Shuri: Skeptical tester, finds edge cases
+
+#### 4. **AGENTS.md = Operating Manual**
+Read on every startup. Covers:
+- Where files are stored
+- How memory works
+- What tools are available
+- When to speak vs. stay quiet
+- How to use Mission Control
+
+#### 5. **Notification System**
+- `@Vision` in a comment → Vision notified on next heartbeat
+- `@all` → Everyone notified
+- **Thread subscriptions:** Interact with a task → auto-subscribed to future comments
+
+#### 6. **Task Lifecycle**
+```
+Inbox → Assigned → In Progress → Review → Done
+                                    ↓
+                                 Blocked
+```
+
+#### 7. **Agent Levels**
+| Level | Autonomy |
+|-------|----------|
+| Intern | Needs approval for most actions |
+| Specialist | Works independently in their domain |
+| Lead | Full autonomy, can make decisions and delegate |
+
+#### 8. **Daily Standup (automated)**
+Cron at end of day compiles:
+- ✅ Completed today
+- 🔄 In progress
+- 🚫 Blocked
+- 👀 Needs review
+- 📝 Key decisions
+
+Sent to human via Telegram.
+
+### His Lessons Learned
+1. **Start smaller** — 2-3 agents first, not 10
+2. **Cheaper models for heartbeats** — save expensive models for creative work
+3. **Memory is hard** — put everything in files, not "mental notes"
+4. **Let agents surprise you** — they'll contribute to unassigned tasks if reading the feed
 
 ---
 
@@ -505,36 +575,52 @@ Each command agent can spawn specialized employees:
 
 ## 9. Implementation Roadmap
 
-### Week 1: Foundation
-- [ ] Create Discord server with channel structure
-- [ ] Configure multi-agent in openclaw.json (Molty + Raphael)
-- [ ] Create workspace directories and SOUL.md files
-- [ ] Test Discord bindings
-- [ ] Verify isolation (separate sessions, no cross-talk)
+*Following Bhanu's advice: "Start smaller. Get 2-3 solid first, then add more."*
 
-### Week 2: Expand Command
-- [ ] Add Leonardo (Cerebro) as full agent
-- [ ] Create Memory Vault access rules
-- [ ] Test cross-agent communication via Molty
-- [ ] Document escalation procedures
+### Week 1: Foundation (Molty + Raphael only)
+- [ ] Create Discord server with basic structure (Management + Brinc categories)
+- [ ] Configure multi-agent: just Molty + Raphael
+- [ ] Create workspaces: `/data/workspace` (Molty), `/data/workspace-brinc` (Raphael)
+- [ ] Write SOUL.md for both agents
+- [ ] Write shared AGENTS.md (operating manual)
+- [ ] Create `/memory/WORKING.md` template
+- [ ] Test Discord bindings (command-center → Molty, brinc-general → Raphael)
+- [ ] Verify isolation (separate sessions, separate histories)
 
-### Week 3: Support Squad
-- [ ] Configure sub-agent settings (models, tools, limits)
-- [ ] Create task templates for Donatello, Mikey, April
+### Week 2: Heartbeats & Memory
+- [ ] Set up 15-min heartbeat crons (staggered: Molty :00, Raphael :05)
+- [ ] Use cheap model for heartbeats (Gemini Flash)
+- [ ] Test heartbeat → check tasks → HEARTBEAT_OK flow
+- [ ] Implement WORKING.md discipline (agents update on task changes)
+- [ ] Test daily notes creation
+- [ ] Set up daily standup cron → Telegram summary
+
+### Week 3: Add Leonardo
+- [ ] Add Leonardo (Cerebro) as third command agent
+- [ ] Create `/data/workspace-cerebro`
+- [ ] Add Cerebro Discord channels
+- [ ] Configure Memory Vault access rules
+- [ ] Test cross-agent communication (Raphael asks Molty to message Leonardo)
+- [ ] Stagger heartbeat: Leonardo :10
+
+### Week 4: Shared Task System
+- [ ] Decide: Notion API vs. local task files vs. simple Discord threads
+- [ ] Implement @mention notifications
+- [ ] Test thread subscriptions (agent comments on task → auto-subscribed)
+- [ ] Define task lifecycle (Inbox → Assigned → In Progress → Review → Done)
+
+### Month 2: Support Squad & Employees
+- [ ] Add Donatello, Mikey, April as support agents (spawn on demand)
+- [ ] Create employee templates per project
 - [ ] Test spawn → execute → announce flow
-- [ ] Set up auto-archive for sub-agent sessions
+- [ ] Add agent levels (Intern, Specialist, Lead)
 
-### Week 4: Polish
-- [ ] Add remaining support agents
-- [ ] Create employee templates
-- [ ] Write comprehensive AGENTS.md for each
-- [ ] Performance tuning (model selection, caching)
-
-### Month 2+: Scale
-- [ ] Evaluate if multi-instance needed
+### Month 3+: Scale & Polish
 - [ ] Add more specialized employees
+- [ ] Build Mission Control UI (if needed)
 - [ ] Automate routine coordination
-- [ ] Consider voice/video integration
+- [ ] Evaluate multi-instance if performance issues
+- [ ] Consider Convex for real-time shared state (like Bhanu's setup)
 
 ---
 
