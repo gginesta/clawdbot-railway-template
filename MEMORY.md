@@ -32,7 +32,20 @@
 | Agent | URL | Webchat Token | Status |
 |-------|-----|---------------|--------|
 | **Molty** | ggvmolt.up.railway.app | (main gateway token) | ✅ Active |
-| **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | 🟡 Onboarding |
+| **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | ✅ Connected |
+
+### Agent-to-Agent Communication (WORKING)
+```bash
+curl -X POST https://{agent}.up.railway.app/hooks/agent \
+  -H "Authorization: Bearer tmnt-agent-link-2026" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Your message here",
+    "sessionKey": "agent:main:main",
+    "wakeMode": "now"
+  }'
+```
+**Critical:** Must include `"sessionKey": "agent:main:main"` to route to main session.
 
 ### Key Paths
 | Path | Purpose |
