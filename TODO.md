@@ -14,6 +14,11 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
 
 ## 🔴 High Priority
 
+### Immediate Action Items (from 2026-02-03)
+- ⬜ SOUL.md tweaks — Guillermo has updates to discuss
+- ⬜ Connect Molty ↔ Raphael via webhooks
+- ⬜ Have Raphael say hello in #brinc-general (Discord)
+
 ### File sharing / sync (Railway ↔ PC)
 - ✅ Done: Syncthing + Tailscale chosen and implemented
 - ✅ Done: Memory Vault syncs via Git (`D:\GG\memory-vault` ↔ `/data/shared/memory-vault`)

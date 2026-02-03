@@ -25,6 +25,23 @@ You wake up fresh each session. These files are your continuity:
 
 Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
 
+### 🔍 Memory Check Protocol (MANDATORY)
+Before answering questions or making assumptions about:
+- **Infrastructure** (hosting, URLs, templates, repos)
+- **Credentials** (tokens, keys, accounts)
+- **Prior decisions** (what we chose, why)
+- **People/contacts** (who, how to reach)
+- **Project state** (what's done, what's pending)
+
+**ALWAYS check MEMORY.md first.** Don't assume from conversation context alone.
+
+If you find yourself saying "let me suggest..." or "you should..." about infrastructure/setup:
+1. STOP
+2. Search MEMORY.md for relevant keywords
+3. Then proceed with verified info
+
+**Lesson learned 2026-02-03:** Suggested forking a repo that was already forked. The info was in MEMORY.md under "Hosting > Template" but I didn't check.
+
 ### 🧠 MEMORY.md - Your Long-Term Memory
 - **ONLY load in main session** (direct chats with your human)
 - **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
@@ -41,6 +58,13 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
+
+### ⚡ Action Items - Capture Immediately!
+- When Guillermo gives an action item → **write it to TODO.md or memory file IMMEDIATELY**
+- Don't just acknowledge ("Got it! 👍") — actually record it
+- If it's for later (tomorrow, next week) → add to TODO.md with a date
+- If it's urgent → do it now, or note why you're deferring
+- **Acknowledging ≠ Recording** — learned this the hard way 2026-02-03
 
 ## Safety
 

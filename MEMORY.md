@@ -23,10 +23,16 @@
 ## 🖥️ System Architecture
 
 ### Hosting
-- **Platform:** Railway (Docker container)
-- **Template:** vignesh07/clawdbot-railway-template (forked to gginesta/)
-- **Volume:** `/data` (persistent storage)
-- **Public URL:** Via Railway (VPN access from home)
+- **Platform:** Railway (Docker containers)
+- **Template Repo:** https://github.com/gginesta/clawdbot-railway-template ⚠️ OUR FORK
+- **Original Template:** vignesh07/clawdbot-railway-template
+- **Volume:** `/data` (persistent storage per instance)
+
+### Instances
+| Agent | URL | Webchat Token | Status |
+|-------|-----|---------------|--------|
+| **Molty** | ggvmolt.up.railway.app | (main gateway token) | ✅ Active |
+| **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | 🟡 Onboarding |
 
 ### Key Paths
 | Path | Purpose |
