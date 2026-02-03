@@ -1,0 +1,181 @@
+// TMNT Multi-Agent Configuration Template
+// Copy relevant sections to /data/.openclaw/openclaw.json
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-opus-4-5",
+        "fallbacks": [
+          "anthropic/claude-sonnet-4-0",
+          "openai-codex/gpt-5.2"
+        ]
+      },
+      "imageModel": {
+        "primary": "qwen-portal/vision-model"
+      },
+      "workspace": "/data/workspace",
+      "memorySearch": {
+        "provider": "gemini",
+        "model": "text-embedding-004"
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "4h"
+      },
+      "heartbeat": {
+        "every": "1h",
+        "model": "google/gemini-2.5-flash"
+      },
+      "subagents": {
+        "maxConcurrent": 8,
+        "archiveAfterMinutes": 120,
+        "model": "qwen-portal/coder-model"
+      }
+    },
+    
+    // Command Agents (full autonomy)
+    "list": [
+      {
+        "id": "molty",
+        "name": "Molty 🦎",
+        "default": true,
+        "workspace": "/data/workspace",
+        "agentDir": "/data/.openclaw/agents/molty/agent",
+        // Molty uses Opus for complex coordination
+        "model": { "primary": "anthropic/claude-opus-4-5" },
+        "subagents": {
+          // Molty can spawn any agent
+          "allowAgents": ["*"]
+        }
+      },
+      {
+        "id": "raphael",
+        "name": "Raphael 🔴 (Brinc)",
+        "workspace": "/data/workspace-brinc",
+        "agentDir": "/data/.openclaw/agents/raphael/agent",
+        // Raphael uses Sonnet for cost efficiency
+        "model": { "primary": "anthropic/claude-sonnet-4-0" },
+        "subagents": {
+          // Raphael can spawn Brinc employees
+          "allowAgents": ["brinc-engineer", "brinc-marketing"]
+        }
+      },
+      {
+        "id": "leonardo",
+        "name": "Leonardo 🔵 (Cerebro)",
+        "workspace": "/data/workspace-cerebro",
+        "agentDir": "/data/.openclaw/agents/leonardo/agent",
+        "model": { "primary": "anthropic/claude-sonnet-4-0" },
+        "subagents": {
+          "allowAgents": ["cerebro-analyst", "cerebro-scout"]
+        }
+      }
+      // Support agents (Donatello, Mikey, April) are spawned as sub-agents
+      // Add to list when promoting to full agents
+    ]
+  },
+  
+  // Route messages to agents by channel/peer
+  "bindings": [
+    // Telegram + Webchat → Molty (your main interface)
+    { "agentId": "molty", "match": { "channel": "telegram" } },
+    { "agentId": "molty", "match": { "channel": "webchat" } },
+    
+    // Discord management channels → Molty
+    { 
+      "agentId": "molty", 
+      "match": { 
+        "channel": "discord", 
+        "peer": { "kind": "channel", "id": "COMMAND_CENTER_CHANNEL_ID" } 
+      } 
+    },
+    { 
+      "agentId": "molty", 
+      "match": { 
+        "channel": "discord", 
+        "peer": { "kind": "channel", "id": "TEAM_STANDUP_CHANNEL_ID" } 
+      } 
+    },
+    
+    // Brinc channels → Raphael
+    { 
+      "agentId": "raphael", 
+      "match": { 
+        "channel": "discord", 
+        "peer": { "kind": "channel", "id": "BRINC_GENERAL_CHANNEL_ID" } 
+      } 
+    },
+    { 
+      "agentId": "raphael", 
+      "match": { 
+        "channel": "discord", 
+        "peer": { "kind": "channel", "id": "BRINC_DEALS_CHANNEL_ID" } 
+      } 
+    },
+    
+    // Cerebro channels → Leonardo
+    { 
+      "agentId": "leonardo", 
+      "match": { 
+        "channel": "discord", 
+        "peer": { "kind": "channel", "id": "CEREBRO_GENERAL_CHANNEL_ID" } 
+      } 
+    },
+    { 
+      "agentId": "leonardo", 
+      "match": { 
+        "channel": "discord", 
+        "peer": { "kind": "channel", "id": "CEREBRO_PIPELINE_CHANNEL_ID" } 
+      } 
+    },
+    
+    // Fallback: unmatched Discord → Molty
+    { "agentId": "molty", "match": { "channel": "discord" } }
+  ],
+  
+  // Agent-to-agent messaging (optional, via sessions_send)
+  "tools": {
+    "agentToAgent": {
+      "enabled": true,
+      "allow": ["molty", "raphael", "leonardo"]
+    },
+    "subagents": {
+      "tools": {
+        // Sub-agents get limited tools
+        "allow": [
+          "read", "write", "edit",
+          "web_search", "web_fetch",
+          "memory_search", "memory_get"
+        ],
+        "deny": [
+          "exec", "process", "gateway", 
+          "cron", "nodes", "browser",
+          "sessions_spawn"  // No nested sub-agents
+        ]
+      }
+    }
+  },
+  
+  // Discord configuration
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": "YOUR_DISCORD_BOT_TOKEN",
+      "dm": {
+        "policy": "pairing"
+      },
+      "guilds": {
+        "MOLTY_HQ_GUILD_ID": {
+          "mentionRequired": false,  // Don't require @mention in dedicated channels
+          "channels": {
+            // Can add per-channel overrides here
+          }
+        }
+      }
+    },
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing"
+    }
+  }
+}
