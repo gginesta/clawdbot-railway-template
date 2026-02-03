@@ -1,6 +1,6 @@
 # TODO / Development Roadmap
 
-*Last updated: 2026-02-02*
+*Last updated: 2026-02-03*
 
 This file is our **source of truth**. To prevent “we did it but it’s still unchecked”, every task must have **evidence** before it can be marked ✅.
 
@@ -15,18 +15,18 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
 ## 🔴 High Priority
 
 ### File sharing / sync (Railway ↔ PC)
-- ⬜ Choose method (Syncthing vs Git-only vs web upload)
-  - Evidence: decision in chat + config path
-- ⬜ Implement chosen method
-  - Evidence: sync test (file created on PC shows up on Railway) + screenshot/log
+- ✅ Done: Syncthing + Tailscale chosen and implemented
+- ✅ Done: Memory Vault syncs via Git (`D:\GG\memory-vault` ↔ `/data/shared/memory-vault`)
+- ✅ Done: Working files sync via Syncthing-only (`D:\Molty\projects` ↔ `/data/shared/projects`)
 
 ### Memory Vault
-- 🟦 Memory files processing (currently running)
-  - Evidence: completed run log + output folder sanity check
-- ⬜ Guillermo to upload AI exports (ChatGPT, Claude, Grok) into `memory-vault/`
-  - Evidence: git commit hash or synced files present on Railway
-- 🟦 Install **Obsidian Git** plugin (Vinzent) + configure autosync
-  - Evidence: plugin installed screenshot ✅ + first successful push
+- ✅ Done: Initial vault structure + TMNT project folders created
+- ✅ Done: Syncthing + Tailscale sync working (Railway ↔ PC)
+- ✅ Done: AI exports uploaded and processed (ChatGPT, Claude, Grok)
+- ✅ Done: Promoted clean items to Brinc, Master, Personal items.json
+- 🟨 Done (unverified): Obsidian Git plugin autosync
+  - Evidence needed: confirm plugin working on Guillermo's PC
+- ⬜ See "Re-extraction" task in Medium Priority for improving data quality
 
 ### Model routing
 - ✅ Done (verified): Task-routing research completed (`/data/workspace/research/task-routing-plan.md`)
@@ -41,6 +41,13 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
 ---
 
 ## 🟡 Medium Priority
+
+### Memory Vault - Re-extraction
+- ⬜ **Re-process raw AI exports with better extraction script/prompt**
+  - Problem: Current `items-*.json` files contain fragments, not complete insights
+  - Scope: ChatGPT (2023-03 → 2026-01), Claude (partial), Grok (2025-02 → 2026-01)
+  - Goal: Extract complete, durable facts (lessons, decisions) with proper quality filtering
+  - Evidence: New extraction script + quality candidates file + promoted items to vault
 
 ### Security
 - ⬜ Implement safe word system for group contexts
