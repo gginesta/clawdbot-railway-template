@@ -232,19 +232,21 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 ### Folder IDs
 | Folder ID | Path | Type | Shared With |
 |-----------|------|------|-------------|
-| `brinc-kb` | `/data/shared/brinc` | sendreceive | Raphael |
-| `mv-projects-brinc` | `/data/shared/memory-vault/knowledge/projects/brinc` | sendreceive | Raphael |
-| `mv-daily` | `/data/shared/memory-vault/daily` | sendreceive | All agents |
-| `mv-resources` | `/data/shared/memory-vault/knowledge/resources` | sendonly | All agents (RO) |
-| `mv-squad` | `/data/shared/memory-vault/knowledge/squad` | sendonly | All agents (RO) |
-| `mv-people` | `/data/shared/memory-vault/knowledge/people` | sendonly | All agents (RO) |
+| `shared` | `/data/shared` | sendreceive | Raphael + Guillermo |
+| `mv-daily` | `/data/shared/memory-vault/daily` | sendreceive | All |
+| `mv-projects` | `/data/shared/memory-vault/knowledge/projects` | sendreceive | All |
+| `mv-resources` | `/data/shared/memory-vault/knowledge/resources` | sendonly | All |
+| `mv-squad` | `/data/shared/memory-vault/knowledge/squad` | sendonly | All |
+| `mv-people` | `/data/shared/memory-vault/knowledge/people` | sendonly | All |
+
+**Note:** `shared` folder overlaps with mv-* folders (2026-02-04 fix). Works but may need cleanup later.
 
 ### Device IDs
-| Device | ID |
-|--------|-----|
-| Molty-Railway (this) | `3SM5RVG-SI2I5NF-EVETYF4-NIHFBDO-4244FJH-GSAAYNA-RUXA4UA-ZIEBBQU` |
-| Raphael | `SA5L4UC-JDKR64B-ATFEIZT-FDZ5IU5-ZNXCG2R-AQUQAJU-DZYLPSB-OPCETAN` |
-| Guillermo's device | `NSIAS7W-YAOTA6B-7A5I43O-6JCQHM7-ET4SPCF-6TB73UA-APHNHS5-2QLTVQP` |
+| Device | ID | Syncthing Status |
+|--------|-----|------------------|
+| Molty-Railway | `3SM5RVG-SI2I5NF-EVETYF4-NIHFBDO-4244FJH-GSAAYNA-RUXA4UA-ZIEBBQU` | ✅ Active |
+| Raphael-Railway | `SA5L4UC-JDKR64B-ATFEIZT-FDZ5IU5-ZNXCG2R-AQUQAJU-DZYLPSB-OPCETAN` | ✅ Active |
+| Guillermo-PC | `NSIAS7W-YAOTA6B-7A5I43O-6JCQHM7-ET4SPCF-6TB73UA-APHNHS5-2QLTVQP` | ✅ Active |
 
 ### Config Location
 - Config: `/data/.syncthing/config.xml`
