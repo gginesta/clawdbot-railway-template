@@ -83,6 +83,8 @@ Notes:
 
 ## 4) “Keys you should go get” checklist (optional, but nice)
 
+Assumption: you’re using **Telegram** as your primary channel.
+
 ### A. AI model providers
 Pick 1–2 to start:
 - Anthropic API key (Claude)

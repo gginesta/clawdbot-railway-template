@@ -30,16 +30,23 @@ You need a Railway-ready wrapper repo (a Docker-based template that:
 - exposes port 8080
 - mounts a persistent `/data` volume
 
-### Option A (recommended): use an existing Railway template repo
-1) Open this template on GitHub:
-   - Upstream template: `vignesh07/clawdbot-railway-template` (search it on GitHub)
-2) Click **Fork** to your own GitHub account.
+### Option A (recommended): use a maintained fork of the Railway template
+Use a fork that already includes:
+- the **webhook JSON middleware fix** (prevents OpenClaw proxied routes from breaking)
+- **Brave** installation (for more reliable headless browser automation)
+
+**Best practice (privacy):**
+1) Start from the maintained fork URL your friend provides.
+2) Click **Fork** to *your own* GitHub account (so the running service isn’t visibly tied to anyone else).
 3) In Railway:
    - **New Project → Deploy from GitHub Repo**
-   - Select your fork
+   - Select *your* fork
 
-### Option B: if your friend gave you a customized fork
-Same flow as Option A, but use the provided fork URL.
+### Option B: use upstream and patch yourself
+If you prefer starting from upstream:
+- Upstream template: `vignesh07/clawdbot-railway-template`
+- You’ll need to apply the webhook middleware fix and (optionally) add Brave to the Dockerfile.
+
 
 ---
 
@@ -95,18 +102,17 @@ Use the web UI to:
 
 ---
 
-## Step 6 — (Optional) Enable a messaging channel
-Pick one:
+## Step 6 — Enable Telegram (assumed)
 
-### Telegram (easy)
-1) Create a bot via **BotFather** in Telegram
-2) Put the bot token into Railway Variables (template-specific key name varies; follow the template README)
-3) Pair your user/chat allowlist
+1) In Telegram, message **@BotFather**
+2) Create a bot (`/newbot`) and copy the **bot token**
+3) Put the token into **Railway → Variables** (the exact variable name depends on the template README)
+4) Pair/allowlist:
+   - Allow your own Telegram user ID
+   - (Optional) Allow one group chat ID
 
-### Discord
-1) Create a Discord application + bot
-2) Invite it to your server
-3) Add the bot token + channel allowlist in config
+If your template supports it, prefer an **allowlist** policy over “respond to everyone.”
+
 
 ---
 
