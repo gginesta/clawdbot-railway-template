@@ -1,7 +1,7 @@
 # 🆕 New Project Lead Onboarding SOP
 
 *Standard Operating Procedure for spinning up a new TMNT Project Lead*
-*Version: 2.0 | Updated: 2026-02-03*
+*Version: 2.3 | Updated: 2026-02-04*
 
 ---
 
@@ -12,11 +12,24 @@ This checklist ensures every new agent is fully operational with:
 - Core workspace files (workflow rules, memory)
 - Backups (disaster recovery)
 - API access (search, memory, integrations)
+- Shared filesystem (Syncthing for KB access)
 - Domain knowledge (project-specific KB)
 - Skills (tools for their role)
 - Team context (hierarchy, escalation, protocols)
+- Comprehension verification (quiz to confirm understanding)
 
 **Estimated time:** 1-2 hours
+
+---
+
+## ⚠️ Critical Phase Order
+
+**Do these IN ORDER to avoid rework:**
+1. Infrastructure (Railway, webhooks) 
+2. **Syncthing FIRST** — Set up shared folders before KB transfer
+3. Core workspace files
+4. Domain knowledge (will auto-sync if Syncthing done)
+5. Team briefing + Quiz
 
 ---
 
@@ -441,13 +454,62 @@ Does it return results or error? If error, we need to fix the config.
 
 ## Phase 5: Domain Knowledge Transfer
 
+### Full KB Transfer vs Summary
+
+**Decision Matrix:**
+
+| Content Type | Transfer Method | Reason |
+|--------------|-----------------|--------|
+| Objection handlers | **FULL FILE** | Agent needs exact rebuttals |
+| Case studies | **FULL FILE** | Agent needs specific metrics |
+| ICP/Qualification | **FULL FILE** | Agent needs scoring criteria |
+| Company overview | Summary OK | Key facts fit in message |
+| Service offerings | Summary + pricing table | Pricing must be exact |
+| KB Index | **FULL FILE** | Navigation guide |
+| Process docs | Summary OK | Strategy context |
+
+**Rule:** If the agent needs to QUOTE or REFERENCE specific content, send the full file.
+
+---
+
+### Role-Specific Required KB Files
+
+#### 🔴 Sales Agents (Raphael/Brinc)
+
+**CRITICAL — These are REQUIRED:**
+- [ ] Objection handlers — Agent can't sell without rebuttals
+- [ ] Case studies (full) — Proof points with metrics
+- [ ] ICP qualification — BANT+ scoring framework
+- [ ] KB navigation index — When to use what
+
+**Important:**
+- [ ] Company overview
+- [ ] Service offerings + pricing
+- [ ] Sales system plan
+
+#### 🔵 Strategy Agents (Leonardo/Cerebro)
+- [ ] Company/project overview
+- [ ] Decision frameworks
+- [ ] Historical context
+
+#### 📰 Personal/Admin Agents (April)
+- [ ] Contact preferences
+- [ ] Scheduling rules
+- [ ] Communication templates
+
+---
+
 ### 23. Identify Required KB Files
 
 For each project, list the knowledge base files needed:
 
 **Brinc (Raphael):**
 - brinc-company-overview.md
-- brinc-icp-qualification.md
+- brinc-case-studies-knowledge-base.md ⚠️ REQUIRED
+- brinc-icp-qualification.md ⚠️ REQUIRED
+- brinc-objection-handlers.md ⚠️ REQUIRED
+- brinc-service-offerings.md
+- brinc-knowledge-base-index.md ⚠️ REQUIRED
 - brinc-sales-system-plan.md
 
 **Cerebro (Leonardo):**
@@ -458,26 +520,57 @@ For each project, list the knowledge base files needed:
 
 ### 24. Transfer KB Files
 
-Option A: **Direct paste via webchat** (for small files)
+**If Syncthing is set up (recommended):**
+Files in `/data/shared/{project}/` auto-sync. Just verify agent can read them.
+
+**If manual transfer needed:**
+
+Option A: **Direct paste via webchat** (for small files <50 lines)
 ```
 Save this as /data/workspace/knowledge/{filename}.md:
 [PASTE CONTENT]
 ```
 
-Option B: **Create knowledge folder and transfer**
-```
-Create /data/workspace/knowledge/ directory.
-```
+Option B: **Chunked Discord messages** (for larger files)
+Break into 1800-char chunks, send sequentially, agent reassembles.
 
-Then send each file individually.
+Option C: **Syncthing** (preferred for ongoing sync)
+Set up shared folder per Phase 9.
 
 ### 25. Verify KB Access
 
-Ask agent to confirm:
+**REQUIRED VERIFICATION STEP:**
+
+Ask agent to:
 ```
-List all files in /data/workspace/knowledge/ and confirm you can read them.
-Summarize what you learned about your domain.
+1. List all files in your shared KB folder:
+   ls -la /data/shared/{project}/Knowledge\ Base/
+   
+2. Confirm file count matches expected.
+
+3. Read and summarize ONE key file (e.g., objection handlers):
+   "Give me 3 example objection responses from the handlers doc"
 ```
+
+**If they can't read files:** Syncthing not syncing. Check connection.
+
+### 25b. Comprehension Verification (Quiz)
+
+After KB transfer, quiz the agent to confirm understanding:
+
+**Sales Agent Quiz (minimum 10 questions):**
+1. Name your team members and their roles
+2. What are the "3Ds" of Brinc's thesis?
+3. What's the minimum company size for ICP?
+4. What score on BANT+ means "book immediately"?
+5. What case study for insurance prospects?
+6. How do you respond to "it's too expensive"?
+7. When do you escalate to Guillermo vs handle yourself?
+8. Can you send proposals without approval?
+9. Name 3 disqualifying criteria
+10. What's Brinc's total portfolio market cap?
+
+**Agent must pass before considered onboarded.**
 
 ---
 
@@ -1007,6 +1100,32 @@ jq 'select(.type=="error")' file.jsonl # Filter JSONL
 
 **If >500 lines, use surgical extraction. Never `cat` or full `Read`.**
 
+### Domain Knowledge Transfer Lessons (2026-02-04)
+
+17. **Full file vs summary — know the difference** — If agent needs to QUOTE or REFERENCE content (objection handlers, case study metrics), send the FULL FILE. Summaries lose critical details.
+
+18. **Sales agents REQUIRE objection handlers** — A sales agent without objection handlers is like a soldier without a weapon. This is CRITICAL KB, not optional.
+
+19. **Case studies need full content** — Mentioning "use Manulife case study for insurance" is useless if agent doesn't have the actual metrics (286 apps → 3 POCs). Send full case study docs.
+
+20. **KB Index accelerates agent effectiveness** — The navigation doc ("when to use which document") saves agents from fumbling. Include it for any agent with multiple KB files.
+
+21. **Verify KB access, don't assume** — After Syncthing setup, explicitly ask agent to `ls` the shared folder AND read a specific file. Sync issues are silent failures.
+
+22. **Quiz before declaring "onboarded"** — Without comprehension verification, you don't know if agent absorbed the KB. 10-question quiz minimum for sales agents.
+
+23. **Check shared folders FIRST for cross-agent data** — When searching for project info, check `/data/shared/` before session logs. The Memory Vault is source of truth.
+
+24. **Phase order matters** — Set up Syncthing BEFORE domain knowledge transfer. Otherwise you manually paste files that would have auto-synced.
+
+### Audit Process (2026-02-04)
+
+25. **Audit against SOP after onboarding** — Run through the checklist and verify each item. Gaps compound over time.
+
+26. **Document audit findings** — Post audit summary to #command-center for visibility and future reference.
+
+27. **Fix AND document** — When fixing gaps, also update the SOP so future onboarding doesn't repeat mistakes.
+
 ---
 
-*SOP Version: 2.2 | Last Updated: 2026-02-04 | Author: Molty*
+*SOP Version: 2.3 | Last Updated: 2026-02-04 | Author: Molty*
