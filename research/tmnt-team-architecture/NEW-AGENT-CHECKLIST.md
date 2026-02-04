@@ -963,7 +963,10 @@ Rules:
 
 - [ ] Add ownership table to new agent's SOUL.md
 - [ ] Add ownership table to new agent's TOOLS.md (with channel IDs)
-- [ ] Update ALL existing agents' TOOLS.md with new channels
+- [ ] **Molty updates ALL existing agents' TOOLS.md** with new channels via webhook
+
+**Molty's Ongoing Responsibility:**
+When channels are created or ownership changes, Molty sends updates to ALL agents via webhook. This is NOT a manual task for Guillermo. Reconcile during heartbeats.
 
 ### 41. Test Agent-to-Agent Discord
 
