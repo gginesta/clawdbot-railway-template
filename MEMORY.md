@@ -281,6 +281,8 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 
 14. **Think ahead about the full flow** — When setting up step A, anticipate what step B will need.
 
+15. **Context overflow = death** — Never read entire log/session files. Session JSONL can be 15MB+. Always use `tail -100`, `limit` param, or targeted `grep`. Check file size with `wc -l` before reading unknown files.
+
 ---
 
 ## 🔧 Quick Reference
