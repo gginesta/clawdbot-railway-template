@@ -34,6 +34,20 @@
 | **Molty** | ggvmolt.up.railway.app | (main gateway token) | ✅ Active |
 | **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | ✅ Connected |
 
+### Discord Bots (TMNT Squad Server)
+| Bot | Application ID | Guild | Status |
+|-----|----------------|-------|--------|
+| Molty-Bot | 1468162520958107783 | TMNT Squad (1468161542473121932) | ✅ Active |
+| Raphael-Bot | 1468164929285783644 | TMNT Squad (1468161542473121932) | ✅ Active |
+
+**Discord Channels:**
+- `#command-center` (1468164160398557216) — Strategy & coordination
+- `#brinc-general` (1468164121420628081) — Brinc project general
+- `#brinc-private` (1468164139674238976) — Brinc private comms
+- `#squad-updates` (1468164181155909743) — Team announcements
+
+**Key Config:** `allowBots: true` required for agent-to-agent visibility
+
 ### Agent-to-Agent Communication (WORKING)
 ```bash
 curl -X POST https://{agent}.up.railway.app/hooks/agent \
@@ -225,6 +239,18 @@ curl -X POST https://{agent}.up.railway.app/hooks/agent \
 8. **Context TTL causes memory loss** — 1h TTL was too aggressive. Increased to 4h. Session JSONL files retain full history for recovery if needed.
 
 9. **Always use HKT** — Guillermo is in Hong Kong (UTC+8). Use HKT when discussing times.
+
+### Day 4 (2026-02-04)
+
+10. **Do it yourself first** — When you have access to systems (Discord, Notion, GitHub), don't give instructions — do it yourself. Only ask Guillermo to act when you genuinely can't.
+
+11. **Discord allowBots** — Required for agent-to-agent communication. Default is false (bots ignore other bots).
+
+12. **Channel permissions vs server permissions** — Even with server-level access, private channels need explicit permission overwrites via Discord API.
+
+13. **Bot invites require human action** — Generate OAuth URL, human must click it. Bots can't invite other bots.
+
+14. **Think ahead about the full flow** — When setting up step A, anticipate what step B will need.
 
 ---
 

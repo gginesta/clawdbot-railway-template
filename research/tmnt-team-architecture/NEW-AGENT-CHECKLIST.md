@@ -628,9 +628,94 @@ Assign a simple real task to confirm operational:
 
 ---
 
+## Phase 9: Discord Setup (Agent-to-Agent Comms)
+
+### 35. Create Discord Bots (One-Time Setup)
+
+In Discord Developer Portal:
+- [ ] Create bot for each agent (e.g., "Molty-Bot", "Raphael-Bot")
+- [ ] Save bot tokens securely
+- [ ] Bot Application IDs (decode from token): `echo "FIRST_PART_OF_TOKEN" | base64 -d`
+
+### 36. Create Discord Server
+
+- [ ] Create server (e.g., "TMNT Squad")
+- [ ] Create channels:
+  - `#command-center` — Strategy & coordination
+  - `#brinc-general`, `#brinc-private` — Project-specific
+  - `#squad-updates` — Announcements
+- [ ] Note Guild ID and Channel IDs
+
+### 37. Generate Bot Invite URLs
+
+For each bot, construct invite URL:
+```
+https://discord.com/oauth2/authorize?client_id={APP_ID}&permissions=68608&scope=bot
+```
+
+Permissions 68608 = View Channels + Send Messages + Read Message History
+
+- [ ] Invite all bots to server
+
+### 38. Configure Discord in Agent Config
+
+```json
+{
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": "BOT_TOKEN_HERE",
+      "allowBots": true,
+      "groupPolicy": "allowlist",
+      "guilds": {
+        "GUILD_ID": {
+          "slug": "server-name",
+          "requireMention": false,
+          "channels": {
+            "channel-name": { "allow": true }
+          }
+        }
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "discord": { "enabled": true }
+    }
+  }
+}
+```
+
+**CRITICAL:** `allowBots: true` is required for agents to see each other's messages!
+
+### 39. Set Channel Permissions (If Channels Are Private)
+
+If bots can send but not see channels, use Discord API to add permissions:
+
+```bash
+BOT_TOKEN="your-admin-bot-token"
+TARGET_BOT_ID="bot-to-grant-access"
+CHANNEL_ID="channel-id"
+
+curl -X PUT "https://discord.com/api/v10/channels/$CHANNEL_ID/permissions/$TARGET_BOT_ID" \
+  -H "Authorization: Bot $BOT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"allow": "68608", "type": 1}'
+```
+
+Run for each channel × each bot.
+
+### 40. Test Agent-to-Agent Discord
+
+- [ ] Agent A sends message to channel
+- [ ] Agent B sees message and responds
+- [ ] Both agents can communicate without human relay
+
+---
+
 ## Post-Onboarding
 
-### 35. Update Documentation
+### 41. Update Documentation
 
 Molty updates:
 - [ ] MEMORY.md — Add agent to team roster
@@ -735,4 +820,32 @@ Total items: ~36 steps across 8 phases
 
 ---
 
-*SOP Version: 2.0 | Last Updated: 2026-02-03 | Author: Molty*
+## Lessons Learned (2026-02-04)
+
+### Discord Setup Lessons
+
+1. **Bot invites require human action** — Bots cannot invite other bots. Generate the OAuth URL and have a human click it.
+
+2. **Server permissions ≠ Channel permissions** — Even if a bot has server-level permissions, private channels need explicit permission overwrites via Discord API.
+
+3. **`allowBots: true` is critical** — By default, OpenClaw ignores messages from other bots. Enable this for agent-to-agent communication.
+
+4. **Admin bot can grant permissions** — If one bot has Administrator, it can add other bots to channels via the Discord API (no human needed for channel permissions).
+
+5. **Decode bot ID from token** — First part of Discord bot token is base64-encoded application ID: `echo "TOKEN_FIRST_PART" | base64 -d`
+
+### General Onboarding Lessons
+
+6. **Do it yourself first** — When you have access to a system (Discord, Notion, GitHub), don't give instructions to the human — check if you can do it yourself first.
+
+7. **Think ahead about the full flow** — When setting up step A, anticipate what step B will need (permissions, invites, config settings).
+
+8. **Anticipate needs proactively** — If you just configured one bot, you know the other bot needs the same setup. Provide everything upfront.
+
+9. **Research before responding** — Prefer spending time investigating the complete solution over giving quick partial answers.
+
+10. **Store credentials immediately** — When you receive ANY credential or token, write it to TOOLS.md immediately — don't just use it and forget.
+
+---
+
+*SOP Version: 2.1 | Last Updated: 2026-02-04 | Author: Molty*
