@@ -16,8 +16,17 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
 
 ### Immediate Action Items (from 2026-02-03)
 - ⬜ SOUL.md tweaks — Guillermo has updates to discuss
-- ⬜ Connect Molty ↔ Raphael via webhooks
+- ✅ Connect Molty ↔ Raphael via webhooks — WORKING with sessionKey
+- 🟦 Raphael onboarding — memory setup sent, awaiting confirmation
 - ⬜ Have Raphael say hello in #brinc-general (Discord)
+
+### Feedback to Submit
+- ⬜ **GitHub: Webhook "Hook (error)" UI label** — webhooks that succeed still show "(error)" in system message display. Cosmetic bug. Screenshot saved context: Raphael webchat 2026-02-04.
+
+### Deferred Decisions
+- ⬜ **Brinc KB transfer approach** — keep as is for now, decide later
+  - Options: send via webhook vs. Raphael fetches from shared path
+  - ~96KB across 9 files in `/data/shared/brinc/Knowledge Base/`
 
 ### File sharing / sync (Railway ↔ PC)
 - ✅ Done: Syncthing + Tailscale chosen and implemented

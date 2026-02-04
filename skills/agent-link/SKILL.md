@@ -24,7 +24,7 @@ Use `exec` with `curl` to send a webhook message:
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
   -H 'Authorization: Bearer tmnt-agent-link-2026' \
   -H 'Content-Type: application/json' \
-  -d '{"message": "YOUR MESSAGE HERE", "name": "Molty", "sessionKey": "agent-link:molty-raphael", "deliver": false}'
+  -d '{"message": "YOUR MESSAGE HERE", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
 
 ### Send to Molty 🦎
@@ -33,33 +33,36 @@ curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
 curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
   -H 'Authorization: Bearer tmnt-agent-link-2026' \
   -H 'Content-Type: application/json' \
-  -d '{"message": "YOUR MESSAGE HERE", "name": "Raphael", "sessionKey": "agent-link:raphael-molty", "deliver": false}'
+  -d '{"message": "YOUR MESSAGE HERE", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
 
 ## Parameters
 
 - `message` (required): The message content
-- `name`: Your agent name (for logging)
-- `sessionKey`: Use consistent key for conversation continuity
-- `deliver`: `true` to also send to Telegram, `false` for internal only
+- `sessionKey`: Use `"agent:main:main"` to route to the agent's main session (critical!)
+- `wakeMode`: `"now"` for immediate processing
 
 ## Response Codes
 
-- `202`: Message accepted and queued
+- `200`: Message accepted (`{"ok": true, "runId": "..."}`)
 - `401`: Invalid or missing token
 - `400`: Invalid payload
 
-## Example: Full Conversation
+## Example: Status Check
 
-**Molty sends:**
+**Molty sends to Raphael:**
 ```bash
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
   -H 'Authorization: Bearer tmnt-agent-link-2026' \
   -H 'Content-Type: application/json' \
-  -d '{"message": "Hey Raphael, status check - how is Brinc prep going?", "name": "Molty", "sessionKey": "agent-link:daily-sync"}'
+  -d '{"message": "Hey Raphael, status check - how is Brinc prep going?", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
 
-**Raphael receives the message in an isolated session and can respond back via webhook.**
+**Raphael receives and can respond back via webhook to Molty.**
+
+## Critical: sessionKey
+
+**Always use `"sessionKey": "agent:main:main"`** to route messages to the agent's main conversation session. Without this, messages go to isolated throwaway sessions and won't be seen!
 
 ## Security
 
