@@ -32,7 +32,7 @@
 | Agent | URL | Webchat Token | Status |
 |-------|-----|---------------|--------|
 | **Molty** | ggvmolt.up.railway.app | (main gateway token) | ✅ Active |
-| **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | ✅ **DEPLOYED** (2026-02-04) |
+| **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | ✅ **DEPLOYED** (2026-02-04 04:33 UTC) |
 
 ### Discord Bots (TMNT Squad Server)
 | Bot | Application ID | Guild | Status |

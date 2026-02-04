@@ -2,6 +2,23 @@
 
 Skills define *how* tools work. This file is for *your* specifics — the stuff that's unique to your setup.
 
+---
+
+## Discord Channel Ownership
+
+**Check this before responding in shared channels!**
+
+| Channel | ID | Owner | Non-owners |
+|---------|-----|-------|------------|
+| `#command-center` | 1468164160398557216 | **Molty** 🦎 | @mention only |
+| `#squad-updates` | 1468164181155909743 | **Molty** 🦎 | Read-only |
+| `#brinc-private` | 1468164139674238976 | **Raphael** 🔴 | @mention only |
+| `#brinc-general` | 1468164121420628081 | **Raphael** 🔴 | @mention only |
+
+**Rule:** If you don't own the channel, stay silent unless @mentioned or Guillermo explicitly asks you something.
+
+---
+
 ## What Goes Here
 
 Things like:
