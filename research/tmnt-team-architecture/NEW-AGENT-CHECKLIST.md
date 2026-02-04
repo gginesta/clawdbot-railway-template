@@ -978,6 +978,35 @@ Total items: ~36 steps across 8 phases
 
 15. **Agent isolation = folder isolation** — An agent should only see folders for their project + the common read-only folders. They should NEVER see other projects' KB folders or project items.
 
+### Context Overflow Prevention (2026-02-04)
+
+16. **Context overflow = death** — Session JSONL files can grow to 15MB+. ONE careless `Read` of a large file blows past context limits and crashes the session.
+
+**MANDATORY operational rules for all agents:**
+
+| ❌ Bad Pattern | ✅ Good Pattern |
+|----------------|-----------------|
+| `Read` entire log file | `tail -100 file.log` via exec |
+| `Read` session JSONL | `tail -50 session.jsonl \| jq .` |
+| `memory_search` with no limits | `memory_search` with `maxResults: 5` |
+| Multiple large file reads | One targeted read at a time |
+
+**Before reading any unknown file:**
+```bash
+wc -l file.log  # Check line count first
+ls -lh file.log  # Check file size
+```
+
+**Safe extraction patterns:**
+```bash
+tail -100 file.log                    # Last 100 lines
+head -100 file.log                    # First 100 lines
+grep -A5 -B5 "error" file.log         # Context around matches
+jq 'select(.type=="error")' file.jsonl # Filter JSONL
+```
+
+**If >500 lines, use surgical extraction. Never `cat` or full `Read`.**
+
 ---
 
-*SOP Version: 2.1 | Last Updated: 2026-02-04 | Author: Molty*
+*SOP Version: 2.2 | Last Updated: 2026-02-04 | Author: Molty*
