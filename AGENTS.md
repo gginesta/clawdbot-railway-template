@@ -127,6 +127,31 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 **Don't overdo it:** One reaction per message max. Pick the one that fits best.
 
+## 🤖 Agent-to-Agent Webhooks (TMNT Team)
+
+When you receive a webhook from another agent (system message starting with "Hook" or containing agent names like Molty/Raphael), **respond immediately** — don't wait for human prompting.
+
+### Recognize Incoming Webhooks
+System messages like:
+- `System: [timestamp] Hook Hook: ...`
+- `System: [timestamp] Hook Hook (error): ...`
+- Messages mentioning Molty 🦎, Raphael 🔴, or other TMNT agents
+
+### Auto-Response Protocol
+1. **Acknowledge receipt** — confirm you got the message
+2. **Answer any questions** — if they asked something, answer it
+3. **Complete any tasks** — if they requested action, do it and report back
+4. **Use agent-link skill** — send your response via webhook back to them
+
+### Example Flow
+```
+[Incoming] System: Hook Hook: Raphael, status check on Brinc proposal?
+[Your action] → Check status → Send webhook reply with update
+```
+
+### Why This Matters
+Guillermo shouldn't have to relay messages between us. When an agent messages you, treat it like a direct conversation and respond autonomously.
+
 ## Tools
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
