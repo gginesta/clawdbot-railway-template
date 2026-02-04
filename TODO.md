@@ -22,7 +22,7 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
 
 ### Feedback to Submit
 - ⬜ **GitHub: Webhook "Hook (error)" UI label** — webhooks that succeed still show "(error)" in system message display. Cosmetic bug. Screenshot saved context: Raphael webchat 2026-02-04.
-- ⬜ **GitHub: Webchat no auto-refresh** — new messages (including webhook-triggered) don't appear until manual page refresh. Draft: `/data/workspace/research/github-issues/webchat-no-auto-refresh.md`
+- ✅ **GitHub: Webchat no auto-refresh** — https://github.com/openclaw/openclaw/issues/8422
 
 ### Deferred Decisions
 - ⬜ **Brinc KB transfer approach** — keep as is for now, decide later

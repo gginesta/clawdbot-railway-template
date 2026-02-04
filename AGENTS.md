@@ -42,6 +42,8 @@ If you find yourself saying "let me suggest..." or "you should..." about infrast
 
 **Lesson learned 2026-02-03:** Suggested forking a repo that was already forked. The info was in MEMORY.md under "Hosting > Template" but I didn't check.
 
+**Lesson learned 2026-02-04:** Forgot the GitHub token Guillermo gave me yesterday. When you receive ANY credential or token, **immediately write it to TOOLS.md** — don't just use it and forget.
+
 ### 🧠 MEMORY.md - Your Long-Term Memory
 - **ONLY load in main session** (direct chats with your human)
 - **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
@@ -155,6 +157,8 @@ Guillermo shouldn't have to relay messages between us. When an agent messages yo
 ## Tools
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
+
+**📝 GitHub Issues:** When asked to submit a GitHub issue, do it directly via the GitHub CLI or API — don't just draft it. You have the capability.
 
 **🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
 

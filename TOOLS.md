@@ -34,3 +34,19 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+---
+
+## GitHub API
+
+**Token:** `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`
+**Scope:** Repo access for openclaw/openclaw issue submission
+**Added:** 2026-02-03 (received via Telegram)
+
+### Submit Issue via API
+```bash
+curl -X POST https://api.github.com/repos/openclaw/openclaw/issues \
+  -H "Authorization: token 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" \
+  -H "Accept: application/vnd.github.v3+json" \
+  -d '{"title": "...", "body": "..."}'
+```
