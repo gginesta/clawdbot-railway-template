@@ -628,7 +628,127 @@ Assign a simple real task to confirm operational:
 
 ---
 
-## Phase 9: Discord Setup (Agent-to-Agent Comms)
+## Phase 9: Shared Filesystem (HIGH PRIORITY)
+
+⚠️ **This should be done early** — agents need access to shared knowledge and memory-vault.
+
+### Folder Naming Convention
+
+**IMPORTANT:** Use consistent folder IDs across all agents. This enables proper isolation.
+
+| Folder ID | Path | Type | Who Gets It |
+|-----------|------|------|-------------|
+| `{project}-kb` | `/data/shared/{project}` | sendreceive | Molty + {Project} Lead |
+| `mv-projects-{project}` | `/data/shared/memory-vault/knowledge/projects/{project}` | sendreceive | Molty + {Project} Lead |
+| `mv-daily` | `/data/shared/memory-vault/daily` | sendreceive | ALL agents |
+| `mv-resources` | `/data/shared/memory-vault/knowledge/resources` | sendonly | ALL agents (read-only) |
+| `mv-squad` | `/data/shared/memory-vault/knowledge/squad` | sendonly | ALL agents (read-only) |
+| `mv-people` | `/data/shared/memory-vault/knowledge/people` | sendonly | ALL agents (read-only) |
+
+**Examples for each project:**
+- Brinc: `brinc-kb`, `mv-projects-brinc`
+- Cerebro: `cerebro-kb`, `mv-projects-cerebro`
+- Personal: `personal-kb`, `mv-projects-personal`
+
+**Folder Types:**
+- `sendreceive` = bidirectional sync (agent can read AND write)
+- `sendonly` = Molty pushes, agents only receive (read-only for agents)
+
+### 35. Set Up Syncthing on New Agent
+
+```bash
+# Check if Syncthing is installed
+which syncthing || apt-get update && apt-get install -y syncthing
+
+# Create directories
+mkdir -p /data/.syncthing /data/shared
+
+# Generate config
+syncthing --home=/data/.syncthing generate
+
+# Get Device ID (SEND TO MOLTY)
+syncthing --home=/data/.syncthing --device-id
+
+# Start Syncthing
+nohup syncthing serve --home=/data/.syncthing --gui-address=127.0.0.1:8384 --no-browser > /tmp/syncthing.log 2>&1 &
+```
+
+### 36. Configure Molty's Syncthing (Molty does this)
+
+1. **Add new device** with agent's Device ID
+2. **Share project-specific folders** using the naming convention above
+3. **Use REST API** for consistency:
+
+```bash
+API_KEY="molty-syncthing-key"
+NEW_AGENT_ID="XXXXX-XXXXX-..."  # From step 35
+PROJECT="brinc"  # or cerebro, personal, etc.
+
+# Add device
+curl -X POST -H "X-API-Key: $API_KEY" -H "Content-Type: application/json" \
+  http://localhost:8384/rest/config/devices \
+  -d '{"deviceID": "'$NEW_AGENT_ID'", "name": "Agent-Name", "addresses": ["dynamic"]}'
+
+# Add project-specific KB folder
+curl -X POST -H "X-API-Key: $API_KEY" -H "Content-Type: application/json" \
+  http://localhost:8384/rest/config/folders \
+  -d '{
+    "id": "'$PROJECT'-kb",
+    "label": "'$PROJECT' Knowledge Base",
+    "path": "/data/shared/'$PROJECT'",
+    "type": "sendreceive",
+    "devices": [{"deviceID": "'$MOLTY_ID'"}, {"deviceID": "'$NEW_AGENT_ID'"}]
+  }'
+
+# Add project folder in memory-vault
+curl -X POST -H "X-API-Key: $API_KEY" -H "Content-Type: application/json" \
+  http://localhost:8384/rest/config/folders \
+  -d '{
+    "id": "mv-projects-'$PROJECT'",
+    "label": "MV Projects - '$PROJECT'",
+    "path": "/data/shared/memory-vault/knowledge/projects/'$PROJECT'",
+    "type": "sendreceive",
+    "devices": [{"deviceID": "'$MOLTY_ID'"}, {"deviceID": "'$NEW_AGENT_ID'"}]
+  }'
+
+# Update shared folders (mv-daily, mv-resources, etc.) to include new device
+# Use PATCH to add device to existing folder
+```
+
+**Per Architecture — Each agent gets:**
+| Folder ID | Permission | Notes |
+|-----------|------------|-------|
+| `{project}-kb` | Read/Write | Their project KB folder |
+| `mv-projects-{project}` | Read/Write | Their project items in memory-vault |
+| `mv-daily` | Read/Write | Daily notes (all agents share) |
+| `mv-resources` | Read Only | Shared resources |
+| `mv-squad` | Read Only | Curated shared knowledge |
+| `mv-people` | Read Only | Contact directory |
+
+**BLOCKED (agents cannot see):**
+- Other projects' folders (`cerebro-kb` if you're Raphael, etc.)
+- Other projects' memory-vault items (`mv-projects-cerebro` if you're Raphael)
+- Master/command-center materials
+- Any cross-project information
+
+### 37. Verify Sync Working
+
+On new agent:
+```bash
+# Check Syncthing is running
+curl -s http://localhost:8384/rest/system/status -H "X-API-Key: $API_KEY"
+
+# List accepted folders
+curl -s http://localhost:8384/rest/config/folders -H "X-API-Key: $API_KEY"
+
+# Check folder contents
+ls -la /data/shared/{project}/
+ls -la /data/shared/memory-vault/daily/
+```
+
+---
+
+## Phase 10: Discord Setup (Agent-to-Agent Comms)
 
 ### 35. Create Discord Bots (One-Time Setup)
 
@@ -845,6 +965,18 @@ Total items: ~36 steps across 8 phases
 9. **Research before responding** — Prefer spending time investigating the complete solution over giving quick partial answers.
 
 10. **Store credentials immediately** — When you receive ANY credential or token, write it to TOOLS.md immediately — don't just use it and forget.
+
+### Syncthing/Filesystem Lessons (2026-02-04)
+
+11. **Use project-specific shares, not one big folder** — Don't share `/data/shared` as one folder. Create separate shares per project (`brinc-kb`, `cerebro-kb`, etc.) to enforce isolation at the Syncthing level.
+
+12. **Consistent folder ID naming** — Use pattern `{project}-kb` for KB folders, `mv-projects-{project}` for memory-vault project folders. This makes it easy to add new agents without confusion.
+
+13. **sendonly for read-only shares** — Use `type: "sendonly"` on Molty's side for folders that agents shouldn't modify (resources, squad, people). Agents should set `type: "receiveonly"` on their end.
+
+14. **Shared folders need .stfolder markers** — Create `.stfolder` file in each new folder before adding it to Syncthing.
+
+15. **Agent isolation = folder isolation** — An agent should only see folders for their project + the common read-only folders. They should NEVER see other projects' KB folders or project items.
 
 ---
 
