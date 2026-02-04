@@ -12,6 +12,13 @@
 - **Technical level:** Not super technical but follows good instructions well
 - **Dedication:** Spent 12+ hours getting OpenClaw set up on Day 1!
 
+### ⏰ TIMEZONE REMINDER (I keep forgetting!)
+**Always think in HKT, not UTC!**
+- My system clock shows UTC but Guillermo lives in HKT (UTC+8)
+- When I see 04:49 UTC → it's 12:49 HKT (lunchtime, not "tonight")
+- Morning = 6am-12pm HKT, Afternoon = 12pm-6pm HKT, Evening = 6pm-10pm HKT
+- **Don't say "tonight" when it's his afternoon!**
+
 ### Communication Preferences
 - Casual + friendly, but efficient and sharp
 - No fluff — get to the point
@@ -74,10 +81,17 @@ curl -X POST https://{agent}.up.railway.app/hooks/agent \
 | `~/.config/last30days/.env` | API keys for last30days skill |
 
 ### Browser
-- **Binary:** `/usr/bin/chromium` (installed via Dockerfile)
-- **Mode:** Headless, no-sandbox (required for Railway containers)
+- **Binary:** `/usr/bin/brave-browser` (installed via Dockerfile, 2026-02-04)
+- **Mode:** Headless, no-sandbox, attachOnly (required for Railway containers)
 - **Default profile:** `openclaw`
 - **User data:** `/data/.openclaw/browser/openclaw/user-data`
+- **Note:** Chromium has timeout issues with OpenClaw browser control (#3941). Brave works better.
+- **Workaround:** Must manually start Brave before using browser tool:
+  ```bash
+  nohup brave-browser --headless=new --no-sandbox --disable-gpu \
+    --remote-debugging-port=18800 --remote-debugging-address=127.0.0.1 \
+    --disable-dev-shm-usage > /dev/null 2>&1 &
+  ```
 
 ---
 

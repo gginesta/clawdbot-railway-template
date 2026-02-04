@@ -15,19 +15,23 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
 ## 🔴 High Priority
 
 ### Immediate Action Items (from 2026-02-03)
-- ⬜ SOUL.md tweaks — Guillermo has updates to discuss
+- ✅ SOUL.md tweaks — Done, applied via injected context
 - ✅ Connect Molty ↔ Raphael via webhooks — WORKING with sessionKey
-- 🟦 Raphael onboarding — memory setup sent, awaiting confirmation
-- ⬜ Have Raphael say hello in #brinc-general (Discord)
+- ✅ Raphael onboarding — DEPLOYED 2026-02-04 04:33 UTC
+- ✅ Have Raphael say hello in #brinc-general — Done, chatting all day
 
 ### Feedback to Submit
 - ⬜ **GitHub: Webhook "Hook (error)" UI label** — webhooks that succeed still show "(error)" in system message display. Cosmetic bug. Screenshot saved context: Raphael webchat 2026-02-04.
 - ✅ **GitHub: Webchat no auto-refresh** — https://github.com/openclaw/openclaw/issues/8422
 
+### Browser Tool
+- ✅ **Browser working with Brave** — Chromium had timeout issues (#3941). Brave + attachOnly workaround works.
+- ✅ **Railway template updated** — Added Brave to Dockerfile (commit c4f4cfb)
+- ⬜ **Redeploy containers** — Next Railway redeploy will include Brave permanently
+
 ### Deferred Decisions
-- ⬜ **Brinc KB transfer approach** — keep as is for now, decide later
-  - Options: send via webhook vs. Raphael fetches from shared path
-  - ~96KB across 9 files in `/data/shared/brinc/Knowledge Base/`
+- ✅ **Brinc KB transfer approach** — RESOLVED: Syncthing shared folders
+  - Raphael accesses KB via `/data/shared/brinc/Knowledge Base/` (9 files, auto-sync)
 
 ### File sharing / sync (Railway ↔ PC)
 - ✅ Done: Syncthing + Tailscale chosen and implemented
@@ -71,8 +75,8 @@ This file is our **source of truth**. To prevent “we did it but it’s still u
   - Evidence: scan report saved under `research/skill-scans/`
 
 ### Project leads (TMNT)
-- ⬜ Set up first project lead instance (Leonardo/Cerebro or Raphael/Brinc)
-  - Evidence: running session + documented config
+- ✅ Set up first project lead instance — Raphael/Brinc DEPLOYED 2026-02-04
+  - Evidence: ggv-raphael.up.railway.app running, Discord active, SOP v2.4 documented
 
 ---
 
