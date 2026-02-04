@@ -50,6 +50,33 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+## 📧 Gmail Access (WORKING!)
+
+**I HAVE EMAIL. USE IT.**
+
+| What | Value |
+|------|-------|
+| My email | `ggv.molt@gmail.com` |
+| Guillermo's email | `guillermo.ginesta@gmail.com` |
+| Script | `/data/workspace/scripts/gmail.sh` |
+
+**Quick commands:**
+```bash
+# Send email
+gmail.sh send "to@email.com" "Subject" "Body"
+
+# List messages
+gmail.sh list
+
+# Read unread
+gmail.sh unread
+
+# Search
+gmail.sh search "from:someone"
+```
+
+---
+
 Add whatever helps you do your job. This is your cheat sheet.
 
 ---

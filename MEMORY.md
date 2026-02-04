@@ -4,10 +4,44 @@
 
 ---
 
+## 📧 Email Rules
+
+| Field | Meaning | Action |
+|-------|---------|--------|
+| **TO** | Direct communication | Reply if relevant |
+| **CC** | For visibility | Don't reply unless necessary — ask Guillermo first |
+| **BCC** | Invisible visibility | **NEVER reply** — stay invisible |
+
+---
+
+## 📧 EMAIL ACCESS — I CAN SEND AND READ EMAIL!
+
+⚠️ **DON'T FORGET:** I have full Gmail access. Use it!
+
+| What | Value |
+|------|-------|
+| **My email** | ggv.molt@gmail.com |
+| **Guillermo's email** | guillermo.ginesta@gmail.com |
+| **Script** | `/data/workspace/scripts/gmail.sh` |
+| **Credentials** | `/data/workspace/credentials/gmail-tokens.json` |
+
+**Commands:**
+- `gmail.sh send "to@email.com" "Subject" "Body"` — Send email
+- `gmail.sh list` — List recent messages
+- `gmail.sh unread` — Unread messages  
+- `gmail.sh read <id>` — Read specific message
+- `gmail.sh search <query>` — Search
+
+**OAuth Project:** Molty Assistant (Google Cloud)
+**Client ID:** 536684064073-8ljpsdjic0i8hnv6rsr8jl0plsep8pdr.apps.googleusercontent.com
+
+---
+
 ## 👤 About Guillermo
 
 - **Location:** Hong Kong (GMT+8)
 - **Telegram:** @gginesta (id: 1097408992)
+- **Email:** guillermo.ginesta@gmail.com
 - **Style:** Curious, learns fast, enjoys troubleshooting
 - **Technical level:** Not super technical but follows good instructions well
 - **Dedication:** Spent 12+ hours getting OpenClaw set up on Day 1!
@@ -76,9 +110,36 @@ curl -X POST https://{agent}.up.railway.app/hooks/agent \
 | `/data/.openclaw/openclaw.json` | Main config file |
 | `/data/.openclaw/credentials/` | Telegram allowlists, pairing |
 | `/data/.openclaw/browser/openclaw/` | Chromium profile |
-| `/data/.openclaw/memory/main.sqlite` | Memory search index (13MB) |
+| `/root/.cache/qmd/index.sqlite` | QMD memory index |
+| `/root/.bun/bin/qmd` | QMD binary |
 | `~/.config/git/credentials` | GitHub token |
 | `~/.config/last30days/.env` | API keys for last30days skill |
+
+### Memory Backend (QMD)
+
+**Status:** ✅ Live (configured 2026-02-04)
+
+| Setting | Value |
+|---------|-------|
+| Backend | `qmd` (local-first, by Tobias Lütke) |
+| Binary | `/root/.bun/bin/qmd` |
+| Index | `/root/.cache/qmd/index.sqlite` |
+| Update interval | 5 minutes |
+| Session retention | 30 days |
+| Max results | 8 |
+| Timeout | 5000ms |
+
+**Collections:**
+- `memory-root` → MEMORY.md
+- `memory-dir` → memory/*.md
+- `sessions` → Session transcripts (markdown exports)
+
+**Why QMD over alternatives:**
+- ✅ Local-first (no third-party cloud)
+- ✅ Official OpenClaw support (v2026.2.2+)
+- ✅ Hybrid search (BM25 + vectors + reranking)
+- ✅ Author: Tobias Lütke (Shopify CEO) — credible
+- ⚠️ Slow on CPU (no GPU in Railway container)
 
 ### Browser
 - **Binary:** `/usr/bin/brave-browser` (installed via Dockerfile, 2026-02-04)
@@ -319,6 +380,10 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 21. **Audit against SOP at the end** — Run through checklist to catch gaps before declaring complete.
 
 22. **Document blockers clearly** — Raphael was ready but waiting on Guillermo for HubSpot/leads. Make handoff explicit.
+
+23. **PERSIST PLANS TO FILES IMMEDIATELY** — Never just discuss plans in chat. Context pruning will erase them. Any significant plan, decision, or deliverable must be written to a file THE MOMENT it's created. Lost the Todoist integration plan because of this. (2026-02-04)
+
+24. **Document config changes BEFORE applying** — QMD was installed and configured but the context got compacted before I documented it. Guillermo asked "did you upload this?" and I had no memory of doing it. Always write to memory files BEFORE running config.patch or gateway changes. (2026-02-04)
 
 ---
 
