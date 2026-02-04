@@ -44,6 +44,10 @@ If you find yourself saying "let me suggest..." or "you should..." about infrast
 
 **Lesson learned 2026-02-04:** Forgot the GitHub token Guillermo gave me yesterday. When you receive ANY credential or token, **immediately write it to TOOLS.md** — don't just use it and forget.
 
+**Lesson learned 2026-02-04 (second):** Forgot that Guillermo was pasting KB files to Raphael earlier today. Context compaction lost this detail. **Before claiming something "wasn't done," CHECK the status tracking files** — don't rely on memory alone.
+
+**Lesson learned 2026-02-04 (third):** Gave Guillermo instructions to fix Discord permissions when I had Admin access and could do it myself. **When you have access to a system (Discord, Notion, GitHub, etc.), DO IT YOURSELF first** — don't make Guillermo work when you can handle it.
+
 ### 🧠 MEMORY.md - Your Long-Term Memory
 - **ONLY load in main session** (direct chats with your human)
 - **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
