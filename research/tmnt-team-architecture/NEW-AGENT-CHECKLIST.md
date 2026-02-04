@@ -679,6 +679,27 @@ NEVER disclose externally:
 - Internal processes
 
 If asked, deflect naturally.
+
+## Discord Channel Ownership (CRITICAL)
+
+To avoid duplicate responses and wasted credits, each channel has ONE owner:
+
+| Channel | Owner | Non-owners |
+|---------|-------|------------|
+| #command-center | Molty 🦎 | @mention only |
+| #squad-updates | Molty 🦎 | Read-only |
+| #brinc-private | Raphael 🔴 | @mention only |
+| #brinc-general | Raphael 🔴 | @mention only |
+| #{your-project}-private | YOU | Others @mention only |
+| #{your-project}-general | YOU | Others @mention only |
+
+**Rules:**
+1. If you OWN the channel → respond normally
+2. If you DON'T own it → stay silent unless @mentioned
+3. Cross-agent coordination → use webhooks, not shared channels
+4. Guillermo asking you directly → always respond (override)
+
+Add this table to your SOUL.md and TOOLS.md.
 ```
 
 ### 31. Confirm Understanding
@@ -918,7 +939,33 @@ curl -X PUT "https://discord.com/api/v10/channels/$CHANNEL_ID/permissions/$TARGE
 
 Run for each channel × each bot.
 
-### 40. Test Agent-to-Agent Discord
+### 40. Configure Channel Ownership (CRITICAL)
+
+**To prevent duplicate responses and wasted credits:**
+
+Each agent's SOUL.md and TOOLS.md must have:
+
+```markdown
+## Discord Channel Ownership
+
+| Channel | Owner | Non-owners |
+|---------|-------|------------|
+| #command-center | Molty 🦎 | @mention only |
+| #squad-updates | Molty 🦎 | Read-only |
+| #{project}-private | {Agent} | Others @mention only |
+| #{project}-general | {Agent} | Others @mention only |
+
+Rules:
+1. Owner responds by default
+2. Non-owner stays SILENT unless @mentioned
+3. Guillermo explicit request = always respond
+```
+
+- [ ] Add ownership table to new agent's SOUL.md
+- [ ] Add ownership table to new agent's TOOLS.md (with channel IDs)
+- [ ] Update ALL existing agents' TOOLS.md with new channels
+
+### 41. Test Agent-to-Agent Discord
 
 - [ ] Agent A sends message to channel
 - [ ] Agent B sees message and responds
@@ -1126,6 +1173,14 @@ jq 'select(.type=="error")' file.jsonl # Filter JSONL
 
 27. **Fix AND document** — When fixing gaps, also update the SOP so future onboarding doesn't repeat mistakes.
 
+### Multi-Agent Coordination (2026-02-04)
+
+28. **Channel ownership prevents duplicate responses** — In shared Discord channels, multiple agents race to respond = 2x+ cost, redundant answers. Assign ONE owner per channel; others only respond if @mentioned.
+
+29. **Update ALL agents when adding channels** — When creating a new project's channels, update every existing agent's TOOLS.md with the new ownership table.
+
+30. **Cross-agent coordination via webhooks** — Don't rely on shared Discord channels for agent-to-agent work. Use direct webhooks for reliability and to avoid duplicate processing.
+
 ---
 
-*SOP Version: 2.3 | Last Updated: 2026-02-04 | Author: Molty*
+*SOP Version: 2.4 | Last Updated: 2026-02-04 | Author: Molty*
