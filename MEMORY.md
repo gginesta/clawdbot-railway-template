@@ -32,7 +32,7 @@
 | Agent | URL | Webchat Token | Status |
 |-------|-----|---------------|--------|
 | **Molty** | ggvmolt.up.railway.app | (main gateway token) | ✅ Active |
-| **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | ✅ Connected |
+| **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | ✅ **DEPLOYED** (2026-02-04) |
 
 ### Discord Bots (TMNT Squad Server)
 | Bot | Application ID | Guild | Status |
@@ -216,14 +216,21 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 
 **Hierarchy:** Guillermo → Molty (coordinator) → Project Leads
 
-| Project | Lead | Type | Emoji |
-|---------|------|------|-------|
-| **Master** | Molty | Meta (frameworks, settings) | 🦎 |
-| **Personal** | April | Personal (fitness, family, admin) | 📰 |
-| **Brinc** | Raphael | Corporate | 🔴 |
-| **Cerebro** | Leonardo | Venture | 🔵 |
-| **Tinker Labs** | Donatello | Research/Incubation | 🟣 |
-| **Mana Capital** | Michelangelo | Investment/PE | 🟠 |
+| Project | Lead | Type | Emoji | Status |
+|---------|------|------|-------|--------|
+| **Master** | Molty | Meta (frameworks, settings) | 🦎 | ✅ Active |
+| **Personal** | April | Personal (fitness, family, admin) | 📰 | ⏳ Not deployed |
+| **Brinc** | Raphael | Corporate | 🔴 | ✅ **DEPLOYED 2026-02-04** |
+| **Cerebro** | Leonardo | Venture | 🔵 | ⏳ Not deployed |
+| **Tinker Labs** | Donatello | Research/Incubation | 🟣 | ⏳ Not deployed |
+| **Mana Capital** | Michelangelo | Investment/PE | 🟠 | ⏳ Not deployed |
+
+### Raphael Deployment Summary
+- **Deployed:** 2026-02-04 04:33 UTC
+- **Onboarding time:** ~4 hours (including audit/fixes)
+- **Blockers cleared:** All infrastructure verified
+- **Waiting on:** HubSpot access, lead sheet, top-20 brain dump from Guillermo
+- **Team:** Bowser 🐢, Toad 🍄, Yoshi 🦖, Luigi 💚 (Super Mario theme)
 
 **Notion Mission Control:** https://www.notion.so/Molty-s-Mission-Control-2fa39dd69afd80be89dae91e20d30a38
 
@@ -282,6 +289,22 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 14. **Think ahead about the full flow** — When setting up step A, anticipate what step B will need.
 
 15. **Context overflow = death** — Never read entire log/session files. Session JSONL can be 15MB+. Always use `tail -100`, `limit` param, or targeted `grep`. Check file size with `wc -l` before reading unknown files.
+
+### Raphael Deployment Lessons (2026-02-04)
+
+16. **Check shared folders FIRST** — `/data/shared/` via Syncthing is source of truth for cross-agent data. Don't search session logs when the file is already synced.
+
+17. **Sales agents need FULL files** — Objection handlers, case studies, ICP qualification must be complete, not summaries. They need to QUOTE specific content.
+
+18. **Set up Syncthing BEFORE KB transfer** — Files auto-sync once configured. Manual paste is wasted effort.
+
+19. **Verify KB access explicitly** — Ask agent to `ls` the folder AND read a specific file. Sync issues are silent failures.
+
+20. **Quiz before marking "onboarded"** — 10+ questions minimum for sales agents. Require explicit answers.
+
+21. **Audit against SOP at the end** — Run through checklist to catch gaps before declaring complete.
+
+22. **Document blockers clearly** — Raphael was ready but waiting on Guillermo for HubSpot/leads. Make handoff explicit.
 
 ---
 
