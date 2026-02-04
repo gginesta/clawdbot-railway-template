@@ -81,6 +81,41 @@ Add whatever helps you do your job. This is your cheat sheet.
 
 ---
 
+## 🐦 Twitter/X (@Molton_Sanchez)
+
+**Account:** @Molton_Sanchez (Molty Moltensson)
+**User ID:** 2017943260631588864
+**CLI:** `bird` (installed globally via npm)
+**Credentials:** `/data/workspace/credentials/twitter.env`
+
+### Quick Commands
+```bash
+# Always export creds first
+export AUTH_TOKEN="..." CT0="..."
+
+# Check auth
+bird whoami
+
+# Search
+bird search "query" -n 5
+
+# Read tweet/thread
+bird read <url-or-id>
+bird thread <url-or-id>
+
+# Post (confirm with user first!)
+bird tweet "text"
+bird reply <id-or-url> "text"
+```
+
+### Rules
+- **READ-ONLY MODE** — Account is new, posting blocked by Twitter bot detection
+- When Guillermo shares X links → use `bird read` or `bird thread`
+- Posting disabled until account warms up (try again in a few days)
+- When posting enabled: always confirm with Guillermo first
+
+---
+
 ## GitHub API
 
 **Token:** `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`

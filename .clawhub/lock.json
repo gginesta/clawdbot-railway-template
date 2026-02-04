@@ -24,6 +24,10 @@
     "task": {
       "version": "0.1.0",
       "installedAt": 1769843831296
+    },
+    "bird": {
+      "version": "1.0.0",
+      "installedAt": 1770213195219
     }
   }
 }
