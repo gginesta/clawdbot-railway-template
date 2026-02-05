@@ -1,6 +1,6 @@
 # MEMORY.md - Long-Term Memory
 
-*Created: 2026-01-31 | Last updated: 2026-01-31*
+*Created: 2026-01-31 | Last updated: 2026-02-05*
 
 ---
 
@@ -373,6 +373,18 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 | API Skill Capture (full) | `scripts/API-SKILL-CAPTURE-SPEC.md` | 105KB |
 | Morning Briefing | `scripts/MORNING-BRIEFING-SPEC.md` | 31KB |
 | Whoop Integration | `scripts/WHOOP-INTEGRATION-SPEC.md` | ~30KB |
+| Codex Integration Plan | `docs/CODEX-INTEGRATION-PLAN.md` | ~29KB |
+| Agent Deployment Guide | `docs/AGENT-DEPLOYMENT-GUIDE.md` | ~5KB |
+
+### New This Session (Late Feb 5)
+| Item | Status | Priority | Next |
+|------|--------|----------|------|
+| **Codex Integration Plan** | ✅ Plan done + Raphael reviewed | P2 | Pilot with WebClaw or Morning Briefing repo |
+| **Cross-Agent Task Protocol** | Todoist P1 (9988892081) | P1 | Build by Feb 8, ref Mission Control tweet |
+| **Molty's Pokémon Squad** | Notion page created, Guillermo editing | P2 | Implement after Guillermo approves roster |
+| **Pikachu (Marketing)** | Role defined, content ideas queued | P2 | Start sharing with community |
+| **Agent Deployment Guide** | ✅ Created + synced | Ready | Use for Leonardo next week |
+| **Leonardo deployment** | Deferred to next week | — | Use AGENT-DEPLOYMENT-GUIDE.md |
 
 ---
 
@@ -440,6 +452,66 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 | Morning Briefing | `scripts/MORNING-BRIEFING-SPEC.md` + `scripts/morning_briefing.py` | Spec + script done, not deployed |
 | Whoop Integration | `scripts/WHOOP-INTEGRATION-SPEC.md` | Spec done, needs Whoop API access |
 | Security Hardening Plan | `SECURITY-HARDENING-PLAN.md` | ✅ Mostly complete |
+| Codex Integration Plan | `docs/CODEX-INTEGRATION-PLAN.md` | ✅ Plan + Raphael review done |
+| Agent Deployment Guide | `docs/AGENT-DEPLOYMENT-GUIDE.md` | ✅ Ready for Leonardo |
+
+---
+
+## 🎮 Codex Integration Strategy (2026-02-05)
+
+**Plan:** `/data/workspace/docs/CODEX-INTEGRATION-PLAN.md` (~29KB)
+**Raphael Review:** `/data/shared/codex-raphael-review.md`
+
+**Decision framework:**
+- **Use Codex** when: PR-shaped work, clear acceptance criteria, tests exist, parallelizable
+- **Use OpenClaw sub-agents** when: coordination-heavy, multi-tool, ambiguous, needs secrets, not PR-shaped
+
+**GitHub label state machine:** `codex-ready` → `codex-running` → `needs-review` → `done`
+
+**Rollout order:**
+1. **Pilot:** WebClaw or Morning Briefing repo (1-2 weeks)
+2. **Team adoption:** Unbrowse phases + Brinc HubSpot (2-4 weeks)
+3. **Full automation:** Discord/Notion auto-updates, Codex auto-review (4-8 weeks)
+
+**Raphael's refinements (approved):**
+- Split `src/domain/` vs `src/integrations/` for smaller Codex PRs
+- HubSpot CRM = first Brinc Codex pilot
+- PII guardrails: never log raw email/phone, sanitized fixtures only
+- Staging smoke-test loop + rollback/feature-flag plan per PR
+
+---
+
+## 🦎 Molty's Pokémon Squad (Sub-Agent Roster)
+
+**Theme:** Gen 1 Pokémon (#1-151) — Guillermo's nostalgic preference
+**Notion page:** https://www.notion.so/2fe39dd69afd8198ad96d4e2d086de25
+**Status:** Guillermo editing, awaiting final approval
+
+| Phase | Role | Pokémon | Model |
+|-------|------|---------|-------|
+| P0 | Spec Writer | Alakazam 🥄 | GPT-5.2 |
+| P0 | Builder | Machamp 💪 | GPT-5.2 |
+| P0 | Researcher | Eevee 🔎 | Gemini Flash |
+| P1 | Code Reviewer | Mewtwo 🧬 | Claude Sonnet |
+| P1 | Security Auditor | Arcanine 🔥 | Gemini Flash |
+| P1 | Data Wrangler | Porygon 💾 | Qwen |
+| P2 | Writer / Comms | Jigglypuff 🎤 | Claude Sonnet |
+| P2 | Scheduler | Abra ⏳ | Qwen |
+| P2 | Fleet Monitor | Electrode ⚡ | Qwen |
+| Special | Marketing / Social | Pikachu ⚡ | Claude Sonnet |
+
+**Pikachu content pipeline:** Molty flags moment → Pikachu drafts → Guillermo approves → post via @Molton_Sanchez
+**X account:** @Molton_Sanchez (posting currently blocked by Twitter bot detection — revisit)
+
+---
+
+## 📋 Cross-Agent Task Protocol (P1 — Due Feb 8)
+
+**Todoist:** 9988892081 (Molty's Den, P1)
+**Reference:** Bhanu Teja's Mission Control guide: https://x.com/pbteja1998/status/2017662163540971756
+**Problem:** Current Discord relay is free-form text — doesn't scale past 2 agents
+**Solution:** Structured task dispatch + acknowledgment + progress tracking + completion verification
+**Integrates with:** Codex GitHub label state machine, existing Discord channels, Todoist
 
 ---
 
@@ -500,6 +572,26 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 23. **PERSIST PLANS TO FILES IMMEDIATELY** — Never just discuss plans in chat. Context pruning will erase them. Any significant plan, decision, or deliverable must be written to a file THE MOMENT it's created. Lost the Todoist integration plan because of this. (2026-02-04)
 
 24. **Document config changes BEFORE applying** — QMD was installed and configured but the context got compacted before I documented it. Guillermo asked "did you upload this?" and I had no memory of doing it. Always write to memory files BEFORE running config.patch or gateway changes. (2026-02-04)
+
+### Day 5 (2026-02-05)
+
+25. **Sub-agents are insanely productive** — 6 parallel agents produced 5 major specs + 1 working system in under 2 hours. GPT-5.2 with high thinking is the sweet spot for technical specs.
+
+26. **Model name precision matters** — `anthropic/claude-sonnet-4` ≠ `anthropic/claude-sonnet-4-0`. The `-0` suffix caused a sub-agent spawn to fail. Always use exact model IDs from config.
+
+27. **Python `.format()` vs bash templates** — Never use `.format()` for bash script templates. Bash arrays, curl codes, and variable expansions all conflict. Use `.replace()` instead.
+
+28. **Test against real sites immediately** — Unbrowse MVP had a template bug only surfaced when generating actual scripts. Quick test cycle caught it in minutes.
+
+29. **last30days script OOMs on Railway** — Gets SIGKILL. Use direct web_search + web_fetch instead.
+
+30. **Security updates need coordinated token rotation** — When rotating shared tokens, update the OTHER instance BEFORE changing your own config (using the old token to authenticate).
+
+31. **Check shared files before proposing new systems** — Proposed fleet-wide lessons file; it already existed in OPERATIONAL-GUIDELINES.md. Always check `/data/shared/memory-vault/` first.
+
+32. **Unbrowse is 70/30** — Great for REST CRUD (70% of SaaS integrations). Falls short on OAuth flows, WebSocket, GraphQL, stateful workflows. Best as discovery + scaffolding (80%) then human polish (20%).
+
+33. **Formalizing sub-agents pays off** — Ad-hoc spawning works but named roles with pre-loaded instructions = faster + more consistent results.
 
 ---
 
