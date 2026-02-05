@@ -354,6 +354,28 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 
 ---
 
+## 🚀 Active Roadmap (as of 2026-02-05)
+
+### Build Queue (Molty's Den 🦎)
+| Project | Status | Priority | Next Step |
+|---------|--------|----------|-----------|
+| **Unbrowse DIY** (API Skill Auto-Capture) | ✅ Phase 1 live | P2 | Test on real authenticated site (HubSpot?) |
+| **Morning Briefing** (7:30 AM Telegram) | Script ready | P2 | Deploy cron when Guillermo says go |
+| **WebClaw** (Better web UI) | Scoped | P2 | Deploy vanilla this weekend |
+| **Smart Scheduling Engine** | Spec done | P2 | Build Phase 1 (fetch + classify) |
+| **Whoop Health Integration** | Spec done | P3 | Need Guillermo's Whoop dev app registration |
+| **Discord Allowlists** | Blocked | P2 | Need Guillermo's Discord user ID |
+
+### Specs Ready to Build
+| Spec | Path | Size |
+|------|------|------|
+| Smart Scheduling Engine | `scripts/SMART-SCHEDULING-SPEC.md` | ~20KB |
+| API Skill Capture (full) | `scripts/API-SKILL-CAPTURE-SPEC.md` | 105KB |
+| Morning Briefing | `scripts/MORNING-BRIEFING-SPEC.md` | 31KB |
+| Whoop Integration | `scripts/WHOOP-INTEGRATION-SPEC.md` | ~30KB |
+
+---
+
 ## 👀 Watching / Revisit Later
 
 ### OpenClaw PR #6797 — Message Hooks (`message:received` + `message:sent`)
