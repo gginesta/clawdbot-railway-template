@@ -354,6 +354,20 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 
 ---
 
+## 👀 Watching / Revisit Later
+
+### OpenClaw PR #6797 — Message Hooks (`message:received` + `message:sent`)
+- **PR:** https://github.com/openclaw/openclaw/pull/6797
+- **Issue:** #5053
+- **Status:** Open (as of 2026-02-05)
+- **Why we care:**
+  1. **Notion standup auto-trigger** — Notion webhook → message hook → auto-process standup decisions (no more "ping me when done")
+  2. **Automatic inbox processing** — Pre-process incoming messages for task extraction
+  3. **Cross-agent events** — Structured hook events for Raphael coordination
+- **Action:** When this merges and we update OpenClaw, revisit and implement hooks for standup + inbox automation
+
+---
+
 ## 📝 Preferences & Decisions
 
 ### Accepted Risks
