@@ -36,6 +36,12 @@ For each Inbox item:
 - Move confirmed items to their projects
 - Set due dates based on discussion
 
+## Brinc Task Coordination (Raphael)
+- Relay Brinc tasks to Raphael via **Discord** (#brinc-private / #brinc-general)
+- Raphael creates **mirror tasks in Notion** for execution tracking
+- Completion flow: Raphael done in Notion → Molty reviews → tick off in Todoist
+- **Future:** Same pattern for ALL team leads (Todoist → Discord → agent's Notion → review → Todoist ✅)
+
 ## Model for Processing
 - Use `qwen` (cheap/fast) for simple rewrites
 - Escalate to sonnet for ambiguous items needing interpretation

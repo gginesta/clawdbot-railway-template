@@ -339,9 +339,11 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 - **If skipped:** Guillermo says "skip standup" → move to next morning
 
 ### Brinc Task Coordination with Raphael
-- Brinc tasks I process stay in Todoist (Guillermo's view)
-- Client-facing/sales tasks get relayed to Raphael via webhook
-- Raphael tracks his own work internally — I coordinate handoffs
+- Brinc tasks I process stay in **Todoist** (Guillermo's command view)
+- I relay Brinc tasks to Raphael via **Discord** (`#brinc-private` or `#brinc-general`), NOT webhooks
+- Raphael creates **mirror tasks in his Notion** for tracking execution
+- **Completion flow:** Raphael marks done in Notion → I review/approve → tick off in Todoist
+- ⚠️ **Future pattern:** Mirror this coordination model for ALL team leads when deployed (Leonardo, Donatello, Michelangelo, April) — Todoist = Guillermo's view, agent's Notion = execution tracking, Discord = communication channel
 
 ### Priority = Eisenhower Matrix
 - P1 = Urgent + Important → DO NOW
