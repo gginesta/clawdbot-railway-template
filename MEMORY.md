@@ -368,6 +368,31 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 
 ---
 
+## 🔓 Unbrowse DIY (API Skill Auto-Capture)
+
+**Status:** Phase 1 MVP LIVE (2026-02-05)
+**Concept:** Browse a site once → capture API traffic via CDP → auto-generate reusable curl skills → share fleet-wide
+
+| Component | Path | Status |
+|-----------|------|--------|
+| CDP Capture | `scripts/api-capture/cdp-capture.js` | ✅ Working |
+| Skill Generator | `scripts/api-capture/skill-gen.py` | ✅ Working |
+| Wrapper | `scripts/api-capture/capture-and-generate.sh` | ✅ Working |
+| Generated skills | `/data/shared/api-skills/` | ✅ Syncthing shared |
+| Credentials | `credentials/api-auth/` | ✅ Local only |
+| Full spec | `scripts/API-SKILL-CAPTURE-SPEC.md` | ✅ 2300 lines |
+
+**How to use:** Start capture → browse site → stop → skill generated automatically
+```bash
+bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
+```
+
+**Fleet sharing:** Generated skills land in `/data/shared/api-skills/` → Syncthing pushes to all agents → sub-agents call via `exec` + curl
+
+**Remaining phases:** P2 fleet distribution polish, P3 self-healing, P4 sub-agent integration, P5 advanced (GraphQL, WebSocket)
+
+---
+
 ## 📝 Preferences & Decisions
 
 ### Accepted Risks
@@ -381,6 +406,18 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 - **My emoji:** 🦎 (not 🫠 — doesn't render in webchat)
 - **Responses:** Casual but efficient, tables for structured data
 - **Platform formatting:** No markdown tables for Discord/WhatsApp (use bullets)
+
+---
+
+## 🗂️ Specs & Build Docs (2026-02-05)
+
+| Spec | Path | Status |
+|------|------|--------|
+| Smart Scheduling Engine | `scripts/SMART-SCHEDULING-SPEC.md` | Spec done, not built |
+| API Skill Auto-Capture (Unbrowse) | `scripts/API-SKILL-CAPTURE-SPEC.md` | ✅ Phase 1 built + tested |
+| Morning Briefing | `scripts/MORNING-BRIEFING-SPEC.md` + `scripts/morning_briefing.py` | Spec + script done, not deployed |
+| Whoop Integration | `scripts/WHOOP-INTEGRATION-SPEC.md` | Spec done, needs Whoop API access |
+| Security Hardening Plan | `SECURITY-HARDENING-PLAN.md` | ✅ Mostly complete |
 
 ---
 
