@@ -239,7 +239,9 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 | `mv-squad` | `/data/shared/memory-vault/knowledge/squad` | sendonly | All |
 | `mv-people` | `/data/shared/memory-vault/knowledge/people` | sendonly | All |
 
-**Note:** `shared` folder overlaps with mv-* folders (2026-02-04 fix). Works but may need cleanup later.
+**Status:** ✅ WORKING (fixed 2026-02-04 14:32 UTC)
+**Root cause:** Folder ID mismatch (`brinc-kb` vs `shared`). Changed Molty's folder to match Raphael's.
+**Note:** `shared` folder overlaps with mv-* folders. Works but may need cleanup later.
 
 ### Device IDs
 | Device | ID | Syncthing Status |
@@ -310,6 +312,43 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 - **Team:** Bowser 🐢, Toad 🍄, Yoshi 🦖, Luigi 💚 (Super Mario theme)
 
 **Notion Mission Control:** https://www.notion.so/Molty-s-Mission-Control-2fa39dd69afd80be89dae91e20d30a38
+
+---
+
+## 📋 Todoist Productivity System (Configured 2026-02-05)
+
+### Projects
+| ID | Name | Emoji |
+|----|------|-------|
+| 2300781375 | Inbox | 📥 (capture bucket) |
+| 2300781387 | Personal | 🙂 |
+| 2300781386 | Brinc | 🔴 |
+| 2329980736 | Wedding | 💍 (shared) |
+| 2330246839 | Mana Capital | 🟠 |
+| 2366746501 | Molty's Den | 🦎 |
+
+### Inbox Processing Flow
+1. Guillermo dumps raw tasks/ideas into Inbox throughout the day
+2. I process hourly (hybrid mode) — rewrite, estimate, categorize, prioritize
+3. Daily standup at **5PM HKT** — review processed items, confirm, move to projects with due dates
+
+### Daily Standup
+- **Time:** 5:00 PM HKT (09:00 UTC)
+- **Cron:** `bdb28765-f508-4271-a04d-9408d39f49fd`
+- **Channel:** Webchat first → Telegram fallback after 15min
+- **If skipped:** Guillermo says "skip standup" → move to next morning
+
+### Brinc Task Coordination with Raphael
+- Brinc tasks I process stay in Todoist (Guillermo's view)
+- Client-facing/sales tasks get relayed to Raphael via webhook
+- Raphael tracks his own work internally — I coordinate handoffs
+
+### Priority = Eisenhower Matrix
+- P1 = Urgent + Important → DO NOW
+- P2 = Important, not urgent → SCHEDULE
+- P3 = Urgent, not important → DELEGATE
+- P4 = Neither → DEFER
+- ⚠️ Todoist API inverted: `priority=4` = P1 display!
 
 ---
 

@@ -81,6 +81,54 @@ Add whatever helps you do your job. This is your cheat sheet.
 
 ---
 
+## ✅ Todoist API
+
+**Token:** `/data/workspace/credentials/todoist.env`
+**API:** REST v2 (https://api.todoist.com/rest/v2/)
+**Status:** ✅ Connected (2026-02-05)
+
+### Projects
+| ID | Name | Notes |
+|----|------|-------|
+| 2300781375 | Inbox | Guillermo dumps raw tasks here → I process them |
+| 2300781387 | Personal 🙂 | Personal tasks |
+| 2300781386 | Brinc 🔴 | Brinc corporate tasks (coordinate with Raphael) |
+| 2329980736 | Wedding 💍 | Shared project |
+| 2330246839 | Mana Capital 🟠 | Investment/PE tasks |
+| 2366746501 | Molty's Den 🦎 | Meta/infrastructure/agent tasks |
+
+### Inbox Processing System
+- **Flow:** Guillermo dumps → I process hourly → Review at daily standup (5PM HKT)
+- **Processing:** Rewrite title, expand description, estimate duration, assign project, set priority
+- **Priority mapping:** P1=DO NOW, P2=SCHEDULE, P3=DELEGATE, P4=DEFER (⚠️ Todoist API is inverted: priority=4 is P1!)
+- **Ideas:** Tagged with `@idea`, noted for standup discussion
+- **Protocol:** See `/data/workspace/scripts/process-inbox.md`
+
+### Daily Standup
+- **Time:** 5:00 PM HKT (09:00 UTC) daily
+- **Channel:** Webchat first → Telegram fallback after 15min
+- **Cron Job:** `bdb28765-f508-4271-a04d-9408d39f49fd`
+- **Agenda:** Completed today → Overdue → Inbox triage → Tomorrow planning
+
+### Quick API Examples
+```bash
+source /data/workspace/credentials/todoist.env
+
+# List projects
+curl -s https://api.todoist.com/rest/v2/projects -H "Authorization: Bearer $TODOIST_API_TOKEN"
+
+# List tasks
+curl -s https://api.todoist.com/rest/v2/tasks -H "Authorization: Bearer $TODOIST_API_TOKEN"
+
+# Add task
+curl -s -X POST https://api.todoist.com/rest/v2/tasks \
+  -H "Authorization: Bearer $TODOIST_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"content": "Task name", "project_id": "2300781375"}'
+```
+
+---
+
 ## 🐦 Twitter/X (@Molton_Sanchez)
 
 **Account:** @Molton_Sanchez (Molty Moltensson)
