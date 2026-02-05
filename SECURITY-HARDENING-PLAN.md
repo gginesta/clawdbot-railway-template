@@ -28,13 +28,13 @@
 
 ### Phase 1: Config Hardening (No Restart Required)
 
-- [ ] **1.1 — MOLTY: Remove Llama 70B from fallback chain** 🔴 CRITICAL
+- [x] **1.1 — MOLTY: Remove Llama 70B from fallback chain** 🔴 CRITICAL ✅ DONE 13:50 UTC
   - **Why:** 70B param model with full web tool access = prompt injection risk
   - **Action:** Remove `openrouter/meta-llama/llama-3.3-70b-instruct` from `agents.defaults.model.fallbacks`
   - **New chain:** `claude-sonnet-4 → gpt-5.2 → grok-3` (all large enough to be safe)
   - **Risk:** None — Llama was a last-resort fallback we never hit
 
-- [ ] **1.2 — MOLTY: Generate new 64-char hooks token** ⚠️ WARN
+- [x] **1.2 — MOLTY: Generate new 64-char hooks token** ⚠️ WARN ✅ DONE 13:50 UTC
   - **Why:** Current token is only 20 chars; webhooks are externally reachable
   - **Action:** Generate cryptographic random token, update config
   - **Dependency:** Must also update Raphael's webhook URL/token if he calls our hooks
@@ -46,15 +46,9 @@
   - **Need from Guillermo:** Your Discord user ID (right-click your name → Copy User ID)
   - **Risk:** None
 
-- [ ] **1.4 — MOLTY: Evaluate device auth** 🔴 CRITICAL (ACCEPTED RISK)
-  - **Why:** `dangerouslyDisableDeviceAuth=true` lets anyone with the URL access Control UI
-  - **Current mitigation:** Railway provides a unique URL, not easily guessable
-  - **Options:**
-    1. ✅ Keep disabled + add IP allowlist if Railway supports it (it doesn't natively)
-    2. Re-enable device auth + use Telegram/webchat only (lose web Control UI)
-    3. Keep as-is (accepted risk — documented)
-  - **Recommendation:** Keep as accepted risk, document it, revisit when OpenClaw adds better auth
-  - **Risk:** Medium — URL is obscure but not secret
+- [x] **1.4 — MOLTY: Evaluate device auth** 🔴 CRITICAL (ACCEPTED RISK) ✅ DECIDED 13:49 UTC
+  - **Decision:** Keep disabled per Guillermo's approval. Will revisit soon.
+  - **Mitigation:** Railway unique URL, not easily guessable
 
 - [ ] **1.5 — RAPHAEL: Mirror all applicable fixes from 1.1–1.4**
   - Raphael runs his own audit and applies same standards
@@ -62,20 +56,20 @@
 
 ### Phase 2: Update OpenClaw (Requires Restart)
 
-- [ ] **2.1 — MOLTY: Backup before update**
-  - **Action:** Run `/data/workspace/backups/backup.sh` + `git push backup master`
-  - **Why:** 86 commits is a significant update — need rollback point
+- [x] **2.1 — MOLTY: Backup before update** ✅ DONE 13:49 UTC
+  - Backup: `molty-backup-20260205-134953.tar.gz` (354M)
+  - Pushed to GitHub: `gginesta/moltybackup`
 
-- [ ] **2.2 — MOLTY: Update OpenClaw**
-  - **Action:** `openclaw update` (git pull + restart)
-  - **Expected:** Update from `4a5d3689` to latest on main
-  - **Risk:** Breaking changes possible after 86 commits — monitor for errors post-restart
+- [x] **2.2 — MOLTY: Update OpenClaw** ✅ DONE 13:53 UTC
+  - Updated: `4a5d3689` → `8b845123` (86 commits, 355 files changed)
+  - git pull + pnpm install + pnpm build + restart
+  - Now up to date (local newer than npm 2026.2.3-1)
 
-- [ ] **2.3 — MOLTY: Post-update verification**
-  - Re-run `openclaw security audit --deep`
-  - Verify all channels working (Telegram, Discord, webchat)
-  - Verify cron jobs intact
-  - Check that config changes from Phase 1 persisted
+- [x] **2.3 — MOLTY: Post-update verification** ✅ DONE 13:55 UTC
+  - Audit: 1 critical (accepted), 2 warn (Discord allowlist + Sonnet tier), 2 info
+  - Config changes persisted (64-char token, no Llama)
+  - Webchat working (this conversation)
+  - Cron + channels to verify next heartbeat
 
 - [ ] **2.4 — RAPHAEL: Update OpenClaw**
   - Same process: backup → update → verify
@@ -91,9 +85,9 @@
   - Syncthing ports exposed (auth-protected, accepted)
   - Any other consciously accepted items
 
-- [ ] **3.3 — Set up periodic audit cron**
-  - Schedule weekly `openclaw security audit --deep` for both instances
-  - Alert to Telegram if findings change
+- [x] **3.3 — Set up periodic audit cron** ✅ DONE 13:55 UTC
+  - Cron: `healthcheck:security-audit` (f17da2d2) — weekly Monday 3AM HKT
+  - Model: gemini-2.5-flash (cheap), delivers to Telegram if new findings
 
 - [ ] **3.4 — Sync hooks tokens between agents**
   - After new tokens generated, update both agents' webhook configs
@@ -141,10 +135,10 @@ Phase 3.1-3.4 (verify + document + schedule)
 
 | # | Decision | Status | Notes |
 |---|----------|--------|-------|
-| D1 | Device auth | PENDING | Need Guillermo's call — keep disabled or re-enable? |
-| D2 | Discord user ID | PENDING | Need Guillermo's Discord user ID for allowlist |
-| D3 | Hooks token | APPROVED | Will generate 64-char replacement |
-| D4 | Remove Llama 70B | APPROVED | No reason to keep a risky fallback we never use |
+| D1 | Device auth | ✅ DECIDED | Keep disabled — accepted risk, revisit soon |
+| D2 | Discord user ID | ⏳ PENDING | Need Guillermo's Discord user ID for allowlist |
+| D3 | Hooks token | ✅ DONE | Rotated to 64-char token on Molty. Raphael instructed. |
+| D4 | Remove Llama 70B | ✅ DONE | Removed from fallback chain |
 
 ---
 

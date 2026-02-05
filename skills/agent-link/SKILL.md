@@ -22,7 +22,7 @@ Use `exec` with `curl` to send a webhook message:
 
 ```bash
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
-  -H 'Authorization: Bearer tmnt-agent-link-2026' \
+  -H 'Authorization: Bearer HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU' \
   -H 'Content-Type: application/json' \
   -d '{"message": "YOUR MESSAGE HERE", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
@@ -31,7 +31,7 @@ curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
 
 ```bash
 curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
-  -H 'Authorization: Bearer tmnt-agent-link-2026' \
+  -H 'Authorization: Bearer HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU' \
   -H 'Content-Type: application/json' \
   -d '{"message": "YOUR MESSAGE HERE", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
@@ -53,7 +53,7 @@ curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
 **Molty sends to Raphael:**
 ```bash
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
-  -H 'Authorization: Bearer tmnt-agent-link-2026' \
+  -H 'Authorization: Bearer HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU' \
   -H 'Content-Type: application/json' \
   -d '{"message": "Hey Raphael, status check - how is Brinc prep going?", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
