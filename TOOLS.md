@@ -97,6 +97,20 @@ Add whatever helps you do your job. This is your cheat sheet.
 | 2330246839 | Mana Capital 🟠 | Investment/PE tasks |
 | 2366746501 | Molty's Den 🦎 | Meta/infrastructure/agent tasks |
 
+### Raphael's Brinc Tasks (Notion)
+- **DB ID:** `2fe39dd69afd810ba2c3e793e8ea8993`
+- **URL:** https://www.notion.so/2fe39dd69afd810ba2c3e793e8ea8993
+- **Statuses:** Backlog → Next → Doing → Blocked → Review → Done
+- **Priorities:** P1/P2/P3/P4 (Eisenhower)
+- **Flow:** Todoist → Molty processes → Discord relay → Raphael mirrors in Notion
+
+### Daily Standup (Notion)
+- **DB ID:** `2fe39dd69afd81f189f7e58925dad602`
+- **URL:** https://www.notion.so/2fe39dd69afd81f189f7e58925dad602
+- **Parent:** Molty's Mission Control
+- **Format:** Inline table per standup with columns: Task, Section, Project, Owner, Priority, Due Date, Time Est., Action, Molty's Notes, Your Comments
+- **Flow:** I create page + inline table at 5PM → Guillermo reviews in Notion → pings "standup done" → I process decisions in Todoist
+
 ### Inbox Processing System
 - **Flow:** Guillermo dumps → I process hourly → Review at daily standup (5PM HKT)
 - **Processing:** Rewrite title, expand description, estimate duration, assign project, set priority
