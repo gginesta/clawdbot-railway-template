@@ -593,6 +593,22 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 
 33. **Formalizing sub-agents pays off** — Ad-hoc spawning works but named roles with pre-loaded instructions = faster + more consistent results.
 
+### Day 6 (2026-02-06)
+
+34. **BACKUP BEFORE UPDATE — ALWAYS** — System crash reinforced this rule. The procedure was documented but as "after backup → check updates" not "before update → backup first". Made the rule explicit and bidirectional. Added to fleet-wide OPERATIONAL-GUIDELINES.md. No exceptions. (2026-02-06)
+
+---
+
+## 🔄 Automated Maintenance Rules
+
+| Trigger | Action | Notes |
+|---------|--------|-------|
+| **BEFORE any update** | **Backup first** | **NON-NEGOTIABLE** — run backup.sh before git pull/pnpm install/restart |
+| After backup (every 6h) | Check for OpenClaw updates | Run `git fetch` + review commits, apply if safe |
+| After update | Notify Guillermo via active channel | Confirm version + restart |
+
+⚠️ **BACKUP BEFORE UPDATE** — This rule was set 2026-02-05 and must be followed by ALL agents. Guillermo explicitly mandated this after a system crash on 2026-02-06. The backup takes ~2 minutes and can save hours of recovery work.
+
 ---
 
 ## 🔧 Quick Reference
