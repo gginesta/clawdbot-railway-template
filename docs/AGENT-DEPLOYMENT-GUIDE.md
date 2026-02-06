@@ -38,6 +38,14 @@ Every new agent follows the same pattern: Railway container → OpenClaw config 
 - Add to TMNT Squad server with correct permissions
 - Create/assign channel ownership (update ALL agents' TOOLS.md)
 - Set `allowBots: true` for inter-agent visibility
+- **Approve Guillermo's Discord pairing:**
+  ```bash
+  # Guillermo will get a pairing code when he DMs the bot
+  # Run this to approve:
+  openclaw pairing approve discord <PAIRING_CODE>
+  ```
+  - Guillermo's Discord user ID: `779143499655151646`
+  - This enables DMs and slash commands from Guillermo
 
 ## Phase 2: Connectivity (10 min)
 

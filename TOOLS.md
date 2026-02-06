@@ -19,6 +19,13 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 
 ---
 
+## Guillermo's Discord
+
+**User ID:** `779143499655151646`
+**Pairing:** ✅ Approved (2026-02-06)
+
+---
+
 ## What Goes Here
 
 Things like:
