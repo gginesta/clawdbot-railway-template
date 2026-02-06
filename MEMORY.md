@@ -485,20 +485,20 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 
 **Theme:** Gen 1 Pokémon (#1-151) — Guillermo's nostalgic preference
 **Notion page:** https://www.notion.so/2fe39dd69afd8198ad96d4e2d086de25
-**Status:** Guillermo editing, awaiting final approval
+**Status:** Updated with OG starters (2026-02-06)
 
-| Phase | Role | Pokémon | Model |
-|-------|------|---------|-------|
-| P0 | Spec Writer | Alakazam 🥄 | GPT-5.2 |
-| P0 | Builder | Machamp 💪 | GPT-5.2 |
-| P0 | Researcher | Eevee 🔎 | Gemini Flash |
-| P1 | Code Reviewer | Mewtwo 🧬 | Claude Sonnet |
-| P1 | Security Auditor | Arcanine 🔥 | Gemini Flash |
-| P1 | Data Wrangler | Porygon 💾 | Qwen |
-| P2 | Writer / Comms | Jigglypuff 🎤 | Claude Sonnet |
-| P2 | Scheduler | Abra ⏳ | Qwen |
-| P2 | Fleet Monitor | Electrode ⚡ | Qwen |
-| Special | Marketing / Social | Pikachu ⚡ | Claude Sonnet |
+| Phase | Role | Pokémon | Model | Notes |
+|-------|------|---------|-------|-------|
+| P0 | Spec Writer | Squirtle 🐢 | GPT-5.2 | Fluid, shapes ideas into structured specs |
+| P0 | Builder | Charmander 🔥 | GPT-5.2 | Fire energy, makes things happen |
+| P0 | Researcher | Bulbasaur 🌱 | Gemini Flash | Grows knowledge, gathers intel |
+| P1 | Code Reviewer | Mewtwo 🧬 | Claude Sonnet | Psychic precision, finds flaws |
+| P1 | Security Auditor | Arcanine 🔥 | Gemini Flash | Loyal guardian, sniffs threats |
+| P1 | Data Wrangler | Porygon 💾 | Qwen | Digital native, transforms data |
+| P2 | Writer / Comms | Jigglypuff 🎤 | Claude Sonnet | Compelling voice, writes copy |
+| P2 | Scheduler | Abra ⏳ | Qwen | Teleports tasks to right times |
+| P2 | Fleet Monitor | Electrode ⚡ | Qwen | Fast alerts, watches systems |
+| Special | Marketing / Social | Pikachu ⚡ | Claude Sonnet | Face of the team, community engagement |
 
 **Pikachu content pipeline:** Molty flags moment → Pikachu drafts → Guillermo approves → post via @Molton_Sanchez
 **X account:** @Molton_Sanchez (posting currently blocked by Twitter bot detection — revisit)
