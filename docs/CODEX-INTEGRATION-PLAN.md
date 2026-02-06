@@ -24,6 +24,40 @@ Codex adds three things we currently have only partially:
 
 ---
 
+## 0.1) 2026-02-06 model updates (Opus 4.6 + GPT‑5.3‑Codex)
+
+### Claude Opus 4.6 (Anthropic)
+**What changed:** Opus 4.6 shipped with a **1M token context window (beta)** plus new controls that matter for agent systems:
+- **Adaptive thinking** (model chooses when to think deeper)
+- **Effort controls** (low/medium/high/max)
+- **Context compaction** (API-side summarization for long-running tasks)
+- **Agent teams** (parallel Claudes) — conceptually aligns with our TMNT / Pokémon Squad approach
+
+**TMNT impact:**
+- Use **Opus 4.6 as the coordinator brain** for long-horizon orchestration (spec → issues → dispatch → review).
+- Codex can remain the GitHub-native implementer, but Opus 4.6 reduces context-rot in long coordination threads.
+
+### GPT‑5.3‑Codex (OpenAI)
+**What changed:** OpenAI announced GPT‑5.3‑Codex as a faster, more agentic coding model.
+
+**Critical availability note:** In OpenAI’s announcement, **API access is “coming soon.”**
+- It is available in the Codex product surfaces (app/CLI/IDE/web)
+- Our OpenClaw `openai-codex` integration should continue using **GPT‑5.2** until 5.3 is explicitly enabled for API/OAuth usage.
+
+**TMNT impact:**
+- Keep the **Codex PR workflow** the same, but plan to upgrade the implementation model to 5.3 once it’s allowed.
+- Treat “model announced” ≠ “model usable in API” as a first-class constraint.
+
+### New fleet rule: model sanity-check before flipping defaults
+Before changing any agent’s default primary model:
+1. Spawn a short isolated run with the exact model id
+2. Confirm it returns `modelApplied: true`
+3. Only then patch defaults + restart
+
+(See: `/data/workspace/docs/MODEL-SANITY-CHECK.md`.)
+
+---
+
 ## 1) Strategic assessment
 
 ### 1.1 Where Codex fits vs where OpenClaw sub-agents fit
