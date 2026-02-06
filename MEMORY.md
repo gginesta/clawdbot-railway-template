@@ -495,9 +495,12 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 | P1 | Code Reviewer | Mewtwo 🧬 | Claude Sonnet | Psychic precision, finds flaws |
 | P1 | Security Auditor | Arcanine 🔥 | Gemini Flash | Loyal guardian, sniffs threats |
 | P1 | Data Wrangler | Porygon 💾 | Qwen | Digital native, transforms data |
+| P1 | Strategist | Alakazam 🥄 | Claude Sonnet | IQ 5000, long-term planning, complex decisions |
 | P2 | Writer / Comms | Jigglypuff 🎤 | Claude Sonnet | Compelling voice, writes copy |
 | P2 | Scheduler | Abra ⏳ | Qwen | Teleports tasks to right times |
 | P2 | Fleet Monitor | Electrode ⚡ | Qwen | Fast alerts, watches systems |
+| P2 | Batch Processor | Machamp 💪 | GPT-5.2 | Four arms, parallel bulk operations |
+| P2 | Flex / Generalist | Eevee 🔎 | Gemini Flash | Adapts to any domain, evolves as needed |
 | Special | Marketing / Social | Pikachu ⚡ | Claude Sonnet | Face of the team, community engagement |
 
 **Pikachu content pipeline:** Molty flags moment → Pikachu drafts → Guillermo approves → post via @Molton_Sanchez
