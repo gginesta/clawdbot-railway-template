@@ -48,6 +48,40 @@ Codex adds three things we currently have only partially:
 - Keep the **Codex PR workflow** the same, but plan to upgrade the implementation model to 5.3 once it’s allowed.
 - Treat “model announced” ≠ “model usable in API” as a first-class constraint.
 
+### External validation: @KingBootoshi's Codex-Orchestrator Skill
+**Source:** [Tweet 2019564738649505882](https://x.com/KingBootoshi/status/2019564738649505882) (2026-02-06)
+
+Bootoshi built a custom CLI tool ("Codex-Orchestrator Skill") that lets Claude Code manage, steer, and track multiple Codex agents — essentially the same Opus→Codex pattern we designed independently. Key takeaways:
+
+1. **Pattern validated externally** — our "OpenClaw as coordinator, Codex as implementer" architecture matches what practitioners are converging on.
+2. **CLI-first approach** — Bootoshi packaged it as a Claude Code skill (CLI tool), not a web UI. Aligns with our skill-based distribution model.
+3. **"Manage, steer, and keep track"** — the three verbs map directly to our dispatch → monitor → review loop in Section 2.
+4. **Community interest is high** — this is a trending topic, which validates investing time in our integration.
+
+**Differentiation:** Our approach is broader — we have multi-tool orchestration (Discord/Todoist/Notion/GitHub), fleet-wide coordination, and safety rails. Bootoshi's is focused purely on code-level orchestration within a single repo.
+
+#### Improvements to incorporate into *our* CODEX plan (inspired by Bootoshi)
+1. **Make the “orchestrator” a first-class component** (even if it’s just a CLI at first)
+   - Explicit commands: `dispatch`, `status`, `pause/resume`, `cancel`, `handoff`, `summarize`.
+   - Treat Codex jobs as objects with IDs, not ad-hoc chat prompts.
+
+2. **Add a durable task ledger (append-only)**
+   - Minimal schema: `taskId`, `repo`, `issue/branch`, `assignedAgent`, `state`, `startedAt`, `lastUpdateAt`, `cost/time`, `artifacts` (PR links, logs).
+   - This prevents “lost in chat” failures and enables reliable daily standups.
+
+3. **Standardize steering hooks** ("manage / steer / keep track")
+   - “Steer” shouldn’t mean re-prompting from scratch.
+   - Define an escalation ladder: comment on PR → reopen issue with clarifications → cancel & re-dispatch → human takes over.
+
+4. **Budget + concurrency guardrails**
+   - Cap concurrent Codex tasks per repo (avoids merge-conflict storms).
+   - Per-task spend/time budget with auto-stop + summary when exceeded.
+
+5. **GitHub-native audit trail requirements**
+   - Every Codex run must leave breadcrumbs: issue comment with plan, PR description w/ acceptance criteria checklist, test results, and any security notes.
+
+---
+
 ### New fleet rule: model sanity-check before flipping defaults
 Before changing any agent’s default primary model:
 1. Spawn a short isolated run with the exact model id
