@@ -19,7 +19,7 @@
 #                                 - Check free/busy across calendars
 #   refresh                       - Refresh OAuth token
 
-CREDS_FILE="/data/workspace/credentials/gmail-tokens.json"
+CREDS_FILE="/data/workspace/credentials/calendar-tokens-brinc.json"
 OAUTH_FILE="/data/workspace/credentials/google-oauth.json"
 CALENDAR_CONFIG="/data/workspace/credentials/calendar-config.json"
 

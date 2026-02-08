@@ -351,10 +351,11 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 2. I process hourly (hybrid mode) — rewrite, estimate, categorize, prioritize
 3. Daily standup at **5PM HKT** — review processed items, confirm, move to projects with due dates
 
-### Daily Standup (3-step process — NON-NEGOTIABLE)
+### Daily Standup (4-step process — NON-NEGOTIABLE)
 1. **Process Todoist inbox** — rewrite titles, add descriptions, assign projects, set priorities, estimate time
 2. **Create Notion standup page** — approved template: callout instruction block + inline "Task Review" child_database (columns: Task, Section, Project, Owner, Priority, Due Date, Time Est., Action, Molty's Notes, Your Comments) + Tomorrow's Priority heading + Blockers heading
-3. **Send Telegram summary** with Notion link
+3. **After Guillermo reviews ("standup done")** — process decisions in Todoist + **create Google Calendar time blocks** for next 1-2 days based on priorities, energy schedule, and life commitments
+4. **Send Telegram summary** with Notion link
 
 - **Time:** 5:00 PM HKT (09:00 UTC)
 - **Cron:** `bdb28765-f508-4271-a04d-9408d39f49fd`
@@ -629,6 +630,8 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 ### Day 8 (2026-02-08)
 
 36. **Daily standup is a 3-step process — don't skip steps.** The correct procedure is: (1) Process Todoist inbox first (rewrite titles, add descriptions, assign projects, set priorities, estimate time), (2) Create Notion standup page using approved template (callout + inline Task Review child_database + Tomorrow's Priority + Blockers sections), (3) THEN present summary to Guillermo. Never present a standup without having processed inbox AND created the Notion page first. Template reference: Feb 7 page `30039dd6-9afd-8137-b854-e9701a0b7648`. (2026-02-08)
+
+38. **Calendar time-blocking is step 3 of standup.** After processing Guillermo's standup decisions, create Google Calendar time blocks for the next 1-2 days. Use energy schedule (deep work 9-12, light 12-14, meetings 14-17) and respect life commitments (school dropoff MWF 8-8:30, pickup 10:30-11). Calendar token is in `calendar-tokens-brinc.json` (NOT gmail-tokens.json — different OAuth scopes). Write to personal calendar for non-Brinc, Brinc calendar for work. (2026-02-08)
 
 37. **Twitter login in headless Brave requires cookie injection.** The login form renders blank due to anti-bot detection. Workaround: set `auth_token` and `ct0` cookies via `document.cookie` JS eval, then navigate. Cookies stored in `/data/workspace/credentials/twitter.env`. (2026-02-08)
 
