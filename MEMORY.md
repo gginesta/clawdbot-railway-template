@@ -351,11 +351,16 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 2. I process hourly (hybrid mode) — rewrite, estimate, categorize, prioritize
 3. Daily standup at **5PM HKT** — review processed items, confirm, move to projects with due dates
 
-### Daily Standup
+### Daily Standup (3-step process — NON-NEGOTIABLE)
+1. **Process Todoist inbox** — rewrite titles, add descriptions, assign projects, set priorities, estimate time
+2. **Create Notion standup page** — approved template: callout instruction block + inline "Task Review" child_database (columns: Task, Section, Project, Owner, Priority, Due Date, Time Est., Action, Molty's Notes, Your Comments) + Tomorrow's Priority heading + Blockers heading
+3. **Send Telegram summary** with Notion link
+
 - **Time:** 5:00 PM HKT (09:00 UTC)
 - **Cron:** `bdb28765-f508-4271-a04d-9408d39f49fd`
 - **Channel:** Webchat first → Telegram fallback after 15min
 - **If skipped:** Guillermo says "skip standup" → move to next morning
+- **Template ref:** Feb 7 page `30039dd6-9afd-8137-b854-e9701a0b7648`, DB schema at `30039dd6-9afd-81fc-9994-f2dabec49f83`
 
 ### Brinc Task Coordination with Raphael
 - Brinc tasks I process stay in **Todoist** (Guillermo's command view)
@@ -620,6 +625,12 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 35. **Sub-agent SOUL.md gold standard template (APPROVED BY GUILLERMO)** — Peach (Brinc Head of Marketing) is the reference for all future sub-agent definitions. Must include: role, responsibilities, behaviors, direct reports, model choice, brand guidelines, communication channels, and a SOUL.md. Reference: `/data/shared/memory-vault/knowledge/projects/brinc/team/peach/SOUL.md`. Guillermo approved this as the standard. (2026-02-07)
 
 ### Day 6 (2026-02-06)
+
+### Day 8 (2026-02-08)
+
+36. **Daily standup is a 3-step process — don't skip steps.** The correct procedure is: (1) Process Todoist inbox first (rewrite titles, add descriptions, assign projects, set priorities, estimate time), (2) Create Notion standup page using approved template (callout + inline Task Review child_database + Tomorrow's Priority + Blockers sections), (3) THEN present summary to Guillermo. Never present a standup without having processed inbox AND created the Notion page first. Template reference: Feb 7 page `30039dd6-9afd-8137-b854-e9701a0b7648`. (2026-02-08)
+
+37. **Twitter login in headless Brave requires cookie injection.** The login form renders blank due to anti-bot detection. Workaround: set `auth_token` and `ct0` cookies via `document.cookie` JS eval, then navigate. Cookies stored in `/data/workspace/credentials/twitter.env`. (2026-02-08)
 
 34. **BACKUP BEFORE UPDATE — ALWAYS** — System crash reinforced this rule. The procedure was documented but as "after backup → check updates" not "before update → backup first". Made the rule explicit and bidirectional. Added to fleet-wide OPERATIONAL-GUIDELINES.md. No exceptions. (2026-02-06)
 
