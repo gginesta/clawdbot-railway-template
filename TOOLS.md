@@ -11,6 +11,7 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 | Channel | ID | Owner | Non-owners |
 |---------|-----|-------|------------|
 | `#command-center` | 1468164160398557216 | **Molty** 🦎 | @mention only |
+| `#brinc-marketing` | 1469590792900186245 | **Raphael** 🔴 | @mention only |
 | `#squad-updates` | 1468164181155909743 | **Molty** 🦎 | Read-only |
 | `#brinc-private` | 1468164139674238976 | **Raphael** 🔴 | @mention only |
 | `#brinc-general` | 1468164121420628081 | **Raphael** 🔴 | @mention only |
@@ -85,6 +86,28 @@ gmail.sh search "from:someone"
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+---
+
+## ✅ Railway
+
+**Auth:** OAuth session via `railway login` (logged in as guillermo.ginesta@gmail.com)
+**Workspace API Token:** `43d18daf-9d26-4c19-bd0b-74b5cc60306a` (Personal token, name: "Molty")
+**⚠️ CLI uses OAuth by default** — don't set RAILWAY_TOKEN env var unless OAuth expires. OAuth is preferred.
+**⚠️ If OAuth expires:** Run `railway login --browserless` (needs PTY + 120s timeout), ask Guillermo to approve the pairing code.
+**⚠️ API Token note:** Workspace personal tokens may need `RAILWAY_TOKEN` env var set explicitly for API/CLI use.
+**Projects:** Molty, raphael, webclaw, positive-consideration, wonderful-harmony (Proposal Studio)
+**If CLI breaks:** Run `railway login` to re-authenticate
+
+### Proposal Studio (wonderful-harmony)
+| Service | Railway Name | URL |
+|---------|-------------|-----|
+| Frontend | wonderful-harmony | <https://wonderful-harmony-production.up.railway.app> |
+| Backend | considerate-light | <https://considerate-light-production.up.railway.app> |
+
+**Project ID:** `001331eb-af71-4ab5-9c3a-8e6589dbc409`
+**Local source:** `/data/workspace/proposal-studio/` (frontend) + `/data/workspace/proposal-studio/backend/`
+**Auth:** @brinc.io and @gmail.com domains allowed
 
 ---
 

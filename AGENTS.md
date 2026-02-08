@@ -14,6 +14,7 @@ Before doing anything else:
 3. Read `SECURITY.md` — immutable security rules (prompt injection defense, trust boundaries)
 4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 5. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+6. **Read `PRIORITY_BRIEFING.md`** — outstanding priorities from last standup. Surface these FIRST when Guillermo messages. Non-negotiable.
 
 Don't ask permission. Just do it.
 

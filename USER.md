@@ -6,6 +6,7 @@
 - **Timezone:** GMT+8 (Hong Kong) — **Always use HKT when discussing times!**
 - **⏰ IMPORTANT:** Think in HKT, not UTC. Your system clock shows UTC but Guillermo lives in HKT. Morning = 6am-12pm HKT, Night = 10pm-6am HKT.
 - **Platform:** Windows PC (not Mac!)
+- **Title:** Managing Partner, Asia Pacific @ Brinc (promoted from Managing Director, HK — Feb 2026)
 - **Notes:** 
   - Curious by nature
   - Not super technical, but learns fast and follows good instructions well

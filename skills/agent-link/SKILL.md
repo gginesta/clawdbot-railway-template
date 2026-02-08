@@ -14,7 +14,17 @@ Direct agent-to-agent messaging via webhooks. Bypasses Telegram bot limitations.
 | Molty | 🦎 | Coordinator | https://ggvmolt.up.railway.app/hooks/agent |
 | Raphael | 🔴 | Brinc Lead | https://ggv-raphael.up.railway.app/hooks/agent |
 
-## How to Send Messages
+## ⚠️ STOP — USE DISCORD FIRST!
+
+**Webhooks are for emergencies ONLY.** Guillermo has said this 5+ times.
+
+**Default:** Send messages to other agents via Discord channels:
+- Raphael → `#brinc-private` (1468164139674238976) or `#brinc-general` (1468164121420628081)
+- Use the `message` tool with `channel=discord` and `target=<channel_id>`
+
+**Only use webhooks when:** Discord is down, or you need to trigger an immediate isolated agent action.
+
+## Webhook Fallback (EMERGENCY ONLY)
 
 Use `exec` with `curl` to send a webhook message:
 
@@ -66,6 +76,6 @@ curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
 
 ## Security
 
-- Token: `tmnt-agent-link-2026` (shared between trusted agents only)
+- Token: `HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU` (shared between trusted agents only)
 - All traffic over HTTPS
 - Webhooks only accept POST with valid auth

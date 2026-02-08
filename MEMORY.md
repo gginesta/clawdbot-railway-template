@@ -92,7 +92,7 @@
 ### Agent-to-Agent Communication (WORKING)
 ```bash
 curl -X POST https://{agent}.up.railway.app/hooks/agent \
-  -H "Authorization: Bearer tmnt-agent-link-2026" \
+  -H "Authorization: Bearer HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU" \
   -H "Content-Type: application/json" \
   -d '{
     "message": "Your message here",
@@ -614,6 +614,10 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 32. **Unbrowse is 70/30** — Great for REST CRUD (70% of SaaS integrations). Falls short on OAuth flows, WebSocket, GraphQL, stateful workflows. Best as discovery + scaffolding (80%) then human polish (20%).
 
 33. **Formalizing sub-agents pays off** — Ad-hoc spawning works but named roles with pre-loaded instructions = faster + more consistent results.
+
+### Day 7 (2026-02-07)
+
+35. **Sub-agent SOUL.md gold standard template (APPROVED BY GUILLERMO)** — Peach (Brinc Head of Marketing) is the reference for all future sub-agent definitions. Must include: role, responsibilities, behaviors, direct reports, model choice, brand guidelines, communication channels, and a SOUL.md. Reference: `/data/shared/memory-vault/knowledge/projects/brinc/team/peach/SOUL.md`. Guillermo approved this as the standard. (2026-02-07)
 
 ### Day 6 (2026-02-06)
 
