@@ -2,7 +2,7 @@
 
 **Audience:** Guillermo (principal), Molty 🦎 (coordinator), Raphael 🔴 (Brinc lead), future leads (Leonardo 🔵, Donatello 🟣, Michelangelo 🟠)
 
-**Goal:** Add OpenAI Codex (cloud agent + GitHub-native workflows) to the TMNT Squad so large projects can be decomposed, executed in parallel, reviewed safely, and merged/deployed with minimal overhead—while keeping OpenClaw as the team’s coordination “operating system.”
+**Goal:** Add OpenAI Codex (cloud agent + GitHub-native workflows) to the TMNT Squad so large projects can be decomposed, executed in parallel, reviewed safely, and merged/deployed with minimal overhead-while keeping OpenClaw as the team's coordination "operating system."
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### The big shift
 - **OpenClaw stays the coordinator layer** (planning, prompting standards, cross-project orchestration, Discord/Todoist/Notion glue, sub-agent spawning).
-- **Codex becomes the “GitHub-native implementer”** (issue → isolated worktree → commits → PR → review queue → merge).
+- **Codex becomes the "GitHub-native implementer"** (issue → isolated worktree → commits → PR → review queue → merge).
 
 ### Why this matters for large projects
 Codex adds three things we currently have only partially:
@@ -19,71 +19,162 @@ Codex adds three things we currently have only partially:
 3. **Built-in review queue** (human-in-the-loop before merge, plus strong traceability via logs/test output citations).
 
 ### The operating rule
-- If a task’s output should be a **PR**, and it can be **well-scoped with clear acceptance criteria**, it’s a Codex task.
+- If a task's output should be a **PR**, and it can be **well-scoped with clear acceptance criteria**, it's a Codex task.
 - If a task is **coordination-heavy**, **multi-repo**, **ambiguous**, **requires internal secrets / systems access**, or is **not PR-shaped**, it stays in OpenClaw (or is done by a human + OpenClaw).
 
 ---
 
-## 0.1) 2026-02-06 model updates (Opus 4.6 + GPT‑5.3‑Codex)
+## 0.1) 2026-02-06 model updates (Opus 4.6 + GPT-5.3-Codex)
 
 ### Claude Opus 4.6 (Anthropic)
 **What changed:** Opus 4.6 shipped with a **1M token context window (beta)** plus new controls that matter for agent systems:
 - **Adaptive thinking** (model chooses when to think deeper)
 - **Effort controls** (low/medium/high/max)
 - **Context compaction** (API-side summarization for long-running tasks)
-- **Agent teams** (parallel Claudes) — conceptually aligns with our TMNT / Pokémon Squad approach
+- **Agent teams** (parallel Claudes) - conceptually aligns with our TMNT / Pokémon Squad approach
 
 **TMNT impact:**
 - Use **Opus 4.6 as the coordinator brain** for long-horizon orchestration (spec → issues → dispatch → review).
 - Codex can remain the GitHub-native implementer, but Opus 4.6 reduces context-rot in long coordination threads.
 
-### GPT‑5.3‑Codex (OpenAI)
-**What changed:** OpenAI announced GPT‑5.3‑Codex as a faster, more agentic coding model.
+### GPT-5.3-Codex (OpenAI)
+**What changed:** OpenAI announced GPT-5.3-Codex as a faster, more agentic coding model.
 
-**Critical availability note:** In OpenAI’s announcement, **API access is “coming soon.”**
+**Critical availability note:** In OpenAI's announcement, **API access is "coming soon."**
 - It is available in the Codex product surfaces (app/CLI/IDE/web)
-- Our OpenClaw `openai-codex` integration should continue using **GPT‑5.2** until 5.3 is explicitly enabled for API/OAuth usage.
+- Our OpenClaw `openai-codex` integration should continue using **GPT-5.2** until 5.3 is explicitly enabled for API/OAuth usage.
 
 **TMNT impact:**
-- Keep the **Codex PR workflow** the same, but plan to upgrade the implementation model to 5.3 once it’s allowed.
-- Treat “model announced” ≠ “model usable in API” as a first-class constraint.
+- Keep the **Codex PR workflow** the same, but plan to upgrade the implementation model to 5.3 once it's allowed.
+- Treat "model announced" ≠ "model usable in API" as a first-class constraint.
 
-### External validation: @KingBootoshi's Codex-Orchestrator Skill
-**Source:** [Tweet 2019564738649505882](https://x.com/KingBootoshi/status/2019564738649505882) (2026-02-06)
+### 0.2) External validation & lessons (Feb 2026)
 
-Bootoshi built a custom CLI tool ("Codex-Orchestrator Skill") that lets Claude Code manage, steer, and track multiple Codex agents — essentially the same Opus→Codex pattern we designed independently. Key takeaways:
+#### Source A: @KingBootoshi — Codex-Orchestrator Skill
+**Tweet:** [2019564738649505882](https://x.com/KingBootoshi/status/2019564738649505882) (Feb 6, 2026)
+**Repo:** [github.com/kingbootoshi/codex-orchestrator](https://github.com/kingbootoshi/codex-orchestrator)
 
-1. **Pattern validated externally** — our "OpenClaw as coordinator, Codex as implementer" architecture matches what practitioners are converging on.
-2. **CLI-first approach** — Bootoshi packaged it as a Claude Code skill (CLI tool), not a web UI. Aligns with our skill-based distribution model.
-3. **"Manage, steer, and keep track"** — the three verbs map directly to our dispatch → monitor → review loop in Section 2.
-4. **Community interest is high** — this is a trending topic, which validates investing time in our integration.
+Bootoshi built a CLI tool that lets Claude Code spawn, steer, and track multiple Codex agents running in tmux sessions. Key details from the thread + repo:
 
-**Differentiation:** Our approach is broader — we have multi-tool orchestration (Discord/Todoist/Notion/GitHub), fleet-wide coordination, and safety rails. Bootoshi's is focused purely on code-level orchestration within a single repo.
+- **Architecture:** Claude = strategic thinker (planning, synthesis). Codex = deep coder (research, implementation, review, testing). Matches our OpenClaw→Codex split exactly.
+- **CLI commands:** `codex-agent start <task> --map`, `codex-agent jobs --json`, `codex-agent capture <id>`, `codex-agent send <id> "redirect"`. Clean verb-based interface.
+- **Codebase Map (`--map`):** Injects `docs/CODEBASE_MAP.md` into every agent's prompt so they know the codebase instantly. Uses a companion tool called "Cartographer" to auto-generate it. **This is a key insight we should adopt.**
+- **Mid-task steering:** Can send follow-up messages to running agents without restarting them.
+- **Parallel execution:** Multiple agents investigating different parts of a codebase simultaneously.
+- **Deps:** tmux + Bun + Codex CLI. macOS/Linux only.
 
-#### Improvements to incorporate into *our* CODEX plan (inspired by Bootoshi)
-1. **Make the “orchestrator” a first-class component** (even if it’s just a CLI at first)
-   - Explicit commands: `dispatch`, `status`, `pause/resume`, `cancel`, `handoff`, `summarize`.
-   - Treat Codex jobs as objects with IDs, not ad-hoc chat prompts.
+**Bootoshi also noted in replies:** "im pretty sure you're able to set subagents with openclaw, though im not sure if i could use codex auth to take advantage of the max plan" — he's aware of OpenClaw but chose a separate tool for Codex-specific orchestration.
 
-2. **Add a durable task ledger (append-only)**
-   - Minimal schema: `taskId`, `repo`, `issue/branch`, `assignedAgent`, `state`, `startedAt`, `lastUpdateAt`, `cost/time`, `artifacts` (PR links, logs).
-   - This prevents “lost in chat” failures and enables reliable daily standups.
+#### Source B: @KSimback — "My Complete Guide to Managing OpenClaw Agent Teams"
+**Article:** [2019804584273657884](https://x.com/KSimback/article/2019804584273657884) (Feb 7, 2026)
+**Author:** Kevin Simback (COO @delphi_labs, ex-IBM/McKinsey/Carnegie Mellon) — 145K views, 1.5K bookmarks
 
-3. **Standardize steering hooks** ("manage / steer / keep track")
-   - “Steer” shouldn’t mean re-prompting from scratch.
-   - Define an escalation ladder: comment on PR → reopen issue with clarifications → cancel & re-dispatch → human takes over.
+Simback runs a multi-agent OpenClaw fleet and treats it like workforce management. His framework:
+
+1. **Agent "Hiring" & SOUL.md quality**
+   - "Do NOT rush SOUL.md — it's like rushing the hiring process"
+   - Be domain-specific (not "Research Analyst" → "SaaS Equity Research Analyst")
+   - Include: origin story, core philosophy, inspirational anchors, skills/methods, behavior rules, never-dos
+   - Run drafts through multiple LLMs for feedback
+   - Proper onboarding: file setup, access grants, announce to other agents, workflow inclusion
+
+2. **Agent Leveling Framework (L1–L4)**
+   - **L1 Observer:** Can do tasks, cannot take action
+   - **L2 Advisor:** Can recommend actions, execute on approval
+   - **L3 Operator:** Autonomous within defined guardrails, daily reports
+   - **L4 Autonomous:** Full authority over permissioned domains
+   - "Trust is earned, not granted" — agents start at L1 and get promoted via reviews
+   - **Agents can be demoted** — a content agent at L3 who rushed work got bumped back to L2
+
+3. **Performance Reviews**
+   - Periodic output summary + rating → level decisions → feedback to agent
+   - Treats it like managing humans
+
+4. **Shared Context System**
+   - Per-project folder: `ACCESS.md` (who can read), `CONTEXT.md` (working context, "last updated by" header), `research/` (supporting docs)
+   - "Any agent can read any project unless ACCESS.md denies them"
+   - Eliminated cold starts when switching agents onto projects
+
+5. **Agent-to-Agent Coordination**
+   - Agent registry with skills/capabilities
+   - Protocol: check who's available → provide context → hand off task
+   - Example: design agent requested help from research agent for competitive analysis, got results in 20 minutes, incorporated and kept moving — **zero human coordination needed**
+   - Built a web app for activity feed + agent status (active vs idle)
+
+6. **Three-layer Memory**
+   - Daily notes (raw logs)
+   - Long-term memory (curated insights)
+   - Project-specific context (shared across agents)
+   - Persistent backups — replacement agents get institutional memory from day one
+
+**His key thesis:** "AI agent management is the new workforce management. What will separate top performers is the ability to manage agentic workforces — favoring generalists, people with management experience, and systems thinkers."
+
+---
+
+#### Concrete improvements for OUR CODEX plan (from both sources)
+
+**From Bootoshi (technical/tactical):**
+
+1. **Codebase Map injection (`--map` pattern)**
+   - Before dispatching ANY Codex task, auto-generate and inject a `CODEBASE_MAP.md` into the agent's context
+   - Prevents agents wasting time exploring file structure
+   - We should build or adopt a "Cartographer" equivalent for our repos
+   - **Action item:** Add to Section 2 dispatch workflow
+
+2. **Mid-task steering via message injection**
+   - Our plan currently assumes cancel+redispatch for steering. Bootoshi's `send <id> "redirect"` is cheaper.
+   - **Action item:** Add "steer" as a first-class operation alongside dispatch/cancel
+
+3. **CLI-first orchestration interface**
+   - Explicit commands: `start`, `jobs --json`, `capture`, `send`, `health`
+   - Treat Codex jobs as objects with IDs, not ad-hoc chat prompts
+   - **Action item:** Design our equivalent (could be OpenClaw skill or shell wrapper)
 
 4. **Budget + concurrency guardrails**
-   - Cap concurrent Codex tasks per repo (avoids merge-conflict storms).
-   - Per-task spend/time budget with auto-stop + summary when exceeded.
+   - Cap concurrent Codex tasks per repo (avoids merge-conflict storms)
+   - Per-task spend/time budget with auto-stop + summary when exceeded
 
-5. **GitHub-native audit trail requirements**
-   - Every Codex run must leave breadcrumbs: issue comment with plan, PR description w/ acceptance criteria checklist, test results, and any security notes.
+**From Simback (organizational/strategic):**
+
+5. **Agent Leveling System (L1–L4)**
+   - We currently treat all agents as equal. Simback's trust ladder is smart.
+   - **Proposal for TMNT:** New agents start at L2 (Advisor) since we vet SOUL.md. Promote to L3 (Operator) after 1 week of solid output. L4 (Autonomous) reserved for proven leads.
+   - **Action item:** Add `level` field to agent registry in Notion, define promotion criteria per level
+
+6. **Performance Reviews for agents**
+   - We have no formal agent evaluation loop. Simback reviews output quality → adjusts level.
+   - **Proposal:** Monthly agent review during standup — output quality, error rate, cost efficiency, autonomy incidents
+   - **Action item:** Create review template in Notion
+
+7. **ACCESS.md per project**
+   - Our Syncthing shares everything to everyone. Simback's `ACCESS.md` per project folder is a better model.
+   - **Action item:** Add `ACCESS.md` to shared project folders, enforce in agent instructions
+
+8. **"Last updated by" header on shared context**
+   - Simple but powerful audit trail. Our `CONTEXT.md` files should include this.
+   - **Action item:** Add convention to OPERATIONAL-GUIDELINES.md
+
+9. **Agent registry with skills/capabilities + self-coordination protocol**
+   - We have a Notion Skill Registry but not an Agent Capability Registry
+   - Simback's agents can find and request help from each other autonomously
+   - **Action item:** Build agent capability index (name, skills, availability, level) accessible to all agents
+
+10. **Activity dashboard (agent status feed)**
+    - Simback built a web app showing agent activity + idle/active status
+    - We could build this as a WebClaw page or Notion dashboard
+    - **Action item:** Design spec for agent activity dashboard (Phase 2)
+
+**Differentiation — what we already have that they don't:**
+- Multi-tool orchestration (Discord/Todoist/Notion/GitHub) — Bootoshi is code-only, Simback is OpenClaw-only
+- Fleet-wide skill distribution via Syncthing
+- Automated backup + update pipeline
+- Cross-agent webhook communication
+- Cron-based scheduling and heartbeat system
 
 ---
 
 ### New fleet rule: model sanity-check before flipping defaults
-Before changing any agent’s default primary model:
+Before changing any agent's default primary model:
 1. Spawn a short isolated run with the exact model id
 2. Confirm it returns `modelApplied: true`
 3. Only then patch defaults + restart
@@ -100,7 +191,7 @@ Before changing any agent’s default primary model:
 - **PR-shaped work**: features, bug fixes, refactors, test writing, docs updates that end as a pull request.
 - **Parallel execution**: multiple issues in the same repo tackled simultaneously (each in its own cloud sandbox).
 - **Repo-local reasoning**: understanding a codebase by reading files, running tests, and iterating until green.
-- **GitHub-native review flows**: automatic code review, “tag @codex” patterns, PR proposals.
+- **GitHub-native review flows**: automatic code review, "tag @codex" patterns, PR proposals.
 
 #### OpenClaw (our current system) remains best at
 - **Orchestration across tools**: Discord → Todoist → Notion → GitHub, plus internal team routing.
@@ -114,7 +205,7 @@ Codex should not replace OpenClaw sub-agents; it **specializes** them.
 - **OpenClaw = program manager + glue + safety rails**
 - **Codex = implementation agent that speaks GitHub natively**
 
-#### Important distinction: “Codex the model” vs “Codex the GitHub agent”
+#### Important distinction: "Codex the model" vs "Codex the GitHub agent"
 We will use **three** Codex-shaped capabilities, with different strengths:
 
 1. **Codex Cloud (ChatGPT Codex agent + GitHub integration)**
@@ -123,13 +214,13 @@ We will use **three** Codex-shaped capabilities, with different strengths:
 
 2. **Codex CLI / API-key mode (token-priced, local execution)**
    - *Best for:* automation in CI, quick local edits, scripted workflows.
-   - *Limitation:* no cloud features like GitHub automatic PR review/creation (per OpenAI’s Codex pricing docs).
+   - *Limitation:* no cloud features like GitHub automatic PR review/creation (per OpenAI's Codex pricing docs).
 
 3. **GPT-5.2-Codex model via OpenClaw (already in our config)**
-   - *Best for:* “pair programming” inside OpenClaw sessions, code generation, refactors, review assistance.
-   - *Limitation:* OpenClaw does not automatically give us Codex Cloud’s per-task git worktrees + GitHub-native PR flow.
+   - *Best for:* "pair programming" inside OpenClaw sessions, code generation, refactors, review assistance.
+   - *Limitation:* OpenClaw does not automatically give us Codex Cloud's per-task git worktrees + GitHub-native PR flow.
 
-### 1.2 Decision framework: “Use Codex when X, use OpenClaw sub-agents when Y”
+### 1.2 Decision framework: "Use Codex when X, use OpenClaw sub-agents when Y"
 
 Use this as a fast triage checklist.
 
@@ -166,17 +257,17 @@ Examples:
 
 ### 1.3 Cost analysis (Codex vs our current model costs)
 
-Because pricing and limits can evolve, we’ll manage cost with **measurable units**:
+Because pricing and limits can evolve, we'll manage cost with **measurable units**:
 - **Per PR** (cloud task + code review)
 - **Per 1M tokens** (API usage)
 - **Per seat** (Plus/Pro/Business plans)
 
 #### What OpenAI publishes for Codex (as of 2026-02-05)
-From OpenAI’s Codex pricing page (developers.openai.com):
+From OpenAI's Codex pricing page (developers.openai.com):
 - Plans include **Local Messages / 5h**, **Cloud Tasks / 5h**, and **Code Reviews / week**.
 - Example limits shown on that page:
-  - **Plus**: 45–225 local messages / 5h; 10–60 cloud tasks / 5h; 10–25 code reviews / week
-  - **Pro**: 300–1500 local messages / 5h; 50–400 cloud tasks / 5h; 100–250 code reviews / week
+  - **Plus**: 45-225 local messages / 5h; 10-60 cloud tasks / 5h; 10-25 code reviews / week
+  - **Pro**: 300-1500 local messages / 5h; 50-400 cloud tasks / 5h; 100-250 code reviews / week
 - Credit averages (for flexible usage) shown on that page:
   - GPT-5.2(-Codex) **local** task ≈ ~5 credits
   - GPT-5.2(-Codex) **cloud** task ≈ ~25 credits
@@ -187,10 +278,10 @@ From OpenAI API pricing (platform.openai.com/docs/pricing):
 - **gpt-5.1-codex-mini** (Standard): $0.25 / 1M input tokens, $2.00 / 1M output tokens
 - **codex-mini-latest** (Standard): $1.50 / 1M input tokens, $6.00 / 1M output tokens
 
-> Note: ChatGPT seat pricing (e.g., Plus/Pro $/month) is displayed on chatgpt.com/pricing but may be dynamically rendered; treat seat costs as “check current price” at time of purchase.
+> Note: ChatGPT seat pricing (e.g., Plus/Pro $/month) is displayed on chatgpt.com/pricing but may be dynamically rendered; treat seat costs as "check current price" at time of purchase.
 
 #### Practical cost guidance for TMNT
-1. **Default for large projects**: treat Codex cloud as a “PR factory.” Measure cost as **credits per PR** + **human review time saved**.
+1. **Default for large projects**: treat Codex cloud as a "PR factory." Measure cost as **credits per PR** + **human review time saved**.
 2. **Use mini models for breadth**:
    - Use **gpt-5.1-codex-mini** for quick edits, tests, docs, small refactors.
    - Reserve **gpt-5.2-codex** for multi-file changes, tricky debugging, or tasks needing stronger reasoning.
@@ -198,7 +289,7 @@ From OpenAI API pricing (platform.openai.com/docs/pricing):
    - branch protection + required review ensures we never pay twice for bad merges.
    - label/queue discipline reduces rework loops.
 
-#### How we’ll compare against current OpenClaw costs (practical)
+#### How we'll compare against current OpenClaw costs (practical)
 - For OpenClaw-driven coding, track:
   - model used (Claude vs GPT-5.2-Codex)
   - rough token counts (where available)
@@ -208,18 +299,18 @@ From OpenAI API pricing (platform.openai.com/docs/pricing):
   - rework loops (how many follow-up prompts)
   - credits consumed (where visible in Codex usage dashboard)
 
-**We declare success** when Codex reduces *human integration time* and/or enables parallelism that shortens overall delivery—even if raw token costs are similar.
+**We declare success** when Codex reduces *human integration time* and/or enables parallelism that shortens overall delivery-even if raw token costs are similar.
 
 #### A simple break-even heuristic
 Codex is worth it when it saves:
-- **≥30–60 minutes of senior engineering time per PR**, or
+- **≥30-60 minutes of senior engineering time per PR**, or
 - it enables parallelism that shortens delivery by **days**, especially on multi-phase projects.
 
 ---
 
 ## 2) Workflow design (spec → Codex agents → review → merge → deploy)
 
-### 2.1 Canonical “Large Project” flow
+### 2.1 Canonical "Large Project" flow
 
 **A. Spec & decomposition (OpenClaw-led)**
 1. Spec lives in **Notion** (product intent, constraints, milestones).
@@ -266,7 +357,7 @@ Codex is worth it when it saves:
 #### Recommended linking conventions
 - Every Notion deliverable links to:
   - the GitHub milestone
-  - the “tracking issue” (one per phase)
+  - the "tracking issue" (one per phase)
 - Every GitHub issue links back to:
   - the Notion spec section
   - a Todoist item only if human action is required.
@@ -299,10 +390,10 @@ To keep multi-agent parallel work sane, we standardize labels that act like a li
 
 ### 2.3 How Molty orchestrates Codex tasks
 
-Molty’s role becomes a repeatable “delegation protocol.”
+Molty's role becomes a repeatable "delegation protocol."
 
-#### Molty’s Codex delegation checklist (per issue)
-1. **Is it PR-sized?** (< ~300–600 LOC net change; 1–3 modules; clear boundary)
+#### Molty's Codex delegation checklist (per issue)
+1. **Is it PR-sized?** (< ~300-600 LOC net change; 1-3 modules; clear boundary)
 2. **Acceptance criteria present?** (behavior, tests, docs)
 3. **Commands known?** (`pnpm test`, `pytest`, `make lint`, etc.)
 4. **Secrets avoided?** (no real API keys; use mocks)
@@ -311,13 +402,13 @@ Molty’s role becomes a repeatable “delegation protocol.”
    - `area:<module>` (e.g., `area:scheduling-engine`)
    - `risk:low|med|high`
 6. Trigger Codex and set a **timebox**:
-   - first pass expected within 30–90 minutes
+   - first pass expected within 30-90 minutes
    - if stuck, Codex comments with blockers.
 
-#### Molty’s integration responsibilities
+#### Molty's integration responsibilities
 - Maintain repo-level **AGENTS.md** templates.
 - Maintain a lightweight **issue template** for Codex-ready work.
-- Keep a weekly “Codex throughput” dashboard:
+- Keep a weekly "Codex throughput" dashboard:
   - PRs opened, merged, reverted
   - average review time
   - defect rate post-merge
@@ -343,7 +434,7 @@ Molty’s role becomes a repeatable “delegation protocol.”
 
 Codex supports **layered** instructions via AGENTS.md and AGENTS.override.md, discovered from global → repo root → nested directory (up to size limits).
 
-#### Pattern 1 — Root `AGENTS.md` (required in every active repo)
+#### Pattern 1 - Root `AGENTS.md` (required in every active repo)
 Keep this *short* and *operational*. Example skeleton:
 
 ```markdown
@@ -372,12 +463,12 @@ This repo is part of the TMNT Squad (Guillermo + Molty + Raphael). Prioritize sm
 - If an integration needs credentials, use mocks and document required env vars in `.env.example`.
 ```
 
-#### Pattern 2 — Module overrides (only when necessary)
+#### Pattern 2 - Module overrides (only when necessary)
 Example: `services/hubspot/AGENTS.override.md` for Brinc integrations.
-- Put “special rules” close to the code.
+- Put "special rules" close to the code.
 - Keep override limited to what differs.
 
-#### Pattern 3 — Global defaults (Molty-maintained)
+#### Pattern 3 - Global defaults (Molty-maintained)
 Codex supports a global `~/.codex/AGENTS.md` for consistent behavior across repos.
 Recommendation:
 - Molty maintains global agreements (small PRs, test-first, no new deps without approval, log conventions).
@@ -413,7 +504,7 @@ Standardize so humans can scan quickly.
 - Branch protection on `main`:
   - require PR
   - require CI
-  - require 1–2 approvals depending on `risk:*`
+  - require 1-2 approvals depending on `risk:*`
 - `CONTRIBUTING.md` with:
   - how to run tests
   - how to run lint
@@ -421,20 +512,20 @@ Standardize so humans can scan quickly.
 
 ### 3.3 Structuring repos so Codex is effective
 
-Codex performs best when repos are “agent-friendly.” For each active repo, we should add:
+Codex performs best when repos are "agent-friendly." For each active repo, we should add:
 
 1. **Single-command setup**
    - `make setup` or `./scripts/setup.sh`
 2. **Single-command verification**
    - `make verify` runs lint + typecheck + tests
 3. **Fast unit test layer**
-   - keep a <2–5 minute suite for agent iteration
+   - keep a <2-5 minute suite for agent iteration
 4. **Clear boundaries**
    - `src/`, `tests/`, `docs/`, `scripts/`
 5. **Golden paths**
-   - examples in `docs/` showing “how to add a new provider,” etc.
+   - examples in `docs/` showing "how to add a new provider," etc.
 
-> If Codex can’t reliably run tests, it will produce larger diffs, more rework, and higher human review burden.
+> If Codex can't reliably run tests, it will produce larger diffs, more rework, and higher human review burden.
 
 ### 3.4 Monorepo vs multi-repo considerations (for TMNT)
 
@@ -452,23 +543,23 @@ Codex performs best when repos are “agent-friendly.” For each active repo, w
 
 #### Recommended position for TMNT (pragmatic)
 - Keep **separate repos by domain** (OpenClaw infra, Brinc automations, personal systems).
-- Within a domain repo, allow a “mini-monorepo” only if:
+- Within a domain repo, allow a "mini-monorepo" only if:
   - each package has its own `AGENTS.override.md`
   - `make verify` can target a package (`make verify PACKAGE=...`).
 
 ---
 
-## 4) Concrete workflows (A–D)
+## 4) Concrete workflows (A-D)
 
-### Workflow A — Molty spawns Codex agents for infrastructure/tooling builds
+### Workflow A - Molty spawns Codex agents for infrastructure/tooling builds
 
 **Use case examples:** WebClaw deployment/customization, OpenClaw gateway enhancements, CI hardening.
 
 **Step-by-step**
 1. Molty creates GitHub issues:
-   - “Add `make verify` + CI for repo”
-   - “Dockerize service X for Railway”
-   - “Implement config loader + env validation”
+   - "Add `make verify` + CI for repo"
+   - "Dockerize service X for Railway"
+   - "Implement config loader + env validation"
 2. Add `codex-ready` and attach:
    - exact commands
    - target files
@@ -486,11 +577,11 @@ Codex performs best when repos are “agent-friendly.” For each active repo, w
 - Infra PRs must pass:
   - lint + tests
   - container build check
-  - a “dry-run deploy” job when applicable.
+  - a "dry-run deploy" job when applicable.
 
 ---
 
-### Workflow B — Raphael uses Codex for Brinc-specific development
+### Workflow B - Raphael uses Codex for Brinc-specific development
 
 **Use case examples:** HubSpot CRM integration, lead management workflows, sales automation.
 
@@ -498,7 +589,7 @@ Codex performs best when repos are “agent-friendly.” For each active repo, w
 1. Raphael creates a Brinc issue with:
    - object model mapping (Contacts/Companies/Deals)
    - required webhooks/events
-   - acceptance criteria (e.g., “create/update contact on inbound lead; de-dup by email; log to audit table”)
+   - acceptance criteria (e.g., "create/update contact on inbound lead; de-dup by email; log to audit table")
 2. Raphael marks `codex-ready` only when:
    - API endpoints are defined
    - secrets are NOT required for the PR (use stubs)
@@ -522,7 +613,7 @@ Codex performs best when repos are “agent-friendly.” For each active repo, w
 
 ---
 
-### Workflow C — Large multi-phase project (Smart Scheduling Engine)
+### Workflow C - Large multi-phase project (Smart Scheduling Engine)
 
 **Project reality:** spec done, ~61h build; ideal candidate for parallel Codex execution.
 
@@ -534,7 +625,7 @@ Create milestones:
 - **Phase 4: API + UI surfaces**
 - **Phase 5: Observability + hardening**
 
-Create “PR-sized” issues per phase:
+Create "PR-sized" issues per phase:
 - Domain entities + migrations
 - Availability computation module
 - Conflict detection
@@ -544,17 +635,17 @@ Create “PR-sized” issues per phase:
 - API endpoints + OpenAPI spec
 
 #### Parallel execution pattern
-- Run **3–6 Codex tasks in parallel**, each owning a module.
+- Run **3-6 Codex tasks in parallel**, each owning a module.
 - Molty acts as integration manager:
   - ensures shared types/interfaces are agreed upfront
   - merges foundational PRs first
   - rebases/updates downstream tasks.
 
 #### Integration loop (repeat per week)
-1. Monday: Molty posts “weekly plan” in Discord + Notion.
+1. Monday: Molty posts "weekly plan" in Discord + Notion.
 2. Create/refresh `codex-ready` issues.
 3. Codex opens PRs.
-4. Human review queue daily (30–60 min blocks).
+4. Human review queue daily (30-60 min blocks).
 5. End of week: integration PR + staging deploy + demo.
 
 #### Definition of done (Phase-level)
@@ -565,7 +656,7 @@ Create “PR-sized” issues per phase:
 
 ---
 
-### Workflow D — Bug fix / maintenance
+### Workflow D - Bug fix / maintenance
 
 **Goal:** minimize cycle time while keeping safety.
 
@@ -597,7 +688,7 @@ Create “PR-sized” issues per phase:
 
 #### Who can trigger Codex tasks (recommended)
 - **Guillermo**: can approve strategy + priorities; should not be required to manage daily GitHub mechanics.
-- **Molty**: primary “Codex dispatcher” across repos.
+- **Molty**: primary "Codex dispatcher" across repos.
 - **Raphael**: dispatcher for Brinc repos only.
 - Future leads (Leonardo/Donatello/Michelangelo): dispatch within their domain repos.
 
@@ -633,7 +724,7 @@ Branch protection (recommended baseline for all repos using Codex):
 - Require:
   - CI checks
   - ≥1 human approval (Molty or domain lead)
-- Require “conversation resolved.”
+- Require "conversation resolved."
 
 High-risk labels require stricter review:
 - `risk:high` requires:
@@ -649,7 +740,7 @@ We already get a strong audit trail from GitHub:
 
 Add explicit conventions:
 - PRs created by Codex must include:
-  - “How to test” commands
+  - "How to test" commands
   - evidence of test runs (paste key outputs)
   - list of files changed
 
@@ -661,31 +752,31 @@ If we later move to Business/Enterprise with Compliance API, we can also central
 
 ### 6.0 Rollout order by project (recommended)
 
-We’ll get faster adoption if we start where tasks are most PR-shaped and least secret-dependent.
+We'll get faster adoption if we start where tasks are most PR-shaped and least secret-dependent.
 
 **Tier 1 (start here; clean PR-shaped work)**
 - **WebClaw deployment + customization**: Docker/Railway, UI tweaks, auth/config, CI hardening.
 - **Morning Briefing system**: packaging, deployment scripts, config validation, tests around the briefing generator.
 
 **Tier 2 (high leverage; some integration complexity, still PR-shaped with mocks)**
-- **Unbrowse DIY — API Skill Auto-Capture (Phases 2–5)**
+- **Unbrowse DIY - API Skill Auto-Capture (Phases 2-5)**
   - Structure each phase as a GitHub milestone.
-  - Each milestone should have 5–15 PR-sized issues (schema changes, pipeline steps, backfills, error handling, test coverage).
+  - Each milestone should have 5-15 PR-sized issues (schema changes, pipeline steps, backfills, error handling, test coverage).
 - **Whoop Health Integration (4-phase build)**
   - Keep Codex focused on: client SDK wrapper, data models, sync jobs, unit tests, docs.
   - Keep humans focused on: credentialing, privacy decisions, production rollout.
 
 **Tier 3 (best once the team has muscle memory)**
 - **Smart Scheduling Engine (~61h build)**
-  - Run as a “parallel PR program” (Workflow C) with Molty as integration manager.
+  - Run as a "parallel PR program" (Workflow C) with Molty as integration manager.
 
 **Brinc track (parallel, Raphael-owned)**
 - **HubSpot CRM integration** → best first Brinc Codex target
 - **Lead management + sales automation** → next, once mapping + rules are stable
 
-### Phase 1 — Pilot (1 project, 1 agent)
+### Phase 1 - Pilot (1 project, 1 agent)
 
-**Duration:** ~1–2 weeks
+**Duration:** ~1-2 weeks
 
 **Pick one pilot project** (recommended order):
 1. **WebClaw deployment + customization** (clear infra scope, PR-shaped)
@@ -705,9 +796,9 @@ We’ll get faster adoption if we start where tasks are most PR-shaped and least
 - no secret leakage
 - defect rate acceptable (≤1 revert / 5 PRs)
 
-### Phase 2 — Team adoption (all active agents)
+### Phase 2 - Team adoption (all active agents)
 
-**Duration:** ~2–4 weeks after pilot
+**Duration:** ~2-4 weeks after pilot
 
 **Scope**
 - Enable Codex on:
@@ -718,13 +809,13 @@ We’ll get faster adoption if we start where tasks are most PR-shaped and least
   - review discipline + risk labels
 
 **Success criteria**
-- Parallel PR throughput increases (2–4 PRs/day possible)
-- Fewer “big bang” merges; more incremental PRs
+- Parallel PR throughput increases (2-4 PRs/day possible)
+- Fewer "big bang" merges; more incremental PRs
 - Clear weekly cadence (plan → execute → integrate → demo)
 
-### Phase 3 — Full integration (automation pipelines)
+### Phase 3 - Full integration (automation pipelines)
 
-**Duration:** ~4–8 weeks after Phase 2
+**Duration:** ~4-8 weeks after Phase 2
 
 **Enhancements**
 - Discord automation:
@@ -786,9 +877,9 @@ Because Discord is our coordination hub, make it simple:
 - Notes: (any constraints)
 
 Molty replies with:
-- “Codex dispatched” + ETA window
+- "Codex dispatched" + ETA window
 - PR link when opened
-- “Needs review” checklist
+- "Needs review" checklist
 
 > If/when Raphael has direct Codex dispatch access on Brinc repos, this becomes self-serve; Discord remains the audit log for status.
 
@@ -807,7 +898,7 @@ Molty replies with:
 
 ---
 
-## Appendix A — GitHub Issue template: `codex-ready`
+## Appendix A - GitHub Issue template: `codex-ready`
 
 Copy/paste into GitHub issues.
 
@@ -832,7 +923,7 @@ Copy/paste into GitHub issues.
 - Risks: …
 ```
 
-## Appendix B — Minimum repo checklist (before enabling Codex)
+## Appendix B - Minimum repo checklist (before enabling Codex)
 
 - [ ] Root `AGENTS.md`
 - [ ] `make verify` (or `./scripts/verify.sh`)
