@@ -633,6 +633,12 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 
 38. **Calendar time-blocking is step 3 of standup.** After processing Guillermo's standup decisions, create Google Calendar time blocks for the next 1-2 days. Use energy schedule (deep work 9-12, light 12-14, meetings 14-17) and respect life commitments (school dropoff MWF 8-8:30, pickup 10:30-11). Calendar token is in `calendar-tokens-brinc.json` (NOT gmail-tokens.json — different OAuth scopes). Write to personal calendar for non-Brinc, Brinc calendar for work. (2026-02-08)
 
+39. **Grok is unreliable as a sub-agent model.** Spawned 3 tasks on Grok — all acknowledged and exited without executing. One hallucinated "compiled comprehensive report" but the file didn't exist. Sonnet completed the same task properly in ~2 minutes. **Rule: Use Sonnet or Flash for sub-agent execution tasks. Grok is chat-only.** (2026-02-09)
+
+40. **Always check BOTH calendars before creating time blocks.** Personal + Brinc calendars have different events. I created blocks that overlapped existing Brinc meetings because I only checked the personal calendar. Pull all calendars → map free slots → THEN create blocks. (2026-02-09)
+
+41. **Cron delivery needs explicit `to` field.** All isolated cron jobs delivering to Telegram must have `"to": "1097408992"` in their delivery config, not just `"channel": "telegram"`. Without it: "cron delivery target is missing" error. Fixed all 8 jobs on Feb 9. (2026-02-09)
+
 37. **Twitter login in headless Brave requires cookie injection.** The login form renders blank due to anti-bot detection. Workaround: set `auth_token` and `ct0` cookies via `document.cookie` JS eval, then navigate. Cookies stored in `/data/workspace/credentials/twitter.env`. (2026-02-08)
 
 34. **BACKUP BEFORE UPDATE — ALWAYS** — System crash reinforced this rule. The procedure was documented but as "after backup → check updates" not "before update → backup first". Made the rule explicit and bidirectional. Added to fleet-wide OPERATIONAL-GUIDELINES.md. No exceptions. (2026-02-06)
