@@ -4,10 +4,10 @@
 
 | # | Skill | Inspired By | Status |
 |---|-------|-------------|--------|
-| 1 | `notion-enhanced` | notion-sync (robansuini) | 🔨 Building |
-| 2 | `tmnt-agent-creator` | agent-council (itsahedge) | ⏳ Queued |
-| 3 | `council-of-the-wise` | council-of-the-wise (jeffaf) | ⏳ Queued |
-| 4 | Calendar improvements | gcalcli-calendar (lstpsche) | ⏳ Queued |
+| 1 | `notion-enhanced` | notion-sync (robansuini) | ✅ Done — 7 scripts, tested |
+| 2 | `tmnt-agent-creator` | agent-council (itsahedge) | ✅ Done — tested |
+| 3 | `council` | council-of-the-wise (jeffaf) | ✅ Done — 5 personas |
+| 4 | Calendar improvements | gcalcli-calendar (lstpsche) | ✅ Done — find + safe-add |
 
 ## Build Standards
 - Each skill gets: SKILL.md, scripts/, security self-audit
