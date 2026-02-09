@@ -282,6 +282,96 @@ for cal_id, info in data.get('calendars', {}).items():
         refresh_token && echo "✅ Token refreshed successfully"
         ;;
     
+    find)
+        # Bounded agenda scan for event lookup (pattern from gcalcli-calendar)
+        # Searches by keyword across all calendars within a bounded time window
+        # Usage: calendar.sh find <keyword> [days_ahead] [calendar_id]
+        KEYWORD="$2"
+        DAYS="${3:-30}"
+        CAL_ID="${4:-primary}"
+        
+        if [ -z "$KEYWORD" ]; then
+            echo "Usage: calendar.sh find <keyword> [days_ahead] [calendar_id]"
+            echo "  Scans agenda bounded window and matches by meaning"
+            exit 1
+        fi
+        
+        NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+        END=$(date -u -d "+${DAYS} days" +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -v+${DAYS}d +%Y-%m-%dT%H:%M:%SZ)
+        
+        api_call GET "$CALENDAR_API/calendars/$(python3 -c "import urllib.parse; print(urllib.parse.quote('$CAL_ID', safe=''))")/events?timeMin=$NOW&timeMax=$END&singleEvents=true&orderBy=startTime&maxResults=100&q=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$KEYWORD', safe=''))")" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+events = data.get('items', [])
+if not events:
+    print(f'No events matching \"$KEYWORD\" in next $DAYS days')
+else:
+    print(f'Found {len(events)} match(es):')
+    for ev in events:
+        start = ev.get('start', {}).get('dateTime', ev.get('start', {}).get('date', '?'))
+        summary = ev.get('summary', '(no title)')
+        eid = ev.get('id', '?')
+        print(f'  {start:25s} | {summary:40s} | {eid}')
+" 2>/dev/null
+        ;;
+    
+    safe-add)
+        # Add event with cross-calendar overlap preflight (pattern from gcalcli-calendar)
+        # Checks ALL calendars for conflicts before creating
+        # Usage: calendar.sh safe-add <calendar_id> <summary> <start> <end> [description]
+        CAL_ID="$2"
+        SUMMARY="$3"
+        START="$4"
+        END="$5"
+        DESC="${6:-}"
+        
+        if [ -z "$CAL_ID" ] || [ -z "$SUMMARY" ] || [ -z "$START" ] || [ -z "$END" ]; then
+            echo "Usage: calendar.sh safe-add <cal_id> <summary> <start> <end> [description]"
+            echo "  Checks all calendars for overlap before creating"
+            exit 1
+        fi
+        
+        # Get all calendar IDs
+        ALL_CALS=$(api_call GET "$CALENDAR_API/users/me/calendarList" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+cals = [c['id'] for c in data.get('items', []) if c.get('accessRole') in ('owner', 'writer')]
+print(','.join(cals))
+" 2>/dev/null)
+        
+        # Check free/busy across all calendars
+        echo "🔍 Checking for overlaps across all calendars..." >&2
+        ITEMS=$(echo "$ALL_CALS" | tr ',' '\n' | while read cid; do
+            echo "{\"id\": \"$cid\"}"
+        done | paste -sd,)
+        
+        CONFLICTS=$(api_call POST "$CALENDAR_API/freeBusy" "{\"timeMin\": \"$START\", \"timeMax\": \"$END\", \"items\": [$ITEMS]}" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+conflicts = []
+for cal_id, info in data.get('calendars', {}).items():
+    for slot in info.get('busy', []):
+        conflicts.append(f'{cal_id}: {slot[\"start\"][:16]} → {slot[\"end\"][:16]}')
+if conflicts:
+    print('CONFLICT')
+    for c in conflicts:
+        print(f'  ⚠️  {c}')
+else:
+    print('CLEAR')
+" 2>/dev/null)
+        
+        if echo "$CONFLICTS" | head -1 | grep -q "CONFLICT"; then
+            echo "⚠️  Overlap detected:" >&2
+            echo "$CONFLICTS" | tail -n +2 >&2
+            echo "" >&2
+            echo "Event NOT created. Use 'calendar.sh add' to force-create." >&2
+            exit 1
+        fi
+        
+        echo "✅ No conflicts found. Creating event..." >&2
+        "$0" add "$CAL_ID" "$SUMMARY" "$START" "$END" "$DESC"
+        ;;
+    
     help|*)
         echo "Google Calendar CLI for Molty 🦎"
         echo ""
@@ -295,6 +385,8 @@ for cal_id, info in data.get('calendars', {}).items():
         echo "  move <event_id> <cal> <start> <end>  Reschedule event"
         echo "  delete <event_id> <cal>           Delete event"
         echo "  freebusy <cal1,cal2> <start> <end>  Check free/busy"
+        echo "  find <keyword> [days] [cal]        Search events by keyword"
+        echo "  safe-add <cal> <summary> <s> <e>   Add with overlap check"
         echo "  refresh                           Refresh OAuth token"
         echo ""
         echo "Datetime format: 2026-02-05T10:00:00+08:00"
