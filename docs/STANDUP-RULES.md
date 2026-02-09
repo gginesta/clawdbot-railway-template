@@ -10,5 +10,5 @@ When planning tomorrow/day-after, treat completions in the last **~48 hours** as
 
 Implementation guidance:
 - Pull completed items since `yesterday 00:00` (HKT) OR `now - 48h`.
-- If a calendar time-block exists for a task that is already completed in Todoist, delete it.
+- If a calendar time-block exists for a task that is already completed in Todoist, delete it (automatic cleanup).
 - If a task was completed yesterday but still appears on a planning list, do not re-block.
