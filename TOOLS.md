@@ -12,6 +12,15 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 |---------|-----|-------|------------|
 | `#command-center` | 1468164160398557216 | **Molty** 🦎 | @mention only |
 | `#brinc-marketing` | 1469590792900186245 | **Raphael** 🔴 | @mention only |
+
+### Forum Channels (📋 Forums category)
+| Forum | ID | Purpose |
+|-------|-----|---------|
+| `#squad-decisions` | 1470223676845723771 | Key decisions, architecture choices, lessons |
+| `#project-updates` | 1470223696349237445 | Project status reports per milestone |
+| `#research-findings` | 1470223714112245873 | Research reports, skill evals, market intel |
+
+**Forum rules:** One thread per topic. All agents can create threads and post. Use threads to keep context together instead of flat messages.
 | `#squad-updates` | 1468164181155909743 | **Molty** 🦎 | Read-only |
 | `#brinc-private` | 1468164139674238976 | **Raphael** 🔴 | @mention only |
 | `#brinc-general` | 1468164121420628081 | **Raphael** 🔴 | @mention only |
