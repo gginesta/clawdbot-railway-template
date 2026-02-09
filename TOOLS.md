@@ -12,6 +12,7 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 |---------|-----|-------|------------|
 | `#command-center` | 1468164160398557216 | **Molty** 🦎 | @mention only |
 | `#brinc-marketing` | 1469590792900186245 | **Raphael** 🔴 | @mention only |
+| `#brinc-sales` | 1470416628272463976 | **Raphael** 🔴 | @mention only |
 
 ### Forum Channels (📋 Forums category)
 | Forum | ID | Purpose |
