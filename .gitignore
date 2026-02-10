@@ -1,1 +1,9 @@
 memory-vault/
+
+# Generated briefs
+PRIORITY_BRIEFING.md
+
+# Credentials (keep locally, never commit)
+credentials/*tokens*.json
+credentials/*oauth*.json
+credentials/*.env

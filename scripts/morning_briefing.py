@@ -207,15 +207,22 @@ def _google_authed_get(url: str, *, token_path: str, oauth_path: str, errors: li
 # -----------------------------
 
 @dataclass
-class WeatherSummary:
+class ForecastDay:
+    day: date
     tmin: float | None
     tmax: float | None
     rain_prob_max: int | None
+
+
+@dataclass
+class WeatherSummary:
+    today: ForecastDay
+    outlook_3d: list[ForecastDay]
     dropoff_rain_prob: int | None
 
 
 def get_weather(today: date, *, school_day: bool, errors: list[str]) -> WeatherSummary | None:
-    # Open-Meteo forecast: daily min/max + daily max precip prob; hourly precip prob for dropoff window.
+    """Return today's weather plus an outlook for the next 3 days (Open-Meteo)."""
     url = (
         "https://api.open-meteo.com/v1/forecast?"
         + urllib.parse.urlencode(
@@ -238,17 +245,23 @@ def get_weather(today: date, *, school_day: bool, errors: list[str]) -> WeatherS
 
     try:
         daily = payload["daily"]
-        # Find index for 'today'
+
         days = [date.fromisoformat(d) for d in daily["time"]]
         i = days.index(today)
 
-        tmax = float(daily["temperature_2m_max"][i])
-        tmin = float(daily["temperature_2m_min"][i])
-        rain_prob_max = (
-            int(daily["precipitation_probability_max"][i])
-            if daily.get("precipitation_probability_max")
-            else None
-        )
+        def mk_day(idx: int) -> ForecastDay:
+            tmax = float(daily["temperature_2m_max"][idx]) if daily.get("temperature_2m_max") else None
+            tmin = float(daily["temperature_2m_min"][idx]) if daily.get("temperature_2m_min") else None
+            rain = None
+            if daily.get("precipitation_probability_max"):
+                v = daily["precipitation_probability_max"][idx]
+                rain = int(v) if v is not None else None
+            return ForecastDay(day=days[idx], tmin=tmin, tmax=tmax, rain_prob_max=rain)
+
+        today_fc = mk_day(i)
+        outlook: list[ForecastDay] = []
+        for j in range(i + 1, min(i + 4, len(days))):
+            outlook.append(mk_day(j))
 
         dropoff = None
         if school_day:
@@ -261,9 +274,7 @@ def get_weather(today: date, *, school_day: bool, errors: list[str]) -> WeatherS
             if probs:
                 dropoff = max(probs)
 
-        return WeatherSummary(
-            tmin=tmin, tmax=tmax, rain_prob_max=rain_prob_max, dropoff_rain_prob=dropoff
-        )
+        return WeatherSummary(today=today_fc, outlook_3d=outlook, dropoff_rain_prob=dropoff)
     except Exception as e:
         errors.append(f"Weather parse error: {e}")
         return None
@@ -545,14 +556,33 @@ def build_message(
 
     # 2) Weather
     if weather:
-        wline = f"Weather: {int(round(weather.tmin))}–{int(round(weather.tmax))}°C"
-        if weather.rain_prob_max is not None:
-            wline += f" · Rain chance up to {weather.rain_prob_max}%"
+        tmin = weather.today.tmin
+        tmax = weather.today.tmax
+        rain = weather.today.rain_prob_max
+
+        wline = "Weather:"
+        if tmin is not None and tmax is not None:
+            wline += f" {int(round(tmin))}–{int(round(tmax))}°C"
+        if rain is not None:
+            wline += f" · Rain chance up to {rain}%"
         lines.append("🌤 " + wline)
+
+        # Next 3 days outlook
+        if weather.outlook_3d:
+            parts = []
+            for fc in weather.outlook_3d[:3]:
+                label = fc.day.strftime("%a")
+                if fc.tmin is not None and fc.tmax is not None:
+                    p = f"{label} {int(round(fc.tmin))}–{int(round(fc.tmax))}°C"
+                else:
+                    p = f"{label}"
+                if fc.rain_prob_max is not None:
+                    p += f" ({fc.rain_prob_max}%)"
+                parts.append(p)
+            lines.append("   Outlook: " + " · ".join(parts))
+
         if school_day and weather.dropoff_rain_prob is not None and weather.dropoff_rain_prob >= 40:
-            lines.append(
-                f"   ⚠️ Rain risk at drop-off (08:00): ~{weather.dropoff_rain_prob}%"
-            )
+            lines.append(f"   ⚠️ Rain risk at drop-off (08:00): ~{weather.dropoff_rain_prob}%")
     else:
         lines.append("🌤 Weather: ⚠️ unavailable")
 
