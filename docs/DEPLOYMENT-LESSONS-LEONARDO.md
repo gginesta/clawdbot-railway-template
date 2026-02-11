@@ -73,6 +73,16 @@
 - Document each agent's intended model in their deployment checklist
 - Don't assume agents share my config preferences
 
+### 9. Railway Redeploy Wipes Auth
+**Problem:** Redeployed Leonardo to fix the restart storm, but the redeploy wiped `/root/.openclaw/agents/main/agent/auth-profiles.json` — killing all model auth.
+
+**Root cause:** Railway persistent volume is `/data`, but OpenClaw stores auth profiles under `/root/.openclaw/` which is ephemeral. Redeploy = fresh container = auth gone.
+
+**Fix for next time:**
+- NEVER redeploy to fix runtime issues — use `gateway.stop` + `gateway.start` via the setup console instead
+- If redeploy is unavoidable, know that auth needs to be re-established afterward
+- Feature request: OpenClaw should store auth on the persistent volume, not `/root`
+
 ### 8. Gateway Restart Storm
 **Problem:** Multiple gateway restart attempts competing (pid lock conflicts, port already in use).
 

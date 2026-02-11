@@ -273,6 +273,7 @@ Project-specific shares for isolation (not one big `/data/shared` folder).
 |--------|-----|------------------|
 | Molty-Railway | `3SM5RVG-SI2I5NF-EVETYF4-NIHFBDO-4244FJH-GSAAYNA-RUXA4UA-ZIEBBQU` | ✅ Active |
 | Raphael-Railway | `SA5L4UC-JDKR64B-ATFEIZT-FDZ5IU5-ZNXCG2R-AQUQAJU-DZYLPSB-OPCETAN` | ✅ Active |
+| Leonardo-Railway | `ORN3YZG-X26ZTDR-RESO4XZ-T6LBPON-BFTLETF-NC2JGRF-GGCE4GZ-ILJBFAL` | ✅ Active |
 | Guillermo-PC | `NSIAS7W-YAOTA6B-7A5I43O-6JCQHM7-ET4SPCF-6TB73UA-APHNHS5-2QLTVQP` | ✅ Active |
 
 ### Config Location

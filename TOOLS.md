@@ -28,6 +28,10 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 | `#launchpad-general` | 1470919420791619758 | **Leonardo** 🔵 | @mention only |
 | `#launchpad-private` | 1470919437975814226 | **Leonardo** 🔵 | @mention only |
 
+### Leonardo Webhook
+- **URL:** `https://leonardo-production.up.railway.app/hooks/agent`
+- **Token:** `b990098bbdbcefafbd7b8fb65e97e9a18baae8b4ee1cdcfc2d9b95c80fa52b87`
+
 **Rule:** If you don't own the channel, stay silent unless @mentioned or Guillermo explicitly asks you something.
 
 ---
