@@ -1,0 +1,65 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Why I named my AI agents after TMNT characters (and how it actually helps with architecture). 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The team:\n• Molty 🦎 — Coordinator, like Splinter. Routes tasks, manages memory\n• Raphael 🔴 — Corporate/Brinc work. Aggressive on deadlines\n• Leonardo (WIP) — Research & strategy\n• Donatello (WIP) — Dev & technical"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Why personas matter: it's not just cute naming. Each agent has a distinct SOUL.md file defining its personality, priorities, and communication style."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Molty is chill, asks clarifying questions, never rushes. Raphael is direct, deadline-focused, slightly impatient. The contrast is intentional."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Inter-agent communication: they talk via Discord webhooks. Molty can ping Raphael: \"Hey, Guillermo wants the Brinc deck by Friday.\" Raphael confirms or pushes back."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Memory is per-agent. Each has its own workspace, MEMORY.md, daily logs. No shared context means no cross-contamination of tasks."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The \"council\" pattern: for big decisions, I bring both agents into a thread. They debate, I decide. Two perspectives > one."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Pro tip: start with ONE agent. Get it stable. Then add specialists. Growing the team too fast = chaos.\n\nThe TMNT theme keeps it fun. And fun systems get maintained. #AIAgents #BuildInPublic"}}]
+      }
+    }
+  ]
+}

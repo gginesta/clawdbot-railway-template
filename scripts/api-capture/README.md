@@ -1,53 +1,72 @@
-# API Skill Auto-Capture (Phase 1 MVP)
+# API Skill Auto-Capture (DIY Unbrowse) — Phase 1 MVP
 
-This folder contains the Phase 1 MVP of the **Unbrowse DIY** API skill auto-capture system.
+This folder contains a usable MVP of the **DIY Unbrowse API skill auto-capture system**.
 
-It has 4 components:
+## What it does
+
+1) **Captures** API/network calls from a browsing session (via CDP)
+2) **Extracts** candidate endpoints (method + normalized path) and basic auth style
+3) **Generates** a reusable “API skill folder” with:
+   - `SKILL.md`
+   - `endpoints.json` (+ `.meta.json`)
+   - runnable curl-wrapper scripts in `scripts/`
+   - `api.sh` dispatcher
+   - `curl-commands.sh` (prints reproducible curl commands)
+
+## Components
 
 1. `cdp-capture.js` — attaches to Brave/Chromium CDP and records API-like requests/responses as JSONL
 2. `skill-gen.py` — reads JSONL capture(s), extracts endpoints, generates an API skill directory
 3. Credential handler — implemented via auth detection + an `.env` template in generated `SKILL.md`
 4. `capture-and-generate.sh` — wrapper that runs capture then runs generation
 
+## Safety defaults (important)
+
+- `cdp-capture.js` **redacts** sensitive headers by default (`Authorization`, `Cookie`, API keys, etc.).
+- It also does **best-effort redaction** of sensitive JSON fields in request/response bodies.
+- If you want extra safety, run capture with `--no-bodies`.
+- You can disable header redaction with `--unsafe-keep-auth` (not recommended).
+
 ## Prerequisites
 
-- Brave running with remote debugging enabled:
+Start Brave (or Chromium) with remote debugging enabled:
 
 ```bash
 /usr/bin/brave-browser --remote-debugging-port=18800
 ```
 
-- Ensure directories exist (wrapper will create them):
-  - Captures: `/data/workspace/data/captures/`
-  - Credentials: `/data/workspace/credentials/api-auth/`
-  - Generated skills (shared): `/data/shared/api-skills/`
-
-## Quick start
+## Quick start (recommended)
 
 ```bash
-# If the scripts are not executable in your environment, call via bash/python/node directly.
-
 bash /data/workspace/scripts/api-capture/capture-and-generate.sh hubspot.com --timeout 120
-
-# Then edit credentials (template is in the generated SKILL.md)
-ls -la /data/shared/api-skills/hubspot.com/
-cat /data/shared/api-skills/hubspot.com/SKILL.md
 ```
 
-## Capture format
+By default this generates:
 
-`cdp-capture.js` writes one JSON object per line (JSONL). Each record includes:
+- Captures → `/data/workspace/data/captures/`
+- Skills → `/data/shared/api-skills/<domain>/`
+- Credentials template location → `/data/workspace/credentials/api-auth/<domain>.env`
 
-- `request`: URL, method, headers, body, initiator, resourceType
-- `response`: status, headers, mimeType, body
-- `timing`: timestamps and CDP timing struct (if present)
+If you want to generate into a local skills folder instead:
 
-## Notes / limitations (MVP)
+```bash
+bash /data/workspace/scripts/api-capture/capture-and-generate.sh hubspot.com --timeout 120 \
+  --out-base /data/workspace/skills
+```
 
-- CDP target discovery chooses the first **page** tab matching `--domain`. If you have multiple tabs open, close extras or pass `--ws` to `cdp-capture.js`.
-- Some responses are not retrievable via `Network.getResponseBody` (redirects, cached, opaque). Those may be skipped.
-- URL normalization replaces likely IDs with `{id}`. Verify before relying on a generated script.
-- Auth detection is best-effort. You may need to adjust the generated scripts or env file.
+Next steps:
+
+```bash
+cd /data/shared/api-skills/hubspot.com
+cat SKILL.md
+
+# Print reproducible curl commands (does not require credentials)
+./curl-commands.sh
+
+# After you create /data/workspace/credentials/api-auth/hubspot.com.env
+./api.sh <resource> <action> --help
+./api.sh <resource> <action>
+```
 
 ## Manual runs
 
@@ -62,5 +81,13 @@ Generate only:
 ```bash
 python3 /data/workspace/scripts/api-capture/skill-gen.py \
   --input /data/workspace/data/captures/example.com-*.jsonl \
-  --domain example.com
+  --domain example.com \
+  --out-base /data/shared/api-skills
 ```
+
+## Notes / limitations (MVP)
+
+- CDP target discovery chooses the first **page** tab matching `--domain`. If you have multiple tabs open, close extras or pass `--ws` to `cdp-capture.js`.
+- Some responses are not retrievable via `Network.getResponseBody` (redirects, cached, opaque). Those may be skipped.
+- URL normalization replaces likely IDs with `{id}`. Verify templates.
+- Auth detection is best-effort. Many sites require cookies/CSRF headers that only appear in specific flows.

@@ -1,0 +1,57 @@
+{
+  "domain": "example.com",
+  "generated_at": "2026-02-10T00:00:10+00:00",
+  "endpoints": [
+    {
+      "id": "GET /v1/users",
+      "method": "GET",
+      "path_template": "/v1/users?limit=",
+      "path": "/v1/users",
+      "resource": "users",
+      "action": "list",
+      "count": 3,
+      "confidence": 100,
+      "host": "api.example.com",
+      "base_url": "https://api.example.com",
+      "query_params_common": ["limit"],
+      "auth": {"kind": "bearer", "header_name": "authorization"},
+      "sample_request_headers": {"Authorization": "<redacted>", "Accept": "application/json"},
+      "sample_status": 200,
+      "script": "scripts/users-list.sh"
+    },
+    {
+      "id": "GET /v1/users/{id}",
+      "method": "GET",
+      "path_template": "/v1/users/{id}",
+      "path": "/v1/users/{id}",
+      "resource": "users",
+      "action": "get",
+      "count": 1,
+      "confidence": 70,
+      "host": "api.example.com",
+      "base_url": "https://api.example.com",
+      "query_params_common": [],
+      "auth": {"kind": "bearer", "header_name": "authorization"},
+      "sample_request_headers": {"Authorization": "<redacted>", "Accept": "application/json"},
+      "sample_status": 200,
+      "script": "scripts/users-get.sh"
+    },
+    {
+      "id": "POST /v1/users",
+      "method": "POST",
+      "path_template": "/v1/users",
+      "path": "/v1/users",
+      "resource": "users",
+      "action": "create",
+      "count": 1,
+      "confidence": 70,
+      "host": "api.example.com",
+      "base_url": "https://api.example.com",
+      "query_params_common": [],
+      "auth": {"kind": "bearer", "header_name": "authorization"},
+      "sample_request_headers": {"Authorization": "<redacted>", "Content-Type": "application/json", "Accept": "application/json"},
+      "sample_status": 201,
+      "script": "scripts/users-create.sh"
+    }
+  ]
+}

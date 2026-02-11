@@ -59,6 +59,11 @@
 - Appreciates thoroughness when it matters
 - Likes tables and structured summaries
 
+### Default booking details (save for future forms)
+- Full name: Guillermo Ginesta
+- Email: guillermo.ginesta@gmail.com
+- Mobile: +852 5405 5953
+
 ---
 
 ## 🖥️ System Architecture
@@ -74,6 +79,7 @@
 |-------|-----|---------------|--------|
 | **Molty** | ggvmolt.up.railway.app | (main gateway token) | ✅ Active |
 | **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | ✅ **DEPLOYED** (2026-02-04 04:33 UTC) |
+| **Leonardo** | leonardo-production.up.railway.app | `27190324b3905f13c2f0fb3310d35afe6a09d9dcefe475b1dfacb759f59bd99f` | ✅ **DEPLOYED** (2026-02-11 10:45 HKT) |
 
 ### Discord Bots (TMNT Squad Server)
 | Bot | Application ID | Guild | Status |
@@ -632,6 +638,22 @@ bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
 36. **Daily standup is a 3-step process — don't skip steps.** The correct procedure is: (1) Process Todoist inbox first (rewrite titles, add descriptions, assign projects, set priorities, estimate time), (2) Create Notion standup page using approved template (callout + inline Task Review child_database + Tomorrow's Priority + Blockers sections), (3) THEN present summary to Guillermo. Never present a standup without having processed inbox AND created the Notion page first. Template reference: Feb 7 page `30039dd6-9afd-8137-b854-e9701a0b7648`. (2026-02-08)
 
 38. **Calendar time-blocking is step 3 of standup.** After processing Guillermo's standup decisions, create Google Calendar time blocks for the next 1-2 days. Use energy schedule (deep work 9-12, light 12-14, meetings 14-17) and respect life commitments (school dropoff MWF 8-8:30, pickup 10:30-11). Calendar token is in `calendar-tokens-brinc.json` (NOT gmail-tokens.json — different OAuth scopes). Write to personal calendar for non-Brinc, Brinc calendar for work. (2026-02-08)
+
+45. **Agent deployment: FILES FIRST, CONFIG SECOND, BOOT THIRD.** Leonardo deployment took 4+ hours because we booted the gateway before populating workspace files. The agent hit BOOTSTRAP.md and got confused. Then we flooded him with 10+ webhook messages trying to fix it — he couldn't process them coherently. Correct order: (1) pre-populate workspace via setup import/tarball, (2) delete BOOTSTRAP.md, (3) push config, (4) boot gateway. Full playbook in `docs/DEPLOYMENT-LESSONS-LEONARDO.md`. (2026-02-11)
+
+46. **Never flood a fresh agent with webhook messages.** Send ONE message, wait for confirmation, then send the next. 10 concurrent webhook messages = context chaos + failed tool calls. (2026-02-11)
+
+47. **Discord Message Content Intent is MANDATORY.** Must enable in Developer Portal → Bot → Privileged Gateway Intents BEFORE pushing Discord config. Without it: Fatal Gateway error 4014, instant crash. Add to every bot setup checklist. (2026-02-11)
+
+48. **hooks.enabled requires hooks.token.** Config template MUST include a generated token when hooks are enabled. Auto-generate with `secrets.token_hex(32)`. Gateway refuses to start without it. (2026-02-11)
+
+49. **Setup API "Gateway did not become ready" is usually OK.** The config WAS saved — the API just timed out waiting for the restart. Read config back to verify instead of retrying the write. (2026-02-11)
+
+42. **NEVER brute-force config changes.** Three crashes in one session trying to fix openai-codex provider config. Each "fix" broke something new. Rule: research first, use config.patch (validates), stop after first failure and ask for help. Guillermo had to get Raphael to rescue. (2026-02-10)
+
+43. **Perplexity Sonar has NO tool use.** Sonar models via OpenRouter are search/chat only — they cannot call exec, gmail.sh, or any tools. Error: "No endpoints found that support tool use". Use Sonar for pure research queries only; for research+action tasks use Opus/Sonnet sub-agents. (2026-02-10)
+
+44. **Perplexity Sonar via OpenRouter replaces paid Perplexity.** Added `sonar` (fast search) and `deep-research` (synthesis) aliases. Good for research but remember lesson #43. (2026-02-10)
 
 39. **Grok is unreliable as a sub-agent model.** Spawned 3 tasks on Grok — all acknowledged and exited without executing. One hallucinated "compiled comprehensive report" but the file didn't exist. Sonnet completed the same task properly in ~2 minutes. **Rule: Use Sonnet or Flash for sub-agent execution tasks. Grok is chat-only.** (2026-02-09)
 

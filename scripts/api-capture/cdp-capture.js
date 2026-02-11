@@ -7,22 +7,16 @@
  * Connects to a running Chromium/Brave remote debugging instance and captures
  * API-like network traffic as JSONL (one request/response pair per line).
  *
- * Requirements implemented:
- * - Connect to CDP via WebSocket (discovers a page target via http://127.0.0.1:<port>/json/list)
- * - Listen for Network.requestWillBeSent, Network.responseReceived, Network.loadingFinished
- * - Capture URL, method, headers, request body, response body, status, timing, initiator
- * - Filter noise (analytics/ads/pixels/CDN/static assets/favicon/service-workers)
- * - Only keep API-like requests (XHR/Fetch w/ JSON responses OR content-type application/json)
- * - Output JSONL to /data/workspace/data/captures/{domain}-{timestamp}.jsonl
- * - Graceful shutdown on Ctrl+C
- * - Uses ws module from /openclaw/node_modules/ws
+ * Safety defaults (IMPORTANT):
+ * - Redacts Authorization/Cookie/API-key headers by default.
+ * - Best-effort redaction of sensitive fields inside JSON request/response bodies.
+ * - Use --unsafe-keep-auth ONLY if you explicitly want raw auth headers in the capture.
  */
 
 /* eslint-disable no-console */
 
 const fs = require('fs');
 const path = require('path');
-const { URL } = require('url');
 
 // ws is available in OpenClaw at /openclaw/node_modules/ws
 let WebSocket;
@@ -39,11 +33,14 @@ Usage:
   node cdp-capture.js [--port 18800] [--domain example.com] [--output /data/workspace/data/captures/]
 
 Options:
-  --port        Remote debugging port (default: 18800)
-  --domain      Domain to match a page target (e.g., hubspot.com). Also used for output filename.
-  --output      Output directory for captures (default: /data/workspace/data/captures/)
-  --ws          (Optional) Explicit WebSocket debugger URL. Skips target discovery.
-  --help        Show this help
+  --port             Remote debugging port (default: 18800)
+  --domain           Domain to match a page target (e.g., hubspot.com). Also used for output filename.
+  --output           Output directory for captures (default: /data/workspace/data/captures/)
+  --ws               (Optional) Explicit WebSocket debugger URL. Skips target discovery.
+  --no-bodies        Do not store request/response bodies (still stores metadata)
+  --max-body-bytes   Truncate bodies at N bytes (default: 2097152 = 2MB)
+  --unsafe-keep-auth DO NOT REDACT authorization/cookie/api-key headers (unsafe)
+  --help             Show this help
 
 Notes:
   - Brave must be started with remote debugging enabled, e.g.:
@@ -56,7 +53,15 @@ Notes:
 }
 
 function parseArgs(argv) {
-  const args = { port: 18800, domain: '', output: '/data/workspace/data/captures/', ws: '' };
+  const args = {
+    port: 18800,
+    domain: '',
+    output: '/data/workspace/data/captures/',
+    ws: '',
+    includeBodies: true,
+    maxBodyBytes: 2 * 1024 * 1024,
+    unsafeKeepAuth: false,
+  };
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--help' || a === '-h') usage(0);
@@ -64,11 +69,18 @@ function parseArgs(argv) {
     if (a === '--domain') { args.domain = String(argv[++i] || ''); continue; }
     if (a === '--output') { args.output = String(argv[++i] || ''); continue; }
     if (a === '--ws') { args.ws = String(argv[++i] || ''); continue; }
+    if (a === '--no-bodies') { args.includeBodies = false; continue; }
+    if (a === '--max-body-bytes') { args.maxBodyBytes = Number(argv[++i]); continue; }
+    if (a === '--unsafe-keep-auth') { args.unsafeKeepAuth = true; continue; }
     console.error(`Unknown arg: ${a}`);
     usage(2);
   }
   if (!Number.isFinite(args.port) || args.port <= 0) {
     console.error('Invalid --port');
+    process.exit(2);
+  }
+  if (!Number.isFinite(args.maxBodyBytes) || args.maxBodyBytes <= 0) {
+    console.error('Invalid --max-body-bytes');
     process.exit(2);
   }
   return args;
@@ -148,19 +160,94 @@ function shouldKeep(rec) {
     || bodyLooksJson;
 
   if (!isJson) return false;
-  // If the response is JSON, we keep it. (XHR/Fetch is preferred, but JSON content-type wins.)
+
+  // If the response is JSON, keep it. Prefer XHR/Fetch, but JSON wins.
   return true;
 }
 
-function headerMap(headers) {
+const SENSITIVE_HEADER_KEYS = new Set([
+  'authorization',
+  'cookie',
+  'set-cookie',
+  'x-api-key',
+  'api-key',
+  'apikey',
+  'x-apikey',
+  'x-auth-token',
+  'x-csrf-token',
+  'x-xsrf-token',
+]);
+
+function headerMap(headers, unsafeKeepAuth = false) {
   // CDP sometimes sends headers as object with mixed casing.
   if (!headers || typeof headers !== 'object') return {};
   const out = {};
   for (const [k, v] of Object.entries(headers)) {
     if (v === undefined) continue;
+    const kl = String(k).toLowerCase();
+    if (!unsafeKeepAuth) {
+      if (SENSITIVE_HEADER_KEYS.has(kl)) {
+        // Preserve auth *scheme* (Bearer/Basic) without storing secrets.
+        if (kl === 'authorization') {
+          const sv = String(v);
+          if (/^\s*bearer\s+/i.test(sv)) out[k] = 'Bearer <redacted>';
+          else if (/^\s*basic\s+/i.test(sv)) out[k] = 'Basic <redacted>';
+          else out[k] = '<redacted>';
+        } else {
+          out[k] = '<redacted>';
+        }
+        continue;
+      }
+      if (kl.includes('token') || kl.includes('secret')) {
+        out[k] = '<redacted>';
+        continue;
+      }
+    }
     out[k] = String(v);
   }
   return out;
+}
+
+const SENSITIVE_JSON_KEY_RE = /(pass(word)?|token|secret|api[_-]?key|session|cookie|auth(orization)?|bearer|refresh)/i;
+
+function redactJsonDeep(val, depth = 0) {
+  if (depth > 12) return val;
+  if (val == null) return val;
+  if (Array.isArray(val)) return val.map(v => redactJsonDeep(v, depth + 1));
+  if (typeof val === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(val)) {
+      if (SENSITIVE_JSON_KEY_RE.test(String(k))) out[k] = '<redacted>';
+      else out[k] = redactJsonDeep(v, depth + 1);
+    }
+    return out;
+  }
+  if (typeof val === 'string') {
+    // Best-effort string redaction for common token patterns
+    return val
+      .replace(/(access_token|refresh_token|id_token|token)=([^&\s]+)/gi, '$1=<redacted>')
+      .replace(/(authorization\s*:\s*)(bearer\s+)[^\s"']+/gi, '$1$2<redacted>');
+  }
+  return val;
+}
+
+function redactBodyText(bodyText) {
+  if (bodyText == null) return null;
+  const s = String(bodyText);
+  const parsed = safeJsonParse(s);
+  if (parsed != null) {
+    try {
+      return JSON.stringify(redactJsonDeep(parsed));
+    } catch {
+      return s;
+    }
+  }
+
+  // urlencoded-ish redaction (simple)
+  return s
+    .replace(/(access_token|refresh_token|id_token|token)=([^&\s]+)/gi, '$1=<redacted>')
+    .replace(/(apikey|api_key|api-key)=([^&\s]+)/gi, '$1=<redacted>')
+    .replace(/(password)=([^&\s]+)/gi, '$1=<redacted>');
 }
 
 async function fetchJson(url) {
@@ -194,7 +281,7 @@ async function discoverWebSocketUrl(port, domain) {
 
   const target = candidates[0] || targets.find(t => t.type === 'page' && t.webSocketDebuggerUrl);
   if (!target) {
-    throw new Error(`No suitable PAGE target found. Try opening a normal tab or pass --ws explicitly.`);
+    throw new Error('No suitable PAGE target found. Try opening a normal tab or pass --ws explicitly.');
   }
   return { wsUrl: target.webSocketDebuggerUrl, targetUrl: target.url, targetTitle: target.title };
 }
@@ -231,8 +318,8 @@ class CdpClient {
           this.onEvent(msg.method, msg.params || {});
         }
       });
+
       ws.on('close', () => {
-        // reject any pending
         for (const { reject } of this.pending.values()) {
           reject(new Error('CDP socket closed'));
         }
@@ -279,12 +366,9 @@ async function main() {
   const safeDomain = (args.domain || 'capture').replace(/[^a-zA-Z0-9.-]+/g, '_');
   const outFile = path.join(args.output, `${safeDomain}-${stamp}.jsonl`);
 
-  let wsInfo;
-  if (args.ws) {
-    wsInfo = { wsUrl: args.ws, targetUrl: '(explicit)', targetTitle: '(explicit)' };
-  } else {
-    wsInfo = await discoverWebSocketUrl(args.port, args.domain);
-  }
+  const wsInfo = args.ws
+    ? { wsUrl: args.ws, targetUrl: '(explicit)', targetTitle: '(explicit)' }
+    : await discoverWebSocketUrl(args.port, args.domain);
 
   const out = fs.createWriteStream(outFile, { flags: 'a' });
   let written = 0;
@@ -295,7 +379,6 @@ async function main() {
 
   // Enable network
   await cdp.send('Network.enable', {});
-  // Some sites rely on extra info; harmless if unsupported.
   try { await cdp.send('Network.setCacheDisabled', { cacheDisabled: true }); } catch {}
 
   let shuttingDown = false;
@@ -320,8 +403,12 @@ async function main() {
         rec.requestId = requestId;
         rec.url = request.url;
         rec.method = request.method;
-        rec.requestHeaders = headerMap(request.headers);
-        if (request.postData) rec.requestBody = request.postData;
+        rec.requestHeaders = headerMap(request.headers, args.unsafeKeepAuth);
+
+        if (args.includeBodies && request.postData) {
+          rec.requestBody = redactBodyText(request.postData);
+        }
+
         rec.initiator = initiator || null;
         rec.resourceType = type || null;
         rec.documentURL = documentURL || null;
@@ -338,7 +425,7 @@ async function main() {
         rec.responseUrl = response.url;
         rec.status = response.status;
         rec.statusText = response.statusText;
-        rec.responseHeaders = headerMap(response.headers);
+        rec.responseHeaders = headerMap(response.headers, args.unsafeKeepAuth);
         rec.mimeType = response.mimeType;
         rec.responseRemoteIPAddress = response.remoteIPAddress || null;
         rec.responseRemotePort = response.remotePort || null;
@@ -359,40 +446,41 @@ async function main() {
         rec.endTimestamp = timestamp || null;
 
         // Request body (best-effort)
-        if (rec.requestBody == null && rec.method && rec.method !== 'GET' && rec.method !== 'HEAD') {
+        if (args.includeBodies && rec.requestBody == null && rec.method && rec.method !== 'GET' && rec.method !== 'HEAD') {
           try {
             const r = await cdp.send('Network.getRequestPostData', { requestId }, 1500);
-            if (r && typeof r.postData === 'string') rec.requestBody = r.postData;
+            if (r && typeof r.postData === 'string') rec.requestBody = redactBodyText(r.postData);
           } catch {}
         }
 
         // Response body (best-effort)
-        try {
-          const bodyRes = await cdp.send('Network.getResponseBody', { requestId }, 5000);
-          if (bodyRes && typeof bodyRes.body === 'string') {
-            let bodyText = bodyRes.body;
-            if (bodyRes.base64Encoded) {
-              try { bodyText = Buffer.from(bodyRes.body, 'base64').toString('utf8'); } catch {}
-            }
+        if (args.includeBodies) {
+          try {
+            const bodyRes = await cdp.send('Network.getResponseBody', { requestId }, 5000);
+            if (bodyRes && typeof bodyRes.body === 'string') {
+              let bodyText = bodyRes.body;
+              if (bodyRes.base64Encoded) {
+                try { bodyText = Buffer.from(bodyRes.body, 'base64').toString('utf8'); } catch {}
+              }
 
-            // Guardrail: avoid gigantic blobs (still keep something).
-            const max = 2 * 1024 * 1024; // 2MB
-            if (bodyText.length > max) {
-              rec.responseBody = bodyText.slice(0, max);
-              rec.responseBodyTruncated = true;
-              rec.responseBodyBytes = bodyText.length;
-            } else {
-              rec.responseBody = bodyText;
-              rec.responseBodyTruncated = false;
-              rec.responseBodyBytes = bodyText.length;
-            }
+              // Guardrail: avoid gigantic blobs (still keep something).
+              const max = args.maxBodyBytes;
+              if (bodyText.length > max) {
+                rec.responseBody = redactBodyText(bodyText.slice(0, max));
+                rec.responseBodyTruncated = true;
+                rec.responseBodyBytes = bodyText.length;
+              } else {
+                rec.responseBody = redactBodyText(bodyText);
+                rec.responseBodyTruncated = false;
+                rec.responseBodyBytes = bodyText.length;
+              }
 
-            // Convenience flags
-            const ct = (rec.responseHeaders && (rec.responseHeaders['content-type'] || rec.responseHeaders['Content-Type'])) || rec.mimeType;
-            rec.responseIsJson = looksLikeJsonContentType(ct) || (safeJsonParse(bodyText) != null);
+              const ct = (rec.responseHeaders && (rec.responseHeaders['content-type'] || rec.responseHeaders['Content-Type'])) || rec.mimeType;
+              rec.responseIsJson = looksLikeJsonContentType(ct) || (safeJsonParse(String(rec.responseBody || '')) != null);
+            }
+          } catch {
+            // Some responses cannot be retrieved (e.g., redirects, opaque, cached).
           }
-        } catch {
-          // Some responses cannot be retrieved (e.g., redirects, opaque, cached).
         }
 
         // Apply filters and write
@@ -400,6 +488,10 @@ async function main() {
           const lineObj = {
             version: 1,
             capturedAt: new Date().toISOString(),
+            safety: {
+              redactsAuthHeadersByDefault: !args.unsafeKeepAuth,
+              bodiesIncluded: !!args.includeBodies,
+            },
             target: {
               wsUrl: wsInfo.wsUrl,
               pageUrl: wsInfo.targetUrl,
@@ -410,7 +502,7 @@ async function main() {
               url: rec.url,
               method: rec.method,
               headers: rec.requestHeaders,
-              body: rec.requestBody ?? null,
+              body: (args.includeBodies ? (rec.requestBody ?? null) : null),
               documentURL: rec.documentURL,
               initiator: rec.initiator,
               resourceType: rec.resourceType
@@ -424,7 +516,7 @@ async function main() {
               protocol: rec.protocol || null,
               remoteIPAddress: rec.responseRemoteIPAddress || null,
               remotePort: rec.responseRemotePort || null,
-              body: rec.responseBody ?? null,
+              body: (args.includeBodies ? (rec.responseBody ?? null) : null),
               bodyTruncated: !!rec.responseBodyTruncated,
               bodyBytes: rec.responseBodyBytes ?? null,
               isJson: !!rec.responseIsJson
@@ -454,6 +546,9 @@ async function main() {
   console.error(`[cdp-capture] Target page: ${wsInfo.targetTitle} :: ${wsInfo.targetUrl}`);
   console.error(`[cdp-capture] Writing JSONL to: ${outFile}`);
   console.error('[cdp-capture] Browse normally; API-like XHR/Fetch JSON responses will be recorded. Ctrl+C to stop.');
+  if (args.unsafeKeepAuth) {
+    console.error('[cdp-capture] WARNING: --unsafe-keep-auth enabled. Capture will contain raw auth headers.');
+  }
 
   // Keep process alive
   setInterval(() => {}, 1000);

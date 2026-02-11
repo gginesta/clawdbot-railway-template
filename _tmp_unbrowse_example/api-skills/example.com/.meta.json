@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "domain": "example.com",
+  "out_base": "/data/shared/api-skills",
+  "generated_at": "2026-02-10T00:00:10+00:00",
+  "input_files": ["/data/workspace/_tmp_unbrowse_example/captures/example.com-2026-02-10T00-00-00Z.jsonl"],
+  "capture_lines_total": 3,
+  "capture_lines_matched_domain": 3,
+  "base_url_default": "https://api.example.com",
+  "auth_detected": {"kind": "bearer", "header_name": "authorization"}
+}

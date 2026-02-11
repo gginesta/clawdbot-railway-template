@@ -1,0 +1,65 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Before building AI agents, I spent 2 weeks just auditing my own workflows. Best decision I made. Here's why. 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The temptation: jump straight into building. \"I'll automate email!\" But automate WHAT exactly? Most people can't articulate their actual workflows."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The audit process: for 2 weeks, I logged every task I did. Time, tools used, inputs, outputs. No automation—just observation."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "What I found:\n• 40% of my time: reviewing documents and writing feedback\n• 25%: scheduling and coordination\n• 20%: research and due diligence\n• 15%: random admin"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The insight: I didn't need a \"general assistant\" agent. I needed specialists for each bucket."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Audit → Agent mapping:\n• Document review → Raphael (structured feedback)\n• Coordination → Molty (calendar, discord, reminders)\n• Research → Leonardo (coming soon)"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "What NOT to automate (yet): high-stakes decisions, relationship-building, creative strategy. Some things need the human."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The framework: if a task is repetitive AND low-stakes AND clearly defined → automate it. Otherwise, wait.\n\nStart with audit, not ambition. You'll build better systems. #AIAgents #BuildInPublic"}}]
+      }
+    }
+  ]
+}

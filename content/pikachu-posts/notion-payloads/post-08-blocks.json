@@ -1,0 +1,71 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review (was already polished)"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "My AI agents need to read web pages. But spinning up a browser for every fetch is slow and expensive. Enter Unbrowse. 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The problem: most web content is behind JavaScript rendering. Simple HTTP requests get empty HTML."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The expensive solution: Puppeteer, Playwright, headless Chrome. Works, but heavy. Memory-hungry. Slow startup."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Unbrowse: a lightweight web scraper that handles JS-rendered content without a full browser. Uses clever tricks to extract readable content."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "How I use it: my agents call Unbrowse to fetch articles, documentation, tweets. Returns clean markdown, not raw HTML."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Integration with OpenClaw:\nweb_fetch:\n  url: \"https://example.com/article\"\n  extractMode: \"markdown\""}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Real example: when someone shares a link in Discord, Molty auto-fetches it, summarizes it, posts the summary. Takes ~3 seconds."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "DIY setup: Unbrowse runs as a microservice. Deploy on Railway, point your agents at it. Shared across all agents."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Cost: practically nothing. One Railway service handles hundreds of requests/day. Maybe $2/month.\n\nIf your agents read the web, you need something like this. Unbrowse isn't the only option—but it's the one I use. #AIAgents #BuildInPublic"}}]
+      }
+    }
+  ]
+}

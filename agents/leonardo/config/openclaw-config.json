@@ -1,0 +1,175 @@
+{
+  "browser": {
+    "enabled": true,
+    "executablePath": "/usr/bin/brave-browser",
+    "headless": true,
+    "noSandbox": true,
+    "attachOnly": true,
+    "defaultProfile": "openclaw"
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai-codex/gpt-5.3",
+        "fallbacks": [
+          "anthropic/claude-opus-4-6",
+          "anthropic/claude-sonnet-4-0",
+          "openai-codex/gpt-5.2",
+          "xai/grok-3"
+        ]
+      },
+      "imageModel": {
+        "primary": "qwen-portal/vision-model",
+        "fallbacks": [
+          "openai-codex/gpt-5.3",
+          "anthropic/claude-sonnet-4-0"
+        ]
+      },
+      "models": {
+        "anthropic/claude-opus-4-6": { "alias": "opus" },
+        "anthropic/claude-sonnet-4-0": { "alias": "sonnet" },
+        "openai-codex/gpt-5.3": { "alias": "codex" },
+        "openai-codex/gpt-5.2": {},
+        "google/gemini-2.5-flash": { "alias": "flash" },
+        "xai/grok-3": { "alias": "grok" },
+        "xai/grok-3-fast": { "alias": "grok-fast" },
+        "qwen-portal/coder-model": { "alias": "qwen" },
+        "qwen-portal/vision-model": {}
+      },
+      "workspace": "/data/workspace",
+      "memorySearch": {
+        "provider": "gemini",
+        "model": "gemini-embedding-001"
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "4h"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "humanDelay": {
+        "mode": "natural"
+      },
+      "heartbeat": {
+        "every": "1h",
+        "model": "google/gemini-2.5-flash"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 6,
+        "archiveAfterMinutes": 120,
+        "model": {
+          "primary": "anthropic/claude-sonnet-4-0",
+          "fallbacks": [
+            "openai-codex/gpt-5.2",
+            "google/gemini-2.5-flash"
+          ]
+        },
+        "thinking": "high"
+      }
+    },
+    "list": [
+      { "id": "main" }
+    ]
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerAllowFrom": ["telegram:1097408992", "779143499655151646"]
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "hooks": {
+    "enabled": true,
+    "path": "/hooks",
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "streamMode": "partial"
+    },
+    "discord": {
+      "enabled": true,
+      "allowBots": true,
+      "groupPolicy": "open",
+      "blockStreaming": true,
+      "blockStreamingCoalesce": {
+        "minChars": 1500,
+        "idleMs": 1500
+      },
+      "guilds": {
+        "1468161542473121932": {
+          "slug": "tmnt-squad",
+          "requireMention": true,
+          "channels": {
+            "launchpad-general": { "allow": true },
+            "launchpad-private": { "allow": true },
+            "command-center": { "allow": true },
+            "squad-updates": { "allow": true }
+          }
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "auto",
+    "controlUi": {
+      "dangerouslyDisableDeviceAuth": true
+    },
+    "auth": {
+      "mode": "token",
+      "allowTailscale": true
+    },
+    "tailscale": {
+      "mode": "serve",
+      "resetOnExit": false
+    }
+  },
+  "memory": {
+    "backend": "qmd",
+    "citations": "auto",
+    "qmd": {
+      "command": "/root/.bun/bin/qmd",
+      "includeDefaultMemory": true,
+      "sessions": {
+        "enabled": true,
+        "retentionDays": 30
+      },
+      "update": {
+        "interval": "5m",
+        "debounceMs": 15000,
+        "onBoot": true
+      },
+      "limits": {
+        "maxResults": 8,
+        "timeoutMs": 5000
+      }
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "discord": { "enabled": true },
+      "qwen-portal-auth": { "enabled": true }
+    }
+  }
+}

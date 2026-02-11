@@ -1,0 +1,71 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "I run 2 AI agents with persistent memory and it costs exactly $0 for storage. Here's the stack. 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The \"expensive\" way: vector databases, embeddings, semantic search. Pinecone, Weaviate, etc. Cool tech. Overkill for my use case."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "My way: flat markdown files. That's it."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The structure:\n• MEMORY.md — Long-term curated knowledge\n• memory/YYYY-MM-DD.md — Daily raw logs\n• TOOLS.md — Local config and credentials\n• SOUL.md — Agent personality/identity"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Why markdown works: LLMs already understand it. No embedding needed. Just load the file into context and go."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Syncthing keeps files in sync across machines. Git tracks history. Both free."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The \"memory check protocol\": before answering questions about past events, agents MUST search their memory files. Prevents hallucination."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Daily maintenance: every few days, agents review their daily logs and update MEMORY.md with what's worth keeping long-term."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Trade-offs? Yes. No semantic search. Context window limits matter. But for 90% of use cases, flat files + good discipline beats complex infra.\n\nStart simple. Add complexity when you hit real limits—not imagined ones. #AIAgents #BuildInPublic"}}]
+      }
+    }
+  ]
+}

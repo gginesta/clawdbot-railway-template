@@ -1,0 +1,71 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "I run 2 AI agents 24/7 without managing any servers. Here's the stack. 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The components:\n• OpenClaw — Agent framework, handles orchestration\n• Railway — Hosting platform, runs containers\n• Discord — Communication layer\n• Notion — Database/docs"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Why Railway: one-click deploy from Git. Auto-scaling. Pay for what you use. No DevOps required."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Cost reality after 30 days:\n• Molty (coordinator): ~$8/month compute\n• Raphael (corporate): ~$6/month compute\n• API costs (Claude): ~$150-200/month\n\nMost spend is on LLM tokens, not infrastructure."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Deployment workflow:\n• Push to GitHub\n• Railway auto-deploys\n• Agent restarts with new config\n• Takes ~90 seconds"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The secret sauce: QMD (Quick Markdown Deploy). OpenClaw feature. Define your agent in markdown, run `openclaw deploy`, done."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Debugging in production: Railway has logs. OpenClaw writes to memory files. When something breaks, I can trace exactly what happened."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "What I'd do differently: start with Railway's free tier. You get $5/month credits. Enough to test one agent before committing."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The dream setup: agents running 24/7, costing less than Netflix, doing actual work. It's possible now.\n\nInfrastructure shouldn't be the hard part. Focus on agent behavior instead. #OpenClaw #Railway #BuildInPublic"}}]
+      }
+    }
+  ]
+}

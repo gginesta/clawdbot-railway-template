@@ -1,0 +1,71 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "When I have a hard decision, I don't just ask one AI. I convene a council. Here's the pattern. 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The problem: single-agent advice has blind spots. Ask Claude for strategy, it gives you Claude's perspective. That's one lens."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The council pattern: bring multiple agents (or personas) into a thread. Let them debate. You arbitrate."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "My setup for big decisions:\n• Molty 🦎 — Balanced, asks clarifying questions\n• Raphael 🔴 — Aggressive, focused on speed and results\n• Me — Final decision-maker"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Example: \"Should we pursue this partnership?\"\n• Molty: \"What's the time commitment? What's our alternative cost?\"\n• Raphael: \"Deal is lukewarm. Our pipeline has stronger options. Pass.\"\n• Me: [decides based on both perspectives]"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Implementation: Discord thread. Tag both agents. They respond async. I synthesize."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Advanced: you can prompt agents to take OPPOSITE positions. \"Molty, argue FOR this deal. Raphael, argue AGAINST.\" Steel-man both sides."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The result: better decisions. Multiple perspectives. Forced articulation of trade-offs."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "When to use: high-stakes decisions. Strategic pivots. Resource allocation. Not for \"what's for lunch.\"\n\nOne agent is advice. Multiple agents is a board. #AIAgents #DecisionMaking"}}]
+      }
+    }
+  ]
+}

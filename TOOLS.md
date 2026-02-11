@@ -25,6 +25,8 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 | `#squad-updates` | 1468164181155909743 | **Molty** 🦎 | Read-only |
 | `#brinc-private` | 1468164139674238976 | **Raphael** 🔴 | @mention only |
 | `#brinc-general` | 1468164121420628081 | **Raphael** 🔴 | @mention only |
+| `#launchpad-general` | 1470919420791619758 | **Leonardo** 🔵 | @mention only |
+| `#launchpad-private` | 1470919437975814226 | **Leonardo** 🔵 | @mention only |
 
 **Rule:** If you don't own the channel, stay silent unless @mentioned or Guillermo explicitly asks you something.
 

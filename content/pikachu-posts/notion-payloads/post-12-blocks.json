@@ -1,0 +1,71 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The X/Twitter API is expensive and restrictive. But my agents still need to read threads. Here's how. 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The problem: X's API costs $100/month minimum. For basic read access. That's absurd for a hobbyist or small team."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The workaround: x-reader. A tool that fetches X threads without using the official API."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "How it works: uses authenticated session cookies (not API keys). Mimics browser behavior. Returns clean thread data."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "My agent workflow:\n1. Someone shares an X link in Discord\n2. Molty detects the link pattern\n3. Calls x-reader to fetch the thread\n4. Summarizes and posts back"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Setup:\n# Export your X auth cookies\nexport AUTH_TOKEN=\"...\"\nexport CT0=\"...\"\n\n# Fetch a thread\nxreader thread https://x.com/user/status/123456"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "What you get back: the full thread as structured text. Author, content, timestamps. No rate limit anxiety."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Caveats:\n• Depends on session cookies (can expire)\n• Against X ToS (use at your own risk)\n• Not for high-volume scraping"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Why it matters: AI agents that can't read the web are limited. X is where conversations happen. Access matters.\n\nIs this ideal? No. But until X offers reasonable API pricing, builders will find workarounds. #AIAgents #BuildInPublic"}}]
+      }
+    }
+  ]
+}

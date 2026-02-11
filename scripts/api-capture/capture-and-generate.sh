@@ -15,16 +15,17 @@ set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CAPTURE_DIR="/data/workspace/data/captures"
 CREDS_DIR="/data/workspace/credentials/api-auth"
-SHARED_SKILLS_DIR="/data/shared/api-skills"
+OUT_BASE="/data/shared/api-skills"
 
 usage() {
   cat >&2 <<'USAGE'
 Usage:
-  capture-and-generate.sh <domain> [--timeout SEC] [--port PORT]
+  capture-and-generate.sh <domain> [--timeout SEC] [--port PORT] [--out-base DIR]
 
 Options:
   --timeout   Stop capture after N seconds (default: 0 = no timeout)
   --port      CDP remote debugging port (default: 18800)
+  --out-base  Base directory for generated skills (default: /data/shared/api-skills)
 
 Notes:
   - If this script isn't executable, run it with: bash capture-and-generate.sh ...
@@ -46,12 +47,13 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --timeout) TIMEOUT="$2"; shift 2;;
     --port) PORT="$2"; shift 2;;
+    --out-base) OUT_BASE="$2"; shift 2;;
     -h|--help) usage; exit 0;;
     *) echo "Unknown arg: $1" >&2; usage; exit 2;;
   esac
 done
 
-mkdir -p "$CAPTURE_DIR" "$CREDS_DIR" "$SHARED_SKILLS_DIR"
+mkdir -p "$CAPTURE_DIR" "$CREDS_DIR" "$OUT_BASE"
 
 # Best-effort chmod (in case files were created without +x in this environment)
 chmod +x "$DIR/cdp-capture.js" "$DIR/skill-gen.py" "$DIR/capture-and-generate.sh" 2>/dev/null || true
@@ -96,9 +98,9 @@ fi
 echo "[wrapper] Using capture file: $CAPTURE_FILE" >&2
 
 echo "[wrapper] Generating skill..." >&2
-python3 "$DIR/skill-gen.py" --input "$CAPTURE_FILE" --domain "$DOMAIN"
+python3 "$DIR/skill-gen.py" --input "$CAPTURE_FILE" --domain "$DOMAIN" --out-base "$OUT_BASE"
 
-OUT_DIR="/data/shared/api-skills/$DOMAIN"
+OUT_DIR="$OUT_BASE/$DOMAIN"
 echo "[wrapper] Done." >&2
 echo "[wrapper] Skill generated at: $OUT_DIR" >&2
 echo "[wrapper] Next:" >&2

@@ -1,0 +1,65 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "I'm a non-technical managing partner. Last week I ran 2 AI agents 24/7 for my actual job. Here's what I learned about cost, reliability, and sanity. 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The setup: Molty 🦎 (coordinator agent) handles my inbox, calendar, Discord. Raphael 🔴 (corporate agent) drafts proposals, monitors deal flow. Both run on Railway."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Cost breakdown after 7 days:\n• Railway hosting: $12\n• Claude API (Sonnet): $47\n• Total: ~$59/week ($8.40/day)\n\nThat's cheaper than one hour of a junior employee."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "What surprised me: the agents work best when they DON'T try to be smart. Simple rules, clear handoffs, explicit memory files. No magic."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Biggest fail: I gave Molty a vague instruction (\"help me with emails\"). It hallucinated context and sent a weird reply. Lesson: specificity > speed."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "What works: daily standups. Every day at 5PM, Molty summarizes what happened, what's pending, asks for decisions. Forces me to stay in the loop."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The real unlock isn't automation—it's leverage. I'm doing the same work but with 2 extra brains that don't forget, don't get tired, and cost $8/day."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Will I keep going? Yes. The ROI is obvious. Next: adding Leonardo (research agent) and Donatello (dev agent).\n\nIf you're building something similar, DM me. Happy to share the stack. #AIAgents #BuildInPublic"}}]
+      }
+    }
+  ]
+}

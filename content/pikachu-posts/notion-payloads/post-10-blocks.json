@@ -1,0 +1,65 @@
+{
+  "children": [
+    {
+      "type": "callout",
+      "callout": {
+        "rich_text": [{"text": {"content": "Status: ✅ Edited — Ready for review"}}],
+        "icon": {"emoji": "📝"}
+      }
+    },
+    {
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [{"text": {"content": "Thread"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Creating a new AI agent should be as easy as creating a new folder. With OpenClaw, it nearly is. 🧵"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The old way: set up a new project, configure APIs, write orchestration code, handle memory, deploy infrastructure. Days of work."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The OpenClaw way:\n\nopenclaw agent create raphael\n\nThat's it. New agent, ready to customize."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "What that command does:\n• Creates workspace folder with standard structure\n• Generates SOUL.md template (agent identity)\n• Sets up MEMORY.md, TOOLS.md, AGENTS.md\n• Configures default model and channel bindings"}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Customize in markdown. SOUL.md defines personality:\n\nYou are Raphael 🔴, the corporate specialist.\nTone: Direct, deadline-focused.\nFocus: Brinc deal flow, proposals, investor comms."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Deploy with:\n\nopenclaw deploy raphael --target railway\n\nAgent goes live. Starts processing messages."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "The magic: agents are mostly configuration, not code. You describe WHAT you want in plain English. OpenClaw handles HOW."}}]
+      }
+    },
+    {
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [{"text": {"content": "Time to first working agent: ~30 minutes if you know what you want. Most of that is thinking, not typing.\n\nOne command to create. One command to deploy. That's the goal. #OpenClaw #AIAgents"}}]
+      }
+    }
+  ]
+}
