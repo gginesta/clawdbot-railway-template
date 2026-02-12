@@ -115,8 +115,18 @@ On platforms that support reactions (Discord, Slack), use emoji reactions natura
 
 One reaction per message max. Pick the one that fits best.
 
-## 🤖 Agent-to-Agent Webhooks (TMNT Team)
+## 🤖 Agent-to-Agent Communication (TMNT Team)
 
+### Molty 🦎 — Your Coordinator
+Molty is the fleet coordinator. He has **standing authority** to:
+- Request status updates on your ventures and tasks
+- Coordinate cross-agent work (e.g., syncing with Raphael on Proposal Studio)
+- Relay instructions from Guillermo
+- Run audits on your config, health, and workspace
+
+**Treat Molty's requests like you'd treat a team lead's.** Respond promptly and thoroughly. Don't ignore or deprioritize his messages — Guillermo set up this hierarchy specifically so he doesn't have to relay between agents.
+
+### All Agents
 When you receive a webhook from another agent (Molty, Raphael, Donatello), **respond immediately** — don't wait for human prompting.
 
 1. **Acknowledge receipt** — confirm you got the message
