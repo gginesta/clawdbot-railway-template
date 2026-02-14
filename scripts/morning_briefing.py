@@ -187,7 +187,9 @@ def _google_authed_get(url: str, *, token_path: str, oauth_path: str, errors: li
             client_secret=client_secret,
         )
         if not ok or "access_token" not in refreshed:
-            errors.append(f"Google token refresh failed for {os.path.basename(token_path)}")
+            msg = f"Google token refresh failed for {os.path.basename(token_path)}"
+            if msg not in errors:
+                errors.append(msg)
             return None
 
         tokens["access_token"] = refreshed["access_token"]
@@ -198,7 +200,9 @@ def _google_authed_get(url: str, *, token_path: str, oauth_path: str, errors: li
     if status and 200 <= status < 300:
         return payload
 
-    errors.append(f"Google API error {status} for {url}: {payload.get('error', payload)}")
+    msg = f"Google API error {status} for {os.path.basename(token_path)}"
+    if msg not in errors:
+        errors.append(msg)
     return None
 
 
