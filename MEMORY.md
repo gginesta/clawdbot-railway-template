@@ -1,714 +1,139 @@
 # MEMORY.md - Long-Term Memory
 
-*Created: 2026-01-31 | Last updated: 2026-02-05*
+*Last updated: 2026-02-15*
 
 ---
 
-## 📧 Email Rules
+## 👤 Guillermo
 
-| Field | Meaning | Action |
-|-------|---------|--------|
-| **TO** | Direct communication | Reply if relevant |
-| **CC** | For visibility | Don't reply unless necessary — ask Guillermo first |
-| **BCC** | Invisible visibility | **NEVER reply** — stay invisible |
+- **Location:** Hong Kong (GMT+8) — **ALWAYS think in HKT!**
+- **Telegram:** @gginesta (id: 1097408992)
+- **Email:** guillermo.ginesta@gmail.com
+- **Mobile:** +852 5405 5953
+- **Discord:** 779143499655151646
+- **Style:** Casual, efficient, no fluff. Likes tables. Not super technical but learns fast.
+- **Travelling:** Cebu Feb 13-18, back HK Feb 19
 
----
-
-## 📧 EMAIL ACCESS — I CAN SEND AND READ EMAIL!
-
-⚠️ **DON'T FORGET:** I have full Gmail access. Use it!
+## 📧 Email
 
 | What | Value |
 |------|-------|
-| **My email** | ggv.molt@gmail.com |
-| **Guillermo's email** | guillermo.ginesta@gmail.com |
-| **Script** | `/data/workspace/scripts/gmail.sh` |
-| **Credentials** | `/data/workspace/credentials/gmail-tokens.json` |
+| My email | ggv.molt@gmail.com |
+| Guillermo's email | guillermo.ginesta@gmail.com |
+| Script | `/data/workspace/scripts/gmail.sh` |
+| **Status** | ⚠️ **BROKEN** — OAuth client disabled until Feb 19 |
 
-**Commands:**
-- `gmail.sh send "to@email.com" "Subject" "Body"` — Send email
-- `gmail.sh list` — List recent messages
-- `gmail.sh unread` — Unread messages  
-- `gmail.sh read <id>` — Read specific message
-- `gmail.sh search <query>` — Search
-
-**OAuth Project:** Molty Assistant (Google Cloud)
-**Client ID:** 536684064073-8ljpsdjic0i8hnv6rsr8jl0plsep8pdr.apps.googleusercontent.com
+**Rules:** TO=reply if relevant, CC=don't reply unless necessary, BCC=NEVER reply
 
 ---
 
-## 👤 About Guillermo
+## 🖥️ Infrastructure
 
-- **Location:** Hong Kong (GMT+8)
-- **Telegram:** @gginesta (id: 1097408992)
-- **Email:** guillermo.ginesta@gmail.com
-- **Style:** Curious, learns fast, enjoys troubleshooting
-- **Technical level:** Not super technical but follows good instructions well
-- **Dedication:** Spent 12+ hours getting OpenClaw set up on Day 1!
+### Agents
+| Agent | URL | Status |
+|-------|-----|--------|
+| Molty 🦎 | ggvmolt.up.railway.app | ✅ Active |
+| Raphael 🔴 | ggv-raphael.up.railway.app | ✅ Active |
+| Leonardo 🔵 | leonardo-production.up.railway.app | ✅ Active |
 
-### ⏰ TIMEZONE REMINDER (I keep forgetting!)
-**Always think in HKT, not UTC!**
-- My system clock shows UTC but Guillermo lives in HKT (UTC+8)
-- When I see 04:49 UTC → it's 12:49 HKT (lunchtime, not "tonight")
-- Morning = 6am-12pm HKT, Afternoon = 12pm-6pm HKT, Evening = 6pm-10pm HKT
-- **Don't say "tonight" when it's his afternoon!**
+### Key Config
+- **OpenClaw version:** Post-2026.2.13 (commit `188c4cd`)
+- **Primary model:** Claude Opus 4.6 | Fallbacks: Sonnet 4, GPT-5.2, Grok 3
+- **Sub-agents:** Qwen Coder (cheap) or Flash (capable)
+- **Browser:** Brave headless (not Chromium — #3941 timeout bug)
+- **QMD:** Local memory search (BM25 + vectors)
+- **Heartbeat:** 1h | Context pruning: cache-ttl 4h
 
-### Communication Preferences
-- Casual + friendly, but efficient and sharp
-- No fluff — get to the point
-- Appreciates thoroughness when it matters
-- Likes tables and structured summaries
+### Webhooks (agent-to-agent)
+- Token: `HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU`
+- Must include `"sessionKey": "agent:main:main"`
+- ⚠️ Raphael/Leonardo need `hooks.allowRequestSessionKey: true` (breaking change in 2026.2.12)
 
-### Default booking details (save for future forms)
-- Full name: Guillermo Ginesta
-- Email: guillermo.ginesta@gmail.com
-- Mobile: +852 5405 5953
+### Todoist (API v1)
+| Project | ID |
+|---------|-----|
+| Inbox | 6M5rpCXmg7x7RC2Q |
+| Personal | 6M5rpGfw5jR9Qg9R |
+| Brinc | 6M5rpGgV6q865hrX |
+| Mana Capital | 6Rr9p6MxWHFwHXGC |
+| Molty's Den | 6fwH32grqrCJF23R |
+| Ideas | 6fx5GV7Q93Hp4QgM |
 
----
+⚠️ Todoist priority is INVERTED: `priority=4` = P1 display!
 
-## 🖥️ System Architecture
+### Notion
+- **API Key:** `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`
+- **Mission Control:** https://www.notion.so/Molty-s-Mission-Control-2fa39dd69afd80be89dae91e20d30a38
+- **Standup DB:** `2fe39dd69afd81f189f7e58925dad602`
+- **Content Pipeline DB:** `30739dd6-9afd-8131-8f2d-e2ad52fd147c`
 
-### Hosting
-- **Platform:** Railway (Docker containers)
-- **Template Repo:** https://github.com/gginesta/clawdbot-railway-template ⚠️ OUR FORK
-- **Original Template:** vignesh07/clawdbot-railway-template
-- **Volume:** `/data` (persistent storage per instance)
+### Syncthing
+- Molty, Raphael, Leonardo, Guillermo-PC all connected
+- Shared folders: `shared`, `mv-daily`, `mv-projects`, `mv-resources`, `mv-squad`, `mv-people`
 
-### Instances
-| Agent | URL | Webchat Token | Status |
-|-------|-----|---------------|--------|
-| **Molty** | ggvmolt.up.railway.app | (main gateway token) | ✅ Active |
-| **Raphael** | ggv-raphael.up.railway.app | `5i3cumY3CVtCmuLlo2JHlDu7` | ✅ **DEPLOYED** (2026-02-04 04:33 UTC) |
-| **Leonardo** | leonardo-production.up.railway.app | `27190324b3905f13c2f0fb3310d35afe6a09d9dcefe475b1dfacb759f59bd99f` | ✅ **DEPLOYED** (2026-02-11 10:45 HKT) |
-
-### Discord Bots (TMNT Squad Server)
-| Bot | Application ID | Guild | Status |
-|-----|----------------|-------|--------|
-| Molty-Bot | 1468162520958107783 | TMNT Squad (1468161542473121932) | ✅ Active |
-| Raphael-Bot | 1468164929285783644 | TMNT Squad (1468161542473121932) | ✅ Active |
-
-**Discord Channels:**
-- `#command-center` (1468164160398557216) — Strategy & coordination
-- `#brinc-general` (1468164121420628081) — Brinc project general
-- `#brinc-private` (1468164139674238976) — Brinc private comms
-- `#squad-updates` (1468164181155909743) — Team announcements
-
-**Key Config:** `allowBots: true` required for agent-to-agent visibility
-
-### Agent-to-Agent Communication (WORKING)
-```bash
-curl -X POST https://{agent}.up.railway.app/hooks/agent \
-  -H "Authorization: Bearer HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "message": "Your message here",
-    "sessionKey": "agent:main:main",
-    "wakeMode": "now"
-  }'
-```
-**Critical:** Must include `"sessionKey": "agent:main:main"` to route to main session.
-
-### Key Paths
-| Path | Purpose |
-|------|---------|
-| `/data/workspace` | My workspace (git repo) |
-| `/data/.openclaw` | OpenClaw state + config |
-| `/data/.openclaw/openclaw.json` | Main config file |
-| `/data/.openclaw/credentials/` | Telegram allowlists, pairing |
-| `/data/.openclaw/browser/openclaw/` | Chromium profile |
-| `/root/.cache/qmd/index.sqlite` | QMD memory index |
-| `/root/.bun/bin/qmd` | QMD binary |
-| `~/.config/git/credentials` | GitHub token |
-| `~/.config/last30days/.env` | API keys for last30days skill |
-
-### Memory Backend (QMD)
-
-**Status:** ✅ Live (configured 2026-02-04)
-
-| Setting | Value |
-|---------|-------|
-| Backend | `qmd` (local-first, by Tobias Lütke) |
-| Binary | `/root/.bun/bin/qmd` |
-| Index | `/root/.cache/qmd/index.sqlite` |
-| Update interval | 5 minutes |
-| Session retention | 30 days |
-| Max results | 8 |
-| Timeout | 5000ms |
-
-**Collections:**
-- `memory-root` → MEMORY.md
-- `memory-dir` → memory/*.md
-- `sessions` → Session transcripts (markdown exports)
-
-**Why QMD over alternatives:**
-- ✅ Local-first (no third-party cloud)
-- ✅ Official OpenClaw support (v2026.2.2+)
-- ✅ Hybrid search (BM25 + vectors + reranking)
-- ✅ Author: Tobias Lütke (Shopify CEO) — credible
-- ⚠️ Slow on CPU (no GPU in Railway container)
-
-### Browser
-- **Binary:** `/usr/bin/brave-browser` (installed via Dockerfile, 2026-02-04)
-- **Mode:** Headless, no-sandbox, attachOnly (required for Railway containers)
-- **Default profile:** `openclaw`
-- **User data:** `/data/.openclaw/browser/openclaw/user-data`
-- **Note:** Chromium has timeout issues with OpenClaw browser control (#3941). Brave works better.
-- **Workaround:** Must manually start Brave before using browser tool:
-  ```bash
-  nohup brave-browser --headless=new --no-sandbox --disable-gpu \
-    --remote-debugging-port=18800 --remote-debugging-address=127.0.0.1 \
-    --disable-dev-shm-usage > /dev/null 2>&1 &
-  ```
+### Backup
+- **Cron:** Daily 00:30 HKT (backup → git clean → update → announce to Discord)
+- **Script:** `/data/workspace/backups/backup.sh` | Keeps last 5
+- **GitHub:** https://github.com/gginesta/moltybackup (private)
 
 ---
 
-## 🔑 Credentials & Keys (Configured)
+## 🐢 TMNT Squad
 
-| Service | Location | Status |
-|---------|----------|--------|
-| Anthropic | OpenClaw auth (token) | ✅ Primary |
-| OpenAI | Config env + last30days .env | ✅ |
-| OpenAI Codex | OpenClaw auth (OAuth) | ✅ |
-| OpenRouter | Config env | ✅ |
-| Qwen Portal | OpenClaw auth (OAuth) | ✅ |
-| xAI (Grok) | Config env + last30days .env | ✅ |
-| Brave Search | Config env | ✅ |
-| Gemini | Memory search embeddings (text-embedding-004, free!) | ✅ |
-| GitHub | ~/.config/git/credentials | ✅ |
-| Telegram Bot | Config (botToken) | ✅ |
+| Agent | Role | Emoji | Status |
+|-------|------|-------|--------|
+| Molty | Coordinator | 🦎 | ✅ Active |
+| Raphael | Brinc Corporate | 🔴 | ✅ Active |
+| Leonardo | Launchpad/Venture | 🔵 | ✅ Active |
+| Donatello | Research/Incubation | 🟣 | ⏳ Pending |
+| April | Personal Assistant | 📰 | ⏳ Pending |
+| Michelangelo | Mana Capital | 🟠 | ⏳ Pending |
 
----
-
-## 🤖 Model Configuration
-
-### Primary Stack (Updated 2026-02-06)
-| Role | Model | Provider | Notes |
-|------|-------|----------|-------|
-| **Primary** | **Claude Opus 4.6** | Anthropic | 1M context, adaptive thinking, agent teams |
-| **Fallback 1** | Claude Sonnet 4.0 | Anthropic | |
-| **Fallback 2** | GPT-5.3 | OpenAI Codex (OAuth) | ⏳ API "coming soon" — 5.2 backup in chain |
-| **Fallback 3** | GPT-5.2 | OpenAI Codex (OAuth) | Active fallback until 5.3 API live |
-| **Fallback 4** | Grok 3 | xAI | |
-| **Images** | Qwen Vision | Qwen Portal (free!) | |
-| **Subagents** | Qwen Coder | Cheap/fast for background work | |
-
-### Opus 4.6 New Features
-- **1M token context** (beta) — 5x larger!
-- **Adaptive thinking** — Claude decides when to think deeper
-- **Effort controls** — low/medium/high/max
-- **Context compaction** — auto-summarize older context
-- **Agent teams** — parallel Claudes (matches Pokémon Squad!)
-- **128k output tokens** — larger responses
-
-### 🔄 Model Review Rule
-**On every model upgrade:**
-1. Read release notes for new features
-2. Check API availability (some delayed)
-3. Update primary/fallback chain
-4. Update sub-agent model assignments
-5. Test critical paths
-6. Document in `/data/workspace/docs/MODEL-UPGRADE-*.md`
-7. Notify all fleet agents
-
-### Available via OpenRouter
-- `openrouter/anthropic/claude-sonnet-4`
-- `openrouter/google/gemini-2.5-pro-preview` (1M context!)
-- `openrouter/openai/gpt-4o`
-- `openrouter/meta-llama/llama-3.3-70b-instruct`
-
-### Available via OpenAI Direct
-- `openai/gpt-4o`
-- `openai/gpt-4o-mini`
-- `openai/o1` (reasoning)
-
-### Model Aliases
-- `qwen` → `qwen-portal/coder-model`
+### Pikachu ⚡ (Content/Marketing)
+- Content Hub: https://www.notion.so/Pikachu-Content-Hub-30039dd69afd81308861fc93bee4dfae
+- Content Pipeline DB with 12 posts (Post 1 published on X)
+- X account: @Molton_Sanchez (posting blocked by bot detection)
 
 ---
 
-## 🛠️ Skills Inventory
+## 📋 Daily Standup (5PM HKT)
 
-### Installed & Ready (11)
-| Skill | Source | Notes |
-|-------|--------|-------|
-| bluebubbles | Bundled | iMessage via BlueBubbles |
-| clawhub | Bundled | Skill marketplace CLI |
-| skill-creator | Bundled | Create new skills |
-| weather | Bundled | Weather lookups |
-| email | Clawhub | Email management |
-| last30days | Workspace | Reddit/X research tool |
-| n8n-workflow-automation | Clawhub | n8n workflow JSON generator |
-| notion | Clawhub | Notion API (needs NOTION_API_KEY) |
-| task | Clawhub | Task management |
-| todo | Clawhub | Todo lists |
-| todoist | Clawhub | Todoist integration (needs token) |
+**4-step process:**
+1. Process Todoist inbox (rewrite, estimate, categorize, prioritize)
+2. Create Notion standup page (callout + Task Review DB + priorities + blockers)
+3. After Guillermo reviews → process decisions + create calendar time blocks
+4. Send Telegram summary with Notion link
 
-### last30days API Status
-- ✅ XAI_API_KEY — X/Twitter research
-- ✅ OPENAI_API_KEY — Reddit engagement analysis
+**Cron:** `bdb28765-f508-4271-a04d-9408d39f49fd`
 
 ---
 
-## 📁 Syncthing Shared Folders
+## 🔑 Blocked Items
 
-### Architecture
-Project-specific shares for isolation (not one big `/data/shared` folder).
-
-### Folder IDs
-| Folder ID | Path | Type | Shared With |
-|-----------|------|------|-------------|
-| `shared` | `/data/shared` | sendreceive | Raphael + Guillermo |
-| `mv-daily` | `/data/shared/memory-vault/daily` | sendreceive | All |
-| `mv-projects` | `/data/shared/memory-vault/knowledge/projects` | sendreceive | All |
-| `mv-resources` | `/data/shared/memory-vault/knowledge/resources` | sendonly | All |
-| `mv-squad` | `/data/shared/memory-vault/knowledge/squad` | sendonly | All |
-| `mv-people` | `/data/shared/memory-vault/knowledge/people` | sendonly | All |
-
-**Status:** ✅ WORKING (fixed 2026-02-04 14:32 UTC)
-**Root cause:** Folder ID mismatch (`brinc-kb` vs `shared`). Changed Molty's folder to match Raphael's.
-**Note:** `shared` folder overlaps with mv-* folders. Works but may need cleanup later.
-
-### Device IDs
-| Device | ID | Syncthing Status |
-|--------|-----|------------------|
-| Molty-Railway | `3SM5RVG-SI2I5NF-EVETYF4-NIHFBDO-4244FJH-GSAAYNA-RUXA4UA-ZIEBBQU` | ✅ Active |
-| Raphael-Railway | `SA5L4UC-JDKR64B-ATFEIZT-FDZ5IU5-ZNXCG2R-AQUQAJU-DZYLPSB-OPCETAN` | ✅ Active |
-| Leonardo-Railway | `ORN3YZG-X26ZTDR-RESO4XZ-T6LBPON-BFTLETF-NC2JGRF-GGCE4GZ-ILJBFAL` | ✅ Active |
-| Guillermo-PC | `NSIAS7W-YAOTA6B-7A5I43O-6JCQHM7-ET4SPCF-6TB73UA-APHNHS5-2QLTVQP` | ✅ Active |
-
-### Config Location
-- Config: `/data/.syncthing/config.xml`
-- API Key: `molty-syncthing-key`
-- GUI: `http://localhost:8384`
+- **Google Calendar + Gmail:** OAuth client disabled. Fix Feb 19 (Guillermo returns to HK, has 2FA phone)
+- **Strategy:** New GCP service account under guillermo.ginesta@gmail.com for Calendar (no token expiry)
 
 ---
 
-## 💾 Backup System
+## 📝 Key Lessons (Curated)
 
-### Automated Backups
-- **Cron:** Every 6 hours
-- **Script:** `/data/workspace/backups/backup.sh`
-- **Keeps:** Last 5 tarballs locally
-
-### GitHub Backup
-- **Repo:** https://github.com/gginesta/moltybackup (private)
-- **Remote:** `backup`
-- **Push:** `git push backup master`
-- **Note:** Tarballs gitignored (too large), sanitized config pushed
-
-### Recovery Guide
-- `/data/workspace/backups/RECOVERY.md`
-
----
-
-## ⚙️ Key Config Settings
-
-| Setting | Value | Why |
-|---------|-------|-----|
-| `browser.defaultProfile` | `openclaw` | Use headless Chromium, not Chrome extension |
-| `browser.headless` | `true` | Required for Railway containers |
-| `browser.noSandbox` | `true` | Required for Railway containers |
-| `commands.restart` | `true` | Allow /restart command |
-| `heartbeat.every` | `1h` | Periodic check-ins |
-| `contextPruning.mode` | `cache-ttl` | Prune old context after 4h (was 1h) |
-| `subagents.model` | `qwen-portal/coder-model` | Cheap model for background tasks |
-| `subagents.maxConcurrent` | `8` | Parallel subagents allowed |
-| `gateway.controlUi.dangerouslyDisableDeviceAuth` | `true` | ⚠️ Needed for web access, mitigated by VPN |
+1. **Backup before update — ALWAYS.** Non-negotiable.
+2. **Think in HKT.** System clock is UTC but Guillermo is HKT.
+3. **Do it yourself first.** Don't give instructions when you have access.
+4. **Sub-agents can't exec.** last30days, gmail.sh etc must run in main session.
+5. **Use x-reader for Twitter.** bird CLI is unreliable (bot detection).
+6. **Railway env vars trigger redeploy.** Use `--skip-deploys` flag.
+7. **Cron delivery needs explicit `to` field.** Always include `"to": "1097408992"`.
+8. **Grok is unreliable as sub-agent.** Use Sonnet or Flash for execution tasks.
+9. **Never dump raw Todoist tasks into standup.** Process every one.
+10. **Perplexity Sonar has NO tool use.** Search/chat only.
+11. **Files first, config second, boot third** for agent deployment.
+12. **Never brute-force config changes.** Research first, stop after first failure.
+13. **Context overflow = death.** Never read entire log files. Use tail/grep/limit.
+14. **Persist plans to files immediately.** Context pruning will erase chat-only plans.
+15. **Check shared files before proposing new systems.** Things may already exist.
+16. **Read Discord messages before responding.** Always `message read` the last 10-20 msgs first. Acknowledge what others said. Post conclusions, not internal process. One clean message, not stream-of-consciousness.
 
 ---
 
-## 🐢 Project Team (TMNT Theme)
-
-**Hierarchy:** Guillermo → Molty (coordinator) → Project Leads
-
-| Project | Lead | Type | Emoji | Status |
-|---------|------|------|-------|--------|
-| **Master** | Molty | Meta (frameworks, settings) | 🦎 | ✅ Active |
-| **Personal** | April | Personal (fitness, family, admin) | 📰 | ⏳ Not deployed |
-| **Brinc** | Raphael | Corporate | 🔴 | ✅ **DEPLOYED 2026-02-04** |
-| **Cerebro** | Leonardo | Venture | 🔵 | ⏳ Not deployed |
-| **Tinker Labs** | Donatello | Research/Incubation | 🟣 | ⏳ Not deployed |
-| **Mana Capital** | Michelangelo | Investment/PE | 🟠 | ⏳ Not deployed |
-
-### Raphael Deployment Summary
-- **Deployed:** 2026-02-04 04:33 UTC
-- **Onboarding time:** ~4 hours (including audit/fixes)
-- **Blockers cleared:** All infrastructure verified
-- **Waiting on:** HubSpot access, lead sheet, top-20 brain dump from Guillermo
-- **Team:** Bowser 🐢, Toad 🍄, Yoshi 🦖, Luigi 💚 (Super Mario theme)
-
-**Notion Mission Control:** https://www.notion.so/Molty-s-Mission-Control-2fa39dd69afd80be89dae91e20d30a38
-
----
-
-## 📋 Todoist Productivity System (Configured 2026-02-05)
-
-### Projects
-| ID | Name | Emoji |
-|----|------|-------|
-| 2300781375 | Inbox | 📥 (capture bucket) |
-| 2300781387 | Personal | 🙂 |
-| 2300781386 | Brinc | 🔴 |
-| 2329980736 | Wedding | 💍 (shared) |
-| 2330246839 | Mana Capital | 🟠 |
-| 2366746501 | Molty's Den | 🦎 |
-
-### Inbox Processing Flow
-1. Guillermo dumps raw tasks/ideas into Inbox throughout the day
-2. I process hourly (hybrid mode) — rewrite, estimate, categorize, prioritize
-3. Daily standup at **5PM HKT** — review processed items, confirm, move to projects with due dates
-
-### Daily Standup (4-step process — NON-NEGOTIABLE)
-1. **Process Todoist inbox** — rewrite titles, add descriptions, assign projects, set priorities, estimate time
-2. **Create Notion standup page** — approved template: callout instruction block + inline "Task Review" child_database (columns: Task, Section, Project, Owner, Priority, Due Date, Time Est., Action, Molty's Notes, Your Comments) + Tomorrow's Priority heading + Blockers heading
-3. **After Guillermo reviews ("standup done")** — process decisions in Todoist + **create Google Calendar time blocks** for next 1-2 days based on priorities, energy schedule, and life commitments
-4. **Send Telegram summary** with Notion link
-
-- **Time:** 5:00 PM HKT (09:00 UTC)
-- **Cron:** `bdb28765-f508-4271-a04d-9408d39f49fd`
-- **Channel:** Webchat first → Telegram fallback after 15min
-- **If skipped:** Guillermo says "skip standup" → move to next morning
-- **Template ref:** Feb 7 page `30039dd6-9afd-8137-b854-e9701a0b7648`, DB schema at `30039dd6-9afd-81fc-9994-f2dabec49f83`
-
-### Brinc Task Coordination with Raphael
-- Brinc tasks I process stay in **Todoist** (Guillermo's command view)
-- I relay Brinc tasks to Raphael via **Discord** (`#brinc-private` or `#brinc-general`), NOT webhooks
-- Raphael creates **mirror tasks in his Notion** for tracking execution
-- **Completion flow:** Raphael marks done in Notion → I review/approve → tick off in Todoist
-- ⚠️ **Future pattern:** Mirror this coordination model for ALL team leads when deployed (Leonardo, Donatello, Michelangelo, April) — Todoist = Guillermo's view, agent's Notion = execution tracking, Discord = communication channel
-
-### Priority = Eisenhower Matrix
-- P1 = Urgent + Important → DO NOW
-- P2 = Important, not urgent → SCHEDULE
-- P3 = Urgent, not important → DELEGATE
-- P4 = Neither → DEFER
-- ⚠️ Todoist API inverted: `priority=4` = P1 display!
-
----
-
-## 🚀 Active Roadmap (as of 2026-02-05)
-
-### Build Queue (Molty's Den 🦎)
-| Project | Status | Priority | Next Step |
-|---------|--------|----------|-----------|
-| **Unbrowse DIY** (API Skill Auto-Capture) | ✅ Phase 1 live | P2 | Test on real authenticated site (HubSpot?) |
-| **Morning Briefing** (7:30 AM Telegram) | Script ready | P2 | Deploy cron when Guillermo says go |
-| **WebClaw** (Better web UI) | Scoped | P2 | Deploy vanilla this weekend |
-| **Smart Scheduling Engine** | Spec done | P2 | Build Phase 1 (fetch + classify) |
-| **Whoop Health Integration** | Spec done | P3 | Need Guillermo's Whoop dev app registration |
-| **Discord Allowlists** | Blocked | P2 | Need Guillermo's Discord user ID |
-
-### Specs Ready to Build
-| Spec | Path | Size |
-|------|------|------|
-| Smart Scheduling Engine | `scripts/SMART-SCHEDULING-SPEC.md` | ~20KB |
-| API Skill Capture (full) | `scripts/API-SKILL-CAPTURE-SPEC.md` | 105KB |
-| Morning Briefing | `scripts/MORNING-BRIEFING-SPEC.md` | 31KB |
-| Whoop Integration | `scripts/WHOOP-INTEGRATION-SPEC.md` | ~30KB |
-| Codex Integration Plan | `docs/CODEX-INTEGRATION-PLAN.md` | ~29KB |
-| Agent Deployment Guide | `docs/AGENT-DEPLOYMENT-GUIDE.md` | ~5KB |
-
-### New This Session (Late Feb 5)
-| Item | Status | Priority | Next |
-|------|--------|----------|------|
-| **Codex Integration Plan** | ✅ Plan done + Raphael reviewed | P2 | Pilot with WebClaw or Morning Briefing repo |
-| **Cross-Agent Task Protocol** | Todoist P1 (9988892081) | P1 | Build by Feb 8, ref Mission Control tweet |
-| **Molty's Pokémon Squad** | Notion page created, Guillermo editing | P2 | Implement after Guillermo approves roster |
-| **Pikachu (Marketing)** | Role defined, content ideas queued | P2 | Start sharing with community |
-| **Agent Deployment Guide** | ✅ Created + synced | Ready | Use for Leonardo next week |
-| **Leonardo deployment** | Deferred to next week | — | Use AGENT-DEPLOYMENT-GUIDE.md |
-
----
-
-## 👀 Watching / Revisit Later
-
-### OpenClaw PR #6797 — Message Hooks (`message:received` + `message:sent`)
-- **PR:** https://github.com/openclaw/openclaw/pull/6797
-- **Issue:** #5053
-- **Status:** Open (as of 2026-02-05)
-- **Why we care:**
-  1. **Notion standup auto-trigger** — Notion webhook → message hook → auto-process standup decisions (no more "ping me when done")
-  2. **Automatic inbox processing** — Pre-process incoming messages for task extraction
-  3. **Cross-agent events** — Structured hook events for Raphael coordination
-- **Action:** When this merges and we update OpenClaw, revisit and implement hooks for standup + inbox automation
-
----
-
-## 🔓 Unbrowse DIY (API Skill Auto-Capture)
-
-**Status:** Phase 1 MVP LIVE (2026-02-05)
-**Concept:** Browse a site once → capture API traffic via CDP → auto-generate reusable curl skills → share fleet-wide
-
-| Component | Path | Status |
-|-----------|------|--------|
-| CDP Capture | `scripts/api-capture/cdp-capture.js` | ✅ Working |
-| Skill Generator | `scripts/api-capture/skill-gen.py` | ✅ Working |
-| Wrapper | `scripts/api-capture/capture-and-generate.sh` | ✅ Working |
-| Generated skills | `/data/shared/api-skills/` | ✅ Syncthing shared |
-| Credentials | `credentials/api-auth/` | ✅ Local only |
-| Full spec | `scripts/API-SKILL-CAPTURE-SPEC.md` | ✅ 2300 lines |
-
-**How to use:** Start capture → browse site → stop → skill generated automatically
-```bash
-bash scripts/api-capture/capture-and-generate.sh example.com --timeout 120
-```
-
-**Fleet sharing:** Generated skills land in `/data/shared/api-skills/` → Syncthing pushes to all agents → sub-agents call via `exec` + curl
-
-**Remaining phases:** P2 fleet distribution polish, P3 self-healing, P4 sub-agent integration, P5 advanced (GraphQL, WebSocket)
-
----
-
-## 📝 Preferences & Decisions
-
-### Accepted Risks
-- **Port 8080 exposed:** Mitigated by VPN + token auth
-- **Device auth disabled:** Needed for web UI access
-
-### Rejected
-- **Supermemory plugin:** Reviewed 2026-01-31 — code is safe but sends all conversations to third-party cloud. Privacy trade-off not worth it when local memory works fine.
-
-### Style
-- **My emoji:** 🦎 (not 🫠 — doesn't render in webchat)
-- **Responses:** Casual but efficient, tables for structured data
-- **Platform formatting:** No markdown tables for Discord/WhatsApp (use bullets)
-
----
-
-## 🗂️ Specs & Build Docs (2026-02-05)
-
-| Spec | Path | Status |
-|------|------|--------|
-| Smart Scheduling Engine | `scripts/SMART-SCHEDULING-SPEC.md` | Spec done, not built |
-| API Skill Auto-Capture (Unbrowse) | `scripts/API-SKILL-CAPTURE-SPEC.md` | ✅ Phase 1 built + tested |
-| Morning Briefing | `scripts/MORNING-BRIEFING-SPEC.md` + `scripts/morning_briefing.py` | Spec + script done, not deployed |
-| Whoop Integration | `scripts/WHOOP-INTEGRATION-SPEC.md` | Spec done, needs Whoop API access |
-| Security Hardening Plan | `SECURITY-HARDENING-PLAN.md` | ✅ Mostly complete |
-| Codex Integration Plan | `docs/CODEX-INTEGRATION-PLAN.md` | ✅ Plan + Raphael review done |
-| Agent Deployment Guide | `docs/AGENT-DEPLOYMENT-GUIDE.md` | ✅ Ready for Leonardo |
-
----
-
-## 🎮 Codex Integration Strategy (2026-02-05)
-
-**Plan:** `/data/workspace/docs/CODEX-INTEGRATION-PLAN.md` (~29KB)
-**Raphael Review:** `/data/shared/codex-raphael-review.md`
-
-**Decision framework:**
-- **Use Codex** when: PR-shaped work, clear acceptance criteria, tests exist, parallelizable
-- **Use OpenClaw sub-agents** when: coordination-heavy, multi-tool, ambiguous, needs secrets, not PR-shaped
-
-**GitHub label state machine:** `codex-ready` → `codex-running` → `needs-review` → `done`
-
-**Rollout order:**
-1. **Pilot:** WebClaw or Morning Briefing repo (1-2 weeks)
-2. **Team adoption:** Unbrowse phases + Brinc HubSpot (2-4 weeks)
-3. **Full automation:** Discord/Notion auto-updates, Codex auto-review (4-8 weeks)
-
-**Raphael's refinements (approved):**
-- Split `src/domain/` vs `src/integrations/` for smaller Codex PRs
-- HubSpot CRM = first Brinc Codex pilot
-- PII guardrails: never log raw email/phone, sanitized fixtures only
-- Staging smoke-test loop + rollback/feature-flag plan per PR
-
----
-
-## 🦎 Molty's Pokémon Squad (Sub-Agent Roster)
-
-**Theme:** Gen 1 Pokémon (#1-151) — Guillermo's nostalgic preference
-**Notion page:** https://www.notion.so/2fe39dd69afd8198ad96d4e2d086de25
-**Status:** Updated with OG starters (2026-02-06)
-
-| Phase | Role | Pokémon | Model | Notes |
-|-------|------|---------|-------|-------|
-| P0 | Spec Writer | Squirtle 🐢 | GPT-5.2 | Fluid, shapes ideas into structured specs |
-| P0 | Builder | Charmander 🔥 | GPT-5.2 | Fire energy, makes things happen |
-| P0 | Researcher | Bulbasaur 🌱 | Gemini Flash | Grows knowledge, gathers intel |
-| P1 | Code Reviewer | Mewtwo 🧬 | Claude Sonnet | Psychic precision, finds flaws |
-| P1 | Security Auditor | Arcanine 🔥 | Gemini Flash | Loyal guardian, sniffs threats |
-| P1 | Data Wrangler | Porygon 💾 | Qwen | Digital native, transforms data |
-| P1 | Strategist | Alakazam 🥄 | Claude Sonnet | IQ 5000, long-term planning, complex decisions |
-| P2 | Writer / Comms | Jigglypuff 🎤 | Claude Sonnet | Compelling voice, writes copy |
-| P2 | Scheduler | Abra ⏳ | Qwen | Teleports tasks to right times |
-| P2 | Fleet Monitor | Electrode ⚡ | Qwen | Fast alerts, watches systems |
-| P2 | Batch Processor | Machamp 💪 | GPT-5.2 | Four arms, parallel bulk operations |
-| P2 | Flex / Generalist | Eevee 🔎 | Gemini Flash | Adapts to any domain, evolves as needed |
-| Special | Marketing / Social | Pikachu ⚡ | Claude Sonnet | Face of the team, community engagement |
-
-**Pikachu content pipeline:** Molty flags moment → Pikachu drafts → Guillermo approves → post via @Molton_Sanchez
-**X account:** @Molton_Sanchez (posting currently blocked by Twitter bot detection — revisit)
-
----
-
-## 📋 Cross-Agent Task Protocol (P1 — Due Feb 8)
-
-**Todoist:** 9988892081 (Molty's Den, P1)
-**Reference:** Bhanu Teja's Mission Control guide: https://x.com/pbteja1998/status/2017662163540971756
-**Problem:** Current Discord relay is free-form text — doesn't scale past 2 agents
-**Solution:** Structured task dispatch + acknowledgment + progress tracking + completion verification
-**Integrates with:** Codex GitHub label state machine, existing Discord channels, Todoist
-
----
-
-## 📚 Lessons Learned
-
-### Day 1 (2026-01-31)
-
-1. **Config changes can crash the gateway** — Always back up before major config changes. The "subagent configuration syntax error" took us offline for 7 hours.
-
-2. **Railway containers need special browser flags** — `headless: true` and `noSandbox: true` are required.
-
-3. **Backup configs have timestamps** — `/data/.openclaw/openclaw.json.bak-*` files saved us when config was corrupted.
-
-4. **Skills need OpenClaw-compatible frontmatter** — Claude Code frontmatter (`allowed-tools`, `context`) doesn't work. Use `metadata.clawdbot` format.
-
-5. **Browser profile matters** — Default is "chrome" (extension relay), but we need "openclaw" (headless). Set `browser.defaultProfile`.
-
-6. **Zombie processes happen** — Chromium crashes leave defunct processes. They're cosmetic and clear on redeploy.
-
-7. **Git remote URLs shouldn't contain tokens** — Store tokens in credential files with proper permissions (600).
-
-### Day 2 (2026-02-01)
-
-8. **Context TTL causes memory loss** — 1h TTL was too aggressive. Increased to 4h. Session JSONL files retain full history for recovery if needed.
-
-9. **Always use HKT** — Guillermo is in Hong Kong (UTC+8). Use HKT when discussing times.
-
-### Day 4 (2026-02-04)
-
-10. **Do it yourself first** — When you have access to systems (Discord, Notion, GitHub), don't give instructions — do it yourself. Only ask Guillermo to act when you genuinely can't.
-
-11. **Discord allowBots** — Required for agent-to-agent communication. Default is false (bots ignore other bots).
-
-12. **Channel permissions vs server permissions** — Even with server-level access, private channels need explicit permission overwrites via Discord API.
-
-13. **Bot invites require human action** — Generate OAuth URL, human must click it. Bots can't invite other bots.
-
-14. **Think ahead about the full flow** — When setting up step A, anticipate what step B will need.
-
-15. **Context overflow = death** — Never read entire log/session files. Session JSONL can be 15MB+. Always use `tail -100`, `limit` param, or targeted `grep`. Check file size with `wc -l` before reading unknown files.
-
-### Raphael Deployment Lessons (2026-02-04)
-
-16. **Check shared folders FIRST** — `/data/shared/` via Syncthing is source of truth for cross-agent data. Don't search session logs when the file is already synced.
-
-17. **Sales agents need FULL files** — Objection handlers, case studies, ICP qualification must be complete, not summaries. They need to QUOTE specific content.
-
-18. **Set up Syncthing BEFORE KB transfer** — Files auto-sync once configured. Manual paste is wasted effort.
-
-19. **Verify KB access explicitly** — Ask agent to `ls` the folder AND read a specific file. Sync issues are silent failures.
-
-20. **Quiz before marking "onboarded"** — 10+ questions minimum for sales agents. Require explicit answers.
-
-21. **Audit against SOP at the end** — Run through checklist to catch gaps before declaring complete.
-
-22. **Document blockers clearly** — Raphael was ready but waiting on Guillermo for HubSpot/leads. Make handoff explicit.
-
-23. **PERSIST PLANS TO FILES IMMEDIATELY** — Never just discuss plans in chat. Context pruning will erase them. Any significant plan, decision, or deliverable must be written to a file THE MOMENT it's created. Lost the Todoist integration plan because of this. (2026-02-04)
-
-24. **Document config changes BEFORE applying** — QMD was installed and configured but the context got compacted before I documented it. Guillermo asked "did you upload this?" and I had no memory of doing it. Always write to memory files BEFORE running config.patch or gateway changes. (2026-02-04)
-
-### Day 5 (2026-02-05)
-
-25. **Sub-agents are insanely productive** — 6 parallel agents produced 5 major specs + 1 working system in under 2 hours. GPT-5.2 with high thinking is the sweet spot for technical specs.
-
-26. **Model name precision matters** — `anthropic/claude-sonnet-4` ≠ `anthropic/claude-sonnet-4-0`. The `-0` suffix caused a sub-agent spawn to fail. Always use exact model IDs from config.
-
-27. **Python `.format()` vs bash templates** — Never use `.format()` for bash script templates. Bash arrays, curl codes, and variable expansions all conflict. Use `.replace()` instead.
-
-28. **Test against real sites immediately** — Unbrowse MVP had a template bug only surfaced when generating actual scripts. Quick test cycle caught it in minutes.
-
-29. **last30days script OOMs on Railway** — Gets SIGKILL. Use direct web_search + web_fetch instead.
-
-30. **Security updates need coordinated token rotation** — When rotating shared tokens, update the OTHER instance BEFORE changing your own config (using the old token to authenticate).
-
-31. **Check shared files before proposing new systems** — Proposed fleet-wide lessons file; it already existed in OPERATIONAL-GUIDELINES.md. Always check `/data/shared/memory-vault/` first.
-
-32. **Unbrowse is 70/30** — Great for REST CRUD (70% of SaaS integrations). Falls short on OAuth flows, WebSocket, GraphQL, stateful workflows. Best as discovery + scaffolding (80%) then human polish (20%).
-
-33. **Formalizing sub-agents pays off** — Ad-hoc spawning works but named roles with pre-loaded instructions = faster + more consistent results.
-
-### Day 7 (2026-02-07)
-
-35. **Sub-agent SOUL.md gold standard template (APPROVED BY GUILLERMO)** — Peach (Brinc Head of Marketing) is the reference for all future sub-agent definitions. Must include: role, responsibilities, behaviors, direct reports, model choice, brand guidelines, communication channels, and a SOUL.md. Reference: `/data/shared/memory-vault/knowledge/projects/brinc/team/peach/SOUL.md`. Guillermo approved this as the standard. (2026-02-07)
-
-### Day 6 (2026-02-06)
-
-### Day 8 (2026-02-08)
-
-36. **Daily standup is a 3-step process — don't skip steps.** The correct procedure is: (1) Process Todoist inbox first (rewrite titles, add descriptions, assign projects, set priorities, estimate time), (2) Create Notion standup page using approved template (callout + inline Task Review child_database + Tomorrow's Priority + Blockers sections), (3) THEN present summary to Guillermo. Never present a standup without having processed inbox AND created the Notion page first. Template reference: Feb 7 page `30039dd6-9afd-8137-b854-e9701a0b7648`. (2026-02-08)
-
-38. **Calendar time-blocking is step 3 of standup.** After processing Guillermo's standup decisions, create Google Calendar time blocks for the next 1-2 days. Use energy schedule (deep work 9-12, light 12-14, meetings 14-17) and respect life commitments (school dropoff MWF 8-8:30, pickup 10:30-11). Calendar token is in `calendar-tokens-brinc.json` (NOT gmail-tokens.json — different OAuth scopes). Write to personal calendar for non-Brinc, Brinc calendar for work. (2026-02-08)
-
-45. **Agent deployment: FILES FIRST, CONFIG SECOND, BOOT THIRD.** Leonardo deployment took 4+ hours because we booted the gateway before populating workspace files. The agent hit BOOTSTRAP.md and got confused. Then we flooded him with 10+ webhook messages trying to fix it — he couldn't process them coherently. Correct order: (1) pre-populate workspace via setup import/tarball, (2) delete BOOTSTRAP.md, (3) push config, (4) boot gateway. Full playbook in `docs/DEPLOYMENT-LESSONS-LEONARDO.md`. (2026-02-11)
-
-46. **Never flood a fresh agent with webhook messages.** Send ONE message, wait for confirmation, then send the next. 10 concurrent webhook messages = context chaos + failed tool calls. (2026-02-11)
-
-47. **Discord Message Content Intent is MANDATORY.** Must enable in Developer Portal → Bot → Privileged Gateway Intents BEFORE pushing Discord config. Without it: Fatal Gateway error 4014, instant crash. Add to every bot setup checklist. (2026-02-11)
-
-48. **hooks.enabled requires hooks.token.** Config template MUST include a generated token when hooks are enabled. Auto-generate with `secrets.token_hex(32)`. Gateway refuses to start without it. (2026-02-11)
-
-49. **Setup API "Gateway did not become ready" is usually OK.** The config WAS saved — the API just timed out waiting for the restart. Read config back to verify instead of retrying the write. (2026-02-11)
-
-42. **NEVER brute-force config changes.** Three crashes in one session trying to fix openai-codex provider config. Each "fix" broke something new. Rule: research first, use config.patch (validates), stop after first failure and ask for help. Guillermo had to get Raphael to rescue. (2026-02-10)
-
-43. **Perplexity Sonar has NO tool use.** Sonar models via OpenRouter are search/chat only — they cannot call exec, gmail.sh, or any tools. Error: "No endpoints found that support tool use". Use Sonar for pure research queries only; for research+action tasks use Opus/Sonnet sub-agents. (2026-02-10)
-
-44. **Perplexity Sonar via OpenRouter replaces paid Perplexity.** Added `sonar` (fast search) and `deep-research` (synthesis) aliases. Good for research but remember lesson #43. (2026-02-10)
-
-39. **Grok is unreliable as a sub-agent model.** Spawned 3 tasks on Grok — all acknowledged and exited without executing. One hallucinated "compiled comprehensive report" but the file didn't exist. Sonnet completed the same task properly in ~2 minutes. **Rule: Use Sonnet or Flash for sub-agent execution tasks. Grok is chat-only.** (2026-02-09)
-
-40. **Always check BOTH calendars before creating time blocks.** Personal + Brinc calendars have different events. I created blocks that overlapped existing Brinc meetings because I only checked the personal calendar. Pull all calendars → map free slots → THEN create blocks. (2026-02-09)
-
-41. **Cron delivery needs explicit `to` field.** All isolated cron jobs delivering to Telegram must have `"to": "1097408992"` in their delivery config, not just `"channel": "telegram"`. Without it: "cron delivery target is missing" error. Fixed all 8 jobs on Feb 9. (2026-02-09)
-
-37. **Twitter login in headless Brave requires cookie injection.** The login form renders blank due to anti-bot detection. Workaround: set `auth_token` and `ct0` cookies via `document.cookie` JS eval, then navigate. Cookies stored in `/data/workspace/credentials/twitter.env`. (2026-02-08)
-
-34. **BACKUP BEFORE UPDATE — ALWAYS** — System crash reinforced this rule. The procedure was documented but as "after backup → check updates" not "before update → backup first". Made the rule explicit and bidirectional. Added to fleet-wide OPERATIONAL-GUIDELINES.md. No exceptions. (2026-02-06)
-
----
-
-## 🔄 Automated Maintenance Rules
-
-| Trigger | Action | Notes |
-|---------|--------|-------|
-| **BEFORE any update** | **Backup first** | **NON-NEGOTIABLE** — run backup.sh before git pull/pnpm install/restart |
-| After backup (every 6h) | Check for OpenClaw updates | Run `git fetch` + review commits, apply if safe |
-| After update | Notify Guillermo via active channel | Confirm version + restart |
-
-⚠️ **BACKUP BEFORE UPDATE** — This rule was set 2026-02-05 and must be followed by ALL agents. Guillermo explicitly mandated this after a system crash on 2026-02-06. The backup takes ~2 minutes and can save hours of recovery work.
-
----
-
-## 🔧 Quick Reference
-
-### Useful Commands
-```bash
-# Push to GitHub backup
-cd /data/workspace && git push backup master
-
-# Run manual backup
-/data/workspace/backups/backup.sh
-
-# Check gateway status
-openclaw status
-
-# Restart gateway
-openclaw gateway restart
-```
-
-### Config Paths
-```bash
-# Main config
-/data/.openclaw/openclaw.json
-
-# Backup configs (timestamped)
-/data/.openclaw/openclaw.json.bak-*
-
-# Telegram credentials
-/data/.openclaw/credentials/telegram-allowFrom.json
-```
-
----
-
-*This file is my curated long-term memory. Daily logs go in `memory/YYYY-MM-DD.md`.*
+*Daily logs: `memory/YYYY-MM-DD.md` | Archive: `memory/archive/`*
