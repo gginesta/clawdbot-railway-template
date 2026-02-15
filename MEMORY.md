@@ -121,7 +121,7 @@
 2. **Think in HKT.** System clock is UTC but Guillermo is HKT.
 3. **Do it yourself first.** Don't give instructions when you have access.
 4. **Sub-agents can't exec.** last30days, gmail.sh etc must run in main session.
-5. **Use x-reader for Twitter.** bird CLI is unreliable (bot detection).
+5. **Use x-fetch for Twitter URLs.** Pipeline: fxtwitter API → Jina reader → Grok. No auth needed. x-reader only for browsing/screenshots.
 6. **Railway env vars trigger redeploy.** Use `--skip-deploys` flag.
 7. **Cron delivery needs explicit `to` field.** Always include `"to": "1097408992"`.
 8. **Grok is unreliable as sub-agent.** Use Sonnet or Flash for execution tasks.

@@ -40,6 +40,16 @@
 - `openai/gpt-4o-mini`
 - `openai/o1` (reasoning)
 
+### Per-Agent Model Configuration
+
+| Agent | Primary | Fallback Chain | Notes |
+|-------|---------|----------------|-------|
+| **Molty 🦎** | Claude Opus 4.6 | Sonnet 4 → GPT-5.2 → Grok 3 | Coordinator, heavy reasoning |
+| **Raphael 🔴** | Claude Opus 4.6 | Sonnet 4 → GPT-5.2 → Grok 3 | Brinc lead |
+| **Leonardo 🔵** | GPT-5.2 | GLM-5 → Gemini Flash → Grok 3 → Opus → DeepSeek R1 → Sonnet | Alternates providers (no same-provider adjacency) |
+
+**Leonardo model change (2026-02-15):** Guillermo directed switch from Sonnet → GPT-5.2 primary. GLM-5 must be top 3 fallback. No same-provider back-to-back in fallback chain.
+
 ### Model Aliases
 - `qwen` → `qwen-portal/coder-model`
 

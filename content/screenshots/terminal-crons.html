@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1e1e1e; padding: 0; width: 780px; }
+  .terminal { background: #0c0c0c; border-radius: 10px; overflow: hidden; font-family: 'Cascadia Code', 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+  .titlebar { background: #2d2d2d; padding: 8px 14px; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .red { background: #ff5f57; }
+  .yellow { background: #febc2e; }
+  .green { background: #28c840; }
+  .title { color: #999; font-size: 13px; margin-left: 8px; }
+  .content { padding: 16px 20px; color: #cccccc; font-size: 13.5px; line-height: 1.6; }
+  .prompt { color: #6a9955; }
+  .cmd { color: #dcdcaa; }
+  .output { color: #cccccc; }
+  .header { color: #569cd6; font-weight: bold; }
+  .separator { color: #666; }
+  .name { color: #ce9178; }
+  .schedule { color: #4ec9b0; }
+  .count { color: #b5cea8; }
+  .warn { color: #d7ba7d; }
+  .dim { color: #666; }
+</style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="titlebar">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+      <span class="title">molty@railway ~ </span>
+    </div>
+    <div class="content">
+<span class="prompt">molty@railway:~$</span> <span class="cmd">openclaw cron list --active</span>
+
+<span class="header">Active Cron Jobs: 12</span>
+<span class="separator">────────────────────────────────────────────────────────────</span>
+<span class="name"> Daily Morning Briefing                 </span> <span class="schedule">6:00 AM daily</span>
+<span class="name"> Memory Size Guardrail                  </span> <span class="schedule">8:00 AM daily</span>
+<span class="name"> Morning Update Check + Feature Summary  </span> <span class="schedule">8:15 AM daily</span>
+<span class="name"> Daily Standup                          </span> <span class="schedule">5:00 PM daily</span>
+<span class="name"> Daily Backup + Update                  </span> <span class="schedule">9:00 PM daily</span>
+<span class="name"> Daily Log Compaction                   </span> <span class="schedule">11:00 PM daily</span>
+<span class="name"> Weekly PARA Curation                   </span> <span class="schedule">Mon 1:00 AM</span>
+<span class="name"> Healthcheck Security Audit             </span> <span class="schedule">Mon 3:00 AM</span>
+<span class="name"> GPT-5.3 API Check                      </span> <span class="schedule">Mon/Thu 10 AM</span>
+<span class="name"> OpenClaw Community Research             </span> <span class="schedule">Every 3 days</span>
+<span class="dim"> Polymarket Reminder                     One-shot (Feb 15)</span>
+<span class="dim"> Travel: Revert to Hong Kong             One-shot (Feb 18)</span>
+<span class="separator">────────────────────────────────────────────────────────────</span>
+<span class="warn">⚠ 3 email crons disabled (OAuth client inactive)</span>
+<span class="count">Started with 3 → peaked at 18 → consolidated to 12</span>
+
+<span class="prompt">molty@railway:~$</span> <span class="dim">▌</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -153,7 +153,7 @@ def create_standup_page(today, today_display):
     resp = requests.post("https://api.notion.com/v1/pages", headers=NH, json={
         "parent": {"database_id": STANDUP_DB_ID},
         "properties": {
-            "Name": {"title": [{"text": {"content": title}}]}
+            "Date": {"title": [{"text": {"content": title}}]}
         }
     }, timeout=15)
     if resp.status_code != 200:
@@ -252,10 +252,47 @@ def add_footer_blocks(page_id):
     }, timeout=15)
 
 
+def group_tasks(tasks):
+    """Group sub-tasks under their parents. Returns list of parent tasks with children attached."""
+    by_id = {t["id"]: t for t in tasks}
+    parents = []
+    children_map = {}  # parent_id -> [child_tasks]
+    
+    for t in tasks:
+        pid = t.get("parent_id") or t.get("parent", {}).get("id")
+        if pid and pid in by_id:
+            children_map.setdefault(pid, []).append(t)
+        elif pid:
+            # Parent not in current results — treat as standalone
+            children_map.setdefault(pid, []).append(t)
+        else:
+            parents.append(t)
+    
+    # Attach children to parents
+    for p in parents:
+        p["_children"] = children_map.pop(p["id"], [])
+    
+    # Orphaned children (parent not in results) — create synthetic parent rows
+    for pid, kids in children_map.items():
+        # Use first child's info to approximate
+        synthetic = dict(kids[0])
+        synthetic["content"] = f"{kids[0]['content']} (and {len(kids)-1} more)" if len(kids) > 1 else kids[0]["content"]
+        synthetic["_children"] = kids[1:] if len(kids) > 1 else []
+        parents.append(synthetic)
+    
+    skipped = sum(len(p.get("_children", [])) for p in parents)
+    if skipped:
+        print(f"   Grouped {skipped} sub-tasks under their parents")
+    
+    return parents
+
+
 def populate_tasks(db_id, tasks, today):
-    """Add all tasks to the DB with full processing."""
+    """Add tasks to the DB. Sub-tasks are listed as bullets in parent's Molty's Notes."""
+    grouped = group_tasks(tasks)
     added = 0
-    for task in tasks:
+    
+    for task in grouped:
         due_str = task.get("due", {}).get("date", "") if task.get("due") else ""
         section = classify_section(due_str, today)
         project = PROJECT_MAP.get(task["project_id"], "Other")
@@ -263,6 +300,17 @@ def populate_tasks(db_id, tasks, today):
         owner = determine_owner(task)
         time_est = estimate_time(task)
         notes = generate_notes(task, section, today)
+        
+        # Append sub-tasks to notes
+        children = task.get("_children", [])
+        if children:
+            subtask_lines = [f"• {c['content']}" for c in children]
+            subtask_text = f"Sub-tasks ({len(children)}):\n" + "\n".join(subtask_lines)
+            notes = f"{notes}\n{subtask_text}" if notes else subtask_text
+        
+        # Truncate notes to Notion's 2000 char limit for rich_text
+        if len(notes) > 1900:
+            notes = notes[:1900] + f"\n... +{len(children)} more"
         
         props = {
             "Task": {"title": [{"text": {"content": task["content"]}}]},

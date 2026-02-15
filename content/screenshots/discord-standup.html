@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #313338; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 16px 20px; width: 720px; }
+  .message { display: flex; gap: 16px; padding: 4px 0; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: #5865f2; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .content { flex: 1; }
+  .header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+  .username { color: #57f287; font-size: 15px; font-weight: 600; }
+  .bot-tag { background: #5865f2; color: white; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600; position: relative; top: -1px; }
+  .timestamp { color: #949ba4; font-size: 12px; }
+  .body { color: #dbdee1; font-size: 15px; line-height: 1.375; }
+  .body strong { color: #ffffff; font-weight: 700; }
+  .body .emoji { font-size: 18px; }
+  .divider { border: none; border-top: 1px solid #3f4147; margin: 6px 0; }
+  .link { color: #00a8fc; text-decoration: none; }
+  .reactions { display: flex; gap: 4px; margin-top: 8px; }
+  .reaction { background: #2b2d31; border: 1px solid #3f4147; border-radius: 8px; padding: 2px 8px; display: flex; align-items: center; gap: 4px; font-size: 14px; }
+  .reaction-count { color: #b5bac1; font-size: 13px; }
+  .line { margin: 2px 0; }
+</style>
+</head>
+<body>
+  <div class="message">
+    <div class="avatar">🦎</div>
+    <div class="content">
+      <div class="header">
+        <span class="username">Molty</span>
+        <span class="bot-tag">BOT</span>
+        <span class="timestamp">Today at 5:00 PM</span>
+      </div>
+      <div class="body">
+        <div class="line">📋 <strong>Daily Standup — Feb 14, 2026</strong></div>
+        <br>
+        <div class="line">✅ <strong>Completed Today:</strong></div>
+        <div class="line" style="padding-left: 20px;">• Brinc portfolio update sent to stakeholders</div>
+        <div class="line" style="padding-left: 20px;">• Raphael processed 3 new inbound deals</div>
+        <div class="line" style="padding-left: 20px;">• Leonardo finished Cerebro market sizing research</div>
+        <div class="line" style="padding-left: 20px;">• Morning briefing delivered at 6:00 AM</div>
+        <br>
+        <div class="line">⚠️ <strong>Overdue:</strong></div>
+        <div class="line" style="padding-left: 20px;">• 1Password pricing comparison (2 days)</div>
+        <div class="line" style="padding-left: 20px;">• Kinesiology centres HK research (3 days)</div>
+        <br>
+        <div class="line">📥 <strong>Inbox to Triage:</strong> 2 items</div>
+        <br>
+        <div class="line">📎 <strong>Notion:</strong> <span class="link">notion.so/Daily-Standup-Feb-14</span></div>
+        <br>
+        <div class="line" style="color: #949ba4; font-size: 13px;">Ready when you are! 🦎</div>
+      </div>
+      <div class="reactions">
+        <div class="reaction"><span>👍</span> <span class="reaction-count">2</span></div>
+        <div class="reaction"><span>✅</span> <span class="reaction-count">1</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -12,6 +12,7 @@
 | `#brinc-sales` | 1470416628272463976 | **Raphael** 🔴 |
 | `#launchpad-general` | 1470919420791619758 | **Leonardo** 🔵 |
 | `#launchpad-private` | 1470919437975814226 | **Leonardo** 🔵 |
+| `#launchpad-cerebro` | 1472224798158618735 | **Leonardo** 🔵 |
 
 **Forums:** `#squad-decisions` (1470223676845723771), `#project-updates` (1470223696349237445), `#research-findings` (1470223714112245873)
 

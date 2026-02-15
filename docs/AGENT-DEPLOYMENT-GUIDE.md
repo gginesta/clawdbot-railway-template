@@ -125,7 +125,7 @@ Every new agent follows the same pattern: Railway container → OpenClaw config 
 |-------|---------|-------|-----|--------|
 | Molty 🦎 | Meta/Coordinator | TMNT | ggvmolt.up.railway.app | ✅ Active |
 | Raphael 🔴 | Brinc | Super Mario | ggv-raphael.up.railway.app | ✅ Active |
-| Leonardo 🔵 | Cerebro (Venture) | TBD | — | Next week |
+| Leonardo 🔵 | Cerebro (Venture) | Star Wars ⭐ | leonardo-production.up.railway.app | ✅ Active |
 | Donatello 🟣 | Tinker Labs | TBD | — | Not deployed |
 | Michelangelo 🟠 | Mana Capital | TBD | — | Not deployed |
 | April 📰 | Personal | TBD | — | Not deployed |
