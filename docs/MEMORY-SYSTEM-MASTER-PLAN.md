@@ -96,23 +96,84 @@ Must decide before executing anything else. Two options:
 ### Phase 2: Complete Indexing + Central Feed (Objective #3)
 *After Phase 1 is complete*
 
-**Step 2.1 — Define what "central memory" means**
-Options:
-- **A) Shared Syncthing folder** — All agents write summaries to `/data/shared/memory-vault/` which Molty indexes
-- **B) Webhook reports** — Agents send weekly memory digests to Molty via webhook
-- **C) QMD reads shared folders** — Add `/data/shared/` as a QMD collection on Molty
+**Architecture: Molty as Central Architect**
 
-My recommendation: **Option C** — simplest. Molty adds a QMD collection pointing to the shared vault. Other agents write their key decisions/lessons to shared folders via Syncthing. No webhooks needed.
+```
+┌─────────────────────────────────────────────────────────┐
+│                    MOLTY 🦎 (Architect)                  │
+│  Indexes: own workspace + shared vault + all agent feeds │
+│  QMD collections: memory-root, memory-dir, sessions,     │
+│                   shared-vault (new)                      │
+├─────────────────────────────────────────────────────────┤
+│              /data/shared/memory-vault/                   │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
+│  │decisions/ │  │lessons/  │  │people/   │              │
+│  │(append)   │  │(append)  │  │(per-file)│              │
+│  └──────────┘  └──────────┘  └──────────┘              │
+│       ▲              ▲             ▲                     │
+│  Syncthing      Syncthing     Syncthing                 │
+│       │              │             │                     │
+├───────┼──────────────┼─────────────┼────────────────────┤
+│ Raphael 🔴    Leonardo 🔵     Molty 🦎                  │
+│ (writes P1/P2  (writes P1/P2  (writes P1/P2            │
+│  to shared)     to shared)     to shared)               │
+└─────────────────────────────────────────────────────────┘
+```
 
-- [ ] Add QMD collection on Molty: `qmd collection add /data/shared/memory-vault --name shared-vault --mask "*.md"`
-- [ ] Define what each agent writes to shared vault (format, frequency)
-- [ ] Create agent instructions for writing to shared vault
-- [ ] Test: Raphael writes a file → Syncthing syncs → Molty's QMD indexes → `memory_search` finds it
+**Step 2.1 — Restructure shared vault**
+- [ ] Create standard folders in `/data/shared/memory-vault/`:
+  ```
+  decisions/    # Cross-agent decisions (tagged, dated)
+  lessons/      # Shared lessons learned
+  people/       # People dossiers (one file per person)
+  projects/     # Active project state
+  knowledge/    # Reference knowledge (existing)
+  SHARED_INDEX.md  # Auto-generated vault index
+  ```
+- [ ] Move existing files into new structure
 
-**Step 2.2 — Verify all agent workspaces indexed**
-- [ ] Leonardo: confirm collections cover `memory/`, workspace `.md` files
+**Step 2.2 — Add shared vault as QMD collection on Molty**
+- [ ] `qmd collection add /data/shared/memory-vault --name shared-vault --mask "*.md"` (with XDG vars)
+- [ ] Run `qmd embed` to index existing shared content
+
+**Step 2.3 — Define agent contribution protocol**
+Each agent writes to shared vault using append-only, agent-prefixed entries:
+```markdown
+<!-- agent: raphael | type: decision | priority: P1 | date: 2026-02-17 -->
+## 🔴 Raphael — Switched Brinc proposal template to v3
+Reason: Better conversion rate in Q4 tests...
+```
+Rules:
+- Only P1 and P2 items get promoted to shared vault
+- Each agent appends, never overwrites another agent's entries
+- File naming: `YYYY-MM-DD-<slug>.md` for decisions/lessons, `<entity-name>.md` for people/projects
+- Agents tag with `<!-- scope: shared -->` in their daily logs → compaction cron copies to shared vault
+
+**Step 2.4 — Create agent instructions**
+- [ ] Add shared vault contribution instructions to each agent's AGENTS.md
+- [ ] Include: when to write, format, naming convention
+- [ ] Template for new agents (Donatello, April, Michelangelo)
+
+**Step 2.5 — Verify all agent workspaces indexed locally**
+- [ ] Leonardo: confirm QMD collections cover `memory/`, workspace `.md` files
 - [ ] Raphael: confirm same (after Phase 1 migration)
 - [ ] Molty: already verified ✅
+
+**Step 2.6 — Test the full flow**
+- [ ] Raphael writes a test decision to `decisions/2026-02-XX-test.md`
+- [ ] Syncthing syncs to Molty's container
+- [ ] Molty's QMD update cycle indexes it (within 5 min)
+- [ ] `memory_search("Raphael test decision")` returns the file
+- [ ] Clean up test file
+
+**New Agent Onboarding Template (Objective #3: "any new team mate")**
+When deploying a new agent:
+1. Install QMD: `bun install -g @tobilu/qmd`
+2. Add to config: `memory.backend: "qmd"` (copy Molty's template)
+3. Connect Syncthing shared folders
+4. Add contribution instructions to agent's AGENTS.md
+5. Verify: `qmd status` shows collections, `memory_search` works
+6. Add to this plan's status table
 
 ### Phase 3: Full Re-index + Cleanup (Objectives #5, #6)
 
@@ -135,14 +196,60 @@ My recommendation: **Option C** — simplest. Molty adds a QMD collection pointi
 - [ ] Move memory logs older than 3 months to `memory/archive/`
 - [ ] Verify QMD still indexes archived files (check collection path patterns)
 
-### Phase 4: Quality Improvements (Nice-to-Have, Post-Core)
+### Phase 4: Quality Improvements (Post-Core)
+*From ClawVault analysis. Pursue after Phases 1-3 are complete.*
 
-These come from the ClawVault analysis. Only pursue after Phases 1-3 are complete.
+**Step 4.1 — Memory typing in daily logs**
+Tag important entries with HTML comments (invisible in rendered markdown):
+```markdown
+## Decided to use QMD across fleet
+<!-- type: decision | priority: P1 -->
+Standardising on local QMD with embeddinggemma...
+```
 
-- [ ] Add `<!-- type: decision | priority: P1 -->` tags to new daily log entries
-- [ ] Create `memory/INDEX.md` — auto-generated vault table of contents
-- [ ] Start using `[[wiki-links]]` for entity cross-references
-- [ ] Priority-aware compaction (P1 items never compressed)
+| Type | When to use | Example |
+|------|-------------|---------|
+| `decision` | A choice was made | "Use QMD not OpenAI for embeddings" |
+| `preference` | User/agent preference | "Guillermo prefers tables over bullets" |
+| `relationship` | Person/entity info | "Pedro from Versatly built ClawVault" |
+| `commitment` | Promise or deadline | "Fix Gmail OAuth by Feb 19" |
+| `lesson` | Hard-won learning | "Always backup before Railway update" |
+
+Priority: P1 (always load on wake), P2 (load if budget allows), P3 (search only).
+Tag ~20-30% of entries. Over-tagging defeats the purpose.
+
+**Step 4.2 — Wiki-links for cross-referencing**
+Wrap notable entities: `[[Guillermo]]`, `[[Leonardo]]`, `[[Brinc]]`, `[[Cerebro]]`
+- QMD indexes these as searchable terms
+- No target files needed — it's a cheap knowledge graph via search
+- Use canonical names: `[[Leonardo]]` not `[[Leo]]`
+
+**Step 4.3 — Vault index**
+- [ ] Create `memory/INDEX.md` — one-line description per memory file
+- [ ] Auto-update via cron or heartbeat (not manual)
+- [ ] Faster than embedding search for "what do I know about X?"
+
+**Step 4.4 — Priority-aware compaction**
+- [ ] During daily log compaction, extract P1 items to `memory/priorities.md`
+- [ ] `priorities.md` loads before MEMORY.md on boot — agent always knows active commitments
+- [ ] P1/P2 items survive compaction intact; only P3 gets compressed
+
+**Step 4.5 — Tiered boot sequence** (update AGENTS.md)
+```
+1. SOUL.md + IDENTITY.md (who am I)
+2. memory/priorities.md (what's critical RIGHT NOW)
+3. MEMORY.md (long-term context)
+4. memory/YYYY-MM-DD.md (today + yesterday)
+```
+
+---
+
+## Reference: ClawVault Analysis
+
+*Source: @sillydarket (Pedro, Versatly) — "Solving Memory for OpenClaw & General Agents"*
+*Full analysis: `memory/refs/clawvault-analysis.md`*
+
+**Key insight:** Plain markdown with memory typing + wiki-links outperformed specialised memory tools (Mem0, Zep, vector DBs) on benchmarks. We independently arrived at the same core architecture. ClawVault patterns worth adopting are captured in Phase 4 above. The npm package itself is NOT recommended (single-agent, uses Tailscale not Syncthing, conflicts with our cron/compaction setup).
 
 ---
 
