@@ -41,8 +41,9 @@
 - **Primary model:** Claude Opus 4.6 | Fallbacks: Sonnet 4, GPT-5.2, Grok 3
 - **Sub-agents:** Qwen Coder (cheap) or Flash (capable)
 - **Cron model:** `openrouter/anthropic/claude-3.5-haiku` (Flash had issues)
-- **Memory backend:** OpenAI `text-embedding-3-small` (switched from QMD 2026-02-17 21:00 HKT)
-- **Architect pattern:** Only Molty indexes the shared vault (under `memory/vault/`). Other agents search only their own workspace.
+- **Memory backend:** OpenAI `text-embedding-3-small` (A1.1 — switched from QMD 2026-02-17)
+- **Architect pattern (A1.1):** All agents index own `memory/` + `memory/squad/` (shared standards mirror). Only Molty also indexes `memory/vault/` (full shared vault). Cross-domain deep queries route through Molty.
+- **Squad mirror:** `/data/shared/memory-vault/knowledge/squad/` → each agent's `memory/squad/` via Syncthing
 - **Browser:** Brave headless (not Chromium — #3941 timeout bug)
 - **Heartbeat:** 1h | Context pruning: cache-ttl 4h
 
