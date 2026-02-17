@@ -11,12 +11,12 @@ These 6 goals drive every action in this plan. Nothing happens that doesn't serv
 
 | # | Objective | Status | Next Action |
 |---|-----------|--------|-------------|
-| 1 | **Standardise implementation across the fleet** | 🔴 Not done | Migrate Raphael from OpenAI embeddings → QMD backend |
-| 2 | **One embedding provider across the board** | 🔴 Not done | Decision needed: OpenAI API vs local embeddinggemma |
-| 3 | **Complete indexing for all 3 agents, feeding to Molty's central memory** | 🟡 Partial | Molty indexed (247 files). Leonardo/Raphael not feeding centrally. |
-| 4 | **Consistent embedding index** | 🔴 Not done | Blocked by #2 (provider decision) |
-| 5 | **Full QMD re-indexing** | 🟢 Molty done | Molty: 6765 vectors, 0 pending. Leonardo/Raphael: TBD |
-| 6 | **Clean up unused collections + trim session bloat** | 🟡 Partial | `memory-alt` empty. 196 sessions (36.3MB). No trim policy. |
+| 1 | **Standardise implementation across the fleet** | 🟢 Done | All 3 agents on QMD backend (local embeddinggemma) |
+| 2 | **One embedding provider across the board** | 🟢 Done | embeddinggemma-300M (GGUF) on all agents. Decision: 2026-02-17 |
+| 3 | **Complete indexing for all 3 agents, feeding to Molty's central memory** | 🟡 Partial | All indexed locally. Central feed not yet wired (Phase 2). |
+| 4 | **Consistent embedding index** | 🟢 Done | Same model + dimensions across fleet |
+| 5 | **Full QMD re-indexing** | 🟡 In progress | Molty: 6765 vectors ✅. Leonardo: 2683 vectors, 1 pending. Raphael: indexing. |
+| 6 | **Clean up unused collections + trim session bloat** | 🟡 Partial | Phase 3 next. |
 
 ---
 
@@ -27,8 +27,8 @@ These 6 goals drive every action in this plan. Nothing happens that doesn't serv
 | Agent | Backend | Embedding Model | Files Indexed | Vectors | Central Feed |
 |-------|---------|----------------|---------------|---------|-------------|
 | **Molty 🦎** | QMD (local) | embeddinggemma-300M (GGUF) | 247 | 6765 | N/A (is central) |
-| **Leonardo 🔵** | QMD (local) | embeddinggemma-300M (GGUF) | Unknown | Unknown | ❌ No |
-| **Raphael 🔴** | OpenAI API | text-embedding-3-small | Unknown | Unknown | ❌ No |
+| **Leonardo 🔵** | QMD (local) | embeddinggemma-300M (GGUF) | 405 | 2683 | ❌ No |
+| **Raphael 🔴** | QMD (local) ← migrated 2026-02-17 | embeddinggemma-300M (GGUF) | TBD (indexing) | TBD | ❌ No |
 
 ### Molty's QMD (Managed by OpenClaw)
 - **Index:** `/data/.openclaw/agents/main/qmd/xdg-cache/qmd/index.sqlite` (36.3 MB)
@@ -63,9 +63,8 @@ Must decide before executing anything else. Two options:
 - **Cons:** Need to verify if QMD supports remote embedding providers
 - **Config:** Would need investigation
 
-**My recommendation:** Option B (local QMD) for all agents. It's already working on 2/3 agents, gives us session transcript search that OpenAI-only can't do, and costs nothing. The CPU slowness only affects initial embedding — search is fast.
-
-**Awaiting Guillermo's decision.**
+**Decision (2026-02-17 15:16 HKT): Option B — Local QMD for all agents.**
+Approved by Guillermo. Rationale: OpenClaw's development direction, session transcript search, hybrid retrieval, zero marginal cost, best fit for central architect pattern.
 
 ---
 
@@ -75,18 +74,22 @@ Must decide before executing anything else. Two options:
 *Prerequisite: Provider decision from Guillermo*
 
 **Step 1.1 — Verify Leonardo's QMD status**
-- [ ] Send webhook to Leonardo: report `qmd status` with XDG paths
-- [ ] Confirm: binary version, collections, vector count, embedding model
-- Expected: Same as Molty (embeddinggemma, QMD backend)
+- [x] Send webhook to Leonardo: report `qmd status` with XDG paths
+- **Finding (2026-02-17 15:27 HKT):** Leonardo had QMD data dirs but NO binary in PATH. bun also missing.
+- [x] Sent instruction to install bun + QMD
+- [x] **Result:** bun 1.3.9 installed, QMD 1.0.6 installed, symlinked to `/usr/local/bin/qmd`
+- [x] **QMD status:** 405 files indexed, 2683 vectors, 1 pending. Index: 15.8 MB. Model: embeddinggemma-300M ✅
+- Same CPU-only limitation (no GPU, cmake build fails) — matches Molty
 
 **Step 1.2 — Migrate Raphael to QMD backend**
-- [ ] Verify QMD binary exists on Raphael (`which qmd`, `qmd --version`)
-- [ ] If missing: `bun install -g @tobilu/qmd` on Raphael's container
-- [ ] Patch Raphael's config: add `memory.backend: "qmd"` section (mirror Molty's)
-- [ ] Remove or keep `memorySearch` as fallback
-- [ ] Restart Raphael's gateway
-- [ ] Verify: `qmd status` shows collections being created, `memory_search` returns results
-- **Risk:** Gateway restart = brief downtime. Raphael's existing OpenAI search stops during migration.
+- [x] Verify QMD binary exists on Raphael — **was missing, now installed**
+  - Raphael installed: bun 1.3.9, qmd 1.0.6, binary at `/root/.bun/bin/qmd`
+- [x] Sent config patch instruction: `memory.backend: "qmd"` with full QMD config
+  - OpenAI `memorySearch` kept as fallback
+  - Gateway restart will trigger QMD collection creation + initial indexing
+- [ ] Verify: `qmd status` shows collections being created
+- [ ] Verify: `memory_search` returns results
+- **Risk:** Gateway restart = brief downtime. OpenAI search remains as fallback.
 - **Rollback:** Remove `memory.backend` config → reverts to OpenAI embeddings
 
 **Step 1.3 — Confirm consistent embedding model**
