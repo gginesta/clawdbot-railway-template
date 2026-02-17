@@ -1,0 +1,232 @@
+{
+  "items": [
+    {
+      "id": "90880597-9a40-4c8d-9d9d-0aaad6aaef1f",
+      "type": "decision",
+      "content": "Decided: EUR45m to acquire 100% of Solartia shares and EUR3m in legal costs and fundraising/capital placing commissions",
+      "context": "HoldCo Valuation Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-30T11:01:26.256749",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.648225"
+    },
+    {
+      "id": "e989886f-548d-44a5-a4f8-de7371d82985",
+      "type": "technique",
+      "content": "Technique: to calculate the new ownership percentages:",
+      "context": "HoldCo Valuation Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-30T11:01:26.256749",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.649435"
+    },
+    {
+      "id": "353d2d11-9870-4f0b-b27b-22d00fe09e8d",
+      "type": "technique",
+      "content": "Technique: use the following calculation:",
+      "context": "HoldCo Valuation Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-30T11:01:26.256749",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.649863"
+    },
+    {
+      "id": "b6666e1f-3562-4258-9211-6a45882645b4",
+      "type": "idea",
+      "content": "Idea: use EUR45m to acquire 100% of Solartia shares and EUR3m in legal costs and fundraising/capital placing commissions",
+      "context": "HoldCo Valuation Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-30T11:01:26.256749",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.650469"
+    },
+    {
+      "id": "2fd2c0ed-da5e-4736-b646-8320023e97a4",
+      "type": "preference",
+      "content": "Preference: to create an executive summary for bank opening purposes",
+      "context": "Executive Summary for Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-25T16:14:44.663961",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.654469"
+    },
+    {
+      "id": "4359812d-1a4c-4d42-98a2-b15d3fffa44a",
+      "type": "idea",
+      "content": "Idea: be used to create a presentation for the bank",
+      "context": "Executive Summary for Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-25T16:14:44.663961",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.655691"
+    },
+    {
+      "id": "4b0eadef-da9d-476a-8dc1-a53fcca79a20",
+      "type": "preference",
+      "content": "Preference: your help in writing an executive summary that I can send to potential interested parties",
+      "context": "Microgrid Project Financing Opportunity",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-25T13:06:53.105711",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.658619"
+    },
+    {
+      "id": "b9152c5c-bd15-4cc6-b0fe-8b9a4ebba785",
+      "type": "idea",
+      "content": "Idea: inject the first USD6m to get started; they're looking for the balance through project financing",
+      "context": "Microgrid Project Financing Opportunity",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-25T13:06:53.105711",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.660054"
+    },
+    {
+      "id": "8b86b3c6-1c9e-45e7-afb3-d568d82a9629",
+      "type": "technique",
+      "content": "Technique: opt for LCL shipping, where your goods share container space with others",
+      "context": "Shipping Gifts to Hong Kong",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-20T16:52:41.209045",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.662821"
+    },
+    {
+      "id": "2e0f4998-3408-428a-baca-ee5000f422da",
+      "type": "technique",
+      "content": "Technique: ship your bulky items to Hong Kong cost-effectively while ensuring they arrive safely",
+      "context": "Shipping Gifts to Hong Kong",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-20T16:52:41.209045",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.662836"
+    },
+    {
+      "id": "3c14bc17-2e9c-4fab-9cb9-3020c1fc53e9",
+      "type": "lesson",
+      "content": "Learned: s and feels well-rounded",
+      "context": "Groom Wedding Speech Guide",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-14T14:55:23.970580",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.664902"
+    },
+    {
+      "id": "39accf1a-26b9-4d9c-9c9f-4d74302c350e",
+      "type": "technique",
+      "content": "Technique: express gratitude, share meaningful thoughts, and create lasting memories",
+      "context": "Groom Wedding Speech Guide",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-14T14:55:23.970580",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.665274"
+    },
+    {
+      "id": "d7d80190-e4a8-4807-9fd2-71bb4d233e8c",
+      "type": "technique",
+      "content": "Technique: share a funny or touching anecdote that encapsulates your relationship",
+      "context": "Groom Wedding Speech Guide",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-14T14:55:23.970580",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.665290"
+    },
+    {
+      "id": "74810064-ce6f-4517-b1ad-209b1d7e5385",
+      "type": "idea",
+      "content": "Idea: or support the wedding",
+      "context": "Groom Wedding Speech Guide",
+      "source": "chatgpt",
+      "sourceDate": "2024-09-14T14:55:23.970580",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.665603"
+    }
+  ]
+}

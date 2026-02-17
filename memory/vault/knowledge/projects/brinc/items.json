@@ -1,0 +1,43 @@
+{
+  "$schema": "../../../schemas/items.schema.json",
+  "entity": "brinc",
+  "type": "project",
+  "facts": [
+    {
+      "id": "brinc-crypto-infra-foundations",
+      "content": "Sustainable growth requires robust foundations like scalable blockchains, cross-chain bridges, and compliance tools.",
+      "source": "ai-history/grok/processed/items-2025-07.json (Crypto Infrastructure: Funding, Credibility, Regulation)",
+      "createdAt": "2026-02-03T04:40:00Z",
+      "lastAccessed": "2026-02-03T04:40:00Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["crypto", "infrastructure", "lesson"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "brinc-scalability-regulatory-moats",
+      "content": "Scalability isn't just code—it's about regulatory moats and user adoption paths.",
+      "source": "ai-history/grok/processed/items-2025-07.json (Crypto Infrastructure: Funding, Credibility, Regulation)",
+      "createdAt": "2026-02-03T04:40:00Z",
+      "lastAccessed": "2026-02-03T04:40:00Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["crypto", "scalability", "lesson"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "brinc-accelerator-local-context",
+      "content": "Tailoring the accelerator to local context matters — one-size-fits-all programs underperform.",
+      "source": "ai-history/chatgpt/processed/items-2025-05.json (Startup Accelerators Impact Analysis)",
+      "createdAt": "2026-02-03T04:40:00Z",
+      "lastAccessed": "2026-02-03T04:40:00Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["accelerator", "localization", "lesson"],
+      "supersedes": null,
+      "supersededBy": null
+    }
+  ]
+}

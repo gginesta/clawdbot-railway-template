@@ -1,0 +1,710 @@
+{
+  "items": [
+    {
+      "id": "f9b4f1e5-1e33-4754-ba86-8a8b6997436c",
+      "type": "decision",
+      "content": "Decided: is your choice of **power unit supplier** (see **Engine Supplier Options** below)",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.111977"
+    },
+    {
+      "id": "621456df-ae6a-45d9-a51e-1c29537567eb",
+      "type": "decision",
+      "content": "Decided: the right power unit supplier is one of the most critical decisions for an independent team, especially with new engine regulations coming in 2026",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.111994"
+    },
+    {
+      "id": "34dccf43-5d67-4795-b2cc-5d317a22fb48",
+      "type": "lesson",
+      "content": "Learned: (cooling problems, parts failures), the remaining days before Round 1 will be a scramble to fix them",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.124739"
+    },
+    {
+      "id": "58e0bf0d-d84d-44fe-ad46-e24a2d756855",
+      "type": "preference",
+      "content": "Preference: to see full budget range",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.130927"
+    },
+    {
+      "id": "4c4eaab0-6615-480f-8a4e-0dd3a0b7be88",
+      "type": "preference",
+      "content": "Preference: to find an old operation like Marussia or Lotus",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.130943"
+    },
+    {
+      "id": "e0540385-b928-4bdf-a4c6-942064b71ae9",
+      "type": "technique",
+      "content": "Technique: go for cost and focus**, and the top priority is reliability – finishing races with the new complex hybrids will be half the battle for any newcomer",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.140949"
+    },
+    {
+      "id": "703ff09e-4805-47f8-b0ad-34ff8646148b",
+      "type": "technique",
+      "content": "Technique: draw lessons from recent bids (e",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.149043"
+    },
+    {
+      "id": "5b5d8378-63cd-491b-9081-772b5865c582",
+      "type": "technique",
+      "content": "Technique: plan for the upper end initially",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.149060"
+    },
+    {
+      "id": "3b4b9489-f783-46fb-b206-f0c01d457681",
+      "type": "idea",
+      "content": "Idea: compete competitively from year one, or would you be content with building up competitiveness over a few years",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.158508"
+    },
+    {
+      "id": "2993da03-b3f8-4d50-b50d-9b5495597711",
+      "type": "idea",
+      "content": "Idea: the Munich/Ingolstadt area to be near Audi’s F1 powertrain HQ (Neuburg) if, say, you planned to use some Audi tech or hire their people",
+      "context": "Starting F1 Team Guide",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-23T16:26:25.758203",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.163997"
+    },
+    {
+      "id": "7eb90646-08be-4a10-bf7a-2be274f1fbab",
+      "type": "preference",
+      "content": "Preference: you to pretend to be a mystic adviser, well versed in all the esoteric arts",
+      "context": "Mystic Adviser Guidance",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-21T09:23:34.077000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.171449"
+    },
+    {
+      "id": "16bc2787-7c2a-4f41-84b1-7c5346bef918",
+      "type": "preference",
+      "content": "Preference: your help in drawing up my astral chart and my feng shui for this current year of the snake",
+      "context": "Mystic Adviser Guidance",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-21T09:23:34.077000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.171466"
+    },
+    {
+      "id": "19f81669-5135-4432-853d-82ae266d43c3",
+      "type": "technique",
+      "content": "Technique: input your exact birth details to receive detailed insights",
+      "context": "Mystic Adviser Guidance",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-21T09:23:34.077000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.172705"
+    },
+    {
+      "id": "3ae86c2c-565e-468f-90a7-0ee1557128c5",
+      "type": "technique",
+      "content": "Technique: see the main door without being directly in line with it",
+      "context": "Mystic Adviser Guidance",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-21T09:23:34.077000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.172714"
+    },
+    {
+      "id": "ac0d25f9-5671-4718-9d48-3864c1254b72",
+      "type": "idea",
+      "content": "Idea: reveal the wisdom of the universe, harmonize your surroundings, or help channel healing energies to restore balance in your journey",
+      "context": "Mystic Adviser Guidance",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-21T09:23:34.077000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.173596"
+    },
+    {
+      "id": "335fd2c5-a0eb-4944-aa6a-7102448903da",
+      "type": "idea",
+      "content": "Idea: using online tools such as the [Free Natal Chart Report](https://www",
+      "context": "Mystic Adviser Guidance",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-21T09:23:34.077000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.174117"
+    },
+    {
+      "id": "3ca5f182-0a3e-42f3-9dc6-a64293c109b3",
+      "type": "preference",
+      "content": "Preference: your help writing an executive summary of our endeavour",
+      "context": "Brinc Investment Proposal Summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-20T11:33:57.198000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.175112"
+    },
+    {
+      "id": "60d43e5c-6307-4086-aa01-65e3b90e6ba4",
+      "type": "idea",
+      "content": "Idea: positively impact the market",
+      "context": "Brinc Investment Proposal Summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-20T11:33:57.198000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.175481"
+    },
+    {
+      "id": "32495cb4-fd4a-49a5-b40e-ba718dcac970",
+      "type": "preference",
+      "content": "Preference: your help reviewing all our documents attached and give me a summary of all his potential upside and earning potential, as well as the potential cost to me",
+      "context": "Revisión de cláusulas contrato",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-18T20:16:15.644000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.178783"
+    },
+    {
+      "id": "d4e1c1c3-33e0-4859-946d-a9c01bc7747e",
+      "type": "preference",
+      "content": "Preference: to clarify a few points to ensure accuracy and completeness:",
+      "context": "Revisión de cláusulas contrato",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-18T20:16:15.644000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.178797"
+    },
+    {
+      "id": "353b3f93-afbe-45ef-bf80-e327c3d44387",
+      "type": "idea",
+      "content": "Idea: for key employees (Alberto, Juan José, and Leonel) includes performance and loyalty bonuses",
+      "context": "Revisión de cláusulas contrato",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-18T20:16:15.644000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.180012"
+    },
+    {
+      "id": "5d78e976-ab49-4f18-8686-de98ed8be905",
+      "type": "idea",
+      "content": "Idea: carve out 20% of the fund to invest in korean founders across APAC",
+      "context": "Investing in Korean Startups",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-11T13:52:16.472000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.185703"
+    },
+    {
+      "id": "2b342100-acf4-4147-bd23-4b99e0960c2a",
+      "type": "decision",
+      "content": "Decided: a **remote, protected source**, we leverage the Patagonia purity narrative while also guaranteeing that our water easily meets EU, US, and WHO quality standards for mineral water",
+      "context": "Lanzamiento agua mineral Patagonia",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-10T21:05:41.794000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.195987"
+    },
+    {
+      "id": "6cbddbf4-57cf-4a29-8d67-4c323225e535",
+      "type": "lesson",
+      "content": "Learned: from others that export-oriented startups needed to budget for FDA and **BRC (British Retail Consortium) certification**【28†L102-L110】 – BRC is a rigorous global food safety standard often required by",
+      "context": "Lanzamiento agua mineral Patagonia",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-10T21:05:41.794000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.202063"
+    },
+    {
+      "id": "6c5352d0-b4c1-463c-85a5-9bc3218b86bd",
+      "type": "preference",
+      "content": "Preference: to try and leverage the \"Patagonia' image",
+      "context": "Lanzamiento agua mineral Patagonia",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-10T21:05:41.794000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.205536"
+    },
+    {
+      "id": "95ce8b29-6df2-4738-b9fc-a89a8b5ddd1e",
+      "type": "idea",
+      "content": "Idea: on how to start, where, costs, and first steps",
+      "context": "Lanzamiento agua mineral Patagonia",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-10T21:05:41.794000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.214531"
+    },
+    {
+      "id": "34ea6d06-dc04-40d5-9e65-f744c13e809a",
+      "type": "preference",
+      "content": "Preference: your help in reviewing a couple of contracts and giving me feedback",
+      "context": "Revisión Acuerdo Accionistas",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-05T20:43:48.373000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.222125"
+    },
+    {
+      "id": "640f37d8-adf8-4903-8785-bae2fac8f555",
+      "type": "preference",
+      "content": "Preference: to analyze if any clauses give the investor excessive veto power or influence on decisions that could undermine the acquirer's control, especially given the promise of full control over the company’s ",
+      "context": "Revisión Acuerdo Accionistas",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-05T20:43:48.373000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.222142"
+    },
+    {
+      "id": "04017685-6d79-4105-8a8f-c92319ea2c16",
+      "type": "technique",
+      "content": "Technique: get more context in the attached signed LOI",
+      "context": "Revisión Acuerdo Accionistas",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-05T20:43:48.373000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.222970"
+    },
+    {
+      "id": "0e3db2f3-4e20-4e53-886f-a88946eadd03",
+      "type": "idea",
+      "content": "Idea: then use said capital to acquire Solartia",
+      "context": "Revisión Acuerdo Accionistas",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-05T20:43:48.373000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.223561"
+    },
+    {
+      "id": "d8e19390-1586-47d1-8fb6-419a138f007d",
+      "type": "preference",
+      "content": "Preference: your help coding:",
+      "context": "Todoist OpenAI Automation Setup",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-04T21:00:13.041000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.226439"
+    },
+    {
+      "id": "542da5e2-ad96-4ea2-a7cb-889f97f3ce4b",
+      "type": "technique",
+      "content": "Technique: map to a priority number)",
+      "context": "Todoist OpenAI Automation Setup",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-04T21:00:13.041000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.227002"
+    },
+    {
+      "id": "dbc948d4-4f90-4ede-a353-a2a1e9709f9d",
+      "type": "technique",
+      "content": "Technique: use the `time_estimate` to update a custom field or adjust the priority of the task",
+      "context": "Todoist OpenAI Automation Setup",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-04T21:00:13.041000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.227011"
+    },
+    {
+      "id": "56a2ff2b-2f22-422d-9e62-e8061cce1ad2",
+      "type": "idea",
+      "content": "Idea: require (priority number)",
+      "context": "Todoist OpenAI Automation Setup",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-04T21:00:13.041000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.227344"
+    },
+    {
+      "id": "03c864c7-2276-4f18-b1e5-d872caec71b1",
+      "type": "decision",
+      "content": "Decided: proceed or not proceed with any Deal",
+      "context": "Multi-Party Contract Drafting",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-04T15:34:39.753000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.232490"
+    },
+    {
+      "id": "f3101636-73ed-41d7-993a-531c1104f3eb",
+      "type": "preference",
+      "content": "Preference: your help in writing a multi-party contract",
+      "context": "Multi-Party Contract Drafting",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-04T15:34:39.753000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.235705"
+    },
+    {
+      "id": "81487b62-e1a5-47d2-be02-1120e985c0e8",
+      "type": "preference",
+      "content": "Preference: to charge Aqua Capital a fee of 2",
+      "context": "Multi-Party Contract Drafting",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-04T15:34:39.753000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.235728"
+    },
+    {
+      "id": "16a7ed24-1bae-42f2-9148-d0541a7a05b4",
+      "type": "idea",
+      "content": "Idea: charge Aqua Capital a fee of 2",
+      "context": "Multi-Party Contract Drafting",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-04T15:34:39.753000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.241869"
+    },
+    {
+      "id": "75a78541-4001-43de-891d-1bae1075764a",
+      "type": "preference",
+      "content": "Preference: your help in reviewing a couple of contracts and giving me feedback",
+      "context": "Revisión de contrato y flujo",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-01T07:15:00.010000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.264681"
+    },
+    {
+      "id": "012d87c6-e39f-49ca-9374-ccbabe80cd7d",
+      "type": "preference",
+      "content": "Preference: to review the incentive plan for key employees, especially considering the acquisition details",
+      "context": "Revisión de contrato y flujo",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-01T07:15:00.010000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.264698"
+    },
+    {
+      "id": "d547729a-747e-49ea-bb6b-4c3506a0f819",
+      "type": "idea",
+      "content": "Idea: sign with the key employees",
+      "context": "Revisión de contrato y flujo",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-01T07:15:00.010000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.275288"
+    },
+    {
+      "id": "fb65ebbc-3d13-41dd-9673-032ccec95c58",
+      "type": "idea",
+      "content": "Idea: expanding it to provide additional protection for proprietary information",
+      "context": "Revisión de contrato y flujo",
+      "source": "chatgpt",
+      "sourceDate": "2025-03-01T07:15:00.010000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.278339"
+    }
+  ]
+}

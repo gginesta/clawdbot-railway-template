@@ -1,0 +1,251 @@
+{
+  "items": [
+    {
+      "id": "c399095f-5060-4aaf-8684-9d2e464d1b44",
+      "type": "idea",
+      "content": "Idea: involve the design, engineering, installation, and maintenance of:- 8 Hybrid Microgrids with 30-year contracts- 2 Power Purchase Agreements (PPA) with 40-year contractsKey Project Details:- Target Rev",
+      "context": "Caravella Capital Company Introduction Deck",
+      "source": "claude",
+      "sourceDate": "2024-11-29T01:18:07.321202Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.064237"
+    },
+    {
+      "id": "9d96885c-b78a-4ae7-b97b-f55fd3a26e42",
+      "type": "preference",
+      "content": "Preference: your help addressing those points in the document",
+      "context": "Structuring a Management Buyout Transaction",
+      "source": "claude",
+      "sourceDate": "2024-11-15T08:36:26.413948Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.072430"
+    },
+    {
+      "id": "6c43f1f9-cf28-41b5-af2a-f50a884c82b1",
+      "type": "idea",
+      "content": "Idea: • Operational Excellence:",
+      "context": "Structuring a Management Buyout Transaction",
+      "source": "claude",
+      "sourceDate": "2024-11-15T08:36:26.413948Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.074662"
+    },
+    {
+      "id": "36bc8b13-7c2a-4e4e-b5ea-534b87dfef37",
+      "type": "preference",
+      "content": "Preference: to create a very simple website",
+      "context": "Simple Website for Get Justice Games",
+      "source": "claude",
+      "sourceDate": "2024-11-15T02:24:34.407255Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.082703"
+    },
+    {
+      "id": "fd7aba69-82cc-4044-a572-e5b92d7f2cd5",
+      "type": "preference",
+      "content": "Preference: a generic site about a gaming studio, inspired by the content on the deck",
+      "context": "Simple Website for Get Justice Games",
+      "source": "claude",
+      "sourceDate": "2024-11-15T02:24:34.407255Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.082720"
+    },
+    {
+      "id": "e2d92eb2-8bbe-4c83-9665-4a585b61eade",
+      "type": "technique",
+      "content": "Technique: to create a similar site on Carrd:",
+      "context": "Simple Website for Get Justice Games",
+      "source": "claude",
+      "sourceDate": "2024-11-15T02:24:34.407255Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.083924"
+    },
+    {
+      "id": "480b95e6-943e-4ddb-94b3-cd6c735ea99f",
+      "type": "idea",
+      "content": "Idea: help me provide the most accurate and useful website content structure for you",
+      "context": "Simple Website for Get Justice Games",
+      "source": "claude",
+      "sourceDate": "2024-11-15T02:24:34.407255Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.086793"
+    },
+    {
+      "id": "cc7c45fa-c72f-434e-8f36-7c688bb01199",
+      "type": "idea",
+      "content": "Idea: be send to financiers and investors",
+      "context": "Improving Investment Proposal Attractiveness",
+      "source": "claude",
+      "sourceDate": "2024-11-21T11:17:59.142093Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.091331"
+    },
+    {
+      "id": "896a87bd-4dc8-482b-93e9-07ddd97e5b57",
+      "type": "preference",
+      "content": "Preference: to complete 2 payments:",
+      "context": "Acquiring Solartia: Increasing Ownership Stake",
+      "source": "claude",
+      "sourceDate": "2024-11-22T06:26:17.711661Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.377494"
+    },
+    {
+      "id": "8d061448-9f21-46d7-8f78-b4e3e12a4314",
+      "type": "preference",
+      "content": "Preference: your help in creating a mechanism so I can both earn more shares in the company and have the ability to buy more shares at a discount in the future",
+      "context": "Acquiring Solartia: Increasing Ownership Stake",
+      "source": "claude",
+      "sourceDate": "2024-11-22T06:26:17.711661Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.377515"
+    },
+    {
+      "id": "e362c7ee-7f3a-4fb9-afa7-ea36c088d1e8",
+      "type": "technique",
+      "content": "Technique: earn additional shares based on:",
+      "context": "Acquiring Solartia: Increasing Ownership Stake",
+      "source": "claude",
+      "sourceDate": "2024-11-22T06:26:17.711661Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.382940"
+    },
+    {
+      "id": "f8f292cf-b617-4c85-8003-ac83795901a2",
+      "type": "idea",
+      "content": "Idea: then be able to pay the second tranche through retained earnings or through debt, or through selling more equity - whatever is most favourable at the time",
+      "context": "Acquiring Solartia: Increasing Ownership Stake",
+      "source": "claude",
+      "sourceDate": "2024-11-22T06:26:17.711661Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.385431"
+    },
+    {
+      "id": "bd83cbf4-be59-4a0c-976f-92fcdedb0eac",
+      "type": "preference",
+      "content": "Preference: to raise the capital to complete the transaction and I am presenting the opportunity to funds to raise the required money",
+      "context": "Solartia-JPL",
+      "source": "claude",
+      "sourceDate": "2024-11-14T02:31:57.354286Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.545995"
+    },
+    {
+      "id": "7b1f7c7d-93c1-4d11-946b-5905320d1368",
+      "type": "technique",
+      "content": "Technique: I suggest ordering it:",
+      "context": "Solartia-JPL",
+      "source": "claude",
+      "sourceDate": "2024-11-14T02:31:57.354286Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.551904"
+    },
+    {
+      "id": "586f863b-4844-4cd1-a81a-1e38b00f1b29",
+      "type": "idea",
+      "content": "Idea: sell shares in Mana Capital to this outside new investors, and that capital is what we will use to acquire Solartia",
+      "context": "Solartia-JPL",
+      "source": "claude",
+      "sourceDate": "2024-11-14T02:31:57.354286Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.559003"
+    }
+  ]
+}

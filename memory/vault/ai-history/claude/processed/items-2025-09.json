@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "id": "92d8ea39-7538-4067-ba9e-2981dfef7207",
+      "type": "decision",
+      "content": "Decided: **prefer debt over equity** or vice-versa)",
+      "context": "Solartia capital raising strategy",
+      "source": "claude",
+      "sourceDate": "2025-09-22T02:17:27.381251Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.346362"
+    },
+    {
+      "id": "9e43b71c-fa0f-4f64-be1f-3d50999fcb15",
+      "type": "decision",
+      "content": "Decided: prefer debt over equity financing)",
+      "context": "Solartia capital raising strategy",
+      "source": "claude",
+      "sourceDate": "2025-09-22T02:17:27.381251Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.346387"
+    },
+    {
+      "id": "13583698-a1fa-4898-bb01-57403af92d10",
+      "type": "preference",
+      "content": "Preference: your help in commenting on the document, offering suggestions to edit/redline to make it more favourable for us at Solartia",
+      "context": "Solartia capital raising strategy",
+      "source": "claude",
+      "sourceDate": "2025-09-22T02:17:27.381251Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.350890"
+    }
+  ]
+}

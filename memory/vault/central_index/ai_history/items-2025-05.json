@@ -1,0 +1,128 @@
+{
+  "items": [
+    {
+      "id": "7fa7e1e2-a055-4a04-8dcc-8ead43d2a69d",
+      "type": "preference",
+      "content": "Preference: to send a gift in Brussels",
+      "context": "Wine and Champagne Gift Delivery in Brussels",
+      "source": "grok",
+      "sourceDate": "2025-05-19T08:44:05.448879Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.685154"
+    },
+    {
+      "id": "64063ee7-2d17-4abe-9e5b-ff8e9523f8c7",
+      "type": "preference",
+      "content": "Preference: to send a gift in Brussels",
+      "context": "Wine and Champagne Gift Delivery in Brussels",
+      "source": "grok",
+      "sourceDate": "2025-05-19T08:44:05.448879Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.685174"
+    },
+    {
+      "id": "8bb760eb-e56d-4bb7-b907-938f57fbf677",
+      "type": "technique",
+      "content": "Technique: add wine or champagne to flower deliveries, with same day delivery if ordered before 2pm",
+      "context": "Wine and Champagne Gift Delivery in Brussels",
+      "source": "grok",
+      "sourceDate": "2025-05-19T08:44:05.448879Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.686448"
+    },
+    {
+      "id": "f3483d76-324a-4590-bff7-9b00cad09502",
+      "type": "preference",
+      "content": "Preference: your help in checking their attached KYC documents and see if you can find any information online",
+      "context": "White Swan Advisors LLC: Legitimacy Check",
+      "source": "grok",
+      "sourceDate": "2025-05-13T13:45:18.535511Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.699575"
+    },
+    {
+      "id": "1c2a0f91-37e7-4569-b1d4-c8e4960cf7a3",
+      "type": "technique",
+      "content": "Technique: find any information online",
+      "context": "White Swan Advisors LLC: Legitimacy Check",
+      "source": "grok",
+      "sourceDate": "2025-05-13T13:45:18.535511Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.702928"
+    },
+    {
+      "id": "32efc561-8bdb-41fd-b3a2-3559b153e470",
+      "type": "idea",
+      "content": "Idea: verify this directly with the firm or regulatory bodies like FINRA or the SEC for certainty",
+      "context": "White Swan Advisors LLC: Legitimacy Check",
+      "source": "grok",
+      "sourceDate": "2025-05-13T13:45:18.535511Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.705526"
+    },
+    {
+      "id": "5006feb3-1dea-4821-b525-bfeadb3ae674",
+      "type": "technique",
+      "content": "Technique: ensure animal health and biosecurity",
+      "context": "Importing Ross 308 Chicks to Ghana",
+      "source": "grok",
+      "sourceDate": "2025-05-08T05:48:31.488473Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.727659"
+    },
+    {
+      "id": "df64cfd4-6aee-4c8d-b7ca-97323f7dcd1b",
+      "type": "idea",
+      "content": "Idea: be outlined in the import permit, so your friend should contact the VSD for clarification",
+      "context": "Importing Ross 308 Chicks to Ghana",
+      "source": "grok",
+      "sourceDate": "2025-05-08T05:48:31.488473Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.729240"
+    }
+  ]
+}

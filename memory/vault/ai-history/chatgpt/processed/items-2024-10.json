@@ -1,0 +1,583 @@
+{
+  "items": [
+    {
+      "id": "0eed2240-9815-43cf-ab4b-fdd311065d57",
+      "type": "idea",
+      "content": "Idea: be repeated, and the following performance targets must be met (simulating two charge and discharge cycles per day, every day of the year, SOC: 100% to 0%):",
+      "context": "Resumen de correo técnico",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-24T12:40:36.476434",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.560003"
+    },
+    {
+      "id": "3e167776-0bfe-4b88-a1ee-c56213e49816",
+      "type": "idea",
+      "content": "Idea: this event over the weekend:",
+      "context": "Outfit Ideas for Event",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-23T14:13:19.740129",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.562010"
+    },
+    {
+      "id": "46183156-3bcf-4b85-a00a-7cbbed9410f5",
+      "type": "lesson",
+      "content": "Learned: s from the papers you provided:",
+      "context": "Impostor Phenomenon Research Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-22T21:02:42.989122",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.568341"
+    },
+    {
+      "id": "e840f21e-d18f-4687-9c56-a8d18920d07b",
+      "type": "preference",
+      "content": "Preference: your help with a research task for my wife's Counselling degree",
+      "context": "Impostor Phenomenon Research Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-22T21:02:42.989122",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.568631"
+    },
+    {
+      "id": "a36b9732-cb5d-4bd8-9a49-416a97afc93b",
+      "type": "idea",
+      "content": "Idea: expand on anything else, feel free to reach out",
+      "context": "Impostor Phenomenon Research Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-22T21:02:42.989122",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.571868"
+    },
+    {
+      "id": "04a08c06-bf7d-4796-a5bd-794a55ad3c1c",
+      "type": "technique",
+      "content": "Technique: support these transformative efforts",
+      "context": "Healthcare Innovation Statistics Asia",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-22T13:26:44.025918",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.576822"
+    },
+    {
+      "id": "2420bd1a-47d7-423b-b444-08d92cec1c00",
+      "type": "technique",
+      "content": "Technique: reference several key trends and examples that underscore the importance of capital to drive growth:",
+      "context": "Healthcare Innovation Statistics Asia",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-22T13:26:44.025918",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.576834"
+    },
+    {
+      "id": "7167f36d-b065-4e1f-92b5-e940db488982",
+      "type": "idea",
+      "content": "Idea: start trying to get pregnant in the next 6 months",
+      "context": "Lexapro and Mental Health",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-22T08:36:57.140997",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.582072"
+    },
+    {
+      "id": "7901faab-da27-4feb-8420-0b1d4ecd7881",
+      "type": "preference",
+      "content": "Preference: to know, does taking this supplement take me out of a fasted state",
+      "context": "Creatine and Intermittent Fasting",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-22T08:26:23.699079",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.583044"
+    },
+    {
+      "id": "3a0ba731-77d3-418d-a28f-1bff4769d29d",
+      "type": "idea",
+      "content": "Idea: know, does taking this supplement take me out of a fasted state",
+      "context": "Creatine and Intermittent Fasting",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-22T08:26:23.699079",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.583285"
+    },
+    {
+      "id": "915fcccd-784d-4473-abd8-27c0c8791330",
+      "type": "preference",
+      "content": "Preference: oneworld airlines",
+      "context": "Chile Trip Itinerary Request",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-21T13:48:39.020124",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.584677"
+    },
+    {
+      "id": "38cee74d-bd54-40ee-a597-7432f8c87661",
+      "type": "preference",
+      "content": "Preference: my original dates",
+      "context": "Chile Trip Itinerary Request",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-21T13:48:39.020124",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.584685"
+    },
+    {
+      "id": "4bcfc12e-24d4-476e-8993-c8f6256ae4da",
+      "type": "decision",
+      "content": "Decided: searching with both **December 18th** and **19th** departures, along with your stopover preference and your return on **January 2nd** or **3rd**",
+      "context": "Chile Trip Booking Help",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-21T08:19:20.046564",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.586139"
+    },
+    {
+      "id": "dfc4d2fc-307f-4292-b65e-620ad24aae75",
+      "type": "preference",
+      "content": "Preference: oneworld airlines",
+      "context": "Chile Trip Booking Help",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-21T08:19:20.046564",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.586429"
+    },
+    {
+      "id": "64c5daa2-c951-4aa2-8ff5-05d7c7e5efe6",
+      "type": "preference",
+      "content": "Preference: oneworld airlines",
+      "context": "Chile Trip Itinerary Help",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-21T08:16:56.455887",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.590576"
+    },
+    {
+      "id": "27733907-6ab8-4ac1-bdc5-8d44b76cafcc",
+      "type": "decision",
+      "content": "Decided: the Right Review**: The decision between SR and ScR depends on the research purpose and the level of detail needed",
+      "context": "Psychology Research Review Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-12T11:18:22.768171",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.601758"
+    },
+    {
+      "id": "e924a9ae-5b5f-4df9-9381-da8f646bccd7",
+      "type": "technique",
+      "content": "Technique: access these studies through journals such as *Frontiers in Psychology* and *International Journal of Environmental Research and Public Health*",
+      "context": "Psychology Research Review Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-12T11:18:22.768171",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.606026"
+    },
+    {
+      "id": "980ce4a7-9dc5-4a7d-bd5d-7762171db296",
+      "type": "technique",
+      "content": "Technique: find further details in the journals *International Journal of Environmental Research and Public Health*, *Discover Mental Health*, and *Cambridge Prisms: Global Mental Health*",
+      "context": "Psychology Research Review Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-12T11:18:22.768171",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.606042"
+    },
+    {
+      "id": "0a6386bf-dce9-4c72-85c0-f330850e64e7",
+      "type": "preference",
+      "content": "Preference: your help redesigning my website on https://carrd",
+      "context": "Website Redesign Assistance Request",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T09:51:52.788800",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.614244"
+    },
+    {
+      "id": "e4364482-9ec7-48a5-8456-4ba8721f657f",
+      "type": "technique",
+      "content": "Technique: adjust or expand it based on your specific offerings and brand tone",
+      "context": "Website Redesign Assistance Request",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T09:51:52.788800",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.616496"
+    },
+    {
+      "id": "7ac84860-e468-4966-9cd8-978991cf3d06",
+      "type": "idea",
+      "content": "Idea: draw inspiration from, that would be helpful to know as well",
+      "context": "Website Redesign Assistance Request",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T09:51:52.788800",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.617811"
+    },
+    {
+      "id": "800e09ee-f10c-485e-8047-69b14edee730",
+      "type": "technique",
+      "content": "Technique: share, and what are the terms of this agreement",
+      "context": "Hydrogen Opportunity Evaluation Questions",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-09T18:16:15.326414",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.631014"
+    },
+    {
+      "id": "055b8571-8c24-4fc1-ab67-2bcbb098ea4f",
+      "type": "idea",
+      "content": "Idea: own the remaining 50%",
+      "context": "Hydrogen Opportunity Evaluation Questions",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-09T18:16:15.326414",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.632014"
+    },
+    {
+      "id": "7ce3077b-4046-459a-8d2e-f44f51b06360",
+      "type": "decision",
+      "content": "Decided: the appropriate review type and the need for transparency in research, particularly when applied to social work and human services【6†source】",
+      "context": "Systematic and Scoping Review Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-09T16:01:17.593514",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.633342"
+    },
+    {
+      "id": "e5fe5d47-6bad-4f01-bc26-204f93fd9fce",
+      "type": "technique",
+      "content": "Technique: easily write over the central area with any details you'd like to add",
+      "context": "Jungle-themed birthday invitation",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-07T21:04:18.782155",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.636795"
+    },
+    {
+      "id": "059c016f-48e7-43df-8dbc-6c4d19be5dd7",
+      "type": "idea",
+      "content": "Idea: have some fun messy play and activities for the little ones",
+      "context": "Jungle-themed birthday invitation",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-07T21:04:18.782155",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.636956"
+    },
+    {
+      "id": "0d142563-c359-48a8-8a33-e1e3d70f7810",
+      "type": "decision",
+      "content": "Decided: prove control of the funds",
+      "context": "Solartia - Transaction Documents",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T13:09:07.733629",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.638959"
+    },
+    {
+      "id": "14393b27-bf7a-4b30-99df-ee6abfa849e4",
+      "type": "preference",
+      "content": "Preference: to pay a broker USD3m equivalent in USDT cryptocurrency as a commission or finder's fee",
+      "context": "Solartia - Transaction Documents",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T13:09:07.733629",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.640274"
+    },
+    {
+      "id": "52a5cf68-e371-418b-a845-d8d09856e2c1",
+      "type": "preference",
+      "content": "Preference: your help in creating an agreement with a lender to help place the required commission payment into a new segregated wallet",
+      "context": "Solartia - Transaction Documents",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T13:09:07.733629",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.640282"
+    },
+    {
+      "id": "945287ff-1f34-4524-86d8-b9a9e29649f5",
+      "type": "idea",
+      "content": "Idea: create a new HoldCo in the BVI which will own 100% of Solartia's shares",
+      "context": "Solartia - Transaction Documents",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T13:09:07.733629",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.641740"
+    },
+    {
+      "id": "df73385c-5c30-4d97-92f8-a828c4ce854d",
+      "type": "preference",
+      "content": "Preference: your help as my pretend General Counsel",
+      "context": "Formal Letter Request for Information",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T09:36:06.723446",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.643424"
+    },
+    {
+      "id": "60345d67-1100-40d2-bf64-1c0c69609a3e",
+      "type": "preference",
+      "content": "Preference: your help in writing a formal letter to inform the Brasilian parties, through Solartia, that the document provided is incomplete and insufficient",
+      "context": "Formal Letter Request for Information",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T09:36:06.723446",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.643440"
+    },
+    {
+      "id": "a778d58d-ff06-43d2-8d53-a8d431c26771",
+      "type": "technique",
+      "content": "Technique: use to inform the Brazilian parties, via Solartia, regarding the need for more information to proceed:",
+      "context": "Formal Letter Request for Information",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T09:36:06.723446",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.643767"
+    },
+    {
+      "id": "f3d99ef9-8caf-4798-b03f-7453600dd35a",
+      "type": "idea",
+      "content": "Idea: be crucial for us to assess the viability and structure of the transaction and determine whether Mana Capital can move forward in supporting the capital raise",
+      "context": "Formal Letter Request for Information",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-04T09:36:06.723446",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.643983"
+    },
+    {
+      "id": "960e9267-d4d7-4e16-97b2-9132c7246700",
+      "type": "preference",
+      "content": "Preference: to edit it and update",
+      "context": "Investment Opportunity in Peru",
+      "source": "chatgpt",
+      "sourceDate": "2024-10-02T13:28:10.350899",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.645013"
+    }
+  ]
+}

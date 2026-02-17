@@ -1,0 +1,830 @@
+{
+  "items": [
+    {
+      "id": "5fac7a42-d13d-46e6-b7b2-10f2b66b59a0",
+      "type": "lesson",
+      "content": "Learned: s from 2025 Flying Stars:",
+      "context": "Mystic Arts: Feng Shui, Reiki, Divination",
+      "source": "grok",
+      "sourceDate": "2025-03-21T01:24:48.603413Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.768794"
+    },
+    {
+      "id": "f88c42ae-0284-4e22-857f-fa23ea8e6055",
+      "type": "preference",
+      "content": "Preference: you to pretend to be a mystic adviser, well versed in all the esoteric arts",
+      "context": "Mystic Arts: Feng Shui, Reiki, Divination",
+      "source": "grok",
+      "sourceDate": "2025-03-21T01:24:48.603413Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.769247"
+    },
+    {
+      "id": "0b28b844-b050-41e2-a393-0aaa64c255d9",
+      "type": "preference",
+      "content": "Preference: your help in drawing up my astral chart and my feng shui for this current year of the snake",
+      "context": "Mystic Arts: Feng Shui, Reiki, Divination",
+      "source": "grok",
+      "sourceDate": "2025-03-21T01:24:48.603413Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.769255"
+    },
+    {
+      "id": "1bdaefa9-f2d1-4b8a-a897-be3b98c0422c",
+      "type": "idea",
+      "content": "Idea: raise money and acquire a company thrives here—abundance flows when you align with this energy",
+      "context": "Mystic Arts: Feng Shui, Reiki, Divination",
+      "source": "grok",
+      "sourceDate": "2025-03-21T01:24:48.603413Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.774242"
+    },
+    {
+      "id": "33532638-a9b7-42aa-8171-438cfb34df2a",
+      "type": "idea",
+      "content": "Idea: be made free of any charge or encumbrance, with full economic rights and no political rights, unless the Seller expresses their willingness to limit their participation to political rights",
+      "context": "Legal Document Translation: Purchase Option Extension",
+      "source": "grok",
+      "sourceDate": "2025-03-25T13:38:11.135083Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.837703"
+    },
+    {
+      "id": "726a488b-d366-4ea2-9017-a14e10e0b216",
+      "type": "preference",
+      "content": "Preference: your help in reviewing drafting documents",
+      "context": "Solartia Acquisition: Funding Request",
+      "source": "grok",
+      "sourceDate": "2025-03-26T05:59:02.634961Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.937066"
+    },
+    {
+      "id": "c551271c-81a8-416b-9ce2-f0db4804dddb",
+      "type": "preference",
+      "content": "Preference: to pass these on to the investors",
+      "context": "Solartia Acquisition: Funding Request",
+      "source": "grok",
+      "sourceDate": "2025-03-26T05:59:02.634961Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.937087"
+    },
+    {
+      "id": "43b9257f-54c8-4396-994e-1f4860dca886",
+      "type": "technique",
+      "content": "Technique: ensure the project's success, aligning with our mutual goals",
+      "context": "Solartia Acquisition: Funding Request",
+      "source": "grok",
+      "sourceDate": "2025-03-26T05:59:02.634961Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.938974"
+    },
+    {
+      "id": "41f6a543-5119-4440-a321-ead6ab419222",
+      "type": "technique",
+      "content": "Technique: get more context in the attached signed LOI",
+      "context": "Solartia Acquisition: Funding Request",
+      "source": "grok",
+      "sourceDate": "2025-03-26T05:59:02.634961Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.939549"
+    },
+    {
+      "id": "5f3a9ff3-fb2d-4601-9e8e-3a806ea56c75",
+      "type": "technique",
+      "content": "Technique: pull his name from the shareholder's agreement",
+      "context": "Solartia Acquisition: Funding Request",
+      "source": "grok",
+      "sourceDate": "2025-03-26T05:59:02.634961Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.939557"
+    },
+    {
+      "id": "4eb0fa0f-a652-4329-aaa4-b42e3e5eef7c",
+      "type": "idea",
+      "content": "Idea: then use said capital to acquire Solartia",
+      "context": "Solartia Acquisition: Funding Request",
+      "source": "grok",
+      "sourceDate": "2025-03-26T05:59:02.634961Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.940468"
+    },
+    {
+      "id": "5fb95058-26de-4b37-9c27-1f2b2ec0c411",
+      "type": "decision",
+      "content": "Decided: not to change the clause on dividend as we can vote on this and I control the board",
+      "context": "Acquisition Strategy for Solartia",
+      "source": "grok",
+      "sourceDate": "2025-03-05T12:38:41.424397Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.970175"
+    },
+    {
+      "id": "604e28c0-cdf8-42a0-b658-bd77938b2e97",
+      "type": "preference",
+      "content": "Preference: your help in reviewing a couple of contracts and giving me feedback",
+      "context": "Acquisition Strategy for Solartia",
+      "source": "grok",
+      "sourceDate": "2025-03-05T12:38:41.424397Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.999561"
+    },
+    {
+      "id": "68da5c60-0dde-45df-85a8-a82ed14b1b9f",
+      "type": "preference",
+      "content": "Preference: the same help with an even more important document - our subscription agreement",
+      "context": "Acquisition Strategy for Solartia",
+      "source": "grok",
+      "sourceDate": "2025-03-05T12:38:41.424397Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.999577"
+    },
+    {
+      "id": "e33b48fb-dc13-480f-bdd4-69a28be71b63",
+      "type": "technique",
+      "content": "Technique: wind up the Company, save where it is insolvent (within the meaning of the Bankruptcy Ordinance Cap",
+      "context": "Acquisition Strategy for Solartia",
+      "source": "grok",
+      "sourceDate": "2025-03-05T12:38:41.424397Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.007846"
+    },
+    {
+      "id": "9966887c-944a-4f37-9f09-b43ee92bde75",
+      "type": "technique",
+      "content": "Technique: get more context in the attached signed LOI",
+      "context": "Acquisition Strategy for Solartia",
+      "source": "grok",
+      "sourceDate": "2025-03-05T12:38:41.424397Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.012817"
+    },
+    {
+      "id": "5b90eb47-c12f-4b38-a119-937d3e4e5bf8",
+      "type": "technique",
+      "content": "Technique: control appointments, but the vague process risks allowing Difako Capital (the Investor, with 45%) to push for directors, potentially diluting your control",
+      "context": "Acquisition Strategy for Solartia",
+      "source": "grok",
+      "sourceDate": "2025-03-05T12:38:41.424397Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.012832"
+    },
+    {
+      "id": "f218abe4-efd6-455f-9db8-81d32617441d",
+      "type": "idea",
+      "content": "Idea: then use said capital to acquire Solartia",
+      "context": "Acquisition Strategy for Solartia",
+      "source": "grok",
+      "sourceDate": "2025-03-05T12:38:41.424397Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.028895"
+    },
+    {
+      "id": "394dbe28-bb8c-4e83-8d64-be1e7339e1c7",
+      "type": "idea",
+      "content": "Idea: adding \"immediately\" to Clause 6",
+      "context": "Acquisition Strategy for Solartia",
+      "source": "grok",
+      "sourceDate": "2025-03-05T12:38:41.424397Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.040232"
+    },
+    {
+      "id": "b0282715-558e-41b3-85b3-613b181f6549",
+      "type": "preference",
+      "content": "Preference: your help in writing a multi-party contract",
+      "context": "Multi-Party Investment Deal Contract",
+      "source": "grok",
+      "sourceDate": "2025-03-04T07:35:21.078342Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.053649"
+    },
+    {
+      "id": "211a7d42-7206-48cb-8ba6-b07052ffbd98",
+      "type": "preference",
+      "content": "Preference: to charge Aqua Capital a fee of 2",
+      "context": "Multi-Party Investment Deal Contract",
+      "source": "grok",
+      "sourceDate": "2025-03-04T07:35:21.078342Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.053674"
+    },
+    {
+      "id": "dd4b4fff-fc94-4288-9670-479c2c604fdc",
+      "type": "technique",
+      "content": "Technique: directly copy and paste into the document",
+      "context": "Multi-Party Investment Deal Contract",
+      "source": "grok",
+      "sourceDate": "2025-03-04T07:35:21.078342Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.057382"
+    },
+    {
+      "id": "3e6084fd-bf50-41c8-b614-a7bd4b646fd0",
+      "type": "technique",
+      "content": "Technique: manually adjust these numbers in the document after pasting the new clauses",
+      "context": "Multi-Party Investment Deal Contract",
+      "source": "grok",
+      "sourceDate": "2025-03-04T07:35:21.078342Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.057403"
+    },
+    {
+      "id": "f10f9222-2a4f-4151-81c8-03da39bbf829",
+      "type": "idea",
+      "content": "Idea: charge Aqua Capital a fee of 2",
+      "context": "Multi-Party Investment Deal Contract",
+      "source": "grok",
+      "sourceDate": "2025-03-04T07:35:21.078342Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.060160"
+    },
+    {
+      "id": "c17ee7ca-e042-4a2d-adf9-0a7db67e3349",
+      "type": "preference",
+      "content": "Preference: your help reviewing all our documents attached and give me a summary of all his potential upside and earning potential, as well as the potential cost to me",
+      "context": "Acquisition of Solartia: Costs and Upsides",
+      "source": "grok",
+      "sourceDate": "2025-03-18T12:15:11.124374Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.072045"
+    },
+    {
+      "id": "e5be8269-79ce-4f59-8ce9-063405f1f578",
+      "type": "idea",
+      "content": "Idea: for key employees (Alberto, Juan José, and Leonel) includes performance and loyalty bonuses",
+      "context": "Acquisition of Solartia: Costs and Upsides",
+      "source": "grok",
+      "sourceDate": "2025-03-18T12:15:11.124374Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.074274"
+    },
+    {
+      "id": "889c8f30-5ab1-432f-a21f-5126bdc6c886",
+      "type": "idea",
+      "content": "Idea: beyond what’s in the document (e",
+      "context": "Acquisition of Solartia: Costs and Upsides",
+      "source": "grok",
+      "sourceDate": "2025-03-18T12:15:11.124374Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.074858"
+    },
+    {
+      "id": "ec4a1a57-8e2e-4840-a1df-7ff97afa2f80",
+      "type": "preference",
+      "content": "Preference: your help reviewing all our documents attached and give me a summary of all his potential upside and earning potential, as well as the potential cost to me",
+      "context": "Acquiring Solartia: Financial Analysis and Employee Bonuses",
+      "source": "grok",
+      "sourceDate": "2025-03-18T12:09:41.339953Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.075779"
+    },
+    {
+      "id": "29179511-0c50-46be-9baf-7b034a23354a",
+      "type": "decision",
+      "content": "Decided: something different, a little less cheesy",
+      "context": "Cheeky 40th Birthday Message for a Mate",
+      "source": "grok",
+      "sourceDate": "2025-03-18T02:39:38.724489Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.076910"
+    },
+    {
+      "id": "21d51138-6ca5-49a4-977a-fce9ece9b266",
+      "type": "preference",
+      "content": "Preference: help with a new birthday message",
+      "context": "Cheeky 40th Birthday Message for a Mate",
+      "source": "grok",
+      "sourceDate": "2025-03-18T02:39:38.724489Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.077212"
+    },
+    {
+      "id": "5d2520ab-7aa5-4fb7-840a-1782df8b1abc",
+      "type": "idea",
+      "content": "Idea: of a wild night is staying up past 10pm",
+      "context": "Cheeky 40th Birthday Message for a Mate",
+      "source": "grok",
+      "sourceDate": "2025-03-18T02:39:38.724489Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.077693"
+    },
+    {
+      "id": "4ff06a5e-735b-4b9a-a64e-b27ef9e409cf",
+      "type": "idea",
+      "content": "Idea: carve out 20% of the fund to invest in korean founders across APAC",
+      "context": "Investing in Korean Founders Across APAC",
+      "source": "grok",
+      "sourceDate": "2025-03-11T05:51:04.757394Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.096901"
+    },
+    {
+      "id": "46ad13e6-e085-4fef-a26f-3b77c531bbe1",
+      "type": "preference",
+      "content": "Preference: your help creating an automation for my to-do system, using www",
+      "context": "Todoist Task Automation with Make.com",
+      "source": "grok",
+      "sourceDate": "2025-03-10T06:39:00.969444Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.104101"
+    },
+    {
+      "id": "38ed2cc1-dded-4aac-af9f-60dab0b9ec5c",
+      "type": "technique",
+      "content": "Technique: Fill the Parse JSON Module",
+      "context": "Todoist Task Automation with Make.com",
+      "source": "grok",
+      "sourceDate": "2025-03-10T06:39:00.969444Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.104975"
+    },
+    {
+      "id": "61e1245d-3fb6-4a34-b62f-627f76817843",
+      "type": "technique",
+      "content": "Technique: leave other settings as default for now",
+      "context": "Todoist Task Automation with Make.com",
+      "source": "grok",
+      "sourceDate": "2025-03-10T06:39:00.969444Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.106175"
+    },
+    {
+      "id": "44ad9b09-c577-4e17-a0f8-7f917761c35e",
+      "type": "technique",
+      "content": "Technique: get from OpenAI’s website)",
+      "context": "Todoist Task Automation with Make.com",
+      "source": "grok",
+      "sourceDate": "2025-03-10T06:39:00.969444Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.106206"
+    },
+    {
+      "id": "a4fa4118-0ffa-4de1-9737-1ce38fa1f9c7",
+      "type": "decision",
+      "content": "Decided: HTML, CSS, and JavaScript with Flask for the backend",
+      "context": "Simplified World Time Converter on Replit",
+      "source": "grok",
+      "sourceDate": "2025-03-05T14:51:14.701982Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.160523"
+    },
+    {
+      "id": "e32f82bc-c75f-4c6b-82dd-0bc29b684860",
+      "type": "technique",
+      "content": "Technique: also type a timezone directly (like \"America/New_York\"), but cities are easier",
+      "context": "Simplified World Time Converter on Replit",
+      "source": "grok",
+      "sourceDate": "2025-03-05T14:51:14.701982Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.194457"
+    },
+    {
+      "id": "7515b0a8-1e1d-4e5e-beb2-4fa7e1dba738",
+      "type": "idea",
+      "content": "Idea: travel and track flight arrival time across time zones",
+      "context": "Simplified World Time Converter on Replit",
+      "source": "grok",
+      "sourceDate": "2025-03-05T14:51:14.701982Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.206259"
+    },
+    {
+      "id": "5b8d5477-bf3b-4326-af20-c1515fb24541",
+      "type": "preference",
+      "content": "Preference: how this gives me the email information for some of the top companies I need to work with",
+      "context": "Sales Platform Pricing Comparison: Sparkbase vs Apollo",
+      "source": "grok",
+      "sourceDate": "2025-03-05T02:36:51.807639Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.225492"
+    },
+    {
+      "id": "603af9e3-789c-466c-a7ab-ffe3c3938e9d",
+      "type": "idea",
+      "content": "Idea: and paid plans starting around $39/user/month, based on credit usage for data export",
+      "context": "Sales Platform Pricing Comparison: Sparkbase vs Apollo",
+      "source": "grok",
+      "sourceDate": "2025-03-05T02:36:51.807639Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.231387"
+    },
+    {
+      "id": "13822f5b-ba67-4261-b383-6eca14ba3003",
+      "type": "idea",
+      "content": "Idea: these factors, especially for Apollo, where controversy around customer service may impact satisfaction",
+      "context": "Sales Platform Pricing Comparison: Sparkbase vs Apollo",
+      "source": "grok",
+      "sourceDate": "2025-03-05T02:36:51.807639Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.232761"
+    },
+    {
+      "id": "8425b8da-092d-401c-9feb-d3dfb3012e87",
+      "type": "decision",
+      "content": "Decided: \"Create a Completion (Prompt) (GPT and o1, o3 Models)\" for text processing, and providing step-by-step instructions, with considerations for non-technical users",
+      "context": "Automating Task Processing with Make.com and OpenAI",
+      "source": "grok",
+      "sourceDate": "2025-03-04T09:27:19.092032Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.263546"
+    },
+    {
+      "id": "d66950e4-e2f1-4893-928e-cff4ef717f97",
+      "type": "decision",
+      "content": "Decided: on using these tags in the message",
+      "context": "Automating Task Processing with Make.com and OpenAI",
+      "source": "grok",
+      "sourceDate": "2025-03-04T09:27:19.092032Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.263569"
+    },
+    {
+      "id": "2231181c-2490-4fc0-bfa1-569d010b4812",
+      "type": "preference",
+      "content": "Preference: your help coding:",
+      "context": "Automating Task Processing with Make.com and OpenAI",
+      "source": "grok",
+      "sourceDate": "2025-03-04T09:27:19.092032Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.284757"
+    },
+    {
+      "id": "ee49fb4d-4910-4d54-9210-a5a23cde57e3",
+      "type": "preference",
+      "content": "Preference: help with Step 2",
+      "context": "Automating Task Processing with Make.com and OpenAI",
+      "source": "grok",
+      "sourceDate": "2025-03-04T09:27:19.092032Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.284785"
+    },
+    {
+      "id": "5cdfbe30-4565-4758-a487-208d87f1408c",
+      "type": "technique",
+      "content": "Technique: go, and you'll need to set up your API key and configure the request, which can be complex but is well-documented in Make",
+      "context": "Automating Task Processing with Make.com and OpenAI",
+      "source": "grok",
+      "sourceDate": "2025-03-04T09:27:19.092032Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.293624"
+    },
+    {
+      "id": "0b24160d-8dda-42ad-a67e-355cc2d77d2e",
+      "type": "technique",
+      "content": "Technique: build this automation using Make",
+      "context": "Automating Task Processing with Make.com and OpenAI",
+      "source": "grok",
+      "sourceDate": "2025-03-04T09:27:19.092032Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.298049"
+    },
+    {
+      "id": "80f08264-39ee-4454-8014-219a0a0a5063",
+      "type": "technique",
+      "content": "Technique: get from [OpenAI](https://platform",
+      "context": "Automating Task Processing with Make.com and OpenAI",
+      "source": "grok",
+      "sourceDate": "2025-03-04T09:27:19.092032Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.298071"
+    },
+    {
+      "id": "beb49348-e638-48be-8556-877d18eb6838",
+      "type": "idea",
+      "content": "Idea: require (priority number)",
+      "context": "Automating Task Processing with Make.com and OpenAI",
+      "source": "grok",
+      "sourceDate": "2025-03-04T09:27:19.092032Z",
+      "confidence": "low",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.304959"
+    }
+  ]
+}

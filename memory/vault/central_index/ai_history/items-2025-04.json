@@ -1,0 +1,219 @@
+{
+  "items": [
+    {
+      "id": "e9d3ba0c-dc77-4d2e-967b-0d6f0618dad0",
+      "type": "technique",
+      "content": "Technique: calculate his age as follows:",
+      "context": "Pregnancy and Sibling Age Gap",
+      "source": "grok",
+      "sourceDate": "2025-04-27T13:03:06.652449Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.737880"
+    },
+    {
+      "id": "068e38e3-90e1-4383-bd43-563884348cd6",
+      "type": "decision",
+      "content": "Decided: again with a smooth, natural French phrase: Est-ce qu'on peut voir la carte des vins, s'il vous plaît",
+      "context": "English-French Conversation Translation Help",
+      "source": "grok",
+      "sourceDate": "2025-04-25T10:49:35.016838Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.747329"
+    },
+    {
+      "id": "c5cfce9b-308f-4c63-aeb6-25139ae7e425",
+      "type": "technique",
+      "content": "Technique: say: Pouvons-nous voir la carte des vins",
+      "context": "English-French Conversation Translation Help",
+      "source": "grok",
+      "sourceDate": "2025-04-25T10:49:35.016838Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.747680"
+    },
+    {
+      "id": "8bb97cdb-88d6-4568-9b02-854dfb5b3455",
+      "type": "idea",
+      "content": "Idea: check for potential cross-contamination with gluten-containing foods during preparation or frying",
+      "context": "Panisse: Marseille's Chickpea Snack",
+      "source": "grok",
+      "sourceDate": "2025-04-25T10:40:06.966764Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.748387"
+    },
+    {
+      "id": "2481cd7f-8c5d-4303-9a5b-cf35d8d9c5d8",
+      "type": "decision",
+      "content": "Decided: that carries significant symbolic weight, often reflecting personal devotion, admiration for predecessors, or the direction he wishes to take the Church",
+      "context": "Succession of Pope Francis",
+      "source": "grok",
+      "sourceDate": "2025-04-24T08:41:17.261263Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.752021"
+    },
+    {
+      "id": "04433102-6a84-4306-a7c1-560bb79a84ae",
+      "type": "decision",
+      "content": "Decided: “Francis” after Saint Francis of Assisi, reflecting his focus on humility and outreach to the marginalized",
+      "context": "Succession of Pope Francis",
+      "source": "grok",
+      "sourceDate": "2025-04-24T08:41:17.261263Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.752040"
+    },
+    {
+      "id": "a659bf4e-25db-4210-a296-7f50199d62fa",
+      "type": "idea",
+      "content": "Idea: continue Francis's progressive reforms or shift toward conservatism, influencing candidate likelihood",
+      "context": "Succession of Pope Francis",
+      "source": "grok",
+      "sourceDate": "2025-04-24T08:41:17.261263Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.757223"
+    },
+    {
+      "id": "a5222c41-4b39-41d5-a25b-905be010882a",
+      "type": "idea",
+      "content": "Idea: the frequency and duration of daily trips, as well as additional costs like parking and tolls, which can impact overall expenses",
+      "context": "Car and Driver Services in Hong Kong",
+      "source": "grok",
+      "sourceDate": "2025-04-13T03:35:29.507879Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.802758"
+    },
+    {
+      "id": "cbb91541-4119-4f27-825b-ed2afdb9c994",
+      "type": "idea",
+      "content": "Idea: create a table detailing the payment dates, principal left, interest rate, and payment dues for a $100 million loan provided on May 7, 2025, with a 10-year term, a 3",
+      "context": "Project Financing Loan Amortization Schedule",
+      "source": "grok",
+      "sourceDate": "2025-04-13T02:25:42.496943Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.806155"
+    },
+    {
+      "id": "47500469-baf9-4bff-9503-62024c7be3b8",
+      "type": "idea",
+      "content": "Idea: identify discrepancies or areas of concern and provide a summary of the company’s financial performance",
+      "context": "Financial Review of Solartia: Concerns and Performance Summary",
+      "source": "grok",
+      "sourceDate": "2025-04-09T02:21:50.163526Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.812417"
+    },
+    {
+      "id": "9c31f133-682c-43a9-a229-8e31aaf3e7a1",
+      "type": "idea",
+      "content": "Idea: list the payment made at the end of each year from 1 to 10",
+      "context": "Loan Payment Schedule Calculation",
+      "source": "grok",
+      "sourceDate": "2025-04-07T11:24:04.780594Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.822577"
+    },
+    {
+      "id": "f97ceb9e-ca1e-4635-a3d9-df8446cb769e",
+      "type": "decision",
+      "content": "Decided: sell USD at a discount could stem from several factors:",
+      "context": "SBLC Monetization for Investment Deals",
+      "source": "grok",
+      "sourceDate": "2025-04-07T00:14:36.633225Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.844511"
+    },
+    {
+      "id": "0dbdfd87-6039-43d4-a151-42ca75b51b46",
+      "type": "idea",
+      "content": "Idea: participate are bringing considerable capital",
+      "context": "SBLC Monetization for Investment Deals",
+      "source": "grok",
+      "sourceDate": "2025-04-07T00:14:36.633225Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.851062"
+    },
+    {
+      "id": "41ede5ec-2cca-499b-87ce-5fb143f2b73d",
+      "type": "technique",
+      "content": "Technique: estimate IRR by testing rates:",
+      "context": "Investment Return Percentage Calculation",
+      "source": "grok",
+      "sourceDate": "2025-04-01T13:41:33.163365Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.859891"
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+{
+  "items": [
+    {
+      "id": "b5e94d45-fd2c-420d-a683-5e8fa3cfb463",
+      "type": "preference",
+      "content": "Preference: your help in updating the attached LOI/Term Sheet",
+      "context": "LOI Update and Investment Terms",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-21T18:39:00.188336",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.441163"
+    },
+    {
+      "id": "904c3c23-9e17-4056-a32b-a86efc15d364",
+      "type": "technique",
+      "content": "Technique: download it using the link below:",
+      "context": "LOI Update and Investment Terms",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-21T18:39:00.188336",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.442267"
+    },
+    {
+      "id": "0f516f45-1e0f-41fe-946b-3d88d3567e77",
+      "type": "idea",
+      "content": "Idea: act as my legal and financial adviser for a corporate transaction",
+      "context": "LOI Update and Investment Terms",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-21T18:39:00.188336",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.442952"
+    },
+    {
+      "id": "eb9a538c-07aa-40e4-a7ba-90710772ef61",
+      "type": "preference",
+      "content": "Preference: your help in updating the attached Term Sheet",
+      "context": "Mana Capital Term Sheet",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-13T10:42:35.661048",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.448612"
+    },
+    {
+      "id": "e88c4f4b-fa81-457d-aa81-645d22016c71",
+      "type": "idea",
+      "content": "Idea: start a HoldCo called Mana Capital which will acquire Solartia",
+      "context": "Mana Capital Term Sheet",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-13T10:42:35.661048",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.450702"
+    },
+    {
+      "id": "0fa214e7-0272-4279-bd9f-382760360e94",
+      "type": "preference",
+      "content": "Preference: your help in updating the attached Term Sheet",
+      "context": "Document update summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-13T10:39:48.497679",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.452295"
+    },
+    {
+      "id": "92016aaa-149e-47cb-abff-d10f982ca397",
+      "type": "idea",
+      "content": "Idea: start a HoldCo called Mana Capital which will acquire Solartia",
+      "context": "Document update summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-13T10:39:48.497679",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.452708"
+    },
+    {
+      "id": "3b1e8f9b-ed8d-4bc6-a920-0de95b1c6143",
+      "type": "preference",
+      "content": "Preference: a bit more context about the startup to ensure the prototype aligns with your vision",
+      "context": "Startup Prototype Requirements",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-12T14:18:59.531227",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.457906"
+    },
+    {
+      "id": "7193ef2b-b6a7-4511-bc99-21025143dc77",
+      "type": "decision",
+      "content": "Decided: sample size for qualitative research as the TA process is time consuming",
+      "context": "IS Research Proposal Expansion",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:59:29.916904",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.471035"
+    },
+    {
+      "id": "172aefa4-2185-4bcc-9284-1259e9b1af43",
+      "type": "decision",
+      "content": "Decided: a number sufficient to illuminate a multifaceted story",
+      "context": "IS Research Proposal Expansion",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:59:29.916904",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.471050"
+    },
+    {
+      "id": "a9d763c6-cf74-48aa-96bf-00820c851f8b",
+      "type": "decision",
+      "content": "Decided: interpretive phenomenological analysis (IPA) and TA to understand the experience of employees with IS",
+      "context": "IS Research Proposal Expansion",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:59:29.916904",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.472566"
+    },
+    {
+      "id": "23c462b0-2c8f-4e3c-a03e-2bf2acedfb12",
+      "type": "lesson",
+      "content": "Learned: African American females who reported higher rates of discrimination but low levels of distress were most likely to have poor mental health outcomes and experience IS",
+      "context": "IS Research Proposal Expansion",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:59:29.916904",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.474493"
+    },
+    {
+      "id": "8b4a95e3-0d2f-4189-b926-c710cd49f8c7",
+      "type": "lesson",
+      "content": "Learned: high levels of neuroticism and conscientiousness were common among individuals reporting IS",
+      "context": "IS Research Proposal Expansion",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:59:29.916904",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.474503"
+    },
+    {
+      "id": "d9eb7be8-ca42-4105-bf71-9227a91da03b",
+      "type": "lesson",
+      "content": "Learned: that individuals who internalize the opinions of others are more likely to experience IS",
+      "context": "IS Research Proposal Expansion",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:59:29.916904",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.475635"
+    },
+    {
+      "id": "9e0b5b1b-9a93-4a8d-ac99-a52555f59f3f",
+      "type": "preference",
+      "content": "Preference: your help in adding an abstract that should be about 150 words, and then re-write the content so it's about 2600 words",
+      "context": "IS Research Proposal Expansion",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:59:29.916904",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.476195"
+    },
+    {
+      "id": "0c0303b4-8dc6-4902-b8e2-14cf794ff5f5",
+      "type": "idea",
+      "content": "Idea: give an answer that is more socially desirable (APA",
+      "context": "IS Research Proposal Expansion",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:59:29.916904",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.485632"
+    },
+    {
+      "id": "d2864b8f-5e5e-408c-ad61-ffe28362ff0f",
+      "type": "preference",
+      "content": "Preference: to get it down to 2500 words",
+      "context": "Word Count Reduction Help",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:29:14.867177",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.493304"
+    },
+    {
+      "id": "3853bd2b-981f-4199-8a11-201a859d4e82",
+      "type": "technique",
+      "content": "Technique: download the revised document from the link below:",
+      "context": "Word Count Reduction Help",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:29:14.867177",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.494057"
+    },
+    {
+      "id": "0221552b-e4e6-47b1-81aa-7b097f940d4d",
+      "type": "technique",
+      "content": "Technique: download the revised document from the link below:",
+      "context": "Word Count Reduction Help",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:29:14.867177",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.494069"
+    },
+    {
+      "id": "2b20e002-3105-493b-88e0-abb7fe3c4d1b",
+      "type": "idea",
+      "content": "Idea: begin reducing word count while preserving meaning and content",
+      "context": "Word Count Reduction Help",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:29:14.867177",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.494404"
+    },
+    {
+      "id": "ed4f7491-0727-493b-8139-0cba36d679b1",
+      "type": "preference",
+      "content": "Preference: to get it down to 2500 words",
+      "context": "Concise Research Paper Editing",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:27:15.148299",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.496519"
+    },
+    {
+      "id": "409ac44a-9ba5-450e-a09c-d157bd5dd7cd",
+      "type": "preference",
+      "content": "Preference: it to be 2500 words",
+      "context": "Concise Research Paper Editing",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:27:15.148299",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.496537"
+    },
+    {
+      "id": "7554c4fa-73a9-4dc6-9bd2-3dba720abfb6",
+      "type": "technique",
+      "content": "Technique: download the revised document [here](sandbox:/mnt/data/Stephs_Paper_Concise",
+      "context": "Concise Research Paper Editing",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:27:15.148299",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.497007"
+    },
+    {
+      "id": "3a829269-0f65-45a7-b921-6d1b29ff27bc",
+      "type": "technique",
+      "content": "Technique: download it [here](sandbox:/mnt/data/Stephs_Paper_Final",
+      "context": "Concise Research Paper Editing",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:27:15.148299",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.497022"
+    },
+    {
+      "id": "bcb31afa-bdc3-45f5-af1b-5531026ffc47",
+      "type": "idea",
+      "content": "Idea: proceed with additional cuts to reach the target of 2,500 words",
+      "context": "Concise Research Paper Editing",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T21:27:15.148299",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.497365"
+    },
+    {
+      "id": "ae6c235f-be09-46c2-9157-aec0eadcb6df",
+      "type": "technique",
+      "content": "Technique: download the revised document using the link below:",
+      "context": "Research Proposal Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T18:57:02.113567",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.499815"
+    },
+    {
+      "id": "b5930674-c621-44c1-ba7d-4f62c664d9c1",
+      "type": "technique",
+      "content": "Technique: download the revised version using the link below:",
+      "context": "Research Proposal Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-08T18:57:02.113567",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.499833"
+    },
+    {
+      "id": "0ab40fc4-50ff-43e1-af8d-6bd0b5f77e7c",
+      "type": "decision",
+      "content": "Decided: making to me as the new owner",
+      "context": "CEO Consultancy Agreement Draft",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-06T13:43:43.524738",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.507385"
+    },
+    {
+      "id": "b156b45e-f0b5-4a88-b872-15ff90e55c81",
+      "type": "decision",
+      "content": "Decided: makers including banks, governments etc",
+      "context": "CEO Consultancy Agreement Draft",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-06T13:43:43.524738",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.507401"
+    },
+    {
+      "id": "86a31c2d-ce49-4cab-a4de-ce01e7ce6a31",
+      "type": "idea",
+      "content": "Idea: the bonus amounts (€1m and €1",
+      "context": "CEO Consultancy Agreement Draft",
+      "source": "chatgpt",
+      "sourceDate": "2024-12-06T13:43:43.524738",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.517507"
+    }
+  ]
+}

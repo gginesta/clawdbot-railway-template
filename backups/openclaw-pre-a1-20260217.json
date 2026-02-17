@@ -1,0 +1,627 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.9",
+    "lastTouchedAt": "2026-02-17T11:52:17.828Z"
+  },
+  "env": {
+    "BRAVE_API_KEY": "BSAJeckbvPeqXEjMgV7JR__7SB6_zAB",
+    "OPENROUTER_API_KEY": "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",
+    "OPENAI_API_KEY": "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",
+    "NOTION_API_KEY": "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",
+    "XAI_API_KEY": "xai-eayTPgW1DHgG8I7QrQojytWCk7aHjaclor1XRcJyzn8j0ioH1p3eLXUO9BcJLofakFtQ4l2w45SrxwnG"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-01T12:12:49.445Z",
+    "lastRunVersion": "2026.1.30",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "browser": {
+    "enabled": true,
+    "executablePath": "/usr/bin/brave-browser",
+    "headless": true,
+    "noSandbox": true,
+    "attachOnly": true,
+    "defaultProfile": "openclaw"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "qwen-portal:default": {
+        "provider": "qwen-portal",
+        "mode": "oauth"
+      },
+      "openrouter:default": {
+        "provider": "openrouter",
+        "mode": "api_key"
+      },
+      "openai:default": {
+        "provider": "openai",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "qwen-portal": {
+        "baseUrl": "https://portal.qwen.ai/v1",
+        "apiKey": "qwen-oauth",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "coder-model",
+            "name": "Qwen Coder",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "vision-model",
+            "name": "Qwen Vision",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "apiKey": "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",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "anthropic/claude-3.5-haiku",
+            "name": "Claude 3.5 Haiku (OR)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "google/gemini-2.5-flash",
+            "name": "Gemini 2.5 Flash (OR)",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1048576,
+            "maxTokens": 65536
+          },
+          {
+            "id": "meta-llama/llama-3.3-70b-instruct",
+            "name": "Llama 3.3 70B (OR)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192
+          },
+          {
+            "id": "perplexity/sonar-pro-search",
+            "name": "Perplexity Sonar Pro (OR)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "perplexity/sonar-deep-research",
+            "name": "Perplexity Deep Research (OR)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "z-ai/glm-5",
+            "name": "GLM-5 (OR)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "anthropic/claude-sonnet-4-0",
+            "name": "Claude Sonnet 4 (OR)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "openai": {
+        "baseUrl": "https://api.openai.com/v1",
+        "apiKey": "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",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "gpt-4o",
+            "name": "GPT-4o",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "gpt-4o-mini",
+            "name": "GPT-4o Mini",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "o1",
+            "name": "o1",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 100000
+          }
+        ]
+      },
+      "xai": {
+        "baseUrl": "https://api.x.ai/v1",
+        "apiKey": "xai-eayTPgW1DHgG8I7QrQojytWCk7aHjaclor1XRcJyzn8j0ioH1p3eLXUO9BcJLofakFtQ4l2w45SrxwnG",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "grok-3",
+            "name": "Grok 3",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192
+          },
+          {
+            "id": "grok-3-fast",
+            "name": "Grok 3 Fast",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "openai-codex": {
+        "baseUrl": "https://api.openai.com/v1",
+        "apiKey": "openai-codex-oauth",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "gpt-5.3",
+            "name": "GPT-5.3 (Codex)",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 128000
+          },
+          {
+            "id": "gpt-5.2",
+            "name": "GPT-5.2 (Codex)",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 65536
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-opus-4-6",
+        "fallbacks": [
+          "openrouter/anthropic/claude-3.5-haiku",
+          "openrouter/meta-llama/llama-3.3-70b-instruct",
+          "xai/grok-3",
+          "openai-codex/gpt-5.2"
+        ]
+      },
+      "imageModel": {
+        "primary": "openrouter/google/gemini-2.5-flash",
+        "fallbacks": [
+          "anthropic/claude-opus-4-6",
+          "openai-codex/gpt-5.2"
+        ]
+      },
+      "models": {
+        "qwen-portal/coder-model": {
+          "alias": "qwen"
+        },
+        "qwen-portal/vision-model": {},
+        "anthropic/claude-sonnet-4-0": {},
+        "openai-codex/gpt-5.2": {},
+        "xai/grok-3": {
+          "alias": "grok"
+        },
+        "openrouter/meta-llama/llama-3.3-70b-instruct": {},
+        "google/gemini-2.5-flash": {
+          "alias": "flash"
+        },
+        "anthropic/claude-opus-4-6": {
+          "alias": "opus"
+        },
+        "openai-codex/gpt-5.3": {
+          "alias": "codex"
+        },
+        "anthropic/claude-opus-4-5": {
+          "alias": "opus"
+        },
+        "xai/grok-3-fast": {
+          "alias": "grok-fast"
+        },
+        "openrouter/perplexity/sonar-pro-search": {
+          "alias": "sonar"
+        },
+        "openrouter/perplexity/sonar-deep-research": {
+          "alias": "deep-research"
+        },
+        "openrouter/z-ai/glm-5": {
+          "alias": "glm5"
+        },
+        "openrouter/anthropic/claude-3.5-haiku": {
+          "alias": "haiku"
+        }
+      },
+      "workspace": "/data/workspace",
+      "memorySearch": {
+        "extraPaths": [
+          "/data/shared/memory-vault"
+        ],
+        "provider": "openai",
+        "remote": {
+          "apiKey": "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"
+        },
+        "model": "text-embedding-3-small"
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "4h"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "humanDelay": {
+        "mode": "natural"
+      },
+      "heartbeat": {
+        "every": "1h",
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8,
+        "archiveAfterMinutes": 120,
+        "model": {
+          "primary": "openrouter/anthropic/claude-3.5-haiku",
+          "fallbacks": [
+            "xai/grok-3-fast",
+            "openai/gpt-4o-mini",
+            "openai-codex/gpt-5.2"
+          ]
+        },
+        "thinking": "high"
+      }
+    },
+    "list": [
+      {
+        "id": "main"
+      }
+    ]
+  },
+  "tools": {
+    "subagents": {
+      "tools": {
+        "allow": [
+          "read",
+          "write",
+          "edit",
+          "web_search",
+          "web_fetch",
+          "memory_search",
+          "memory_get"
+        ],
+        "deny": [
+          "exec",
+          "bash",
+          "process",
+          "gateway",
+          "cron",
+          "nodes",
+          "browser"
+        ]
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerAllowFrom": [
+      "telegram:1097408992",
+      "779143499655151646"
+    ]
+  },
+  "hooks": {
+    "enabled": true,
+    "path": "/hooks",
+    "token": "HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU",
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": "8292515315:AAETOvDJgl4r13qF3_32qhpn8h7jIOVJQDA",
+      "groups": {
+        "-5298647132": {
+          "requireMention": false,
+          "enabled": true
+        }
+      },
+      "groupAllowFrom": [
+        "-5298647132"
+      ],
+      "groupPolicy": "allowlist",
+      "streamMode": "partial"
+    },
+    "discord": {
+      "enabled": true,
+      "token": "MTQ2ODE2MjUyMDk1ODEwNzc4Mw.G1C6of.TkIdS4yB_CaaiVx3zPesOtvvbO7ty577Xils6I",
+      "allowBots": true,
+      "groupPolicy": "open",
+      "blockStreaming": true,
+      "blockStreamingCoalesce": {
+        "minChars": 1500,
+        "idleMs": 1500
+      },
+      "guilds": {
+        "1468161542473121932": {
+          "slug": "tmnt-squad",
+          "requireMention": true,
+          "channels": {
+            "brinc-general": {
+              "allow": true
+            },
+            "brinc-private": {
+              "allow": true
+            },
+            "command-center": {
+              "allow": true
+            },
+            "squad-updates": {
+              "allow": true
+            },
+            "1469601487566012471": {
+              "allow": true
+            },
+            "launchpad-general": {
+              "allow": true
+            },
+            "launchpad-private": {
+              "allow": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "auto",
+    "controlUi": {
+      "dangerouslyDisableDeviceAuth": false
+    },
+    "auth": {
+      "mode": "token",
+      "token": "0e98d8d6b0edf64d6af7b0751b496a1dfdfeff5ce454c1d16e513053557e5173",
+      "allowTailscale": true
+    },
+    "tailscale": {
+      "mode": "serve",
+      "resetOnExit": false
+    }
+  },
+  "memory": {
+    "backend": "qmd",
+    "citations": "auto",
+    "qmd": {
+      "command": "/usr/local/bin/qmd",
+      "includeDefaultMemory": true,
+      "paths": [
+        {
+          "path": "/data/shared/memory-vault",
+          "name": "shared-vault",
+          "pattern": "**/*.md"
+        }
+      ],
+      "sessions": {
+        "enabled": true,
+        "retentionDays": 30
+      },
+      "update": {
+        "interval": "5m",
+        "debounceMs": 15000,
+        "onBoot": true
+      },
+      "limits": {
+        "maxResults": 8,
+        "timeoutMs": 30000
+      }
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      },
+      "qwen-portal-auth": {
+        "enabled": true
+      },
+      "discord": {
+        "enabled": true
+      }
+    }
+  }
+}

@@ -1,0 +1,1532 @@
+[
+  {
+    "file": "/data/workspace/MEMORY.md",
+    "type": "text",
+    "lines": "146"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-11.md",
+    "type": "text",
+    "lines": "150"
+  },
+  {
+    "file": "/data/workspace/memory/para_curation_report.json",
+    "type": "json",
+    "lines": "4"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-12-0343.md",
+    "type": "text",
+    "lines": "100"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-12.md",
+    "type": "text",
+    "lines": "141"
+  },
+  {
+    "file": "/data/workspace/memory/refs/clawvault-analysis.md",
+    "type": "text",
+    "lines": "40"
+  },
+  {
+    "file": "/data/workspace/memory/refs/backups.md",
+    "type": "text",
+    "lines": "17"
+  },
+  {
+    "file": "/data/workspace/memory/refs/syncthing.md",
+    "type": "text",
+    "lines": "33"
+  },
+  {
+    "file": "/data/workspace/memory/refs/skills.md",
+    "type": "text",
+    "lines": "22"
+  },
+  {
+    "file": "/data/workspace/memory/refs/polymarket-trading-research.md",
+    "type": "text",
+    "lines": "245"
+  },
+  {
+    "file": "/data/workspace/memory/refs/leonardo-deployment-postmortem.md",
+    "type": "text",
+    "lines": "139"
+  },
+  {
+    "file": "/data/workspace/memory/refs/openclaw-community-research.md",
+    "type": "text",
+    "lines": "66"
+  },
+  {
+    "file": "/data/workspace/memory/refs/lessons-learned.md",
+    "type": "text",
+    "lines": "132"
+  },
+  {
+    "file": "/data/workspace/memory/refs/content-pipeline.md",
+    "type": "text",
+    "lines": "21"
+  },
+  {
+    "file": "/data/workspace/memory/refs/infrastructure.md",
+    "type": "text",
+    "lines": "95"
+  },
+  {
+    "file": "/data/workspace/memory/refs/models.md",
+    "type": "text",
+    "lines": "56"
+  },
+  {
+    "file": "/data/workspace/memory/refs/standup-process.md",
+    "type": "text",
+    "lines": "56"
+  },
+  {
+    "file": "/data/workspace/memory/refs/todoist-system.md",
+    "type": "text",
+    "lines": "44"
+  },
+  {
+    "file": "/data/workspace/memory/refs/credentials.md",
+    "type": "text",
+    "lines": "16"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-14.md",
+    "type": "text",
+    "lines": "32"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-13.md",
+    "type": "text",
+    "lines": "47"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-15.md",
+    "type": "text",
+    "lines": "107"
+  },
+  {
+    "file": "/data/workspace/memory/update-notes/2026-02-11.md",
+    "type": "text",
+    "lines": "29"
+  },
+  {
+    "file": "/data/workspace/memory/update-notes/2026-02-12.md",
+    "type": "text",
+    "lines": "50"
+  },
+  {
+    "file": "/data/workspace/memory/update-notes/2026-02-14.md",
+    "type": "text",
+    "lines": "134"
+  },
+  {
+    "file": "/data/workspace/memory/update-notes/2026-02-13.md",
+    "type": "text",
+    "lines": "123"
+  },
+  {
+    "file": "/data/workspace/memory/update-notes/2026-02-08.md",
+    "type": "text",
+    "lines": "39"
+  },
+  {
+    "file": "/data/workspace/memory/update-notes/2026-02-09.md",
+    "type": "text",
+    "lines": "65"
+  },
+  {
+    "file": "/data/workspace/memory/update-notes/2026-02-10.md",
+    "type": "text",
+    "lines": "37"
+  },
+  {
+    "file": "/data/workspace/memory/security-audit-latest.md",
+    "type": "text",
+    "lines": "55"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-12-glm5-test.md",
+    "type": "text",
+    "lines": "29"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-03.md",
+    "type": "text",
+    "lines": "389"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-13-raw.md",
+    "type": "text",
+    "lines": "204"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-04.md",
+    "type": "text",
+    "lines": "526"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-08.md",
+    "type": "text",
+    "lines": "93"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-02.md",
+    "type": "text",
+    "lines": "30"
+  },
+  {
+    "file": "/data/workspace/memory/archive/MEMORY-archived-sections.md",
+    "type": "text",
+    "lines": "173"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-06.md",
+    "type": "text",
+    "lines": "77"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-11-0803.md",
+    "type": "text",
+    "lines": "142"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-10.md",
+    "type": "text",
+    "lines": "219"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-01-31.md",
+    "type": "text",
+    "lines": "190"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-07.md",
+    "type": "text",
+    "lines": "106"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-05.md",
+    "type": "text",
+    "lines": "494"
+  },
+  {
+    "file": "/data/workspace/memory/archive/2026-02-01.md",
+    "type": "text",
+    "lines": "138"
+  },
+  {
+    "file": "/data/workspace/memory/archive/SECURITY-HARDENING-PLAN.md",
+    "type": "text",
+    "lines": "145"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-09.md",
+    "type": "text",
+    "lines": "24"
+  },
+  {
+    "file": "/data/workspace/memory/standup-2026-02-15.md",
+    "type": "text",
+    "lines": "57"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-10.md",
+    "type": "text",
+    "lines": "219"
+  },
+  {
+    "file": "/data/workspace/memory/x-thread-repo.json",
+    "type": "json",
+    "lines": "8"
+  },
+  {
+    "file": "/data/workspace/memory/2026-02-12-0347.md",
+    "type": "text",
+    "lines": "57"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/ai-history-master-decisions-lessons.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/extraction-candidates-2026-02-03.md",
+    "type": "text",
+    "lines": "62"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/DISASTER-RECOVERY.md",
+    "type": "text",
+    "lines": "342"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/ai-history-coverage.md",
+    "type": "text",
+    "lines": "42"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/quality-candidates-2026-02-03.md",
+    "type": "text",
+    "lines": "792"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/ai-history-personal-decisions-lessons.md",
+    "type": "text",
+    "lines": "54"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/AGENT-DEPLOYMENT-GUIDE.md",
+    "type": "text",
+    "lines": "146"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/ai-history-distillation-plan.md",
+    "type": "text",
+    "lines": "51"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/ai-history-preference-candidates.md",
+    "type": "text",
+    "lines": "176"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/ai-history-preferences-selected.md",
+    "type": "text",
+    "lines": "72"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/extraction-report-2026-02-03.md",
+    "type": "text",
+    "lines": "34"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/resources/session-log-2026-02-02.md",
+    "type": "text",
+    "lines": "81"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/PARA-GUIDE.md",
+    "type": "text",
+    "lines": "110"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/MODEL-CONFIGURATION.md",
+    "type": "text",
+    "lines": "56"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/LEONARDO-MODEL-CONFIG.md",
+    "type": "text",
+    "lines": "23"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/DISCORD-MESSAGE-ORDERING-FIX.md",
+    "type": "text",
+    "lines": "52"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/TIMEZONE-STANDARD.md",
+    "type": "text",
+    "lines": "19"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/OPERATIONAL-GUIDELINES.md",
+    "type": "text",
+    "lines": "141"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/WEBHOOK-POLICY.md",
+    "type": "text",
+    "lines": "22"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/AGENT-DEPLOYMENT-GUIDE.md",
+    "type": "text",
+    "lines": "293"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/SUB-AGENT-OPERATING-STANDARD.md",
+    "type": "text",
+    "lines": "947"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/squad/MODEL-ROUTING-GUIDE.md",
+    "type": "text",
+    "lines": "45"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/memory-vault/summary.md",
+    "type": "text",
+    "lines": "44"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/memory-vault/items.json",
+    "type": "json",
+    "lines": "67"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/marketing/social-audit-raw.md",
+    "type": "text",
+    "lines": "168"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/marketing/guillermo-linkedin-strategy-peach.md",
+    "type": "text",
+    "lines": "232"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/TODO.md",
+    "type": "text",
+    "lines": "55"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/drive-repo-plan-qualifying-questions.md",
+    "type": "text",
+    "lines": "82"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/summary.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/daisy/MEMORY.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/daisy/BIO.md",
+    "type": "text",
+    "lines": "40"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/daisy/SOUL.md",
+    "type": "text",
+    "lines": "25"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/best-practices/SUB-AGENT-DESIGN.md",
+    "type": "text",
+    "lines": "63"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/MEMORY.md",
+    "type": "text",
+    "lines": "11"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/BIO.md",
+    "type": "text",
+    "lines": "63"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/SOUL.md",
+    "type": "text",
+    "lines": "106"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/toad/MEMORY.md",
+    "type": "text",
+    "lines": "10"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/toad/BIO.md",
+    "type": "text",
+    "lines": "77"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/toad/SOUL.md",
+    "type": "text",
+    "lines": "84"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/luigi/MEMORY.md",
+    "type": "text",
+    "lines": "11"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/luigi/BIO.md",
+    "type": "text",
+    "lines": "91"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/luigi/SOUL.md",
+    "type": "text",
+    "lines": "121"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/MEMORY.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/BIO.md",
+    "type": "text",
+    "lines": "38"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/SOUL.md",
+    "type": "text",
+    "lines": "25"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/toadette/MEMORY.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/toadette/BIO.md",
+    "type": "text",
+    "lines": "37"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/toadette/SOUL.md",
+    "type": "text",
+    "lines": "25"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/mario/MEMORY.md",
+    "type": "text",
+    "lines": "13"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/mario/BIO.md",
+    "type": "text",
+    "lines": "33"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/mario/SOUL.md",
+    "type": "text",
+    "lines": "24"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/bowser/MEMORY.md",
+    "type": "text",
+    "lines": "11"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/bowser/BIO.md",
+    "type": "text",
+    "lines": "77"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/bowser/SOUL.md",
+    "type": "text",
+    "lines": "76"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/TEAM-STRUCTURE.md",
+    "type": "text",
+    "lines": "83"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/MEMORY.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/BIO.md",
+    "type": "text",
+    "lines": "36"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/SOUL.md",
+    "type": "text",
+    "lines": "25"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/peach/BIO.sync-conflict-20260207-085604-3SM5RVG.md",
+    "type": "text",
+    "lines": "38"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/peach/MEMORY.md",
+    "type": "text",
+    "lines": "17"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/peach/BIO.md",
+    "type": "text",
+    "lines": "41"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/peach/SOUL.md",
+    "type": "text",
+    "lines": "54"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/wario/MEMORY.md",
+    "type": "text",
+    "lines": "13"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/wario/BIO.md",
+    "type": "text",
+    "lines": "34"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/wario/SOUL.md",
+    "type": "text",
+    "lines": "22"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/raphael/MEMORY.md",
+    "type": "text",
+    "lines": "69"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/raphael/BIO.md",
+    "type": "text",
+    "lines": "67"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/team/raphael/SOUL.md",
+    "type": "text",
+    "lines": "181"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/brinc/items.json",
+    "type": "json",
+    "lines": "43"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/cerebro/summary.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/molty-productivity-system/INTEGRATION-PLAN.md",
+    "type": "text",
+    "lines": "233"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/molty-productivity-system/PROJECT-SCOPE.md",
+    "type": "text",
+    "lines": "168"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/comms/summary.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/README.md",
+    "type": "text",
+    "lines": "16"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/mana-capital/summary.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/personal/summary.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/personal/items.json",
+    "type": "json",
+    "lines": "43"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/master/summary.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/master/items.json",
+    "type": "json",
+    "lines": "55"
+  },
+  {
+    "file": "/data/shared/memory-vault/knowledge/projects/tinker-labs/summary.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/shared/memory-vault/tacit/preferences.md",
+    "type": "text",
+    "lines": "59"
+  },
+  {
+    "file": "/data/shared/memory-vault/schemas/items.schema.json",
+    "type": "json",
+    "lines": "83"
+  },
+  {
+    "file": "/data/shared/memory-vault/scripts/PROCESS-AI-EXPORTS.md",
+    "type": "text",
+    "lines": "206"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/hotkeys.json",
+    "type": "json",
+    "lines": "10"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/appearance.json",
+    "type": "json",
+    "lines": "0"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/workspace.json",
+    "type": "json",
+    "lines": "236"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/plugins/obsidian-git/manifest.json",
+    "type": "json",
+    "lines": "10"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/plugins/obsidian-git/data.json",
+    "type": "json",
+    "lines": "67"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/plugins/obsidian-tweet-to-markdown/manifest.json",
+    "type": "json",
+    "lines": "11"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/plugins/obsidian-tweet-to-markdown/data.json",
+    "type": "json",
+    "lines": "26"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/community-plugins.json",
+    "type": "json",
+    "lines": "3"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/app.json",
+    "type": "json",
+    "lines": "6"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/graph.json",
+    "type": "json",
+    "lines": "21"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/core-plugins.json",
+    "type": "json",
+    "lines": "32"
+  },
+  {
+    "file": "/data/shared/memory-vault/.obsidian/daily-notes.json",
+    "type": "json",
+    "lines": "4"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/README.md",
+    "type": "text",
+    "lines": "58"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2024-03.md",
+    "type": "text",
+    "lines": "21"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2024-12.json",
+    "type": "json",
+    "lines": "611"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2025-01.json",
+    "type": "json",
+    "lines": "93"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2025-01.md",
+    "type": "text",
+    "lines": "31"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2023-07.md",
+    "type": "text",
+    "lines": "44"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2025-09.json",
+    "type": "json",
+    "lines": "54"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2025-02.json",
+    "type": "json",
+    "lines": "159"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2025-02.md",
+    "type": "text",
+    "lines": "26"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2023-07.json",
+    "type": "json",
+    "lines": "142"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2024-03.json",
+    "type": "json",
+    "lines": "48"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2023-08.json",
+    "type": "json",
+    "lines": "48"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-001.json",
+    "type": "json",
+    "lines": "21"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2024-12.md",
+    "type": "text",
+    "lines": "94"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2024-11.md",
+    "type": "text",
+    "lines": "61"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2024-11.json",
+    "type": "json",
+    "lines": "250"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2023-08.md",
+    "type": "text",
+    "lines": "24"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2025-09.md",
+    "type": "text",
+    "lines": "20"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/summary-2026-01.md",
+    "type": "text",
+    "lines": "144"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/claude/processed/items-2026-01.json",
+    "type": "json",
+    "lines": "1112"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-10.json",
+    "type": "json",
+    "lines": "138"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-11.json",
+    "type": "json",
+    "lines": "437"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-07.json",
+    "type": "json",
+    "lines": "371"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-05.md",
+    "type": "text",
+    "lines": "44"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-03.md",
+    "type": "text",
+    "lines": "166"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-06.json",
+    "type": "json",
+    "lines": "269"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-09.json",
+    "type": "json",
+    "lines": "430"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-04.json",
+    "type": "json",
+    "lines": "218"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-02.json",
+    "type": "json",
+    "lines": "482"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-02.md",
+    "type": "text",
+    "lines": "51"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-11.md",
+    "type": "text",
+    "lines": "143"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-07.md",
+    "type": "text",
+    "lines": "94"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-08.json",
+    "type": "json",
+    "lines": "35"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-12.md",
+    "type": "text",
+    "lines": "88"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-10.md",
+    "type": "text",
+    "lines": "98"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-05.json",
+    "type": "json",
+    "lines": "127"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-12.json",
+    "type": "json",
+    "lines": "144"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-001.json",
+    "type": "json",
+    "lines": "26"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2025-03.json",
+    "type": "json",
+    "lines": "829"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-06.md",
+    "type": "unknown",
+    "lines": "0"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-04.md",
+    "type": "text",
+    "lines": "134"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-08.md",
+    "type": "text",
+    "lines": "44"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2025-09.md",
+    "type": "text",
+    "lines": "103"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/summary-2026-01.md",
+    "type": "text",
+    "lines": "107"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/grok/processed/items-2026-01.json",
+    "type": "json",
+    "lines": "240"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/PROCESSING_REPORT.md",
+    "type": "text",
+    "lines": "28"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/INDEX.md",
+    "type": "text",
+    "lines": "153"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-10.json",
+    "type": "json",
+    "lines": "390"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-09.md",
+    "type": "text",
+    "lines": "52"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-11.json",
+    "type": "json",
+    "lines": "590"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-09.md",
+    "type": "text",
+    "lines": "24"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-03.md",
+    "type": "text",
+    "lines": "99"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-07.json",
+    "type": "json",
+    "lines": "932"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-05.md",
+    "type": "text",
+    "lines": "86"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-12.json",
+    "type": "json",
+    "lines": "489"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-04.json",
+    "type": "json",
+    "lines": "302"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-03.json",
+    "type": "json",
+    "lines": "180"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-10.md",
+    "type": "text",
+    "lines": "188"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-01.json",
+    "type": "json",
+    "lines": "340"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-01.md",
+    "type": "text",
+    "lines": "94"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-03.md",
+    "type": "text",
+    "lines": "120"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-07.md",
+    "type": "text",
+    "lines": "91"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-06.json",
+    "type": "json",
+    "lines": "953"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-02.json",
+    "type": "json",
+    "lines": "339"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-06.json",
+    "type": "json",
+    "lines": "345"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-07.md",
+    "type": "text",
+    "lines": "33"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-05.md",
+    "type": "text",
+    "lines": "85"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-04.md",
+    "type": "text",
+    "lines": "73"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-09.json",
+    "type": "json",
+    "lines": "844"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-12.json",
+    "type": "json",
+    "lines": "450"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-04.json",
+    "type": "json",
+    "lines": "96"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-01.json",
+    "type": "json",
+    "lines": "430"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-04.json",
+    "type": "json",
+    "lines": "345"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-02.json",
+    "type": "json",
+    "lines": "396"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-02.md",
+    "type": "text",
+    "lines": "88"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-07.json",
+    "type": "json",
+    "lines": "182"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-11.md",
+    "type": "text",
+    "lines": "101"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-11.md",
+    "type": "text",
+    "lines": "98"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-05.json",
+    "type": "json",
+    "lines": "331"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-07.md",
+    "type": "text",
+    "lines": "174"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-03.json",
+    "type": "json",
+    "lines": "384"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-08.json",
+    "type": "json",
+    "lines": "149"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-05.json",
+    "type": "json",
+    "lines": "306"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-08.json",
+    "type": "json",
+    "lines": "405"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-12.md",
+    "type": "text",
+    "lines": "85"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-10.json",
+    "type": "json",
+    "lines": "582"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-10.md",
+    "type": "text",
+    "lines": "107"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-05.md",
+    "type": "text",
+    "lines": "81"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-05.json",
+    "type": "json",
+    "lines": "364"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-06.md",
+    "type": "text",
+    "lines": "80"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-02.md",
+    "type": "text",
+    "lines": "74"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-06.json",
+    "type": "json",
+    "lines": "337"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-01.md",
+    "type": "text",
+    "lines": "90"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-06.md",
+    "type": "text",
+    "lines": "92"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-03.md",
+    "type": "text",
+    "lines": "66"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-001.json",
+    "type": "json",
+    "lines": "41"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-12.md",
+    "type": "text",
+    "lines": "111"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-11.md",
+    "type": "text",
+    "lines": "101"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-03.json",
+    "type": "json",
+    "lines": "709"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-06.md",
+    "type": "text",
+    "lines": "190"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-09.json",
+    "type": "json",
+    "lines": "231"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-04.md",
+    "type": "text",
+    "lines": "33"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-04.md",
+    "type": "text",
+    "lines": "69"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-11.json",
+    "type": "json",
+    "lines": "167"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-10.md",
+    "type": "text",
+    "lines": "94"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-08.json",
+    "type": "json",
+    "lines": "197"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-08.md",
+    "type": "text",
+    "lines": "59"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-08.md",
+    "type": "text",
+    "lines": "40"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-10.json",
+    "type": "json",
+    "lines": "385"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-08.md",
+    "type": "text",
+    "lines": "60"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-09.json",
+    "type": "json",
+    "lines": "138"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-11.json",
+    "type": "json",
+    "lines": "431"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-09.md",
+    "type": "text",
+    "lines": "131"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-07.json",
+    "type": "json",
+    "lines": "274"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/summary-2026-01.md",
+    "type": "text",
+    "lines": "62"
+  },
+  {
+    "file": "/data/shared/memory-vault/ai-history/chatgpt/processed/items-2026-01.json",
+    "type": "json",
+    "lines": "240"
+  },
+  {
+    "file": "/data/shared/memory-vault/README.md",
+    "type": "text",
+    "lines": "149"
+  },
+  {
+    "file": "/data/shared/memory-vault/daily/2026-02-03.md",
+    "type": "text",
+    "lines": "28"
+  },
+  {
+    "file": "/data/shared/memory-vault/daily/2026-02-04-productivity-system-scope.md",
+    "type": "text",
+    "lines": "173"
+  },
+  {
+    "file": "/data/shared/memory-vault/daily/2026/02/2026-02-03.md",
+    "type": "text",
+    "lines": "30"
+  },
+  {
+    "file": "/data/shared/memory-vault/daily/2026/02/2026-02-02.md",
+    "type": "text",
+    "lines": "35"
+  },
+  {
+    "file": "/data/shared/memory-vault/daily/2026/02/2026-02-01.md",
+    "type": "text",
+    "lines": "28"
+  },
+  {
+    "file": "/data/shared/memory-vault/templates/import-chatgpt.md",
+    "type": "text",
+    "lines": "75"
+  },
+  {
+    "file": "/data/shared/memory-vault/templates/items-template.json",
+    "type": "json",
+    "lines": "19"
+  },
+  {
+    "file": "/data/shared/memory-vault/templates/summary-template.md",
+    "type": "text",
+    "lines": "33"
+  },
+  {
+    "file": "/data/shared/memory-vault/templates/daily-template.md",
+    "type": "text",
+    "lines": "28"
+  },
+  {
+    "file": "/data/workspace/memory/refs/clawvault-analysis.md",
+    "type": "text",
+    "lines": "40"
+  },
+  {
+    "file": "/data/workspace/memory/refs/backups.md",
+    "type": "text",
+    "lines": "17"
+  },
+  {
+    "file": "/data/workspace/memory/refs/syncthing.md",
+    "type": "text",
+    "lines": "33"
+  },
+  {
+    "file": "/data/workspace/memory/refs/skills.md",
+    "type": "text",
+    "lines": "22"
+  },
+  {
+    "file": "/data/workspace/memory/refs/polymarket-trading-research.md",
+    "type": "text",
+    "lines": "245"
+  },
+  {
+    "file": "/data/workspace/memory/refs/leonardo-deployment-postmortem.md",
+    "type": "text",
+    "lines": "139"
+  },
+  {
+    "file": "/data/workspace/memory/refs/openclaw-community-research.md",
+    "type": "text",
+    "lines": "66"
+  },
+  {
+    "file": "/data/workspace/memory/refs/lessons-learned.md",
+    "type": "text",
+    "lines": "132"
+  },
+  {
+    "file": "/data/workspace/memory/refs/content-pipeline.md",
+    "type": "text",
+    "lines": "21"
+  },
+  {
+    "file": "/data/workspace/memory/refs/infrastructure.md",
+    "type": "text",
+    "lines": "95"
+  },
+  {
+    "file": "/data/workspace/memory/refs/models.md",
+    "type": "text",
+    "lines": "56"
+  },
+  {
+    "file": "/data/workspace/memory/refs/standup-process.md",
+    "type": "text",
+    "lines": "56"
+  },
+  {
+    "file": "/data/workspace/memory/refs/todoist-system.md",
+    "type": "text",
+    "lines": "44"
+  },
+  {
+    "file": "/data/workspace/memory/refs/credentials.md",
+    "type": "text",
+    "lines": "16"
+  },
+  {
+    "file": "/data/workspace/docs/DEPLOYMENT-LESSONS-LEONARDO.md",
+    "type": "text",
+    "lines": "199"
+  },
+  {
+    "file": "/data/workspace/docs/DIY-UNBROWSE-MVP.md",
+    "type": "text",
+    "lines": "138"
+  },
+  {
+    "file": "/data/workspace/docs/openclaw-best-practices.md",
+    "type": "text",
+    "lines": "748"
+  },
+  {
+    "file": "/data/workspace/docs/qmd-standardization-plan.md",
+    "type": "text",
+    "lines": "77"
+  },
+  {
+    "file": "/data/workspace/docs/STANDUP-RULES.md",
+    "type": "text",
+    "lines": "14"
+  },
+  {
+    "file": "/data/workspace/docs/qmd_indexing_strategy.md",
+    "type": "text",
+    "lines": "58"
+  },
+  {
+    "file": "/data/workspace/docs/openclaw-railway-setup-guide.md",
+    "type": "text",
+    "lines": "427"
+  },
+  {
+    "file": "/data/workspace/docs/CODEX-INTEGRATION-PLAN.md",
+    "type": "text",
+    "lines": "941"
+  },
+  {
+    "file": "/data/workspace/docs/qmd_migration_report_template.md",
+    "type": "text",
+    "lines": "56"
+  },
+  {
+    "file": "/data/workspace/docs/SYNCTHING-AGENT-SETUP.md",
+    "type": "text",
+    "lines": "125"
+  },
+  {
+    "file": "/data/workspace/docs/qmd_migration_20260216_report.md",
+    "type": "text",
+    "lines": "39"
+  },
+  {
+    "file": "/data/workspace/docs/AGENT-DEPLOYMENT-GUIDE.md",
+    "type": "text",
+    "lines": "146"
+  },
+  {
+    "file": "/data/workspace/docs/qmd_standardization_master_log.md",
+    "type": "text",
+    "lines": "55"
+  },
+  {
+    "file": "/data/workspace/docs/SUB-AGENT-OPERATING-STANDARD.md",
+    "type": "text",
+    "lines": "947"
+  },
+  {
+    "file": "/data/workspace/docs/LEONARDO-AUDIT-20260211.md",
+    "type": "text",
+    "lines": "85"
+  },
+  {
+    "file": "/data/workspace/docs/CLAWVAULT-MEMORY-UPGRADE-PLAN.md",
+    "type": "text",
+    "lines": "768"
+  },
+  {
+    "file": "/data/workspace/docs/CRON_JOB_TEMPLATE.md",
+    "type": "text",
+    "lines": "106"
+  },
+  {
+    "file": "/data/workspace/docs/MODEL-UPGRADE-2026-02-06.md",
+    "type": "text",
+    "lines": "152"
+  },
+  {
+    "file": "/data/workspace/docs/WEBCLAW-SCOPE.md",
+    "type": "unknown",
+    "lines": "0"
+  },
+  {
+    "file": "/data/workspace/docs/CLAWVAULT-INCORPORATION-PLAN.md",
+    "type": "text",
+    "lines": "722"
+  },
+  {
+    "file": "/data/workspace/docs/MODEL-SANITY-CHECK.md",
+    "type": "text",
+    "lines": "32"
+  }
+]

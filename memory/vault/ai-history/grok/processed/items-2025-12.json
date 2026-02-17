@@ -1,0 +1,145 @@
+{
+  "items": [
+    {
+      "id": "1bb3a4e7-6764-4cfe-bf42-eed62f0ad6d6",
+      "type": "technique",
+      "content": "Technique: order online with delivery to Hong Kong",
+      "context": "Pearlie White Toothpaste Ingredients Explained",
+      "source": "grok",
+      "sourceDate": "2025-12-29T09:09:01.965025Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.844054"
+    },
+    {
+      "id": "40574b34-aeea-41fd-82da-1dbab0f2959f",
+      "type": "technique",
+      "content": "Technique: actually chat with the barman",
+      "context": "Comparing Burton and Stow Locations",
+      "source": "grok",
+      "sourceDate": "2025-12-26T21:51:55.077604Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.845204"
+    },
+    {
+      "id": "5973046b-b01d-4c2a-a3bc-7dc0d09855d1",
+      "type": "idea",
+      "content": "Idea: do a pub tour and have a cheeky pint",
+      "context": "Comparing Burton and Stow Locations",
+      "source": "grok",
+      "sourceDate": "2025-12-26T21:51:55.077604Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.845322"
+    },
+    {
+      "id": "bbc907ae-8a9f-42e1-8374-981ec8456212",
+      "type": "technique",
+      "content": "Technique: meet, feed, and interact with real reindeer in their paddocks—perfect for a 2-year-old's sense of wonder",
+      "context": "Stroud Farmers' Market for Festive Shopping",
+      "source": "grok",
+      "sourceDate": "2025-12-23T10:25:20.273662Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.852551"
+    },
+    {
+      "id": "3111a9f5-babe-4600-a7d7-b9d6435ba44b",
+      "type": "technique",
+      "content": "Technique: help fill Christmas stockings for the animals (ponies, goats, etc",
+      "context": "Stroud Farmers' Market for Festive Shopping",
+      "source": "grok",
+      "sourceDate": "2025-12-23T10:25:20.273662Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.852567"
+    },
+    {
+      "id": "76f7ac1e-b35e-4777-b935-cea26574a01a",
+      "type": "technique",
+      "content": "Technique: describe the exact shade or any other details (like consistency or frequency), that might help narrow it down further",
+      "context": "Friendly greeting exchange",
+      "source": "grok",
+      "sourceDate": "2025-12-20T08:55:04.641245Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.871404"
+    },
+    {
+      "id": "0d1afe08-798f-419c-bbf0-9d780c634255",
+      "type": "technique",
+      "content": "Technique: spend via app transfers to your HK cards or direct payments—still the most recommended Revolut alternative for non-supported countries",
+      "context": "Hong Kong Virtual Banks Alternatives",
+      "source": "grok",
+      "sourceDate": "2025-12-18T07:42:53.801010Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.877052"
+    },
+    {
+      "id": "0e83d619-511f-4264-8d22-26c74f0bb96a",
+      "type": "technique",
+      "content": "Technique: customize the pour sizes:",
+      "context": "Nespresso Vertuo Pop Usage Guide",
+      "source": "grok",
+      "sourceDate": "2025-12-17T05:55:26.062831Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.882482"
+    },
+    {
+      "id": "56b4fc00-cb47-46ec-b32f-eb2d970fdaf2",
+      "type": "idea",
+      "content": "Idea: light up and heat up (may blink while warming)",
+      "context": "Nespresso Vertuo Pop Usage Guide",
+      "source": "grok",
+      "sourceDate": "2025-12-17T05:55:26.062831Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.882959"
+    }
+  ]
+}

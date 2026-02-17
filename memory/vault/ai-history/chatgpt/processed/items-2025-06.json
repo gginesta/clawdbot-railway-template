@@ -1,0 +1,954 @@
+{
+  "items": [
+    {
+      "id": "5cdf1175-b457-473b-91b1-3cc840fc15dd",
+      "type": "decision",
+      "content": "Decided: those funds to acquire Solartia (www",
+      "context": "Capital Call Letter Template",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-27T20:46:17.788000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.305247"
+    },
+    {
+      "id": "9267cc42-9db2-4c31-bbb7-ab13f388f6af",
+      "type": "preference",
+      "content": "Preference: the limited partners and investors to send me their respective funds",
+      "context": "Capital Call Letter Template",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-27T20:46:17.788000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.328947"
+    },
+    {
+      "id": "cb5982c6-8b08-4aa5-9333-a14dd57aa080",
+      "type": "preference",
+      "content": "Preference: your help writing a direct, concise and firm capital call letter",
+      "context": "Capital Call Letter Template",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-27T20:46:17.788000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.328967"
+    },
+    {
+      "id": "46291743-391a-412b-b395-4b986a6213d7",
+      "type": "technique",
+      "content": "Technique: distribute it immediately via your fund-admin portal or DocuSign",
+      "context": "Capital Call Letter Template",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-27T20:46:17.788000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.356430"
+    },
+    {
+      "id": "2d736e7f-9ba6-4122-94ac-ad9ad6aa0f6c",
+      "type": "idea",
+      "content": "Idea: fund (new deal, fees, LOC payoff, etc",
+      "context": "Capital Call Letter Template",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-27T20:46:17.788000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.380507"
+    },
+    {
+      "id": "47cbd85e-82af-41b6-ada1-2b9b227b670f",
+      "type": "lesson",
+      "content": "Learned: and next-year targets to the NDC Steering Committee",
+      "context": "Tender Creation Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-12T15:41:47.663000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.482266"
+    },
+    {
+      "id": "0253d572-498f-4076-9c47-0c75b5df1b5f",
+      "type": "lesson",
+      "content": "Learned: & recommendations<br>• asset inventory and condition report |",
+      "context": "Tender Creation Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-12T15:41:47.663000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.482297"
+    },
+    {
+      "id": "91c29a6c-042b-4e00-a264-e4f8a72e6e16",
+      "type": "preference",
+      "content": "Preference: to create a tender on behalf of NDC, based on the attached TOR file, that will be published and eventually I will apply to that tender as the sole bidder",
+      "context": "Tender Creation Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-12T15:41:47.663000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.495875"
+    },
+    {
+      "id": "6cb419a8-fcaa-4a68-9510-2476f9095e61",
+      "type": "preference",
+      "content": "Preference: your help creating the tender document based on my project scope - attached",
+      "context": "Tender Creation Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-12T15:41:47.663000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.495901"
+    },
+    {
+      "id": "bfeb9da8-2a3d-4f95-a392-c3a06229e8e7",
+      "type": "technique",
+      "content": "Technique: ask me any question you like",
+      "context": "Tender Creation Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-12T15:41:47.663000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.528449"
+    },
+    {
+      "id": "ed1a708a-24d4-40eb-87d7-7672ea806545",
+      "type": "technique",
+      "content": "Technique: easily generate the PDF by opening the DOCX and selecting **“Save as PDF”** in Microsoft Word or Google Docs",
+      "context": "Tender Creation Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-12T15:41:47.663000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.528480"
+    },
+    {
+      "id": "fe4534c3-5285-4a75-81eb-48f798792ff3",
+      "type": "idea",
+      "content": "Idea: be published and eventually I will apply to that tender as the sole bidder",
+      "context": "Tender Creation Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-12T15:41:47.663000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.548646"
+    },
+    {
+      "id": "d1d974f6-5601-4db0-bf88-154d349c935b",
+      "type": "technique",
+      "content": "Technique: upload the file here and I will transcribe it externally and return the result",
+      "context": "Transcribing audio with Whisper",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-30T12:40:54.588000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.565631"
+    },
+    {
+      "id": "a5b255ff-4dd7-4111-9c97-5266153a6b7f",
+      "type": "technique",
+      "content": "Technique: **transcribe it yourself with high accuracy** using [OpenAI Whisper](https://github",
+      "context": "Transcribing audio with Whisper",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-30T12:40:54.588000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.565682"
+    },
+    {
+      "id": "fe7e5269-5b51-46da-b8fe-b63692cbc7d4",
+      "type": "idea",
+      "content": "Idea: transcribe the audio yourself using high-accuracy Whisper locally:",
+      "context": "Transcribing audio with Whisper",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-30T12:40:54.588000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.566074"
+    },
+    {
+      "id": "f838b877-2263-4adb-a927-80a53ec31d4e",
+      "type": "technique",
+      "content": "Technique: enjoy a garden and spacious home without a long daily commute",
+      "context": "Madrid relocation recommendations",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-25T16:17:23.916000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.594108"
+    },
+    {
+      "id": "57b49c12-53cc-44dc-87a8-8484842e95d7",
+      "type": "technique",
+      "content": "Technique: find standalone villas, semi-detached houses, and low-rise modern apartment complexes (often with communal gardens and pools)",
+      "context": "Madrid relocation recommendations",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-25T16:17:23.916000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.594129"
+    },
+    {
+      "id": "7b921fc1-6a82-4ee5-a758-35cbe26013b2",
+      "type": "idea",
+      "content": "Idea: focus on securing project financing, capital allocation, and strategic direction, without day-to-day operational responsibilities",
+      "context": "Madrid relocation recommendations",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-25T16:17:23.916000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.597278"
+    },
+    {
+      "id": "71dae065-def5-4589-8103-2403e406aff9",
+      "type": "preference",
+      "content": "Preference: to create a very brief document for Secretary Cristina Roque in the Philippines",
+      "context": "Brinc Philippines Brief Outline",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-25T11:50:41.963000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.602371"
+    },
+    {
+      "id": "758f3aa7-9e1d-4232-ad2b-301f27f1a4b3",
+      "type": "technique",
+      "content": "Technique: use for context, branding and infographics/visuals",
+      "context": "Brinc Philippines Brief Outline",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-25T11:50:41.963000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.603132"
+    },
+    {
+      "id": "f1f592d0-3ad1-4706-b965-177a285902ff",
+      "type": "idea",
+      "content": "Idea: be referenced in all future messages with the unique identifier textdoc_id: '685b73f9095c8191a9ef776d092af8b5'",
+      "context": "Brinc Philippines Brief Outline",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-25T11:50:41.963000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.603603"
+    },
+    {
+      "id": "a9630256-a47f-44e9-a9c7-9456204def1d",
+      "type": "technique",
+      "content": "Technique: use **Zoom’s built-in transcription** under *Settings > Recording > Audio Transcript* if you are recording the session",
+      "context": "Zoom Meeting Transcription",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-23T14:40:32.772000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.609332"
+    },
+    {
+      "id": "5f33071b-7c80-4355-ae8f-c348167570bd",
+      "type": "technique",
+      "content": "Technique: - Use a tool to record the meeting audio (e",
+      "context": "Zoom Meeting Transcription",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-23T14:40:32.772000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.609367"
+    },
+    {
+      "id": "a354b1a7-0026-4a07-87f0-2704d41dfb72",
+      "type": "preference",
+      "content": "Preference: your help writing a formal email to a partner of ours at Brinc",
+      "context": "Accelerator Program Collaboration Update",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-23T13:57:35.785000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.618582"
+    },
+    {
+      "id": "fa2df131-380b-4dda-b7ec-453ebe542883",
+      "type": "preference",
+      "content": "Preference: one for the other partner, PolyU",
+      "context": "Accelerator Program Collaboration Update",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-23T13:57:35.785000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.618613"
+    },
+    {
+      "id": "98954a29-26ba-4930-b6dd-d076f662ee1c",
+      "type": "idea",
+      "content": "Idea: be communicating with the selected startups as well; please see our attachment for the messaging that will go out to them this week",
+      "context": "Accelerator Program Collaboration Update",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-23T13:57:35.785000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.622173"
+    },
+    {
+      "id": "736efe07-e73b-452b-b6b3-a0ede3d570cf",
+      "type": "technique",
+      "content": "Technique: stream audio using voice messages (e",
+      "context": "Meeting Notes Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-22T21:10:11.866254",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.624832"
+    },
+    {
+      "id": "600a999d-71d9-4ade-a62d-ad0d8f11a154",
+      "type": "technique",
+      "content": "Technique: type live notes or summaries, and I’ll format and clean them as minutes in real time",
+      "context": "Meeting Notes Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-22T21:10:11.866254",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.624857"
+    },
+    {
+      "id": "31e9a149-3ca9-4fa6-a68a-45641b40e083",
+      "type": "preference",
+      "content": "Preference: to create a solution on Replit to use OpenAI API and/or Claude API and launch a robot trader that maximises profit",
+      "context": "AI Trading Bot Setup",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-20T22:00:01.975000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.635425"
+    },
+    {
+      "id": "de35849f-dcb4-48ed-aed2-41946189c4c7",
+      "type": "idea",
+      "content": "Idea: create a solution on Replit to use OpenAI API and/or Claude API and launch a robot trader that maximises profit",
+      "context": "AI Trading Bot Setup",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-20T22:00:01.975000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.640306"
+    },
+    {
+      "id": "a5cd473d-cf38-4a86-be6b-c641deb03e09",
+      "type": "technique",
+      "content": "Technique: run the file through a transcription tool (e",
+      "context": "Transcription Assistance Request",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-20T21:41:35.607000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.643459"
+    },
+    {
+      "id": "057beedd-3384-45db-adab-088ec438013c",
+      "type": "technique",
+      "content": "Technique: install the open-source *whisper",
+      "context": "Transcription Assistance Request",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-20T21:41:35.607000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.643483"
+    },
+    {
+      "id": "5bce01df-61ef-4cbd-afbd-561e2539176a",
+      "type": "decision",
+      "content": "Decided: to give them an IRR or MOIC based on your projections",
+      "context": "Solartia Investment Teaser",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-13T11:11:40.203000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.655298"
+    },
+    {
+      "id": "4ad6a0a3-b17f-4360-8800-49c715f1f762",
+      "type": "preference",
+      "content": "Preference: your help preparing a brief teaser for a new potential investor",
+      "context": "Solartia Investment Teaser",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-13T11:11:40.203000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.659831"
+    },
+    {
+      "id": "73f233f4-5970-49d8-8bed-bb76214b009f",
+      "type": "preference",
+      "content": "Preference: to make sure I understand all the terms and mechanisms you've listed",
+      "context": "Solartia Investment Teaser",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-13T11:11:40.203000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.659855"
+    },
+    {
+      "id": "b4ce674b-965e-4aff-9cf0-172ba948bf1d",
+      "type": "technique",
+      "content": "Technique: always follow up with a web search if necessary for a more complete response",
+      "context": "Solartia Investment Teaser",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-13T11:11:40.203000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.664769"
+    },
+    {
+      "id": "a321c5f5-2906-46d1-ae70-91862dce00e7",
+      "type": "idea",
+      "content": "Idea: then email this to investors",
+      "context": "Solartia Investment Teaser",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-13T11:11:40.203000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.667923"
+    },
+    {
+      "id": "d9a87f78-7cac-4857-812f-154e8d6d987e",
+      "type": "preference",
+      "content": "Preference: your help writing a commodities LOI for a transaction",
+      "context": "LOI Draft for Diesel Deal",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-13T15:42:12.553000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.677813"
+    },
+    {
+      "id": "4676a820-4d8e-4a61-917b-5e7d2b47906b",
+      "type": "idea",
+      "content": "Idea: be referenced in all future messages with the unique identifier textdoc_id: '684bd68afd7481919f05e095919c7a47'",
+      "context": "LOI Draft for Diesel Deal",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-13T15:42:12.553000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.682748"
+    },
+    {
+      "id": "50182e95-9a27-412c-bc16-fb55f50fb74c",
+      "type": "decision",
+      "content": "Decided: logs support transparency during any post-award audit or protest",
+      "context": "Brinc Tender Document Builder",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-12T15:33:49.675000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.690198"
+    },
+    {
+      "id": "98b520c2-640b-4b4b-b231-f7c64f214f5f",
+      "type": "decision",
+      "content": "Decided: SLA: “CFO will confirm or deny grandfathering requests **within 10 business days**; decisions must cite the objective criteria in Annex 3",
+      "context": "Policy Review and Suggestions",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-10T15:34:27.279000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.701541"
+    },
+    {
+      "id": "3f9bae41-e272-44ec-a6cd-3954de209220",
+      "type": "decision",
+      "content": "Decided: the month-end Bloomberg rate for any local-currency revenue inputs",
+      "context": "Policy Review and Suggestions",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-10T15:34:27.279000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.702017"
+    },
+    {
+      "id": "da1a1a71-4562-4767-b183-18ff06cd9f08",
+      "type": "technique",
+      "content": "Technique: forward to Brinc HQ (or use as talking points) when you negotiate amendments",
+      "context": "Policy Review and Suggestions",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-10T15:34:27.279000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.704150"
+    },
+    {
+      "id": "93b65de8-8f1b-4370-9196-dd88b7f5096d",
+      "type": "idea",
+      "content": "Idea: be issued **on the 1st business day of each month in USD; due Net 15**",
+      "context": "Policy Review and Suggestions",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-10T15:34:27.279000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.704826"
+    },
+    {
+      "id": "11a62846-cfd2-44ce-8165-4a1954d38b38",
+      "type": "idea",
+      "content": "Idea: you manage inventory risk when funding notes “52 % secured by gold” pre-launch",
+      "context": "Startup Business Model Feedback",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-10T13:38:38.582000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.708404"
+    },
+    {
+      "id": "5a133f88-c73a-427b-b1b4-006494ff689c",
+      "type": "preference",
+      "content": "Preference: your help in creating a 1-page executive summary so we can get initial feedback and approval from NDC so we can progress to submitting full proposals and tenders",
+      "context": "Brinc NDC Proposal Summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-09T16:00:05.606000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.718126"
+    },
+    {
+      "id": "7884ec3c-552c-4770-afa9-df28ec543b12",
+      "type": "idea",
+      "content": "Idea: then submit the full technical proposal and tender documentation within 15 working days",
+      "context": "Brinc NDC Proposal Summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-09T16:00:05.606000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.722708"
+    },
+    {
+      "id": "e7e981d9-50db-4461-a158-2fd78e6315e9",
+      "type": "decision",
+      "content": "Decided: hub space and staff support; no additional OPEX in this plan",
+      "context": "Marikina Innovation Hub Proposal",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-09T15:53:10.268000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.726226"
+    },
+    {
+      "id": "9ffe8544-9adc-4c00-999a-d6fcea85524f",
+      "type": "idea",
+      "content": "Idea: *(Prepared for NDC preliminary review)*",
+      "context": "Marikina Innovation Hub Proposal",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-09T15:53:10.268000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.727999"
+    },
+    {
+      "id": "131dd7ff-fdaf-4acd-988e-045d3d5614ec",
+      "type": "preference",
+      "content": "Preference: your help in creating a full breakdown on how much it would cost to staff and run the space based on their requirements, including the creation and management of a community and events",
+      "context": "Innovation Hub Budget Proposal",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-06T13:53:02.395000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.754426"
+    },
+    {
+      "id": "c3f45d79-48ae-4930-8cf8-873f729760a7",
+      "type": "technique",
+      "content": "Technique: suggest a couple of scenarios with high events and a minimum number to create enough activity",
+      "context": "Innovation Hub Budget Proposal",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-06T13:53:02.395000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.760776"
+    },
+    {
+      "id": "66129502-7d0d-4c3b-bfdc-767621888436",
+      "type": "idea",
+      "content": "Idea: (online and offline) to ensure the hub acts as a hive of activity from the start",
+      "context": "Innovation Hub Budget Proposal",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-06T13:53:02.395000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.764199"
+    },
+    {
+      "id": "862a296c-f378-4285-b7f7-b4cf6436f925",
+      "type": "idea",
+      "content": "Idea: adding another junior community/events coordinator or increasing intern support",
+      "context": "Innovation Hub Budget Proposal",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-06T13:53:02.395000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.768100"
+    },
+    {
+      "id": "2b1682bb-ffd9-457b-83a7-ca362b6c4426",
+      "type": "preference",
+      "content": "Preference: your help writing a TERMS OF REFERENCE (ie a Tender request) and PROCUREMENT document for each of the CONSULTANCY SERVICES FOR THE programs",
+      "context": "Creative Economy TOR Draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-05T09:09:59.029000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.771287"
+    },
+    {
+      "id": "82712192-e278-414c-b318-6b1bb9bcb778",
+      "type": "preference",
+      "content": "Preference: your help in creating the document",
+      "context": "Creative Economy TOR Draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-05T09:09:59.029000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.771315"
+    },
+    {
+      "id": "a4e69037-bf6f-44d2-a16d-00f4f07d9c21",
+      "type": "technique",
+      "content": "Technique: share (or re-upload) the Creative Economy PDF and any NDC procurement templates—along with answers to the above—we can craft a TOR that meets their legal form while subtly “pre-aligning” the eligibili",
+      "context": "Creative Economy TOR Draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-06-05T09:09:59.029000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.771975"
+    }
+  ]
+}

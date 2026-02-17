@@ -1,0 +1,11 @@
+{
+  "obsidian-tweet-to-markdown:open-tweet-url-modal": [
+    {
+      "modifiers": [
+        "Alt",
+        "Shift"
+      ],
+      "key": "T"
+    }
+  ]
+}

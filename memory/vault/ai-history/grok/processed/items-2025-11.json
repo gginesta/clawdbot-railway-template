@@ -1,0 +1,438 @@
+{
+  "items": [
+    {
+      "id": "071b9aa0-ca1d-4da5-85ac-cf1b91d2a274",
+      "type": "idea",
+      "content": "Idea: be the **2032 Summer Olympics**, hosted in Brisbane, Queensland, Australia, from July 23 to August 8",
+      "context": "Thank You Message",
+      "source": "grok",
+      "sourceDate": "2025-11-25T12:53:33.171102Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.890943"
+    },
+    {
+      "id": "06c41816-6587-44cc-9325-21d874ea058b",
+      "type": "decision",
+      "content": "Decided: Web Speech API for host quips",
+      "context": "Replit Trivia Game Scoping Document",
+      "source": "grok",
+      "sourceDate": "2025-11-25T03:46:37.399259Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.924091"
+    },
+    {
+      "id": "a610f893-73d0-404a-98c3-3bd48cdd5ee0",
+      "type": "decision",
+      "content": "Decided: Web Speech API for host quips",
+      "context": "Replit Trivia Game Scoping Document",
+      "source": "grok",
+      "sourceDate": "2025-11-25T03:46:37.399259Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.924115"
+    },
+    {
+      "id": "868bf7ce-bdd1-4c81-b59b-044416b4d58d",
+      "type": "preference",
+      "content": "Preference: to create a trivia game on Replit",
+      "context": "Replit Trivia Game Scoping Document",
+      "source": "grok",
+      "sourceDate": "2025-11-25T03:46:37.399259Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.942056"
+    },
+    {
+      "id": "cab7f3bb-3eed-4f34-a711-f5a9904a99c2",
+      "type": "idea",
+      "content": "Idea: create a trivia game on Replit",
+      "context": "Replit Trivia Game Scoping Document",
+      "source": "grok",
+      "sourceDate": "2025-11-25T03:46:37.399259Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.962762"
+    },
+    {
+      "id": "5118ff38-f235-4f2a-bd05-8fdb9a9c14a8",
+      "type": "technique",
+      "content": "Technique: partially reset played tracks in the Calm app by deleting individual sessions from your Session History, which tracks completed meditations, sleep stories, and music tracks",
+      "context": "Resetting Played Tracks in Calm App",
+      "source": "grok",
+      "sourceDate": "2025-11-19T06:11:24.804Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.973701"
+    },
+    {
+      "id": "78ac0aa8-190f-4f20-8c61-ce9d0eda277a",
+      "type": "technique",
+      "content": "Technique: refer to your history to repeat them manually",
+      "context": "Resetting Played Tracks in Calm App",
+      "source": "grok",
+      "sourceDate": "2025-11-19T06:11:24.804Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.973709"
+    },
+    {
+      "id": "a7510a6a-0bc2-4096-b961-cbcefb01e3b2",
+      "type": "preference",
+      "content": "Preference: to see if some devices are actually useful, for example:",
+      "context": "Vagus Nerve Stimulation HRV Impact",
+      "source": "grok",
+      "sourceDate": "2025-11-19T02:26:50.506167Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.979625"
+    },
+    {
+      "id": "e771e639-2377-47e7-b106-480a6a735ad4",
+      "type": "idea",
+      "content": "Idea: see if some devices are actually useful, for example:",
+      "context": "Vagus Nerve Stimulation HRV Impact",
+      "source": "grok",
+      "sourceDate": "2025-11-19T02:26:50.506167Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.982300"
+    },
+    {
+      "id": "a715e18d-5393-4825-81b8-41f15c86c914",
+      "type": "idea",
+      "content": "Idea: see the Black Eyed Peas in concert today with my mates",
+      "context": "Black Eyed Peas Concert Vibes and Jokes",
+      "source": "grok",
+      "sourceDate": "2025-11-19T02:14:14.422368Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.985420"
+    },
+    {
+      "id": "b6373d21-848d-45c0-8766-694756077c8b",
+      "type": "decision",
+      "content": "Decided: up if speaking near the phone or via speaker",
+      "context": "WhatsApp Call Recording on iPhone",
+      "source": "grok",
+      "sourceDate": "2025-11-18T07:56:08.524903Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.996998"
+    },
+    {
+      "id": "839b1cc2-aa80-4ad7-9198-db04cd5b154a",
+      "type": "decision",
+      "content": "Decided: Bluetooth but integrate recording directly)",
+      "context": "WhatsApp Call Recording on iPhone",
+      "source": "grok",
+      "sourceDate": "2025-11-18T07:56:08.524903Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.999374"
+    },
+    {
+      "id": "2c5e66d2-0fcf-4229-8db6-60d33f445d48",
+      "type": "technique",
+      "content": "Technique: toggle access for WhatsApp",
+      "context": "WhatsApp Call Recording on iPhone",
+      "source": "grok",
+      "sourceDate": "2025-11-18T07:56:08.524903Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.012114"
+    },
+    {
+      "id": "df9b7db1-1f37-498a-ba9f-62aedd449acd",
+      "type": "technique",
+      "content": "Technique: extract audio using an app like iMovie or a third-party editor",
+      "context": "WhatsApp Call Recording on iPhone",
+      "source": "grok",
+      "sourceDate": "2025-11-18T07:56:08.524903Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.012141"
+    },
+    {
+      "id": "8dcdb34c-2c3b-4760-8a8a-4f4a1a00bec2",
+      "type": "idea",
+      "content": "Idea: of recording just the output audio (e",
+      "context": "WhatsApp Call Recording on iPhone",
+      "source": "grok",
+      "sourceDate": "2025-11-18T07:56:08.524903Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.016207"
+    },
+    {
+      "id": "dd55b71a-4de7-4f97-8ae4-8e5351e491f4",
+      "type": "idea",
+      "content": "Idea: (\"BP-PERU SOLARTIA 2025",
+      "context": "Solartia Peru Project: Funding and Evaluation",
+      "source": "grok",
+      "sourceDate": "2025-11-11T13:28:25.217901Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.053349"
+    },
+    {
+      "id": "22469dde-4059-4f82-891e-229475cb2206",
+      "type": "idea",
+      "content": "Idea: to negotiate or remove",
+      "context": "Solartia Peru Project: Funding and Evaluation",
+      "source": "grok",
+      "sourceDate": "2025-11-11T13:28:25.217901Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.055019"
+    },
+    {
+      "id": "3260d809-014b-425f-a1ce-aa70ae3e8398",
+      "type": "technique",
+      "content": "Technique: browse options (including those with Mitopure): https://www",
+      "context": "Can you find me supplements based on this research...",
+      "source": "grok",
+      "sourceDate": "2025-11-10T00:45:44.002873Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.063279"
+    },
+    {
+      "id": "079298f5-963a-4483-80b5-670e67d23d57",
+      "type": "preference",
+      "content": "Preference: your help with a google sheet formula",
+      "context": "Google Sheets: Mapping Status to Scenario",
+      "source": "grok",
+      "sourceDate": "2025-11-12T02:16:17.090590Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.070546"
+    },
+    {
+      "id": "ae7b74d9-7f39-4794-88a7-b7627373c40a",
+      "type": "preference",
+      "content": "Preference: the column under SCENARIO to be filled depending on whats on column STATUS",
+      "context": "Google Sheets: Mapping Status to Scenario",
+      "source": "grok",
+      "sourceDate": "2025-11-12T02:16:17.090590Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.070558"
+    },
+    {
+      "id": "beeadb70-aa11-4535-bba7-50262e0b26b5",
+      "type": "idea",
+      "content": "Idea: return #N/A—clean your STATUS values if needed for consistency",
+      "context": "Google Sheets: Mapping Status to Scenario",
+      "source": "grok",
+      "sourceDate": "2025-11-12T02:16:17.090590Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.071698"
+    },
+    {
+      "id": "7986b9bf-bd07-41ac-9fe9-49c1abea942d",
+      "type": "preference",
+      "content": "Preference: your help finding flights please",
+      "context": "Flight Planning: Hong Kong to Malaga via London",
+      "source": "grok",
+      "sourceDate": "2025-11-08T04:25:47.551570Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.076162"
+    },
+    {
+      "id": "391a7f2b-7ca2-4e20-874e-cc4e5c358d86",
+      "type": "preference",
+      "content": "Preference: Cathay Pacific if possible, then check oneworld carriers",
+      "context": "Flight Planning: Hong Kong to Malaga via London",
+      "source": "grok",
+      "sourceDate": "2025-11-08T04:25:47.551570Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.076188"
+    },
+    {
+      "id": "3ca9549b-7865-48c3-ad01-eb4bf3bcd174",
+      "type": "idea",
+      "content": "Idea: change airports during connections",
+      "context": "Flight Planning: Hong Kong to Malaga via London",
+      "source": "grok",
+      "sourceDate": "2025-11-08T04:25:47.551570Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.079103"
+    },
+    {
+      "id": "930840e7-2853-4ba7-b109-0a2d35cb0432",
+      "type": "preference",
+      "content": "Preference: to measure so I can use it to send to the clinics and get quotes and see if possible to get tested at each",
+      "context": "Comprehensive Blood Testing Options Hong Kong",
+      "source": "grok",
+      "sourceDate": "2025-11-03T23:53:36.332188Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.089455"
+    },
+    {
+      "id": "43ffd873-3ea7-477e-ab52-301a3c35079b",
+      "type": "preference",
+      "content": "Preference: your help writing an updated CV and cover letter for a board position for a Middle Eastern organization establishing an innovation-focused free zone for emerging technologies and entrepreneurship",
+      "context": "Crafting CV for Innovation Board Role",
+      "source": "grok",
+      "sourceDate": "2025-11-05T03:52:10.573364Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.100666"
+    },
+    {
+      "id": "8a57784d-1da3-45b8-b5a4-24d59737a7a6",
+      "type": "idea",
+      "content": "Idea: make sure my profile is as suitable and be made seen as relevant as possible",
+      "context": "Crafting CV for Innovation Board Role",
+      "source": "grok",
+      "sourceDate": "2025-11-05T03:52:10.573364Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.104090"
+    }
+  ]
+}

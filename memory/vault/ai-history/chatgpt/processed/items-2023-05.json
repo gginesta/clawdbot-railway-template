@@ -1,0 +1,307 @@
+{
+  "items": [
+    {
+      "id": "52adda0f-ee32-4187-8c2d-8ee1cfa4f0ce",
+      "type": "idea",
+      "content": "Idea: like hydro to mine bitcoin",
+      "context": "Bitcoin Mining Basics",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-19T13:02:09.311491",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.639583"
+    },
+    {
+      "id": "869c6273-ec88-4ff2-b8b5-71ec5dc7095c",
+      "type": "preference",
+      "content": "Preference: help defining our focus areas and investment thesis for the vertical",
+      "context": "Investing in AI Startups",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-17T09:16:55.772851",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.645155"
+    },
+    {
+      "id": "57a8478f-7800-4c41-b868-3c77b3a3a840",
+      "type": "idea",
+      "content": "Idea: not only provide financial resources but also strategic support to help these startups achieve their full potential",
+      "context": "Investing in AI Startups",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-17T09:16:55.772851",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.647242"
+    },
+    {
+      "id": "2ce633f4-81f6-4982-b7dd-a76d47c7eec5",
+      "type": "technique",
+      "content": "Technique: a company might leverage these to support their employees with ASD:",
+      "context": "Understanding Autism Spectrum Disorder",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-14T13:55:15.983319",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.658527"
+    },
+    {
+      "id": "c6c44ca5-8db8-4959-9d54-17064062fff6",
+      "type": "technique",
+      "content": "Technique: hire a person with a disability",
+      "context": "Understanding Autism Spectrum Disorder",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-14T13:55:15.983319",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.659377"
+    },
+    {
+      "id": "1a21ef0e-1e8b-412e-ae7d-acee4322aa03",
+      "type": "technique",
+      "content": "Technique: reach out to local governmental bodies or organizations specializing in disability services and employment",
+      "context": "Understanding Autism Spectrum Disorder",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-14T13:55:15.983319",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.659389"
+    },
+    {
+      "id": "2cf4b98f-fa88-43dc-b294-49ca296701e9",
+      "type": "idea",
+      "content": "Idea: for corporate employers to hire people with autism spectrum disorder",
+      "context": "Understanding Autism Spectrum Disorder",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-14T13:55:15.983319",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.660815"
+    },
+    {
+      "id": "c6f1c263-6399-4cea-989b-4947c7b05aac",
+      "type": "idea",
+      "content": "Idea: hiring individuals with Autism Spectrum Disorder (ASD)",
+      "context": "Understanding Autism Spectrum Disorder",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-14T13:55:15.983319",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.661759"
+    },
+    {
+      "id": "7c5f15cf-07f8-429e-a01d-091a8a7e57e2",
+      "type": "technique",
+      "content": "Technique: spin and twirl, lose yourself in the music of introspection, and come out the other side a bit stronger, a bit wiser",
+      "context": "Dance of Therapeutic Healing",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-11T20:14:43.101739",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.664061"
+    },
+    {
+      "id": "609e9668-8c17-4b27-a900-b906d12943c3",
+      "type": "idea",
+      "content": "Idea: not to perfect a routine, but to embrace the journey of the dance itself, to find comfort and liberation in every step, turn, and leap",
+      "context": "Dance of Therapeutic Healing",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-11T20:14:43.101739",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.664419"
+    },
+    {
+      "id": "6e5657be-2851-4838-91b4-d8a9104408d4",
+      "type": "preference",
+      "content": "Preference: help creating standard operating procedures for our different departments and business units",
+      "context": "SOPs for Brinc: Creation",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-08T17:26:01.594881",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.667352"
+    },
+    {
+      "id": "aec13b56-24d2-4158-a618-a9b698b51d0d",
+      "type": "technique",
+      "content": "Technique: create comprehensive and effective SOPs for each department and business unit at Brinc",
+      "context": "SOPs for Brinc: Creation",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-08T17:26:01.594881",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.668141"
+    },
+    {
+      "id": "e31b327a-e17c-43eb-8bab-bdf67bc0aed6",
+      "type": "technique",
+      "content": "Technique: expand on these points as needed, taking into account your organization's specific processes and requirements",
+      "context": "SOPs for Brinc: Creation",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-08T17:26:01.594881",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.668157"
+    },
+    {
+      "id": "df57d997-6350-456c-bfdb-d810fbe0e09a",
+      "type": "decision",
+      "content": "Decided: attachment theory to conceptualise Adam's case",
+      "context": "Mental Health Consultation.",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-04T20:35:38.718192",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.672392"
+    },
+    {
+      "id": "db8c7005-5589-4d8f-a2c7-71ee59872c96",
+      "type": "decision",
+      "content": "Decided: attachment theory as one of the psychological theories to conceptualize Adam's case because it provides a framework to understand the role of early attachment experiences and the impact of family dyna",
+      "context": "Mental Health Consultation.",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-04T20:35:38.718192",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.672404"
+    },
+    {
+      "id": "9b0b547d-6884-4dd1-8fde-5792d944a444",
+      "type": "technique",
+      "content": "Technique: still address the relationship issues between Adam and his mother through individual therapy with Adam",
+      "context": "Mental Health Consultation.",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-04T20:35:38.718192",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.677100"
+    },
+    {
+      "id": "a846b26a-e97c-4923-aa73-db6d1033b4af",
+      "type": "idea",
+      "content": "Idea: provide background on a fictitious case first",
+      "context": "Mental Health Consultation.",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-04T20:35:38.718192",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.679120"
+    },
+    {
+      "id": "bdb2b772-6e64-4d80-91cb-22729ad34d80",
+      "type": "idea",
+      "content": "Idea: be your interface with the real world and will action all your commands",
+      "context": "Rosé Wine Launch.",
+      "source": "chatgpt",
+      "sourceDate": "2023-05-04T09:41:31.219842",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.717887"
+    }
+  ]
+}

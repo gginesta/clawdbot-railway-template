@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "id": "10e3b139-b58c-4c24-94ed-61aea23e40eb",
+      "type": "preference",
+      "content": "Preference: your help finding as much information as possible about William Allan",
+      "context": "William Allan: Directorships, Addresses, Roles",
+      "source": "grok",
+      "sourceDate": "2025-08-10T14:23:58.536464Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.452183"
+    },
+    {
+      "id": "4bfd76f7-a2f5-40e2-8d93-cba49deee3b3",
+      "type": "technique",
+      "content": "Technique: visit the official link shared on X by @InformajovenMur: https://t",
+      "context": "San Pedro Málaga Music Events 2025",
+      "source": "grok",
+      "sourceDate": "2025-08-08T20:21:12.503592Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.456944"
+    }
+  ]
+}

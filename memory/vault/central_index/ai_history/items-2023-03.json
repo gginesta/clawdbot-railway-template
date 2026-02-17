@@ -1,0 +1,181 @@
+{
+  "items": [
+    {
+      "id": "19ce059c-7deb-4f8c-a919-bb83554628de",
+      "type": "technique",
+      "content": "Technique: get our agency up and running",
+      "context": "Digital agency startup.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-17T17:37:29.175953",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.700199"
+    },
+    {
+      "id": "4bc08f97-70c9-4e09-9527-d9ab7e62f682",
+      "type": "technique",
+      "content": "Technique: use services like Namecheap, GoDaddy, or Bluehost)",
+      "context": "Digital agency startup.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-17T17:37:29.175953",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.701932"
+    },
+    {
+      "id": "23aa0cf7-0bae-4d53-a668-1cf93754a50b",
+      "type": "technique",
+      "content": "Technique: use to generate a logo design with Dall-E:",
+      "context": "Digital agency startup.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-17T17:37:29.175953",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.701943"
+    },
+    {
+      "id": "36610faf-d57f-48b6-9816-4ab5a8efafe2",
+      "type": "idea",
+      "content": "Idea: generate the most amount of revenue in the shortest amount of time, without doing anything illegal",
+      "context": "Digital agency startup.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-17T17:37:29.175953",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.705049"
+    },
+    {
+      "id": "c38835c8-d920-41b4-afc6-a449dd7a770e",
+      "type": "idea",
+      "content": "Idea: conducting a brief interview or requesting a small design task (paid or unpaid, depending on the scope) to further assess their skills and suitability for the project",
+      "context": "Digital agency startup.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-17T17:37:29.175953",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.707306"
+    },
+    {
+      "id": "8b0e955d-d6ae-4060-a06b-5a352980e7bd",
+      "type": "technique",
+      "content": "Technique: tailor your offerings and drive growth",
+      "context": "Twitter content strategy.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-22T17:12:13.597847",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.734307"
+    },
+    {
+      "id": "c7915f77-f050-48a5-92e8-a52af4be04e6",
+      "type": "idea",
+      "content": "Idea: face setbacks, but it's the ability to bounce back and learn from failures that sets successful founders apart",
+      "context": "Twitter content strategy.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-22T17:12:13.597847",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.734815"
+    },
+    {
+      "id": "0ae29748-c05d-43e6-821e-bb0ef34e85e8",
+      "type": "technique",
+      "content": "Technique: move forward with setting up your online store",
+      "context": "Digital product marketing plan.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-17T17:49:43.694710",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.741918"
+    },
+    {
+      "id": "612554a0-9802-4a8e-85ee-c51e58814e46",
+      "type": "idea",
+      "content": "Idea: generate the most amount of revenue in the shortest amount of time, without doing anything illegal",
+      "context": "Digital product marketing plan.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-17T17:49:43.694710",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.742883"
+    },
+    {
+      "id": "a83ad370-b2d9-42eb-8358-37495b6dc0ea",
+      "type": "technique",
+      "content": "Technique: consult with a veterinarian before considering any medication or treatment for your pet",
+      "context": "Consult a Veterinarian.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-21T16:34:54.645684",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.752232"
+    },
+    {
+      "id": "304170d8-4c62-4c1b-828f-f46cf4766081",
+      "type": "idea",
+      "content": "Idea: be able to provide guidance on whether rapamycin is appropriate for your dog and, if so, what the correct dosage and frequency would be based on your dog's individual needs",
+      "context": "Consult a Veterinarian.",
+      "source": "chatgpt",
+      "sourceDate": "2023-03-21T16:34:54.645684",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.752427"
+    }
+  ]
+}

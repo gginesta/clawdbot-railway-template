@@ -1,0 +1,397 @@
+{
+  "items": [
+    {
+      "id": "a7097436-519e-4727-b47b-40b8482579ae",
+      "type": "idea",
+      "content": "Idea: be referenced in all future messages with the unique identifier textdoc_id: '67bc0b952d448191927abecb11b12dfd'\", \"textdoc_id\": \"67bc0b952d448191927abecb11b12dfd\", \"name\": \"Solartia Report\"}",
+      "context": "Solartia Company Overview Report",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-24T14:02:24.943652",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.286784"
+    },
+    {
+      "id": "db50c213-f21f-4522-a0b7-f4800dfd2701",
+      "type": "technique",
+      "content": "Technique: carefully consider each one to determine whether it is relevant and high quality, and use these to inform your answer to the user's question",
+      "context": "Solartia Company Summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-24T13:46:28.890673",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.301114"
+    },
+    {
+      "id": "92f31c48-82f9-4cf1-87be-b80705ac6b2f",
+      "type": "technique",
+      "content": "Technique: rely on the above snippets, use file_search",
+      "context": "Solartia Company Summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-24T13:46:28.890673",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.301131"
+    },
+    {
+      "id": "436ea16e-51f9-4f6c-920d-044efb4c49d7",
+      "type": "idea",
+      "content": "Idea: respond to you with the relevant search results from the full available files",
+      "context": "Solartia Company Summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-24T13:46:28.890673",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.303091"
+    },
+    {
+      "id": "5705bd91-29d5-487a-9f5a-0ee11d16c117",
+      "type": "preference",
+      "content": "Preference: an idiom or expression, around beating someone to a deal by doing it quickly",
+      "context": "Beating to the Punch",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-20T15:54:30.091021",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.305498"
+    },
+    {
+      "id": "74a7aa45-6084-49da-9a7a-95043db22046",
+      "type": "technique",
+      "content": "Technique: sometimes find senior or reduced-phosphorus formulas over the counter",
+      "context": "Rocket Kidney Test Results",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-15T15:54:55.972233",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.312488"
+    },
+    {
+      "id": "81aed305-d5d3-4b6a-b9a5-fe841f0bb045",
+      "type": "idea",
+      "content": "Idea: look at trends and clinical signs for proper staging",
+      "context": "Rocket Kidney Test Results",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-15T15:54:55.972233",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.313837"
+    },
+    {
+      "id": "ab055e6f-5a74-404d-b94d-95c1bc601e62",
+      "type": "preference",
+      "content": "Preference: to advise with caution, acknowledging I’m not a doctor, and avoid suggesting dangerous behavior",
+      "context": "Indigestion and Gas Relief",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-12T07:27:39.411618",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.325164"
+    },
+    {
+      "id": "2e530471-2daf-4f63-91fd-925b4b7ce2e8",
+      "type": "technique",
+      "content": "Technique: drink plenty of water and, if possible, supplement with electrolytes",
+      "context": "Indigestion and Gas Relief",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-12T07:27:39.411618",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.327722"
+    },
+    {
+      "id": "0c1fb7ee-ed07-4c7d-ba2c-c8cb06b6c813",
+      "type": "idea",
+      "content": "Idea: for their upset stomach, especially since they're already experiencing issues like diarrhea and flatulence",
+      "context": "Indigestion and Gas Relief",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-12T07:27:39.411618",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.329479"
+    },
+    {
+      "id": "fe9656fc-fe3f-499f-8d73-aeabbd5bba81",
+      "type": "preference",
+      "content": "Preference: to help the user with timezone reordering issues in their worldtimebuddy-like app on Replit",
+      "context": "Reorder Timezones with Local State",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T17:12:21.942453",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.343721"
+    },
+    {
+      "id": "ffe469c0-d2c2-4c89-a94f-19ee3540a10e",
+      "type": "preference",
+      "content": "Preference: to reassess the code to figure out what's going wrong",
+      "context": "Reorder Timezones with Local State",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T17:12:21.942453",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.343742"
+    },
+    {
+      "id": "e35ace71-0d71-4722-8506-45c1ed79923d",
+      "type": "technique",
+      "content": "Technique: maintain a local state for your sorted locations and update that state immediately when a drag‐end event occurs",
+      "context": "Reorder Timezones with Local State",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T17:12:21.942453",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.346232"
+    },
+    {
+      "id": "55138476-c26c-43ca-a7ed-4e619dc572fa",
+      "type": "idea",
+      "content": "Idea: reflect in the UI more immediately",
+      "context": "Reorder Timezones with Local State",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T17:12:21.942453",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.348061"
+    },
+    {
+      "id": "c098e2dd-6162-444f-8678-dc1fba1e0e7a",
+      "type": "technique",
+      "content": "Technique: send to the Replit agent outlining your vision for an improved version of worldtimebuddy",
+      "context": "Improved World Time App",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T19:04:19.414319",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.354770"
+    },
+    {
+      "id": "23b76a30-4f80-4cf3-944d-c41fd57a303f",
+      "type": "idea",
+      "content": "Idea: build a modern, enhanced world time conversion tool—an improved clone of [worldtimebuddy",
+      "context": "Improved World Time App",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T19:04:19.414319",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.355455"
+    },
+    {
+      "id": "ee3c752b-d45f-4352-8d76-aa13830e599e",
+      "type": "decision",
+      "content": "Decided: a modern tech stack and leveraging existing time zone APIs and libraries, you can focus on designing an intuitive and responsive tool for users worldwide",
+      "context": "Building Time Zone App",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T16:42:25.421805",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.358036"
+    },
+    {
+      "id": "0593fc3e-6cc4-43e5-9729-cdb3f664d731",
+      "type": "lesson",
+      "content": "Learned: s like daylight saving time rules and API integration are, and maybe even suggest monetisation options",
+      "context": "Building Time Zone App",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T16:42:25.421805",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.359082"
+    },
+    {
+      "id": "6d15cc0b-7999-4a84-a65d-b9a797b60883",
+      "type": "technique",
+      "content": "Technique: help them build something similar",
+      "context": "Building Time Zone App",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T16:42:25.421805",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.359527"
+    },
+    {
+      "id": "eda559fa-43f1-4661-8ebe-9ba56769eab8",
+      "type": "technique",
+      "content": "Technique: use pytz or the built-in zoneinfo module (available from Python 3",
+      "context": "Building Time Zone App",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T16:42:25.421805",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.359853"
+    },
+    {
+      "id": "cec84f3a-16a9-496a-a5be-de24b492296c",
+      "type": "technique",
+      "content": "Technique: focus on designing an intuitive and responsive tool for users worldwide",
+      "context": "Building Time Zone App",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T16:42:25.421805",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.359867"
+    },
+    {
+      "id": "51c11501-bf8c-48d7-9571-5e090649af0e",
+      "type": "idea",
+      "content": "Idea: a back-end framework such as Node",
+      "context": "Building Time Zone App",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-07T16:42:25.421805",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.360445"
+    },
+    {
+      "id": "961a06b9-4f7b-4b99-bf78-56c7103d84e2",
+      "type": "decision",
+      "content": "Decided: hinges on risk management and strategic positioning",
+      "context": "SAFE Note vs Valuation",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-04T08:55:46.087446",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.361451"
+    },
+    {
+      "id": "40e09646-90f9-4f76-90b3-faa3cea479b6",
+      "type": "preference",
+      "content": "Preference: to know what is the best option for me, as an investor",
+      "context": "SAFE Note vs Valuation",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-04T08:55:46.087446",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.362130"
+    },
+    {
+      "id": "cd46cf24-8eba-49a9-bef4-0e1ec03de40d",
+      "type": "idea",
+      "content": "Idea: know what is the best option for me, as an investor",
+      "context": "SAFE Note vs Valuation",
+      "source": "chatgpt",
+      "sourceDate": "2025-02-04T08:55:46.087446",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.362910"
+    }
+  ]
+}

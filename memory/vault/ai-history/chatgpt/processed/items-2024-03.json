@@ -1,0 +1,385 @@
+{
+  "items": [
+    {
+      "id": "1a84ccc5-3b0d-4b0b-b137-20af48033207",
+      "type": "preference",
+      "content": "Preference: your help figuring out my outfit",
+      "context": "Stylish Groom & Groomsmen",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-29T13:29:33.089841",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.014535"
+    },
+    {
+      "id": "c797563f-5008-41f4-bb03-8cd54126cabf",
+      "type": "preference",
+      "content": "Preference: darker colours as I am a little on the pale and slim side",
+      "context": "Stylish Groom & Groomsmen",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-29T13:29:33.089841",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.014550"
+    },
+    {
+      "id": "87082cea-5612-4611-ba2d-aad566706a78",
+      "type": "idea",
+      "content": "Idea: consider a few things:",
+      "context": "Stylish Groom & Groomsmen",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-29T13:29:33.089841",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.015390"
+    },
+    {
+      "id": "8de004ca-677b-4203-abb7-25e6ebccca15",
+      "type": "decision",
+      "content": "Decided: makers in firms that could potentially be targets for us as new clients/new opportunities",
+      "context": "Crafting Brinc's Cold Email.",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-28T10:27:58.212597",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.024109"
+    },
+    {
+      "id": "cc3dc7b6-1279-4610-a1ac-a45036697be0",
+      "type": "preference",
+      "content": "Preference: to emphasise that Brinc can provide services that allow a company to scale their innovation efforts",
+      "context": "Crafting Brinc's Cold Email.",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-28T10:27:58.212597",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.028503"
+    },
+    {
+      "id": "1cd02e0a-9400-4dd2-9efa-d23226171718",
+      "type": "technique",
+      "content": "Technique: see the types of companies reflected in the industry column",
+      "context": "Crafting Brinc's Cold Email.",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-28T10:27:58.212597",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.031419"
+    },
+    {
+      "id": "6bc8127c-25e9-4491-b03c-5c65df46b260",
+      "type": "idea",
+      "content": "Idea: need your help in crafting a punchy cold email campaign to try and book introductory calls",
+      "context": "Crafting Brinc's Cold Email.",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-28T10:27:58.212597",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.033434"
+    },
+    {
+      "id": "39bd068a-4831-4095-b734-62ac667a6709",
+      "type": "idea",
+      "content": "Idea: cover non-US case studies as I feel these will be 'new' to more people",
+      "context": "Global Entrepreneurship Case Studies",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-21T10:31:56.636262",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.037670"
+    },
+    {
+      "id": "7826d7d3-01e5-4d21-bda6-e0d7707db569",
+      "type": "preference",
+      "content": "Preference: you to roleplay as my nutritionist and medical practitioner",
+      "context": "Supplements Overview Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-12T17:40:38.373223",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.042591"
+    },
+    {
+      "id": "72081e07-5e39-4009-9bbf-d18a96e1f4a0",
+      "type": "idea",
+      "content": "Idea: start taking a number of supplements",
+      "context": "Supplements Overview Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-12T17:40:38.373223",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.044604"
+    },
+    {
+      "id": "1c97f3f9-8c64-4c8c-96b8-6ce272d20f9a",
+      "type": "preference",
+      "content": "Preference: help with keyword research to create content and run some ads",
+      "context": "Remote Marketing Assistant Keywords",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-11T15:39:25.891397",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.048183"
+    },
+    {
+      "id": "ff12edcb-517b-43d9-ae86-8d6bbb721e5b",
+      "type": "preference",
+      "content": "Preference: to create ads regarding the 'need to hire a remote marketing assistant' to send users to my calculator https://virtualaces",
+      "context": "Remote Marketing Assistant Keywords",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-11T15:39:25.891397",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.048193"
+    },
+    {
+      "id": "03ba2e8c-4d5f-4dc4-a39f-33ea8b54aa2e",
+      "type": "technique",
+      "content": "Technique: attract the right audience and convert them more effectively",
+      "context": "Remote Marketing Assistant Keywords",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-11T15:39:25.891397",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.049133"
+    },
+    {
+      "id": "ed3506f8-09bb-48bb-a399-3af14f52e15f",
+      "type": "idea",
+      "content": "Idea: create ads regarding the 'need to hire a remote marketing assistant' to send users to my calculator https://virtualaces",
+      "context": "Remote Marketing Assistant Keywords",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-11T15:39:25.891397",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.049689"
+    },
+    {
+      "id": "0f2b8679-ccfa-4353-ab26-85addec4635c",
+      "type": "idea",
+      "content": "Idea: the Hong Kong Rugby Sevens later this month with a big group of about 10 of us",
+      "context": "Rugby Band Costume Idea",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-07T10:17:51.786822",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.059314"
+    },
+    {
+      "id": "a17de6ec-6044-42c4-bc22-1eefdd9fda15",
+      "type": "preference",
+      "content": "Preference: to negotiate a lower price",
+      "context": "Negotiating Lower Revenue Multiple",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-04T21:48:31.353274",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.060097"
+    },
+    {
+      "id": "0f48e871-18d1-443c-bec1-4fb86b1e71e1",
+      "type": "technique",
+      "content": "Technique: discuss to negotiate a lower perceived revenue multiple",
+      "context": "Negotiating Lower Revenue Multiple",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-04T21:48:31.353274",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.060177"
+    },
+    {
+      "id": "4508abd6-ab06-4816-996e-f5f6f1d0ee34",
+      "type": "idea",
+      "content": "Idea: negotiate a lower price",
+      "context": "Negotiating Lower Revenue Multiple",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-04T21:48:31.353274",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.060232"
+    },
+    {
+      "id": "566d5afc-0360-4119-9657-5e36ed4ead78",
+      "type": "lesson",
+      "content": "Learned: and actionable insights",
+      "context": "Content Strategy: VC Expert",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-04T12:10:59.554463",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.061886"
+    },
+    {
+      "id": "7f9338ab-c73d-4270-9451-007499279e85",
+      "type": "preference",
+      "content": "Preference: to focus on case studies of interesting businesses, tips for entrepreneurs, ideas around sustainability, productivity and operating a business",
+      "context": "Content Strategy: VC Expert",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-04T12:10:59.554463",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.062089"
+    },
+    {
+      "id": "1dd00ed6-c90f-4bd8-9ac0-28517b7faa20",
+      "type": "idea",
+      "content": "Idea: focus on case studies of interesting businesses, tips for entrepreneurs, ideas around sustainability, productivity and operating a business",
+      "context": "Content Strategy: VC Expert",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-04T12:10:59.554463",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.062748"
+    },
+    {
+      "id": "92803821-6219-4c99-b81d-430297422dbb",
+      "type": "idea",
+      "content": "Idea: now skip the initial rows to directly access the relevant financial data and look for the figures needed to calculate EBITDA",
+      "context": "Solartia EBITDA Calculation",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-01T16:23:31.068631",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.065363"
+    },
+    {
+      "id": "c589ca83-5d3b-4194-bdc1-551e9bb77e8e",
+      "type": "idea",
+      "content": "Idea: consider the offered price, power volume, and compliance with renewable energy preferences under Panamanian law",
+      "context": "Renewable Energy Tender Process",
+      "source": "chatgpt",
+      "sourceDate": "2024-03-01T16:18:19.953798",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.067425"
+    }
+  ]
+}

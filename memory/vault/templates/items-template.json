@@ -1,0 +1,19 @@
+{
+  "$schema": "../schemas/items.schema.json",
+  "entity": "entity-name",
+  "type": "project|area|resource",
+  "facts": [
+    {
+      "id": "fact-001",
+      "content": "The actual fact or piece of information",
+      "source": "Where this came from",
+      "createdAt": "2026-02-01T12:00:00Z",
+      "lastAccessed": "2026-02-01T12:00:00Z",
+      "accessCount": 1,
+      "status": "active",
+      "tags": ["example"],
+      "supersedes": null,
+      "supersededBy": null
+    }
+  ]
+}

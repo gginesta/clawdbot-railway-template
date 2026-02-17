@@ -1,0 +1,346 @@
+{
+  "items": [
+    {
+      "id": "b537b902-b02c-4ac0-bdb8-4bfb846ef6d9",
+      "type": "technique",
+      "content": "Technique: tell me about your LinkedIn profile or ask specific questions about LinkedIn, and I'd be happy to help to the best of my abilities",
+      "context": "Copy Review.",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-27T10:56:47.806974",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.542998"
+    },
+    {
+      "id": "d9b67ef2-993f-4196-9909-9b5004466d1e",
+      "type": "technique",
+      "content": "Technique: share the text of your summary, experiences, skills, etc",
+      "context": "Copy Review.",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-27T10:56:47.806974",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.543011"
+    },
+    {
+      "id": "cec04c37-ef4a-4185-b854-514410bd820e",
+      "type": "idea",
+      "content": "Idea: be beneficial in this role",
+      "context": "Copy Review.",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-27T10:56:47.806974",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.544242"
+    },
+    {
+      "id": "d26d172e-04a4-48c2-9dcc-00abe34cedf5",
+      "type": "idea",
+      "content": "Idea: heavily depend on the quality and quantity of the data you have available",
+      "context": "AI Optimizes Freight Forwarding",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-29T12:34:22.586953",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.549515"
+    },
+    {
+      "id": "8c548ef3-9683-4cb8-9e0f-2e4b144d8a65",
+      "type": "idea",
+      "content": "Idea: numerous factors like seasonal changes, global economic indicators, fuel prices, and more",
+      "context": "AI Optimizes Freight Forwarding",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-29T12:34:22.586953",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.549851"
+    },
+    {
+      "id": "6efde034-9010-4405-8c7d-0fd9c6026956",
+      "type": "idea",
+      "content": "Idea: overburden you and decrease your overall productivity",
+      "context": "Academic Research Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-20T13:28:54.094221",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.554046"
+    },
+    {
+      "id": "2cbd269d-6721-4ec8-a230-6677a32a4054",
+      "type": "idea",
+      "content": "Idea: search for flights from Hong Kong to London from 2023-07-18 in premium economy",
+      "context": "Flight Booking Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-19T21:03:37.300118",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.561747"
+    },
+    {
+      "id": "e78962ed-f58e-4b2c-9326-3ca26986daed",
+      "type": "preference",
+      "content": "Preference: to hire a team, not just a single professional",
+      "context": "Virtual Tribe: New Service",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-18T15:37:02.365639",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.579052"
+    },
+    {
+      "id": "412e5790-a8b4-41bc-9d20-b9330e499c7b",
+      "type": "preference",
+      "content": "Preference: someone to start immediately",
+      "context": "Virtual Tribe: New Service",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-18T15:37:02.365639",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.579069"
+    },
+    {
+      "id": "08ba4286-0a58-4242-9b7f-5e13c4fb6eaf",
+      "type": "technique",
+      "content": "Technique: make the transition as smooth as possible",
+      "context": "Virtual Tribe: New Service",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-18T15:37:02.365639",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.581722"
+    },
+    {
+      "id": "d4b39605-8354-495e-b3ec-f55bc950c7d8",
+      "type": "technique",
+      "content": "Technique: focus on what you do best - running your business",
+      "context": "Virtual Tribe: New Service",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-18T15:37:02.365639",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.583339"
+    },
+    {
+      "id": "3670177e-48d0-4c06-b74b-4990fd01cd78",
+      "type": "idea",
+      "content": "Idea: simplify and streamline the hiring process, especially for remote positions",
+      "context": "Virtual Tribe: New Service",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-18T15:37:02.365639",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.586305"
+    },
+    {
+      "id": "cde35697-f9fc-4c05-9edd-3553e8193e9d",
+      "type": "decision",
+      "content": "Decided: Professionals, Vetted for Excellence\"",
+      "context": "Designing Virtual Tribe Website",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-03T18:12:42.710216",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.595293"
+    },
+    {
+      "id": "b0573604-6f61-41ee-82e6-14494f5f213a",
+      "type": "decision",
+      "content": "Decided: the browser tool to explore the websites you've listed",
+      "context": "Designing Virtual Tribe Website",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-03T18:12:42.710216",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.597195"
+    },
+    {
+      "id": "b2ed00b8-8c5c-4299-9bbf-d4620c4e10ff",
+      "type": "preference",
+      "content": "Preference: to develop a sales script",
+      "context": "Designing Virtual Tribe Website",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-03T18:12:42.710216",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.601782"
+    },
+    {
+      "id": "8738ee08-1f65-414d-9c62-74433204cd5d",
+      "type": "technique",
+      "content": "Technique: scale your marketing initiatives as you see fit, without the hassle of traditional hiring processes",
+      "context": "Designing Virtual Tribe Website",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-03T18:12:42.710216",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.605227"
+    },
+    {
+      "id": "cb61b72c-7a59-42ac-a701-80841dc06a5d",
+      "type": "technique",
+      "content": "Technique: focus on what truly matters - growing your business",
+      "context": "Designing Virtual Tribe Website",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-03T18:12:42.710216",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.605239"
+    },
+    {
+      "id": "43f5be5c-7386-488f-94b2-1316461dd0fe",
+      "type": "idea",
+      "content": "Idea: launch a new service called Virtual Tribe (www",
+      "context": "Designing Virtual Tribe Website",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-03T18:12:42.710216",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.607346"
+    },
+    {
+      "id": "15febf27-283a-4ba6-b499-e745f269d9ab",
+      "type": "idea",
+      "content": "Idea: continue to grow despite these regulatory hurdles, emphasizing the importance of clear regulations for the continued maturity and growth of the sector【73†source】",
+      "context": "SEC Position on Coinbase & Binance",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-09T16:29:58.303246",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.611372"
+    },
+    {
+      "id": "0a10998f-9a67-4869-aada-66027c5eeb1b",
+      "type": "technique",
+      "content": "Technique: this could be reflected in a business plan:",
+      "context": "Financial Analysis Report Creation",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-08T14:56:02.870001",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.624178"
+    },
+    {
+      "id": "650d2dd8-6c3e-42c5-bde7-6f2c1e3482b5",
+      "type": "technique",
+      "content": "Technique: adjust this template as needed to suit your specific needs and expectations",
+      "context": "Financial Analysis Report Creation",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-08T14:56:02.870001",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.625231"
+    },
+    {
+      "id": "4098d6f0-47b0-4694-8c25-c9b430b57346",
+      "type": "idea",
+      "content": "Idea: depend on the size and complexity of the business, as well as the purpose of the analysis",
+      "context": "Financial Analysis Report Creation",
+      "source": "chatgpt",
+      "sourceDate": "2023-06-08T14:56:02.870001",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.628457"
+    }
+  ]
+}

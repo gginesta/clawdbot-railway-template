@@ -1,0 +1,612 @@
+{
+  "items": [
+    {
+      "id": "307492e5-95ea-446a-adac-ee8c43b6e2d5",
+      "type": "preference",
+      "content": "Preference: a boilerplate NDA document",
+      "context": "Caravella Capital NDA Template",
+      "source": "claude",
+      "sourceDate": "2024-12-06T14:05:10.818189Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.917407"
+    },
+    {
+      "id": "3a3fde3e-83a1-4b66-aec4-6e9c63c2e5d8",
+      "type": "idea",
+      "content": "Idea: likely be reused and modified",
+      "context": "Caravella Capital NDA Template",
+      "source": "claude",
+      "sourceDate": "2024-12-06T14:05:10.818189Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.923199"
+    },
+    {
+      "id": "9d98724c-a866-4f06-9514-5197af6c69fc",
+      "type": "decision",
+      "content": "Decided: making to me as the new owner",
+      "context": "💬 I am working to acquire a comp...",
+      "source": "claude",
+      "sourceDate": "2024-12-06T08:19:00.500437Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.968285"
+    },
+    {
+      "id": "9cfca4b7-8770-4616-938c-eeb2e386a4bc",
+      "type": "idea",
+      "content": "Idea: Emilio need to be present at the office regularly or can he work remotely",
+      "context": "💬 I am working to acquire a comp...",
+      "source": "claude",
+      "sourceDate": "2024-12-06T08:19:00.500437Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.979646"
+    },
+    {
+      "id": "55c6ff90-3b3b-4c2a-9f0f-d71a42c527dd",
+      "type": "decision",
+      "content": "Decided: sample size for qualitative research as conducting interviews, coding and TA all take time",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.005125"
+    },
+    {
+      "id": "23656722-6d37-4316-9385-d064ccab3808",
+      "type": "decision",
+      "content": "Decided: sample size for qualitative research as conducting interviews, coding and TA all take time",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.005142"
+    },
+    {
+      "id": "67b2a5cd-76a5-44c8-bc88-8a1a485ad866",
+      "type": "decision",
+      "content": "Decided: a blend of interpretive phenomenological analysis (IPA) and thematic analysis (TA) to understand the experience of employees with IS",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.009681"
+    },
+    {
+      "id": "96a8f2be-4c59-4f4f-9c54-8ca9e9f194f1",
+      "type": "decision",
+      "content": "Decided: a blend of interpretive phenomenological analysis (IPA) and thematic analysis (TA) to understand the experience of employees with IS",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.009711"
+    },
+    {
+      "id": "d9cd98d7-0fa2-4d49-be22-df9e087c8ff5",
+      "type": "lesson",
+      "content": "Learned: African American females who reported higher rates of discrimination but low levels of distress were most likely to have poor mental health outcomes and experience IS",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.016632"
+    },
+    {
+      "id": "cf69371b-16d5-46e8-aa14-12deb5129856",
+      "type": "lesson",
+      "content": "Learned: African American females who reported higher rates of discrimination but low levels of distress were most likely to have poor mental health outcomes and experience IS",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.016649"
+    },
+    {
+      "id": "c0873fa8-973c-4a3e-8627-b18cd5720b85",
+      "type": "lesson",
+      "content": "Learned: that individuals who internalize the opinions of others are more likely to experience IS",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.019790"
+    },
+    {
+      "id": "a34a5a45-6859-4719-849c-101010e9a311",
+      "type": "lesson",
+      "content": "Learned: that individuals who internalize the opinions of others are more likely to experience IS",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.019810"
+    },
+    {
+      "id": "df61e959-e4e1-40b1-9ce6-2c3a3269b32a",
+      "type": "preference",
+      "content": "Preference: to maintain as much from the original as possible, only trimming where there may be redundancies or where paragraphs can be written in a more concise manner",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.020717"
+    },
+    {
+      "id": "fc5f9393-ccfa-4788-b8bf-2506189311ab",
+      "type": "technique",
+      "content": "Technique: read through it in full",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.032965"
+    },
+    {
+      "id": "51f9a511-921f-4ee3-84fe-704cae66c080",
+      "type": "idea",
+      "content": "Idea: inform organizational leaders' cultural change initiatives and provide counselors with insight into contextual factors affecting IS",
+      "context": "Condensing Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T10:56:49.215186Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.041395"
+    },
+    {
+      "id": "2fcfcf66-708a-4614-9482-d10be66bea8e",
+      "type": "decision",
+      "content": "Decided: interpretive phenomenological analysis (IPA) and thematic analysis (TA) to understand the lived experience of employees with IS",
+      "context": "Concise Research Paper Revision",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:35:57.582215Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.105643"
+    },
+    {
+      "id": "4fc0307e-ea7d-4a90-bf54-b04ff2efe1ee",
+      "type": "decision",
+      "content": "Decided: interpretive phenomenological analysis (IPA) and thematic analysis (TA) to understand the lived experience of employees with IS",
+      "context": "Concise Research Paper Revision",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:35:57.582215Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.105659"
+    },
+    {
+      "id": "6b293f56-b893-4501-a45d-34d4a02439e2",
+      "type": "lesson",
+      "content": "Learned: African American females who reported higher rates of discrimination but low levels of distress were most likely to have poor mental health outcomes and experience IS",
+      "context": "Concise Research Paper Revision",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:35:57.582215Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.108048"
+    },
+    {
+      "id": "5f83e91d-3bae-47c0-aaae-fc04130f6bc1",
+      "type": "lesson",
+      "content": "Learned: African American females who reported higher rates of discrimination but low levels of distress were most likely to have poor mental health outcomes and experience IS",
+      "context": "Concise Research Paper Revision",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:35:57.582215Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.108058"
+    },
+    {
+      "id": "bc652629-ac4c-4740-ab47-4c2788e62139",
+      "type": "preference",
+      "content": "Preference: it re-written to shave 35% of its length",
+      "context": "Concise Research Paper Revision",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:35:57.582215Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.110976"
+    },
+    {
+      "id": "2d6df57d-78ad-4411-9684-04f58cab4b46",
+      "type": "preference",
+      "content": "Preference: to reduce the original by 35%, not 50%",
+      "context": "Concise Research Paper Revision",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:35:57.582215Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.111001"
+    },
+    {
+      "id": "81969231-5448-4f0f-bddb-6e7dad4d2ea9",
+      "type": "idea",
+      "content": "Idea: be over 20 lines long, it warrants an artifact",
+      "context": "Concise Research Paper Revision",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:35:57.582215Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.119467"
+    },
+    {
+      "id": "278a78ab-1100-4a57-8023-93705f9c5238",
+      "type": "preference",
+      "content": "Preference: to get it down to 2500 words",
+      "context": "Concise Research Paper Editing",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:29:10.375857Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.127957"
+    },
+    {
+      "id": "74037321-14bf-4165-89ce-39990f9185e8",
+      "type": "idea",
+      "content": "Idea: explore the relationship between IS and PS",
+      "context": "Concise Research Paper Editing",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:29:10.375857Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.129833"
+    },
+    {
+      "id": "21277c19-078d-4de8-9c04-4cb191abfe64",
+      "type": "decision",
+      "content": "Decided: interpretive phenomenological analysis (IPA) and thematic analysis (TA) to understand IS experiences",
+      "context": "Concise Rewrite of Research Proposal",
+      "source": "claude",
+      "sourceDate": "2024-12-08T13:46:34.000426Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.138164"
+    },
+    {
+      "id": "2b991baf-fcf6-4e68-a6a6-158653275301",
+      "type": "preference",
+      "content": "Preference: your help building a prototype",
+      "context": "Social Dining Platform Prototype",
+      "source": "claude",
+      "sourceDate": "2024-12-12T06:49:30.020407Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.236443"
+    },
+    {
+      "id": "d0c2eba3-e38f-4c07-8b37-7c8a776b7abb",
+      "type": "technique",
+      "content": "Technique: the project structure should look:",
+      "context": "Social Dining Platform Prototype",
+      "source": "claude",
+      "sourceDate": "2024-12-12T06:49:30.020407Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.250076"
+    },
+    {
+      "id": "f4d37a35-4f8c-4009-a25f-e0b17755ab93",
+      "type": "idea",
+      "content": "Idea: require multiple components and features",
+      "context": "Social Dining Platform Prototype",
+      "source": "claude",
+      "sourceDate": "2024-12-12T06:49:30.020407Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.274299"
+    },
+    {
+      "id": "86ff37ad-91b7-4ec2-8591-e1e22af8d211",
+      "type": "preference",
+      "content": "Preference: your help in updating the attached LOI/Term Sheet",
+      "context": "Acquiring Solartia for EUR45m",
+      "source": "claude",
+      "sourceDate": "2024-12-21T10:37:38.268887Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.309295"
+    },
+    {
+      "id": "9973f354-4242-45c8-a255-dcdb65a42833",
+      "type": "preference",
+      "content": "Preference: your help with the \"Memorandum of Understanding regarding day-to-day operations\"",
+      "context": "Acquiring Solartia for EUR45m",
+      "source": "claude",
+      "sourceDate": "2024-12-21T10:37:38.268887Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.309323"
+    },
+    {
+      "id": "a84de2a3-1cfe-40de-b57d-da1c2b839ff5",
+      "type": "technique",
+      "content": "Technique: set that for every investment, the terms will be interest free payback, with a grace period of 5 years",
+      "context": "Acquiring Solartia for EUR45m",
+      "source": "claude",
+      "sourceDate": "2024-12-21T10:37:38.268887Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.315255"
+    },
+    {
+      "id": "af87103a-f98d-4265-93cc-030f02c2ff36",
+      "type": "technique",
+      "content": "Technique: copy and paste it directly into any document without formatting issues",
+      "context": "Acquiring Solartia for EUR45m",
+      "source": "claude",
+      "sourceDate": "2024-12-21T10:37:38.268887Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.315282"
+    },
+    {
+      "id": "e62f1963-6bf1-4af9-80ad-b27114d49a1c",
+      "type": "idea",
+      "content": "Idea: act as my legal and financial adviser for a corporate transaction",
+      "context": "Acquiring Solartia for EUR45m",
+      "source": "claude",
+      "sourceDate": "2024-12-21T10:37:38.268887Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.319580"
+    },
+    {
+      "id": "aa5158d4-4f66-42f7-848d-2dc760812a34",
+      "type": "preference",
+      "content": "Preference: your help in updating the attached Term Sheet",
+      "context": "Acquisition of Solartia for EUR45m",
+      "source": "claude",
+      "sourceDate": "2024-12-13T02:34:14.796892Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.440756"
+    },
+    {
+      "id": "36172a80-b1cd-4f4a-a072-8f2403a295cb",
+      "type": "preference",
+      "content": "Preference: to confirm one more key point:",
+      "context": "Acquisition of Solartia for EUR45m",
+      "source": "claude",
+      "sourceDate": "2024-12-13T02:34:14.796892Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.440776"
+    },
+    {
+      "id": "6b266d8b-950f-4f55-907a-c196c8d922d0",
+      "type": "idea",
+      "content": "Idea: start a HoldCo called Mana Capital which will acquire Solartia",
+      "context": "Acquisition of Solartia for EUR45m",
+      "source": "claude",
+      "sourceDate": "2024-12-13T02:34:14.796892Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.462880"
+    }
+  ]
+}

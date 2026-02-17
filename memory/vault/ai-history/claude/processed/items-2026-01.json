@@ -1,0 +1,1113 @@
+{
+  "items": [
+    {
+      "id": "efb2757e-8233-4c70-8af0-45baa3d13370",
+      "type": "preference",
+      "content": "Preference: to spin up a version of MoltBot",
+      "context": "Claude prompting techniques",
+      "source": "claude",
+      "sourceDate": "2026-01-30T04:31:38.623584Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.482204"
+    },
+    {
+      "id": "fd477ee7-7794-4e59-8417-96ec85f7948a",
+      "type": "preference",
+      "content": "Preference: your help first figuring out whether we install it on Railway or Hetzner",
+      "context": "Claude prompting techniques",
+      "source": "claude",
+      "sourceDate": "2026-01-30T04:31:38.623584Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.482230"
+    },
+    {
+      "id": "24e8298b-3826-4f9a-ae0b-55918d199ac0",
+      "type": "idea",
+      "content": "Idea: to book calls or not (linked to the other project you and I are working on)",
+      "context": "Claude prompting techniques",
+      "source": "claude",
+      "sourceDate": "2026-01-30T04:31:38.623584Z",
+      "confidence": "low",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.487216"
+    },
+    {
+      "id": "671dd6a1-c7ce-408b-b279-f79d048afeda",
+      "type": "lesson",
+      "content": "Learned: earlier, the /last30days skill is designed for Claude Code (the terminal tool), not for Claude",
+      "context": "Moltbot openclaw best practices and security",
+      "source": "claude",
+      "sourceDate": "2026-01-30T05:27:20.243819Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.499190"
+    },
+    {
+      "id": "53e29d91-48ef-4ded-a140-c024138aa801",
+      "type": "technique",
+      "content": "Technique: use it instead of per-token billing via Claude Code CLI setup token",
+      "context": "Moltbot openclaw best practices and security",
+      "source": "claude",
+      "sourceDate": "2026-01-30T05:27:20.243819Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.503702"
+    },
+    {
+      "id": "d9804a57-e0dc-4aee-aa97-84c03f958ee8",
+      "type": "idea",
+      "content": "Idea: | Task Type | Model | Rationale |",
+      "context": "Moltbot openclaw best practices and security",
+      "source": "claude",
+      "sourceDate": "2026-01-30T05:27:20.243819Z",
+      "confidence": "low",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.506913"
+    },
+    {
+      "id": "5972542c-7938-43e6-9531-7410f4729fcb",
+      "type": "preference",
+      "content": "Preference: to create a way to have you or Manus (or any alternative you recommend) to navigate live across all sections of the site for testing purposes",
+      "context": "Cerebro project testing and user navigation strategy",
+      "source": "claude",
+      "sourceDate": "2026-01-24T03:55:07.544061Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.519323"
+    },
+    {
+      "id": "5afcc5c9-a6ce-45ca-af9c-9257b24f8e55",
+      "type": "technique",
+      "content": "Technique: the search function to see if files exist",
+      "context": "Cerebro project testing and user navigation strategy",
+      "source": "claude",
+      "sourceDate": "2026-01-24T03:55:07.544061Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.521234"
+    },
+    {
+      "id": "61ccc03c-4795-40d4-8833-7b86fc6ce19c",
+      "type": "idea",
+      "content": "Idea: create a way to have you or Manus (or any alternative you recommend) to navigate live across all sections of the site for testing purposes",
+      "context": "Cerebro project testing and user navigation strategy",
+      "source": "claude",
+      "sourceDate": "2026-01-24T03:55:07.544061Z",
+      "confidence": "low",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.522467"
+    },
+    {
+      "id": "88f9eb49-30f9-4138-9f61-4222b37abf6b",
+      "type": "preference",
+      "content": "Preference: a detailed research report on how it works, the likely tech stack, features, etc",
+      "context": "Boardy.ai competitive analysis and product research",
+      "source": "claude",
+      "sourceDate": "2026-01-25T01:47:11.515190Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.565354"
+    },
+    {
+      "id": "db54b73c-4262-477a-8979-46ccae3cbdae",
+      "type": "technique",
+      "content": "Technique: click directly on any of these links to return to that chat:",
+      "context": "Boardy.ai competitive analysis and product research",
+      "source": "claude",
+      "sourceDate": "2026-01-25T01:47:11.515190Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.566357"
+    },
+    {
+      "id": "d8427194-190b-4924-9b6e-424adb4d3d7c",
+      "type": "idea",
+      "content": "Idea: understand the product well and see how to launch a better, more capable version of it",
+      "context": "Boardy.ai competitive analysis and product research",
+      "source": "claude",
+      "sourceDate": "2026-01-25T01:47:11.515190Z",
+      "confidence": "low",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.566975"
+    },
+    {
+      "id": "f43d481a-dd11-4146-87c0-c7a0d840437a",
+      "type": "decision",
+      "content": "Decided: the workaround — move your project off OneDrive to a local folder:",
+      "context": "Claude code installation error",
+      "source": "claude",
+      "sourceDate": "2026-01-24T04:08:36.832289Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.570199"
+    },
+    {
+      "id": "c4f8d7c9-2b26-4abe-ae6e-c902b9c9666b",
+      "type": "technique",
+      "content": "Technique: install directly via npm:",
+      "context": "Claude code installation error",
+      "source": "claude",
+      "sourceDate": "2026-01-24T04:08:36.832289Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.572460"
+    },
+    {
+      "id": "a07def29-fa98-4eeb-959e-85f787f81f74",
+      "type": "technique",
+      "content": "Technique: bypass it for just this command:",
+      "context": "Claude code installation error",
+      "source": "claude",
+      "sourceDate": "2026-01-24T04:08:36.832289Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.572476"
+    },
+    {
+      "id": "7bd3ff7b-3d55-46ae-bdb0-0c19b8f2a474",
+      "type": "idea",
+      "content": "Idea: confirm if the package was actually installed",
+      "context": "Claude code installation error",
+      "source": "claude",
+      "sourceDate": "2026-01-24T04:08:36.832289Z",
+      "confidence": "low",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.573190"
+    },
+    {
+      "id": "56e3d5fd-66fe-41e6-bdbe-2f7cfba56b37",
+      "type": "idea",
+      "content": "Idea: the workaround - moving the project off OneDrive to a local folder",
+      "context": "Claude code installation error",
+      "source": "claude",
+      "sourceDate": "2026-01-24T04:08:36.832289Z",
+      "confidence": "low",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.573638"
+    },
+    {
+      "id": "d2778ed4-e860-400e-94f8-dae5b52ff83c",
+      "type": "preference",
+      "content": "Preference: to replicate the exact visual layout of the invoice, I'll create a PDF using reportlab that matches the styling of the original invoices",
+      "context": "Creating invoice from template",
+      "source": "claude",
+      "sourceDate": "2026-01-14T08:12:11.481041Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.578399"
+    },
+    {
+      "id": "d57a9966-3c7e-40b2-91e3-e6628d597e37",
+      "type": "preference",
+      "content": "Preference: to update the y positions in the rest of the document since I changed the logo section",
+      "context": "Creating invoice from template",
+      "source": "claude",
+      "sourceDate": "2026-01-14T08:12:11.481041Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.578422"
+    },
+    {
+      "id": "50acd116-2221-470a-97c1-7de77ce87a00",
+      "type": "idea",
+      "content": "Idea: give me more control over the styling",
+      "context": "Creating invoice from template",
+      "source": "claude",
+      "sourceDate": "2026-01-14T08:12:11.481041Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.580953"
+    },
+    {
+      "id": "0090487c-d487-4c14-a045-a3df99b58508",
+      "type": "decision",
+      "content": "Decided: SVG or React to build something that captures these interconnected aspects of who Guillermo is",
+      "context": "Artistic portrait from our shared memory",
+      "source": "claude",
+      "sourceDate": "2026-01-24T01:19:42.808872Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "cerebro",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.585129"
+    },
+    {
+      "id": "58bfce99-6e9e-4483-bf92-27eca1255b7e",
+      "type": "preference",
+      "content": "Preference: to copy this to the outputs directory and present it to the user",
+      "context": "Artistic portrait from our shared memory",
+      "source": "claude",
+      "sourceDate": "2026-01-24T01:19:42.808872Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "cerebro",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.586359"
+    },
+    {
+      "id": "0b251376-a657-42f3-b7da-bff494c616f7",
+      "type": "preference",
+      "content": "Preference: to use puppeteer to capture this as a JPEG",
+      "context": "Artistic portrait from our shared memory",
+      "source": "claude",
+      "sourceDate": "2026-01-24T01:19:42.808872Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "cerebro",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.586374"
+    },
+    {
+      "id": "818aeef6-3661-4d64-a5fc-9014169e14fd",
+      "type": "technique",
+      "content": "Technique: the browser-based approach with a different tool like wkhtmltoimage",
+      "context": "Artistic portrait from our shared memory",
+      "source": "claude",
+      "sourceDate": "2026-01-24T01:19:42.808872Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "cerebro",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.587470"
+    },
+    {
+      "id": "21ae270d-6b19-4d73-9e27-bf19b240d060",
+      "type": "idea",
+      "content": "Idea: using the browser-based approach with a different tool like wkhtmltoimage",
+      "context": "Artistic portrait from our shared memory",
+      "source": "claude",
+      "sourceDate": "2026-01-24T01:19:42.808872Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "cerebro",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.588770"
+    },
+    {
+      "id": "5769c030-b2c5-470b-a4e2-ba6504e1896b",
+      "type": "preference",
+      "content": "Preference: to rename files in folders 1, 2, and one file in folder 6",
+      "context": "Renaming sales deck files with \"deck proposal\"",
+      "source": "claude",
+      "sourceDate": "2026-01-29T10:23:18.884614Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.591709"
+    },
+    {
+      "id": "d5dfc44b-aeaf-4149-b26c-f48483a832b9",
+      "type": "idea",
+      "content": "Idea: add \"deck proposal\" to each filename while keeping the current name",
+      "context": "Renaming sales deck files with \"deck proposal\"",
+      "source": "claude",
+      "sourceDate": "2026-01-29T10:23:18.884614Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.593062"
+    },
+    {
+      "id": "0e0425bd-d941-41fa-92f2-a2017d9410ff",
+      "type": "lesson",
+      "content": "Learned: s from the assessment:**",
+      "context": "Asian shipping and commodities PE acquisition targets",
+      "source": "claude",
+      "sourceDate": "2026-01-13T05:36:38.096663Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.599146"
+    },
+    {
+      "id": "c799ab77-48dc-4585-8c6a-cb163b249e3d",
+      "type": "preference",
+      "content": "Preference: clarifying questions:",
+      "context": "Asian shipping and commodities PE acquisition targets",
+      "source": "claude",
+      "sourceDate": "2026-01-13T05:36:38.096663Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.599418"
+    },
+    {
+      "id": "12d80830-8257-4218-a00f-dddbdb64a638",
+      "type": "preference",
+      "content": "Preference: to calibrate the private comparables correctly",
+      "context": "Asian shipping and commodities PE acquisition targets",
+      "source": "claude",
+      "sourceDate": "2026-01-13T05:36:38.096663Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.599437"
+    },
+    {
+      "id": "6cdf0bc9-cbe3-4903-915b-9a08127d785c",
+      "type": "technique",
+      "content": "Technique: quickly scan all 12 targets by deal probability before diving into individual profiles",
+      "context": "Asian shipping and commodities PE acquisition targets",
+      "source": "claude",
+      "sourceDate": "2026-01-13T05:36:38.096663Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.600809"
+    },
+    {
+      "id": "dbe35a9d-585c-4a96-9c36-78748c9b4501",
+      "type": "idea",
+      "content": "Idea: calibrate the private comparables correctly",
+      "context": "Asian shipping and commodities PE acquisition targets",
+      "source": "claude",
+      "sourceDate": "2026-01-13T05:36:38.096663Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.601724"
+    },
+    {
+      "id": "7fa1cefa-78b2-43a2-9528-23f8821b955e",
+      "type": "preference",
+      "content": "Preference: them to test if Windows-MCP can run",
+      "context": "Troubleshooting installation and enablement issues",
+      "source": "claude",
+      "sourceDate": "2026-01-14T03:23:08.465477Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.613145"
+    },
+    {
+      "id": "1ba4bb30-2caf-4c6f-8796-1c5a4418d416",
+      "type": "preference",
+      "content": "Preference: to help them add the mcpServers configuration for Windows-MCP",
+      "context": "Troubleshooting installation and enablement issues",
+      "source": "claude",
+      "sourceDate": "2026-01-14T03:23:08.465477Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.613177"
+    },
+    {
+      "id": "232f261d-9f3a-401c-80cf-7eee8e695d53",
+      "type": "technique",
+      "content": "Technique: see it says \"Starting MCP server 'windows-mcp' with transport 'stdio'\" - this confirms the server works",
+      "context": "Troubleshooting installation and enablement issues",
+      "source": "claude",
+      "sourceDate": "2026-01-14T03:23:08.465477Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.616304"
+    },
+    {
+      "id": "49f0a4cd-52a4-4549-b6a5-5c9f4ea2a703",
+      "type": "idea",
+      "content": "Idea: test if the MCP server can start",
+      "context": "Troubleshooting installation and enablement issues",
+      "source": "claude",
+      "sourceDate": "2026-01-14T03:23:08.465477Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.618211"
+    },
+    {
+      "id": "bd77340a-c290-4edc-9801-a9a938e27170",
+      "type": "decision",
+      "content": "Decided: PowerShell to create the file there",
+      "context": "Building a progressive web app with Claude Code",
+      "source": "claude",
+      "sourceDate": "2026-01-16T03:56:47.634971Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.635058"
+    },
+    {
+      "id": "ff09c22d-af10-48ba-8307-37cb7ec3c108",
+      "type": "preference",
+      "content": "Preference: your help in helping me create a new project where Claude Code develops a progressive web app for me from a briefing document I have",
+      "context": "Building a progressive web app with Claude Code",
+      "source": "claude",
+      "sourceDate": "2026-01-16T03:56:47.634971Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.641542"
+    },
+    {
+      "id": "253402a6-222b-465b-b6de-78c6a18bc33d",
+      "type": "technique",
+      "content": "Technique: guide it, ask questions, and course-correct as it works",
+      "context": "Building a progressive web app with Claude Code",
+      "source": "claude",
+      "sourceDate": "2026-01-16T03:56:47.634971Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.653292"
+    },
+    {
+      "id": "b4cf9dd5-fcba-4e68-8d3e-7194b40891c8",
+      "type": "technique",
+      "content": "Technique: the Windows MCP tools to open the browser and navigate to the Node",
+      "context": "Building a progressive web app with Claude Code",
+      "source": "claude",
+      "sourceDate": "2026-01-16T03:56:47.634971Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.653321"
+    },
+    {
+      "id": "56cfb738-4d17-4da5-8ffe-eb8c0112568b",
+      "type": "preference",
+      "content": "Preference: your help creating a professional AI-powered CRM mini app to help me record people I meet and business cards I receive, as well as being able to then query my database",
+      "context": "AI-powered business card CRM app",
+      "source": "claude",
+      "sourceDate": "2026-01-14T06:15:06.720868Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.665547"
+    },
+    {
+      "id": "1af83647-7074-45db-ad61-56ee036c35bb",
+      "type": "preference",
+      "content": "Preference: your help creating a briefing document and product summary file",
+      "context": "AI-powered business card CRM app",
+      "source": "claude",
+      "sourceDate": "2026-01-14T06:15:06.720868Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.665567"
+    },
+    {
+      "id": "a7b8dfcb-1249-4c5c-af2d-cbca6bb67748",
+      "type": "idea",
+      "content": "Idea: add that can later be parsed by the CRM AI",
+      "context": "AI-powered business card CRM app",
+      "source": "claude",
+      "sourceDate": "2026-01-14T06:15:06.720868Z",
+      "confidence": "low",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.667589"
+    },
+    {
+      "id": "62cd842f-c3eb-457b-bea4-26cc8efae2c3",
+      "type": "preference",
+      "content": "Preference: your help creating a professional AI-powered CRM mini app to help me record people I meet and business cards I receive, as well as being able to then query my database",
+      "context": "Building Cerebro: AI-powered business card CRM app",
+      "source": "claude",
+      "sourceDate": "2026-01-12T09:23:36.662652Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.673073"
+    },
+    {
+      "id": "393b1632-0c17-4957-96bc-44df3db0c539",
+      "type": "preference",
+      "content": "Preference: this concept",
+      "context": "Building Cerebro: AI-powered business card CRM app",
+      "source": "claude",
+      "sourceDate": "2026-01-12T09:23:36.662652Z",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.673098"
+    },
+    {
+      "id": "ca04513c-1be1-4302-932c-901f0ea86a51",
+      "type": "idea",
+      "content": "Idea: add that can later be parsed by the CRM AI",
+      "context": "Building Cerebro: AI-powered business card CRM app",
+      "source": "claude",
+      "sourceDate": "2026-01-12T09:23:36.662652Z",
+      "confidence": "low",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.675512"
+    },
+    {
+      "id": "9cae24c2-dd06-4e3f-8398-33406ad5446a",
+      "type": "decision",
+      "content": "Decided: process: [who else involved]",
+      "context": "Last 30 days summary",
+      "source": "claude",
+      "sourceDate": "2026-01-28T11:49:21.450884Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.709625"
+    },
+    {
+      "id": "b840665b-6edb-46f9-8e4e-9d96ba8ffa9c",
+      "type": "decision",
+      "content": "Decided: the simplest approach - toggle Return All ON and test",
+      "context": "Last 30 days summary",
+      "source": "claude",
+      "sourceDate": "2026-01-28T11:49:21.450884Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.721011"
+    },
+    {
+      "id": "7caf081d-882a-4f01-9ef4-5fc21ef7d5e3",
+      "type": "lesson",
+      "content": "Learned: from the research is that most tools still have limited knowledge base customization",
+      "context": "Last 30 days summary",
+      "source": "claude",
+      "sourceDate": "2026-01-28T11:49:21.450884Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.743715"
+    },
+    {
+      "id": "ffe1afe7-a80a-4a09-9573-26b91c41fecb",
+      "type": "preference",
+      "content": "Preference: to set up the keys",
+      "context": "Last 30 days summary",
+      "source": "claude",
+      "sourceDate": "2026-01-28T11:49:21.450884Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.747585"
+    },
+    {
+      "id": "a2bfbf91-4183-4dfb-8a64-d7a9bbb41ce7",
+      "type": "preference",
+      "content": "Preference: to create something new with claude code",
+      "context": "Last 30 days summary",
+      "source": "claude",
+      "sourceDate": "2026-01-28T11:49:21.450884Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.747608"
+    },
+    {
+      "id": "baea0d13-0c2b-431f-aa91-95b6c4fd946c",
+      "type": "technique",
+      "content": "Technique: to structure it properly:",
+      "context": "Last 30 days summary",
+      "source": "claude",
+      "sourceDate": "2026-01-28T11:49:21.450884Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.765439"
+    },
+    {
+      "id": "b3d9c05b-832a-49c1-8202-1d856b1f6284",
+      "type": "preference",
+      "content": "Preference: your help with first editing the SAFE note as that will govern everything else and in drafting an email reply",
+      "context": "Negotiating APAC partnership terms and downside protection",
+      "source": "claude",
+      "sourceDate": "2026-01-19T05:17:21.862539Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.818733"
+    },
+    {
+      "id": "d3738628-7636-4f16-937f-26cde0e04589",
+      "type": "preference",
+      "content": "Preference: to change this to say Invest USD5K within 30 days of certain conditions being met and then the balance every quarter",
+      "context": "Negotiating APAC partnership terms and downside protection",
+      "source": "claude",
+      "sourceDate": "2026-01-19T05:17:21.862539Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.818754"
+    },
+    {
+      "id": "c2610ac8-a5f3-4a0d-818a-a384741732c5",
+      "type": "technique",
+      "content": "Technique: becoming employees and shareholders of new entity when set up",
+      "context": "Negotiating APAC partnership terms and downside protection",
+      "source": "claude",
+      "sourceDate": "2026-01-19T05:17:21.862539Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.821141"
+    },
+    {
+      "id": "673fe1f1-7a0b-4691-b95d-892eae06c1bf",
+      "type": "technique",
+      "content": "Technique: becoming employees and shareholders of new entity",
+      "context": "Negotiating APAC partnership terms and downside protection",
+      "source": "claude",
+      "sourceDate": "2026-01-19T05:17:21.862539Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.821155"
+    },
+    {
+      "id": "a7ffcd77-d944-45fb-919e-01475b09da36",
+      "type": "technique",
+      "content": "Technique: also factor the lost MPF into your retainer negotiation",
+      "context": "Negotiating APAC partnership terms and downside protection",
+      "source": "claude",
+      "sourceDate": "2026-01-19T05:17:21.862539Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.822105"
+    },
+    {
+      "id": "cd650c6e-b4ba-4059-abb2-a098711c9218",
+      "type": "technique",
+      "content": "Technique: **clarify in writing** whether any notice period applies",
+      "context": "Negotiating APAC partnership terms and downside protection",
+      "source": "claude",
+      "sourceDate": "2026-01-19T05:17:21.862539Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.822115"
+    },
+    {
+      "id": "e92e815f-8a51-4530-87f9-0601cfdb1007",
+      "type": "idea",
+      "content": "Idea: be paid this free and clear",
+      "context": "Negotiating APAC partnership terms and downside protection",
+      "source": "claude",
+      "sourceDate": "2026-01-19T05:17:21.862539Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.823639"
+    },
+    {
+      "id": "5dcd9611-c207-4a47-81b3-96d631f0f0af",
+      "type": "preference",
+      "content": "Preference: your help with a task",
+      "context": "Local file access and meditation documents",
+      "source": "claude",
+      "sourceDate": "2026-01-13T07:25:25.919268Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.843337"
+    },
+    {
+      "id": "89736ba8-aa06-4fee-abea-495015941834",
+      "type": "preference",
+      "content": "Preference: your help with a task",
+      "context": "Local file access and meditation documents",
+      "source": "claude",
+      "sourceDate": "2026-01-13T07:25:25.919268Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.843354"
+    },
+    {
+      "id": "b7a2ee21-2815-4331-8446-ea6113badcc9",
+      "type": "technique",
+      "content": "Technique: **upload files to me** through this chat interface, and then I can work with them in my environment",
+      "context": "Local file access and meditation documents",
+      "source": "claude",
+      "sourceDate": "2026-01-13T07:25:25.919268Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.847462"
+    },
+    {
+      "id": "d06420c0-04ff-48c7-b220-b958969699a4",
+      "type": "technique",
+      "content": "Technique: run locally on your Windows machine (requires installing Whisper)",
+      "context": "Local file access and meditation documents",
+      "source": "claude",
+      "sourceDate": "2026-01-13T07:25:25.919268Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.847483"
+    },
+    {
+      "id": "348fb41e-cabd-4ae1-9cd0-bda4ab1123a7",
+      "type": "idea",
+      "content": "Idea: transcribe all your files, generate descriptive titles, and create an index",
+      "context": "Local file access and meditation documents",
+      "source": "claude",
+      "sourceDate": "2026-01-13T07:25:25.919268Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.850254"
+    }
+  ]
+}

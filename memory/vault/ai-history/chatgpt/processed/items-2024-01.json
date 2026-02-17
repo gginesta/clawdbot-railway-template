@@ -1,0 +1,431 @@
+{
+  "items": [
+    {
+      "id": "72d8b5a9-91c0-44de-88ca-b0f50051d881",
+      "type": "preference",
+      "content": "Preference: your help in creating a summary page with very actionable points",
+      "context": "Brinc 2024 Predictions Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-26T12:01:24.565031",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.112689"
+    },
+    {
+      "id": "5c39aa9f-7e78-4348-a703-d37e8fc9ed32",
+      "type": "decision",
+      "content": "Decided: or a sign of underlying issues in production planning or market demand",
+      "context": "Solartia Renewable Energy Overview",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-26T08:21:17.652927",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.123580"
+    },
+    {
+      "id": "9230071c-e859-4d9a-9d42-852efd1665ca",
+      "type": "preference",
+      "content": "Preference: to identify an attractive and established company in order to fully acquire it and take over",
+      "context": "Solartia Renewable Energy Overview",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-26T08:21:17.652927",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.128585"
+    },
+    {
+      "id": "1a2bad98-11e7-452c-9f6f-8cc30228f044",
+      "type": "technique",
+      "content": "Technique: customize it further to align with your project's specific requirements and expectations",
+      "context": "Solartia Renewable Energy Overview",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-26T08:21:17.652927",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.132373"
+    },
+    {
+      "id": "3490348c-d44e-456c-adf7-ecc7e683140c",
+      "type": "idea",
+      "content": "Idea: identify an attractive and established company in order to fully acquire it and take over",
+      "context": "Solartia Renewable Energy Overview",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-26T08:21:17.652927",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.134126"
+    },
+    {
+      "id": "aec2e5b4-8a05-483c-ba36-0854ba993002",
+      "type": "preference",
+      "content": "Preference: a classic logo for a venture capital firm that invests in sustainability - the firm is called Austral Ventures",
+      "context": "Create Classic Logo: Austral Ventures",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-25T18:03:28.024139",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.137218"
+    },
+    {
+      "id": "f24fef87-a0fd-4a40-b7b4-991c62178d51",
+      "type": "technique",
+      "content": "Technique: further customize these options in Canva to match your specific color or theme preferences",
+      "context": "Create Classic Logo: Austral Ventures",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-25T18:03:28.024139",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.137785"
+    },
+    {
+      "id": "7a0469bd-be55-43b3-b174-d83747cd72eb",
+      "type": "idea",
+      "content": "Idea: we design together today",
+      "context": "Create Classic Logo: Austral Ventures",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-25T18:03:28.024139",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.138127"
+    },
+    {
+      "id": "f2083bdb-981e-428e-9846-427e2332f819",
+      "type": "decision",
+      "content": "Decided: a name, it's a good practice to check for the availability of the domain name (preferably",
+      "context": "Sustainability VC Venture Launch",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-18T09:19:41.592900",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.140601"
+    },
+    {
+      "id": "44592aa8-e28d-4951-bfc0-9e3c2aac6a73",
+      "type": "preference",
+      "content": "Preference: your help with a research task - we need to come up with a name",
+      "context": "Sustainability VC Venture Launch",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-18T09:19:41.592900",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.142093"
+    },
+    {
+      "id": "9c545026-ca2b-49b1-a034-ed364dca8942",
+      "type": "preference",
+      "content": "Preference: names with the word \"ventures\" on it, over \"capital\"",
+      "context": "Sustainability VC Venture Launch",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-18T09:19:41.592900",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.142101"
+    },
+    {
+      "id": "93352ca8-a0d2-4d7c-b442-ffd5509d62fd",
+      "type": "technique",
+      "content": "Technique: easily check the availability of domain names using various online services such as GoDaddy, Namecheap, or Google Domains",
+      "context": "Sustainability VC Venture Launch",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-18T09:19:41.592900",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.144093"
+    },
+    {
+      "id": "5e3c5756-ac18-4bc0-a79b-e9ee5f18992c",
+      "type": "technique",
+      "content": "Technique: check the availability of these as",
+      "context": "Sustainability VC Venture Launch",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-18T09:19:41.592900",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.144124"
+    },
+    {
+      "id": "7c5726af-e558-4012-ab9b-45bd22872739",
+      "type": "idea",
+      "content": "Idea: do a spin out and venture out on my own, launching a new venture that focuses exclusively in sustainability and impact investment",
+      "context": "Sustainability VC Venture Launch",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-18T09:19:41.592900",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.145505"
+    },
+    {
+      "id": "ab9b663a-ee7d-4ce2-bc0b-7fc530d35339",
+      "type": "idea",
+      "content": "Idea: be left to the experts within the business)",
+      "context": "Carrera e inversiones en sostenibilidad",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-16T20:59:46.782134",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.150592"
+    },
+    {
+      "id": "c912c486-c6bd-456d-ae45-6cc4afb17eb6",
+      "type": "technique",
+      "content": "Technique: use to instruct a freelancer to create more images in the style of your wedding materials:",
+      "context": "Watercolor Style Wedding in Málaga",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-09T18:27:40.806558",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.162449"
+    },
+    {
+      "id": "6a950d45-e18f-4f0e-935f-516ed8c75cfa",
+      "type": "idea",
+      "content": "Idea: create a cohesive and elegant aesthetic",
+      "context": "Watercolor Style Wedding in Málaga",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-09T18:27:40.806558",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.164716"
+    },
+    {
+      "id": "a3f45650-aba9-40d4-8f68-60b3c0f5bea8",
+      "type": "technique",
+      "content": "Technique: you might incorporate that into the job description:",
+      "context": "Social Media Manager Hire",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-01T13:23:21.370318",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.175065"
+    },
+    {
+      "id": "8715366e-09e6-4c08-8c65-7de7ebe3ccd7",
+      "type": "technique",
+      "content": "Technique: provide me with more details or a summary of the content from Sieva Kozinsky's Twitter thread, I would be more than happy to offer analysis, insights, or further information based on that",
+      "context": "Social Media Manager Hire",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-01T13:23:21.370318",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.176175"
+    },
+    {
+      "id": "c43f089e-3957-4d6c-a695-dac7cf213fdd",
+      "type": "technique",
+      "content": "Technique: view the thread directly and then share specific aspects or questions about it that you'd like to explore further",
+      "context": "Social Media Manager Hire",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-01T13:23:21.370318",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.176206"
+    },
+    {
+      "id": "631af1dc-a99b-4954-8616-28d00d31dcf1",
+      "type": "idea",
+      "content": "Idea: spin off and launch my own venture capital firm that focuses exclusively on impact investing and sustainability",
+      "context": "Social Media Manager Hire",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-01T13:23:21.370318",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.178220"
+    },
+    {
+      "id": "94079603-a93d-4ef3-8d01-4e64f00ffc76",
+      "type": "lesson",
+      "content": "Learned: about through [Source of Job Posting]",
+      "context": "Cover Letter for Philanthropy",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-03T09:32:36.987298",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.247056"
+    },
+    {
+      "id": "2f7f2b98-3073-4008-a65f-e1c3f3dffb72",
+      "type": "preference",
+      "content": "Preference: your help in writing a cover letter - please ask me any question that may help you get better context as to my background",
+      "context": "Cover Letter for Philanthropy",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-03T09:32:36.987298",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.247537"
+    },
+    {
+      "id": "cf5cc66c-d1d9-4ef3-8e0a-9c378ea9c7e8",
+      "type": "preference",
+      "content": "Preference: to show my profile and get a meeting, and if a role does not work out, i want to be able to angle a partnership between our firms",
+      "context": "Cover Letter for Philanthropy",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-03T09:32:36.987298",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.247549"
+    },
+    {
+      "id": "71329c0f-045c-4bac-9145-e2edd4531535",
+      "type": "idea",
+      "content": "Idea: show my profile and get a meeting, and if a role does not work out, i want to be able to angle a partnership between our firms",
+      "context": "Cover Letter for Philanthropy",
+      "source": "chatgpt",
+      "sourceDate": "2024-01-03T09:32:36.987298",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.248978"
+    }
+  ]
+}

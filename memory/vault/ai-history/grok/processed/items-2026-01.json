@@ -1,0 +1,241 @@
+{
+  "items": [
+    {
+      "id": "dfe8b7ce-9415-493f-9bc2-ba79e01b3cf3",
+      "type": "decision",
+      "content": "Decided: with MoE (Mixture of Experts) for efficiency",
+      "context": "Boardy.ai: AI Networking Innovation Analysis",
+      "source": "grok",
+      "sourceDate": "2026-01-25T01:45:42.311788Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.761838"
+    },
+    {
+      "id": "4cc79ffc-ce20-4568-a0d7-ed94155d4ea0",
+      "type": "lesson",
+      "content": "Learned: s come from the YouTube interview transcript, where the founder discusses switching between providers like Claude/OpenAI for charismatic voice interactions and Gemini for intelligent search/matching",
+      "context": "Boardy.ai: AI Networking Innovation Analysis",
+      "source": "grok",
+      "sourceDate": "2026-01-25T01:45:42.311788Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.769436"
+    },
+    {
+      "id": "e0add6f8-7f82-4bdf-9023-88f80ddfe2f5",
+      "type": "preference",
+      "content": "Preference: a detailed research report on how it works, the likely tech stack, features, etc",
+      "context": "Boardy.ai: AI Networking Innovation Analysis",
+      "source": "grok",
+      "sourceDate": "2026-01-25T01:45:42.311788Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.770325"
+    },
+    {
+      "id": "92db7db6-5f13-455b-8fef-d892b38b3644",
+      "type": "idea",
+      "content": "Idea: understand the product well and see how to launch a better, more capable version of it",
+      "context": "Boardy.ai: AI Networking Innovation Analysis",
+      "source": "grok",
+      "sourceDate": "2026-01-25T01:45:42.311788Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.780009"
+    },
+    {
+      "id": "d7e55d2f-cb7c-4fff-99b6-9df634005391",
+      "type": "technique",
+      "content": "Technique: it stacks up against others for non-technical users:",
+      "context": "Vercel vs Replit: Development Platforms Comparison",
+      "source": "grok",
+      "sourceDate": "2026-01-22T06:03:45.579961Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.791805"
+    },
+    {
+      "id": "c24a2d16-2eb8-44bb-970a-ebcd63a65ce3",
+      "type": "idea",
+      "content": "Idea: automatically build and deploy it, giving you a unique URL (e",
+      "context": "Vercel vs Replit: Development Platforms Comparison",
+      "source": "grok",
+      "sourceDate": "2026-01-22T06:03:45.579961Z",
+      "confidence": "low",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.794846"
+    },
+    {
+      "id": "66ed902a-0ddc-4c14-b2e7-1eec5ac22ee6",
+      "type": "technique",
+      "content": "Technique: to do it step by step:",
+      "context": "Centering Louis Poulsen PH 5 Lamp",
+      "source": "grok",
+      "sourceDate": "2026-01-20T07:10:24.937333Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.799124"
+    },
+    {
+      "id": "e40cea88-9f9d-41d8-9b68-617810eecf26",
+      "type": "technique",
+      "content": "Technique: achieve a similar centered look by using the swag hook method I described earlier",
+      "context": "Centering Louis Poulsen PH 5 Lamp",
+      "source": "grok",
+      "sourceDate": "2026-01-20T07:10:24.937333Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.799453"
+    },
+    {
+      "id": "24a1db65-4646-403d-91d5-8e24e5d02bbd",
+      "type": "decision",
+      "content": "Decided: Hong Kong-relevant data where possible (since that's a dense urban context), scaling up to a country like China for illustration",
+      "context": "Power Consumption Scale: House to Country",
+      "source": "grok",
+      "sourceDate": "2026-01-10T04:32:34.109009Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.812122"
+    },
+    {
+      "id": "e5bc94cb-724b-4a85-8a0f-ed9bbf47c27f",
+      "type": "preference",
+      "content": "Preference: to keep it short, generic (ie not giving a lot of detail), professional but useful so she can get more clients",
+      "context": "LinkedIn Recommendation for Social Media Expert",
+      "source": "grok",
+      "sourceDate": "2026-01-09T03:24:02.671057Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.823070"
+    },
+    {
+      "id": "1e45dcf2-8ed6-43a4-8411-3aea1366a372",
+      "type": "idea",
+      "content": "Idea: keep it short, generic (ie not giving a lot of detail), professional but useful so she can get more clients",
+      "context": "LinkedIn Recommendation for Social Media Expert",
+      "source": "grok",
+      "sourceDate": "2026-01-09T03:24:02.671057Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.823417"
+    },
+    {
+      "id": "48bc952f-e20a-4024-984e-902da2168a75",
+      "type": "preference",
+      "content": "Preference: your help with is removing microplastics from my life via avoiding polyester clothing for workouts",
+      "context": "Natural Fibers for Microplastic-Free Workouts",
+      "source": "grok",
+      "sourceDate": "2026-01-07T03:27:27.182021Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.833434"
+    },
+    {
+      "id": "cc60720e-e436-4239-98b0-4158e16c11f5",
+      "type": "technique",
+      "content": "Technique: often wear it multiple days without washing), making it ideal for intense sessions without the clammy feel of cotton",
+      "context": "Natural Fibers for Microplastic-Free Workouts",
+      "source": "grok",
+      "sourceDate": "2026-01-07T03:27:27.182021Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.834223"
+    },
+    {
+      "id": "b966be13-5a8c-4f02-b21f-b8f8c73e4156",
+      "type": "idea",
+      "content": "Idea: → Focuses on Tencel modal/lyocell for fully biodegradable pieces",
+      "context": "Natural Fibers for Microplastic-Free Workouts",
+      "source": "grok",
+      "sourceDate": "2026-01-07T03:27:27.182021Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.834762"
+    },
+    {
+      "id": "fd3eb3f0-cdde-4ea2-b6bc-4e2add65ca16",
+      "type": "idea",
+      "content": "Idea: that Taiwan is an inseparable part of China",
+      "context": "Xi Jinping's Taiwan Unification Drive",
+      "source": "grok",
+      "sourceDate": "2026-01-01T07:46:35.803434Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:59.839945"
+    }
+  ]
+}

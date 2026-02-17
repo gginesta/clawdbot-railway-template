@@ -1,0 +1,237 @@
+{
+  "main": {
+    "id": "e0fcb26e1b8f63f8",
+    "type": "split",
+    "children": [
+      {
+        "id": "51016f1feb824445",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "132694c3d5f62346",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Materials and frameworks/Research/The Complete Guide to Building Mission Control How We Built an AI Agent Squad.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "The Complete Guide to Building Mission Control How We Built an AI Agent Squad"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "90c4ecf987e2028e",
+    "type": "split",
+    "children": [
+      {
+        "id": "6b8eb202cba200a6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f0cca49fad061210",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "58df6274027dd994",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "c5e96a24a12bbfef",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ac54e1dc68c1bbd5",
+    "type": "split",
+    "children": [
+      {
+        "id": "d8c335d55434dd69",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "17d7830df3e2b4c5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "958640c2aad19ab5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "fcd9611135353b61",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "da4debd2864e62f8",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "b5b600a96d0a9cf5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Materials and frameworks/Research/The Complete Guide to Building Mission Control How We Built an AI Agent Squad.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of The Complete Guide to Building Mission Control How We Built an AI Agent Squad"
+            }
+          },
+          {
+            "id": "2135d5dc44137c14",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "daily/2026-02-03.md"
+              },
+              "icon": "lucide-info",
+              "title": "File properties for 2026-02-03"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-tweet-to-markdown:Tweet to Markdown": false
+    }
+  },
+  "active": "132694c3d5f62346",
+  "lastOpenFiles": [
+    "knowledge/projects/brinc/team/luigi/MEMORY.md",
+    "knowledge/projects/brinc/team/luigi/SOUL.md",
+    "knowledge/projects/brinc/team/luigi/~syncthing~MEMORY.md.tmp",
+    "knowledge/projects/brinc/team/luigi/~syncthing~SOUL.md.tmp",
+    "knowledge/projects/brinc/team/luigi",
+    "knowledge/projects/brinc/team/yoshi/SOUL.md",
+    "knowledge/projects/brinc/team/yoshi/MEMORY.md",
+    "knowledge/projects/brinc/team/yoshi/~syncthing~SOUL.md.tmp",
+    "knowledge/projects/brinc/team/yoshi/~syncthing~MEMORY.md.tmp",
+    "knowledge/projects/brinc/team/yoshi",
+    "knowledge/projects/brinc/team/toad/SOUL.md",
+    "knowledge/projects/brinc/team/toad/MEMORY.md",
+    "knowledge/projects/brinc/team/toad/~syncthing~SOUL.md.tmp",
+    "knowledge/projects/brinc/team/toad/~syncthing~MEMORY.md.tmp",
+    "knowledge/projects/brinc/team/toad",
+    "knowledge/projects/brinc/team/bowser/MEMORY.md",
+    "knowledge/projects/brinc/team/bowser/SOUL.md",
+    "knowledge/projects/brinc/team/bowser/~syncthing~MEMORY.md.tmp",
+    "knowledge/projects/brinc/team/raphael/MEMORY.md",
+    "knowledge/projects/brinc/team/raphael/SOUL.md",
+    "knowledge/projects/brinc/TODO.md",
+    "knowledge/projects/brinc/team/TEAM-STRUCTURE.md",
+    "Materials and frameworks/Agentic Personal Knowledge Management with OpenClaw, PARA, and QMD.md",
+    "Materials and frameworks/Research/The Complete Guide to Building Mission Control How We Built an AI Agent Squad.md",
+    "daily/2026-02-03.md",
+    "daily/2026/02/2026-02-03.md",
+    "daily/2026/02/2026-02-02.md",
+    "knowledge/resources/quality-candidates-2026-02-03.md",
+    "knowledge/resources/extraction-report-2026-02-03.md",
+    "knowledge/resources/extraction-candidates-2026-02-03.md",
+    "knowledge/resources/session-log-2026-02-02.md",
+    "knowledge/projects/master/summary.md",
+    "knowledge/projects/personal/summary.md",
+    "tacit/preferences.md",
+    "knowledge/resources/ai-history-preference-candidates.md",
+    "knowledge/resources/ai-history-preferences-selected.md"
+  ]
+}

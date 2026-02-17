@@ -1,0 +1,340 @@
+{
+  "items": [
+    {
+      "id": "ef5b3768-5631-49b0-85da-e13783a846f5",
+      "type": "preference",
+      "content": "Preference: to put together an executive summary of the company and the deal for some of the funding sources I've been talking to",
+      "context": "EBIDTA Calculation for Valuation",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-16T10:04:53.099873",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.072716"
+    },
+    {
+      "id": "65a9ac01-3fc4-486e-ac1b-2464ef23e2f2",
+      "type": "preference",
+      "content": "Preference: a scrubbed version - can you re-write it and remove things like the company name, some of their partners like topinfra, and the name of the owner",
+      "context": "EBIDTA Calculation for Valuation",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-16T10:04:53.099873",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.072731"
+    },
+    {
+      "id": "d376ddb1-15a2-434c-94b2-7c55c452d05a",
+      "type": "technique",
+      "content": "Technique: provide, I can assist with the calculation based on that information",
+      "context": "EBIDTA Calculation for Valuation",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-16T10:04:53.099873",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.074353"
+    },
+    {
+      "id": "1ea6a239-e690-4622-a580-d84b0a55bc2d",
+      "type": "technique",
+      "content": "Technique: share key financial figures or a more detailed description of the items included under operational expenses, net income, or any specific adjustments you believe should be considered, I can guide you t",
+      "context": "EBIDTA Calculation for Valuation",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-16T10:04:53.099873",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.074365"
+    },
+    {
+      "id": "8c177bee-e469-44c5-8e5d-426c5e43688d",
+      "type": "idea",
+      "content": "Idea: be split into an amount at closing, probably about 20% of the total",
+      "context": "EBIDTA Calculation for Valuation",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-16T10:04:53.099873",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.075277"
+    },
+    {
+      "id": "680f015c-a720-4ef2-9e78-0aefe9498fad",
+      "type": "preference",
+      "content": "Preference: to grow my online presence",
+      "context": "Grow Online Presence: Actionable Insights",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T15:30:50.555726",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.077697"
+    },
+    {
+      "id": "8eab424f-46ab-4b44-aa14-f063b6961951",
+      "type": "preference",
+      "content": "Preference: to write about my personal lessons (and mistakes), about helping entrepreneurs and about sustainability",
+      "context": "Grow Online Presence: Actionable Insights",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T15:30:50.555726",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.077707"
+    },
+    {
+      "id": "1da37289-d3e3-4f25-a12e-c230d791a937",
+      "type": "idea",
+      "content": "Idea: grow my online presence",
+      "context": "Grow Online Presence: Actionable Insights",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T15:30:50.555726",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.078503"
+    },
+    {
+      "id": "91f8af68-958f-4d11-a57e-7ec5e67d3620",
+      "type": "preference",
+      "content": "Preference: your help for actionable ideas - where can I find more buyers like that for my products",
+      "context": "Expand Network, Find Buyers",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T13:32:58.856917",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.082048"
+    },
+    {
+      "id": "cfe8c50d-1499-424c-ba41-35f659320de3",
+      "type": "technique",
+      "content": "Technique: expand your business in the commodities trading market",
+      "context": "Expand Network, Find Buyers",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T13:32:58.856917",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.082788"
+    },
+    {
+      "id": "2cb143f5-a031-43d0-95ed-f21f3fd4ec97",
+      "type": "technique",
+      "content": "Technique: effectively attract more buyers and grow your trading business",
+      "context": "Expand Network, Find Buyers",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T13:32:58.856917",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.082796"
+    },
+    {
+      "id": "afa58d36-bfb3-40bc-827d-f1f4fd832f85",
+      "type": "idea",
+      "content": "Idea: be about 8 months old at the time of the trip)",
+      "context": "Flight search for Malaga.",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T10:47:07.278329",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.087682"
+    },
+    {
+      "id": "94fea414-f705-4c51-861c-8750abc8214e",
+      "type": "preference",
+      "content": "Preference: help looking for flights",
+      "context": "Flight Search Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T10:40:54.874189",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.092101"
+    },
+    {
+      "id": "a079711e-2e97-440c-827f-7c2b4e5e1051",
+      "type": "technique",
+      "content": "Technique: adjust these parameters for more accurate recommendations",
+      "context": "Flight Search Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T10:40:54.874189",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.093274"
+    },
+    {
+      "id": "8d7f8893-0561-4f48-bff3-dfb72081e8b6",
+      "type": "idea",
+      "content": "Idea: be about 8 months old at the time of the trip)",
+      "context": "Flight Search Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-15T10:40:54.874189",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.094020"
+    },
+    {
+      "id": "4ba49dff-3f7b-417f-87c0-f4f0d9e5ef24",
+      "type": "lesson",
+      "content": "Learned: s, insights, or advice for fellow investors and entrepreneurs",
+      "context": "Case Studies Content Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-14T10:14:33.167679",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.102945"
+    },
+    {
+      "id": "8677babf-e9a9-4db0-8cb0-ee186fafdcbe",
+      "type": "preference",
+      "content": "Preference: to find a way to monetise my audience",
+      "context": "Case Studies Content Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-14T10:14:33.167679",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.103185"
+    },
+    {
+      "id": "42815cdd-a6bf-4ad3-97bd-63fc654eeecc",
+      "type": "preference",
+      "content": "Preference: to create case studies as I think these are really interesting ways to share value with my audience",
+      "context": "Case Studies Content Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-14T10:14:33.167679",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.103193"
+    },
+    {
+      "id": "b01a24e3-478e-4e3f-973a-ab07d35b043a",
+      "type": "technique",
+      "content": "Technique: create valuable content that resonates with your target audience, builds your personal brand as an investor, and helps you achieve your goals of finding new deals and investors through social media en",
+      "context": "Case Studies Content Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-14T10:14:33.167679",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.105056"
+    },
+    {
+      "id": "453e7807-60c2-491a-a02a-ee0a32abec06",
+      "type": "idea",
+      "content": "Idea: find a way to monetise my audience",
+      "context": "Case Studies Content Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-02-14T10:14:33.167679",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.106149"
+    }
+  ]
+}

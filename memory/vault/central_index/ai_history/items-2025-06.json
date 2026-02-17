@@ -1,0 +1,270 @@
+{
+  "items": [
+    {
+      "id": "058f211c-3b44-4dfb-82b5-88ae932cdbca",
+      "type": "technique",
+      "content": "Technique: share more details (e",
+      "context": "M0 vs M1: Money Supply Measures",
+      "source": "grok",
+      "sourceDate": "2025-06-25T05:29:32.529882Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.585910"
+    },
+    {
+      "id": "3b7a7e9b-c6e5-4480-8c61-59da7b9c303b",
+      "type": "decision",
+      "content": "Decided: certified gluten-free brands is advisable if you have celiac disease or high sensitivity",
+      "context": "Gluten-Free Plant-Based Protein Sources",
+      "source": "grok",
+      "sourceDate": "2025-06-24T03:40:11.714520Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.587421"
+    },
+    {
+      "id": "d7057c27-2f6f-43f7-93de-1f57d2854ce1",
+      "type": "idea",
+      "content": "Idea: using these, or a deeper dive into any source, let me know",
+      "context": "Gluten-Free Plant-Based Protein Sources",
+      "source": "grok",
+      "sourceDate": "2025-06-24T03:40:11.714520Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.588945"
+    },
+    {
+      "id": "6cd8943a-f943-4122-967b-e2bf405ec2a9",
+      "type": "lesson",
+      "content": "Learned: s about leadership, delegation, hiring, and business growth",
+      "context": "Finding Zoom Webinar Video Source",
+      "source": "grok",
+      "sourceDate": "2025-06-23T06:42:27.058973Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.613235"
+    },
+    {
+      "id": "a4580c61-1057-4da8-bcfa-c3683f4242a2",
+      "type": "preference",
+      "content": "Preference: to analyze the HTML code for elements that typically embed or reference video content",
+      "context": "Finding Zoom Webinar Video Source",
+      "source": "grok",
+      "sourceDate": "2025-06-23T06:42:27.058973Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.614171"
+    },
+    {
+      "id": "0dfd660e-5abf-49b4-8c16-cadfdeba2ac3",
+      "type": "preference",
+      "content": "Preference: the HTML to proceed",
+      "context": "Finding Zoom Webinar Video Source",
+      "source": "grok",
+      "sourceDate": "2025-06-23T06:42:27.058973Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.614181"
+    },
+    {
+      "id": "2cee7d7e-7360-41ef-91f5-fa4bfe92c184",
+      "type": "technique",
+      "content": "Technique: Find the Video Source",
+      "context": "Finding Zoom Webinar Video Source",
+      "source": "grok",
+      "sourceDate": "2025-06-23T06:42:27.058973Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.617714"
+    },
+    {
+      "id": "1f2a8be1-958b-4c5a-9e12-cc84e621d6f5",
+      "type": "idea",
+      "content": "Idea: copy the page code below, please help me find the source of the actual video:",
+      "context": "Finding Zoom Webinar Video Source",
+      "source": "grok",
+      "sourceDate": "2025-06-23T06:42:27.058973Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.623693"
+    },
+    {
+      "id": "58b25847-c037-405c-945c-c6ab60fa1d00",
+      "type": "idea",
+      "content": "Idea: template, but its relevance to managing multiple businesses is unclear",
+      "context": "Holdco Management Resources",
+      "source": "grok",
+      "sourceDate": "2025-06-10T01:52:33.399064Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.637185"
+    },
+    {
+      "id": "aca3010f-ecaf-4bae-ab44-1ae312506704",
+      "type": "technique",
+      "content": "Technique: likely find it by visiting the official Womanizer website (womanizer",
+      "context": "User Manual for Womanizer Next - Sage",
+      "source": "grok",
+      "sourceDate": "2025-06-08T11:38:44.974325Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.638885"
+    },
+    {
+      "id": "d92ef993-a23d-4324-8ffd-ab76a60d7958",
+      "type": "technique",
+      "content": "Technique: find the user manual for the Womanizer Next - Sage on the official Womanizer website at www",
+      "context": "User Manual for Womanizer Next - Sage",
+      "source": "grok",
+      "sourceDate": "2025-06-08T11:38:44.974325Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.638893"
+    },
+    {
+      "id": "41103a26-54b3-416b-a88f-384a07a074d2",
+      "type": "preference",
+      "content": "Preference: your help in creating a full breakdown on how much it would cost to staff and run the space based on their requirements, including the creation and management of a community and events",
+      "context": "Managing the Philippine Innovation Hub",
+      "source": "grok",
+      "sourceDate": "2025-06-06T05:48:56.713801Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.651063"
+    },
+    {
+      "id": "b8d37507-687d-4a5d-ba17-f9425dcf083e",
+      "type": "technique",
+      "content": "Technique: suggest a couple of scenarios with high events and a minimum number to create enough activity",
+      "context": "Managing the Philippine Innovation Hub",
+      "source": "grok",
+      "sourceDate": "2025-06-06T05:48:56.713801Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.653498"
+    },
+    {
+      "id": "9fea59d9-d2d9-4f74-b389-3cad8adc4994",
+      "type": "idea",
+      "content": "Idea: (online and offline) to ensure the hub acts as a hive of activity from the start",
+      "context": "Managing the Philippine Innovation Hub",
+      "source": "grok",
+      "sourceDate": "2025-06-06T05:48:56.713801Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.655071"
+    },
+    {
+      "id": "204bab09-76b6-4f16-acef-65c2838e3ad9",
+      "type": "idea",
+      "content": "Idea: some simple startup events with cheaper catering and some premium events for corporates and investors with high-end catering including alcohol",
+      "context": "Managing the Philippine Innovation Hub",
+      "source": "grok",
+      "sourceDate": "2025-06-06T05:48:56.713801Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.656132"
+    },
+    {
+      "id": "1b4ef577-f44a-4ae2-9e68-989e1a7a6dc2",
+      "type": "idea",
+      "content": "Idea: professional reports or direct inquiries to FONAFE, ensuring a thorough understanding of its economic contributions and challenges",
+      "context": "Electro Ucayali: Ownership, Finances, and Debts",
+      "source": "grok",
+      "sourceDate": "2025-06-03T09:54:07.195153Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.662700"
+    }
+  ]
+}

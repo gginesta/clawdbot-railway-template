@@ -1,0 +1,55 @@
+{
+  "$schema": "../../../schemas/items.schema.json",
+  "entity": "master",
+  "type": "project",
+  "facts": [
+    {
+      "id": "master-automation-completion-prompt",
+      "content": "When automating text processing, prefer a clear 'Completion/Prompt' step with step-by-step instructions and constraints for non-technical users.",
+      "source": "ai-history/grok/processed/items-2025-03.json (Automating Task Processing with Make.com and OpenAI)",
+      "createdAt": "2026-02-02T14:06:11Z",
+      "lastAccessed": "2026-02-02T14:06:11Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["automation", "prompting", "master"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "master-automation-message-tags",
+      "content": "For automated workflows, use explicit tags/markers in messages to make downstream routing and parsing reliable.",
+      "source": "ai-history/grok/processed/items-2025-03.json (Automating Task Processing with Make.com and OpenAI)",
+      "createdAt": "2026-02-02T14:06:11Z",
+      "lastAccessed": "2026-02-02T14:06:11Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["automation", "reliability", "master"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "master-lindy-agent-trigger-email",
+      "content": "If building an agent for non-technical use, start with a concrete trigger (e.g. specific sender email), connect the source (Gmail), and have the agent draft in the user's style.",
+      "source": "ai-history/grok/processed/items-2025-02.json (Lindy.ai Agents for Non-Developers)",
+      "createdAt": "2026-02-02T14:06:11Z",
+      "lastAccessed": "2026-02-02T14:06:11Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["agents", "email", "master"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "master-openclaw-skill-compatibility-last30days",
+      "content": "The /last30days skill was originally designed for Claude Code (terminal workflow), so ensure prompts/instructions are compatible with OpenClaw's skill system when using it here.",
+      "source": "ai-history/claude/processed/items-2026-01.json (Moltbot openclaw best practices and security)",
+      "createdAt": "2026-02-02T14:06:11Z",
+      "lastAccessed": "2026-02-02T14:06:11Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["openclaw", "skills", "master"],
+      "supersedes": null,
+      "supersededBy": null
+    }
+  ]
+}

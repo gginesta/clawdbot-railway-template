@@ -1,0 +1,406 @@
+{
+  "items": [
+    {
+      "id": "f1aa11a2-7ec4-4ae9-9854-bc8e864a77a9",
+      "type": "preference",
+      "content": "Preference: your help finding as much information as possible about William Allan",
+      "context": "William Allan information",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-10T22:23:06.822000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.443425"
+    },
+    {
+      "id": "00f137ae-d928-4691-9225-3e07f52d2f8d",
+      "type": "decision",
+      "content": "Decided: playable song (internal)",
+      "context": "Replit game prompt",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-20T14:41:52.968000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.643202"
+    },
+    {
+      "id": "520acef6-300d-4b6e-8b2a-5879ce827cbc",
+      "type": "decision",
+      "content": "Decided: the **official IFrame Player API** only",
+      "context": "Replit game prompt",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-20T14:41:52.968000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.656684"
+    },
+    {
+      "id": "84604531-b794-42d7-9818-366ba3c5724b",
+      "type": "preference",
+      "content": "Preference: to build a game on Replit",
+      "context": "Replit game prompt",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-20T14:41:52.968000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.688104"
+    },
+    {
+      "id": "7fe2b745-407d-4f3a-9fea-3580b33ca4e6",
+      "type": "preference",
+      "content": "Preference: you to help me create a scoping document in PDF like what I've attached",
+      "context": "Replit game prompt",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-20T14:41:52.968000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.688121"
+    },
+    {
+      "id": "645120f3-45db-4073-9b09-e869436fe70a",
+      "type": "technique",
+      "content": "Technique: audit/adjust the pool",
+      "context": "Replit game prompt",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-20T14:41:52.968000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.720781"
+    },
+    {
+      "id": "ffaff797-4241-4f52-a210-a54d8cb2fb90",
+      "type": "technique",
+      "content": "Technique: name **artist + title**, you **earn 1 token** (max hold 5)",
+      "context": "Replit game prompt",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-20T14:41:52.968000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.720803"
+    },
+    {
+      "id": "d2a0dc17-cbe8-4568-9a32-af2a1bae7a46",
+      "type": "idea",
+      "content": "Idea: build a game on Replit",
+      "context": "Replit game prompt",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-20T14:41:52.968000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.757767"
+    },
+    {
+      "id": "517b7354-fe54-491a-b023-daf86d349551",
+      "type": "preference",
+      "content": "Preference: to write a letter that I want to send to UK based newspapers and websites - essentially a notice - declaring that a company has failed to meet their obligations, they are not financially able to perfo",
+      "context": "UK Family trip",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-10T22:57:31.273000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.537202"
+    },
+    {
+      "id": "049fbe82-3dbe-4470-8b59-da30cba6ae28",
+      "type": "preference",
+      "content": "Preference: the letter to be direct, stern, professional but not give details about the transaction (do not mention Mana Capital but its OK to mention Solartia)",
+      "context": "UK Family trip",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-10T22:57:31.273000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.537224"
+    },
+    {
+      "id": "514deabc-c324-49fc-84b3-ef7f4ca7bb8e",
+      "type": "technique",
+      "content": "Technique: use msearch to search it for additional information",
+      "context": "UK Family trip",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-10T22:57:31.273000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.552528"
+    },
+    {
+      "id": "848cdabc-be01-4437-a0c0-784fb70ca874",
+      "type": "idea",
+      "content": "Idea: send to UK based newspapers and websites - essentially a notice - declaring that a company has failed to meet their obligations, they are not financially able to perform and I want to publish informat",
+      "context": "UK Family trip",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-10T22:57:31.273000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.555993"
+    },
+    {
+      "id": "a1411a94-3cb3-4d7c-b1c4-1d3534daeccc",
+      "type": "decision",
+      "content": "Decided: between San Sebastián, Costa del Sol (specifically Malaga, Marbella, and Sotogrande), and Costa Brava",
+      "context": "Relocation destinations in Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-19T22:39:41.754000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.578617"
+    },
+    {
+      "id": "5b7e7d4e-6824-402e-b05d-d9c1a9f6270f",
+      "type": "decision",
+      "content": "Decided: live in Málaga or Torremolinos/Fuengirola areas)",
+      "context": "Relocation destinations in Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-19T22:39:41.754000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.578644"
+    },
+    {
+      "id": "5e8b7e87-ce50-4ab4-ae08-d041ff78a4f5",
+      "type": "preference",
+      "content": "Preference: your help putting together a thorough and very detailed report highlighting the best possible destinations in Spain, either San Sebastian, Costa del Sol or Costa Brava for my parents to relocate",
+      "context": "Relocation destinations in Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-19T22:39:41.754000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.621135"
+    },
+    {
+      "id": "e2aa202c-6b96-4859-adeb-ef2e1f29d0ea",
+      "type": "technique",
+      "content": "Technique: see them in Costa Brava",
+      "context": "Relocation destinations in Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-19T22:39:41.754000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.637824"
+    },
+    {
+      "id": "b916a379-78f5-4251-9da4-fbd013f02e32",
+      "type": "technique",
+      "content": "Technique: even take a scenic small train along the coast)",
+      "context": "Relocation destinations in Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-19T22:39:41.754000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.641826"
+    },
+    {
+      "id": "28658b47-c3f0-4551-bdd0-bde34bdbe5c2",
+      "type": "technique",
+      "content": "Technique: enjoy other pursuits or indoor culture)",
+      "context": "Relocation destinations in Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-19T22:39:41.754000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.641850"
+    },
+    {
+      "id": "4273ad90-0a13-49d6-a143-f2ccdad040a5",
+      "type": "idea",
+      "content": "Idea: of moving to Spain is to be closer to the rest of the family as I am based in Hong Kong but will travel to Madrid often for work, and my siblings are all based in London",
+      "context": "Relocation destinations in Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-19T22:39:41.754000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.675533"
+    },
+    {
+      "id": "e4268edc-1795-4a9d-9efa-337b285920fc",
+      "type": "idea",
+      "content": "Idea: whether they’re okay with a slower pace in winter",
+      "context": "Relocation destinations in Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-19T22:39:41.754000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.683168"
+    },
+    {
+      "id": "c92b993a-52b4-4098-8a25-28a88f5713cc",
+      "type": "preference",
+      "content": "Preference: your help putting together a thorough and very detailed report highlighting the best possible destinations in Spain, either Costa del Sol or Costa Brava for my parents to relocate",
+      "context": "Relocation report Spain options",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-13T14:15:58.261000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.713999"
+    },
+    {
+      "id": "35fd2348-4a76-419c-9ba2-fe71241ab470",
+      "type": "technique",
+      "content": "Technique: still enjoy ample restaurants, cafés, markets and cultural events year-round, just without the crowds【9†L212-L220】",
+      "context": "Relocation report Spain options",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-13T14:15:58.261000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.741306"
+    },
+    {
+      "id": "182b4873-94ed-4168-a9b9-6024172d717a",
+      "type": "idea",
+      "content": "Idea: of moving to Spain is to be closer to the rest of the family as I am based in Hong Kong but will travel to Madrid often for work, and my siblings are all based in London",
+      "context": "Relocation report Spain options",
+      "source": "chatgpt",
+      "sourceDate": "2025-08-13T14:15:58.261000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.745692"
+    }
+  ]
+}

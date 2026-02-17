@@ -1,0 +1,845 @@
+{
+  "items": [
+    {
+      "id": "57c7927d-9e94-4d13-8406-d51ac51eb985",
+      "type": "decision",
+      "content": "Decided: **1) Claim (or allocate) the Child Allowance to the higher-income spouse",
+      "context": "Hong Kong tax optimization",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T10:39:17.002000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.425578"
+    },
+    {
+      "id": "343ac1c8-09d1-4d6c-9387-2b227e63a1e0",
+      "type": "preference",
+      "content": "Preference: your help with my filings",
+      "context": "Hong Kong tax optimization",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T10:39:17.002000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.429464"
+    },
+    {
+      "id": "0d32dd11-2d27-408b-b0df-c40283ea026f",
+      "type": "preference",
+      "content": "Preference: to compute your exact savings (and choose the best filing basis)",
+      "context": "Hong Kong tax optimization",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T10:39:17.002000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.429484"
+    },
+    {
+      "id": "f766c5de-4414-458c-ba81-ffb5255afcdc",
+      "type": "technique",
+      "content": "Technique: usually **apply to revise** that past assessment within **6 years** under **s",
+      "context": "Hong Kong tax optimization",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T10:39:17.002000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.433732"
+    },
+    {
+      "id": "babfc1f4-98f4-4ff2-962c-52282bdf2191",
+      "type": "technique",
+      "content": "Technique: also claim the **extra HK$20,000** each eligible year you reside in HK together ≥6 months (total **HK$120,000**)",
+      "context": "Hong Kong tax optimization",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T10:39:17.002000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.433761"
+    },
+    {
+      "id": "c5b2782b-e32a-488f-98b0-b8b230d755c4",
+      "type": "idea",
+      "content": "Idea: be sent to you by post in 3 working days",
+      "context": "Hong Kong tax optimization",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T10:39:17.002000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.436226"
+    },
+    {
+      "id": "173696b7-0b1d-4992-adec-a722e3f21e85",
+      "type": "preference",
+      "content": "Preference: you to build a website for me for an investment group (private equity and venture capital) called Difako Capital Investments",
+      "context": "Website creation for Difako",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-08T21:35:05.681000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.263356"
+    },
+    {
+      "id": "5555f56e-ecda-4f01-9ec6-9618c9c50257",
+      "type": "technique",
+      "content": "Technique: preview it in the canvas on the right",
+      "context": "Website creation for Difako",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-08T21:35:05.681000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.273022"
+    },
+    {
+      "id": "1a592b3d-524e-4c14-a711-6755a527e2ff",
+      "type": "technique",
+      "content": "Technique: hand to your Replit dev (or drop straight into your components)",
+      "context": "Website creation for Difako",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-08T21:35:05.681000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.273056"
+    },
+    {
+      "id": "dca3e276-7676-4bf9-89bc-dfb6f4eb8145",
+      "type": "preference",
+      "content": "Preference: it to be casual, direct, but I also want it to be heartfelt",
+      "context": "ESF application statement help",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-30T23:23:27.530000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.482864"
+    },
+    {
+      "id": "a59dfae9-fdab-4de1-a555-00bddd275e00",
+      "type": "technique",
+      "content": "Technique: graduation from highschool",
+      "context": "ESF application statement help",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-30T23:23:27.530000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.483931"
+    },
+    {
+      "id": "d97a285c-e4b9-40f3-8761-fa3ee2310d59",
+      "type": "technique",
+      "content": "Technique: use for context to help me write the statement",
+      "context": "ESF application statement help",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-30T23:23:27.530000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.484502"
+    },
+    {
+      "id": "1a577da5-8b21-42c9-98b9-dc10b5da102a",
+      "type": "technique",
+      "content": "Technique: **contribute**: Which of these feel authentic",
+      "context": "ESF application statement help",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-30T23:23:27.530000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.484517"
+    },
+    {
+      "id": "9a1f6c39-a87f-4c79-a377-0e2801c699db",
+      "type": "technique",
+      "content": "Technique: start now, tuned to what you shared",
+      "context": "Developmental milestones plan",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-29T15:44:02.376000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.492930"
+    },
+    {
+      "id": "9a32cdb2-9adb-48b2-bb93-a2e5359590a2",
+      "type": "decision",
+      "content": "Decided: Framework\",\"bullets\":[",
+      "context": "CEO crash course renewable energy",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-24T10:58:15.714000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.519128"
+    },
+    {
+      "id": "57c26af9-f161-422c-9873-acb0a7a8457c",
+      "type": "preference",
+      "content": "Preference: to learn about the industry",
+      "context": "CEO crash course renewable energy",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-24T10:58:15.714000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.537160"
+    },
+    {
+      "id": "2108802f-ce21-4974-9abd-f7a442167b29",
+      "type": "technique",
+      "content": "Technique: carry into any meeting\",",
+      "context": "CEO crash course renewable energy",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-24T10:58:15.714000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.555731"
+    },
+    {
+      "id": "38d07fa9-f0bf-49b3-9d06-9bb6797603fc",
+      "type": "idea",
+      "content": "Idea: become the CEO of Solartia (www",
+      "context": "CEO crash course renewable energy",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-24T10:58:15.714000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.577152"
+    },
+    {
+      "id": "eb54b2cd-1be4-4a5b-91d6-0fdfb0bc017e",
+      "type": "preference",
+      "content": "Preference: a similar map generated of Hong Kong",
+      "context": "Generate Hong Kong map",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-24T10:06:42.106000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.586045"
+    },
+    {
+      "id": "d6687031-9009-412f-a65e-94f13616886b",
+      "type": "decision",
+      "content": "Decided: lab-grown cotton to produce cosmetic and medical products",
+      "context": "Template creation for managers",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-23T15:36:28.251000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.780948"
+    },
+    {
+      "id": "1fa2433f-a7a2-42fd-89fb-6710557ef566",
+      "type": "decision",
+      "content": "Decided: to undertake this engagement",
+      "context": "Template creation for managers",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-23T15:36:28.251000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.780979"
+    },
+    {
+      "id": "51558cd3-f28a-4f9c-98ec-7c72e8ac27cd",
+      "type": "lesson",
+      "content": "Learned: when measured against international",
+      "context": "Template creation for managers",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-23T15:36:28.251000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.800427"
+    },
+    {
+      "id": "e9f53675-2c4d-49c0-88c1-19ae4919f2a5",
+      "type": "preference",
+      "content": "Preference: your help creating a template that I can send to my senior managers so they can fill it with their programs, project plans and sales efforts",
+      "context": "Template creation for managers",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-23T15:36:28.251000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.816919"
+    },
+    {
+      "id": "402c18ce-b86a-4979-9a54-776706065337",
+      "type": "preference",
+      "content": "Preference: you to create a template that is thorough yet easy to fill",
+      "context": "Template creation for managers",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-23T15:36:28.251000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.816942"
+    },
+    {
+      "id": "0164cc13-7e89-487d-8139-8c73d28008df",
+      "type": "technique",
+      "content": "Technique: always follow up with a web search if necessary for a more complete response",
+      "context": "Template creation for managers",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-23T15:36:28.251000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.849325"
+    },
+    {
+      "id": "0e470f01-a7e1-431e-a579-2448450e4a6e",
+      "type": "idea",
+      "content": "Idea: from now until the end of the year for my team to demonstrate where we are putting our time and effort, where we are focusing our new sales approach and how we plan to bring in revenue",
+      "context": "Template creation for managers",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-23T15:36:28.251000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.871767"
+    },
+    {
+      "id": "4db320e8-1d3f-4d1c-9816-37f2e9f35957",
+      "type": "decision",
+      "content": "Decided: whether to pursue, endorse or support any business strategy, or to effect, or not to effect, any Transaction, which decision shall be made by the Company in its sole discretion",
+      "context": "Capital raising agreement review",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-17T15:40:51.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.999047"
+    },
+    {
+      "id": "82ee97e9-8f15-4858-941e-4dbc4fdbafc2",
+      "type": "decision",
+      "content": "Decided: us to advise you and look forward to working with you on this engagement",
+      "context": "Capital raising agreement review",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-17T15:40:51.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.999071"
+    },
+    {
+      "id": "f7e3265f-7f76-45f3-867a-b6e021e23e59",
+      "type": "decision",
+      "content": "Decided: python-docx to create a",
+      "context": "Capital raising agreement review",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-17T15:40:51.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.035707"
+    },
+    {
+      "id": "a56c6505-5112-4ce1-98d6-b76d274c27da",
+      "type": "decision",
+      "content": "Decided: reasonable efforts to attend **key meetings** (virtually or in-person as mutually agreed) and to respond to Company inquiries within a **commercially reasonable timeframe**",
+      "context": "Capital raising agreement review",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-17T15:40:51.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.035735"
+    },
+    {
+      "id": "3f3925cc-7393-4889-93ea-78200c6db630",
+      "type": "preference",
+      "content": "Preference: your help in commenting on the document, offering suggestions to edit/redline to make it more favourable for us at Solartia",
+      "context": "Capital raising agreement review",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-17T15:40:51.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.136058"
+    },
+    {
+      "id": "a5a1384b-ec48-4308-a5af-acf684ee827c",
+      "type": "technique",
+      "content": "Technique: repurchase White Swan’s equity at **85% of last bona fide round price or FMV (whichever is lower)** anytime within 24 months; afterwards at **95%**",
+      "context": "Capital raising agreement review",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-17T15:40:51.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.253761"
+    },
+    {
+      "id": "330e62bc-7045-41b9-b09b-9e37e89964ec",
+      "type": "technique",
+      "content": "Technique: paste into White Swan’s draft if they insist on their paper)",
+      "context": "Capital raising agreement review",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-17T15:40:51.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.253798"
+    },
+    {
+      "id": "c9e2f58e-e3bc-4479-a551-19440b9ea08a",
+      "type": "technique",
+      "content": "Technique: drop into a deck or teaser:",
+      "context": "Solartia projects overview",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-10T21:26:21.510000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.382352"
+    },
+    {
+      "id": "cf4584fd-5c2f-4da3-916d-cca1acaa299f",
+      "type": "preference",
+      "content": "Preference: you to build a website for me for an investment group (private equity and venture capital) called Difako Capital Investments",
+      "context": "Website development request",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-08T21:24:34.188000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.407124"
+    },
+    {
+      "id": "8f146661-159f-49a9-9690-3f542cb42613",
+      "type": "lesson",
+      "content": "Learned: how to **navigate user acquisition and retention**, merging Web2 and Web3 audiences",
+      "context": "AI accelerator content",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-05T13:50:19.357000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.464454"
+    },
+    {
+      "id": "832bb4e1-05e5-49d8-ac5c-93c31dc98873",
+      "type": "preference",
+      "content": "Preference: your help creating the content for a website that showcases an AI accelerator for Brinc (www",
+      "context": "AI accelerator content",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-05T13:50:19.357000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.466328"
+    },
+    {
+      "id": "d31d4922-463d-4bb3-baa4-4c20d55187e2",
+      "type": "technique",
+      "content": "Technique: paste into the Airtable form",
+      "context": "AI accelerator content",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-05T13:50:19.357000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.469968"
+    },
+    {
+      "id": "e3794b25-8818-4a91-84eb-c59824ac5a09",
+      "type": "idea",
+      "content": "Idea: include standard equity and/or other instruments appropriate to stage; program fee is separate",
+      "context": "AI accelerator content",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-05T13:50:19.357000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.472272"
+    },
+    {
+      "id": "08875bcc-9840-41c4-b671-fa8434ef11a8",
+      "type": "preference",
+      "content": "Preference: your help with a script to do a deck for our Solartia acquisition",
+      "context": "Build deck request",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T09:15:59.350000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.486421"
+    },
+    {
+      "id": "c3886512-c855-4a22-845f-cb11a71c2ca2",
+      "type": "technique",
+      "content": "Technique: paste straight into slides",
+      "context": "Build deck request",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T09:15:59.350000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.489556"
+    },
+    {
+      "id": "b4388c50-fb09-4bd7-a554-ae88d061005d",
+      "type": "idea",
+      "content": "Idea: be introduced to a new investor and need to send them a teaser",
+      "context": "Build deck request",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-02T09:15:59.350000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.491622"
+    },
+    {
+      "id": "cbe9f5bd-d74f-4d9a-9b25-99652022b1b3",
+      "type": "decision",
+      "content": "Decided: tool that’s actually usable",
+      "context": "Relocation evaluation matrix",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-01T14:52:49.831000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.501952"
+    },
+    {
+      "id": "1d80111e-775b-4858-8c61-d11d0fe0bd11",
+      "type": "decision",
+      "content": "Decided: that to score each possible destination",
+      "context": "Relocation evaluation matrix",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-01T14:52:49.831000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.503509"
+    },
+    {
+      "id": "50dbaaeb-162d-43e1-ae10-4402e716a4ec",
+      "type": "preference",
+      "content": "Preference: your help in creating a comprehensive evaluation matrix so I can compare different cities when considering where to relocate",
+      "context": "Relocation evaluation matrix",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-01T14:52:49.831000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.507246"
+    },
+    {
+      "id": "de099ffc-223b-446f-bbe6-013645339659",
+      "type": "preference",
+      "content": "Preference: your help in creating a thorough list of all the factors I should consider then I will use that to score each possible destination",
+      "context": "Relocation evaluation matrix",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-01T14:52:49.831000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.507270"
+    },
+    {
+      "id": "201c5f5e-a27b-49c9-b7d0-13e305138005",
+      "type": "idea",
+      "content": "Idea: use that to score each possible destination",
+      "context": "Relocation evaluation matrix",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-01T14:52:49.831000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.513241"
+    },
+    {
+      "id": "15389cd6-0619-4524-96ac-ca0d753862ef",
+      "type": "idea",
+      "content": "Idea: then I will use that to score each possible destination",
+      "context": "Relocation evaluation matrix",
+      "source": "chatgpt",
+      "sourceDate": "2025-09-01T14:52:49.831000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.519188"
+    }
+  ]
+}

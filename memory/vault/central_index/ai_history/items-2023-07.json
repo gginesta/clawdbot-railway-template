@@ -1,0 +1,143 @@
+{
+  "items": [
+    {
+      "id": "1a04fc4c-fffa-402f-85e1-0bf080c77783",
+      "type": "preference",
+      "content": "Preference: to hire a dedicated freelancer to do similar work for me",
+      "context": "Alto Studios website",
+      "source": "claude",
+      "sourceDate": "2023-07-17T09:47:57.700628Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.155467"
+    },
+    {
+      "id": "7e25fb9f-c4a7-4418-82dd-0565adc62507",
+      "type": "idea",
+      "content": "Idea: really help me become more observant",
+      "context": "Alto Studios website",
+      "source": "claude",
+      "sourceDate": "2023-07-17T09:47:57.700628Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.156414"
+    },
+    {
+      "id": "2f81f1dd-8180-42e3-b94a-36c2536efa3d",
+      "type": "idea",
+      "content": "Idea: update my notes to reflect that Shara Ticku is the correct founder of C16 Biosciences",
+      "context": "Women Sustainability Tech Innovators",
+      "source": "claude",
+      "sourceDate": "2023-07-18T07:34:29.908337Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.324279"
+    },
+    {
+      "id": "e38a5fd1-d54f-4df5-8ceb-3478820793c4",
+      "type": "preference",
+      "content": "Preference: to search for emails from a specific sender, \"name@email",
+      "context": "Email search filter",
+      "source": "claude",
+      "sourceDate": "2023-07-14T09:50:05.653814Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.357535"
+    },
+    {
+      "id": "79a9a812-f79b-4215-8d32-f0ff2b739711",
+      "type": "technique",
+      "content": "Technique: adjust the time period as needed",
+      "context": "Email search filter",
+      "source": "claude",
+      "sourceDate": "2023-07-14T09:50:05.653814Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.357959"
+    },
+    {
+      "id": "b10e9c0c-120f-49b4-b903-4be567bdb07d",
+      "type": "technique",
+      "content": "Technique: also combine some of these like:",
+      "context": "Email search filter",
+      "source": "claude",
+      "sourceDate": "2023-07-14T09:50:05.653814Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.357972"
+    },
+    {
+      "id": "119b89d5-954a-4dcc-a8a4-f61e111d8200",
+      "type": "idea",
+      "content": "Idea: search for emails from a specific sender, \"name@email",
+      "context": "Email search filter",
+      "source": "claude",
+      "sourceDate": "2023-07-14T09:50:05.653814Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.358169"
+    },
+    {
+      "id": "90d2d220-f6e7-44ab-9c0f-0edbf95a2147",
+      "type": "preference",
+      "content": "Preference: your help in putting together en executive summary of the plan in order to present it to the 'Nablu PE' board",
+      "context": "Bitcoin mining operations",
+      "source": "claude",
+      "sourceDate": "2023-07-17T03:12:49.897959Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.361601"
+    },
+    {
+      "id": "376f0ab9-65b7-4db8-8746-98cfaf73a31d",
+      "type": "idea",
+      "content": "Idea: continue to grow that business and eventually incorporate the gold mine to increase Kitco Asia's stock and inventory",
+      "context": "Bitcoin mining operations",
+      "source": "claude",
+      "sourceDate": "2023-07-17T03:12:49.897959Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.363153"
+    }
+  ]
+}

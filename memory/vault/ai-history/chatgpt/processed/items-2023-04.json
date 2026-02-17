@@ -1,0 +1,97 @@
+{
+  "items": [
+    {
+      "id": "1a867ce8-76bc-4323-b896-7c209e48bf66",
+      "type": "idea",
+      "content": "Idea: focus on investing in promising startups in Thailand",
+      "context": "Brinc Seeks BOI Support",
+      "source": "chatgpt",
+      "sourceDate": "2023-04-26T15:49:19.710146",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.721385"
+    },
+    {
+      "id": "54e863f0-2bee-4bb2-9db2-f01cb1b5ce32",
+      "type": "idea",
+      "content": "Idea: be some kind of joke wedding",
+      "context": "Wedding Speech Intro.",
+      "source": "chatgpt",
+      "sourceDate": "2023-04-23T13:39:41.174282",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.722701"
+    },
+    {
+      "id": "bd1dd643-024d-40c0-bd84-fd58e26769aa",
+      "type": "preference",
+      "content": "Preference: to launch a business similar to https://www",
+      "context": "Launch Similar Business",
+      "source": "chatgpt",
+      "sourceDate": "2023-04-13T14:30:04.359016",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.724639"
+    },
+    {
+      "id": "39cf4e37-2be0-408f-92f5-22642abcbc2b",
+      "type": "technique",
+      "content": "Technique: differentiate yourself from existing competitors",
+      "context": "Launch Similar Business",
+      "source": "chatgpt",
+      "sourceDate": "2023-04-13T14:30:04.359016",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.725251"
+    },
+    {
+      "id": "62006d7f-719e-4d98-b952-7e8c5b0e55de",
+      "type": "technique",
+      "content": "Technique: be proficient in a programming language, preferably Python, which has several libraries for web scraping",
+      "context": "Launch Similar Business",
+      "source": "chatgpt",
+      "sourceDate": "2023-04-13T14:30:04.359016",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.725261"
+    },
+    {
+      "id": "84d708a5-f9ca-498c-a4a1-9685d3363d81",
+      "type": "idea",
+      "content": "Idea: launch a business similar to https://www",
+      "context": "Launch Similar Business",
+      "source": "chatgpt",
+      "sourceDate": "2023-04-13T14:30:04.359016",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.725615"
+    }
+  ]
+}

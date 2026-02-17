@@ -1,0 +1,198 @@
+{
+  "items": [
+    {
+      "id": "51b6aa44-bfef-4186-bab6-f9445b5a721c",
+      "type": "preference",
+      "content": "Preference: your help in writing a blurb to send to potential funders for project financing, such as the ad in this site:",
+      "context": "Solartia Acquisition Overview",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-27T21:17:57.326085",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.594765"
+    },
+    {
+      "id": "7f20ea3f-47e0-42cd-b12d-7a2fff1b42f5",
+      "type": "preference",
+      "content": "Preference: a Company business plan (a brief paragraph is acceptable of the business’ model such as the service/ products offered; major source of funds; major counterparts and the country(s) of the major counter",
+      "context": "Solartia Acquisition Overview",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-27T21:17:57.326085",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.594780"
+    },
+    {
+      "id": "3253df4b-48b9-4993-a606-c3237cc0a0fb",
+      "type": "idea",
+      "content": "Idea: help provide context and background for your acquisition:",
+      "context": "Solartia Acquisition Overview",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-27T21:17:57.326085",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.596075"
+    },
+    {
+      "id": "a766f966-e7e5-4c78-8b46-5a57f1b96ae8",
+      "type": "preference",
+      "content": "Preference: your help planning an itinerary",
+      "context": "Bachelor Party Itinerary Asia",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-19T13:57:07.778337",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.672945"
+    },
+    {
+      "id": "f9ddb2a0-4a84-45ee-8a20-cb445b4f89e2",
+      "type": "technique",
+      "content": "Technique: party at top spots like **Illuzion Phuket** or **White Room Nightclub**",
+      "context": "Bachelor Party Itinerary Asia",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-19T13:57:07.778337",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.675501"
+    },
+    {
+      "id": "14ff4d6c-08ad-4fc9-a0f1-cb1e9095b120",
+      "type": "idea",
+      "content": "Idea: centers around an adventurous and exciting experience in Asia, with a balance of activities that match his love for adrenaline, music, and beach vibes",
+      "context": "Bachelor Party Itinerary Asia",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-19T13:57:07.778337",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.677024"
+    },
+    {
+      "id": "3b11ab76-6d9c-4bc6-86e1-6eedd82eb8c8",
+      "type": "preference",
+      "content": "Preference: your help in filing my tax returns as I would like to be as effective with my tax position as possible",
+      "context": "Hong Kong Tax Filing",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-02T11:25:12.000807",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.750867"
+    },
+    {
+      "id": "7ca0cac2-f17f-43b2-9f84-8fb779a0af9f",
+      "type": "technique",
+      "content": "Technique: Claim Rental Deduction",
+      "context": "Hong Kong Tax Filing",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-02T11:25:12.000807",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.751281"
+    },
+    {
+      "id": "4c7fb1bd-f9a4-43bf-aaa0-09528447265f",
+      "type": "technique",
+      "content": "Technique: Calculate Rental Deduction",
+      "context": "Hong Kong Tax Filing",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-02T11:25:12.000807",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.751287"
+    },
+    {
+      "id": "2a3748dc-6ed3-462a-a9d8-02c17399f817",
+      "type": "technique",
+      "content": "Technique: claim an additional allowance",
+      "context": "Hong Kong Tax Filing",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-02T11:25:12.000807",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.751589"
+    },
+    {
+      "id": "790ba89e-927f-4b31-94a3-5cefe537b717",
+      "type": "idea",
+      "content": "Idea: major expenses and donations within the tax year to maximize deductions",
+      "context": "Hong Kong Tax Filing",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-02T11:25:12.000807",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.752428"
+    },
+    {
+      "id": "e5f7131a-c152-46a3-8ccf-5107d88e9f2e",
+      "type": "idea",
+      "content": "Idea: significantly impact the industry",
+      "context": "Interview Questions for Candidate",
+      "source": "chatgpt",
+      "sourceDate": "2024-08-01T09:28:39.665271",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.757600"
+    }
+  ]
+}

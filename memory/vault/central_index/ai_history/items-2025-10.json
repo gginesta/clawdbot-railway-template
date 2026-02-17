@@ -1,0 +1,139 @@
+{
+  "items": [
+    {
+      "id": "e0bfd914-4444-4256-a2c6-1486b57fafa3",
+      "type": "technique",
+      "content": "Technique: pick what fits your phase (Days 1-3 vs",
+      "context": "Recovery Plan After Speed Comedown",
+      "source": "grok",
+      "sourceDate": "2025-10-31T13:08:54.305448Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.115265"
+    },
+    {
+      "id": "4d0bd51a-ab89-4e71-9464-cbc3c30c4e29",
+      "type": "idea",
+      "content": "Idea: First, a crucial disclaimer: I'm not a doctor, and this is not personalized medical advice",
+      "context": "Recovery Plan After Speed Comedown",
+      "source": "grok",
+      "sourceDate": "2025-10-31T13:08:54.305448Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.117503"
+    },
+    {
+      "id": "ab064e1e-37af-4aa1-ac85-2c9c1ee20cdc",
+      "type": "preference",
+      "content": "Preference: your help figuring out how much it would cost me to see if its cheaper for me to take an Uber",
+      "context": "Hong Kong Airport Parking Costs Analysis",
+      "source": "grok",
+      "sourceDate": "2025-10-24T03:24:32.723550Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.121061"
+    },
+    {
+      "id": "1e2b8b11-0304-49d7-a844-7820673e4c47",
+      "type": "idea",
+      "content": "Idea: use Car Park 4, which offers daily and long-term rates for private cars",
+      "context": "Hong Kong Airport Parking Costs Analysis",
+      "source": "grok",
+      "sourceDate": "2025-10-24T03:24:32.723550Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.122016"
+    },
+    {
+      "id": "55fdde2e-0d04-4bd2-869d-fcc3e5e098fd",
+      "type": "preference",
+      "content": "Preference: your help drafting a direct and attractive cold email to potential corporate partners then one for investors",
+      "context": "Brinc's AI Accelerator Program Outreach",
+      "source": "grok",
+      "sourceDate": "2025-10-17T02:06:06.851533Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.137456"
+    },
+    {
+      "id": "20b575e9-34eb-47e4-a972-e2a715da91d1",
+      "type": "preference",
+      "content": "Preference: to offer these corporates and investors a chance to get to meet the startups",
+      "context": "Brinc's AI Accelerator Program Outreach",
+      "source": "grok",
+      "sourceDate": "2025-10-17T02:06:06.851533Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.137472"
+    },
+    {
+      "id": "f2d7c36b-2000-4ee8-98be-0ffd0fb40af8",
+      "type": "idea",
+      "content": "Idea: offer these corporates and investors a chance to get to meet the startups",
+      "context": "Brinc's AI Accelerator Program Outreach",
+      "source": "grok",
+      "sourceDate": "2025-10-17T02:06:06.851533Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.139029"
+    },
+    {
+      "id": "9f387df4-0722-425c-954a-1402efe0b10b",
+      "type": "technique",
+      "content": "Technique: apply online through the official Indian visa portal (indianvisaonline",
+      "context": "Chilean Passport Travel Requirements India",
+      "source": "grok",
+      "sourceDate": "2025-10-14T10:36:55.066721Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.156149"
+    }
+  ]
+}

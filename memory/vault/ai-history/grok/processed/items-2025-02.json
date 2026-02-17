@@ -1,0 +1,483 @@
+{
+  "items": [
+    {
+      "id": "fb34fc2d-09e0-47a4-8c5c-77f0ecfc39ea",
+      "type": "decision",
+      "content": "Decided: serve as a director on the Board of Directors of the Potential Purchaser, subject to the satisfaction of an ownership threshold amount to be agreed upon by the Parties",
+      "context": "Acquisition of Solartia: Financial and Legal Analysis",
+      "source": "grok",
+      "sourceDate": "2025-02-28T23:15:32.415055Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.324906"
+    },
+    {
+      "id": "6522e1b7-9d4f-4802-81d6-9ed210329b48",
+      "type": "preference",
+      "content": "Preference: your help in reviewing a couple of contracts and giving me feedback",
+      "context": "Acquisition of Solartia: Financial and Legal Analysis",
+      "source": "grok",
+      "sourceDate": "2025-02-28T23:15:32.415055Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.337250"
+    },
+    {
+      "id": "4ff4ee20-ae77-4eb7-99a7-3a91d05f7b95",
+      "type": "technique",
+      "content": "Technique: comply with corresponding tax obligations",
+      "context": "Acquisition of Solartia: Financial and Legal Analysis",
+      "source": "grok",
+      "sourceDate": "2025-02-28T23:15:32.415055Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.348241"
+    },
+    {
+      "id": "dc2dc5d6-8e2f-4a2b-a1f8-be1ef075ddd8",
+      "type": "technique",
+      "content": "Technique: comply with corresponding tax obligations",
+      "context": "Acquisition of Solartia: Financial and Legal Analysis",
+      "source": "grok",
+      "sourceDate": "2025-02-28T23:15:32.415055Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.348266"
+    },
+    {
+      "id": "78cb6778-c8e2-46b7-bd69-18d51b017a4f",
+      "type": "technique",
+      "content": "Technique: offer this selectively (e",
+      "context": "Acquisition of Solartia: Financial and Legal Analysis",
+      "source": "grok",
+      "sourceDate": "2025-02-28T23:15:32.415055Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.351262"
+    },
+    {
+      "id": "201528af-d957-408a-b1f0-abd9bd37cb57",
+      "type": "idea",
+      "content": "Idea: sign with the key employees",
+      "context": "Acquisition of Solartia: Financial and Legal Analysis",
+      "source": "grok",
+      "sourceDate": "2025-02-28T23:15:32.415055Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.357522"
+    },
+    {
+      "id": "eb49e56a-3fc4-47a5-aa44-758d4f573789",
+      "type": "technique",
+      "content": "Technique: open a personal account with UBS in Hong Kong for everyday needs like receiving your salary, paying bills, or making transactions",
+      "context": "Switching from HSBC to UBS for Daily Banking",
+      "source": "grok",
+      "sourceDate": "2025-02-28T05:21:10.805813Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.369712"
+    },
+    {
+      "id": "2f928a98-f3ab-440b-a5f5-3acba0d9b48a",
+      "type": "technique",
+      "content": "Technique: still get a basic account without needing to be a millionaire",
+      "context": "Switching from HSBC to UBS for Daily Banking",
+      "source": "grok",
+      "sourceDate": "2025-02-28T05:21:10.805813Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.369747"
+    },
+    {
+      "id": "6b9b114c-64b8-4994-8a79-c0bc0e127386",
+      "type": "idea",
+      "content": "Idea: explore their investment tools later",
+      "context": "Switching from HSBC to UBS for Daily Banking",
+      "source": "grok",
+      "sourceDate": "2025-02-28T05:21:10.805813Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.371134"
+    },
+    {
+      "id": "2c244d62-d4ef-4018-a602-08dcd1e641cd",
+      "type": "decision",
+      "content": "Decided: a trigger like a new email from a specific sender, connecting your Gmail account, and instructing the agent to draft a reply in your style",
+      "context": "Lindy.ai Agents for Non-Developers",
+      "source": "grok",
+      "sourceDate": "2025-02-26T07:28:53.410391Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.377091"
+    },
+    {
+      "id": "4f8512e6-15be-4a9d-888b-93e3c80e95bf",
+      "type": "preference",
+      "content": "Preference: to do, and list them separately\")",
+      "context": "Lindy.ai Agents for Non-Developers",
+      "source": "grok",
+      "sourceDate": "2025-02-26T07:28:53.410391Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.382225"
+    },
+    {
+      "id": "b15956c7-2072-473b-aa77-eadc57b55ff3",
+      "type": "preference",
+      "content": "Preference: to do and list them for me to approve",
+      "context": "Lindy.ai Agents for Non-Developers",
+      "source": "grok",
+      "sourceDate": "2025-02-26T07:28:53.410391Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.382246"
+    },
+    {
+      "id": "ed40cf98-0ae5-4b2e-9d57-405b481c2151",
+      "type": "technique",
+      "content": "Technique: handle any additional questions",
+      "context": "Lindy.ai Agents for Non-Developers",
+      "source": "grok",
+      "sourceDate": "2025-02-26T07:28:53.410391Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.383703"
+    },
+    {
+      "id": "c3b831cb-fda9-45ef-a855-208d6901b15c",
+      "type": "technique",
+      "content": "Technique: Integrate To-Do Items into ClickUp",
+      "context": "Lindy.ai Agents for Non-Developers",
+      "source": "grok",
+      "sourceDate": "2025-02-26T07:28:53.410391Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.383727"
+    },
+    {
+      "id": "19420737-7b86-4102-b0a2-46422f3df266",
+      "type": "technique",
+      "content": "Technique: sign up for a free account at [Lindy",
+      "context": "Lindy.ai Agents for Non-Developers",
+      "source": "grok",
+      "sourceDate": "2025-02-26T07:28:53.410391Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.384554"
+    },
+    {
+      "id": "69dae757-43c5-455b-b1a6-7cacc6d597d1",
+      "type": "idea",
+      "content": "Idea: of saving time and reducing manual effort, as highlighted in various reviews and official descriptions",
+      "context": "Lindy.ai Agents for Non-Developers",
+      "source": "grok",
+      "sourceDate": "2025-02-26T07:28:53.410391Z",
+      "confidence": "low",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.385940"
+    },
+    {
+      "id": "08bf9785-2111-485a-beb2-e6bf9d8961b1",
+      "type": "preference",
+      "content": "Preference: your help coding an integration between Todoist using their API and Lindy",
+      "context": "Lindy.ai and Todoist Integration Guide",
+      "source": "grok",
+      "sourceDate": "2025-02-24T06:59:41.460228Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.399706"
+    },
+    {
+      "id": "e1918c28-6f03-4c09-a449-0fd6822bd35b",
+      "type": "preference",
+      "content": "Preference: Lindy to add those tasks automatically to my Todoist account",
+      "context": "Lindy.ai and Todoist Integration Guide",
+      "source": "grok",
+      "sourceDate": "2025-02-24T06:59:41.460228Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.399729"
+    },
+    {
+      "id": "89c02e6d-6333-435c-b0d1-20606669e0f4",
+      "type": "technique",
+      "content": "Technique: Success | Lindy](https://www",
+      "context": "Lindy.ai and Todoist Integration Guide",
+      "source": "grok",
+      "sourceDate": "2025-02-24T06:59:41.460228Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.402238"
+    },
+    {
+      "id": "637c82ae-857c-4235-9068-02a4bfc53c68",
+      "type": "technique",
+      "content": "Technique: install them using `pip install flask requests`",
+      "context": "Lindy.ai and Todoist Integration Guide",
+      "source": "grok",
+      "sourceDate": "2025-02-24T06:59:41.460228Z",
+      "confidence": "medium",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.403715"
+    },
+    {
+      "id": "aed3b973-212c-4011-8dfc-d286992aa6a4",
+      "type": "idea",
+      "content": "Idea: listen for incoming requests from Lindy",
+      "context": "Lindy.ai and Todoist Integration Guide",
+      "source": "grok",
+      "sourceDate": "2025-02-24T06:59:41.460228Z",
+      "confidence": "low",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.406637"
+    },
+    {
+      "id": "25ad8e45-c8d3-43a5-9351-91159dc219bc",
+      "type": "idea",
+      "content": "Idea: Replit's paid plans, which offer \"Always On\" functionality, but for initial setup, the free tier is sufficient for testing",
+      "context": "Lindy.ai and Todoist Integration Guide",
+      "source": "grok",
+      "sourceDate": "2025-02-24T06:59:41.460228Z",
+      "confidence": "low",
+      "tags": [
+        "master"
+      ],
+      "relatedTo": [
+        "master"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.408514"
+    },
+    {
+      "id": "32cdf9d1-a9ce-4603-86a3-b08e4ce7c62f",
+      "type": "decision",
+      "content": "Decided: JavaScript to handle time zone logic, real-time updates, and rendering the timeline",
+      "context": "HTML5 World Time Buddy Clone",
+      "source": "grok",
+      "sourceDate": "2025-02-20T08:42:48.905510Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.426006"
+    },
+    {
+      "id": "45abee1a-d54c-46ed-b245-b14614006017",
+      "type": "preference",
+      "content": "Preference: your help creating an html5 application, which is a clone of www",
+      "context": "HTML5 World Time Buddy Clone",
+      "source": "grok",
+      "sourceDate": "2025-02-20T08:42:48.905510Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.433946"
+    },
+    {
+      "id": "03e59d49-54f7-4332-9c87-a60f47b8347e",
+      "type": "preference",
+      "content": "Preference: the intro that answers \"What do you want to build today",
+      "context": "HTML5 World Time Buddy Clone",
+      "source": "grok",
+      "sourceDate": "2025-02-20T08:42:48.905510Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.433967"
+    },
+    {
+      "id": "376fe549-417d-4095-9774-90def314f7b6",
+      "type": "technique",
+      "content": "Technique: Get Started on Replit",
+      "context": "HTML5 World Time Buddy Clone",
+      "source": "grok",
+      "sourceDate": "2025-02-20T08:42:48.905510Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.437986"
+    },
+    {
+      "id": "ba38db50-38cf-40a7-98cf-3ee7155a8093",
+      "type": "technique",
+      "content": "Technique: use to build a basic version",
+      "context": "HTML5 World Time Buddy Clone",
+      "source": "grok",
+      "sourceDate": "2025-02-20T08:42:48.905510Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.440355"
+    },
+    {
+      "id": "3c032259-5201-4aed-9b37-02161829f1dc",
+      "type": "technique",
+      "content": "Technique: find valid time zone names in the IANA Time Zone Database",
+      "context": "HTML5 World Time Buddy Clone",
+      "source": "grok",
+      "sourceDate": "2025-02-20T08:42:48.905510Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.440376"
+    },
+    {
+      "id": "ab0f0589-3353-4779-acf7-31a71b80a76c",
+      "type": "idea",
+      "content": "Idea: include displaying multiple time zones, a visual timeline, and some interactivity",
+      "context": "HTML5 World Time Buddy Clone",
+      "source": "grok",
+      "sourceDate": "2025-02-20T08:42:48.905510Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:01.445081"
+    }
+  ]
+}

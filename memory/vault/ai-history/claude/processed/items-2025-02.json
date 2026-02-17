@@ -1,0 +1,160 @@
+{
+  "items": [
+    {
+      "id": "8e138dfc-c797-4af8-b261-f911b54947a9",
+      "type": "decision",
+      "content": "Decided: Tailwind's core utility classes for styling",
+      "context": "World Time Comparison Web App",
+      "source": "claude",
+      "sourceDate": "2025-02-07T12:49:05.275712Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.940137"
+    },
+    {
+      "id": "ff032420-f814-4c03-b8e3-32e1f68fa106",
+      "type": "decision",
+      "content": "Decided: a comprehensive list of time zones with cities and countries",
+      "context": "World Time Comparison Web App",
+      "source": "claude",
+      "sourceDate": "2025-02-07T12:49:05.275712Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.940161"
+    },
+    {
+      "id": "91d37e3c-928c-4c7a-8a59-d7249d59a491",
+      "type": "preference",
+      "content": "Preference: your help coding an app/website that is an improved version of worldtimebuddy",
+      "context": "World Time Comparison Web App",
+      "source": "claude",
+      "sourceDate": "2025-02-07T12:49:05.275712Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.948324"
+    },
+    {
+      "id": "7b30f191-559f-4c74-915d-b671a19821c8",
+      "type": "preference",
+      "content": "Preference: to fix the CSS for it",
+      "context": "World Time Comparison Web App",
+      "source": "claude",
+      "sourceDate": "2025-02-07T12:49:05.275712Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.948374"
+    },
+    {
+      "id": "a24b75c6-2691-4282-b159-e7b5e33d861a",
+      "type": "technique",
+      "content": "Technique: add up to 6 additional time zones (8 total) from common locations",
+      "context": "World Time Comparison Web App",
+      "source": "claude",
+      "sourceDate": "2025-02-07T12:49:05.275712Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.954558"
+    },
+    {
+      "id": "5242e091-f8f6-4dc9-8121-768c892ee80a",
+      "type": "technique",
+      "content": "Technique: remove any added time zones (except Local and UTC)",
+      "context": "World Time Comparison Web App",
+      "source": "claude",
+      "sourceDate": "2025-02-07T12:49:05.275712Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.954582"
+    },
+    {
+      "id": "49d7d0ae-a5e6-4156-80f9-21f8795b16d4",
+      "type": "idea",
+      "content": "Idea: benefit from being rendered in its own window",
+      "context": "World Time Comparison Web App",
+      "source": "claude",
+      "sourceDate": "2025-02-07T12:49:05.275712Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.958312"
+    },
+    {
+      "id": "b80fa4e1-591c-4f0d-be68-d448782ef875",
+      "type": "preference",
+      "content": "Preference: your help in reviewing a couple of contracts and giving me feedback",
+      "context": "Acquisition of Spanish Renewable Energy Company",
+      "source": "claude",
+      "sourceDate": "2025-02-28T23:23:41.842915Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.331718"
+    },
+    {
+      "id": "dfb573fc-5ad8-4c39-ab91-70d41c7f9998",
+      "type": "technique",
+      "content": "Technique: easily meet the second payment obligation through retained earnings",
+      "context": "Acquisition of Spanish Renewable Energy Company",
+      "source": "claude",
+      "sourceDate": "2025-02-28T23:23:41.842915Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.333303"
+    },
+    {
+      "id": "fb0f3f11-74b3-446a-ad17-70ccad9bf337",
+      "type": "idea",
+      "content": "Idea: sign with the key employees",
+      "context": "Acquisition of Spanish Renewable Energy Company",
+      "source": "claude",
+      "sourceDate": "2025-02-28T23:23:41.842915Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.334296"
+    }
+  ]
+}

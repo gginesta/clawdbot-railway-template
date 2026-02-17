@@ -1,0 +1,933 @@
+{
+  "items": [
+    {
+      "id": "4aca71ad-1966-439f-a375-2417d87fb46a",
+      "type": "technique",
+      "content": "Technique: weave into the “Public Infrastructure ✕ Private Firepower” segment",
+      "context": "Talking points for Brinc",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-31T20:52:23.546000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.759740"
+    },
+    {
+      "id": "54c73bab-20d9-464d-b2c4-83b93176c840",
+      "type": "idea",
+      "content": "Idea: take a blue-chip cocktail—both outlaw empty promises",
+      "context": "Talking points for Brinc",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-31T20:52:23.546000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.761085"
+    },
+    {
+      "id": "fb2f9f79-c9b8-4b5f-b048-caee6a96630c",
+      "type": "technique",
+      "content": "Technique: route via Madrid (IB Air shuttle) but this would add a stop",
+      "context": "Travel itinerary planning",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-28T09:20:13.856000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.795699"
+    },
+    {
+      "id": "7bfab326-a33a-46a5-8347-1aa47c368449",
+      "type": "idea",
+      "content": "Idea: also finalise the Brussels–Hong Kong return, likely via Cathay Pacific",
+      "context": "Travel itinerary planning",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-28T09:20:13.856000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.798775"
+    },
+    {
+      "id": "8adc932d-7236-427d-a645-4e3cba1da828",
+      "type": "idea",
+      "content": "Idea: be Austin Powers themed",
+      "context": "Austin Powers Party Idea",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-22T13:33:43.415000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.802702"
+    },
+    {
+      "id": "7f78141f-1b9e-40d3-aeca-22a77c30272a",
+      "type": "decision",
+      "content": "Decided: ADA | Double‑check you actually selected **GPT‑4o (Advanced Data Analysis)**; the icon appears only in that mode",
+      "context": "AI Tool for Excel Merging",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-22T10:39:03.529000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.809760"
+    },
+    {
+      "id": "16019e03-594f-4834-a6c0-ebf1490d71e7",
+      "type": "preference",
+      "content": "Preference: help using an AI tool (Grok, Claude, ChatGPT, Perplexity or Gemini) to upload the files and have the AI tool consolidate everything into one file that shows me the historical performance and forecaste",
+      "context": "AI Tool for Excel Merging",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-22T10:39:03.529000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.812249"
+    },
+    {
+      "id": "8e0596e1-01ca-4db1-ac0e-f48ee69fcb61",
+      "type": "technique",
+      "content": "Technique: verify each point quickly",
+      "context": "AI Tool for Excel Merging",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-22T10:39:03.529000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.815243"
+    },
+    {
+      "id": "88b473f2-b195-4e97-8c88-0611722ecda9",
+      "type": "technique",
+      "content": "Technique: download | 100 MB / file, ~128k rows before you’ll hit the 128 MB temp‑disk cap; Plus account required |",
+      "context": "AI Tool for Excel Merging",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-22T10:39:03.529000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.815270"
+    },
+    {
+      "id": "3aa33338-5001-45bb-9020-43c3be402603",
+      "type": "idea",
+      "content": "Idea: show code snippets and interim previews—ask follow‑up questions (“filter out discontinued segments”, “use grams in axis labels”, etc",
+      "context": "AI Tool for Excel Merging",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-22T10:39:03.529000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.816832"
+    },
+    {
+      "id": "ac07a555-84a4-47b9-a579-270612000942",
+      "type": "preference",
+      "content": "Preference: your help creating a combined feasibility report based on different documents and research pieces",
+      "context": "Feasibility Report Compilation",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T14:01:49.127000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.823855"
+    },
+    {
+      "id": "317252ca-41ad-43ee-95c9-fbccc9a8d506",
+      "type": "preference",
+      "content": "Preference: your help consolidating all the information into one master file that can then be presented to NDC",
+      "context": "Feasibility Report Compilation",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T14:01:49.127000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.823880"
+    },
+    {
+      "id": "31a964e0-df08-4a5e-a91d-1bcddb1c974f",
+      "type": "technique",
+      "content": "Technique: always follow up with a web search if necessary for a more complete response",
+      "context": "Feasibility Report Compilation",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T14:01:49.127000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.826570"
+    },
+    {
+      "id": "01530641-0b81-4375-821d-87c64bfac407",
+      "type": "idea",
+      "content": "Idea: for the Philippines specifically",
+      "context": "Feasibility Report Compilation",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T14:01:49.127000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.827476"
+    },
+    {
+      "id": "615eccba-73bb-440a-bdf3-30ed3c05e6f1",
+      "type": "decision",
+      "content": "Decided: makers including the board",
+      "context": "Brinc Feasibility Report",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:42:00.175000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.855049"
+    },
+    {
+      "id": "deaa3a2d-8bc6-476e-b89a-95a6e9aef89b",
+      "type": "decision",
+      "content": "Decided: point for the Board:** A sub-US $3 million equity commitment secures a partner that (i) turbo-charges GDP by nearly **US $200 million** inside five years, (ii) delivers a pipeline of **1 500 export-re",
+      "context": "Brinc Feasibility Report",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:42:00.175000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.855086"
+    },
+    {
+      "id": "92258c01-01e8-436e-857d-4cc25ba3f19a",
+      "type": "preference",
+      "content": "Preference: your help with the Brinc related portions:",
+      "context": "Brinc Feasibility Report",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:42:00.175000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.873228"
+    },
+    {
+      "id": "1ecfcea7-886d-4bb4-beac-51c134eee4ba",
+      "type": "preference",
+      "content": "Preference: your help creating the 4 sections regarding Brinc",
+      "context": "Brinc Feasibility Report",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:42:00.175000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.873249"
+    },
+    {
+      "id": "1eb8a5dc-44ed-4411-8f1d-350d80cc212b",
+      "type": "technique",
+      "content": "Technique: always follow up with a web search if necessary for a more complete response",
+      "context": "Brinc Feasibility Report",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:42:00.175000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.894918"
+    },
+    {
+      "id": "b6ac5244-c3f5-49f3-adb7-75303cc34a14",
+      "type": "idea",
+      "content": "Idea: for the Philippines specifically",
+      "context": "Brinc Feasibility Report",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:42:00.175000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.900726"
+    },
+    {
+      "id": "3214833e-90e2-4be3-8522-16fb2cbefe21",
+      "type": "preference",
+      "content": "Preference: your help collating a feasibility report based on different documents and research pieces",
+      "context": "Feasibility Report for NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:25:58.773000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.914238"
+    },
+    {
+      "id": "8ab133c1-a709-4757-878d-902e3e083893",
+      "type": "preference",
+      "content": "Preference: your help creating the final output",
+      "context": "Feasibility Report for NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:25:58.773000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.914353"
+    },
+    {
+      "id": "b9edc80f-2bad-4553-86df-2f0c094fc9a6",
+      "type": "technique",
+      "content": "Technique: always follow up with a web search if necessary for a more complete response",
+      "context": "Feasibility Report for NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:25:58.773000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.916279"
+    },
+    {
+      "id": "5a823354-9cf6-4a35-b25a-2ab259e2896b",
+      "type": "idea",
+      "content": "Idea: for the Philippines specifically",
+      "context": "Feasibility Report for NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-15T10:25:58.773000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.918325"
+    },
+    {
+      "id": "921c5bd4-3bb1-4f8f-9ed7-2b8db205fcb6",
+      "type": "preference",
+      "content": "Preference: to create a feasibility report around the impact of entrepreneurship and startup accelerators for National Development Company in the Philippines",
+      "context": "Feasibility Report on Accelerators",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T13:39:24.793000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:54.976519"
+    },
+    {
+      "id": "3e71d717-102d-4898-a0d9-b728a137aacf",
+      "type": "idea",
+      "content": "Idea: simulate a Gartner-style report using public data, historical trends, and logical estimation",
+      "context": "Feasibility Report on Accelerators",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T13:39:24.793000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.009144"
+    },
+    {
+      "id": "ca2f164a-942d-4d03-9762-f2f606187c60",
+      "type": "idea",
+      "content": "Idea: a **seed fund** of its own (separate from SVF) to directly invest small tickets in the most promising accelerator graduates to give them more runway",
+      "context": "Feasibility Report on Accelerators",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T13:39:24.793000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.019519"
+    },
+    {
+      "id": "294c9c96-a84a-4562-94e8-0fb01b21fc05",
+      "type": "preference",
+      "content": "Preference: to create a feasibility report around the impact of entrepreneurship and startup accelerators for National Development Company in the Philippines",
+      "context": "Brinc NDC Partnership Feasibility",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T13:01:59.982000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.031534"
+    },
+    {
+      "id": "c8e0cfff-097e-4a74-a9b1-5342b0967632",
+      "type": "idea",
+      "content": "Idea: simulate a Gartner-style report using public data, historical trends, and logical estimation",
+      "context": "Brinc NDC Partnership Feasibility",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T13:01:59.982000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.038848"
+    },
+    {
+      "id": "bc67caa6-bb20-440c-a924-c0c357a5bf10",
+      "type": "lesson",
+      "content": "Learned: in the form of a vibrant startup economy【28†L62-L70】【28†L75-L83】",
+      "context": "Philippines Startup Accelerator Feasibility",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T12:46:48.414000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.093443"
+    },
+    {
+      "id": "f4358d7c-c0e1-4617-b58e-3bee9ca00527",
+      "type": "preference",
+      "content": "Preference: to create a feasibility report around the impact of entrepreneurship and startup accelerators for National Development Company in the Philippines",
+      "context": "Philippines Startup Accelerator Feasibility",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T12:46:48.414000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.099832"
+    },
+    {
+      "id": "82cdd364-d0fb-4c5a-a087-6dcf119b99c4",
+      "type": "technique",
+      "content": "Technique: a **35% GDP target by 2030**【22†L19-L27】",
+      "context": "Philippines Startup Accelerator Feasibility",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T12:46:48.414000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.108090"
+    },
+    {
+      "id": "ff4905d4-4126-4e93-98e2-2646eaf3957c",
+      "type": "technique",
+      "content": "Technique: choose to make references to key industries for the Philippines like Agriculture, Fintech, Logistics",
+      "context": "Philippines Startup Accelerator Feasibility",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T12:46:48.414000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.116615"
+    },
+    {
+      "id": "2d0be4c8-cb6d-4038-90ee-2337b3338157",
+      "type": "idea",
+      "content": "Idea: simulate a Gartner-style report using public data, historical trends, and logical estimation",
+      "context": "Philippines Startup Accelerator Feasibility",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-14T12:46:48.414000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.130967"
+    },
+    {
+      "id": "203abee4-8e43-44df-b56c-cd86bf68f5e2",
+      "type": "preference",
+      "content": "Preference: you to create an updated References section by doing a couple of things:",
+      "context": "Reference Update Request",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-13T21:03:19.583000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.165008"
+    },
+    {
+      "id": "194b5721-0184-4951-b4e0-cf6fa7f8c661",
+      "type": "technique",
+      "content": "Technique: always follow up with a web search if necessary for a more complete response",
+      "context": "Reference Update Request",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-13T21:03:19.583000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.174726"
+    },
+    {
+      "id": "e17f7b3e-233d-4826-ad81-ea573b0d06bd",
+      "type": "idea",
+      "content": "Idea: respond with the relevant search results from the full files",
+      "context": "Reference Update Request",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-13T21:03:19.583000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.178393"
+    },
+    {
+      "id": "ea2e033d-1718-470f-af73-f847f15bac00",
+      "type": "technique",
+      "content": "Technique: copy everything between the lines)",
+      "context": "Solar Tender Scraping Tool",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-08T16:47:24.390000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.189078"
+    },
+    {
+      "id": "94205832-5acb-415a-b858-e9b39b39cf7d",
+      "type": "technique",
+      "content": "Technique: then refine individual scrapers or add new portals as needed",
+      "context": "Solar Tender Scraping Tool",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-08T16:47:24.390000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.189103"
+    },
+    {
+      "id": "c9a9f5c6-549b-4b61-a5a6-06582e0c8a4a",
+      "type": "idea",
+      "content": "Idea: scaffold a Python-based tool to discover, scrape, and summarise the most relevant solar-, storage- and microgrid-related tenders for Solartia",
+      "context": "Solar Tender Scraping Tool",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-08T16:47:24.390000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.189822"
+    },
+    {
+      "id": "f70d6f4b-6a28-4718-a5f6-7469a4790bdf",
+      "type": "preference",
+      "content": "Preference: a deep research report for the National Development Company",
+      "context": "Brinc Accelerator Ecosystem Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T14:53:38.245000",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.218716"
+    },
+    {
+      "id": "d320ef9d-6ba5-4211-992c-e9e548f472e1",
+      "type": "preference",
+      "content": "Preference: from you before expanding",
+      "context": "Brinc Accelerator Ecosystem Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T14:53:38.245000",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.218739"
+    },
+    {
+      "id": "021df26f-15bf-4187-9bf6-99c712dbf270",
+      "type": "technique",
+      "content": "Technique: use any of the data I added to the custom GPT knowledge base",
+      "context": "Brinc Accelerator Ecosystem Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T14:53:38.245000",
+      "confidence": "medium",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.225999"
+    },
+    {
+      "id": "7bb947fd-592b-4939-ad0d-d90009b7af2a",
+      "type": "idea",
+      "content": "Idea: be inserted here once desk-research validation is complete",
+      "context": "Brinc Accelerator Ecosystem Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T14:53:38.245000",
+      "confidence": "low",
+      "tags": [
+        "cerebro"
+      ],
+      "relatedTo": [
+        "cerebro",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.230112"
+    },
+    {
+      "id": "139339cb-7e0b-4761-9ff6-d4cc67e70205",
+      "type": "lesson",
+      "content": "Learned: about retaining talent and integrating local entrepreneurs)",
+      "context": "Feasibility of Startup Accelerators",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T14:20:18.823000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.269270"
+    },
+    {
+      "id": "1080e388-18c9-458e-b2b5-e32e2805789a",
+      "type": "preference",
+      "content": "Preference: to create a feasibility report around the impact of entrepreneurship and startup accelerators for National Development Company in the Philippines",
+      "context": "Feasibility of Startup Accelerators",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T14:20:18.823000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.273225"
+    },
+    {
+      "id": "6668cdf3-44c9-4433-8467-cb96fc4783c3",
+      "type": "technique",
+      "content": "Technique: choose to make references to key industries for the Philippines like Agriculture, Fintech, Logistics",
+      "context": "Feasibility of Startup Accelerators",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T14:20:18.823000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.286682"
+    },
+    {
+      "id": "06ddcdc0-77d2-4910-a7a4-f781849c9f65",
+      "type": "preference",
+      "content": "Preference: to be polite, professional but direct",
+      "context": "Brinc Resignation Letter Draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T11:02:41.106000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.300764"
+    },
+    {
+      "id": "f5a0e921-decb-4dd4-b7bf-b28148478526",
+      "type": "preference",
+      "content": "Preference: a schedule that offers greater flexibility and geographic stability",
+      "context": "Brinc Resignation Letter Draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T11:02:41.106000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.300793"
+    },
+    {
+      "id": "5ad762d4-dfb9-4230-9fae-0e24fb4ff588",
+      "type": "idea",
+      "content": "Idea: be polite, professional but direct",
+      "context": "Brinc Resignation Letter Draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-07T11:02:41.106000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.302463"
+    },
+    {
+      "id": "c7768472-780a-4e2e-9a10-8294912f9585",
+      "type": "idea",
+      "content": "Idea: help narrow down the most suitable and valuable acquisition target for your strategy",
+      "context": "F2 F3 Team Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-04T13:47:34.855000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.355969"
+    },
+    {
+      "id": "2af4a287-62e0-4c99-aafe-ab0f102d0038",
+      "type": "idea",
+      "content": "Idea: an **F3-only team** as an initial step",
+      "context": "F2 F3 Team Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-04T13:47:34.855000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.359878"
+    },
+    {
+      "id": "1133e8a0-b308-4f60-878d-cdf2b144d34b",
+      "type": "preference",
+      "content": "Preference: your help writing an authorisation letter so my lawyer's team can pick up a power of attorney from the notary that had it notarised",
+      "context": "Authorization letter for POA",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-04T08:41:59.115000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.361448"
+    },
+    {
+      "id": "e4c12d4b-a068-4c1b-9e37-49bb0a578696",
+      "type": "idea",
+      "content": "Idea: expire **[seven]** days from the date of this letter",
+      "context": "Authorization letter for POA",
+      "source": "chatgpt",
+      "sourceDate": "2025-07-04T08:41:59.115000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.362171"
+    }
+  ]
+}

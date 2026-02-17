@@ -1,0 +1,241 @@
+{
+  "items": [
+    {
+      "id": "135166db-ab7b-4ced-94d1-386c1ce65f54",
+      "type": "decision",
+      "content": "Decided: a good Chinese brand name – something that’s catchy, easy to pronounce, and hints at both tea and fun",
+      "context": "Alcoholic Kombucha Market Research",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-25T17:55:11.324000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.111922"
+    },
+    {
+      "id": "cbe8a970-0e63-420c-a415-86467a5d1ef6",
+      "type": "technique",
+      "content": "Technique: target the niche of consumers who search for imported kombucha or health drinks",
+      "context": "Alcoholic Kombucha Market Research",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-25T17:55:11.324000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.129900"
+    },
+    {
+      "id": "6767fdfb-aa7a-404e-ad83-04557b10c952",
+      "type": "idea",
+      "content": "Idea: leverage the global trends of kombucha while aligning with local tastes and market dynamics",
+      "context": "Alcoholic Kombucha Market Research",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-25T17:55:11.324000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.134220"
+    },
+    {
+      "id": "72388ff8-422e-4b96-8c24-65bcc6f9170e",
+      "type": "preference",
+      "content": "Preference: a detailed research report on how it works, the likely tech stack, features, etc",
+      "context": "Boardy AI Research",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-25T09:45:10.544000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.144377"
+    },
+    {
+      "id": "8b273c67-608c-4709-913f-e2e396ed26b9",
+      "type": "preference",
+      "content": "Preference: 20 fintech CISOs in APAC” + constraints)",
+      "context": "Boardy AI Research",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-25T09:45:10.544000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.144422"
+    },
+    {
+      "id": "b59906da-39cf-4853-aa21-1edd7b5a0077",
+      "type": "technique",
+      "content": "Technique: **call Boardy back weekly** to work on a new introduction",
+      "context": "Boardy AI Research",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-25T09:45:10.544000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.150272"
+    },
+    {
+      "id": "5bbb3fa5-e43c-4207-a658-7901da557534",
+      "type": "idea",
+      "content": "Idea: understand the product well and see how to launch a better, more capable version of it",
+      "context": "Boardy AI Research",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-25T09:45:10.544000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.151597"
+    },
+    {
+      "id": "f9b976bc-ef55-455b-8db8-de29c42b0372",
+      "type": "preference",
+      "content": "Preference: to turn it into a nice AirBNB",
+      "context": "Property Renovation Report",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-21T07:42:44.271000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.157858"
+    },
+    {
+      "id": "20b5df4a-bcf7-456b-8e3c-a1e7f6f82245",
+      "type": "technique",
+      "content": "Technique: lean into for an Airbnb",
+      "context": "Property Renovation Report",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-21T07:42:44.271000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.159714"
+    },
+    {
+      "id": "697f473b-9131-42a9-9c17-45f0ae5d65ce",
+      "type": "idea",
+      "content": "Idea: turn it into a nice AirBNB",
+      "context": "Property Renovation Report",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-21T07:42:44.271000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.161052"
+    },
+    {
+      "id": "d557f2cd-7ca8-4340-9adb-534c17cd9f6a",
+      "type": "idea",
+      "content": "Idea: sit cleanly alongside the original invoices in a document set",
+      "context": "Invoice Creation Request",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-14T15:47:11.485000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.407391"
+    },
+    {
+      "id": "e7c067e5-bc0d-4947-a9c4-6263e4b14f7b",
+      "type": "technique",
+      "content": "Technique: do anything for the user",
+      "context": "Year with ChatGPT",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-12T16:25:19.897000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.409156"
+    },
+    {
+      "id": "03d0abc0-b47d-4dd3-9ad6-61228d91aceb",
+      "type": "technique",
+      "content": "Technique: start the experience now to explore a personalized recap of how you’ve used ChatGPT over the past year—what you worked on, the themes you came back to, and how your conversations evolved over time",
+      "context": "Year with ChatGPT",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-12T16:25:19.897000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.409182"
+    },
+    {
+      "id": "a0e39852-c752-403d-ba6f-24579090484a",
+      "type": "preference",
+      "content": "Preference: your help creating a list of South Korean founders that have exited/sold their startups recently",
+      "context": "South Korean Founder Exits",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-09T16:01:33.730000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.412494"
+    },
+    {
+      "id": "545ca58a-65f8-4bd0-a3f5-acf90c9706c0",
+      "type": "idea",
+      "content": "Idea: serve as advisor and head Samsung Future Robotics Office after retiring from Rainbow",
+      "context": "South Korean Founder Exits",
+      "source": "chatgpt",
+      "sourceDate": "2026-01-09T16:01:33.730000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.413779"
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+{
+  "items": [
+    {
+      "id": "d18c1525-05ab-4786-bd14-7a047e88cbc2",
+      "type": "preference",
+      "content": "Preference: your help writing a compelling statement about your role to entice more candidates",
+      "context": "VA Cofounder",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-28T08:22:24.853785",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.403344"
+    },
+    {
+      "id": "84daa5ee-59cf-4498-8a06-531358bc189b",
+      "type": "preference",
+      "content": "Preference: a brief description that is more about providing marketing services via affordable experts, rather than it being about providing staffing solutions",
+      "context": "VA Cofounder",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-28T08:22:24.853785",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.403375"
+    },
+    {
+      "id": "49d6cd0c-20a8-4c4a-8954-f23f0a8f3264",
+      "type": "technique",
+      "content": "Technique: Join Virtual Aces:**",
+      "context": "VA Cofounder",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-28T08:22:24.853785",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.406863"
+    },
+    {
+      "id": "ec499204-6fe8-4dc9-a400-de59bd90abd8",
+      "type": "preference",
+      "content": "Preference: your help with an excel formula",
+      "context": "Excel Formula for Currency Conversion",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-30T10:53:29.440425",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.430086"
+    },
+    {
+      "id": "65233bd2-8378-4c14-8464-9dde0cf01f14",
+      "type": "preference",
+      "content": "Preference: to add a formula for the last column that pulls the value from the correct column",
+      "context": "Excel Formula for Currency Conversion",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-30T10:53:29.440425",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.430105"
+    },
+    {
+      "id": "a28b1f7f-f2f6-4de6-a7ed-ca5bd9c4c4f2",
+      "type": "technique",
+      "content": "Technique: achieve this by using an Excel formula",
+      "context": "Excel Formula for Currency Conversion",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-30T10:53:29.440425",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.430447"
+    },
+    {
+      "id": "b37181d1-9790-46e3-84f4-74992a8b63a0",
+      "type": "technique",
+      "content": "Technique: replace `EXCHANGE_RATE` with the cell reference, like `G1`",
+      "context": "Excel Formula for Currency Conversion",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-30T10:53:29.440425",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.430459"
+    },
+    {
+      "id": "00650b32-c27d-4b0c-be4a-f18bbac8df83",
+      "type": "idea",
+      "content": "Idea: add a formula for the last column that pulls the value from the correct column",
+      "context": "Excel Formula for Currency Conversion",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-30T10:53:29.440425",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.430653"
+    },
+    {
+      "id": "7a43b809-9b63-4664-ad19-8da81599ff0e",
+      "type": "preference",
+      "content": "Preference: us to understand our margins better and eventually calculate things like CAC, LTV, etc",
+      "context": "Calculate Virtual Aces Margins",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-28T18:59:10.042055",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.431591"
+    },
+    {
+      "id": "592668ba-27b7-4b20-8735-acfa4c1f0216",
+      "type": "idea",
+      "content": "Idea: earn us USD3,000 per month",
+      "context": "Calculate Virtual Aces Margins",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-28T18:59:10.042055",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.432023"
+    },
+    {
+      "id": "6ef6366f-fc94-4cc1-92aa-3c4a524fc8fd",
+      "type": "preference",
+      "content": "Preference: your help creating a few pictures of a hypothetical character",
+      "context": "Profile Image Description Request",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-20T15:42:46.221780",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.458469"
+    },
+    {
+      "id": "09fa1cb9-124a-4592-b4c9-1527fb16db06",
+      "type": "preference",
+      "content": "Preference: to get to such a detailed description that I can use it to prompt Dall-E 3 to create images of me doing different things",
+      "context": "Photo Description Request Denied",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-20T15:58:01.153041",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.460913"
+    },
+    {
+      "id": "14e9f948-69ee-4ef8-9373-a47d25e6a3f1",
+      "type": "idea",
+      "content": "Idea: get to such a detailed description that I can use it to prompt Dall-E 3 to create images of me doing different things",
+      "context": "Photo Description Request Denied",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-20T15:58:01.153041",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.461282"
+    },
+    {
+      "id": "f6a8e19a-06a4-4f53-af8e-929b3eb21539",
+      "type": "decision",
+      "content": "Decided: that style, colour pallete and image to create more images for the wedding",
+      "context": "Designing Save the Date",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-17T08:51:38.258292",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.464995"
+    },
+    {
+      "id": "210bd8ab-a363-44e7-82bc-ea911619a303",
+      "type": "preference",
+      "content": "Preference: to create a save the date",
+      "context": "Designing Save the Date",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-17T08:51:38.258292",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.466060"
+    },
+    {
+      "id": "218d3a01-88ec-4486-9764-69d50f5df1c5",
+      "type": "technique",
+      "content": "Technique: combine to get started:",
+      "context": "Designing Save the Date",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-17T08:51:38.258292",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.467090"
+    },
+    {
+      "id": "48564969-6139-4478-9609-55b92cad81a6",
+      "type": "idea",
+      "content": "Idea: create a save the date",
+      "context": "Designing Save the Date",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-17T08:51:38.258292",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.468344"
+    },
+    {
+      "id": "1ef1bd03-825c-4dfa-8e42-51136e91203a",
+      "type": "idea",
+      "content": "Idea: look into the list of venture capital firms provided on Starter Story or Growth Navigate to find more potential partners",
+      "context": "HK Web3 Investors & Firms",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-10T09:26:52.554541",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.473050"
+    },
+    {
+      "id": "03ed919c-90b1-4254-8fd1-4ab21ca8688d",
+      "type": "technique",
+      "content": "Technique: recommend for me so I upskill myself around the vertical",
+      "context": "Online Courses for Impact Investing",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-09T19:10:39.177147",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.478075"
+    },
+    {
+      "id": "6cc6c077-b30d-4377-b65d-def4f88a88d5",
+      "type": "idea",
+      "content": "Idea: guide you through the terminology, activities, drivers, and participants of the ESG ecosystem, enabling you to navigate this domain with confidence【7†source】",
+      "context": "Online Courses for Impact Investing",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-09T19:10:39.177147",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.478504"
+    },
+    {
+      "id": "640bd672-6e4c-4145-a009-275557e3286f",
+      "type": "preference",
+      "content": "Preference: to start a new venture capital firm",
+      "context": "Name VC Firm: Criteria",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-03T21:22:13.707853",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.482930"
+    },
+    {
+      "id": "1b132339-d8f9-485b-b35a-38d9b038507d",
+      "type": "technique",
+      "content": "Technique: easily check the domain availability by visiting a domain registration website such as GoDaddy, Namecheap, or Google Domains",
+      "context": "Name VC Firm: Criteria",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-03T21:22:13.707853",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.484379"
+    },
+    {
+      "id": "0340c774-e56f-49e1-abb3-7eb59f358419",
+      "type": "technique",
+      "content": "Technique: copy and paste these domain names into a bulk domain search tool on domain registration websites to check their availability",
+      "context": "Name VC Firm: Criteria",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-03T21:22:13.707853",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.484396"
+    },
+    {
+      "id": "b78fc278-d8bb-4600-87c9-f7c40fed8226",
+      "type": "idea",
+      "content": "Idea: start a new venture capital firm",
+      "context": "Name VC Firm: Criteria",
+      "source": "chatgpt",
+      "sourceDate": "2023-10-03T21:22:13.707853",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.485278"
+    }
+  ]
+}

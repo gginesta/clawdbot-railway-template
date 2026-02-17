@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Memory Vault Items",
+  "description": "Schema for atomic facts in the Memory Vault",
+  "type": "object",
+  "required": ["entity", "type", "facts"],
+  "properties": {
+    "entity": {
+      "type": "string",
+      "description": "Name/identifier of the entity these facts belong to"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["project", "area", "resource", "person", "conversation"],
+      "description": "Type of entity"
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "content", "createdAt", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this fact"
+          },
+          "content": {
+            "type": "string",
+            "description": "The atomic fact itself"
+          },
+          "source": {
+            "type": "string",
+            "description": "Where this fact came from (URL, conversation, observation)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this fact was recorded"
+          },
+          "lastAccessed": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this fact was last accessed/used"
+          },
+          "accessCount": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "How many times this fact has been accessed"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "superseded"],
+            "description": "Whether this fact is current or has been replaced"
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Tags for categorization and search"
+          },
+          "supersedes": {
+            "type": ["string", "null"],
+            "description": "ID of the fact this one replaces"
+          },
+          "supersededBy": {
+            "type": ["string", "null"],
+            "description": "ID of the fact that replaced this one"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confidence level in this fact (0-1)"
+          },
+          "expiresAt": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "When this fact should be reviewed/may expire"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,372 @@
+{
+  "items": [
+    {
+      "id": "034851c5-6ac3-45a8-90c6-0189b5c66b73",
+      "type": "lesson",
+      "content": "Learned: sustainable growth requires robust foundations like scalable blockchains, cross-chain bridges, and compliance tools",
+      "context": "Crypto Infrastructure: Funding, Credibility, Regulation",
+      "source": "grok",
+      "sourceDate": "2025-07-31T12:51:44.152404Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.460972"
+    },
+    {
+      "id": "5ed9e6fe-01e3-4065-b959-303549d6ad99",
+      "type": "lesson",
+      "content": "Learned: scalability isn't just code—it's about regulatory moats and user adoption paths",
+      "context": "Crypto Infrastructure: Funding, Credibility, Regulation",
+      "source": "grok",
+      "sourceDate": "2025-07-31T12:51:44.152404Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.460985"
+    },
+    {
+      "id": "79825b84-759d-40e7-9858-803ad5697819",
+      "type": "idea",
+      "content": "Idea: be Austin Powers themed",
+      "context": "Austin Powers Themed Birthday Party",
+      "source": "grok",
+      "sourceDate": "2025-07-22T05:30:01.746440Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.464781"
+    },
+    {
+      "id": "ef3b9521-a214-4bdc-814b-990f77ed12e2",
+      "type": "preference",
+      "content": "Preference: to create a feasibility report around the impact of entrepreneurship and startup accelerators for National Development Company in the Philippines",
+      "context": "Startup Accelerators for Philippine Development",
+      "source": "grok",
+      "sourceDate": "2025-07-14T04:46:15.899779Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.478635"
+    },
+    {
+      "id": "26cd93f0-b84e-4428-b1da-e37b5fc8b964",
+      "type": "technique",
+      "content": "Technique: choose to make references to key industries for the Philippines like Agriculture, Fintech, Logistics",
+      "context": "Startup Accelerators for Philippine Development",
+      "source": "grok",
+      "sourceDate": "2025-07-14T04:46:15.899779Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.482842"
+    },
+    {
+      "id": "7bfa7077-5c06-4afc-95ed-573a50252058",
+      "type": "technique",
+      "content": "Technique: easily copy-paste into a tool like a word processor (e",
+      "context": "Startup Accelerators for Philippine Development",
+      "source": "grok",
+      "sourceDate": "2025-07-14T04:46:15.899779Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.482870"
+    },
+    {
+      "id": "7960e36d-99fa-40f3-bc75-f606b727d30a",
+      "type": "idea",
+      "content": "Idea: simulate a Gartner-style report using public data, historical trends, and logical estimation",
+      "context": "Startup Accelerators for Philippine Development",
+      "source": "grok",
+      "sourceDate": "2025-07-14T04:46:15.899779Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.485870"
+    },
+    {
+      "id": "a6158df5-a856-442d-b29c-e9acc575b04f",
+      "type": "technique",
+      "content": "Technique: create a scheduled task to send me an email of the link and title using the date column",
+      "context": "Scheduled Email Reminders from CSV",
+      "source": "grok",
+      "sourceDate": "2025-07-14T06:59:00.569911Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.488864"
+    },
+    {
+      "id": "d027411c-65eb-4cb8-9dcc-25610db85431",
+      "type": "idea",
+      "content": "Idea: check the current date/time against the \"Date to open\" column in your CSV, and if it's time (or past time) to \"open\" an entry and it hasn't been sent yet, it will send an email with the title and URL",
+      "context": "Scheduled Email Reminders from CSV",
+      "source": "grok",
+      "sourceDate": "2025-07-14T06:59:00.569911Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.489097"
+    },
+    {
+      "id": "e82a09e8-113c-4cc9-bb1c-91030fe1fa82",
+      "type": "preference",
+      "content": "Preference: you to create an updated References section by doing a couple of things:",
+      "context": "Research Paper Citation and Reference Update",
+      "source": "grok",
+      "sourceDate": "2025-07-13T13:03:57.200207Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.494585"
+    },
+    {
+      "id": "38980654-4c45-422a-827c-e1c2efc584c3",
+      "type": "idea",
+      "content": "Idea: help ensure accuracy before I search for full details",
+      "context": "Research Paper Citation and Reference Update",
+      "source": "grok",
+      "sourceDate": "2025-07-13T13:03:57.200207Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.497012"
+    },
+    {
+      "id": "df7080f2-b1d1-4687-b775-13d587b282b1",
+      "type": "idea",
+      "content": "Idea: Veterinary Diets NF Kidney Function) are formulated with:",
+      "context": "Rocket's Kidney Disease Progression",
+      "source": "grok",
+      "sourceDate": "2025-07-12T03:35:09.271485Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.509202"
+    },
+    {
+      "id": "d4b681ba-bd02-431c-bcda-126be5c2c111",
+      "type": "preference",
+      "content": "Preference: to delete an autocomplete name as it has a typo",
+      "context": "Removing Autocomplete in Google Workspace",
+      "source": "grok",
+      "sourceDate": "2025-07-11T01:40:02.426449Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.512094"
+    },
+    {
+      "id": "1137ebe5-edc2-454e-b8d7-c246957a124f",
+      "type": "technique",
+      "content": "Technique: use one of two reliable methods",
+      "context": "Removing Autocomplete in Google Workspace",
+      "source": "grok",
+      "sourceDate": "2025-07-11T01:40:02.426449Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.512664"
+    },
+    {
+      "id": "a85d9c83-8e5a-4723-94d2-865a64c1e647",
+      "type": "technique",
+      "content": "Technique: recover it from Trash if needed before then)",
+      "context": "Removing Autocomplete in Google Workspace",
+      "source": "grok",
+      "sourceDate": "2025-07-11T01:40:02.426449Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.512672"
+    },
+    {
+      "id": "979e6275-a38c-4a7d-99ff-b044cd58e607",
+      "type": "idea",
+      "content": "Idea: delete an autocomplete name as it has a typo",
+      "context": "Removing Autocomplete in Google Workspace",
+      "source": "grok",
+      "sourceDate": "2025-07-11T01:40:02.426449Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.513120"
+    },
+    {
+      "id": "087ff9d2-5d14-4432-93e5-6cdd1558d942",
+      "type": "decision",
+      "content": "Decided: - **Comfort for You**: At 1",
+      "context": "Best Hiking Carriers for Toddlers",
+      "source": "grok",
+      "sourceDate": "2025-07-09T04:39:28.002705Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.520881"
+    },
+    {
+      "id": "d80d7e6d-8060-455b-b5e8-74850e196c65",
+      "type": "technique",
+      "content": "Technique: share more about your typical hike length or terrain, I can refine these suggestions further",
+      "context": "Best Hiking Carriers for Toddlers",
+      "source": "grok",
+      "sourceDate": "2025-07-09T04:39:28.002705Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.524346"
+    },
+    {
+      "id": "4defde72-e391-4269-8e32-bafe12b3dbf6",
+      "type": "idea",
+      "content": "Idea: find a carrier that offers a more open design for your toddler, distributes weight effectively to avoid shoulder strain, and is suitable for hiking with a child around 20-30 lbs",
+      "context": "Best Hiking Carriers for Toddlers",
+      "source": "grok",
+      "sourceDate": "2025-07-09T04:39:28.002705Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.525301"
+    },
+    {
+      "id": "6c28dec1-3f2e-45af-aa98-1fd7b798be1f",
+      "type": "technique",
+      "content": "Technique: explore the official impact data at [Startup Chile Impact](https://startupchile",
+      "context": "Government Accelerator Programs Impact",
+      "source": "grok",
+      "sourceDate": "2025-07-07T06:18:36.759102Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.579263"
+    },
+    {
+      "id": "1c31894b-32a0-46eb-951e-ab6bd351f3ab",
+      "type": "technique",
+      "content": "Technique: explore the official impact data at [Startup Chile Impact](https://startupchile",
+      "context": "Government Accelerator Programs Impact",
+      "source": "grok",
+      "sourceDate": "2025-07-07T06:18:36.759102Z",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.579279"
+    },
+    {
+      "id": "08bf1cfc-cb19-4183-bd92-68b7d3f69eb4",
+      "type": "idea",
+      "content": "Idea: of diversifying its economy beyond oil and gas",
+      "context": "Government Accelerator Programs Impact",
+      "source": "grok",
+      "sourceDate": "2025-07-07T06:18:36.759102Z",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.581992"
+    }
+  ]
+}

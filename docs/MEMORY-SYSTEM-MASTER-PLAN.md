@@ -1,311 +1,266 @@
 # Memory System Master Plan — TMNT Squad
 
 *Created: 2026-02-17 | Owner: Molty 🦎 | Status: ACTIVE*
-*Consolidates 13 previous documents (archived to `docs/archive/memory/`)*
+*Major revision: 2026-02-17 20:55 HKT — Switched from QMD to Option A1 (OpenAI + Architect Pattern)*
 
 ---
 
-## Guillermo's Objectives
+## Guillermo's 6 Objectives
 
-These 6 goals drive every action in this plan. Nothing happens that doesn't serve one of them.
-
-| # | Objective | Status | Next Action |
-|---|-----------|--------|-------------|
-| 1 | **Standardise implementation across the fleet** | 🟡 Almost | Config done on all 3. Raphael's QMD can't initialize models (resource limits). Dockerfile fix deployed, awaiting redeployment. |
-| 2 | **One embedding provider across the board** | 🟡 At risk | embeddinggemma-300M target. If Raphael can't run local models post-redeploy, fall back to Option C (QMD + OpenAI embeddings). |
-| 3 | **Complete indexing for all 3 agents, feeding to Molty's central memory** | 🟡 Partial | All indexed locally. Central feed not yet wired (Phase 2). |
-| 4 | **Consistent embedding index** | 🟢 Done | Same model + dimensions across fleet |
-| 5 | **Full QMD re-indexing** | 🟡 In progress | Molty: 6765 vectors ✅. Leonardo: 2683 vectors, 1 pending. Raphael: indexing. |
-| 6 | **Clean up unused collections + trim session bloat** | 🟡 Partial | Phase 3 next. |
+| # | Objective | Status | How A1 Achieves It |
+|---|-----------|--------|-------------------|
+| 1 | **Standardise across fleet** | 🔄 Executing | Same OpenAI config on all agents (3 lines) |
+| 2 | **One provider** | 🔄 Executing | OpenAI `text-embedding-3-small` everywhere |
+| 3 | **Complete indexing → Molty as central architect** | 🔄 Executing | Only Molty indexes the shared vault (under `memory/vault/`). Other agents can write to it but don't search it. |
+| 4 | **Consistent embedding index** | 🔄 Executing | Same OpenAI model/dimensions on all agents |
+| 5 | **Full re-indexing** | ⏳ Pending | OpenClaw auto-reindexes when config changes. One-step. |
+| 6 | **Cleanup** | ⏳ Pending | Remove QMD config, orphaned indexes, unused files |
 
 ---
 
-## Current State (Verified 2026-02-17 12:15 HKT)
+## Architecture Decision
 
-### Per-Agent Status
+### What we tried and why we moved on
 
-| Agent | Backend | Embedding Model | Files Indexed | Vectors | Central Feed |
-|-------|---------|----------------|---------------|---------|-------------|
-| **Molty 🦎** | QMD (local) | embeddinggemma-300M (GGUF) | 247 | 6765 | N/A (is central) |
-| **Leonardo 🔵** | QMD (local) | embeddinggemma-300M (GGUF) | 405 | 2683 | ❌ No |
-| **Raphael 🔴** | QMD (local) ← migrated 2026-02-17 | embeddinggemma-300M (GGUF) | TBD (indexing) | TBD | ❌ No |
+**Local QMD (Feb 17 morning):** Installed QMD with embeddinggemma-300M on all agents. Embedding worked, but `qmd query` (hybrid search) loads a 0.6B reranker + 1.7B query-expansion model — total ~6GB RAM. Railway containers OOM-kill the process every time. After hours of debugging (cmake, timeouts, fallbacks), concluded: **QMD hybrid search is not viable on Railway's current memory limits.**
 
-### Molty's QMD (Managed by OpenClaw)
-- **Index:** `/data/.openclaw/agents/main/qmd/xdg-cache/qmd/index.sqlite` (36.3 MB)
-- **Collections:** `memory-root` (1 file), `memory-dir` (50 files), `sessions` (196 files), `memory-alt` (0 — unused)
-- **Auto-update:** Every 5min + on boot
-- **XDG paths:** Must set `XDG_CONFIG_HOME` and `XDG_CACHE_HOME` to access from CLI
-- **GPU:** None (CPU only, 48 cores). Functional but slow for embedding.
+**QMD + OpenAI fallback (Feb 17 afternoon):** Tried using QMD for indexing with OpenAI as search fallback. Discovered the OpenAI builtin provider only indexes `MEMORY.md` + `memory/**/*.md`. The `extraPaths` config doesn't extend the builtin's indexing scope — it's a QMD-only feature. Dead end.
 
-### Shared Infrastructure
-- **Syncthing:** All agents + Guillermo-PC connected. Shared folders sync automatically.
-- **Memory Vault:** `/data/shared/memory-vault/` — 308 sources catalogued, git-backed
-- **Central Index:** `/data/shared/memory-vault/central_index/` — directory structure exists but not wired to QMD
+### Decision: Option A1 — OpenAI + Architect Pattern
 
----
+**Approved by Guillermo: 2026-02-17 20:53 HKT**
 
-## Provider Decision (Objective #2)
+```
+┌──────────────────────────────────────────────────┐
+│              MOLTY 🦎 (Architect)                 │
+│  memory/                                          │
+│    ├── YYYY-MM-DD.md     (own daily logs)         │
+│    ├── refs/             (own reference docs)     │
+│    ├── archive/          (old logs)               │
+│    └── vault/            (Syncthing-shared) ◄─────┤── ONLY Molty indexes this
+│         ├── decisions/                             │
+│         ├── lessons/                               │
+│         ├── people/                                │
+│         └── ...                                    │
+│  Provider: OpenAI text-embedding-3-small           │
+│  Indexes: everything under memory/ automatically   │
+├──────────────────────────────────────────────────┤
+│  RAPHAEL 🔴              LEONARDO 🔵              │
+│  memory/                 memory/                   │
+│    ├── YYYY-MM-DD.md     ├── YYYY-MM-DD.md        │
+│    └── refs/             └── refs/                 │
+│                                                    │
+│  Provider: OpenAI        Provider: OpenAI          │
+│  Indexes: own memory/    Indexes: own memory/      │
+│  Can WRITE to vault      Can WRITE to vault        │
+│  Cannot SEARCH vault     Cannot SEARCH vault       │
+├──────────────────────────────────────────────────┤
+│           /data/shared/memory-vault/               │
+│  Syncthing syncs to all agents + Guillermo PC      │
+│  Agents write P1/P2 items here                     │
+│  Only Molty has it under memory/ (as vault/)       │
+└──────────────────────────────────────────────────┘
+```
 
-Must decide before executing anything else. Two options:
+**Key principle:** Compartmentalization. Raphael only searches Brinc knowledge. Leonardo only searches Launchpad knowledge. Molty sees everything. Cross-domain queries go through Molty.
 
-### Option A: OpenAI `text-embedding-3-small` (via API)
-- **Pros:** Fast, high quality, OpenClaw's recommended default, works without local binary
-- **Cons:** API cost per search (~$0.0001/1K tokens), requires OpenAI key on each agent
-- **Config:** `agents.defaults.memorySearch` with `provider: "openai"`
-
-### Option B: Local QMD with `embeddinggemma-300M` (current Molty/Leonardo setup)
-- **Pros:** Free, local, includes BM25 + vector + reranking hybrid search, session transcript indexing
-- **Cons:** CPU-only on Railway (slow embedding), requires QMD binary installed, more complex
-- **Config:** `memory.backend: "qmd"` with local GGUF models
-
-### Option C: QMD backend with OpenAI embeddings (hybrid)
-- **Pros:** QMD's hybrid search + session indexing + high-quality OpenAI embeddings
-- **Cons:** Need to verify if QMD supports remote embedding providers
-- **Config:** Would need investigation
-
-**Decision (2026-02-17 15:16 HKT): Option B — Local QMD for all agents.**
-Approved by Guillermo. Rationale: OpenClaw's development direction, session transcript search, hybrid retrieval, zero marginal cost, best fit for central architect pattern.
-
-**⚠️ Risk (identified 17:16 HKT):** Raphael reported llama.cpp build gets killed by resource limits, causing QMD to fall back to SQLite. Dockerfile fix (commit `3962a31`) moves bun+QMD install to build time. If this doesn't resolve the model initialization issue post-redeployment, **contingency is Option C:** keep QMD backend for indexing/search/sessions but use OpenAI `text-embedding-3-small` for embeddings via `memorySearch.remote`. OpenClaw docs confirm QMD falls back to builtin SQLite when it can't initialize — meaning BM25 search still works, just no local vector search.
-
-**Fallback config (Option C) if needed:**
+**Config for each agent (entire memory section):**
 ```json
 {
-  "memory": { "backend": "qmd", ... },
   "agents": {
     "defaults": {
       "memorySearch": {
         "provider": "openai",
-        "model": "text-embedding-3-small",
-        "fallback": "none"
+        "model": "text-embedding-3-small"
       }
     }
   }
 }
 ```
 
+**Additional for Molty only:** vault/ directory under memory/ (via Syncthing or copy).
+
+---
+
+## What Has Been Done (Audit)
+
+### ✅ Keep — Still valuable under A1
+
+| Item | Why it stays |
+|------|-------------|
+| Shared vault structure (`decisions/`, `lessons/`, `people/`) | Same structure, just accessed differently |
+| `CONTRIBUTION_PROTOCOL.md` | Agents still write to vault, protocol unchanged |
+| Agent instructions (AGENTS.md updates) | Writing protocol still applies |
+| Seed content (2 decisions, 1 lesson in vault) | Useful content |
+| Dockerfile QMD addition (commit `3962a31`) | Harmless — QMD binary in image doesn't hurt. Remove in future cleanup if desired. |
+| Builtin OpenAI index (`/data/.openclaw/memory/main.sqlite`) | This IS our search engine now — 50 files, 260 chunks, 542 embeddings |
+
+### ❌ Remove — No longer needed
+
+| Item | Why it goes | Action |
+|------|-------------|--------|
+| `memory.backend: "qmd"` in config | Switching to OpenAI builtin | Remove from config |
+| `memory.qmd.*` config block | All QMD config | Remove from config |
+| `memorySearch.extraPaths` | Doesn't work with builtin (verified) | Remove from config |
+| QMD XDG paths / index files | Won't be used for search | Leave in place (harmless), clean up later |
+| cmake (installed during debugging) | Not needed | `apt-get remove cmake` |
+| Symlink `memory/shared-vault` | Replace with real directory or Syncthing target | Remove symlink, create proper vault/ |
+| `memory-alt` QMD collection | Never used | Cleaned up with QMD removal |
+| Orphaned index `/root/.cache/qmd/index.sqlite` | Manual accident | Delete |
+
+### ⚠️ Modify — Needs updating
+
+| Item | Change needed |
+|------|---------------|
+| Molty's Syncthing config | Point shared vault folder to `/data/workspace/memory/vault/` instead of `/data/shared/memory-vault/` |
+| AGENTS.md shared vault section | Update path from `/data/shared/memory-vault/` to `/data/workspace/memory/vault/` |
+| Raphael/Leonardo vault write path | They still write to `/data/shared/memory-vault/` — Syncthing syncs it to Molty's `memory/vault/` |
+| MEMORY.md | Update architecture description |
+
 ---
 
 ## Execution Plan
 
-### Phase 1: Standardise (Objectives #1, #2, #4)
-*Prerequisite: Provider decision from Guillermo*
+### Step 1: Set up Molty's vault directory
+**What:** Create `memory/vault/` and move shared vault content there. Configure Syncthing to sync this path.
+**Details:**
+- Remove the symlink at `memory/shared-vault`
+- Create `memory/vault/` as a real directory
+- Copy current shared vault content into it
+- Update Syncthing folder config: change Molty's sync target for the shared vault from `/data/shared/memory-vault/` to `/data/workspace/memory/vault/`
+**Risk:** Syncthing folder path change could cause a re-sync. Low risk — files are identical.
+**Verify:** `ls memory/vault/decisions/` shows the files we created earlier.
 
-**Step 1.1 — Verify Leonardo's QMD status**
-- [x] Send webhook to Leonardo: report `qmd status` with XDG paths
-- **Finding (2026-02-17 15:27 HKT):** Leonardo had QMD data dirs but NO binary in PATH. bun also missing.
-- [x] Sent instruction to install bun + QMD
-- [x] **Result:** bun 1.3.9 installed, QMD 1.0.6 installed, symlinked to `/usr/local/bin/qmd`
-- [x] **QMD status:** 405 files indexed, 2683 vectors, 1 pending. Index: 15.8 MB. Model: embeddinggemma-300M ✅
-- Same CPU-only limitation (no GPU, cmake build fails) — matches Molty
-
-**Step 1.2 — Migrate Raphael to QMD backend**
-- [x] Verify QMD binary exists on Raphael — **was missing, now installed**
-  - Raphael installed: bun 1.3.9, qmd 1.0.6, binary at `/root/.bun/bin/qmd`
-- [x] Sent config patch instruction: `memory.backend: "qmd"` with full QMD config
-  - OpenAI `memorySearch` kept as fallback
-  - Gateway restart will trigger QMD collection creation + initial indexing
-- [ ] Verify: `qmd status` shows collections being created
-- [ ] Verify: `memory_search` returns results
-- **Issue found (17:10 HKT):** After gateway restart, QMD binary was wiped (not in Dockerfile). Fell back to OpenAI.
-- **Permanent fix:** Added bun + QMD to Dockerfile runtime stage (commit `3962a31`). Pushed to `gginesta/clawdbot-railway-template` — triggers redeployment for all agents.
-- After redeployment, QMD binary will persist across all future restarts.
-- **Rollback:** Remove `memory.backend` config → reverts to OpenAI embeddings
-
-**Step 1.3 — Confirm consistent embedding model**
-- [ ] All 3 agents report same embedding model from `qmd status`
-- [ ] Document in this file
-
-### Phase 2: Complete Indexing + Central Feed (Objective #3)
-*After Phase 1 is complete*
-
-**Architecture: Molty as Central Architect**
-
+### Step 2: Remove QMD config from Molty
+**What:** Strip all QMD configuration. Set OpenAI as the provider.
+**Config patch:**
+```json
+{
+  "memory": {
+    "backend": null,
+    "qmd": null
+  },
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "provider": "openai",
+        "model": "text-embedding-3-small",
+        "extraPaths": null
+      }
+    }
+  }
+}
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    MOLTY 🦎 (Architect)                  │
-│  Indexes: own workspace + shared vault + all agent feeds │
-│  QMD collections: memory-root, memory-dir, sessions,     │
-│                   shared-vault (new)                      │
-├─────────────────────────────────────────────────────────┤
-│              /data/shared/memory-vault/                   │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
-│  │decisions/ │  │lessons/  │  │people/   │              │
-│  │(append)   │  │(append)  │  │(per-file)│              │
-│  └──────────┘  └──────────┘  └──────────┘              │
-│       ▲              ▲             ▲                     │
-│  Syncthing      Syncthing     Syncthing                 │
-│       │              │             │                     │
-├───────┼──────────────┼─────────────┼────────────────────┤
-│ Raphael 🔴    Leonardo 🔵     Molty 🦎                  │
-│ (writes P1/P2  (writes P1/P2  (writes P1/P2            │
-│  to shared)     to shared)     to shared)               │
-└─────────────────────────────────────────────────────────┘
+**Verify:** After restart, `memory_search("Guillermo Hong Kong timezone")` returns results from MEMORY.md.
+
+### Step 3: Verify vault files are searchable on Molty
+**What:** Confirm the builtin indexer picks up `memory/vault/**/*.md`.
+**Test:**
+- `memory_search("central feed canary verification test")` → finds test file
+- `memory_search("dockerfile runtime persistence lesson")` → finds lesson
+**Gate:** If this fails, the builtin doesn't recurse into `memory/vault/`. Would need to investigate.
+**Fallback:** If subdirectories don't work, flatten key vault files or create a vault summary file.
+
+### Step 4: Standardise Raphael and Leonardo
+**What:** Send config instructions to both agents. Remove QMD backend, set OpenAI.
+**Config for both (via webhook):**
+```json
+{
+  "memory": {
+    "backend": null,
+    "qmd": null
+  },
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "provider": "openai",
+        "model": "text-embedding-3-small"
+      }
+    }
+  }
+}
 ```
+**Verify:** Each agent confirms `memory_search` returns results from their workspace memory.
+**Note:** Neither agent gets vault/ under their memory/ — they only see their own domain.
 
-**Step 2.1 — Restructure shared vault**
-- [x] Created `decisions/` and `lessons/` folders (people/, projects/, knowledge/ already existed)
-- [x] Created `SHARED_INDEX.md` with structure docs + contribution rules
-- [ ] Move existing files into new structure (low priority — existing structure works)
-  ```
-  decisions/    # Cross-agent decisions (tagged, dated)
-  lessons/      # Shared lessons learned
-  people/       # People dossiers (one file per person)
-  projects/     # Active project state
-  knowledge/    # Reference knowledge (existing)
-  SHARED_INDEX.md  # Auto-generated vault index
-  ```
-- [ ] Move existing files into new structure
+### Step 5: Verify contribution flow
+**What:** Test that an agent can write to the vault and Molty can search it.
+**Test:**
+1. Ask Raphael to write a test file to `/data/shared/memory-vault/decisions/2026-02-17-test-contribution.md`
+2. Syncthing syncs to Molty's `memory/vault/decisions/`
+3. Wait for OpenClaw's index refresh
+4. `memory_search("test contribution from Raphael")` on Molty → finds it
+5. Same search on Raphael → does NOT find it (compartmentalized)
+6. Clean up test file
 
-**Step 2.2 — Add shared vault to Molty's QMD index**
-Two options (from OpenClaw docs):
-- **Option A (QMD paths config):** Add to `memory.qmd.paths[]` in openclaw.json — OpenClaw manages indexing automatically
-  ```json
-  { "name": "shared-vault", "path": "/data/shared/memory-vault", "pattern": "**/*.md" }
-  ```
-- **Option B (memorySearch.extraPaths):** Add `/data/shared/memory-vault` to `agents.defaults.memorySearch.extraPaths` — works with both QMD and built-in backend
+### Step 6: Cleanup
+**What:** Remove artifacts from the QMD experiment.
+- Remove orphaned index: `rm /root/.cache/qmd/index.sqlite`
+- Remove cmake: `apt-get remove -y cmake cmake-data`
+- Remove symlink: already done in Step 1
+- Archive `docs/OPTION-B-EXECUTION-PLAN.md` → `docs/archive/memory/`
+**Note:** Leave QMD binary in Dockerfile for now — it's harmless and avoids another fleet redeployment. Remove in next scheduled Dockerfile update.
 
-Option A is preferred (keeps everything in QMD).
-- [x] Patched config: `memory.qmd.paths[0] = { name: "shared-vault", path: "/data/shared/memory-vault", pattern: "**/*.md" }`
-- [x] Gateway restarted (17:21 HKT)
-- [ ] Verify: shared vault files appear in QMD collections after boot sync completes
-  - Note: QMD times out on first queries post-restart (model initialization). Falls back to OpenAI. Will resolve within ~5 min.
-
-**Step 2.3 — Define agent contribution protocol**
-Each agent writes to shared vault using append-only, agent-prefixed entries:
-```markdown
-<!-- agent: raphael | type: decision | priority: P1 | date: 2026-02-17 -->
-## 🔴 Raphael — Switched Brinc proposal template to v3
-Reason: Better conversion rate in Q4 tests...
-```
-Rules:
-- Only P1 and P2 items get promoted to shared vault
-- Each agent appends, never overwrites another agent's entries
-- File naming: `YYYY-MM-DD-<slug>.md` for decisions/lessons, `<entity-name>.md` for people/projects
-- Agents tag with `<!-- scope: shared -->` in their daily logs → compaction cron copies to shared vault
-
-**Step 2.4 — Create agent instructions**
-- [ ] Add shared vault contribution instructions to each agent's AGENTS.md
-- [ ] Include: when to write, format, naming convention
-- [ ] Template for new agents (Donatello, April, Michelangelo)
-
-**Step 2.5 — Verify all agent workspaces indexed locally**
-- [ ] Leonardo: confirm QMD collections cover `memory/`, workspace `.md` files
-- [ ] Raphael: confirm same (after Phase 1 migration)
-- [ ] Molty: already verified ✅
-
-**Step 2.6 — Test the full flow**
-- [ ] Raphael writes a test decision to `decisions/2026-02-XX-test.md`
-- [ ] Syncthing syncs to Molty's container
-- [ ] Molty's QMD update cycle indexes it (within 5 min)
-- [ ] `memory_search("Raphael test decision")` returns the file
-- [ ] Clean up test file
-
-**New Agent Onboarding Template (Objective #3: "any new team mate")**
-When deploying a new agent:
-1. Install QMD: `bun install -g @tobilu/qmd`
-2. Add to config: `memory.backend: "qmd"` (copy Molty's template)
-3. Connect Syncthing shared folders
-4. Add contribution instructions to agent's AGENTS.md
-5. Verify: `qmd status` shows collections, `memory_search` works
-6. Add to this plan's status table
-
-### Phase 3: Full Re-index + Cleanup (Objectives #5, #6)
-
-**Step 3.1 — Full QMD re-index on all agents**
-- [ ] Molty: `qmd update && qmd embed` (with XDG vars) — verify 0 pending
-- [ ] Leonardo: same via webhook instruction
-- [ ] Raphael: same (after Phase 1)
-
-**Step 3.2 — Remove unused collections**
-- [ ] Molty: remove `memory-alt` collection (0 files, never used)
-- [ ] Remove my manually-created collections at default path (`/root/.cache/qmd/index.sqlite`) — these are orphaned from earlier today
-
-**Step 3.3 — Session trim policy**
-- [ ] Decide retention: current = 30 days. Is this right?
-- [ ] Check disk usage: 196 sessions in 36.3MB index — manageable but growing
-- [ ] Consider: reduce to 14 days? Or keep 30?
-- [ ] Implement: update `memory.qmd.sessions.retentionDays` in config if changing
-
-**Step 3.4 — Archive old memory files**
-- [ ] Move memory logs older than 3 months to `memory/archive/`
-- [ ] Verify QMD still indexes archived files (check collection path patterns)
-
-### Phase 4: Quality Improvements (Post-Core)
-*From ClawVault analysis. Pursue after Phases 1-3 are complete.*
-
-**Step 4.1 — Memory typing in daily logs**
-Tag important entries with HTML comments (invisible in rendered markdown):
-```markdown
-## Decided to use QMD across fleet
-<!-- type: decision | priority: P1 -->
-Standardising on local QMD with embeddinggemma...
-```
-
-| Type | When to use | Example |
-|------|-------------|---------|
-| `decision` | A choice was made | "Use QMD not OpenAI for embeddings" |
-| `preference` | User/agent preference | "Guillermo prefers tables over bullets" |
-| `relationship` | Person/entity info | "Pedro from Versatly built ClawVault" |
-| `commitment` | Promise or deadline | "Fix Gmail OAuth by Feb 19" |
-| `lesson` | Hard-won learning | "Always backup before Railway update" |
-
-Priority: P1 (always load on wake), P2 (load if budget allows), P3 (search only).
-Tag ~20-30% of entries. Over-tagging defeats the purpose.
-
-**Step 4.2 — Wiki-links for cross-referencing**
-Wrap notable entities: `[[Guillermo]]`, `[[Leonardo]]`, `[[Brinc]]`, `[[Cerebro]]`
-- QMD indexes these as searchable terms
-- No target files needed — it's a cheap knowledge graph via search
-- Use canonical names: `[[Leonardo]]` not `[[Leo]]`
-
-**Step 4.3 — Vault index**
-- [ ] Create `memory/INDEX.md` — one-line description per memory file
-- [ ] Auto-update via cron or heartbeat (not manual)
-- [ ] Faster than embedding search for "what do I know about X?"
-
-**Step 4.4 — Priority-aware compaction**
-- [ ] During daily log compaction, extract P1 items to `memory/priorities.md`
-- [ ] `priorities.md` loads before MEMORY.md on boot — agent always knows active commitments
-- [ ] P1/P2 items survive compaction intact; only P3 gets compressed
-
-**Step 4.5 — Tiered boot sequence** (update AGENTS.md)
-```
-1. SOUL.md + IDENTITY.md (who am I)
-2. memory/priorities.md (what's critical RIGHT NOW)
-3. MEMORY.md (long-term context)
-4. memory/YYYY-MM-DD.md (today + yesterday)
-```
+### Step 7: Document and commit
+**What:** Final documentation pass.
+- Update `MEMORY.md` with new architecture
+- Update `AGENTS.md` vault path
+- Update shared vault `CONTRIBUTION_PROTOCOL.md` with correct paths
+- Commit all changes to git
+- Post summary to Discord `#command-center`
 
 ---
 
-## Reference: ClawVault Analysis
+## New Agent Onboarding (Future: Donatello, April, Michelangelo)
 
-*Source: @sillydarket (Pedro, Versatly) — "Solving Memory for OpenClaw & General Agents"*
-*Full analysis: `memory/refs/clawvault-analysis.md`*
-
-**Key insight:** Plain markdown with memory typing + wiki-links outperformed specialised memory tools (Mem0, Zep, vector DBs) on benchmarks. We independently arrived at the same core architecture. ClawVault patterns worth adopting are captured in Phase 4 above. The npm package itself is NOT recommended (single-agent, uses Tailscale not Syncthing, conflicts with our cron/compaction setup).
-
----
-
-## Files Archived
-
-The following docs are superseded by this master plan and moved to `docs/archive/memory/`:
-
-1. `docs/CLAWVAULT-INCORPORATION-PLAN.md` — Sub-agent output, useful patterns extracted above
-2. `docs/CLAWVAULT-MEMORY-UPGRADE-PLAN.md` — Sub-agent output, useful patterns extracted above
-3. `docs/QMD-MEMORY-AUDIT-20260217.md` — Today's audit, findings incorporated
-4. `docs/qmd-standardization-plan.md` — Feb 16, superseded
-5. `docs/qmd_indexing_strategy.md` — Feb 16, superseded
-6. `docs/qmd_migration_20260216_report.md` — Feb 16, superseded
-7. `docs/qmd_migration_report_template.md` — Feb 16, unused template
-8. `docs/qmd_standardization_master_log.md` — Feb 16, superseded
-9. `research/memory-vault-plan.md` — Feb 1 v1, superseded
-10. `research/memory-vault-plan-v2.md` — Feb 1 v2, superseded
-11. `research/memory-vault-plan-v3.md` — Feb 1 v3, superseded
-12. `memory/refs/qmd-migration-strategy-20260216.md` — Feb 16, superseded
-13. `memory/refs/qmd-status-20260217.md` — Today, findings incorporated
+1. Set `memorySearch.provider: "openai"`, `model: "text-embedding-3-small"`
+2. Connect Syncthing for shared vault (write access to `/data/shared/memory-vault/`)
+3. Do NOT put vault under their `memory/` — only Molty has that
+4. Add contribution instructions to AGENTS.md
+5. Verify `memory_search` works for their own workspace
 
 ---
 
-*This is the single source of truth for the memory system project. All updates go here.*
+## Syncthing Folder Mapping
+
+| Folder | Molty path | Raphael/Leonardo path | Guillermo PC |
+|--------|-----------|----------------------|-------------|
+| Shared vault | `/data/workspace/memory/vault/` | `/data/shared/memory-vault/` | Obsidian vault |
+
+**Molty is the only agent where the vault lives under `memory/`.** This is what makes the architect pattern work.
+
+---
+
+## Risk Assessment
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|-----------|--------|------------|
+| Builtin doesn't index `memory/vault/` subdirs | Low | High | Step 3 tests this before anything else. Fallback: flatten or summarize. |
+| Syncthing path change causes conflict | Low | Low | Files are identical; worst case re-syncs |
+| OpenAI API cost | Very low | Very low | ~cents/day, text-embedding-3-small is cheapest |
+| Agent accidentally searches vault (leak) | Very low | Medium | Config doesn't include vault path on other agents |
+
+---
+
+## What We Learned (Lessons for MEMORY.md)
+
+31. **QMD hybrid search (reranker + query expansion) requires ~6GB RAM.** Not viable on Railway's container limits. Embedding-only works fine.
+32. **OpenClaw's builtin memory provider only indexes `MEMORY.md` + `memory/**/*.md`.** The `extraPaths` config is a QMD-only feature — does NOT extend builtin indexing.
+33. **Evaluate before brute-forcing.** We spent hours trying to make QMD query work instead of stepping back to assess alternatives. PPEE exists for a reason.
+34. **Simpler is almost always better for infrastructure.** Three lines of config beats a complex multi-system architecture that's fragile on the deployment platform.
+
+---
+
+## Phase 4: Quality Improvements (Unchanged — pursue after A1 is stable)
+
+These improvements from the ClawVault analysis apply regardless of backend:
+
+- **Memory typing** (`<!-- type: decision | priority: P1 -->`) — tag important entries
+- **Wiki-links** (`[[Guillermo]]`, `[[Cerebro]]`) — cheap knowledge graph
+- **Vault index** (`memory/INDEX.md`) — auto-generated one-liner per file
+- **Priority-aware compaction** — P1 items survive compaction, P3 gets compressed
+- **Tiered boot sequence** — priorities.md → MEMORY.md → daily logs
+
+---
+
+*Previous version of this plan archived to `docs/archive/memory/MASTER-PLAN-QMD-VERSION.md`*

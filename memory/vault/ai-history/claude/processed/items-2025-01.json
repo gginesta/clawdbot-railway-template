@@ -1,0 +1,94 @@
+{
+  "items": [
+    {
+      "id": "5e0f7e15-31db-4696-b8e8-090e400ab0b7",
+      "type": "technique",
+      "content": "Technique: use your own judgment in making life decisions",
+      "context": "Taurus Horoscope and Chinese Zodiac Forecast for 2025",
+      "source": "claude",
+      "sourceDate": "2025-01-08T08:53:31.616647Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.902185"
+    },
+    {
+      "id": "97c001d4-d192-496f-be2d-2dcb293e9a8f",
+      "type": "idea",
+      "content": "Idea: be the Year of the Snake (beginning February 9, 2025)",
+      "context": "Taurus Horoscope and Chinese Zodiac Forecast for 2025",
+      "source": "claude",
+      "sourceDate": "2025-01-08T08:53:31.616647Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.902970"
+    },
+    {
+      "id": "fa209c7e-ec44-4479-ae8b-3d516adba24c",
+      "type": "preference",
+      "content": "Preference: to clarify something - I want to be careful not to confuse predictions",
+      "context": "Baba Vanga's 2025 Predictions",
+      "source": "claude",
+      "sourceDate": "2025-01-08T06:23:13.801675Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.905384"
+    },
+    {
+      "id": "0d89b74d-ffaa-4b38-978b-3a21282d5b33",
+      "type": "idea",
+      "content": "Idea: benefit from proper formatting",
+      "context": "Baba Vanga's 2025 Predictions",
+      "source": "claude",
+      "sourceDate": "2025-01-08T06:23:13.801675Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.906273"
+    },
+    {
+      "id": "7fdec9d1-2166-4e22-a295-4e93eb9e465a",
+      "type": "preference",
+      "content": "Preference: to hire consultants/accountants/analysts/lawyers to help me with the due diligence process",
+      "context": "Acquiring Spanish Renewable Energy Company for International Investors",
+      "source": "claude",
+      "sourceDate": "2025-01-10T01:44:49.456144Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.908393"
+    },
+    {
+      "id": "1e332828-be06-4177-bb25-c555aa774a37",
+      "type": "idea",
+      "content": "Idea: help determine whether to proceed with a full-scale due diligence process with larger firms",
+      "context": "Acquiring Spanish Renewable Energy Company for International Investors",
+      "source": "claude",
+      "sourceDate": "2025-01-10T01:44:49.456144Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.909594"
+    }
+  ]
+}

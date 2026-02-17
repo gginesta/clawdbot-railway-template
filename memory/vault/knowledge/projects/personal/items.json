@@ -1,0 +1,43 @@
+{
+  "$schema": "../../../schemas/items.schema.json",
+  "entity": "personal",
+  "type": "project",
+  "facts": [
+    {
+      "id": "personal-microplastics-avoid-polyester-workouts",
+      "content": "Preference: reduce microplastics exposure by avoiding polyester clothing for workouts; prefer natural fibers where possible.",
+      "source": "ai-history/grok/processed/items-2026-01.json (Natural Fibers for Microplastic-Free Workouts)",
+      "createdAt": "2026-02-02T14:06:11Z",
+      "lastAccessed": "2026-02-02T14:06:11Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["health", "personal"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "personal-parents-spain-relocation-report",
+      "content": "Preference: when asked to help with parent relocation planning (e.g., Spain), produce a thorough, very detailed report comparing top candidate destinations.",
+      "source": "ai-history/chatgpt/processed/items-2025-08.json (Relocation report Spain options)",
+      "createdAt": "2026-02-02T14:06:11Z",
+      "lastAccessed": "2026-02-02T14:06:11Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["family", "planning", "personal"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "personal-property-airbnb-goal",
+      "content": "Preference: for the property renovation context, aim to renovate/position it as a nice Airbnb.",
+      "source": "ai-history/chatgpt/processed/items-2026-01.json (Property Renovation Report)",
+      "createdAt": "2026-02-02T14:06:11Z",
+      "lastAccessed": "2026-02-02T14:06:11Z",
+      "accessCount": 0,
+      "status": "active",
+      "tags": ["property", "personal"],
+      "supersedes": null,
+      "supersededBy": null
+    }
+  ]
+}

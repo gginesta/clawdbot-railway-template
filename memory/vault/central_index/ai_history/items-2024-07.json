@@ -1,0 +1,275 @@
+{
+  "items": [
+    {
+      "id": "2d8bc4a6-357d-45ad-9cae-846a324bf0a8",
+      "type": "preference",
+      "content": "Preference: to create a job listing to write a term sheet for Badaya",
+      "context": "Key Man Risk Mitigation",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-19T14:10:09.273224",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.695563"
+    },
+    {
+      "id": "3139b772-957d-41bd-982d-fcb15fb86a62",
+      "type": "preference",
+      "content": "Preference: to provide context to the potential freelancers",
+      "context": "Key Man Risk Mitigation",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-19T14:10:09.273224",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.695579"
+    },
+    {
+      "id": "0d213ab4-d8b4-4d19-8976-7aca49ff8c37",
+      "type": "preference",
+      "content": "Preference: your help thinking through this business deal",
+      "context": "Convertible Note vs Equity",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-25T14:08:00.282361",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.762989"
+    },
+    {
+      "id": "2a8a7eda-18fd-4755-9df5-92b48b682bfc",
+      "type": "idea",
+      "content": "Idea: depend on the company's performance and market conditions, adding a layer of uncertainty to the eventual equity dilution",
+      "context": "Convertible Note vs Equity",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-25T14:08:00.282361",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.764791"
+    },
+    {
+      "id": "41ad86db-70c3-4715-9f72-3605ee99e9c5",
+      "type": "technique",
+      "content": "Technique: list experiences, cash funds, and physical gifts, and guests can contribute to them",
+      "context": "Cash Registry Services",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-22T13:45:37.715855",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.767163"
+    },
+    {
+      "id": "68a2f5c4-64a0-4f17-aa58-b1d926a2963b",
+      "type": "technique",
+      "content": "Technique: create funds for your honeymoon, a new home, or any other purpose",
+      "context": "Cash Registry Services",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-22T13:45:37.715855",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.767174"
+    },
+    {
+      "id": "a5fcbfad-8041-420d-a2af-ff14ef20a5b6",
+      "type": "idea",
+      "content": "Idea: be held by Solartia, with Mr",
+      "context": "Investor Queries Enhanced Responses",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-09T17:16:04.433778",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.774216"
+    },
+    {
+      "id": "c8f696d7-671a-44e4-a642-0eb1ed698fa5",
+      "type": "preference",
+      "content": "Preference: it, and add a quirky point to each",
+      "context": "Coffee Shop Recommendations in Hong Kong",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-19T13:46:56.609339",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.778530"
+    },
+    {
+      "id": "0c998f36-bf0a-48bd-b00b-a3112696075f",
+      "type": "preference",
+      "content": "Preference: it:** The laid-back atmosphere and cozy decor make it perfect for unwinding",
+      "context": "Coffee Shop Recommendations in Hong Kong",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-19T13:46:56.609339",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.778553"
+    },
+    {
+      "id": "11cbf29e-64fe-4946-9174-c8db99fced0e",
+      "type": "technique",
+      "content": "Technique: meet other coffee lovers",
+      "context": "Coffee Shop Recommendations in Hong Kong",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-19T13:46:56.609339",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.779450"
+    },
+    {
+      "id": "e7746c84-71d4-40fc-bb42-e7fe3b4bbf26",
+      "type": "preference",
+      "content": "Preference: to buy them a fancy tie from a brand like Hermes or similar, and the colour should be green sage or eucalyptus to match the bridesmaids' dresses",
+      "context": "Find Groomsmen Hermes Ties",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-17T14:59:11.860136",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.785994"
+    },
+    {
+      "id": "57c22623-5e17-4f98-a8b2-6473cc42e9bd",
+      "type": "technique",
+      "content": "Technique: find the ties on the Hermès website:",
+      "context": "Find Groomsmen Hermes Ties",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-17T14:59:11.860136",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.786724"
+    },
+    {
+      "id": "23f4a52b-c88b-49ca-9fc0-47bc3ddb4466",
+      "type": "technique",
+      "content": "Technique: find these ties on the official [Hermès USA website](https://www",
+      "context": "Find Groomsmen Hermes Ties",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-17T14:59:11.860136",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.787098"
+    },
+    {
+      "id": "03bd8f96-c5eb-409d-9f28-d939cc2187dc",
+      "type": "technique",
+      "content": "Technique: view and purchase these ties directly from the Hermès website using the provided links",
+      "context": "Find Groomsmen Hermes Ties",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-17T14:59:11.860136",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.787109"
+    },
+    {
+      "id": "04aaa32e-a166-4ae6-8a31-f234cdc0098c",
+      "type": "idea",
+      "content": "Idea: buy them a fancy tie from a brand like Hermes or similar, and the colour should be green sage or eucalyptus to match the bridesmaids' dresses",
+      "context": "Find Groomsmen Hermes Ties",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-17T14:59:11.860136",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.787821"
+    },
+    {
+      "id": "e27db63f-4530-42e6-847e-f24c51c7f2c0",
+      "type": "preference",
+      "content": "Preference: to create a company in Hong Kong to cover Asia",
+      "context": "Tax Optimization and Compensation Structuring",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-05T17:31:07.295009",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.803497"
+    },
+    {
+      "id": "67864c77-a285-4fc8-aab8-839054aa7683",
+      "type": "idea",
+      "content": "Idea: also have revenue and assume at least EUR1m per year",
+      "context": "Tax Optimization and Compensation Structuring",
+      "source": "chatgpt",
+      "sourceDate": "2024-07-05T17:31:07.295009",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.805187"
+    }
+  ]
+}

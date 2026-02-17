@@ -1,0 +1,332 @@
+{
+  "items": [
+    {
+      "id": "721e5e20-9960-497d-87ca-fd2feda6c411",
+      "type": "preference",
+      "content": "Preference: your help writing a term sheet for an investment",
+      "context": "Investment Term Sheet Template",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-30T19:40:46.775713",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.893169"
+    },
+    {
+      "id": "88c82326-bc4b-4efc-ad98-42942d42045a",
+      "type": "technique",
+      "content": "Technique: find these templates [here](https://www",
+      "context": "Investment Term Sheet Template",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-30T19:40:46.775713",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.893541"
+    },
+    {
+      "id": "8ec07710-79db-4091-9436-a30831c8b7b5",
+      "type": "technique",
+      "content": "Technique: review their templates [here](https://www",
+      "context": "Investment Term Sheet Template",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-30T19:40:46.775713",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.893551"
+    },
+    {
+      "id": "1658e206-d219-4121-ae87-83953ca41f21",
+      "type": "idea",
+      "content": "Idea: acquire a company called Solartia, and move it into a new holding vehicle for which we will raise capital and sell shares",
+      "context": "Investment Term Sheet Template",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-30T19:40:46.775713",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.893770"
+    },
+    {
+      "id": "18f2a327-94d2-4110-bc6f-bc3c22c14c5c",
+      "type": "idea",
+      "content": "Idea: be travelling to the Philippines next week and they are looking to build microgrids there, take a look here:",
+      "context": "Meeting Request: Solartia & Senator Gatchalian",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-22T10:53:33.445020",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.896847"
+    },
+    {
+      "id": "843ac438-c7cd-4f55-ac39-f509a55fcf73",
+      "type": "idea",
+      "content": "Idea: to meet related to this",
+      "context": "Meeting Request: Solartia & Senator Gatchalian",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-22T10:53:33.445020",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.897626"
+    },
+    {
+      "id": "ac121a96-0083-44ae-a085-0e7e198b2743",
+      "type": "idea",
+      "content": "Idea: help businesses streamline their operations and boost productivity through top-notch virtual support",
+      "context": "Sales & Marketing Head",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-20T17:44:00.775167",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.901257"
+    },
+    {
+      "id": "79ae39cd-d745-47b1-9c3f-f793b073a4bc",
+      "type": "technique",
+      "content": "Technique: focus on entities that typically invest in long-term, stable returns from energy projects",
+      "context": "Renewable Energy Funding Options",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-20T17:39:53.328559",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.907607"
+    },
+    {
+      "id": "f1f4fc43-ca83-4972-8310-a9b072ef13ba",
+      "type": "idea",
+      "content": "Idea: for Comfort:** Ensure the resort provides baby amenities such as cribs and high chairs",
+      "context": "Luxury Family Resorts Options",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-17T13:18:58.623437",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.914149"
+    },
+    {
+      "id": "1aff4dc3-349a-4278-96bf-143c05f14bcf",
+      "type": "technique",
+      "content": "Technique: start with mashed or pureed fruits like bananas, applesauce, or mashed avocado",
+      "context": "Clarke's 3 Laws Explained",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-15T09:40:54.154486",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.915310"
+    },
+    {
+      "id": "1c9ca624-5f03-489b-add5-fdb782c79c07",
+      "type": "idea",
+      "content": "Idea: touch base with a healthcare provider",
+      "context": "Coughing inquiry and response",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-15T09:39:12.054859",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.916030"
+    },
+    {
+      "id": "347e3839-aadd-4986-bd47-608e4d312194",
+      "type": "technique",
+      "content": "Technique: download the ChatGPT app for your phone using the following links:",
+      "context": "Download ChatGPT App!",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-14T20:36:48.880904",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.916690"
+    },
+    {
+      "id": "237c7ca5-3e18-4fff-ac30-b5cae61006b8",
+      "type": "technique",
+      "content": "Technique: download the official ChatGPT app for Android from the Google Play Store",
+      "context": "Download ChatGPT App!",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-14T20:36:48.880904",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.916697"
+    },
+    {
+      "id": "ba4374d8-7709-475c-bc8d-5f2e94fbd070",
+      "type": "idea",
+      "content": "Idea: take you directly to the app download pages for each platform",
+      "context": "Download ChatGPT App!",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-14T20:36:48.880904",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.916779"
+    },
+    {
+      "id": "a47d80c5-7b32-46d0-823f-f18ff9869528",
+      "type": "preference",
+      "content": "Preference: your help writing a letter of intent for a commodities transaction I am working on",
+      "context": "Sugar LOI with Commission",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-14T18:55:37.066903",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.920476"
+    },
+    {
+      "id": "05a13883-d561-4f75-992b-ec877fa4986f",
+      "type": "preference",
+      "content": "Preference: your help drafting a letter of intent on behalf of the buyer, that declares they are willing and able to complete the transaction and agree to pay me, the intermediary, a commission",
+      "context": "Sugar LOI with Commission",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-14T18:55:37.066903",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.920491"
+    },
+    {
+      "id": "dcafac77-35ba-400c-88f1-40af431345a8",
+      "type": "idea",
+      "content": "Idea: present the draft contract for acceptance by the Buyer",
+      "context": "Sugar LOI with Commission",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-14T18:55:37.066903",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.921861"
+    },
+    {
+      "id": "3527d97e-e9f7-40f6-ad14-91a702c1dae1",
+      "type": "preference",
+      "content": "Preference: to make sure he gets a full panel of tests, including diabetes, heart condition, liver, cholesterol, kidney function, prostate and colon, etc",
+      "context": "Comprehensive Health Check-Up",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-07T15:59:17.975032",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.923489"
+    },
+    {
+      "id": "e39d6b37-4306-461f-985d-401386fc0e70",
+      "type": "preference",
+      "content": "Preference: a comprehensive panel done",
+      "context": "Comprehensive Health Check-Up",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-07T15:59:17.975032",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.923499"
+    },
+    {
+      "id": "e991fee3-70fd-4d50-a83c-1bf76def1700",
+      "type": "idea",
+      "content": "Idea: make sure he gets a full panel of tests, including diabetes, heart condition, liver, cholesterol, kidney function, prostate and colon, etc",
+      "context": "Comprehensive Health Check-Up",
+      "source": "chatgpt",
+      "sourceDate": "2024-05-07T15:59:17.975032",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.924036"
+    }
+  ]
+}

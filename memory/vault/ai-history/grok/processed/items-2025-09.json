@@ -1,0 +1,431 @@
+{
+  "items": [
+    {
+      "id": "af1bbb53-00b5-4416-b094-3d0f63ec3f06",
+      "type": "preference",
+      "content": "Preference: enhanced Siri, Writing Tools, and image generation) is available in Hong Kong on compatible devices (iPhone 17 qualifies), with support for languages like English and Cantonese",
+      "context": "iPhone 17 Region Selection Benefits",
+      "source": "grok",
+      "sourceDate": "2025-09-30T14:27:27.312134Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.177191"
+    },
+    {
+      "id": "e90e41fb-cb11-4aeb-86e6-ad7d2ba66959",
+      "type": "technique",
+      "content": "Technique: to do it step by step:",
+      "context": "iPhone 17 Region Selection Benefits",
+      "source": "grok",
+      "sourceDate": "2025-09-30T14:27:27.312134Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.178059"
+    },
+    {
+      "id": "a7356713-4198-4d93-b189-dd8ed9f90ca6",
+      "type": "technique",
+      "content": "Technique: change this later, but it's easier to get it right upfront if you want to optimize for specific perks",
+      "context": "iPhone 17 Region Selection Benefits",
+      "source": "grok",
+      "sourceDate": "2025-09-30T14:27:27.312134Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.178504"
+    },
+    {
+      "id": "9a2a415e-0a48-41f6-9b13-70f31b89ba79",
+      "type": "technique",
+      "content": "Technique: balance local optimizations with broader access",
+      "context": "iPhone 17 Region Selection Benefits",
+      "source": "grok",
+      "sourceDate": "2025-09-30T14:27:27.312134Z",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.178511"
+    },
+    {
+      "id": "b85297be-d388-418d-b9c6-7b2c19fef5e7",
+      "type": "idea",
+      "content": "Idea: optimize for specific perks",
+      "context": "iPhone 17 Region Selection Benefits",
+      "source": "grok",
+      "sourceDate": "2025-09-30T14:27:27.312134Z",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.179348"
+    },
+    {
+      "id": "4d82a3f9-0544-4b61-ae56-65ce75ecdc86",
+      "type": "technique",
+      "content": "Technique: compare options in one go",
+      "context": "Traditional Indian Outfits in Hong Kong",
+      "source": "grok",
+      "sourceDate": "2025-09-23T09:03:25.636150Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.185219"
+    },
+    {
+      "id": "287490cc-84bb-4a3e-8411-be5c66cb7535",
+      "type": "preference",
+      "content": "Preference: a similar map generated of hong kong for my google slides",
+      "context": "Hong Kong Map for Google Slides",
+      "source": "grok",
+      "sourceDate": "2025-09-24T02:07:22.163170Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.192361"
+    },
+    {
+      "id": "c52f8c8b-c3b3-494b-a87b-5eb0b7413475",
+      "type": "technique",
+      "content": "Technique: download and customize directly in Google Slides (via Insert > Image or editing in tools like Canva):",
+      "context": "Hong Kong Map for Google Slides",
+      "source": "grok",
+      "sourceDate": "2025-09-24T02:07:22.163170Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.193318"
+    },
+    {
+      "id": "265ff146-931d-4a01-8ee2-9dea6a2025ae",
+      "type": "technique",
+      "content": "Technique: to do it, based on standard processes for NTG5 systems",
+      "context": "Resetting 2015 Mercedes GLA Infotainment",
+      "source": "grok",
+      "sourceDate": "2025-09-20T07:52:58.432363Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.210140"
+    },
+    {
+      "id": "d70ad4bd-57f3-4eaa-bf4b-f7aa52e03323",
+      "type": "technique",
+      "content": "Technique: Update Map Software (Navigation Data)",
+      "context": "Resetting 2015 Mercedes GLA Infotainment",
+      "source": "grok",
+      "sourceDate": "2025-09-20T07:52:58.432363Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.210163"
+    },
+    {
+      "id": "7e1d7d58-13f3-46d7-af44-97f4522e5ec6",
+      "type": "idea",
+      "content": "Idea: prompt for the USB drive—insert it and let it copy the files",
+      "context": "Resetting 2015 Mercedes GLA Infotainment",
+      "source": "grok",
+      "sourceDate": "2025-09-20T07:52:58.432363Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.211889"
+    },
+    {
+      "id": "3a605eb9-726d-4931-8950-cc419f499be9",
+      "type": "preference",
+      "content": "Preference: to build a hitster clone using replit",
+      "context": "Replit Hitster Clone Development Brief",
+      "source": "grok",
+      "sourceDate": "2025-09-12T08:08:35.582445Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.220792"
+    },
+    {
+      "id": "6c29acd4-dd0a-4b6e-aaff-98ed4c48036a",
+      "type": "preference",
+      "content": "Preference: your help creating the replit brief",
+      "context": "Replit Hitster Clone Development Brief",
+      "source": "grok",
+      "sourceDate": "2025-09-12T08:08:35.582445Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.220813"
+    },
+    {
+      "id": "9ca8d302-c0b9-472c-afa8-b0323cc6cc53",
+      "type": "idea",
+      "content": "Idea: build a hitster clone using replit",
+      "context": "Replit Hitster Clone Development Brief",
+      "source": "grok",
+      "sourceDate": "2025-09-12T08:08:35.582445Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.224589"
+    },
+    {
+      "id": "19be5bb0-f775-432a-b5c3-a5fe2997d0d2",
+      "type": "idea",
+      "content": "Idea: steal your funds, collateral, or personal information through tactics like fake contracts, unexpected fees, or account takeovers",
+      "context": "High Yield Bullet Trade Explained",
+      "source": "grok",
+      "sourceDate": "2025-09-11T00:23:29.531554Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.233472"
+    },
+    {
+      "id": "80bc79b0-ac33-47ac-903f-a91b170a034e",
+      "type": "decision",
+      "content": "Decided: basic public searches",
+      "context": "Accessing Chilean Court Cases Database",
+      "source": "grok",
+      "sourceDate": "2025-09-09T03:57:58.227630Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.247195"
+    },
+    {
+      "id": "47c99e38-f33d-4e4b-8184-36a19f8f1c34",
+      "type": "technique",
+      "content": "Technique: to proceed step by step:",
+      "context": "Accessing Chilean Court Cases Database",
+      "source": "grok",
+      "sourceDate": "2025-09-09T03:57:58.227630Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.254868"
+    },
+    {
+      "id": "e9cc47db-5d2c-41c3-9a1b-0b8fa156a8fb",
+      "type": "technique",
+      "content": "Technique: view the complete digital file for each case, which includes all documents submitted by parties, court resolutions, procedural milestones, and final judgments/decisions",
+      "context": "Accessing Chilean Court Cases Database",
+      "source": "grok",
+      "sourceDate": "2025-09-09T03:57:58.227630Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.256524"
+    },
+    {
+      "id": "312e817b-393a-44b4-aff7-5dce68f0781c",
+      "type": "technique",
+      "content": "Technique: download PDFs of judgments",
+      "context": "Accessing Chilean Court Cases Database",
+      "source": "grok",
+      "sourceDate": "2025-09-09T03:57:58.227630Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.256540"
+    },
+    {
+      "id": "7e85975e-c3c4-4208-8334-593c274ae216",
+      "type": "decision",
+      "content": "Decided: that to score each possible destination",
+      "context": "City Relocation Factors for Family",
+      "source": "grok",
+      "sourceDate": "2025-09-01T06:52:15.350258Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.341098"
+    },
+    {
+      "id": "17e1727e-b79d-4ffa-9ba4-c2e03c9f9cb0",
+      "type": "preference",
+      "content": "Preference: your help in creating a comprehensive evaluation matrix so I can compare different cities when considering where to relocate",
+      "context": "City Relocation Factors for Family",
+      "source": "grok",
+      "sourceDate": "2025-09-01T06:52:15.350258Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.372513"
+    },
+    {
+      "id": "ecbd1322-787a-4262-bcd5-b816c07fd5e4",
+      "type": "preference",
+      "content": "Preference: your help in creating a thorough list of all the factors I should consider then I will use that to score each possible destination",
+      "context": "City Relocation Factors for Family",
+      "source": "grok",
+      "sourceDate": "2025-09-01T06:52:15.350258Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.372549"
+    },
+    {
+      "id": "30a83b45-525d-4d8d-9bfe-7eef84810d40",
+      "type": "technique",
+      "content": "Technique: assign weights, scores (e",
+      "context": "City Relocation Factors for Family",
+      "source": "grok",
+      "sourceDate": "2025-09-01T06:52:15.350258Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.396594"
+    },
+    {
+      "id": "5f27ce05-0a12-4f32-a3ef-e1d07a608136",
+      "type": "technique",
+      "content": "Technique: expand or customize it further (e",
+      "context": "City Relocation Factors for Family",
+      "source": "grok",
+      "sourceDate": "2025-09-01T06:52:15.350258Z",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.396609"
+    },
+    {
+      "id": "57496d4c-987e-4fc5-b91d-0f7e79f4e3d0",
+      "type": "idea",
+      "content": "Idea: use that to score each possible destination",
+      "context": "City Relocation Factors for Family",
+      "source": "grok",
+      "sourceDate": "2025-09-01T06:52:15.350258Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.418410"
+    },
+    {
+      "id": "48a55304-9b7e-4bd9-bae1-5ee2d63c86a7",
+      "type": "idea",
+      "content": "Idea: then I will use that to score each possible destination",
+      "context": "City Relocation Factors for Family",
+      "source": "grok",
+      "sourceDate": "2025-09-01T06:52:15.350258Z",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:10:00.430211"
+    }
+  ]
+}

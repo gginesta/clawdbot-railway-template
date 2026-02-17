@@ -1,0 +1,303 @@
+{
+  "items": [
+    {
+      "id": "c7d4547a-5b72-4397-9c1e-f85c532333ac",
+      "type": "decision",
+      "content": "Decided: in a cold email to potential funding sources",
+      "context": "Solartia Acquisition Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-12T16:52:27.587973",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.949580"
+    },
+    {
+      "id": "9c2d8744-f746-4748-b481-8116b8575e7c",
+      "type": "preference",
+      "content": "Preference: to raise 30M Eur",
+      "context": "Solartia Acquisition Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-12T16:52:27.587973",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.960184"
+    },
+    {
+      "id": "f5a4b96a-4835-4d77-ad72-76375dbdc499",
+      "type": "preference",
+      "content": "Preference: your help filling this attached document to the best of your abilities in order for me to talk to a lender and capital provider",
+      "context": "Solartia Acquisition Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-12T16:52:27.587973",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.960199"
+    },
+    {
+      "id": "8a708b3e-b787-4080-8a87-c98fdc11ab0c",
+      "type": "technique",
+      "content": "Technique: minimize disruptions and recover operations",
+      "context": "Solartia Acquisition Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-12T16:52:27.587973",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.965979"
+    },
+    {
+      "id": "7405bbb3-185e-45b2-9cdd-56dd81900f8b",
+      "type": "technique",
+      "content": "Technique: use to solicit funding for the acquisition, maintaining confidentiality about the target company's identity:",
+      "context": "Solartia Acquisition Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-12T16:52:27.587973",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.969302"
+    },
+    {
+      "id": "586a506a-6641-46af-b062-0c8cd0f7c7d9",
+      "type": "technique",
+      "content": "Technique: view and use the image above as part of your investment solicitation materials",
+      "context": "Solartia Acquisition Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-12T16:52:27.587973",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.969312"
+    },
+    {
+      "id": "2b461dc5-81ed-4c6f-bd0a-0a738e6e9a05",
+      "type": "idea",
+      "content": "Idea: be about 45m EUR and I need to raise 30M Eur",
+      "context": "Solartia Acquisition Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-12T16:52:27.587973",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.976798"
+    },
+    {
+      "id": "a76f997d-ed5f-4cbf-a7bd-a23c98490835",
+      "type": "technique",
+      "content": "Technique: visit their [website](https://www",
+      "context": "Firms Offer Non-Collateral Financing",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-29T15:13:40.547834",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.983278"
+    },
+    {
+      "id": "a27699ea-7aae-4d1f-affd-4d3d32b4df85",
+      "type": "technique",
+      "content": "Technique: visit their website at [Virtual Aces](https://www",
+      "context": "Virtual Aces Marketing Solutions",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-18T17:54:06.068152",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.984494"
+    },
+    {
+      "id": "62ae244d-c1c7-4a7d-a4bd-8617f65da66b",
+      "type": "technique",
+      "content": "Technique: easily integrate top-tier marketing talent into your team",
+      "context": "Virtual Aces Marketing Solutions",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-18T17:54:06.068152",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.984501"
+    },
+    {
+      "id": "b4c3c25c-1a7b-46cc-8372-be31a46b0855",
+      "type": "preference",
+      "content": "Preference: your help in setting an overall OKR for the entire Hong Kong office for the year that is very revenue driven and touches every different business unit, then setting one for Q1",
+      "context": "Revenue-driven OKRs for Brinc",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-09T10:00:02.280938",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.993042"
+    },
+    {
+      "id": "1c67311c-f3b3-4558-bc29-74e6e6554e2e",
+      "type": "technique",
+      "content": "Technique: you suggest 1 more KR that becomes a guiding star for my marketing team",
+      "context": "Revenue-driven OKRs for Brinc",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-09T10:00:02.280938",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.994332"
+    },
+    {
+      "id": "20b48cb5-f6c3-4e20-9f7d-2a863593dbf2",
+      "type": "idea",
+      "content": "Idea: help in crafting an objective that aligns with your revenue goals and encompasses all business units, followed by a more immediate objective for Q1",
+      "context": "Revenue-driven OKRs for Brinc",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-09T10:00:02.280938",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.995195"
+    },
+    {
+      "id": "f37a468d-a90f-4be1-8424-c8c77829be15",
+      "type": "preference",
+      "content": "Preference: your help in writing an executive summary of the opportunity to help me raise the capital",
+      "context": "Financial Data Review",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-04T18:17:45.592715",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.999402"
+    },
+    {
+      "id": "ab0b8d57-e9c3-47e4-9868-ecb7d7ec93b3",
+      "type": "idea",
+      "content": "Idea: give you more context and information, and ask for your help",
+      "context": "Financial Data Review",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-04T18:17:45.592715",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.001027"
+    },
+    {
+      "id": "556233a4-c1c3-4aae-b5d3-109f1c5d2018",
+      "type": "preference",
+      "content": "Preference: your help in creating an NDA so I can share details of the deal with some investors, agents and capital placers",
+      "context": "NDA Drafting Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-05T07:34:40.793204",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.008856"
+    },
+    {
+      "id": "5adb6e85-4801-4a38-9c9d-76071f8c1842",
+      "type": "preference",
+      "content": "Preference: your help editing it",
+      "context": "NDA Drafting Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2024-04-05T07:34:40.793204",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.008878"
+    }
+  ]
+}

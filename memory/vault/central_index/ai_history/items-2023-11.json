@@ -1,0 +1,432 @@
+{
+  "items": [
+    {
+      "id": "b32ebc18-a04d-4cc5-82d0-3c3ec02c3f9a",
+      "type": "idea",
+      "content": "Idea: include the following questions:",
+      "context": "Hiring Role Assistance",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-28T10:13:12.782133",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.261529"
+    },
+    {
+      "id": "bcc6f044-978c-4b5a-8b5f-4554fa30543c",
+      "type": "decision",
+      "content": "Decided: about the acquisition",
+      "context": "Solartia and Complete Solaria",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:18:47.900744",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.307198"
+    },
+    {
+      "id": "b5e3c423-d360-4ecd-852d-2a785f366d76",
+      "type": "decision",
+      "content": "Decided: regarding the potential acquisition",
+      "context": "Solartia and Complete Solaria",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:18:47.900744",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.307219"
+    },
+    {
+      "id": "a0780239-d806-4d38-b642-d5e0ecff1d60",
+      "type": "technique",
+      "content": "Technique: around grants and subsidies please",
+      "context": "Solartia and Complete Solaria",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:18:47.900744",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.318875"
+    },
+    {
+      "id": "c165624b-5824-449e-a853-5e633dc37626",
+      "type": "idea",
+      "content": "Idea: acquire and operate a business, grow it and use its cashflow to acquire more businesses",
+      "context": "Solartia and Complete Solaria",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:18:47.900744",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.321834"
+    },
+    {
+      "id": "0d255473-58a2-4f0e-ac97-e37edbcd4417",
+      "type": "preference",
+      "content": "Preference: help in creating a job post for a freelancer to help me create the deck",
+      "context": "Sustainability VC Pitch Deck",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:54:42.452670",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.336761"
+    },
+    {
+      "id": "454a99ea-6d16-488c-af67-e5fe8bd07377",
+      "type": "preference",
+      "content": "Preference: your help with the deck",
+      "context": "Sustainability VC Pitch Deck",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:54:42.452670",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.336776"
+    },
+    {
+      "id": "2cbb19b2-24fc-49b9-8221-4d448794882a",
+      "type": "technique",
+      "content": "Technique: use for your presentation and business plan to highlight the benefits of investing in startups, along with cited sources for further research and data:",
+      "context": "Sustainability VC Pitch Deck",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:54:42.452670",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.338597"
+    },
+    {
+      "id": "29fda8df-f506-4ecc-9324-f9934bd8c1ca",
+      "type": "technique",
+      "content": "Technique: further tailor this information to fit the specific focus and strategy of your venture capital firm",
+      "context": "Sustainability VC Pitch Deck",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:54:42.452670",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.338612"
+    },
+    {
+      "id": "12354178-85ff-44b3-abd7-8044b28d5ce3",
+      "type": "idea",
+      "content": "Idea: focus on sustainability investments and impact investing",
+      "context": "Sustainability VC Pitch Deck",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-30T13:54:42.452670",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.340187"
+    },
+    {
+      "id": "45d1bab8-efb3-4487-8dfc-fa850cb48dcb",
+      "type": "preference",
+      "content": "Preference: your help first by evaluating the business and pointing out areas of opportunity and areas for concern",
+      "context": "Due Diligence & Data Requests",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-29T21:30:38.778387",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.371807"
+    },
+    {
+      "id": "9e84f860-c0a4-4380-9ab2-d9d1098d1517",
+      "type": "idea",
+      "content": "Idea: help you gain a comprehensive understanding of Solartia’s operational, financial, and strategic positioning, crucial for evaluating the feasibility of a leveraged buyout",
+      "context": "Due Diligence & Data Requests",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-29T21:30:38.778387",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.373834"
+    },
+    {
+      "id": "5c3db496-9c0e-4e6b-aeb7-d37b7bf6a549",
+      "type": "preference",
+      "content": "Preference: a small favor",
+      "context": "Pirate Harbor Adventure",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-27T18:59:03.381013",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.380224"
+    },
+    {
+      "id": "d5365389-862e-4091-a51d-89700aac1e0e",
+      "type": "technique",
+      "content": "Technique: hear the clinking of glasses and the laughter of the patrons",
+      "context": "Pirate Harbor Adventure",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-27T18:59:03.381013",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.381628"
+    },
+    {
+      "id": "d32537c0-8de5-4ddd-b8a5-d30e1e38e7a7",
+      "type": "technique",
+      "content": "Technique: set up an earnout model in a spreadsheet:",
+      "context": "Create Spreadsheets, Assist User",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-23T13:40:47.359157",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.387231"
+    },
+    {
+      "id": "e401e3b0-053c-43e3-a873-5ca49c4c9dd3",
+      "type": "technique",
+      "content": "Technique: adjust these figures based on the actual targets you have in mind for the business you are acquiring",
+      "context": "Create Spreadsheets, Assist User",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-23T13:40:47.359157",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.387325"
+    },
+    {
+      "id": "eeb9b685-e8bf-4684-817a-d0be74c59fd1",
+      "type": "idea",
+      "content": "Idea: include in the spreadsheet and any specific functionalities you need, such as formulas, charts, data validation, or pivot tables",
+      "context": "Create Spreadsheets, Assist User",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-23T13:40:47.359157",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.388430"
+    },
+    {
+      "id": "2dd9e420-6818-4b33-a2f2-c3eff45321a5",
+      "type": "preference",
+      "content": "Preference: to apply for a holdover of my provisional tax for 2023/2024",
+      "context": "HK Tax Code Summary",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-23T09:06:15.269727",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.391423"
+    },
+    {
+      "id": "0f069cb6-27cb-42a1-94f7-303b888c6746",
+      "type": "idea",
+      "content": "Idea: apply for a holdover of my provisional tax for 2023/2024",
+      "context": "HK Tax Code Summary",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-23T09:06:15.269727",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.392595"
+    },
+    {
+      "id": "bf1d67f9-87be-4a5f-8ccc-5aacb77ba9e1",
+      "type": "technique",
+      "content": "Technique: proceed with incorporating it as you see fit",
+      "context": "Wedding Invite Image Advice",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-20T19:16:14.815305",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.412564"
+    },
+    {
+      "id": "5d77217d-bd89-49ec-a0e3-77cfe7b94d89",
+      "type": "decision",
+      "content": "Decided: to avoid heavily regulated sectors, or sectors with historical issues around shady practices like construction",
+      "context": "Co-founder for Private Equity",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-13T16:05:15.916989",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.419265"
+    },
+    {
+      "id": "39083cc2-32e5-48e8-8b48-0b233b901019",
+      "type": "idea",
+      "content": "Idea: do, with a few small differences",
+      "context": "Co-founder for Private Equity",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-13T16:05:15.916989",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.423610"
+    },
+    {
+      "id": "11802b01-46ac-4af6-a581-600571f7badc",
+      "type": "decision",
+      "content": "Decided: point follows: \"Withdraw invite",
+      "context": "Cold Message Lead Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-01T16:01:52.499693",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.425464"
+    },
+    {
+      "id": "e99a1643-934b-464f-a089-fee48ac5fd05",
+      "type": "decision",
+      "content": "Decided: and not pursue further, unless you have a compelling reason to do so",
+      "context": "Cold Message Lead Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-01T16:01:52.499693",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.425480"
+    },
+    {
+      "id": "348a5eb4-0346-447e-a7ea-3d7bc5230c09",
+      "type": "preference",
+      "content": "Preference: us to write up messages for each of the steps",
+      "context": "Cold Message Lead Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-01T16:01:52.499693",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.426845"
+    },
+    {
+      "id": "e13dd18e-093c-4946-8637-3f1f8536229d",
+      "type": "technique",
+      "content": "Technique: send a courteous note saying, \"I understand you might be busy",
+      "context": "Cold Message Lead Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2023-11-01T16:01:52.499693",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.427818"
+    }
+  ]
+}

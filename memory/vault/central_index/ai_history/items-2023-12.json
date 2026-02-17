@@ -1,0 +1,451 @@
+{
+  "items": [
+    {
+      "id": "4ea69b4b-7e03-4e09-b8c5-857a866cd586",
+      "type": "decision",
+      "content": "Decided: align with specific client needs and goals, focusing on building high-value relationships rather than just filling roles【10†source】",
+      "context": "VA Helper",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T18:47:37.193825",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.201758"
+    },
+    {
+      "id": "da6b0dff-41ed-49ec-9bb7-072e603ee223",
+      "type": "decision",
+      "content": "Decided: match specific client needs and goals【10†source】",
+      "context": "VA Helper",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T18:47:37.193825",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.201781"
+    },
+    {
+      "id": "df4247ba-db13-4532-b8cc-6f84c73625fb",
+      "type": "lesson",
+      "content": "Learned: to focus on high-value tasks while his Virtual Aces efficiently managed the rest, significantly enhancing his operational capacity",
+      "context": "VA Helper",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T18:47:37.193825",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.212473"
+    },
+    {
+      "id": "66fbd256-711e-4568-b4c2-9bdceeae0b5e",
+      "type": "preference",
+      "content": "Preference: your help in writing the copy for each of the messages in the sequence",
+      "context": "VA Helper",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T18:47:37.193825",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.216790"
+    },
+    {
+      "id": "aac75e2a-1a48-424d-a846-4212fe3bb322",
+      "type": "preference",
+      "content": "Preference: them to manage my linkedin and twitter, helping me create engaging content to create an audience",
+      "context": "VA Helper",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T18:47:37.193825",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.216817"
+    },
+    {
+      "id": "15a3597a-f182-472f-9632-c6164e5d3413",
+      "type": "technique",
+      "content": "Technique: find more information on our website [Website] or schedule a no-pressure consultation here: [Booking Link]",
+      "context": "VA Helper",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T18:47:37.193825",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.228107"
+    },
+    {
+      "id": "ac3d85eb-317a-408f-8f4a-d0991c8e076e",
+      "type": "idea",
+      "content": "Idea: recruit our first employee (lets call them Head of HR)",
+      "context": "VA Helper",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T18:47:37.193825",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.236267"
+    },
+    {
+      "id": "f4351a98-f814-4218-976a-0be28bf7fe04",
+      "type": "idea",
+      "content": "Idea: entering markets like well-funded tech startups and innovative sectors where businesses are rapidly scaling and require robust marketing support",
+      "context": "VA Helper",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T18:47:37.193825",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.240898"
+    },
+    {
+      "id": "852aecfa-6f11-4790-96c9-c39bd0c055ce",
+      "type": "idea",
+      "content": "Idea: provide a summarized to-do list for your convenience",
+      "context": "Prioritize Tasks: Content Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-07T19:36:54.627985",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.250610"
+    },
+    {
+      "id": "1325fa34-d1f4-4166-b1a8-187b779217c6",
+      "type": "decision",
+      "content": "Decided: again - your headlines are too long",
+      "context": "Virtual Aces CMO Appointment",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-16T17:01:59.521963",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.275101"
+    },
+    {
+      "id": "0c38e12d-2d5f-47e5-b3d7-b0d709a87f64",
+      "type": "preference",
+      "content": "Preference: to emphasise that we should focus on more premium services, instead of 'remote assistants'",
+      "context": "Virtual Aces CMO Appointment",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-16T17:01:59.521963",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.276623"
+    },
+    {
+      "id": "1e1a1308-59db-438c-9233-a61118a3f27f",
+      "type": "preference",
+      "content": "Preference: us to avoid the stigmas around hiring abroad where possible (around language, experience and skill)",
+      "context": "Virtual Aces CMO Appointment",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-16T17:01:59.521963",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.276635"
+    },
+    {
+      "id": "65ab02b1-531d-476d-96d4-345c6ad93bc0",
+      "type": "technique",
+      "content": "Technique: you can target the two client scenarios:",
+      "context": "Virtual Aces CMO Appointment",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-16T17:01:59.521963",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.277238"
+    },
+    {
+      "id": "935c9bab-176d-4dfe-8d07-b8c357d23419",
+      "type": "technique",
+      "content": "Technique: visit their website at [GrowthAssistant](https://www",
+      "context": "Virtual Aces CMO Appointment",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-16T17:01:59.521963",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.277635"
+    },
+    {
+      "id": "a332431c-f855-4868-94a6-e25b76a49d0b",
+      "type": "technique",
+      "content": "Technique: visit their website at [Support Shepherd](https://www",
+      "context": "Virtual Aces CMO Appointment",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-16T17:01:59.521963",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.277646"
+    },
+    {
+      "id": "865aa502-6b4f-4853-a35f-c26a72859bd8",
+      "type": "idea",
+      "content": "Idea: creating separate ad groups for each keyword to tailor the ad copy and landing pages specifically to the intent behind each search query",
+      "context": "Virtual Aces CMO Appointment",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-16T17:01:59.521963",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.279251"
+    },
+    {
+      "id": "3f9d741d-3a77-4197-ba2b-7bca92ae5863",
+      "type": "preference",
+      "content": "Preference: your help with some research please",
+      "context": "Startup Investment Benefits & Risks",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-19T10:58:34.707800",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.290953"
+    },
+    {
+      "id": "8fe7c83a-da6a-474e-be67-a4dec38f210f",
+      "type": "preference",
+      "content": "Preference: data to prove:",
+      "context": "Startup Investment Benefits & Risks",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-19T10:58:34.707800",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.290981"
+    },
+    {
+      "id": "da19a1e6-4304-4762-a81f-61b1d4709734",
+      "type": "technique",
+      "content": "Technique: pull stats or information that corroborates the angles for our report (refer back to the 3 things we are trying to demonstrate)",
+      "context": "Startup Investment Benefits & Risks",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-19T10:58:34.707800",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.293429"
+    },
+    {
+      "id": "922a1448-7b81-41c8-af7d-4d1d9ec1be7c",
+      "type": "technique",
+      "content": "Technique: pull stats or information that corroborates the angles for our report (refer back to the 3 things we are trying to demonstrate)",
+      "context": "Startup Investment Benefits & Risks",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-19T10:58:34.707800",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.293443"
+    },
+    {
+      "id": "92f90d2a-8ca2-41f0-bae8-04b8936628bd",
+      "type": "idea",
+      "content": "Idea: Give\" discusses the global economic outlook for 2024",
+      "context": "Startup Investment Benefits & Risks",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-19T10:58:34.707800",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.294991"
+    },
+    {
+      "id": "9a6eb688-78d3-41bd-9a36-1e44c6c9bd90",
+      "type": "technique",
+      "content": "Technique: contact partners like Peter Haslam, Victor Sim, or Becky Tai for more information【7†source】",
+      "context": "Raise Capital for Business Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-13T13:57:19.362823",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.327187"
+    },
+    {
+      "id": "74ea73c7-70e9-4526-a614-4e4ab2ab675f",
+      "type": "preference",
+      "content": "Preference: your help researching",
+      "context": "Renewable Energy M&A Trends",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-13T14:32:46.764949",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.329706"
+    },
+    {
+      "id": "66a16589-8956-491b-9a1e-93cffe3885bb",
+      "type": "preference",
+      "content": "Preference: to make sure we are part of the conversation",
+      "context": "2024 Predictions for Startups",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T13:05:38.876236",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.357758"
+    },
+    {
+      "id": "1730bc2f-e8d2-4ef7-ae0d-4b2f97e15a6b",
+      "type": "preference",
+      "content": "Preference: to encourage startups to apply to our programs, I want to get the attention of investors and potential corporate partners as they could all become clients",
+      "context": "2024 Predictions for Startups",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T13:05:38.876236",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.357774"
+    },
+    {
+      "id": "b7a10dff-5110-4d52-9a2a-41e39f42a8ff",
+      "type": "technique",
+      "content": "Technique: provide - but be concise, to the point and write in simple and direct language",
+      "context": "2024 Predictions for Startups",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T13:05:38.876236",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.362277"
+    },
+    {
+      "id": "684c641c-97e4-4f42-9152-4f80785f53a2",
+      "type": "technique",
+      "content": "Technique: also provide citations to back your predictions",
+      "context": "2024 Predictions for Startups",
+      "source": "chatgpt",
+      "sourceDate": "2023-12-04T13:05:38.876236",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.362294"
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "items": [
+    {
+      "id": "b1868332-f378-4096-bf58-6443d2d5ba82",
+      "type": "preference",
+      "content": "Preference: your help creating a feasibility study for NDC (National Development Company) in the Philippines in order to receive funding from them to launch our operations in the Philippines",
+      "context": "Brinc Feasibility Study NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T14:19:38.702000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.797676"
+    },
+    {
+      "id": "387b0a59-1516-4669-840e-6cafeb074967",
+      "type": "preference",
+      "content": "Preference: to showcase that they help launch ventures that can create employment and ultimately grow GDP",
+      "context": "Brinc Feasibility Study NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T14:19:38.702000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.797693"
+    },
+    {
+      "id": "ccc2c4bd-e02f-428d-8043-9af4ef8c8482",
+      "type": "technique",
+      "content": "Technique: broader global markets)",
+      "context": "Brinc Feasibility Study NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T14:19:38.702000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.803598"
+    },
+    {
+      "id": "5acdbe74-07d4-48eb-8354-8967619893e3",
+      "type": "technique",
+      "content": "Technique: use msearch to search it for additional information",
+      "context": "Brinc Feasibility Study NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T14:19:38.702000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.806716"
+    },
+    {
+      "id": "95265a36-4b59-463d-b2f7-c9085a1c5cfc",
+      "type": "idea",
+      "content": "Idea: showcase that they help launch ventures that can create employment and ultimately grow GDP",
+      "context": "Brinc Feasibility Study NDC",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T14:19:38.702000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.812449"
+    },
+    {
+      "id": "19913fb8-d585-4392-8559-9d46625578df",
+      "type": "lesson",
+      "content": "Learned: from this case is that **tailoring the accelerator to local context** matters",
+      "context": "Startup Accelerators Impact Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T11:22:45.446000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.853533"
+    },
+    {
+      "id": "e8091fee-29fa-4691-8dd9-93597cb01344",
+      "type": "preference",
+      "content": "Preference: emerging markets, but case studies can come from anywhere",
+      "context": "Startup Accelerators Impact Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T11:22:45.446000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.855174"
+    },
+    {
+      "id": "fa963495-c88b-4a6f-9cec-3442264e47ad",
+      "type": "technique",
+      "content": "Technique: open it directly in Google Docs or upload it to Drive and convert it to a Google Doc",
+      "context": "Startup Accelerators Impact Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T11:22:45.446000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.864564"
+    },
+    {
+      "id": "50d00d1c-a24e-48c9-98b4-2a4b3355980e",
+      "type": "technique",
+      "content": "Technique: open it and choose **File → Save as Google Docs**; the formatting should now look tidy in Docs as well",
+      "context": "Startup Accelerators Impact Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T11:22:45.446000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.864594"
+    },
+    {
+      "id": "85788bd0-3a49-459b-bdb2-60f3db7a64d6",
+      "type": "idea",
+      "content": "Idea: include metrics and data tables wherever possible and feature global case studies, such as Startup Chile and Brinc in Bahrain, highlighting successful public-private partnerships",
+      "context": "Startup Accelerators Impact Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-20T11:22:45.446000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.870546"
+    },
+    {
+      "id": "3e3b78b7-4fb3-428e-bc13-16d004423d1a",
+      "type": "preference",
+      "content": "Preference: to be able to quickly count the required interest to project out if I close 1st of Jun or 1st of July etc",
+      "context": "Interés sobre inversión",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-14T19:44:54.922000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.884206"
+    },
+    {
+      "id": "25850bdc-7e00-4191-aa8a-c5ef56edb55d",
+      "type": "technique",
+      "content": "Technique: use the formula for simple interest:",
+      "context": "Interés sobre inversión",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-14T19:44:54.922000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.884622"
+    },
+    {
+      "id": "0490171f-5bed-4533-bae6-a38cfa4bdfb9",
+      "type": "technique",
+      "content": "Technique: simply divide the annual interest by 12:",
+      "context": "Interés sobre inversión",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-14T19:44:54.922000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.884637"
+    },
+    {
+      "id": "e5538479-6e3c-42fe-bb9f-eef4ade9d4a8",
+      "type": "idea",
+      "content": "Idea: charge me interest of 10% per year starting 1st Jan 2025 until when I conclude the deal",
+      "context": "Interés sobre inversión",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-14T19:44:54.922000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.884995"
+    },
+    {
+      "id": "3f17f5ca-9060-4d4d-927e-2123f769f09b",
+      "type": "preference",
+      "content": "Preference: your help in checking their attached KYC documents and see if you can find any information online",
+      "context": "White Swan Advisors Review",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-13T21:46:09.842000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.888721"
+    },
+    {
+      "id": "c7758502-63e7-499f-8eb1-abedc6c9a8d2",
+      "type": "technique",
+      "content": "Technique: find any information online",
+      "context": "White Swan Advisors Review",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-13T21:46:09.842000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.889481"
+    },
+    {
+      "id": "266d2512-d400-42a1-be0c-11bee483762b",
+      "type": "idea",
+      "content": "Idea: explore additional dates or scenarios",
+      "context": "Solartia acquisition interest allocation",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-13T11:04:03.749000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.891959"
+    },
+    {
+      "id": "8bc2235a-0272-442f-a4f7-a80be9f84e6d",
+      "type": "technique",
+      "content": "Technique: independently verify Bosch’s involvement and **escalate to Bosch corporate legal or compliance** before proceeding",
+      "context": "DHI and Bosch Investment",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-12T13:20:25.725000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.904206"
+    },
+    {
+      "id": "63c8d9b7-bc65-48a3-8d64-1119175613f2",
+      "type": "technique",
+      "content": "Technique: treat this as a likely fraud or at best, a highly unprofessional and unverified funding arrangement",
+      "context": "DHI and Bosch Investment",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-12T13:20:25.725000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.904233"
+    },
+    {
+      "id": "cfb2e78a-cda8-4671-8e48-93a078c34d33",
+      "type": "idea",
+      "content": "Idea: manage the donation, which will then be used to complete the investment",
+      "context": "DHI and Bosch Investment",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-12T13:20:25.725000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.905711"
+    },
+    {
+      "id": "97901800-e6b1-40a1-b00f-93dad97e8aac",
+      "type": "decision",
+      "content": "Decided: the right tool, feel free to ask",
+      "context": "Voice Transcription Tools",
+      "source": "chatgpt",
+      "sourceDate": "2025-05-12T13:07:00.208000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.907962"
+    }
+  ]
+}

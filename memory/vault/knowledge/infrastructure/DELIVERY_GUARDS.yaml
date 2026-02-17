@@ -1,0 +1,35 @@
+version: '1.0'
+delivery_guards:
+  telegram:
+    allowed_models:
+      - anthropic/claude-sonnet-4
+      - openrouter/google/gemini-2.5-flash
+      - z-ai/glm-5
+    blocked_input_types:
+      - image
+      - code
+    max_consecutive_errors: 3
+    error_action: isolate
+
+  webchat:
+    allowed_models:
+      - anthropic/claude-opus-4-6
+      - anthropic/claude-sonnet-4
+      - openrouter/google/gemini-2.5-flash
+    allowed_input_types:
+      - text
+      - image
+    max_consecutive_errors: 5
+    error_action: notify_and_fallback
+
+  discord:
+    allowed_models:
+      - anthropic/claude-opus-4-6
+      - anthropic/claude-sonnet-4
+      - openrouter/google/gemini-2.5-flash
+    allowed_input_types:
+      - text
+      - image
+      - code
+    max_consecutive_errors: 10
+    error_action: log

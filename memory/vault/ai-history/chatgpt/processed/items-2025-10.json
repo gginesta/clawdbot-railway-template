@@ -1,0 +1,391 @@
+{
+  "items": [
+    {
+      "id": "7ff31442-865a-4102-ae9c-a51ab91375ed",
+      "type": "technique",
+      "content": "Technique: always follow up with a web search if necessary for a more complete response",
+      "context": "Financial analysis report",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-21T14:35:18.118000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.171861"
+    },
+    {
+      "id": "9de6c03c-0c8a-4c42-bb0c-3e9dd67e369f",
+      "type": "idea",
+      "content": "Idea: be able to pay its debts as and when they fall",
+      "context": "Financial analysis report",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-21T14:35:18.118000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.180242"
+    },
+    {
+      "id": "94c8880e-74f0-4e65-b56c-106e2571e034",
+      "type": "preference",
+      "content": "Preference: your help figuring out how much it would cost me to see if its cheaper for me to take an Uber",
+      "context": "Parking cost estimation",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-24T11:24:39.334000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.213107"
+    },
+    {
+      "id": "974e7748-4e25-4df4-9f98-f75a0bb535d5",
+      "type": "technique",
+      "content": "Technique: pick the cheaper option for this specific trip",
+      "context": "Parking cost estimation",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-24T11:24:39.334000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.213751"
+    },
+    {
+      "id": "7dea5ba8-5677-4c6f-9d9d-2e041e830430",
+      "type": "preference",
+      "content": "Preference: the date to be mid november onwards",
+      "context": "Request court date delay",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-21T20:53:19.695000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.227182"
+    },
+    {
+      "id": "1bb54eca-732f-4c52-ac8d-a1faae0ab511",
+      "type": "technique",
+      "content": "Technique: file with the Kowloon City Magistrates’ Courts Registry",
+      "context": "Request court date delay",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-21T20:53:19.695000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.230578"
+    },
+    {
+      "id": "4765a9cf-1657-4427-a7aa-b1ce1b31dfa0",
+      "type": "technique",
+      "content": "Technique: confirm the missing Case No",
+      "context": "Request court date delay",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-21T20:53:19.695000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.230603"
+    },
+    {
+      "id": "3f59b2be-0814-48f9-9776-2e3d52ec5c58",
+      "type": "decision",
+      "content": "Decided: preserve value and optionality",
+      "context": "Investor update draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-20T14:06:28.954000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.289279"
+    },
+    {
+      "id": "49de4ad6-9ab6-4e1f-9156-4c837cb5c767",
+      "type": "preference",
+      "content": "Preference: your help creating an investor update message",
+      "context": "Investor update draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-20T14:06:28.954000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.294060"
+    },
+    {
+      "id": "2d60ffc0-c8ad-4370-8758-234fc7bce944",
+      "type": "idea",
+      "content": "Idea: receive the Venture Verse token to receive liquidity and to get access to the Brinc wider ecosystem",
+      "context": "Investor update draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-20T14:06:28.954000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.300434"
+    },
+    {
+      "id": "5327cb83-8962-4ae6-8233-39e58177165a",
+      "type": "preference",
+      "content": "Preference: your help drafting a direct and attractive cold email to potential corporate partners then one for investors",
+      "context": "Cold email draft request",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-17T10:05:51.639000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.312416"
+    },
+    {
+      "id": "c4c4636d-ba43-4544-837d-17f2bf6f0b9c",
+      "type": "preference",
+      "content": "Preference: to offer these corporates and investors a chance to get to meet the startups",
+      "context": "Cold email draft request",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-17T10:05:51.639000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.312442"
+    },
+    {
+      "id": "95e991b9-189a-4b1f-a4f5-30ff8d12ec0b",
+      "type": "idea",
+      "content": "Idea: offer these corporates and investors a chance to get to meet the startups",
+      "context": "Cold email draft request",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-17T10:05:51.639000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.316412"
+    },
+    {
+      "id": "e63b5fc4-90a0-45f9-80cf-882a27b7a65e",
+      "type": "preference",
+      "content": "Preference: you to act as my general counsel and help me draft a legal letter",
+      "context": "Legal letter draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-16T14:16:49.505000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.365214"
+    },
+    {
+      "id": "b5ba80e3-f6f4-4bc4-aafc-f373b4326544",
+      "type": "preference",
+      "content": "Preference: our investors at Difako Capital Investments to send a letter to us at Mana Capital and to the Solartia team explaining their delays and apologising for them",
+      "context": "Legal letter draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-16T14:16:49.505000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.365238"
+    },
+    {
+      "id": "2f274d34-e820-45ef-a804-66bf90ae38a2",
+      "type": "idea",
+      "content": "Idea: be able to make up for the delays once this step is completed",
+      "context": "Legal letter draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-16T14:16:49.505000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.403967"
+    },
+    {
+      "id": "c9818c37-cf0e-4c82-bfc6-6b48b9cf83a9",
+      "type": "decision",
+      "content": "Decided: makers; Founders; Investors; Media",
+      "context": "Press release draft help",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-13T10:43:13.109000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.429309"
+    },
+    {
+      "id": "ad96c4e1-6478-4db5-b8c0-508483806ba3",
+      "type": "preference",
+      "content": "Preference: to draft a press release for Brinc that covers our launch in the Philippines",
+      "context": "Press release draft help",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-13T10:43:13.109000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.436211"
+    },
+    {
+      "id": "b42d097c-7b16-4239-958d-44e62af9ac31",
+      "type": "technique",
+      "content": "Technique: paste into the form (plus a short asset checklist for the agency)",
+      "context": "Press release draft help",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-13T10:43:13.109000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.441007"
+    },
+    {
+      "id": "9583b6eb-6230-4cbc-9bb5-5c994e97bf83",
+      "type": "decision",
+      "content": "Decided: move for lifestyle or family reasons (e",
+      "context": "Private equity report APAC",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-10T13:54:18.942000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.454598"
+    },
+    {
+      "id": "82e7c95b-494f-46c8-a86a-05fe78596f70",
+      "type": "decision",
+      "content": "Decided: up again in 2022–2024",
+      "context": "Private equity report APAC",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-10T13:54:18.942000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.454612"
+    },
+    {
+      "id": "7c28cf3c-e8d6-4576-8798-f4b84c72f3ec",
+      "type": "preference",
+      "content": "Preference: your help creating a McKinsey-styled report for a specific private equity vertical",
+      "context": "Private equity report APAC",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-10T13:54:18.942000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.463303"
+    },
+    {
+      "id": "ffca4bd4-ad87-4ddc-b80f-7eeac8505aa3",
+      "type": "idea",
+      "content": "Idea: include an industry overview, average private equity multiples based on net income, recent transactions, market outlook, and pricing recommendations specific to APAC Relocation",
+      "context": "Private equity report APAC",
+      "source": "chatgpt",
+      "sourceDate": "2025-10-10T13:54:18.942000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.473280"
+    }
+  ]
+}

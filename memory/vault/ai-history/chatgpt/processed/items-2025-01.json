@@ -1,0 +1,341 @@
+{
+  "items": [
+    {
+      "id": "31dd0fa6-59ad-4273-90ca-d676c32fe095",
+      "type": "idea",
+      "content": "Idea: last less than 18 years without new discoveries",
+      "context": "Gold Reserves Estimate",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-31T22:20:36.316471",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.364433"
+    },
+    {
+      "id": "dea5d842-6300-4899-8e01-baf66be6acc4",
+      "type": "technique",
+      "content": "Technique: seek professional legal and tax advice specific to your circumstances before proceeding",
+      "context": "BVI Tax Implications Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-29T12:15:51.737340",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.369446"
+    },
+    {
+      "id": "ab159a11-b95f-484f-99c5-762fbdf4bb35",
+      "type": "idea",
+      "content": "Idea: be my Hong Kong business, and I will sell shares to outside investors in order to raise the capital I require to purchase Solartia",
+      "context": "BVI Tax Implications Spain",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-29T12:15:51.737340",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.370307"
+    },
+    {
+      "id": "a1abca38-9d7a-4fd9-b1b6-ebcee9f7889b",
+      "type": "preference",
+      "content": "Preference: to write a very simple personal loan agreement for my domestic helper as she has a medical emergency",
+      "context": "Personal loan agreement draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-21T07:56:16.199868",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.373067"
+    },
+    {
+      "id": "e8cf9d0f-5fb4-4cfd-8b3e-09378118dd19",
+      "type": "idea",
+      "content": "Idea: pay back HKD2,000 monthly discounted from her monthly salary until the full amount is paid",
+      "context": "Personal loan agreement draft",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-21T07:56:16.199868",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.374095"
+    },
+    {
+      "id": "cf69d67d-3226-46e4-ade7-e3c1fc046385",
+      "type": "idea",
+      "content": "Idea: ensure that the Seller is responsible for (i",
+      "context": "Indemnity Clause for Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-16T14:57:02.751213",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.378103"
+    },
+    {
+      "id": "eacd2171-d54f-4192-83b7-33ed933aed3d",
+      "type": "technique",
+      "content": "Technique: provide a comprehensive overview of the current food security landscape in Hong Kong and the Middle East, emphasizing the critical role of sustainable agricultural innovations in addressing these chal",
+      "context": "Sustainable Agriculture Data Insights",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-13T21:31:08.394290",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.381981"
+    },
+    {
+      "id": "05f06420-b23d-4b1a-a3f6-707a2c62237c",
+      "type": "idea",
+      "content": "Idea: delve into the latest technological advancements revolutionizing the agriculture industry in Hong Kong and the Middle East, and investment appetite for the sector to ensure a secure and sustainable fo",
+      "context": "Sustainable Agriculture Data Insights",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-13T21:31:08.394290",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.382563"
+    },
+    {
+      "id": "0be95bb5-b8ba-459f-87c9-2f72e169885e",
+      "type": "preference",
+      "content": "Preference: to hire consultants/accountants/analysts/lawyers to help me with the due diligence process",
+      "context": "Renewable energy due diligence",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-10T09:47:15.403016",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.385766"
+    },
+    {
+      "id": "ef320352-6dee-48ec-bb7b-cae48c0caa5e",
+      "type": "idea",
+      "content": "Idea: have experience in financial analysis, legal frameworks, and operational assessments within the energy sector and must be fluent in both English and Spanish to effectively navigate the data room and l",
+      "context": "Renewable energy due diligence",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-10T09:47:15.403016",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.387775"
+    },
+    {
+      "id": "a00a0c6a-05f0-48de-9584-a215287a8d7d",
+      "type": "preference",
+      "content": "Preference: your help in creating a project finance and business plan template for each opportunity",
+      "context": "Project Finance Template Design",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-07T15:41:17.321649",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.399000"
+    },
+    {
+      "id": "580c6cb2-55da-4d8e-b312-2817a56b0348",
+      "type": "preference",
+      "content": "Preference: clarification on the following:",
+      "context": "Project Finance Template Design",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-07T15:41:17.321649",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.399019"
+    },
+    {
+      "id": "7bca0112-ad13-4983-94e6-8f0922a2d4e0",
+      "type": "technique",
+      "content": "Technique: enhance mitigation details:",
+      "context": "Project Finance Template Design",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-07T15:41:17.321649",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.402979"
+    },
+    {
+      "id": "5f0ad658-73eb-43be-902d-a598a384d2cb",
+      "type": "idea",
+      "content": "Idea: template for each opportunity",
+      "context": "Project Finance Template Design",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-07T15:41:17.321649",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.407556"
+    },
+    {
+      "id": "25e127b9-72ee-4a57-bb15-77a6c4e062d3",
+      "type": "idea",
+      "content": "Idea: things like carbon saved by producing energy through renewable energy instead of diesel/fossil fuel; as well as the impact on society: how many people are connected to the grid and the long term econo",
+      "context": "Project Finance Template Design",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-07T15:41:17.321649",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.411475"
+    },
+    {
+      "id": "5fb24e50-a168-439e-901f-257f0f7229d5",
+      "type": "preference",
+      "content": "Preference: to adjust my approach to calculate your astral chart manually, ensuring the positions of planets and houses are correctly mapped based on your birth date, time, and location",
+      "context": "2025 Horoscope Insights",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-08T16:48:38.102753",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.426322"
+    },
+    {
+      "id": "3247f76a-3642-4dda-aef6-14a4dbf9aeb5",
+      "type": "idea",
+      "content": "Idea: be a year of *transformation and mastery*",
+      "context": "2025 Horoscope Insights",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-08T16:48:38.102753",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.430894"
+    },
+    {
+      "id": "d004be2f-dd25-47ff-9512-5dec778dfca0",
+      "type": "preference",
+      "content": "Preference: to create a job description in upwork",
+      "context": "Legal Document Translation Job",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-05T06:37:59.321077",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.436545"
+    },
+    {
+      "id": "ad3d7736-f96c-46d2-8578-17657a9e5a7e",
+      "type": "preference",
+      "content": "Preference: to translate them to english to have a mirror copy, so my english speaking lawyers can review and comment and we can then agree on final terms",
+      "context": "Legal Document Translation Job",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-05T06:37:59.321077",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.436559"
+    },
+    {
+      "id": "0c7be0b4-6bde-4529-8bb2-7678a9529646",
+      "type": "idea",
+      "content": "Idea: be in Spanish, then notarised, and an english version will be created then",
+      "context": "Legal Document Translation Job",
+      "source": "chatgpt",
+      "sourceDate": "2025-01-05T06:37:59.321077",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.437259"
+    }
+  ]
+}

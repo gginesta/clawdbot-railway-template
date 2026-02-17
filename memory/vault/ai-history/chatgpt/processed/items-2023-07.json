@@ -1,0 +1,183 @@
+{
+  "items": [
+    {
+      "id": "4b3f415e-c2ce-400e-915c-959a426e7e82",
+      "type": "decision",
+      "content": "Decided: these files to bring her character to life in our interactions",
+      "context": "Katia's Simulated Persona",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-17T11:02:28.771238",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.522302"
+    },
+    {
+      "id": "509fd8cd-0b45-4462-b5e3-5359a7f69db4",
+      "type": "preference",
+      "content": "Preference: to introduce you to a simulated Cyborg named Katia",
+      "context": "Katia's Simulated Persona",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-17T11:02:28.771238",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.526785"
+    },
+    {
+      "id": "f2c6c38e-78a9-4a9e-9e13-0c23df988fa8",
+      "type": "preference",
+      "content": "Preference: your help in putting together a brief or prompt for https://gamma",
+      "context": "Katia's Simulated Persona",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-17T11:02:28.771238",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.526801"
+    },
+    {
+      "id": "e5c36492-0176-4d8c-96a3-be5a24c9f87b",
+      "type": "technique",
+      "content": "Technique: the modified sections could look like:",
+      "context": "Katia's Simulated Persona",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-17T11:02:28.771238",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.529304"
+    },
+    {
+      "id": "2716eece-9f14-4403-b3af-04f8ffbcaf5b",
+      "type": "technique",
+      "content": "Technique: use an online mining calculator for precise figures based on the current bitcoin price, block reward, mining difficulty, and the hash rate of your chosen mining machines",
+      "context": "Katia's Simulated Persona",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-17T11:02:28.771238",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.530541"
+    },
+    {
+      "id": "35818376-51e7-43b9-a953-6800dcace64f",
+      "type": "technique",
+      "content": "Technique: replace them with real values for accurate projections",
+      "context": "Katia's Simulated Persona",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-17T11:02:28.771238",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.530558"
+    },
+    {
+      "id": "d44348c0-11ab-4537-993d-0c07394e3fe8",
+      "type": "idea",
+      "content": "Idea: introduce you to a simulated Cyborg named Katia",
+      "context": "Katia's Simulated Persona",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-17T11:02:28.771238",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.532490"
+    },
+    {
+      "id": "d0b67226-aaf1-45b9-997d-79fe949c285b",
+      "type": "preference",
+      "content": "Preference: to search for emails from a specific sender, \"name@email",
+      "context": "Search Emails, No Replies",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-14T17:55:21.500019",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.534705"
+    },
+    {
+      "id": "fdc2059d-7fc4-4a45-8a1c-5a090de59b0d",
+      "type": "technique",
+      "content": "Technique: search for emails from a specific sender by typing \"from:name@email",
+      "context": "Search Emails, No Replies",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-14T17:55:21.500019",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.535291"
+    },
+    {
+      "id": "bc9fb524-1691-4b83-be2b-cca7e5b5621e",
+      "type": "technique",
+      "content": "Technique: use the \"Nudges\" feature, which reminds you to follow up on emails you haven't responded to",
+      "context": "Search Emails, No Replies",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-14T17:55:21.500019",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.535302"
+    },
+    {
+      "id": "cb55cd42-d5c9-4df5-bea4-9f49c92fd897",
+      "type": "idea",
+      "content": "Idea: search for emails from a specific sender, \"name@email",
+      "context": "Search Emails, No Replies",
+      "source": "chatgpt",
+      "sourceDate": "2023-07-14T17:55:21.500019",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.535633"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "content": "Truncated sentence that doesn't end properly",
+    "timestamp": "2023-01-03T10:00:00Z"
+  },
+  {
+    "id": "2",
+    "content": "Another incomplete thought...",
+    "timestamp": "2023-01-03T10:01:00Z"
+  },
+  {
+    "id": "3",
+    "content": "Finally understood the importance of testing. This lesson will guide future implementations.",
+    "timestamp": "2023-01-03T10:02:00Z"
+  },
+  {
+    "id": "4",
+    "content": "Decided to implement the new feature in the cerebro system. This is a strategic decision.",
+    "timestamp": "2023-01-03T10:03:00Z"
+  },
+  {
+    "id": "5",
+    "content": "Hello, can you assist me?",
+    "timestamp": "2023-01-03T10:04:00Z"
+  }
+]

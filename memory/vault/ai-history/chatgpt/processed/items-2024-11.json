@@ -1,0 +1,168 @@
+{
+  "items": [
+    {
+      "id": "e5af631b-ebce-4bf8-b17f-117a1186e5b1",
+      "type": "idea",
+      "content": "Idea: carefully review the document and prepare the requested summary and academic review",
+      "context": "Summarize and Review Request",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-30T21:08:34.930000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.531526"
+    },
+    {
+      "id": "b2b11a39-83cc-4f36-8d07-8ae2cb402271",
+      "type": "preference",
+      "content": "Preference: to complete 2 payments:",
+      "context": "Ownership Expansion Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-22T14:27:55.788000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.544122"
+    },
+    {
+      "id": "6b183593-f550-42be-ada4-39eed74a1c61",
+      "type": "preference",
+      "content": "Preference: your help in creating a mechanism so I can both earn more shares in the company and have the ability to buy more shares at a discount in the future",
+      "context": "Ownership Expansion Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-22T14:27:55.788000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.544134"
+    },
+    {
+      "id": "9c1035a6-bf37-479a-bd5a-20ee7b0e02d8",
+      "type": "technique",
+      "content": "Technique: achieve a majority stake (over 50%) in Solartia in the near future, here are some suggestions:",
+      "context": "Ownership Expansion Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-22T14:27:55.788000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.544909"
+    },
+    {
+      "id": "3a1218cd-a017-42dc-bf8e-4eb87b3acccd",
+      "type": "idea",
+      "content": "Idea: then be able to pay the second tranche through retained earnings or through debt, or through selling more equity - whatever is most favourable at the time",
+      "context": "Ownership Expansion Strategy",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-22T14:27:55.788000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.545408"
+    },
+    {
+      "id": "95091953-74e8-45de-9055-75c7bbdea2ac",
+      "type": "decision",
+      "content": "Decided: future technologies like AI and blockchain",
+      "context": "Lightning Bolt Icon Request",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-15T10:39:46.378314",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.547969"
+    },
+    {
+      "id": "43a2249c-4621-4b76-8158-de98b8c678f2",
+      "type": "idea",
+      "content": "Idea: use future technologies like AI and blockchain",
+      "context": "Lightning Bolt Icon Request",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-15T10:39:46.378314",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.550362"
+    },
+    {
+      "id": "5daf1452-77af-4ccf-bebd-9aa2424000b7",
+      "type": "technique",
+      "content": "Technique: troubleshoot and resolve the issue:",
+      "context": "PDF Upload Error Fix",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-15T17:07:11.844457",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.552008"
+    },
+    {
+      "id": "412058e2-9fc4-43bd-9862-e5e79773fd68",
+      "type": "technique",
+      "content": "Technique: open it on your device to make sure it loads correctly",
+      "context": "PDF Upload Error Fix",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-15T17:07:11.844457",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.552112"
+    },
+    {
+      "id": "a9bceaef-b19c-47d6-81d9-61b578983a5d",
+      "type": "technique",
+      "content": "Technique: identify and connect with international search funds that align with your acquisition objectives",
+      "context": "Search Funds for Acquisition",
+      "source": "chatgpt",
+      "sourceDate": "2024-11-07T11:26:47.725177",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.556691"
+    }
+  ]
+}

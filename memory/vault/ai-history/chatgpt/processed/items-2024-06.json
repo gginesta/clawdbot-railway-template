@@ -1,0 +1,338 @@
+{
+  "items": [
+    {
+      "id": "cebd7e3a-e35b-4e02-b185-87d2dde2debc",
+      "type": "decision",
+      "content": "Decided: for a week that's really simple and easy to pack",
+      "context": "Meal Plan for Gluten Intolerant",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-17T15:28:08.582923",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.720219"
+    },
+    {
+      "id": "1f458824-f674-4c36-977c-24dc3ce68cd0",
+      "type": "preference",
+      "content": "Preference: lean meats (chicken, fish), I do not eat pork, and prefer low carb meals",
+      "context": "Meal Plan for Gluten Intolerant",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-17T15:28:08.582923",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.727470"
+    },
+    {
+      "id": "210502b0-470a-469b-b2ef-af5ccb9c5345",
+      "type": "preference",
+      "content": "Preference: beans, tend to avoid rice and heavy starchy foods",
+      "context": "Meal Plan for Gluten Intolerant",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-17T15:28:08.582923",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.727514"
+    },
+    {
+      "id": "efd0a452-a370-457b-b5dd-49e9513a7b0d",
+      "type": "idea",
+      "content": "Idea: for lunch and dinner as I'd like to get my domestic helper to send me lunch boxes daily",
+      "context": "Meal Plan for Gluten Intolerant",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-17T15:28:08.582923",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.740231"
+    },
+    {
+      "id": "749ac099-516b-4750-83cf-d56bd0b061a0",
+      "type": "preference",
+      "content": "Preference: to make sure I dont miss any key milestones so want to create events in my calendar",
+      "context": "Key Milestones & School Planning",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-28T10:17:30.493900",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.808162"
+    },
+    {
+      "id": "5c04fffd-96f8-44ff-ac1a-dba158ce2a63",
+      "type": "idea",
+      "content": "Idea: make sure I dont miss any key milestones so want to create events in my calendar",
+      "context": "Key Milestones & School Planning",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-28T10:17:30.493900",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.809456"
+    },
+    {
+      "id": "e832a928-f982-44fc-97aa-3189fb2408fd",
+      "type": "idea",
+      "content": "Idea: fully acquire Solartia",
+      "context": "Investment Opportunity Analysis",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-28T10:07:30.983852",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.818476"
+    },
+    {
+      "id": "f2b9ccce-253b-4b02-b565-b15272a1b4ec",
+      "type": "technique",
+      "content": "Technique: omit text definitions",
+      "context": "Flowchart for Making Pizza",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-26T10:50:22.669647",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.837299"
+    },
+    {
+      "id": "e4e7c9fd-e5d9-4d1b-bd4c-bd558f77a4ed",
+      "type": "technique",
+      "content": "Technique: then describe dependencies in a very expressive way",
+      "context": "Flowchart for Making Pizza",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-26T10:50:22.669647",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.837326"
+    },
+    {
+      "id": "b1902993-4030-4d1f-a8fc-07ea758004c4",
+      "type": "preference",
+      "content": "Preference: to know in order to hold a call with a prospective buyer",
+      "context": "Diesel Transaction Process",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-18T19:21:33.080345",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.849653"
+    },
+    {
+      "id": "df8d6310-926b-46c7-8a5c-9b7cbe4e150a",
+      "type": "technique",
+      "content": "Technique: extract any relevant information (process, prices, etc) for a potential transaction for diesel",
+      "context": "Diesel Transaction Process",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-18T19:21:33.080345",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.852948"
+    },
+    {
+      "id": "4cef40a8-6ee2-41af-9afe-a528fcf80ac2",
+      "type": "idea",
+      "content": "Idea: help ensure a smooth and informed conversation with the prospective buyer, making it clear that all aspects of the transaction are professionally managed",
+      "context": "Diesel Transaction Process",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-18T19:21:33.080345",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.855332"
+    },
+    {
+      "id": "75e49280-4afe-476e-b124-98700a1d7347",
+      "type": "preference",
+      "content": "Preference: a database that looks at a List of government or sovereign funds that invest in other funds (ie Funds of Funds) or funding matching schemes, in Asia Pacific",
+      "context": "Government Funds in Asia",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-18T14:07:28.435282",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.859226"
+    },
+    {
+      "id": "8f18df69-26e3-46e5-a85a-e2dd12025f69",
+      "type": "preference",
+      "content": "Preference: your help writing a contract or agreement to start our first engagement with our first client",
+      "context": "Contract Drafting Assistance Requested",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-06T14:22:40.554752",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.868362"
+    },
+    {
+      "id": "d7d52304-834c-44b2-bb05-5fe93456316a",
+      "type": "preference",
+      "content": "Preference: to cover things like the scope of work and terms",
+      "context": "Contract Drafting Assistance Requested",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-06T14:22:40.554752",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.868390"
+    },
+    {
+      "id": "2b78efe0-a45c-47c9-9a06-d85b6ad5a27a",
+      "type": "idea",
+      "content": "Idea: provide an Executive Marketing Assistant to Legends Playing Card Co",
+      "context": "Contract Drafting Assistance Requested",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-06T14:22:40.554752",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.872999"
+    },
+    {
+      "id": "c27a2700-d2cb-46bc-b8ce-538466cfae6d",
+      "type": "preference",
+      "content": "Preference: your help reviewing it and checking the risk for me",
+      "context": "Acquisition Funding Options: Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-05T09:28:03.301799",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.884052"
+    },
+    {
+      "id": "8253f50e-5532-484a-8990-7c31142025c2",
+      "type": "technique",
+      "content": "Technique: move forward with the acquisition of Solartia in a way that aligns with your financial and strategic goals",
+      "context": "Acquisition Funding Options: Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-05T09:28:03.301799",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.887373"
+    },
+    {
+      "id": "c499ad8f-e8a1-4a36-93f0-7c4ffc07af82",
+      "type": "technique",
+      "content": "Technique: mitigate some of the potential risks associated with this loan agreement and create a more favorable structure for your acquisition of Solartia",
+      "context": "Acquisition Funding Options: Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-05T09:28:03.301799",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.887393"
+    },
+    {
+      "id": "d2bce034-e36a-447d-9bc5-036da966c13b",
+      "type": "idea",
+      "content": "Idea: showcasing Solartia's strong performance, growth prospects, and future pipeline to attract lenders",
+      "context": "Acquisition Funding Options: Summary",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-05T09:28:03.301799",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.889012"
+    },
+    {
+      "id": "796bfbc6-1737-49d5-ae99-1342ee837f12",
+      "type": "idea",
+      "content": "Idea: drive innovation, attract new investments, and strengthen Hong Kong's position as a leading fintech hub",
+      "context": "Stablecoins Enhancing Global Commerce.",
+      "source": "chatgpt",
+      "sourceDate": "2024-06-04T10:43:15.163752",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.891485"
+    }
+  ]
+}

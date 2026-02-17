@@ -1,0 +1,346 @@
+{
+  "items": [
+    {
+      "id": "332ce1c9-e913-4274-be61-34a31c98a013",
+      "type": "preference",
+      "content": "Preference: your help with a little report as to a potential new home city closer to our respective families so we can see them more often and where we can build our life's next chapter",
+      "context": "New Home City Ideas",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-29T13:34:57.688000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.927680"
+    },
+    {
+      "id": "f2a2221f-7c17-46c8-bfb4-828b4447d818",
+      "type": "technique",
+      "content": "Technique: reach most Spanish cities via high-speed train (AVE) and fly direct to countless global destinations【32†L359-L366】",
+      "context": "New Home City Ideas",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-29T13:34:57.688000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.931282"
+    },
+    {
+      "id": "f4380235-4d37-492c-8fe1-71247da7d486",
+      "type": "technique",
+      "content": "Technique: choose a ~**3-hour train** ride or one of ~3 daily flights (about **1 hour flight time**【5†L21-L29】) from Madrid to Pamplona",
+      "context": "New Home City Ideas",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-29T13:34:57.688000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.931296"
+    },
+    {
+      "id": "fe53a09f-5dc1-4b63-af88-7563db611852",
+      "type": "idea",
+      "content": "Idea: you be working remotely, starting a business, seeking local employment, or something else",
+      "context": "New Home City Ideas",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-29T13:34:57.688000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.933887"
+    },
+    {
+      "id": "a4ec64ec-6a7c-472b-ac92-849a12c743ef",
+      "type": "technique",
+      "content": "Technique: switch to GPT-4o, which supports detailed image generation based on specific instructions",
+      "context": "Toy Action Figure Design",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-28T13:21:42.925000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.945258"
+    },
+    {
+      "id": "409a2174-fd70-4397-99f3-541de351f664",
+      "type": "technique",
+      "content": "Technique: use msearch to search it for additional information",
+      "context": "Revisión financiera Solartia",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-09T11:16:45.576000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.950152"
+    },
+    {
+      "id": "0e972aaf-9865-4ffc-bb2b-0597ce85d05a",
+      "type": "technique",
+      "content": "Technique: ask Solartia’s management to ensure a thorough understanding of their financial position, operational status, and business strategy:",
+      "context": "Revisión financiera Solartia",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-09T11:16:45.576000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.950167"
+    },
+    {
+      "id": "d6d822b1-7512-4a79-b749-28102667a4ca",
+      "type": "idea",
+      "content": "Idea: associated risks be mitigated",
+      "context": "Revisión financiera Solartia",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-09T11:16:45.576000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:55.950679"
+    },
+    {
+      "id": "afffcf9b-1ac2-4d09-9812-5c810be9298c",
+      "type": "lesson",
+      "content": "Learned: a second treasure: The Triple-Lock Chest",
+      "context": "Pirate Quest Begins",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T15:20:03.734000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.014733"
+    },
+    {
+      "id": "99a88bce-6814-4b0c-8a35-917d03ef8666",
+      "type": "preference",
+      "content": "Preference: to be a mighty pirate",
+      "context": "Pirate Quest Begins",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T15:20:03.734000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.021883"
+    },
+    {
+      "id": "8b704211-d953-4d36-b14c-2497ccd85efc",
+      "type": "preference",
+      "content": "Preference: your style — you remind me of me",
+      "context": "Pirate Quest Begins",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T15:20:03.734000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.021900"
+    },
+    {
+      "id": "e51d33e3-d680-45c5-9c2b-3804cf5fb628",
+      "type": "technique",
+      "content": "Technique: now trade the pearl to **Captain Sootbeard** for passage to the *Xin*",
+      "context": "Pirate Quest Begins",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T15:20:03.734000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.036884"
+    },
+    {
+      "id": "cc1e8a5e-f541-46fa-b2b2-7af7b063c774",
+      "type": "technique",
+      "content": "Technique: feel the painting sealed inside — waiting to be revealed under the right moonlight",
+      "context": "Pirate Quest Begins",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T15:20:03.734000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.036900"
+    },
+    {
+      "id": "6e6a61cb-691c-4df7-bc91-00cd1b792939",
+      "type": "technique",
+      "content": "Technique: launch your 24/7 genre-specific music radio stream",
+      "context": "Launching Digital Radio Station",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T12:57:22.726000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.068343"
+    },
+    {
+      "id": "7307015f-9425-486a-b90c-322c09aedb5a",
+      "type": "technique",
+      "content": "Technique: during a less critical time as you learn the ropes",
+      "context": "Launching Digital Radio Station",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T12:57:22.726000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.068361"
+    },
+    {
+      "id": "f2ff21a1-0f84-4d62-a3fa-03a6b7a4d8dc",
+      "type": "technique",
+      "content": "Technique: always expand with live DJ slots or talk segments later",
+      "context": "Launching Digital Radio Station",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T12:57:22.726000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.069374"
+    },
+    {
+      "id": "aa11e5b7-3d83-4586-9791-f5fe826162fd",
+      "type": "technique",
+      "content": "Technique: run free server software like **Icecast** or **SHOUTcast** on a machine (your PC or a rented server)",
+      "context": "Launching Digital Radio Station",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T12:57:22.726000",
+      "confidence": "medium",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.069383"
+    },
+    {
+      "id": "2a456302-cd9b-422b-bdf8-98fa67176477",
+      "type": "idea",
+      "content": "Idea: on how I can get this done",
+      "context": "Launching Digital Radio Station",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T12:57:22.726000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.071141"
+    },
+    {
+      "id": "ade97977-3dd3-44ed-a519-96e0a988f333",
+      "type": "idea",
+      "content": "Idea: higher stream quality (e",
+      "context": "Launching Digital Radio Station",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-08T12:57:22.726000",
+      "confidence": "low",
+      "tags": [
+        "personal"
+      ],
+      "relatedTo": [
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.072326"
+    },
+    {
+      "id": "37868d23-4be1-427e-8980-af496a692002",
+      "type": "idea",
+      "content": "Idea: development, followed by a validation phase",
+      "context": "Best APAC Accelerator Alternatives",
+      "source": "chatgpt",
+      "sourceDate": "2025-04-01T15:58:14.116000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:56.075311"
+    }
+  ]
+}

@@ -53,6 +53,16 @@
 - Quiet hours: 23:00-08:00 HKT unless urgent
 - Edit HEARTBEAT.md for periodic checks; use cron for exact timing
 
+## Shared Memory Vault
+- **Molty's indexed copy:** `/data/workspace/memory/vault/` (only Molty has this under memory/)
+- **Syncthing source:** `/data/shared/memory-vault/` (all agents can write here)
+- **Protocol:** See `CONTRIBUTION_PROTOCOL.md` in the vault
+- **When to contribute:** P1/P2 decisions, lessons learned, people dossiers, project status
+- **Format:** Include metadata header `<!-- agent: molty | type: decision | priority: P1 | date: YYYY-MM-DD -->`
+- **File naming:** `decisions/YYYY-MM-DD-<slug>.md`, `lessons/YYYY-MM-DD-<slug>.md`, `people/<name>.md`
+- **Rules:** Append only (never overwrite other agents' entries). No secrets. One concept per file.
+- **Indexing:** OpenAI builtin indexes `memory/vault/` automatically. Other agents do NOT index the vault — compartmentalization.
+
 ## Model Escalation
 - Complex tasks (code, strategy, deep analysis) → suggest `/model opus`
 - Simple tasks (status, reminders, quick questions) → stay on current model

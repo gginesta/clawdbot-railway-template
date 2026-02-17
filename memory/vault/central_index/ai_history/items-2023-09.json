@@ -1,0 +1,139 @@
+{
+  "items": [
+    {
+      "id": "1aa8675d-19b3-41fa-b227-c70ba06c050a",
+      "type": "decision",
+      "content": "Decided: the Right Person:** How to identify the best person or service for the task",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.442834"
+    },
+    {
+      "id": "69444f69-e1dd-43e8-a6bc-c8c507aa66e2",
+      "type": "decision",
+      "content": "Decided: the right term can make a big difference in perception and value",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.442850"
+    },
+    {
+      "id": "e85b3fb2-f686-4bff-964a-0b0eab52d8cd",
+      "type": "preference",
+      "content": "Preference: your help with some copy related to the service",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.447799"
+    },
+    {
+      "id": "494e3a8d-5f87-4324-b6e4-d583616e341c",
+      "type": "preference",
+      "content": "Preference: to have a label that is less 'dismissive' of their skills and expertise",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.447815"
+    },
+    {
+      "id": "da7adbeb-1731-423f-a213-2ebd342a9d49",
+      "type": "technique",
+      "content": "Technique: Effective Delegation**",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.449890"
+    },
+    {
+      "id": "34407591-6ee6-426c-9147-37afca6f2d2b",
+      "type": "technique",
+      "content": "Technique: follow, and underscores the value of both dependable performers and brilliant superstars in a company's growth journey",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.449916"
+    },
+    {
+      "id": "bb4da624-7d38-473e-955e-4ac5df6a4282",
+      "type": "technique",
+      "content": "Technique: invest in creating, innovating, and growing",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.451245"
+    },
+    {
+      "id": "a072a51d-4d15-4706-85e7-4f652cbdd3e8",
+      "type": "technique",
+      "content": "Technique: and shouldn't be doing",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.451275"
+    },
+    {
+      "id": "b8fe6b20-ad36-4588-96a7-7048cf14df0f",
+      "type": "idea",
+      "content": "Idea: hiring a new marketing person help with sales",
+      "context": "Copy Suggestions for Virtual Tribe",
+      "source": "chatgpt",
+      "sourceDate": "2023-09-26T15:44:35.219192",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:57.454317"
+    }
+  ]
+}

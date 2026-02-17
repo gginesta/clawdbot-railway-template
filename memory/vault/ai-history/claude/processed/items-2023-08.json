@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "id": "4af5408b-f2d9-44e0-a0d2-f22b01cc16eb",
+      "type": "preference",
+      "content": "Preference: to start a call outreach campaign and need your help",
+      "context": "Low-Budget Lead Generation for Virtual Tribe Launch",
+      "source": "claude",
+      "sourceDate": "2023-08-30T01:23:12.730110Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.123322"
+    },
+    {
+      "id": "231730cf-9405-4c7d-b56a-158b96e302d4",
+      "type": "idea",
+      "content": "Idea: start a call outreach campaign and need your help",
+      "context": "Low-Budget Lead Generation for Virtual Tribe Launch",
+      "source": "claude",
+      "sourceDate": "2023-08-30T01:23:12.730110Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.124059"
+    },
+    {
+      "id": "8c4d7cdd-cfad-4ef7-9b98-86f47914fe88",
+      "type": "idea",
+      "content": "Idea: moderate a panel on the \"Future of Web3 Entertainment\" as part of the https://delf",
+      "context": "Future Entertainment at DELF: Web3 Panel Moderation",
+      "source": "claude",
+      "sourceDate": "2023-08-24T02:21:41.752176Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.153090"
+    }
+  ]
+}

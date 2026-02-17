@@ -1,0 +1,591 @@
+{
+  "items": [
+    {
+      "id": "4e5f5e1a-1706-4737-ac42-3fa21024fe0b",
+      "type": "decision",
+      "content": "Decided: rights & downside scenarios",
+      "context": "Partnership model questions",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-19T11:18:08.147000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.197333"
+    },
+    {
+      "id": "6d20f3c2-833d-4cd0-8da3-b2502681b0b8",
+      "type": "preference",
+      "content": "Preference: your help in creating a few questions for clarification from Management/Brinc HQ so I can then use these to create a thorough partnership model",
+      "context": "Partnership model questions",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-19T11:18:08.147000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.228301"
+    },
+    {
+      "id": "1f708526-4d3a-4f69-bd49-600867c0d965",
+      "type": "preference",
+      "content": "Preference: your help with first editing the SAFE note as that will govern everything else and in drafting an email reply",
+      "context": "Partnership model questions",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-19T11:18:08.147000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.228317"
+    },
+    {
+      "id": "1a839990-432e-4b8b-a9a5-86017cae10d2",
+      "type": "technique",
+      "content": "Technique: becoming employees and shareholders of new entity when set up",
+      "context": "Partnership model questions",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-19T11:18:08.147000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.237052"
+    },
+    {
+      "id": "e209f365-4cf4-4c8c-8ea1-a9a240ff3bbb",
+      "type": "technique",
+      "content": "Technique: becoming employees and shareholders of NewCo",
+      "context": "Partnership model questions",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-19T11:18:08.147000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.237070"
+    },
+    {
+      "id": "e6843023-882e-44ae-b48f-726f9837f5d5",
+      "type": "technique",
+      "content": "Technique: put to Brinc HQ, building on the working doc you shared",
+      "context": "Partnership model questions",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-19T11:18:08.147000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.241589"
+    },
+    {
+      "id": "9a94d5c8-03d7-49fe-bbe8-7df9beca9d9b",
+      "type": "technique",
+      "content": "Technique: structure the conversation (and later, the partnership agreement) around these sections",
+      "context": "Partnership model questions",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-19T11:18:08.147000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.241603"
+    },
+    {
+      "id": "d8d02457-6728-49fb-b245-3bfb4f1e96d5",
+      "type": "idea",
+      "content": "Idea: understand if this is a role we need to account for in our budget; as well as their utilisation rate",
+      "context": "Partnership model questions",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-19T11:18:08.147000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.250677"
+    },
+    {
+      "id": "d4cac011-5326-4447-bfec-7bcbef1dfce6",
+      "type": "preference",
+      "content": "Preference: to create a trivia game on Replit",
+      "context": "Trivia game scoping document",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-25T11:46:52.078000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.543448"
+    },
+    {
+      "id": "3938f665-e635-46b9-b5ef-72cb488f38fe",
+      "type": "preference",
+      "content": "Preference: to tie them together by creating a master \"game\" that acts as a landing page or room for users then to create an account (or enter as guests) and select the game they want to play",
+      "context": "Trivia game scoping document",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-25T11:46:52.078000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.543480"
+    },
+    {
+      "id": "f883ab9a-5fd8-4298-a36f-14199d692b8e",
+      "type": "technique",
+      "content": "Technique: drop into Notion/Docs and refine as you go",
+      "context": "Trivia game scoping document",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-25T11:46:52.078000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.563906"
+    },
+    {
+      "id": "ca8bcd68-82b1-483b-858f-7cc5f7e1ab21",
+      "type": "technique",
+      "content": "Technique: paste this straight into Notion/Docs and iterate",
+      "context": "Trivia game scoping document",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-25T11:46:52.078000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.563922"
+    },
+    {
+      "id": "ec528fa9-724d-4dc3-9d86-a565dbdf46a8",
+      "type": "idea",
+      "content": "Idea: create a trivia game on Replit",
+      "context": "Trivia game scoping document",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-25T11:46:52.078000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.579383"
+    },
+    {
+      "id": "3d863112-a021-41d4-b64d-335f742df7cf",
+      "type": "preference",
+      "content": "Preference: your help writing an updated CV and cover letter for a board position for a Middle Eastern organization establishing an innovation-focused free zone for emerging technologies and entrepreneurship",
+      "context": "CV and cover letter help",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-05T11:49:44.070000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.802911"
+    },
+    {
+      "id": "2d15ed2f-ea02-4fdf-9873-bfd28b30960d",
+      "type": "preference",
+      "content": "Preference: a longer CV and a separate cover letter",
+      "context": "CV and cover letter help",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-05T11:49:44.070000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.802928"
+    },
+    {
+      "id": "5d82a630-9429-4cf9-87ef-f620a0976d78",
+      "type": "technique",
+      "content": "Technique: comfortably publish (revenue growth, funds deployed, # startups accelerated, jobs created, public partnerships)",
+      "context": "CV and cover letter help",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-05T11:49:44.070000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.811289"
+    },
+    {
+      "id": "57f415f1-a482-4c25-b49a-3f933b744121",
+      "type": "technique",
+      "content": "Technique: comfortably publish (revenue growth, funds deployed, # startups accelerated, jobs created, public partnerships)",
+      "context": "CV and cover letter help",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-05T11:49:44.070000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.811316"
+    },
+    {
+      "id": "b38fedde-396a-464c-a662-3262fb1a7989",
+      "type": "idea",
+      "content": "Idea: make sure my profile is as suitable and be made seen as relevant as possible",
+      "context": "CV and cover letter help",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-05T11:49:44.070000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.818140"
+    },
+    {
+      "id": "c1963424-2b98-4383-b58a-4e844dc71ebb",
+      "type": "decision",
+      "content": "Decided: the right type of capital to meet",
+      "context": "Evaluate project offer",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-11T21:28:35.620000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.835952"
+    },
+    {
+      "id": "cfae7545-ac05-4af5-a20c-351a3a807d3f",
+      "type": "technique",
+      "content": "Technique: see lines are **25–60% built** depending on the town",
+      "context": "Project evaluation support",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-11T21:24:31.942000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.881806"
+    },
+    {
+      "id": "b083108c-a633-46e3-bf3a-58194a29baf1",
+      "type": "decision",
+      "content": "Decided: move for lifestyle or family reasons (e",
+      "context": "Financials analysis summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-08T11:29:34.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:52.981283"
+    },
+    {
+      "id": "c60f049c-d29a-4751-923e-321632aa9ac6",
+      "type": "technique",
+      "content": "Technique: always follow up with a web search if necessary for a more complete response",
+      "context": "Financials analysis summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-08T11:29:34.966000",
+      "confidence": "medium",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.074684"
+    },
+    {
+      "id": "12d9fbfe-51f6-4baf-b1e6-9dc04971e4f7",
+      "type": "idea",
+      "content": "Idea: be able to pay its debts as and when they fall",
+      "context": "Financials analysis summary",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-08T11:29:34.966000",
+      "confidence": "low",
+      "tags": [
+        "mana"
+      ],
+      "relatedTo": [
+        "mana",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.100223"
+    },
+    {
+      "id": "e5afbd88-8769-4e44-aecb-a4a213a9ac07",
+      "type": "preference",
+      "content": "Preference: your help finding flights please",
+      "context": "Flight search assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-08T12:26:29.471000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.116271"
+    },
+    {
+      "id": "494fdadf-6750-4b0f-891c-67fe3aeb64a3",
+      "type": "preference",
+      "content": "Preference: Cathay Pacific if possible, then check oneworld carriers",
+      "context": "Flight search assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-08T12:26:29.471000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.116292"
+    },
+    {
+      "id": "1b2bd318-60e4-4404-97e7-1391b74f3e5f",
+      "type": "technique",
+      "content": "Technique: combine the best offers for each leg",
+      "context": "Flight search assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-08T12:26:29.471000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.117132"
+    },
+    {
+      "id": "c7d383c7-629e-4911-b243-f413d2b807bd",
+      "type": "technique",
+      "content": "Technique: download and review it here: {{file:file-DrA3nPMXJtiom2x2ikeNMK}}",
+      "context": "Flight search assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-08T12:26:29.471000",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.117144"
+    },
+    {
+      "id": "12c01bf2-03f2-41e6-8692-b736b1c7e6b1",
+      "type": "idea",
+      "content": "Idea: change airports during connections",
+      "context": "Flight search assistance",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-08T12:26:29.471000",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.117735"
+    },
+    {
+      "id": "8a691569-e0e0-4b61-b7fd-f6ee444f457f",
+      "type": "decision",
+      "content": "Decided: timeline:** What can we agree in-principle tomorrow vs what needs legal/tax workups",
+      "context": "Career opportunity model advice",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-03T21:53:14.446000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.193174"
+    },
+    {
+      "id": "47a129cc-b6af-4053-b0b7-bf4342caef13",
+      "type": "preference",
+      "content": "Preference: you to become my strategic and financial advisor as I consider a career opportunity",
+      "context": "Career opportunity model advice",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-03T21:53:14.446000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.200504"
+    },
+    {
+      "id": "2cf14ed6-caac-4ba2-ae5a-d6310b552709",
+      "type": "preference",
+      "content": "Preference: your help going back and forth to think of all possible variables before we come up with a model together",
+      "context": "Career opportunity model advice",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-03T21:53:14.446000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.200530"
+    },
+    {
+      "id": "7d2a0232-705a-4ed6-a709-1ff9acb0bb1e",
+      "type": "technique",
+      "content": "Technique: start dropping numbers",
+      "context": "Career opportunity model advice",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-03T21:53:14.446000",
+      "confidence": "medium",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.204700"
+    },
+    {
+      "id": "a6a53c23-10fb-4841-a33f-31491549e54c",
+      "type": "idea",
+      "content": "Idea: be structured as a partnership where every region will be it's own entity, majority owned by Brinc corporate and part owned by partners running the business in the region",
+      "context": "Career opportunity model advice",
+      "source": "chatgpt",
+      "sourceDate": "2025-11-03T21:53:14.446000",
+      "confidence": "low",
+      "tags": [
+        "brinc"
+      ],
+      "relatedTo": [
+        "brinc",
+        "personal"
+      ],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:53.208412"
+    }
+  ]
+}

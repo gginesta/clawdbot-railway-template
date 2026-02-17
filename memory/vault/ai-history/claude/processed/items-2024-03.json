@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "id": "94591f62-08b5-4428-bf27-31336f8382b8",
+      "type": "preference",
+      "content": "Preference: your help figuring out my outfit",
+      "context": "Dark Suit and Contrasting Looks for Malaga Wedding Party",
+      "source": "claude",
+      "sourceDate": "2024-03-29T05:32:37.048697Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.093275"
+    },
+    {
+      "id": "29ee2c70-1ca5-4155-a373-6161b3add5c7",
+      "type": "preference",
+      "content": "Preference: darker colours as I am a little on the pale and slim side",
+      "context": "Dark Suit and Contrasting Looks for Malaga Wedding Party",
+      "source": "claude",
+      "sourceDate": "2024-03-29T05:32:37.048697Z",
+      "confidence": "medium",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.093286"
+    },
+    {
+      "id": "66d11246-78d7-4bb5-9992-e54c3dd56492",
+      "type": "idea",
+      "content": "Idea: consider a few things:",
+      "context": "Dark Suit and Contrasting Looks for Malaga Wedding Party",
+      "source": "claude",
+      "sourceDate": "2024-03-29T05:32:37.048697Z",
+      "confidence": "low",
+      "tags": [
+        "general"
+      ],
+      "relatedTo": [],
+      "sensitive": false,
+      "extractedAt": "2026-02-02T14:09:58.094099"
+    }
+  ]
+}

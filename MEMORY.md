@@ -41,8 +41,8 @@
 - **Primary model:** Claude Opus 4.6 | Fallbacks: Sonnet 4, GPT-5.2, Grok 3
 - **Sub-agents:** Qwen Coder (cheap) or Flash (capable)
 - **Cron model:** `openrouter/anthropic/claude-3.5-haiku` (Flash had issues)
-- **Memory backend:** QMD local (all 3 agents standardised 2026-02-17)
-- **QMD XDG paths:** `~/.openclaw/agents/<id>/qmd/xdg-{config,cache}/` — must set these for CLI access
+- **Memory backend:** OpenAI `text-embedding-3-small` (switched from QMD 2026-02-17 21:00 HKT)
+- **Architect pattern:** Only Molty indexes the shared vault (under `memory/vault/`). Other agents search only their own workspace.
 - **Browser:** Brave headless (not Chromium — #3941 timeout bug)
 - **QMD:** Local memory search (BM25 + vectors)
 - **Heartbeat:** 1h | Context pruning: cache-ttl 4h
@@ -156,6 +156,10 @@
 28. **Model allowlist ≠ provider models.** `agents.defaults.models` and `models.providers.*.models` are separate. Both must exist or "model not allowed" errors.
 29. **Pushing to shared Railway template repo triggers redeployments for ALL agents.** Use a staging branch or coordinate timing. Don't push to main and then get surprised when you go down.
 30. **Always check XDG paths for OpenClaw-managed QMD.** Default `qmd status` shows empty index. Real index at `~/.openclaw/agents/<id>/qmd/xdg-cache/qmd/index.sqlite`.
+31. **QMD hybrid search needs ~6GB RAM.** Reranker + query expansion models OOM on Railway. Not viable until lighter models ship.
+32. **OpenClaw builtin only indexes `MEMORY.md` + `memory/**/*.md`.** `extraPaths` is QMD-only. To index external files, put them under `memory/`.
+33. **Evaluate before brute-forcing.** PPEE exists for a reason.
+34. **Simpler is almost always better.** 3 lines of config beats a complex multi-system architecture.
 
 ---
 

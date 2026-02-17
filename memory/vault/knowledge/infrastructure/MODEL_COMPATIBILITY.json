@@ -1,0 +1,38 @@
+{
+    "models": {
+        "anthropic/claude-opus-4-6": {
+            "input_types": ["text", "image", "code"],
+            "surfaces": ["discord", "webchat"],
+            "priority": "primary"
+        },
+        "anthropic/claude-sonnet-4": {
+            "input_types": ["text", "code"],
+            "surfaces": ["telegram", "webchat"],
+            "priority": "fallback"
+        },
+        "openrouter/google/gemini-2.5-flash": {
+            "input_types": ["text"],
+            "surfaces": ["telegram", "discord"],
+            "priority": "emergency"
+        },
+        "z-ai/glm-5": {
+            "input_types": ["text"],
+            "surfaces": ["telegram"],
+            "priority": "last_resort"
+        }
+    },
+    "surface_restrictions": {
+        "telegram": {
+            "allowed_input_types": ["text"],
+            "max_tokens": 4096
+        },
+        "webchat": {
+            "allowed_input_types": ["text", "image"],
+            "max_tokens": 16384
+        },
+        "discord": {
+            "allowed_input_types": ["text", "image", "code"],
+            "max_tokens": 32768
+        }
+    }
+}
