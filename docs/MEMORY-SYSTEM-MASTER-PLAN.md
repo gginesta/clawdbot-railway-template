@@ -89,7 +89,9 @@ Approved by Guillermo. Rationale: OpenClaw's development direction, session tran
   - Gateway restart will trigger QMD collection creation + initial indexing
 - [ ] Verify: `qmd status` shows collections being created
 - [ ] Verify: `memory_search` returns results
-- **Risk:** Gateway restart = brief downtime. OpenAI search remains as fallback.
+- **Issue found (17:10 HKT):** After gateway restart, QMD binary was wiped (not in Dockerfile). Fell back to OpenAI.
+- **Permanent fix:** Added bun + QMD to Dockerfile runtime stage (commit `3962a31`). Pushed to `gginesta/clawdbot-railway-template` — triggers redeployment for all agents.
+- After redeployment, QMD binary will persist across all future restarts.
 - **Rollback:** Remove `memory.backend` config → reverts to OpenAI embeddings
 
 **Step 1.3 — Confirm consistent embedding model**
