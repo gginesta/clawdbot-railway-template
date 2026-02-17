@@ -97,6 +97,13 @@ RUN set -eux; \
 # `openclaw update` expects pnpm. Provide it in the runtime image.
 RUN corepack enable && corepack prepare pnpm@10.23.0 --activate
 
+# Install Bun + QMD (memory search backend) in runtime image
+# QMD provides hybrid BM25 + vector search for OpenClaw memory
+RUN curl -fsSL https://bun.sh/install | bash \
+  && /root/.bun/bin/bun install -g @tobilu/qmd \
+  && ln -sf /root/.bun/bin/qmd /usr/local/bin/qmd
+ENV PATH="/root/.bun/bin:${PATH}"
+
 ENV CHROME_PATH=/usr/bin/chromium
 ENV BRAVE_PATH=/usr/bin/brave-browser
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
