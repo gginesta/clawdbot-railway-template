@@ -116,46 +116,45 @@ Each agent runs a weekly check reporting to `#command-center`:
 
 ---
 
-## What Has Been Done (Audit)
+## Completion Audit (as of 2026-02-17 21:28 HKT)
 
-### ✅ Keep — Still valuable under A1
+| Item | Status |
+|------|--------|
+| QMD config removed from Molty | ✅ Done |
+| QMD binary disabled (`qmd.disabled`) | ✅ Done |
+| Orphaned index `/root/.cache/qmd/` removed | ✅ Done |
+| cmake removed | ✅ Done |
+| Symlink `memory/shared-vault` removed | ✅ Done |
+| `memory/vault/` created with 297 files | ✅ Done |
+| `memory/squad/` created with 14 squad-core docs | ✅ Done |
+| Squad mirror in shared vault for leads | ✅ Done |
+| MEMORY.md updated | ✅ Done |
+| AGENTS.md updated | ✅ Done |
+| CONTRIBUTION_PROTOCOL.md QMD refs fixed | ✅ Done |
+| Old docs archived to `docs/archive/memory/` | ✅ Done |
+| Config backup saved | ✅ Done |
+| Revert snapshot documented | ✅ Done |
+| Weekly health cron created | ✅ Done |
+| Instructions sent to Raphael + Leonardo | ✅ Done |
+| Gate test passed (vault searchable) | ✅ Done |
+| Builtin indexer processing vault files | ⏳ Background (2/297, gradual) |
+| Raphael config switch | ⏳ Awaiting confirmation |
+| Leonardo config switch | ⏳ Awaiting confirmation |
+| Syncthing live sync for vault | 📋 Future (currently a copy) |
+| Syncthing live sync for squad mirror | 📋 Future (currently a copy) |
+| Contribution flow end-to-end test | 📋 Future |
+| QMD binary removal from Dockerfile | 📋 Future (next scheduled update) |
 
-| Item | Why it stays |
-|------|-------------|
-| Shared vault structure (`decisions/`, `lessons/`, `people/`) | Same structure, just accessed differently |
-| `CONTRIBUTION_PROTOCOL.md` | Agents still write to vault, protocol unchanged |
-| Agent instructions (AGENTS.md updates) | Writing protocol still applies |
-| Seed content (2 decisions, 1 lesson in vault) | Useful content |
-| Dockerfile QMD addition (commit `3962a31`) | Harmless — QMD binary in image doesn't hurt. Remove in future cleanup if desired. |
-| Builtin OpenAI index (`/data/.openclaw/memory/main.sqlite`) | This IS our search engine now — 50 files, 260 chunks, 542 embeddings |
-
-### ❌ Remove — No longer needed
-
-| Item | Why it goes | Action |
-|------|-------------|--------|
-| `memory.backend: "qmd"` in config | Switching to OpenAI builtin | Remove from config |
-| `memory.qmd.*` config block | All QMD config | Remove from config |
-| `memorySearch.extraPaths` | Doesn't work with builtin (verified) | Remove from config |
-| QMD XDG paths / index files | Won't be used for search | Leave in place (harmless), clean up later |
-| cmake (installed during debugging) | Not needed | `apt-get remove cmake` |
-| Symlink `memory/shared-vault` | Replace with real directory or Syncthing target | Remove symlink, create proper vault/ |
-| `memory-alt` QMD collection | Never used | Cleaned up with QMD removal |
-| Orphaned index `/root/.cache/qmd/index.sqlite` | Manual accident | Delete |
-
-### ⚠️ Modify — Needs updating
-
-| Item | Change needed |
-|------|---------------|
-| Molty's Syncthing config | Point shared vault folder to `/data/workspace/memory/vault/` instead of `/data/shared/memory-vault/` |
-| AGENTS.md shared vault section | Update path from `/data/shared/memory-vault/` to `/data/workspace/memory/vault/` |
-| Raphael/Leonardo vault write path | They still write to `/data/shared/memory-vault/` — Syncthing syncs it to Molty's `memory/vault/` |
-| MEMORY.md | Update architecture description |
+### Remaining artifacts (harmless, clean up when convenient)
+- QMD binary at `/usr/local/bin/qmd.disabled` — renamed, not running
+- QMD XDG index at `/data/.openclaw/agents/main/qmd/` (~42MB) — orphaned, not used
+- Stale `../shared/memory-vault/` entry in builtin index — will age out naturally
 
 ---
 
-## Execution Plan
+## Execution Plan (Historical — completed 2026-02-17)
 
-### Step 1: Set up Molty's vault directory
+### Step 1: Set up Molty's vault directory ✅
 **What:** Create `memory/vault/` and move shared vault content there. Configure Syncthing to sync this path.
 **Details:**
 - Remove the symlink at `memory/shared-vault`
@@ -165,7 +164,7 @@ Each agent runs a weekly check reporting to `#command-center`:
 **Risk:** Syncthing folder path change could cause a re-sync. Low risk — files are identical.
 **Verify:** `ls memory/vault/decisions/` shows the files we created earlier.
 
-### Step 2: Remove QMD config from Molty
+### Step 2: Remove QMD config from Molty ✅
 **What:** Strip all QMD configuration. Set OpenAI as the provider.
 **Config patch:**
 ```json
@@ -187,7 +186,7 @@ Each agent runs a weekly check reporting to `#command-center`:
 ```
 **Verify:** After restart, `memory_search("Guillermo Hong Kong timezone")` returns results from MEMORY.md.
 
-### Step 3: Verify vault files are searchable on Molty
+### Step 3: Verify vault files are searchable on Molty ✅ (GATE PASSED)
 **What:** Confirm the builtin indexer picks up `memory/vault/**/*.md`.
 **Test:**
 - `memory_search("central feed canary verification test")` → finds test file
@@ -195,7 +194,7 @@ Each agent runs a weekly check reporting to `#command-center`:
 **Gate:** If this fails, the builtin doesn't recurse into `memory/vault/`. Would need to investigate.
 **Fallback:** If subdirectories don't work, flatten key vault files or create a vault summary file.
 
-### Step 4: Standardise Raphael and Leonardo
+### Step 4: Standardise Raphael and Leonardo ✅ (instructions sent, awaiting confirmation)
 **What:** Send config instructions to both agents. Remove QMD backend, set OpenAI.
 **Config for both (via webhook):**
 ```json
@@ -217,7 +216,7 @@ Each agent runs a weekly check reporting to `#command-center`:
 **Verify:** Each agent confirms `memory_search` returns results from their workspace memory.
 **Note:** Each agent also gets `memory/squad/` (read-only mirror of squad-core docs via Syncthing).
 
-### Step 5: Set up squad-core mirror
+### Step 5: Set up squad-core mirror ✅
 **What:** Create `memory/squad/` on each agent with squad-core content (standards, decisions, policies).
 **Details:**
 - Curate squad-core content from vault into `/data/shared/memory-vault/knowledge/squad/`
@@ -225,7 +224,7 @@ Each agent runs a weekly check reporting to `#command-center`:
 - Molty: also has this at `memory/squad/` (can be symlink to `memory/vault/knowledge/squad/` or Syncthing)
 **Verify:** Each agent can `memory_search("change control protocol")` and find squad standards locally.
 
-### Step 6: Verify contribution flow
+### Step 6: Verify contribution flow 📋 (deferred to Friday)
 **What:** Test that an agent can write to the vault and Molty can search it.
 **Test:**
 1. Ask Raphael to write a test file to `/data/shared/memory-vault/decisions/2026-02-17-test-contribution.md`
@@ -235,7 +234,7 @@ Each agent runs a weekly check reporting to `#command-center`:
 5. Same search on Raphael → does NOT find it (compartmentalized)
 6. Clean up test file
 
-### Step 6: Cleanup
+### Step 7: Cleanup ✅
 **What:** Remove artifacts from the QMD experiment.
 - Remove orphaned index: `rm /root/.cache/qmd/index.sqlite`
 - Remove cmake: `apt-get remove -y cmake cmake-data`
@@ -243,7 +242,7 @@ Each agent runs a weekly check reporting to `#command-center`:
 - Archive `docs/OPTION-B-EXECUTION-PLAN.md` → `docs/archive/memory/`
 **Note:** Leave QMD binary in Dockerfile for now — it's harmless and avoids another fleet redeployment. Remove in next scheduled Dockerfile update.
 
-### Step 7: Document and commit
+### Step 8: Document and commit ✅
 **What:** Final documentation pass.
 - Update `MEMORY.md` with new architecture
 - Update `AGENTS.md` vault path
@@ -295,16 +294,28 @@ Each agent runs a weekly check reporting to `#command-center`:
 
 ---
 
-## Phase 4: Quality Improvements (Unchanged — pursue after A1 is stable)
+## Future Work (Friday Feb 21+)
 
-These improvements from the ClawVault analysis apply regardless of backend:
+### Must Do
+- **Confirm Raphael + Leonardo config switches** — check they've applied OpenAI config + `memory/squad/` setup
+- **Syncthing live sync** — Molty's `memory/vault/` and all agents' `memory/squad/` are currently copies, not live Syncthing folders. Reconfigure Syncthing folder mappings so new vault contributions auto-sync.
+- **Contribution flow end-to-end test** — Raphael writes file → Syncthing syncs → Molty searches → found. Raphael can't search it (compartmentalized).
+- **Verify vault indexing completion** — check builtin has indexed all 297 vault files + 14 squad files
 
-- **Memory typing** (`<!-- type: decision | priority: P1 -->`) — tag important entries
-- **Wiki-links** (`[[Guillermo]]`, `[[Cerebro]]`) — cheap knowledge graph
-- **Vault index** (`memory/INDEX.md`) — auto-generated one-liner per file
-- **Priority-aware compaction** — P1 items survive compaction, P3 gets compressed
+### Should Do
+- **Remove QMD binary from Dockerfile** — it's disabled but still in the image. Remove in next scheduled Dockerfile update to save ~5MB.
+- **Clean up QMD XDG index** — `/data/.openclaw/agents/main/qmd/` (~42MB orphaned). Safe to delete.
+- **Weekly health cron on Raphael + Leonardo** — currently only Molty has it. Ask leads to set up their own.
+- **Automate squad mirror updates** — when new squad-core docs are added to the vault, they should auto-propagate to `memory/squad/` on all agents. Syncthing live sync solves this.
+
+### Nice to Have (Phase 4 — Quality)
+- **Memory typing** (`<!-- type: decision | priority: P1 -->`) — tag important entries for priority-aware search
+- **Wiki-links** (`[[Guillermo]]`, `[[Cerebro]]`) — cheap knowledge graph without extra infra
+- **Vault index** (`memory/INDEX.md`) — auto-generated one-liner per file, cron-maintained
+- **Priority-aware compaction** — P1 items survive compaction, P3 gets compressed. Test on one agent for 2 weeks first (per Raphael's advice).
 - **Tiered boot sequence** — priorities.md → MEMORY.md → daily logs
 
 ---
 
-*Previous version of this plan archived to `docs/archive/memory/MASTER-PLAN-QMD-VERSION.md`*
+*Archived docs: `docs/archive/memory/` (13 files including QMD plans, Option B, revert snapshot)*
+*Git commits: `7afb95aa` (A1 switch), subsequent commits for A1.1 squad mirror*
