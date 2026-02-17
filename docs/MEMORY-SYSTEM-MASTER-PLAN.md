@@ -1,7 +1,7 @@
 # Memory System Master Plan — TMNT Squad
 
 *Created: 2026-02-17 | Owner: Molty 🦎 | Status: ACTIVE*
-*Major revision: 2026-02-17 20:55 HKT — Switched from QMD to Option A1 (OpenAI + Architect Pattern)*
+*Major revision: 2026-02-17 21:20 HKT — Incorporated squad feedback: added `memory/squad/` mirror for leads*
 
 ---
 
@@ -9,12 +9,12 @@
 
 | # | Objective | Status | How A1 Achieves It |
 |---|-----------|--------|-------------------|
-| 1 | **Standardise across fleet** | 🔄 Executing | Same OpenAI config on all agents (3 lines) |
-| 2 | **One provider** | 🔄 Executing | OpenAI `text-embedding-3-small` everywhere |
-| 3 | **Complete indexing → Molty as central architect** | 🔄 Executing | Only Molty indexes the shared vault (under `memory/vault/`). Other agents can write to it but don't search it. |
-| 4 | **Consistent embedding index** | 🔄 Executing | Same OpenAI model/dimensions on all agents |
-| 5 | **Full re-indexing** | ⏳ Pending | OpenClaw auto-reindexes when config changes. One-step. |
-| 6 | **Cleanup** | ⏳ Pending | Remove QMD config, orphaned indexes, unused files |
+| 1 | **Standardise across fleet** | ✅ Molty done, fleet pending confirmation | Same OpenAI config on all agents (3 lines). Instructions sent to Raphael + Leonardo. |
+| 2 | **One provider** | ✅ Done | OpenAI `text-embedding-3-small` everywhere |
+| 3 | **Complete indexing → Molty as central architect** | ✅ Done (indexing in progress) | Vault under `memory/vault/`, builtin indexer processing 297 files. Gate test passed. |
+| 4 | **Consistent embedding index** | ✅ Done | Same OpenAI model/dimensions on all agents |
+| 5 | **Full re-indexing** | ✅ Done | Config change triggered automatic reindex. Vault files indexing in background. |
+| 6 | **Cleanup** | ✅ Done | QMD config removed, orphaned indexes deleted, cmake removed, old docs archived. |
 
 ---
 
@@ -29,6 +29,7 @@
 ### Decision: Option A1 — OpenAI + Architect Pattern
 
 **Approved by Guillermo: 2026-02-17 20:53 HKT**
+**Updated with squad feedback: 2026-02-17 21:20 HKT (Raphael + Leonardo review)**
 
 ```
 ┌──────────────────────────────────────────────────┐
@@ -37,34 +38,56 @@
 │    ├── YYYY-MM-DD.md     (own daily logs)         │
 │    ├── refs/             (own reference docs)     │
 │    ├── archive/          (old logs)               │
-│    └── vault/            (Syncthing-shared) ◄─────┤── ONLY Molty indexes this
+│    ├── squad/            (squad-core, shared)     │── mirrored to all leads
+│    └── vault/            (full vault, Syncthing)  │── ONLY Molty has this
 │         ├── decisions/                             │
 │         ├── lessons/                               │
-│         ├── people/                                │
-│         └── ...                                    │
+│         ├── people/        (Molty-only)            │
+│         ├── projects/      (Molty-only)            │
+│         └── knowledge/                             │
+│              └── squad/  ← source for squad/       │
 │  Provider: OpenAI text-embedding-3-small           │
 │  Indexes: everything under memory/ automatically   │
 ├──────────────────────────────────────────────────┤
 │  RAPHAEL 🔴              LEONARDO 🔵              │
 │  memory/                 memory/                   │
 │    ├── YYYY-MM-DD.md     ├── YYYY-MM-DD.md        │
-│    └── refs/             └── refs/                 │
+│    ├── refs/             ├── refs/                 │
+│    └── squad/            └── squad/                │
+│        (standards,           (standards,           │
+│         decisions,            decisions,            │
+│         policies)             policies)             │
 │                                                    │
 │  Provider: OpenAI        Provider: OpenAI          │
 │  Indexes: own memory/    Indexes: own memory/      │
 │  Can WRITE to vault      Can WRITE to vault        │
-│  Cannot SEARCH vault     Cannot SEARCH vault       │
+│  Can SEARCH squad-core   Can SEARCH squad-core     │
+│  Cannot search full vault Cannot search full vault  │
 ├──────────────────────────────────────────────────┤
 │           /data/shared/memory-vault/               │
 │  Syncthing syncs to all agents + Guillermo PC      │
 │  Agents write P1/P2 items here                     │
-│  Only Molty has it under memory/ (as vault/)       │
+│  knowledge/squad/ mirrored to all leads' squad/    │
 └──────────────────────────────────────────────────┘
 ```
 
-**Key principle:** Compartmentalization. Raphael only searches Brinc knowledge. Leonardo only searches Launchpad knowledge. Molty sees everything. Cross-domain queries go through Molty.
+**Key principles:**
+1. **Compartmentalization.** Domain-specific content (people, projects) stays Molty-only.
+2. **No bottleneck.** Leads search squad standards/decisions/policies locally via `memory/squad/`. No routing through Molty for day-to-day ops. (Per Raphael + Leonardo feedback.)
+3. **Architect sees everything.** Molty indexes full vault for cross-domain queries.
 
-**Config for each agent (entire memory section):**
+**What goes in `memory/squad/` (shared with all leads):**
+- Operating standards (change control, sub-agent standard, security posture)
+- Architectural decisions (model routing, cron rules, memory system)
+- Fleet policies (backup procedures, deployment protocols)
+- Squad-wide lessons learned
+
+**What stays Molty-only (full vault):**
+- People dossiers, project-specific knowledge
+- Domain-specific content (Brinc, Launchpad, etc.)
+- AI history, tacit knowledge, templates
+
+**Config for each agent (identical):**
 ```json
 {
   "agents": {
@@ -78,7 +101,18 @@
 }
 ```
 
-**Additional for Molty only:** vault/ directory under memory/ (via Syncthing or copy).
+**Syncthing folder mapping:**
+| Folder | Molty | Raphael / Leonardo |
+|--------|-------|--------------------|
+| Full vault | `memory/vault/` | `/data/shared/memory-vault/` (write-only) |
+| Squad-core | `memory/squad/` (from vault) | `memory/squad/` (read-only mirror via Syncthing) |
+
+### Weekly Memory Health Cron (per Leonardo's recommendation)
+
+Each agent runs a weekly check reporting to `#command-center`:
+- Total files indexed + last embedding timestamp
+- Canary search test (search a known term, confirm result)
+- Disk usage for memory/ directory
 
 ---
 
@@ -181,9 +215,17 @@
 }
 ```
 **Verify:** Each agent confirms `memory_search` returns results from their workspace memory.
-**Note:** Neither agent gets vault/ under their memory/ — they only see their own domain.
+**Note:** Each agent also gets `memory/squad/` (read-only mirror of squad-core docs via Syncthing).
 
-### Step 5: Verify contribution flow
+### Step 5: Set up squad-core mirror
+**What:** Create `memory/squad/` on each agent with squad-core content (standards, decisions, policies).
+**Details:**
+- Curate squad-core content from vault into `/data/shared/memory-vault/knowledge/squad/`
+- Create a new Syncthing shared folder mapping `knowledge/squad/` → `memory/squad/` on each agent
+- Molty: also has this at `memory/squad/` (can be symlink to `memory/vault/knowledge/squad/` or Syncthing)
+**Verify:** Each agent can `memory_search("change control protocol")` and find squad standards locally.
+
+### Step 6: Verify contribution flow
 **What:** Test that an agent can write to the vault and Molty can search it.
 **Test:**
 1. Ask Raphael to write a test file to `/data/shared/memory-vault/decisions/2026-02-17-test-contribution.md`
@@ -215,9 +257,10 @@
 
 1. Set `memorySearch.provider: "openai"`, `model: "text-embedding-3-small"`
 2. Connect Syncthing for shared vault (write access to `/data/shared/memory-vault/`)
-3. Do NOT put vault under their `memory/` — only Molty has that
-4. Add contribution instructions to AGENTS.md
-5. Verify `memory_search` works for their own workspace
+3. Connect Syncthing for squad-core mirror (`memory/squad/`, read-only)
+4. Do NOT put full vault under their `memory/` — only Molty has that
+5. Add contribution instructions to AGENTS.md
+6. Verify `memory_search` works for own workspace + squad-core
 
 ---
 
@@ -225,9 +268,10 @@
 
 | Folder | Molty path | Raphael/Leonardo path | Guillermo PC |
 |--------|-----------|----------------------|-------------|
-| Shared vault | `/data/workspace/memory/vault/` | `/data/shared/memory-vault/` | Obsidian vault |
+| Full vault | `/data/workspace/memory/vault/` | `/data/shared/memory-vault/` (write) | Obsidian vault |
+| Squad-core | `/data/workspace/memory/squad/` | `/data/workspace/memory/squad/` (read-only) | — |
 
-**Molty is the only agent where the vault lives under `memory/`.** This is what makes the architect pattern work.
+**Molty is the only agent where the full vault lives under `memory/`.** Leads get squad-core only.
 
 ---
 

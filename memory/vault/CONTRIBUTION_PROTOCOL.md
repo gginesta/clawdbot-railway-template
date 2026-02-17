@@ -6,7 +6,7 @@
 
 ## Purpose
 
-This vault is the **central knowledge base** for the TMNT squad. All agents contribute high-value items here. Molty indexes everything via QMD and serves as the central memory architect.
+This vault is the **central knowledge base** for the TMNT squad. All agents contribute high-value items here. Molty indexes everything via OpenAI's builtin memory search and serves as the central memory architect.
 
 **Syncthing keeps all copies in sync automatically.** Write a file → it appears on all agents within seconds.
 
@@ -110,7 +110,7 @@ Who/what is affected.
 1. **Append, never overwrite** another agent's entries
 2. **One concept per file** — don't dump multiple decisions in one file
 3. **People files are shared** — any agent can add sections (clearly tagged with your agent name)
-4. **Keep it concise** — QMD indexes full text, so searchability is free. Write for humans.
+4. **Keep it concise** — full text is indexed automatically, so searchability is free. Write for humans.
 5. **No secrets** — API keys, tokens, passwords go in agent config, NEVER in shared vault
 6. **Conflicts** — if Syncthing reports a conflict, Molty arbitrates
 
@@ -118,11 +118,11 @@ Who/what is affected.
 
 ## How Indexing Works
 
-1. Agent writes file to shared vault
-2. Syncthing syncs to all agents (~seconds)
-3. Molty's QMD indexes the file within 5 minutes (auto-update cycle)
-4. Any agent can search Molty's central index via `memory_search`
-5. Local QMD on each agent also indexes their own workspace independently
+1. Agent writes file to shared vault (`/data/shared/memory-vault/`)
+2. Syncthing syncs to Molty's `memory/vault/` directory
+3. OpenClaw's builtin indexer picks it up automatically
+4. Molty can search it via `memory_search`
+5. Other agents search only their own workspace — compartmentalization
 
 ---
 
@@ -132,6 +132,6 @@ When your daily log compaction identifies a P1/P2 item:
 
 1. Tag it in your daily log: `<!-- scope: shared -->`
 2. Create the corresponding file in the shared vault
-3. Reference it: `See shared vault: decisions/2026-02-17-qmd-standardization.md`
+3. Reference it: `See shared vault: decisions/YYYY-MM-DD-<slug>.md`
 
 This can be automated later via compaction cron (Phase 4).

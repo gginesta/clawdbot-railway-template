@@ -44,7 +44,6 @@
 - **Memory backend:** OpenAI `text-embedding-3-small` (switched from QMD 2026-02-17 21:00 HKT)
 - **Architect pattern:** Only Molty indexes the shared vault (under `memory/vault/`). Other agents search only their own workspace.
 - **Browser:** Brave headless (not Chromium — #3941 timeout bug)
-- **QMD:** Local memory search (BM25 + vectors)
 - **Heartbeat:** 1h | Context pruning: cache-ttl 4h
 
 ### Webhooks (agent-to-agent)
