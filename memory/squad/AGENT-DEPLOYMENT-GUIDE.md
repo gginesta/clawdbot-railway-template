@@ -124,7 +124,8 @@ ENDCONFIG"
 | **telegram.botToken** | Agent's Telegram bot token | — | Optional but recommended |
 | **commands.ownerAllowFrom** | `["telegram:1097408992", "779143499655151646"]` | Guillermo's IDs | — |
 | **gateway.auth.token** | Generate unique token | — | This is the webchat/API auth token |
-| **memory.backend** | `qmd` | — | — |
+| **memorySearch.provider** | `openai` | — | — |
+| **memorySearch.model** | `text-embedding-3-small` | — | — |
 | **plugins.qwen-portal-auth** | `enabled: true` | — | Only if using Qwen |
 
 ### 2.3 Config anti-patterns (NEVER do these)
@@ -150,16 +151,16 @@ curl -s https://{agent}.up.railway.app/ | head -5  # Should return HTML
 railway run rm -f /data/workspace/BOOTSTRAP.md
 ```
 
-### 3.3 Run QMD indexing immediately
+### 3.3 Set up memory/squad/ (squad-core mirror)
 ```bash
-railway run bash -c "cd /data/workspace && /root/.bun/bin/qmd update && /root/.bun/bin/qmd embed"
+railway run bash -c "mkdir -p /data/workspace/memory/squad && cp /data/shared/memory-vault/knowledge/squad-mirror/*.md /data/workspace/memory/squad/"
 ```
-⚠️ Embeddings take ~10 min on Railway (CPU only, no GPU). This is normal.
+This gives the agent local searchable access to squad standards, decisions, and policies.
 
-### 3.4 Verify QMD
+### 3.4 Verify memory search
 ```bash
-railway run /root/.bun/bin/qmd status
-# Should show: Documents > 0, Vectors > 0
+# Send a test query via webchat or webhook — memory_search should return results
+# The builtin indexer auto-indexes memory/**/*.md files
 ```
 
 ### 3.5 Run openclaw doctor
@@ -204,7 +205,7 @@ curl -s https://{agent}.up.railway.app/hooks/agent \
 ### 5.1 Functional tests
 - [ ] Send text message → response
 - [ ] Send image → can analyze (imageModel working)
-- [ ] `memory_search` returns results (QMD working)
+- [ ] `memory_search` returns results (OpenAI builtin working)
 - [ ] Subagent spawn works (test with `/model flash` then ask something)
 - [ ] Webhook from Molty → responds in Discord (not gated behind Guillermo)
 - [ ] Heartbeat fires on schedule
@@ -219,7 +220,7 @@ diff <(jq '.agents.defaults' /tmp/molty-config.json) <(jq '.agents.defaults' /tm
 ### 5.3 Go-live checklist
 - [ ] All Phase 5.1 tests pass
 - [ ] BOOTSTRAP.md deleted
-- [ ] QMD indexed and embedded
+- [ ] Memory indexed (memory_search returns results)
 - [ ] Agent introduced in #command-center
 - [ ] MEMORY.md updated with infrastructure reference
 - [ ] Molty's MEMORY.md updated with new agent info
@@ -234,7 +235,7 @@ diff <(jq '.agents.defaults' /tmp/molty-config.json) <(jq '.agents.defaults' /tm
 | Prerequisites | 15 min | ~1h | Discord Intent was missed |
 | Workspace files | 15 min | ~2h | Done via webhooks (wrong) |
 | Config | 10 min | ~3h | Brute-forced, multiple crashes |
-| Boot & verify | 10 min | ~2h | BOOTSTRAP.md confusion, QMD not indexed |
+| Boot & verify | 10 min | ~2h | BOOTSTRAP.md confusion, memory not indexed |
 | Connectivity | 10 min | ~3h | Flooded with webhooks |
 | Validation | 10 min | ~1h | imageModel was broken (Qwen) |
 | **Total** | **~70 min** | **~12h+** | — |
@@ -277,10 +278,10 @@ diff <(jq '.agents.defaults' /tmp/molty-config.json) <(jq '.agents.defaults' /tm
 14. **Test webhook responses in Discord**, not just webhook acceptance (202 ≠ working).
 15. **Agent-link skill must be installed** for proper peer-to-peer communication.
 
-### Memory & QMD
-16. **QMD doesn't auto-index on first boot.** Must run `qmd update && qmd embed` manually after workspace files are in place.
-17. **Embeddings take ~10 min on Railway CPU.** This is normal — no GPU available.
-18. **Verify with `qmd status`** — "0 files indexed" means memory search is dead.
+### Memory
+16. **OpenAI builtin indexes `MEMORY.md` + `memory/**/*.md` automatically.** No manual indexing needed. New files are picked up gradually by the background indexer.
+17. **Set up `memory/squad/` on first boot.** Copy from `/data/shared/memory-vault/knowledge/squad-mirror/` for local access to squad standards.
+18. **Verify with `memory_search`** — if it returns no results, check that memory files exist under `memory/`.
 
 ### Process
 19. **Don't brute-force config.** Research first, use validated patches, stop after first failure.
