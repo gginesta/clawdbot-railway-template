@@ -1,0 +1,22 @@
+🔄 Adding default timezone for job 3123fef1-6d87-419e-a705-f88089ce26d3
+🔄 Adding default timeout for job 44fb9d22-a77a-4de1-9c09-5edef483264e
+🔄 Migrating job bdb28765-f508-4271-a04d-9408d39f49fd to isolated session
+🔄 Updating payload kind for job bdb28765-f508-4271-a04d-9408d39f49fd to agentTurn
+🔄 Adding default timeout for job bdb28765-f508-4271-a04d-9408d39f49fd
+🔄 Adding default delivery for job bdb28765-f508-4271-a04d-9408d39f49fd
+🔄 Adding default timeout for job f17da2d2-3b49-4be5-be9d-d29a27a8dbb9
+🔄 Updating model for job ad51954f-27e8-46d1-8a8b-4aa4d357307d: google/gemini-2.5-flash → openrouter/google/gemini-2.5-flash
+🔄 Adding default timeout for job ad51954f-27e8-46d1-8a8b-4aa4d357307d
+🔄 Updating model for job aa2bf42d-1fc6-419a-aca6-af9c3189801e: google/gemini-2.5-flash → openrouter/google/gemini-2.5-flash
+🔄 Updating model for job f8e259a4-4451-4e81-8fcd-69e5d48665a6: google/gemini-2.5-flash → openrouter/google/gemini-2.5-flash
+🔄 Adding default timeout for job f8e259a4-4451-4e81-8fcd-69e5d48665a6
+🔄 Updating model for job 1146fab9-1674-44a3-98bc-22b0803bd165: qwen-portal/coder-model → openrouter/qwen-portal/coder-model
+🔄 Adding default timeout for job 1146fab9-1674-44a3-98bc-22b0803bd165
+🔄 Adding default timeout for job fe45deae-3543-43f3-8d98-015a9fae870e
+🔄 Adding default timeout for job travel-revert-20260218
+🔄 Adding default timezone for job travel-revert-20260218
+🔄 Updating model for job fabfc9ab-d48c-4989-a8aa-80c3d66583fb: anthropic/claude-sonnet-4-0 → openrouter/anthropic/claude-sonnet-4-0
+🔄 Adding default timezone for job fabfc9ab-d48c-4989-a8aa-80c3d66583fb
+
+🏁 Migration Summary:
+Total Jobs Migrated: 15

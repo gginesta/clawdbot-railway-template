@@ -381,15 +381,24 @@ def _todoist_get(url: str, token: str, errors: list[str]):
     return None
 
 
-def get_todoist(token: str, *, errors: list[str]) -> list[Task]:
-    base = "https://api.todoist.com/rest/v2"
+def _unwrap_todoist(payload):
+    """Todoist v1 API wraps results in {"results": [...], "next_cursor": ...}."""
+    if isinstance(payload, dict) and "results" in payload:
+        return payload["results"]
+    if isinstance(payload, list):
+        return payload  # legacy v2 format fallback
+    return []
 
-    projects = _todoist_get(f"{base}/projects", token, errors) or []
+
+def get_todoist(token: str, *, errors: list[str]) -> list[Task]:
+    base = "https://api.todoist.com/api/v1"
+
+    projects = _unwrap_todoist(_todoist_get(f"{base}/projects", token, errors) or [])
     proj_map = {
         str(p["id"]): p.get("name", "(unknown)") for p in projects if "id" in p
     }
 
-    tasks_raw = _todoist_get(f"{base}/tasks", token, errors) or []
+    tasks_raw = _unwrap_todoist(_todoist_get(f"{base}/tasks?limit=200", token, errors) or [])
 
     tasks: list[Task] = []
     for t in tasks_raw:

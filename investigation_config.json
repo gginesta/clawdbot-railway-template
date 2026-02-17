@@ -1,0 +1,14 @@
+{
+  "agents": {
+    "defaults": {
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "999h"
+      },
+      "compaction": {
+        "mode": "safeguard",
+        "reserveTokensFloor": 1000000
+      }
+    }
+  }
+}

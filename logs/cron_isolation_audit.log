@@ -1,0 +1,32 @@
+[2026-02-16 14:19:51] 🕵️ Starting Cron Job Isolation Audit
+[2026-02-16 14:19:51] \n📋 Listing Cron Jobs:
+[2026-02-16 14:19:51] \n🔍 Session Target Analysis:
+[2026-02-16 14:19:52] Jobs in Main Session (RISK):
+[2026-02-16 14:19:52] - bdb28765-f508-4271-a04d-9408d39f49fd
+[2026-02-16 14:19:52] \nJobs in Isolated Session:
+[2026-02-16 14:19:52] - 3123fef1-6d87-419e-a705-f88089ce26d3
+[2026-02-16 14:19:52] - 44fb9d22-a77a-4de1-9c09-5edef483264e
+[2026-02-16 14:19:52] - f17da2d2-3b49-4be5-be9d-d29a27a8dbb9
+[2026-02-16 14:19:52] - ad51954f-27e8-46d1-8a8b-4aa4d357307d
+[2026-02-16 14:19:52] - aa2bf42d-1fc6-419a-aca6-af9c3189801e
+[2026-02-16 14:19:52] - f8e259a4-4451-4e81-8fcd-69e5d48665a6
+[2026-02-16 14:19:52] - 8b748f23-91d0-425d-9e4b-e7246e46ce8c
+[2026-02-16 14:19:52] - 7906d2f7-ef74-481a-8aff-53ea44d32eee
+[2026-02-16 14:19:52] - 1146fab9-1674-44a3-98bc-22b0803bd165
+[2026-02-16 14:19:52] - fe45deae-3543-43f3-8d98-015a9fae870e
+[2026-02-16 14:19:52] - travel-revert-20260218
+[2026-02-16 14:19:52] - fabfc9ab-d48c-4989-a8aa-80c3d66583fb
+[2026-02-16 14:19:52] - d9da8767-0650-43f8-9c6b-420affb67c40
+[2026-02-16 14:19:52] - c0705ffd-9c7f-4f90-839b-7f3a9d660371
+[2026-02-16 14:19:52] \n📤 Delivery Mechanism Check:
+[2026-02-16 14:19:52] Jobs with No Explicit Delivery:
+[2026-02-16 14:19:52] - bdb28765-f508-4271-a04d-9408d39f49fd
+[2026-02-16 14:19:52] \n⚠️ Payload Risk Assessment:
+[2026-02-16 14:19:52] Potentially Risky Payloads (systemEvent in main session):
+[2026-02-16 14:19:52] - bdb28765-f508-4271-a04d-9408d39f49fd
+[2026-02-16 14:19:52] \n🏁 Audit Summary
+[2026-02-16 14:19:52] Total Jobs: 15
+[2026-02-16 14:19:52] Jobs in Main Session: 1
+[2026-02-16 14:19:52] Jobs in Isolated Session: 14
+[2026-02-16 14:19:52] Jobs with No Delivery: 1
+[2026-02-16 14:19:52] Jobs with Risky Payloads: 1

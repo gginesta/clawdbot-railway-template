@@ -1,0 +1,21 @@
+[2026-02-16 13:51:33] 🔍 Memory Search Integration Test
+[2026-02-16 13:51:33] \n📁 Testing Collection: memory-root
+[2026-02-16 13:51:33] Searching for 'OpenClaw' in memory-root:
+[2026-02-16 13:51:33] Searching for 'TMNT' in memory-root:
+[2026-02-16 13:51:34] Searching for 'configuration' in memory-root:
+[2026-02-16 13:51:34] Searching for 'deployment' in memory-root:
+[2026-02-16 13:51:34] Searching for 'memory framework' in memory-root:
+[2026-02-16 13:51:34] \n📁 Testing Collection: memory-dir
+[2026-02-16 13:51:34] Searching for 'OpenClaw' in memory-dir:
+[2026-02-16 13:51:34] Searching for 'TMNT' in memory-dir:
+[2026-02-16 13:51:35] Searching for 'configuration' in memory-dir:
+[2026-02-16 13:51:35] Searching for 'deployment' in memory-dir:
+[2026-02-16 13:51:35] Searching for 'memory framework' in memory-dir:
+[2026-02-16 13:51:35] \n📁 Testing Collection: sessions
+[2026-02-16 13:51:35] Searching for 'OpenClaw' in sessions:
+[2026-02-16 13:51:36] Searching for 'TMNT' in sessions:
+[2026-02-16 13:51:36] Searching for 'configuration' in sessions:
+[2026-02-16 13:51:36] Searching for 'deployment' in sessions:
+[2026-02-16 13:51:37] Searching for 'memory framework' in sessions:
+[2026-02-16 13:51:37] \n🔬 Advanced Search Modes Test
+[2026-02-16 13:51:37] Vector Search:

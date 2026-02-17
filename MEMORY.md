@@ -37,9 +37,10 @@
 | Leonardo 🔵 | leonardo-production.up.railway.app | ✅ Active |
 
 ### Key Config
-- **OpenClaw version:** Post-2026.2.13 (commit `188c4cd`)
+- **OpenClaw version:** 2026.2.16 (commit `6244ef9`)
 - **Primary model:** Claude Opus 4.6 | Fallbacks: Sonnet 4, GPT-5.2, Grok 3
 - **Sub-agents:** Qwen Coder (cheap) or Flash (capable)
+- **Cron model:** `openrouter/anthropic/claude-3.5-haiku` (Flash had issues)
 - **Browser:** Brave headless (not Chromium — #3941 timeout bug)
 - **QMD:** Local memory search (BM25 + vectors)
 - **Heartbeat:** 1h | Context pruning: cache-ttl 4h
@@ -84,10 +85,15 @@
 |-------|------|-------|--------|
 | Molty | Coordinator | 🦎 | ✅ Active |
 | Raphael | Brinc Corporate | 🔴 | ✅ Active |
-| Leonardo | Launchpad/Venture | 🔵 | ✅ Active |
+| Leonardo | Launchpad/Venture | 🔵 | ✅ Active (GPT-5.2) |
 | Donatello | Research/Incubation | 🟣 | ⏳ Pending |
 | April | Personal Assistant | 📰 | ⏳ Pending |
 | Michelangelo | Mana Capital | 🟠 | ⏳ Pending |
+
+### Sub-Agent Operating Standard
+- **Doc:** `/data/workspace/docs/SUB-AGENT-OPERATING-STANDARD.md`
+- **Themes:** Pokemon (Molty), Mario (Raphael), Star Wars (Leonardo)
+- **Notion:** `30839dd6-9afd-8167-9201-d52dfcacc5f8`
 
 ### Pikachu ⚡ (Content/Marketing)
 - Content Hub: https://www.notion.so/Pikachu-Content-Hub-30039dd69afd81308861fc93bee4dfae
@@ -133,6 +139,20 @@
 14. **Persist plans to files immediately.** Context pruning will erase chat-only plans.
 15. **Check shared files before proposing new systems.** Things may already exist.
 16. **Read Discord messages before responding.** Always `message read` the last 10-20 msgs first. Acknowledge what others said. Post conclusions, not internal process. One clean message, not stream-of-consciousness.
+
+17. **Cron jobs MUST use explicit model IDs, never aliases.** The `flash` alias routes to `google/gemini-2.5-flash` (direct API, 5 req/min free tier) — NOT OpenRouter. For cron reliability, use `glm5` (`openrouter/z-ai/glm-5`) which has no rate limits or OAuth expiry issues.
+18. **One change per cycle.** Make one change → test → proceed or rollback. No parallel fixes.
+19. **One owner per incident.** Everyone else supplies evidence, not competing fixes.
+20. **STOP means STOP.** When Guillermo says stop, all agents cease and answer questions only.
+21. **No risky change without a rollback target.** Name the backup file/config hash/timestamp first.
+22. **Cron prompts must say "Do NOT post to any channel; return plain text only."** Delivery handles posting.
+23. **Cron delivery.to must use `channel:<discord_id>` format.** Never raw IDs.
+24. **Maintenance runs in isolated sessions only.** Never leak tool output into Telegram/webchat.
+25. **Declare blast radius up front.** State if change affects one agent, one surface, or fleet-wide.
+26. **No mixed objectives during incidents.** Fix reliability first, improvements after incident is closed.
+27. **Before restart: confirm active runs = 0** or wait for drain. Don't force-restart repeatedly.
+28. **Model allowlist ≠ provider models.** `agents.defaults.models` and `models.providers.*.models` are separate. Both must exist or "model not allowed" errors.
+29. **Pushing to shared Railway template repo triggers redeployments for ALL agents.** Use a staging branch or coordinate timing. Don't push to main and then get surprised when you go down.
 
 ---
 

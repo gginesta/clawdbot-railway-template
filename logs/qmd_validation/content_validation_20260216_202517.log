@@ -1,0 +1,620 @@
+[CRITICAL][2026-02-16 20:25:17] Initiating QMD Content Validation
+[INFO][2026-02-16 20:25:17] Processing 308 sources
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/MEMORY.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/2026-02-11.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/2026-02-11.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/para_curation_report.json
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/para_curation_report.json, Type: json
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/2026-02-12-0343.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/2026-02-12-0343.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/2026-02-12.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/2026-02-12.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/clawvault-analysis.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/clawvault-analysis.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/backups.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/backups.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/syncthing.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/syncthing.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/skills.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/skills.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/polymarket-trading-research.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/polymarket-trading-research.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/leonardo-deployment-postmortem.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/leonardo-deployment-postmortem.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/openclaw-community-research.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/openclaw-community-research.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/lessons-learned.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/lessons-learned.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/content-pipeline.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/content-pipeline.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/infrastructure.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/infrastructure.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/models.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/models.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/standup-process.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/standup-process.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/todoist-system.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/todoist-system.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/refs/credentials.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/refs/credentials.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/2026-02-14.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/2026-02-14.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/2026-02-13.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/2026-02-13.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/2026-02-15.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/2026-02-15.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/update-notes/2026-02-11.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/update-notes/2026-02-11.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/update-notes/2026-02-12.md
+[PROCESSED][2026-02-16 20:25:17] Source: /data/workspace/memory/update-notes/2026-02-12.md, Type: text
+[INFO][2026-02-16 20:25:17] Validating file: /data/workspace/memory/update-notes/2026-02-14.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/update-notes/2026-02-14.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/update-notes/2026-02-13.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/update-notes/2026-02-13.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/update-notes/2026-02-08.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/update-notes/2026-02-08.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/update-notes/2026-02-09.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/update-notes/2026-02-09.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/update-notes/2026-02-10.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/update-notes/2026-02-10.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/security-audit-latest.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/security-audit-latest.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/2026-02-12-glm5-test.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/2026-02-12-glm5-test.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-03.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-03.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-13-raw.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-13-raw.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-04.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-04.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-08.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-08.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-02.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-02.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/MEMORY-archived-sections.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/MEMORY-archived-sections.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-06.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-06.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-11-0803.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-11-0803.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-10.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-10.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-01-31.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-01-31.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-07.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-07.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-05.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-05.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/2026-02-01.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/2026-02-01.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/archive/SECURITY-HARDENING-PLAN.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/archive/SECURITY-HARDENING-PLAN.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/2026-02-09.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/2026-02-09.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/standup-2026-02-15.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/standup-2026-02-15.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/2026-02-10.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/2026-02-10.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/x-thread-repo.json
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/x-thread-repo.json, Type: json
+[INFO][2026-02-16 20:25:18] Validating file: /data/workspace/memory/2026-02-12-0347.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/workspace/memory/2026-02-12-0347.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/ai-history-master-decisions-lessons.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/ai-history-master-decisions-lessons.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/extraction-candidates-2026-02-03.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/extraction-candidates-2026-02-03.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/DISASTER-RECOVERY.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/DISASTER-RECOVERY.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/ai-history-coverage.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/ai-history-coverage.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/quality-candidates-2026-02-03.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/quality-candidates-2026-02-03.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/ai-history-personal-decisions-lessons.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/ai-history-personal-decisions-lessons.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/AGENT-DEPLOYMENT-GUIDE.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/AGENT-DEPLOYMENT-GUIDE.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/ai-history-distillation-plan.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/ai-history-distillation-plan.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/ai-history-preference-candidates.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/ai-history-preference-candidates.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/ai-history-preferences-selected.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/ai-history-preferences-selected.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/extraction-report-2026-02-03.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/extraction-report-2026-02-03.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/resources/session-log-2026-02-02.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/resources/session-log-2026-02-02.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/PARA-GUIDE.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/PARA-GUIDE.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/MODEL-CONFIGURATION.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/MODEL-CONFIGURATION.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/LEONARDO-MODEL-CONFIG.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/LEONARDO-MODEL-CONFIG.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/DISCORD-MESSAGE-ORDERING-FIX.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/DISCORD-MESSAGE-ORDERING-FIX.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/TIMEZONE-STANDARD.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/TIMEZONE-STANDARD.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/OPERATIONAL-GUIDELINES.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/OPERATIONAL-GUIDELINES.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/WEBHOOK-POLICY.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/WEBHOOK-POLICY.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/AGENT-DEPLOYMENT-GUIDE.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/AGENT-DEPLOYMENT-GUIDE.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/SUB-AGENT-OPERATING-STANDARD.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/SUB-AGENT-OPERATING-STANDARD.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/squad/MODEL-ROUTING-GUIDE.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/squad/MODEL-ROUTING-GUIDE.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/memory-vault/summary.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/memory-vault/summary.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/memory-vault/items.json
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/memory-vault/items.json, Type: json
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/marketing/social-audit-raw.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/marketing/social-audit-raw.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/marketing/guillermo-linkedin-strategy-peach.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/marketing/guillermo-linkedin-strategy-peach.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/TODO.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/TODO.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/drive-repo-plan-qualifying-questions.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/drive-repo-plan-qualifying-questions.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/summary.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/summary.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/daisy/MEMORY.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/daisy/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/daisy/BIO.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/daisy/BIO.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/daisy/SOUL.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/daisy/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/best-practices/SUB-AGENT-DESIGN.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/best-practices/SUB-AGENT-DESIGN.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/MEMORY.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/BIO.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/BIO.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/SOUL.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/yoshi/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/toad/MEMORY.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/toad/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/toad/BIO.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/toad/BIO.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/toad/SOUL.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/toad/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/luigi/MEMORY.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/luigi/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/luigi/BIO.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/luigi/BIO.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/luigi/SOUL.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/luigi/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/MEMORY.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/BIO.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/BIO.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/SOUL.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/prof-e-gadd/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:18] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/toadette/MEMORY.md
+[PROCESSED][2026-02-16 20:25:18] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/toadette/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/toadette/BIO.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/toadette/BIO.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/toadette/SOUL.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/toadette/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/mario/MEMORY.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/mario/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/mario/BIO.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/mario/BIO.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/mario/SOUL.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/mario/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/bowser/MEMORY.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/bowser/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/bowser/BIO.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/bowser/BIO.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/bowser/SOUL.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/bowser/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/TEAM-STRUCTURE.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/TEAM-STRUCTURE.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/MEMORY.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/BIO.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/BIO.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/SOUL.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/lakitu/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/peach/BIO.sync-conflict-20260207-085604-3SM5RVG.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/peach/BIO.sync-conflict-20260207-085604-3SM5RVG.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/peach/MEMORY.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/peach/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/peach/BIO.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/peach/BIO.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/peach/SOUL.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/peach/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/wario/MEMORY.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/wario/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/wario/BIO.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/wario/BIO.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/wario/SOUL.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/wario/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/raphael/MEMORY.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/raphael/MEMORY.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/raphael/BIO.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/raphael/BIO.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/team/raphael/SOUL.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/team/raphael/SOUL.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/brinc/items.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/brinc/items.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/cerebro/summary.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/cerebro/summary.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/molty-productivity-system/INTEGRATION-PLAN.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/molty-productivity-system/INTEGRATION-PLAN.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/molty-productivity-system/PROJECT-SCOPE.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/molty-productivity-system/PROJECT-SCOPE.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/comms/summary.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/comms/summary.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/README.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/README.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/mana-capital/summary.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/mana-capital/summary.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/personal/summary.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/personal/summary.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/personal/items.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/personal/items.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/master/summary.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/master/summary.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/master/items.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/master/items.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/knowledge/projects/tinker-labs/summary.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/knowledge/projects/tinker-labs/summary.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/tacit/preferences.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/tacit/preferences.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/schemas/items.schema.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/schemas/items.schema.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/scripts/PROCESS-AI-EXPORTS.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/scripts/PROCESS-AI-EXPORTS.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/hotkeys.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/hotkeys.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/appearance.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/appearance.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/workspace.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/workspace.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/plugins/obsidian-git/manifest.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/plugins/obsidian-git/manifest.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/plugins/obsidian-git/data.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/plugins/obsidian-git/data.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/plugins/obsidian-tweet-to-markdown/manifest.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/plugins/obsidian-tweet-to-markdown/manifest.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/plugins/obsidian-tweet-to-markdown/data.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/plugins/obsidian-tweet-to-markdown/data.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/community-plugins.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/community-plugins.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/app.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/app.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/graph.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/graph.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/core-plugins.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/core-plugins.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/.obsidian/daily-notes.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/.obsidian/daily-notes.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/README.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/README.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2024-03.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2024-03.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2024-12.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2024-12.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2025-01.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2025-01.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2025-01.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2025-01.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2023-07.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2023-07.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2025-09.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2025-09.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2025-02.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2025-02.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2025-02.md
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2025-02.md, Type: text
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2023-07.json
+[PROCESSED][2026-02-16 20:25:19] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2023-07.json, Type: json
+[INFO][2026-02-16 20:25:19] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2024-03.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2024-03.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2023-08.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2023-08.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-001.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/items-001.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2024-12.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2024-12.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2024-11.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2024-11.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2024-11.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2024-11.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2023-08.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2023-08.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2025-09.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2025-09.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/summary-2026-01.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/summary-2026-01.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/claude/processed/items-2026-01.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/claude/processed/items-2026-01.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-10.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-10.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-11.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-11.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-07.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-07.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-05.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-05.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-03.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-03.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-06.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-06.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-09.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-09.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-04.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-04.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-02.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-02.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-02.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-02.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-11.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-11.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-07.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-07.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-08.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-08.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-12.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-12.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-10.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-10.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-05.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-05.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-12.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-12.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-001.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-001.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2025-03.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2025-03.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-06.md
+[WARNING][2026-02-16 20:25:20] Unknown file type for validation: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-06.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-06.md, Type: unknown
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-04.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-04.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-08.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-08.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-09.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2025-09.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/summary-2026-01.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/summary-2026-01.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/grok/processed/items-2026-01.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/grok/processed/items-2026-01.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/PROCESSING_REPORT.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/PROCESSING_REPORT.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/INDEX.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/INDEX.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-10.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-10.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-09.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-09.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-11.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-11.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-09.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-09.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-03.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-03.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-07.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-07.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-05.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-05.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-12.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-12.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-04.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-04.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-03.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-03.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-10.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-10.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-01.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-01.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-01.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-01.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-03.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-03.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-07.md
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-07.md, Type: text
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-06.json
+[PROCESSED][2026-02-16 20:25:20] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-06.json, Type: json
+[INFO][2026-02-16 20:25:20] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-02.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-02.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-06.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-06.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-07.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-07.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-05.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-05.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-04.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-04.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-09.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-09.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-12.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-12.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-04.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-04.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-01.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-01.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-04.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-04.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-02.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-02.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-02.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-02.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-07.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-07.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-11.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-11.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-11.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-11.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-05.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-05.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-07.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-07.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-03.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-03.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-08.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-08.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-05.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-05.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-08.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-08.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-12.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-12.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-10.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-10.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-10.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-10.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-05.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-05.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-05.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-05.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-06.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-06.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-02.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-02.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-06.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-06.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-01.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-01.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-06.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-06.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-03.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-03.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-001.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-001.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-12.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-12.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-11.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-11.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-03.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2025-03.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-06.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-06.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-09.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-09.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-04.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-04.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-04.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-04.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-11.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-11.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-10.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-10.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-08.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-08.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-08.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-08.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-08.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2023-08.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-10.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-10.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-08.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2024-08.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-09.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-09.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-11.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2023-11.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-09.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2025-09.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-07.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2024-07.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2026-01.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/summary-2026-01.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2026-01.json
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/ai-history/chatgpt/processed/items-2026-01.json, Type: json
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/README.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/README.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/Materials and frameworks/Research/The Complete Guide to Building Mission Control How We Built an AI Agent Squad.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/Materials and frameworks/Research/The Complete Guide to Building Mission Control How We Built an AI Agent Squad.md, Type: text
+[INFO][2026-02-16 20:25:21] Validating file: /data/shared/memory-vault/Materials and frameworks/Agentic Personal Knowledge Management with OpenClaw, PARA, and QMD.md
+[PROCESSED][2026-02-16 20:25:21] Source: /data/shared/memory-vault/Materials and frameworks/Agentic Personal Knowledge Management with OpenClaw, PARA, and QMD.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/daily/2026-02-03.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/daily/2026-02-03.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/daily/2026-02-04-productivity-system-scope.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/daily/2026-02-04-productivity-system-scope.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/daily/2026/02/2026-02-03.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/daily/2026/02/2026-02-03.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/daily/2026/02/2026-02-02.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/daily/2026/02/2026-02-02.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/daily/2026/02/2026-02-01.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/daily/2026/02/2026-02-01.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/templates/import-chatgpt.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/templates/import-chatgpt.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/templates/items-template.json
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/templates/items-template.json, Type: json
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/templates/summary-template.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/templates/summary-template.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/shared/memory-vault/templates/daily-template.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/shared/memory-vault/templates/daily-template.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/clawvault-analysis.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/clawvault-analysis.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/backups.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/backups.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/syncthing.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/syncthing.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/skills.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/skills.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/polymarket-trading-research.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/polymarket-trading-research.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/leonardo-deployment-postmortem.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/leonardo-deployment-postmortem.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/openclaw-community-research.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/openclaw-community-research.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/lessons-learned.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/lessons-learned.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/content-pipeline.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/content-pipeline.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/infrastructure.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/infrastructure.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/models.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/models.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/standup-process.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/standup-process.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/todoist-system.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/todoist-system.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/memory/refs/credentials.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/memory/refs/credentials.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/DEPLOYMENT-LESSONS-LEONARDO.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/DEPLOYMENT-LESSONS-LEONARDO.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/DIY-UNBROWSE-MVP.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/DIY-UNBROWSE-MVP.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/openclaw-best-practices.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/openclaw-best-practices.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/qmd-standardization-plan.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/qmd-standardization-plan.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/STANDUP-RULES.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/STANDUP-RULES.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/qmd_indexing_strategy.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/qmd_indexing_strategy.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/openclaw-railway-setup-guide.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/openclaw-railway-setup-guide.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/CODEX-INTEGRATION-PLAN.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/CODEX-INTEGRATION-PLAN.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/qmd_migration_report_template.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/qmd_migration_report_template.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/SYNCTHING-AGENT-SETUP.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/SYNCTHING-AGENT-SETUP.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/qmd_migration_20260216_report.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/qmd_migration_20260216_report.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/AGENT-DEPLOYMENT-GUIDE.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/AGENT-DEPLOYMENT-GUIDE.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/qmd_standardization_master_log.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/qmd_standardization_master_log.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/SUB-AGENT-OPERATING-STANDARD.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/SUB-AGENT-OPERATING-STANDARD.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/LEONARDO-AUDIT-20260211.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/LEONARDO-AUDIT-20260211.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/CLAWVAULT-MEMORY-UPGRADE-PLAN.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/CLAWVAULT-MEMORY-UPGRADE-PLAN.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/CRON_JOB_TEMPLATE.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/CRON_JOB_TEMPLATE.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/MODEL-UPGRADE-2026-02-06.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/MODEL-UPGRADE-2026-02-06.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/WEBCLAW-SCOPE.md
+[WARNING][2026-02-16 20:25:22] Unknown file type for validation: /data/workspace/docs/WEBCLAW-SCOPE.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/WEBCLAW-SCOPE.md, Type: unknown
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/CLAWVAULT-INCORPORATION-PLAN.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/CLAWVAULT-INCORPORATION-PLAN.md, Type: text
+[INFO][2026-02-16 20:25:22] Validating file: /data/workspace/docs/MODEL-SANITY-CHECK.md
+[PROCESSED][2026-02-16 20:25:22] Source: /data/workspace/docs/MODEL-SANITY-CHECK.md, Type: text

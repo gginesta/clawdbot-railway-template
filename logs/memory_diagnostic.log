@@ -1,0 +1,210 @@
+2026-02-16 12:59:35,733 - INFO - Starting Memory Diagnostic
+2026-02-16 12:59:35,734 - INFO - QMD Configuration:
+2026-02-16 12:59:35,734 - INFO - command: /root/.bun/bin/qmd
+2026-02-16 12:59:35,734 - INFO - includeDefaultMemory: True
+2026-02-16 12:59:35,734 - INFO - sessions: {'enabled': True, 'retentionDays': 30}
+2026-02-16 12:59:35,734 - INFO - update: {'interval': '5m', 'debounceMs': 15000, 'onBoot': True}
+2026-02-16 12:59:35,734 - INFO - limits: {'maxResults': 8, 'timeoutMs': 5000}
+2026-02-16 12:59:35,735 - INFO - Running memory search tests...
+2026-02-16 12:59:35,736 - INFO - Searching for: 'OpenClaw configuration'
+2026-02-16 12:59:35,736 - ERROR - Memory search test failed: [Errno 2] No such file or directory: 'memory_search'
+2026-02-16 12:59:35,736 - INFO - Scanning memory directories...
+2026-02-16 12:59:35,736 - INFO - Scanning /data/workspace/memory
+2026-02-16 12:59:35,736 - INFO - File: /data/workspace/memory/2026-02-11.md
+2026-02-16 12:59:35,736 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,736 - INFO -   Size: 8349 bytes
+2026-02-16 12:59:35,736 - INFO - File: /data/workspace/memory/para_curation_report.json
+2026-02-16 12:59:35,736 - INFO -   Modified: 2026-02-16 12:56:27.623629
+2026-02-16 12:59:35,736 - INFO -   Size: 95 bytes
+2026-02-16 12:59:35,736 - INFO - File: /data/workspace/memory/2026-02-12-0343.md
+2026-02-16 12:59:35,736 - INFO -   Modified: 2026-02-12 11:43:20.923875
+2026-02-16 12:59:35,736 - INFO -   Size: 5120 bytes
+2026-02-16 12:59:35,736 - INFO - File: /data/workspace/memory/2026-02-12.md
+2026-02-16 12:59:35,736 - INFO -   Modified: 2026-02-12 20:12:54.557352
+2026-02-16 12:59:35,736 - INFO -   Size: 10064 bytes
+2026-02-16 12:59:35,736 - INFO - File: /data/workspace/memory/2026-02-14.md
+2026-02-16 12:59:35,736 - INFO -   Modified: 2026-02-14 21:26:12.378907
+2026-02-16 12:59:35,736 - INFO -   Size: 972 bytes
+2026-02-16 12:59:35,736 - INFO - File: /data/workspace/memory/2026-02-13.md
+2026-02-16 12:59:35,736 - INFO -   Modified: 2026-02-14 21:30:26.784501
+2026-02-16 12:59:35,736 - INFO -   Size: 2731 bytes
+2026-02-16 12:59:35,736 - INFO - File: /data/workspace/memory/2026-02-15.md
+2026-02-16 12:59:35,736 - INFO -   Modified: 2026-02-15 21:26:12.836156
+2026-02-16 12:59:35,736 - INFO -   Size: 5931 bytes
+2026-02-16 12:59:35,736 - INFO - File: /data/workspace/memory/security-audit-latest.md
+2026-02-16 12:59:35,736 - INFO -   Modified: 2026-02-16 03:00:25.440619
+2026-02-16 12:59:35,736 - INFO -   Size: 4470 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/2026-02-12-glm5-test.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-12 14:11:13.406832
+2026-02-16 12:59:35,737 - INFO -   Size: 1847 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/2026-02-09.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-09 21:58:46.056895
+2026-02-16 12:59:35,737 - INFO -   Size: 2246 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/standup-2026-02-15.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-15 17:02:50.120653
+2026-02-16 12:59:35,737 - INFO -   Size: 1827 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/2026-02-10.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,737 - INFO -   Size: 12977 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/x-thread-repo.json
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-09 11:01:19.706206
+2026-02-16 12:59:35,737 - INFO -   Size: 275 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/2026-02-12-0347.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-12 11:47:44.365318
+2026-02-16 12:59:35,737 - INFO -   Size: 4013 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/clawvault-analysis.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-15 21:15:31.177825
+2026-02-16 12:59:35,737 - INFO -   Size: 2381 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/backups.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-11 16:28:41.351592
+2026-02-16 12:59:35,737 - INFO -   Size: 433 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/syncthing.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-11 16:28:41.351592
+2026-02-16 12:59:35,737 - INFO -   Size: 1557 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/skills.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-11 16:28:41.351592
+2026-02-16 12:59:35,737 - INFO -   Size: 765 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/clawvault-analysis-test.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-16 01:00:41.385367
+2026-02-16 12:59:35,737 - INFO -   Size: 2523 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/polymarket-trading-research.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-14 21:31:28.364069
+2026-02-16 12:59:35,737 - INFO -   Size: 10051 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/leonardo-deployment-postmortem.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-13 12:07:30.265565
+2026-02-16 12:59:35,737 - INFO -   Size: 8853 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/openclaw-community-research.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-13 16:28:46.895475
+2026-02-16 12:59:35,737 - INFO -   Size: 8559 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/lessons-learned.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-14 21:21:42.233783
+2026-02-16 12:59:35,737 - INFO -   Size: 12468 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/content-pipeline.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-12 15:07:23.774197
+2026-02-16 12:59:35,737 - INFO -   Size: 1443 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/infrastructure.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-11 16:28:41.351592
+2026-02-16 12:59:35,737 - INFO -   Size: 3781 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/models.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-15 19:53:25.304341
+2026-02-16 12:59:35,737 - INFO -   Size: 2317 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/standup-process.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-13 21:12:09.514106
+2026-02-16 12:59:35,737 - INFO -   Size: 2967 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/todoist-system.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-11 16:28:41.351592
+2026-02-16 12:59:35,737 - INFO -   Size: 2520 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/refs/credentials.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-11 16:28:41.351592
+2026-02-16 12:59:35,737 - INFO -   Size: 585 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/update-notes/2026-02-11.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-11 00:35:06.327988
+2026-02-16 12:59:35,737 - INFO -   Size: 830 bytes
+2026-02-16 12:59:35,737 - INFO - File: /data/workspace/memory/update-notes/2026-02-12.md
+2026-02-16 12:59:35,737 - INFO -   Modified: 2026-02-12 00:32:26.783458
+2026-02-16 12:59:35,737 - INFO -   Size: 2579 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/update-notes/2026-02-14.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-14 21:08:54.206214
+2026-02-16 12:59:35,738 - INFO -   Size: 4249 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/update-notes/2026-02-13.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-13 00:33:35.752913
+2026-02-16 12:59:35,738 - INFO -   Size: 4193 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/update-notes/2026-02-08.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-08 11:11:28.766998
+2026-02-16 12:59:35,738 - INFO -   Size: 2019 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/update-notes/2026-02-09.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-09 09:01:01.949026
+2026-02-16 12:59:35,738 - INFO -   Size: 3052 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/update-notes/2026-02-10.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-10 00:31:40.386791
+2026-02-16 12:59:35,738 - INFO -   Size: 1679 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-03.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 13524 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-13-raw.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-14 21:30:07.160634
+2026-02-16 12:59:35,738 - INFO -   Size: 15424 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-04.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 17482 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-08.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-08 16:32:50.287441
+2026-02-16 12:59:35,738 - INFO -   Size: 5901 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-02.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 1723 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/MEMORY-archived-sections.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-11 16:23:07.254941
+2026-02-16 12:59:35,738 - INFO -   Size: 8383 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-06.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 3888 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-11-0803.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-11 16:03:36.500336
+2026-02-16 12:59:35,738 - INFO -   Size: 11592 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-10.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-10 22:19:33.800037
+2026-02-16 12:59:35,738 - INFO -   Size: 12977 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-01-31.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 7624 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-07.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-08 01:16:19.720411
+2026-02-16 12:59:35,738 - INFO -   Size: 7361 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-05.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 25030 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-01.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 5252 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/SECURITY-HARDENING-PLAN.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-05 21:56:05.353045
+2026-02-16 12:59:35,738 - INFO -   Size: 5742 bytes
+2026-02-16 12:59:35,738 - INFO - Scanning /data/workspace/memory/archive
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-03.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 13524 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-13-raw.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-14 21:30:07.160634
+2026-02-16 12:59:35,738 - INFO -   Size: 15424 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-04.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,738 - INFO -   Size: 17482 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-08.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-08 16:32:50.287441
+2026-02-16 12:59:35,738 - INFO -   Size: 5901 bytes
+2026-02-16 12:59:35,738 - INFO - File: /data/workspace/memory/archive/2026-02-02.md
+2026-02-16 12:59:35,738 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,739 - INFO -   Size: 1723 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/MEMORY-archived-sections.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-11 16:23:07.254941
+2026-02-16 12:59:35,739 - INFO -   Size: 8383 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/2026-02-06.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,739 - INFO -   Size: 3888 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/2026-02-11-0803.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-11 16:03:36.500336
+2026-02-16 12:59:35,739 - INFO -   Size: 11592 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/2026-02-10.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-10 22:19:33.800037
+2026-02-16 12:59:35,739 - INFO -   Size: 12977 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/2026-01-31.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,739 - INFO -   Size: 7624 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/2026-02-07.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-08 01:16:19.720411
+2026-02-16 12:59:35,739 - INFO -   Size: 7361 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/2026-02-05.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,739 - INFO -   Size: 25030 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/2026-02-01.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-15 00:30:37.337047
+2026-02-16 12:59:35,739 - INFO -   Size: 5252 bytes
+2026-02-16 12:59:35,739 - INFO - File: /data/workspace/memory/archive/SECURITY-HARDENING-PLAN.md
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-05 21:56:05.353045
+2026-02-16 12:59:35,739 - INFO -   Size: 5742 bytes
+2026-02-16 12:59:35,739 - INFO - Scanning /data/.openclaw/memory
+2026-02-16 12:59:35,739 - INFO - File: /data/.openclaw/memory/main.sqlite
+2026-02-16 12:59:35,739 - INFO -   Modified: 2026-02-14 18:21:22.094821
+2026-02-16 12:59:35,739 - INFO -   Size: 18841600 bytes
+2026-02-16 12:59:35,739 - INFO - Memory Diagnostic Complete
