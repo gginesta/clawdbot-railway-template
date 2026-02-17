@@ -11,8 +11,8 @@ These 6 goals drive every action in this plan. Nothing happens that doesn't serv
 
 | # | Objective | Status | Next Action |
 |---|-----------|--------|-------------|
-| 1 | **Standardise implementation across the fleet** | 🟢 Done | All 3 agents on QMD backend (local embeddinggemma) |
-| 2 | **One embedding provider across the board** | 🟢 Done | embeddinggemma-300M (GGUF) on all agents. Decision: 2026-02-17 |
+| 1 | **Standardise implementation across the fleet** | 🟡 Almost | Config done on all 3. Raphael's QMD can't initialize models (resource limits). Dockerfile fix deployed, awaiting redeployment. |
+| 2 | **One embedding provider across the board** | 🟡 At risk | embeddinggemma-300M target. If Raphael can't run local models post-redeploy, fall back to Option C (QMD + OpenAI embeddings). |
 | 3 | **Complete indexing for all 3 agents, feeding to Molty's central memory** | 🟡 Partial | All indexed locally. Central feed not yet wired (Phase 2). |
 | 4 | **Consistent embedding index** | 🟢 Done | Same model + dimensions across fleet |
 | 5 | **Full QMD re-indexing** | 🟡 In progress | Molty: 6765 vectors ✅. Leonardo: 2683 vectors, 1 pending. Raphael: indexing. |
@@ -65,6 +65,24 @@ Must decide before executing anything else. Two options:
 
 **Decision (2026-02-17 15:16 HKT): Option B — Local QMD for all agents.**
 Approved by Guillermo. Rationale: OpenClaw's development direction, session transcript search, hybrid retrieval, zero marginal cost, best fit for central architect pattern.
+
+**⚠️ Risk (identified 17:16 HKT):** Raphael reported llama.cpp build gets killed by resource limits, causing QMD to fall back to SQLite. Dockerfile fix (commit `3962a31`) moves bun+QMD install to build time. If this doesn't resolve the model initialization issue post-redeployment, **contingency is Option C:** keep QMD backend for indexing/search/sessions but use OpenAI `text-embedding-3-small` for embeddings via `memorySearch.remote`. OpenClaw docs confirm QMD falls back to builtin SQLite when it can't initialize — meaning BM25 search still works, just no local vector search.
+
+**Fallback config (Option C) if needed:**
+```json
+{
+  "memory": { "backend": "qmd", ... },
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "provider": "openai",
+        "model": "text-embedding-3-small",
+        "fallback": "none"
+      }
+    }
+  }
+}
+```
 
 ---
 
@@ -126,7 +144,9 @@ Approved by Guillermo. Rationale: OpenClaw's development direction, session tran
 ```
 
 **Step 2.1 — Restructure shared vault**
-- [ ] Create standard folders in `/data/shared/memory-vault/`:
+- [x] Created `decisions/` and `lessons/` folders (people/, projects/, knowledge/ already existed)
+- [x] Created `SHARED_INDEX.md` with structure docs + contribution rules
+- [ ] Move existing files into new structure (low priority — existing structure works)
   ```
   decisions/    # Cross-agent decisions (tagged, dated)
   lessons/      # Shared lessons learned
@@ -137,9 +157,19 @@ Approved by Guillermo. Rationale: OpenClaw's development direction, session tran
   ```
 - [ ] Move existing files into new structure
 
-**Step 2.2 — Add shared vault as QMD collection on Molty**
-- [ ] `qmd collection add /data/shared/memory-vault --name shared-vault --mask "*.md"` (with XDG vars)
-- [ ] Run `qmd embed` to index existing shared content
+**Step 2.2 — Add shared vault to Molty's QMD index**
+Two options (from OpenClaw docs):
+- **Option A (QMD paths config):** Add to `memory.qmd.paths[]` in openclaw.json — OpenClaw manages indexing automatically
+  ```json
+  { "name": "shared-vault", "path": "/data/shared/memory-vault", "pattern": "**/*.md" }
+  ```
+- **Option B (memorySearch.extraPaths):** Add `/data/shared/memory-vault` to `agents.defaults.memorySearch.extraPaths` — works with both QMD and built-in backend
+
+Option A is preferred (keeps everything in QMD).
+- [x] Patched config: `memory.qmd.paths[0] = { name: "shared-vault", path: "/data/shared/memory-vault", pattern: "**/*.md" }`
+- [x] Gateway restarted (17:21 HKT)
+- [ ] Verify: shared vault files appear in QMD collections after boot sync completes
+  - Note: QMD times out on first queries post-restart (model initialization). Falls back to OpenAI. Will resolve within ~5 min.
 
 **Step 2.3 — Define agent contribution protocol**
 Each agent writes to shared vault using append-only, agent-prefixed entries:
