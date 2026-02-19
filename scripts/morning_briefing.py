@@ -529,20 +529,48 @@ def get_gmail_unread_count(errors: list[str]) -> int | None:
 
 
 def get_gmail_highlights(*, errors: list[str]) -> list[EmailHighlight]:
-    """Get overnight email highlights using gog gmail messages search."""
+    """Get overnight email highlights using gog gmail messages search.
+    
+    Always flags:
+    - Emails from Guillermo (CC'd to Molty)
+    - Starred/important/urgent emails
+    """
+    seen_ids: set[str] = set()
+    out: list[EmailHighlight] = []
+
+    # Priority 1: Always show unread emails from Guillermo
+    guillermo_q = "is:unread newer_than:24h from:guillermo.ginesta"
+    g_data = _gog_json(["gmail", "messages", "search", guillermo_q, "--max", "10"], errors=errors)
+    if g_data:
+        for msg in g_data.get("messages", []):
+            mid = msg.get("id", "")
+            if mid in seen_ids:
+                continue
+            seen_ids.add(mid)
+            sender = msg.get("from", "(unknown)")
+            subject = msg.get("subject", "(no subject)")
+            if "<" in sender and ">" in sender:
+                sender = sender.split("<", 1)[0].strip().strip('"')
+            out.append(EmailHighlight(sender=f"⭐ {sender}", subject=subject))
+
+    # Priority 2: Starred/important/urgent
     q = "is:unread newer_than:16h (is:starred OR label:important OR subject:urgent OR subject:asap)"
     data = _gog_json(["gmail", "messages", "search", q, "--max", str(MAX_EMAIL_HIGHLIGHTS)], errors=errors)
-    if data is None:
-        return []
-    out: list[EmailHighlight] = []
-    for msg in data.get("messages", [])[:MAX_EMAIL_HIGHLIGHTS]:
-        sender = msg.get("from", "(unknown)")
-        subject = msg.get("subject", "(no subject)")
-        # Clean up sender: strip email address part
-        if "<" in sender and ">" in sender:
-            sender = sender.split("<", 1)[0].strip().strip('"')
-        out.append(EmailHighlight(sender=sender, subject=subject))
-    return out
+    if data:
+        for msg in data.get("messages", []):
+            mid = msg.get("id", "")
+            if mid in seen_ids:
+                continue
+            seen_ids.add(mid)
+            sender = msg.get("from", "(unknown)")
+            subject = msg.get("subject", "(no subject)")
+            if "<" in sender and ">" in sender:
+                sender = sender.split("<", 1)[0].strip().strip('"')
+            out.append(EmailHighlight(sender=sender, subject=subject))
+            if len(out) >= MAX_EMAIL_HIGHLIGHTS + 5:
+                break
+
+    return out[:MAX_EMAIL_HIGHLIGHTS + 5]
 
 
 # -----------------------------
