@@ -5,9 +5,9 @@ Generates Guillermo's daily morning briefing (HKT) as a Telegram-ready text mess
 
 Data sources:
 - Open-Meteo (weather; no API key)
-- Google Calendar API (via service account / OAuth refresh token)
-- Todoist REST v1
-- Gmail via `gog` CLI (gogcli.sh)
+- Google Calendar API (via OAuth refresh token)
+- Todoist REST v2
+- Gmail API (via OAuth refresh token)
 
 Exit codes:
 - 0 success
@@ -18,7 +18,6 @@ from __future__ import annotations
 
 import json
 import os
-import subprocess
 import sys
 import urllib.parse
 import urllib.request
@@ -30,13 +29,11 @@ HKT = ZoneInfo("Asia/Hong_Kong")
 UTC = ZoneInfo("UTC")
 
 CALENDAR_CONFIG = "/data/workspace/credentials/calendar-config.json"
+GMAIL_TOKENS = "/data/workspace/credentials/gmail-tokens.json"
 CAL_TOKENS = "/data/workspace/credentials/calendar-tokens-brinc.json"
 GOOGLE_OAUTH = "/data/workspace/credentials/google-oauth.json"
 GOOGLE_SA = "/data/workspace/credentials/google-service-account.json"
 TODOIST_ENV = "/data/workspace/credentials/todoist.env"
-
-GOG_ACCOUNT = "ggv.molt@gmail.com"
-GOG_KEYRING_PASSWORD = "molty2026"
 
 # Hong Kong (Central) coordinates for weather
 HK_LAT = 22.3193
@@ -145,29 +142,7 @@ def _fmt_day(d: date) -> str:
 
 
 # -----------------------------
-# gog CLI helper
-# -----------------------------
-
-def _gog_json(args: list[str], *, errors: list[str], timeout: int = 30) -> dict | None:
-    """Run a gog command with --json and return parsed output."""
-    cmd = ["gog"] + args + ["--json", "-a", GOG_ACCOUNT]
-    env = {**os.environ, "GOG_KEYRING_PASSWORD": GOG_KEYRING_PASSWORD}
-    try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
-        if result.returncode != 0:
-            errors.append(f"gog {args[0]} error: {result.stderr.strip()[:200]}")
-            return None
-        return json.loads(result.stdout)
-    except subprocess.TimeoutExpired:
-        errors.append(f"gog {args[0]} timed out")
-        return None
-    except Exception as e:
-        errors.append(f"gog {args[0]} failed: {e}")
-        return None
-
-
-# -----------------------------
-# Google OAuth refresh (for Calendar only - Gmail uses gog CLI)
+# Google OAuth refresh
 # -----------------------------
 
 def _google_refresh_token(*, refresh_token: str, client_id: str, client_secret: str) -> tuple[bool, dict]:
@@ -295,7 +270,7 @@ def get_weather(today: date, *, school_day: bool, errors: list[str]) -> WeatherS
 
         dropoff = None
         if school_day:
-            # Take max of 08:00 and 09:00 hourly probability (cheap approximation for 08:00-08:30).
+            # Take max of 08:00 and 09:00 hourly probability (cheap approximation for 08:00–08:30).
             hourly = payload.get("hourly", {})
             ht = hourly.get("time", [])
             hp = hourly.get("precipitation_probability", [])
@@ -511,7 +486,7 @@ def get_todoist(token: str, *, errors: list[str]) -> list[Task]:
 
 
 # -----------------------------
-# Gmail (via gog CLI)
+# Gmail
 # -----------------------------
 
 @dataclass
@@ -520,28 +495,67 @@ class EmailHighlight:
     subject: str
 
 
+def _gmail_get(url: str, errors: list[str]) -> dict | None:
+    # Try new OAuth client first, fall back to old
+    oauth_path = "/data/workspace/credentials/google-oauth-client.json" if os.path.exists("/data/workspace/credentials/google-oauth-client.json") else GOOGLE_OAUTH
+    return _google_authed_get(url, token_path=GMAIL_TOKENS, oauth_path=oauth_path, errors=errors)
+
+
 def get_gmail_unread_count(errors: list[str]) -> int | None:
-    """Get unread count using gog gmail messages search."""
-    data = _gog_json(["gmail", "messages", "search", "is:unread", "--max", "200"], errors=errors)
-    if data is None:
+    base = "https://gmail.googleapis.com/gmail/v1/users/me"
+    q = "is:unread"
+    url = f"{base}/messages?{urllib.parse.urlencode({'q': q, 'maxResults': '1'})}"
+    payload = _gmail_get(url, errors)
+    if not payload:
         return None
-    return len(data.get("messages", []))
+    return int(payload.get("resultSizeEstimate", 0))
+
+
+def _gmail_list(q: str, max_results: int, errors: list[str]) -> list[str]:
+    base = "https://gmail.googleapis.com/gmail/v1/users/me"
+    url = f"{base}/messages?{urllib.parse.urlencode({'q': q, 'maxResults': str(max_results)})}"
+    payload = _gmail_get(url, errors)
+    if not payload:
+        return []
+    return [m.get("id") for m in payload.get("messages", []) if m.get("id")]
+
+
+def _gmail_metadata(msg_id: str, errors: list[str]) -> EmailHighlight | None:
+    base = "https://gmail.googleapis.com/gmail/v1/users/me"
+    params = [
+        ("format", "metadata"),
+        ("metadataHeaders", "From"),
+        ("metadataHeaders", "Subject"),
+    ]
+    url = f"{base}/messages/{urllib.parse.quote(msg_id)}?{urllib.parse.urlencode(params)}"
+    payload = _gmail_get(url, errors)
+    if not payload:
+        return None
+
+    headers = {
+        h.get("name"): h.get("value")
+        for h in (payload.get("payload", {}).get("headers", []) or [])
+    }
+    sender = headers.get("From", "(unknown)")
+    subject = headers.get("Subject", "(no subject)")
+
+    # Cheap cleanup: strip email address part for readability
+    if "<" in sender and ">" in sender:
+        sender = sender.split("<", 1)[0].strip().strip('"')
+
+    return EmailHighlight(sender=sender, subject=subject)
 
 
 def get_gmail_highlights(*, errors: list[str]) -> list[EmailHighlight]:
-    """Get overnight email highlights using gog gmail messages search."""
+    # “Overnight” window: ~16 hours (covers after work → morning)
+    # Highlights: unread + (important/starred or subject urgent/asap)
     q = "is:unread newer_than:16h (is:starred OR label:important OR subject:urgent OR subject:asap)"
-    data = _gog_json(["gmail", "messages", "search", q, "--max", str(MAX_EMAIL_HIGHLIGHTS)], errors=errors)
-    if data is None:
-        return []
+    ids = _gmail_list(q, MAX_EMAIL_HIGHLIGHTS, errors)
     out: list[EmailHighlight] = []
-    for msg in data.get("messages", [])[:MAX_EMAIL_HIGHLIGHTS]:
-        sender = msg.get("from", "(unknown)")
-        subject = msg.get("subject", "(no subject)")
-        # Clean up sender: strip email address part
-        if "<" in sender and ">" in sender:
-            sender = sender.split("<", 1)[0].strip().strip('"')
-        out.append(EmailHighlight(sender=sender, subject=subject))
+    for mid in ids[:MAX_EMAIL_HIGHLIGHTS]:
+        meta = _gmail_metadata(mid, errors)
+        if meta:
+            out.append(meta)
     return out
 
 
@@ -566,7 +580,7 @@ def _fmt_duration(mins: int | None) -> str:
 
 def _get_openclaw_update_summary() -> str | None:
     """Read the latest OpenClaw update cron result from session transcripts.
-
+    
     Looks for sessions modified in the last 4 hours that contain update markers.
     Skips files larger than 1MB (main session) to avoid slow reads.
     """
@@ -621,7 +635,7 @@ def _get_openclaw_update_summary() -> str | None:
                     if not text:
                         continue
                     if "HEARTBEAT_OK" in text:
-                        # Don't return yet - keep looking for an actual update message
+                        # Don't return yet — keep looking for an actual update message
                         heartbeat_found = True
                         continue
                     if "OpenClaw Updated" in text:
@@ -642,7 +656,7 @@ def _get_openclaw_update_summary() -> str | None:
             continue
 
     if heartbeat_found:
-        return "No updates - already on latest version ✅"
+        return "No updates — already on latest version ✅"
     return None
 
 
@@ -664,10 +678,10 @@ def build_message(
     lines: list[str] = []
 
     # 1) Good morning + date/day
-    lines.append(f"Good morning, Guillermo - {_fmt_day(today)} (HKT)")
+    lines.append(f"Good morning, Guillermo — {_fmt_day(today)} (HKT)")
 
     if school_day:
-        lines.append("School day: yes (drop-off 08:00-08:30)")
+        lines.append("School day: yes (drop-off 08:00–08:30)")
 
     lines.append("")
 
@@ -679,7 +693,7 @@ def build_message(
 
         wline = "Weather:"
         if tmin is not None and tmax is not None:
-            wline += f" {int(round(tmin))}-{int(round(tmax))}°C"
+            wline += f" {int(round(tmin))}–{int(round(tmax))}°C"
         if rain is not None:
             wline += f" · Rain chance up to {rain}%"
         lines.append("🌤 " + wline)
@@ -690,7 +704,7 @@ def build_message(
             for fc in weather.outlook_3d[:3]:
                 label = fc.day.strftime("%a")
                 if fc.tmin is not None and fc.tmax is not None:
-                    p = f"{label} {int(round(fc.tmin))}-{int(round(fc.tmax))}°C"
+                    p = f"{label} {int(round(fc.tmin))}–{int(round(fc.tmax))}°C"
                 else:
                     p = f"{label}"
                 if fc.rain_prob_max is not None:
@@ -753,11 +767,11 @@ def build_message(
             if len(items) > MAX_TASKS_PER_PROJECT:
                 lines.append(f"  … +{len(items) - MAX_TASKS_PER_PROJECT} more")
     else:
-        lines.append("No P1-P2 tasks due")
+        lines.append("No P1–P2 tasks due")
 
     lines.append("")
 
-    # 5) Upcoming this week (next 3-5 days)
+    # 5) Upcoming this week (next 3–5 days)
     lines.append("🔜 Next 5 days")
     upcoming_lines = 0
 
@@ -798,7 +812,7 @@ def build_message(
 
     if email_highlights:
         for e in email_highlights[:MAX_EMAIL_HIGHLIGHTS]:
-            lines.append(f"• {e.sender} - {e.subject}")
+            lines.append(f"• {e.sender} — {e.subject}")
     else:
         lines.append("No overnight highlights")
 
