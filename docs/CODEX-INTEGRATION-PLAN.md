@@ -24,18 +24,40 @@ Codex adds three things we currently have only partially:
 
 ---
 
-## 0.1) 2026-02-06 model updates (Opus 4.6 + GPT-5.3-Codex)
+## 0.1) Model updates (2026-02-06 → 2026-02-20)
 
-### Claude Opus 4.6 (Anthropic)
-**What changed:** Opus 4.6 shipped with a **1M token context window (beta)** plus new controls that matter for agent systems:
+### ⚠️ Fleet Primary: Claude Sonnet 4.6 (Updated 2026-02-20)
+**Decision (Guillermo, Feb 20):** Fleet-wide switch from Opus 4.6 → **Sonnet 4.6** as primary coordinator model.
+
+**Why Sonnet 4.6 beats Opus for most tasks:**
+- **5x cheaper** per token
+- **5x larger context** (1M vs 200K tokens)
+- **Faster** (lower latency)
+- **Wins on agentic + practical benchmarks** (Opus only wins on hardest pure-reasoning)
+
+**Per-agent model routing (current):**
+| Agent | Primary | Notes |
+|-------|---------|-------|
+| **Molty 🦎** | `anthropic/claude-sonnet-4-6` | Coordinator, context-heavy ops |
+| **Raphael 🔴** | `anthropic/claude-sonnet-4-6` | Brinc lead |
+| **Leonardo 🔵** | `openai/gpt-5.2` | Alternates providers; see LEONARDO-MODEL-CONFIG.md |
+
+**Cron/heartbeat model:** `anthropic/claude-3-5-haiku-latest` (direct Anthropic — uses Max plan daily allowance, not OpenRouter credits)
+
+**Reserve Opus for:** Tasks requiring the hardest multi-step reasoning only. L4 agents with architecture-level authority get model bump to Opus on promotion.
+
+---
+
+### Claude Opus 4.6 (Context — Feb 2026 launch)
+Opus 4.6 shipped with a **1M token context window (beta)** plus new controls:
 - **Adaptive thinking** (model chooses when to think deeper)
 - **Effort controls** (low/medium/high/max)
 - **Context compaction** (API-side summarization for long-running tasks)
 - **Agent teams** (parallel Claudes) - conceptually aligns with our TMNT / Pokémon Squad approach
 
-**TMNT impact:**
-- Use **Opus 4.6 as the coordinator brain** for long-horizon orchestration (spec → issues → dispatch → review).
-- Codex can remain the GitHub-native implementer, but Opus 4.6 reduces context-rot in long coordination threads.
+**TMNT impact (revised):**
+- Sonnet 4.6 is primary; Opus is the fallback for deep reasoning tasks.
+- Codex remains the GitHub-native implementer.
 
 ### GPT-5.3-Codex (OpenAI)
 **What changed:** OpenAI announced GPT-5.3-Codex as a faster, more agentic coding model.
@@ -180,6 +202,114 @@ Before changing any agent's default primary model:
 3. Only then patch defaults + restart
 
 (See: `/data/workspace/docs/MODEL-SANITY-CHECK.md`.)
+
+---
+
+## 0.3) Memory Management System (A1.1 — finalized 2026-02-17)
+
+### Architecture Decision: OpenAI + Architect Pattern (approved by Guillermo 2026-02-17 20:53 HKT)
+
+**What we rejected:** QMD hybrid search requires ~6GB RAM (reranker + query-expansion models). Not viable on Railway's container memory limits. Embedding-only QMD worked but `qmd query` OOM-killed every time.
+
+**What we use:** OpenAI `text-embedding-3-small` as the embedding provider for all agents. Built-in OpenClaw memory provider only indexes `MEMORY.md` + `memory/**/*.md` — this is by design.
+
+### Memory topology
+
+```
+MOLTY 🦎 (Architect)                    RAPHAEL / LEONARDO
+memory/                                  memory/
+  ├── YYYY-MM-DD.md (own daily logs)       ├── YYYY-MM-DD.md
+  ├── squad/ (shared squad standards)      └── squad/ (read-only mirror)
+  └── vault/ (full vault — Molty only)
+       ├── decisions/
+       ├── lessons/
+       ├── people/ (Molty-only)
+       └── knowledge/squad/ ← source for squad/ mirror
+```
+
+**Key principles:**
+1. **Compartmentalization.** Domain-specific content (people, projects) stays Molty-only.
+2. **No bottleneck.** Leads search squad standards locally via `memory/squad/` — no routing through Molty for day-to-day ops.
+3. **Architect sees everything.** Molty indexes full vault for cross-domain queries.
+
+### What lives where
+
+| Location | Content | Access |
+|----------|---------|--------|
+| `memory/squad/` (all agents) | Operating standards, change control, model routing, fleet policies | All leads |
+| `memory/vault/` (Molty only) | People dossiers, project details, full lessons archive | Molty only |
+| `/data/shared/memory-vault/` | Syncthing write target for vault contributions | All agents write |
+
+### Squad standards in `memory/squad/`
+All agents have these docs indexed locally (no Molty query needed):
+- `TMNT-CHANGE-CONTROL-INCIDENT-PROTOCOL.md` ← critical
+- `TMNT-CHANGE-CONTROL-ACTION-ITEMS.md`
+- `SUB-AGENT-OPERATING-STANDARD.md`
+- `MEMORY-SYSTEM-MASTER-PLAN.md`
+- `MODEL-ROUTING-GUIDE.md`
+- `OPERATIONAL-GUIDELINES.md`
+- `AGENT-DEPLOYMENT-GUIDE.md`
+- `WEBHOOK-POLICY.md`
+- `TIMEZONE-STANDARD.md`
+
+### Config (identical on all agents)
+```json
+{
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "provider": "openai",
+        "model": "text-embedding-3-small"
+      }
+    }
+  }
+}
+```
+
+**Important (lesson 51):** Anthropic is a built-in provider — no `models.providers.anthropic` block needed in config. Just `auth.profiles.anthropic:default` with `mode: "token"`. Model IDs like `anthropic/claude-sonnet-4-6` resolve via built-in definitions.
+
+### Vault contribution protocol
+- **When to contribute:** P1/P2 decisions, lessons learned, people dossiers, project status
+- **Format:** Include metadata header `<!-- agent: <name> | type: decision | priority: P1 | date: YYYY-MM-DD -->`
+- **File naming:** `decisions/YYYY-MM-DD-<slug>.md`, `lessons/YYYY-MM-DD-<slug>.md`, `people/<name>.md`
+- **Rules:** Append only (never overwrite other agents' entries). No secrets. One concept per file.
+- **Write target:** `/data/shared/memory-vault/` (Syncthing syncs to Molty's `memory/vault/`)
+
+---
+
+## 0.4) Change Control & Incident Protocol (TMNT-CHANGE-CONTROL, v1.0 — 2026-02-16)
+
+**Full protocol:** `memory/squad/TMNT-CHANGE-CONTROL-INCIDENT-PROTOCOL.md`
+**Action items:** `memory/squad/TMNT-CHANGE-CONTROL-ACTION-ITEMS.md`
+
+### Why this matters for Codex integration
+Every Codex task that results in a config change, model routing update, gateway restart, or credential rotation must follow the change control workflow. "Move fast and fix" was the cause of thrash days in February 2026.
+
+### Non-negotiable rules (apply to Codex-triggered changes too)
+1. **One owner per incident.** No parallel fixes from multiple agents.
+2. **One change per cycle.** Make exactly one change → test → proceed or rollback.
+3. **STOP means STOP.** When Guillermo says stop, all agents cease changes.
+4. **No live-fire changes without rollback target.** Every risky change names its rollback point.
+5. **Blast radius declaration.** State upfront: (a) one agent, (b) one surface, or (c) fleet-wide.
+
+### Change ticket template (paste into #command-center before any risky change)
+```
+Hypothesis: [why this change fixes the problem]
+Single change: [exactly what will be changed — 1 item]
+Blast radius: [one agent / one surface / fleet-wide]
+Rollback target: [exact file/hash/command]
+Acceptance tests:
+- Telegram text `Test`: ✅/❌
+- Webchat text `Test`: ✅/❌
+- Cron to #command-center only: ✅/❌
+- Routing correct (channel:<id>): ✅/❌
+```
+
+### Codex-specific change control rules
+- **PR merges** for infrastructure changes (Workflows A + infra PRs) → always require `risk:*` label and appropriate review
+- **Model changes from Codex-generated PRs** → require sanity-check run before flipping fleet defaults
+- **Secrets** → never in Codex tasks; use mocks + `.env.example`. Credentials wired manually post-merge.
+- **Restart etiquette:** confirm active runs = 0 before restarting any agent. Drain before restart; force-restart only as last resort.
 
 ---
 
