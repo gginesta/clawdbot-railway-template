@@ -71,6 +71,10 @@ RUN apt-get update \
     xdg-utils \
     syncthing \
     supervisor \
+    python3 \
+    python3-pip \
+    python3-venv \
+    python-is-python3 \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Tailscale (Debian repo does not include it by default)
