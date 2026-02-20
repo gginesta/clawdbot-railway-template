@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/data/workspace/.venv/bin/python3
 """
 Daily Standup Script — Creates a properly processed Notion standup page.
 
@@ -187,21 +187,7 @@ def create_task_review_db(page_id):
         "is_inline": True,
         "properties": {
             "Task": {"title": {}},
-            "Project": {"select": {"options": [
-                {"name": "Personal 🙂", "color": "blue"},
-                {"name": "Brinc 🔴", "color": "red"},
-                {"name": "Mana Capital 🟠", "color": "orange"},
-                {"name": "Molty's Den 🦎", "color": "green"},
-                {"name": "Inbox 📥", "color": "gray"},
-                {"name": "Ideas 💡", "color": "yellow"},
-            ]}},
-            "Priority": {"select": {"options": [
-                {"name": "🔴 P1", "color": "red"},
-                {"name": "🟡 P2", "color": "yellow"},
-                {"name": "🔵 P3", "color": "blue"},
-                {"name": "⚪ P4", "color": "default"},
-            ]}},
-            "Due Date": {"date": {}},
+            "Your Comments": {"rich_text": {}},
             "Action": {"select": {"options": [
                 {"name": "✅ Keep", "color": "green"},
                 {"name": "📅 Reschedule", "color": "yellow"},
@@ -209,11 +195,19 @@ def create_task_review_db(page_id):
                 {"name": "🔀 Delegate", "color": "blue"},
                 {"name": "✔️ Done", "color": "green"},
             ]}},
+            "Due Date": {"date": {}},
+            "Molty's Notes": {"rich_text": {}},
             "Owner": {"select": {"options": [
                 {"name": "Guillermo", "color": "default"},
                 {"name": "Molty", "color": "green"},
                 {"name": "Raphael", "color": "red"},
                 {"name": "Leonardo", "color": "blue"},
+            ]}},
+            "Priority": {"select": {"options": [
+                {"name": "🔴 P1", "color": "red"},
+                {"name": "🟡 P2", "color": "yellow"},
+                {"name": "🔵 P3", "color": "blue"},
+                {"name": "⚪ P4", "color": "default"},
             ]}},
             "Section": {"select": {"options": [
                 {"name": "Overdue", "color": "red"},
@@ -228,8 +222,14 @@ def create_task_review_db(page_id):
                 {"name": "1h", "color": "yellow"},
                 {"name": "2h+", "color": "red"},
             ]}},
-            "Molty's Notes": {"rich_text": {}},
-            "Your Comments": {"rich_text": {}},
+            "Project": {"select": {"options": [
+                {"name": "Personal 🙂", "color": "blue"},
+                {"name": "Brinc 🔴", "color": "red"},
+                {"name": "Mana Capital 🟠", "color": "orange"},
+                {"name": "Molty's Den 🦎", "color": "green"},
+                {"name": "Inbox 📥", "color": "gray"},
+                {"name": "Ideas 💡", "color": "yellow"},
+            ]}},
         }
     }, timeout=15)
     if resp.status_code != 200:
