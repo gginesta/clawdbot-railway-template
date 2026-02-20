@@ -5,11 +5,19 @@
 CREDS_FILE="/data/workspace/credentials/gmail-tokens.json"
 OAUTH_FILE="/data/workspace/credentials/google-oauth.json"
 
-# Read tokens
+# Read tokens — prefer client_id/secret from tokens file (matches refresh token),
+# fall back to oauth file if not present in tokens
 ACCESS_TOKEN=$(grep -o '"access_token": "[^"]*"' "$CREDS_FILE" | cut -d'"' -f4)
 REFRESH_TOKEN=$(grep -o '"refresh_token": "[^"]*"' "$CREDS_FILE" | cut -d'"' -f4)
-CLIENT_ID=$(grep -o '"client_id": "[^"]*"' "$OAUTH_FILE" | cut -d'"' -f4)
-CLIENT_SECRET=$(grep -o '"client_secret": "[^"]*"' "$OAUTH_FILE" | cut -d'"' -f4)
+CLIENT_ID=$(grep -o '"client_id": "[^"]*"' "$CREDS_FILE" | cut -d'"' -f4)
+CLIENT_SECRET=$(grep -o '"client_secret": "[^"]*"' "$CREDS_FILE" | cut -d'"' -f4)
+# Fallback to oauth file if tokens file doesn't have client creds
+if [ -z "$CLIENT_ID" ]; then
+    CLIENT_ID=$(grep -o '"client_id": "[^"]*"' "$OAUTH_FILE" | cut -d'"' -f4)
+fi
+if [ -z "$CLIENT_SECRET" ]; then
+    CLIENT_SECRET=$(grep -o '"client_secret": "[^"]*"' "$OAUTH_FILE" | cut -d'"' -f4)
+fi
 
 # Function to refresh access token
 refresh_token() {

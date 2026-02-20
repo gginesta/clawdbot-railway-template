@@ -1,6 +1,6 @@
 # MEMORY.md - Long-Term Memory
 
-*Last updated: 2026-02-15*
+*Last updated: 2026-02-20*
 
 ---
 
@@ -14,16 +14,33 @@
 - **Style:** Casual, efficient, no fluff. Likes tables. Not super technical but learns fast.
 - **Travelling:** Cebu Feb 13-18, back HK Feb 19
 
-## 📧 Email
+## 📧 Email & Google Workspace
 
+### gog CLI (primary tool)
 | What | Value |
 |------|-------|
-| My email | ggv.molt@gmail.com |
-| Guillermo's email | guillermo.ginesta@gmail.com |
-| Script | `/data/workspace/scripts/gmail.sh` |
-| **Status** | ⚠️ **BROKEN** — OAuth client disabled until Feb 19 |
+| CLI | `gog` (v0.11.0) — Google Workspace CLI |
+| Account | `ggv.molt@gmail.com` |
+| Keyring | `GOG_KEYRING_PASSWORD="molty2026"` |
+| Services | gmail, calendar, drive, docs, sheets, contacts, tasks, chat, forms, slides |
 
-**Rules:** TO=reply if relevant, CC=don't reply unless necessary, BCC=NEVER reply
+### Google Access Strategy
+| Service | How | Notes |
+|---------|-----|-------|
+| **Gmail** | `gog gmail` on ggv.molt | Guillermo CCs Molty on relevant emails |
+| **Calendar** | Service account (R/W all calendars) | Full access to Personal, Family, Brinc calendars |
+| **Contacts** | Pull from calendar event attendees | Can also invite ggv.molt to events for attendee details |
+| **Drive** | Shared folder (TBD) | Will set up when needed |
+| **guillermo.ginesta OAuth** | On standby | Same gog auth flow if needed later |
+
+### Email Rules
+- **TO** = reply if relevant
+- **CC** = don't reply unless necessary  
+- **BCC** = NEVER reply
+
+### Legacy (deprecated)
+- `gmail.sh` script still exists but superseded by `gog` CLI
+- Morning briefing uses `gog gmail messages search` since Feb 19
 
 ---
 
@@ -37,130 +54,68 @@
 | Leonardo 🔵 | leonardo-production.up.railway.app | ✅ Active |
 
 ### Key Config
-- **OpenClaw version:** 2026.2.16 (commit `6244ef9`)
-- **Primary model:** Claude Opus 4.6 | Fallbacks: Sonnet 4, GPT-5.2, Grok 3
-- **Sub-agents:** Qwen Coder (cheap) or Flash (capable)
-- **Cron model:** `openrouter/anthropic/claude-3.5-haiku` (Flash had issues)
-- **Memory backend:** OpenAI `text-embedding-3-small` (A1.1 — switched from QMD 2026-02-17)
-- **Architect pattern (A1.1):** All agents index own `memory/` + `memory/squad/` (shared standards mirror). Only Molty also indexes `memory/vault/` (full shared vault). Cross-domain deep queries route through Molty.
-- **Squad mirror:** `/data/shared/memory-vault/knowledge/squad/` → each agent's `memory/squad/` via Syncthing
-- **Browser:** Brave headless (not Chromium — #3941 timeout bug)
+- **OpenClaw version:** 2026.2.19 (latest tag; see lesson 57-58)
+- **Primary model:** Claude Sonnet 4.6 (switched Feb 20; 5x cheaper, 1M context)
+- **Cron model:** `anthropic/claude-haiku-4-5` (direct Anthropic via Max plan)
+- **Deploy:** Dockerfile `OPENCLAW_GIT_REF` controls version. `gateway restart` reloads config only, not binary—need full Railway redeploy for upgrades.
+- **Memory System:** A1.1 with standardized indexing
+  - Agents index own `memory/` + `memory/squad/`
+  - Molty indexes `memory/vault/`
+  - Cross-domain queries route through Molty
+- **Deployment:** Railway, with memory limits:
+  - Molty: 4.5GB
+  - Raphael: 4GB
+  - Leonardo: 4GB
+- **Fleet monthly cost:** ~$124 (86% RAM cost)
+- **Browser:** Brave headless
 - **Heartbeat:** 1h | Context pruning: cache-ttl 4h
 
-### Webhooks (agent-to-agent)
-- Token: `HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU`
-- Must include `"sessionKey": "agent:main:main"`
-- ⚠️ Raphael/Leonardo need `hooks.allowRequestSessionKey: true` (breaking change in 2026.2.12)
-
-### Todoist (API v1)
-| Project | ID |
-|---------|-----|
-| Inbox | 6M5rpCXmg7x7RC2Q |
-| Personal | 6M5rpGfw5jR9Qg9R |
-| Brinc | 6M5rpGgV6q865hrX |
-| Mana Capital | 6Rr9p6MxWHFwHXGC |
-| Molty's Den | 6fwH32grqrCJF23R |
-| Ideas | 6fx5GV7Q93Hp4QgM |
-
-⚠️ Todoist priority is INVERTED: `priority=4` = P1 display!
-
-### Notion
-- **API Key:** `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`
-- **Mission Control:** https://www.notion.so/Molty-s-Mission-Control-2fa39dd69afd80be89dae91e20d30a38
-- **Standup DB:** `2fe39dd69afd81f189f7e58925dad602`
-- **Content Pipeline DB:** `30739dd6-9afd-8131-8f2d-e2ad52fd147c`
-
-### Syncthing
-- Molty, Raphael, Leonardo, Guillermo-PC all connected
-- Shared folders: `shared`, `mv-daily`, `mv-projects`, `mv-resources`, `mv-squad`, `mv-people`
-
-### Backup
-- **Cron:** Daily 00:30 HKT (backup → git clean → update → announce to Discord)
-- **Script:** `/data/workspace/backups/backup.sh` | Keeps last 5
-- **GitHub:** https://github.com/gginesta/moltybackup (private)
+### Cross-Context Messaging
+- **Config path:** `tools.message.crossContext.allowAcrossProviders: true`
+- Enables messaging across different platforms
 
 ---
 
-## 🐢 TMNT Squad
+## 📝 New Key Lessons
 
-| Agent | Role | Emoji | Status |
-|-------|------|-------|--------|
-| Molty | Coordinator | 🦎 | ✅ Active |
-| Raphael | Brinc Corporate | 🔴 | ✅ Active |
-| Leonardo | Launchpad/Venture | 🔵 | ✅ Active (GPT-5.2) |
-| Donatello | Research/Incubation | 🟣 | ⏳ Pending |
-| April | Personal Assistant | 📰 | ⏳ Pending |
-| Michelangelo | Mana Capital | 🟠 | ⏳ Pending |
-
-### Sub-Agent Operating Standard
-- **Doc:** `/data/workspace/docs/SUB-AGENT-OPERATING-STANDARD.md`
-- **Themes:** Pokemon (Molty), Mario (Raphael), Star Wars (Leonardo)
-- **Notion:** `30839dd6-9afd-8167-9201-d52dfcacc5f8`
-
-### Pikachu ⚡ (Content/Marketing)
-- Content Hub: https://www.notion.so/Pikachu-Content-Hub-30039dd69afd81308861fc93bee4dfae
-- Content Pipeline DB with 12 posts (Post 1 published on X)
-- X account: @Molton_Sanchez (posting blocked by bot detection)
-
----
-
-## 📋 Daily Standup (5PM HKT)
-
-**4-step process:**
-1. Process Todoist inbox (rewrite, estimate, categorize, prioritize)
-2. Create Notion standup page (callout + Task Review DB + priorities + blockers)
-3. After Guillermo reviews → process decisions + create calendar time blocks
-4. Send Telegram summary with Notion link
-
-**Cron:** `bdb28765-f508-4271-a04d-9408d39f49fd`
+39. **Direct Anthropic Auth:** Prefer direct model authentication over OpenRouter when possible.
+40. **Content Writing Workflow:** Guillermo ideas → Molty outlines → Pikachu writes on Sonnet 4.6
+41. **Sub-agent Limitations:** Can't use exec tool or directly update Notion
+42. **Discord Channel Monitoring:** Set `requireMention: false` for owned channels
+43. **Notion Public API can't reorder blocks** — use internal API (`/api/v3/saveTransactions`) with `token_v2` cookie
+44. **Notion internal API reorder:** `listRemove` + `listBefore`/`listAfter` on parent `content` array. Include `spaceId` in every pointer.
+45. **Notion space ID:** `375629bd-cc72-4ad8-a3be-84139fa2fb3b`
+46. **Daily standup must process tasks BEFORE creating Notion page** — rewrite titles, estimate time, set priority, assign owner, handle sub-tasks nested
+47. **Todoist CLI:** `todoist-ts-cli` (npm global), needs `TODOIST_API_TOKEN` env var. System Python lacks pip — always use venv.
+48. **Cron scripts must use venv Python** — `/data/workspace/.venv/bin/python3`, not bare `python3`.
+49. **message tool params:** `message` for text, `target` for recipient, `channel` for platform. NOT `activityState`.
+50. **Browser stale lock files:** If browser start fails with "Failed to start Chrome CDP", delete `SingletonLock`/`SingletonSocket` from `/data/.openclaw/browser/<profile>/user-data/` and `/tmp/openclaw-browser/`.
+51. **Anthropic is a built-in provider:** No `models.providers.anthropic` block needed. Just `auth.profiles.anthropic:default` with `mode: "token"`.
+52. **Sonnet 4.6 replaces Opus 4.6 as primary:** 5x cheaper, 1M context, faster, wins on agentic benchmarks. Switched fleet-wide Feb 20.
+53. **All cron/heartbeat on direct Anthropic Haiku:** `anthropic/claude-3-5-haiku-latest` — uses Max plan daily allowance, not OpenRouter credits.54. **Calendar ownership rule:** NEVER put Molty tasks on Guillermo's calendar. Only tasks requiring Guillermo's time.
+55. **ggv.molt@gmail.com blocked by Google (Feb 20).** Appeal submitted. If denied → Workspace account under manacapital.io. Email cron `25bd223c` disabled. Consumer Gmail can't handle automated API calls; Workspace is bot-friendly.
+56. **`gateway restart` reloads config only, not binary.** Full Railway redeploy required for OpenClaw version upgrades.
+57. **Dockerfile `OPENCLAW_GIT_REF` arg** controls which OpenClaw version gets installed. Always update when upgrading.
+58. **Latest OpenClaw tag is v2026.2.19** (not v2026.2.20; 2026.2.20 only exists as a git commit, not a tag).
+59. **Railway API deploy permissions:** Workspace token needs correct mutation scope for `serviceInstanceRedeploy`. Currently returns "Not Authorized"—investigate.
 
 ---
 
-## 🔑 Blocked Items
+## 🧠 Cerebro Project
 
-- **Google Calendar + Gmail:** OAuth client disabled. Fix Feb 19 (Guillermo returns to HK, has 2FA phone)
-- **Strategy:** New GCP service account under guillermo.ginesta@gmail.com for Calendar (no token expiry)
+- **Repo:** `gginesta/cerebro` (private GitHub), v1.0.0, 19 features complete
+- **Live:** www.meetcerebro.com — Railway project `efcddaea-6972-...`, service `456f8881-8927-...`, env `cb8a3105-90b5-...`
+- **Tech:** React+TS+Tailwind / Node+Express / Railway Postgres / Gemini OCR / xAI Grok / Stripe / Cloudinary / Resend
 
----
+### Critical Issues (Feb 20)
+1. **Live site: white page** — SPA loads but nothing renders. API healthy (200ms). Needs browser console debug.
+2. **Missing prod env vars:** STRIPE_SECRET_KEY, STRIPE_PUBLISHABLE_KEY, STRIPE_WEBHOOK_SECRET, GEMINI_API_KEY, Stripe price IDs.
+3. **DB ambiguity:** .env references Neon; prod uses Railway Postgres. Schema parity unconfirmed.
 
-## 📝 Key Lessons (Curated)
+### Plans
+- **Dev plan:** `/data/shared/cerebro/CEREBRO-DEVELOPMENT-PLAN.md` (3 workstreams: A=Molty/unblock, B=Leonardo+Codex/polish, C=Guillermo+Raphael/sell)
+- **Codex plan:** `/data/shared/cerebro/CODEX-INTEGRATION-PLAN.md` (GitHub issues → Codex execution → auto-deploy)
+- **Target:** 10 paying customers in 12 weeks
 
-1. **Backup before update — ALWAYS.** Non-negotiable.
-2. **Think in HKT.** System clock is UTC but Guillermo is HKT.
-3. **Do it yourself first.** Don't give instructions when you have access.
-4. **Sub-agents can't exec.** last30days, gmail.sh etc must run in main session.
-5. **Use x-fetch for Twitter URLs.** Pipeline: fxtwitter API → Jina reader → Grok. No auth needed. x-reader only for browsing/screenshots.
-6. **Railway env vars trigger redeploy.** Use `--skip-deploys` flag.
-7. **Cron delivery needs explicit `to` field.** Always include `"to": "1097408992"`.
-8. **Grok is unreliable as sub-agent.** Use Sonnet or Flash for execution tasks.
-9. **Never dump raw Todoist tasks into standup.** Process every one.
-10. **Perplexity Sonar has NO tool use.** Search/chat only.
-11. **Files first, config second, boot third** for agent deployment.
-12. **Never brute-force config changes.** Research first, stop after first failure.
-13. **Context overflow = death.** Never read entire log files. Use tail/grep/limit.
-14. **Persist plans to files immediately.** Context pruning will erase chat-only plans.
-15. **Check shared files before proposing new systems.** Things may already exist.
-16. **Read Discord messages before responding.** Always `message read` the last 10-20 msgs first. Acknowledge what others said. Post conclusions, not internal process. One clean message, not stream-of-consciousness.
-
-17. **Cron jobs MUST use explicit model IDs, never aliases.** The `flash` alias routes to `google/gemini-2.5-flash` (direct API, 5 req/min free tier) — NOT OpenRouter. For cron reliability, use `glm5` (`openrouter/z-ai/glm-5`) which has no rate limits or OAuth expiry issues.
-18. **One change per cycle.** Make one change → test → proceed or rollback. No parallel fixes.
-19. **One owner per incident.** Everyone else supplies evidence, not competing fixes.
-20. **STOP means STOP.** When Guillermo says stop, all agents cease and answer questions only.
-21. **No risky change without a rollback target.** Name the backup file/config hash/timestamp first.
-22. **Cron prompts must say "Do NOT post to any channel; return plain text only."** Delivery handles posting.
-23. **Cron delivery.to must use `channel:<discord_id>` format.** Never raw IDs.
-24. **Maintenance runs in isolated sessions only.** Never leak tool output into Telegram/webchat.
-25. **Declare blast radius up front.** State if change affects one agent, one surface, or fleet-wide.
-26. **No mixed objectives during incidents.** Fix reliability first, improvements after incident is closed.
-27. **Before restart: confirm active runs = 0** or wait for drain. Don't force-restart repeatedly.
-28. **Model allowlist ≠ provider models.** `agents.defaults.models` and `models.providers.*.models` are separate. Both must exist or "model not allowed" errors.
-29. **Pushing to shared Railway template repo triggers redeployments for ALL agents.** Use a staging branch or coordinate timing. Don't push to main and then get surprised when you go down.
-30. **Always check XDG paths for OpenClaw-managed QMD.** Default `qmd status` shows empty index. Real index at `~/.openclaw/agents/<id>/qmd/xdg-cache/qmd/index.sqlite`.
-31. **QMD hybrid search needs ~6GB RAM.** Reranker + query expansion models OOM on Railway. Not viable until lighter models ship.
-32. **OpenClaw builtin only indexes `MEMORY.md` + `memory/**/*.md`.** `extraPaths` is QMD-only. To index external files, put them under `memory/`.
-33. **Evaluate before brute-forcing.** PPEE exists for a reason.
-34. **Simpler is almost always better.** 3 lines of config beats a complex multi-system architecture.
-
----
-
-*Daily logs: `memory/YYYY-MM-DD.md` | Archive: `memory/archive/`*
+### Files
+- **Local:** `/data/shared/cerebro/meetcerebro/` (Syncthing copy, no git history)
