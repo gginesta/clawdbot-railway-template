@@ -193,4 +193,20 @@ ENV PORT=8080
 EXPOSE 8080 8384 22000/tcp 22000/udp
 
 # Use supervisor to run both OpenClaw and Syncthing
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
+# Startup cleanup script — clears stale browser singleton lock files
+# These persist on the Railway volume across container restarts and block Brave from starting
+RUN printf '%s\n' \
+  '#!/usr/bin/env bash' \
+  '# Clear stale Brave/Chrome singleton locks left by previous container instances' \
+  'BROWSER_DATA="/data/.openclaw/browser"' \
+  'for profile_dir in "$BROWSER_DATA"/*/user-data; do' \
+  '  [ -d "$profile_dir" ] || continue' \
+  '  rm -f "$profile_dir/SingletonLock" "$profile_dir/SingletonSocket" "$profile_dir/SingletonCookie"' \
+  '  echo "[startup] Cleared browser locks in $profile_dir"' \
+  'done' \
+  'exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' \
+  > /usr/local/bin/startup.sh \
+  && chmod +x /usr/local/bin/startup.sh
+
+CMD ["/usr/local/bin/startup.sh"]
