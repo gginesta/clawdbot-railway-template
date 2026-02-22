@@ -93,7 +93,7 @@
 51. **Anthropic is a built-in provider:** No `models.providers.anthropic` block needed. Just `auth.profiles.anthropic:default` with `mode: "token"`.
 52. **Sonnet 4.6 replaces Opus 4.6 as primary:** 5x cheaper, 1M context, faster, wins on agentic benchmarks. Switched fleet-wide Feb 20.
 53. **All cron/heartbeat on direct Anthropic Haiku:** `anthropic/claude-3-5-haiku-latest` — uses Max plan daily allowance, not OpenRouter credits.54. **Calendar ownership rule:** NEVER put Molty tasks on Guillermo's calendar. Only tasks requiring Guillermo's time.
-55. **ggv.molt@gmail.com blocked by Google (Feb 20).** Appeal submitted. If denied → Workspace account under manacapital.io. Email cron `25bd223c` disabled. Consumer Gmail can't handle automated API calls; Workspace is bot-friendly.
+55. **ggv.molt@gmail.com / GCP project reinstated (Feb 22).** Appeal succeeded — project `molty-assistant-486411` reinstated. `gog` binary reinstalled to `/usr/local/bin/gog`. Keyring tokens backed up to `/data/workspace/credentials/gogcli-keyring/`. Morning briefing script now self-heals: auto-installs gog + restores keyring on container restart.
 56. **`gateway restart` reloads config only, not binary.** Full Railway redeploy required for OpenClaw version upgrades.
 57. **Dockerfile `OPENCLAW_GIT_REF` arg** controls which OpenClaw version gets installed. Always update when upgrading.
 58. **Latest OpenClaw tag is v2026.2.19** (not v2026.2.20; 2026.2.20 only exists as a git commit, not a tag).
