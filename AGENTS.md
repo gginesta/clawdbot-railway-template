@@ -47,6 +47,11 @@
 - Use isolated sessions with delivery to Telegram
 - "Tonight" = 03:00 HKT, "tomorrow morning" = 09:00 HKT
 
+## Subagents on Discord
+- **Always use `thread=true`** when spawning subagents from a Discord channel context
+- This routes the subagent into its own thread, keeping the main channel clean
+- Works automatically — no config needed, just pass `thread=true` to sessions_spawn
+
 ## Heartbeats
 - Check inbox/calendar/mentions 2-4x per day (rotate)
 - Proactive work: organize memory, check projects, update docs, commit changes
