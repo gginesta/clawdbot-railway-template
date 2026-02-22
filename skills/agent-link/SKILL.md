@@ -13,6 +13,10 @@ Direct agent-to-agent messaging via webhooks. Bypasses Telegram bot limitations.
 |-------|-------|------|-------------|
 | Molty | 🦎 | Coordinator | https://ggvmolt.up.railway.app/hooks/agent |
 | Raphael | 🔴 | Brinc Lead | https://ggv-raphael.up.railway.app/hooks/agent |
+| Leonardo | 🔵 | Launchpad Lead | https://leonardo-production.up.railway.app/hooks/agent |
+
+**Shared token (all agents):** `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd`
+**⚠️ sessionKey is DISABLED** on these deployments (`allowRequestSessionKey=false`). Omit it — messages still route correctly without it.
 
 ## ⚠️ STOP — USE DISCORD FIRST!
 
@@ -34,7 +38,16 @@ Use `exec` with `curl` to send a webhook message:
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
   -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
   -H 'Content-Type: application/json' \
-  -d '{"message": "YOUR MESSAGE HERE", "sessionKey": "agent:main:main", "wakeMode": "now"}'
+  -d '{"message": "YOUR message here", "wakeMode": "now"}'
+```
+
+### Send to Leonardo 🔵
+
+```bash
+curl -s -X POST https://leonardo-production.up.railway.app/hooks/agent \
+  -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
+  -H 'Content-Type: application/json' \
+  -d '{"message": "Your message here", "wakeMode": "now"}'
 ```
 
 ### Send to Molty 🦎
@@ -43,14 +56,14 @@ curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
 curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
   -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
   -H 'Content-Type: application/json' \
-  -d '{"message": "YOUR MESSAGE HERE", "sessionKey": "agent:main:main", "wakeMode": "now"}'
+  -d '{"message": "Your message here", "wakeMode": "now"}'
 ```
 
 ## Parameters
 
 - `message` (required): The message content
-- `sessionKey`: Use `"agent:main:main"` to route to the agent's main session (critical!)
 - `wakeMode`: `"now"` for immediate processing
+- `sessionKey`: **Disabled** — omit entirely
 
 ## Response Codes
 
@@ -65,14 +78,14 @@ curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
   -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
   -H 'Content-Type: application/json' \
-  -d '{"message": "Hey Raphael, status check - how is Brinc prep going?", "sessionKey": "agent:main:main", "wakeMode": "now"}'
+  -d '{"message": "Hey Raphael, status check - how is Brinc prep going?", "wakeMode": "now"}'
 ```
 
 **Raphael receives and can respond back via webhook to Molty.**
 
 ## Critical: sessionKey
 
-**Always use `"sessionKey": "agent:main:main"`** to route messages to the agent's main conversation session. Without this, messages go to isolated throwaway sessions and won't be seen!
+**Do NOT include `sessionKey`** — it is disabled on all deployments (`allowRequestSessionKey=false`). Including it returns a 200 but the message won't route correctly. Messages still reach the agent's active session without it.
 
 ## Security
 
