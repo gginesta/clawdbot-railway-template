@@ -89,7 +89,7 @@
 47. **Todoist CLI:** `todoist-ts-cli` (npm global), needs `TODOIST_API_TOKEN` env var. System Python lacks pip — always use venv.
 48. **Cron scripts must use venv Python** — `/data/workspace/.venv/bin/python3`, not bare `python3`.
 49. **message tool params:** `message` for text, `target` for recipient, `channel` for platform. NOT `activityState`.
-50. **Browser stale lock files:** If browser start fails with "Failed to start Chrome CDP", delete `SingletonLock`/`SingletonSocket` from `/data/.openclaw/browser/<profile>/user-data/` and `/tmp/openclaw-browser/`.
+50. **Browser stale lock files:** Brave refuses to start after container redeploy because `SingletonLock`/`SingletonSocket`/`SingletonCookie` persist on the Railway volume from the previous container. **Permanent fix:** Dockerfile now runs `/usr/local/bin/startup.sh` which clears all browser profile lock files before starting supervisord (committed f0f39aa, Feb 22). Manual fix: `rm -f /data/.openclaw/browser/*/user-data/Singleton*`.
 51. **Anthropic is a built-in provider:** No `models.providers.anthropic` block needed. Just `auth.profiles.anthropic:default` with `mode: "token"`.
 52. **Sonnet 4.6 replaces Opus 4.6 as primary:** 5x cheaper, 1M context, faster, wins on agentic benchmarks. Switched fleet-wide Feb 20.
 53. **All cron/heartbeat on direct Anthropic Haiku:** `anthropic/claude-3-5-haiku-latest` — uses Max plan daily allowance, not OpenRouter credits.54. **Calendar ownership rule:** NEVER put Molty tasks on Guillermo's calendar. Only tasks requiring Guillermo's time.
