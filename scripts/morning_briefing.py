@@ -37,6 +37,41 @@ TODOIST_ENV = "/data/workspace/credentials/todoist.env"
 
 GOG_ACCOUNT = "ggv.molt@gmail.com"
 GOG_KEYRING_PASSWORD = "molty2026"
+GOG_BIN = "/usr/local/bin/gog"
+GOG_CREDENTIALS_BACKUP = "/data/workspace/credentials/google-oauth-client.json"
+GOG_KEYRING_BACKUP = "/data/workspace/credentials/gogcli-keyring/keyring"
+GOG_KEYRING_DIR = "/root/.config/gogcli/keyring"
+GOG_CREDENTIALS_DIR = "/root/.config/gogcli"
+
+
+def ensure_gog_setup() -> None:
+    """Self-healing: install gog binary and restore keyring if missing after container restart."""
+    import shutil
+    import urllib.request as _req
+    # 1. Install binary if missing
+    if not os.path.exists(GOG_BIN):
+        url = "https://github.com/steipete/gogcli/releases/download/v0.11.0/gogcli_0.11.0_linux_amd64.tar.gz"
+        try:
+            import tarfile, tempfile
+            with tempfile.NamedTemporaryFile(suffix=".tar.gz", delete=False) as tmp:
+                _req.urlretrieve(url, tmp.name)
+                with tarfile.open(tmp.name) as tf:
+                    member = next(m for m in tf.getmembers() if m.name == "gog")
+                    member.name = "gog"
+                    tf.extract(member, "/usr/local/bin")
+            os.chmod(GOG_BIN, 0o755)
+        except Exception as e:
+            print(f"⚠️ Could not install gog: {e}", file=sys.stderr)
+            return
+    # 2. Restore OAuth client credentials if missing
+    creds_path = os.path.join(GOG_CREDENTIALS_DIR, "credentials.json")
+    if not os.path.exists(creds_path) and os.path.exists(GOG_CREDENTIALS_BACKUP):
+        os.makedirs(GOG_CREDENTIALS_DIR, exist_ok=True)
+        shutil.copy(GOG_CREDENTIALS_BACKUP, creds_path)
+    # 3. Restore keyring tokens if missing
+    if os.path.isdir(GOG_KEYRING_BACKUP) and not os.path.isdir(GOG_KEYRING_DIR):
+        os.makedirs(os.path.dirname(GOG_KEYRING_DIR), exist_ok=True)
+        shutil.copytree(GOG_KEYRING_BACKUP, GOG_KEYRING_DIR)
 
 # Hong Kong (Central) coordinates for weather
 HK_LAT = 22.3193
@@ -150,7 +185,7 @@ def _fmt_day(d: date) -> str:
 
 def _gog_json(args: list[str], *, errors: list[str], timeout: int = 30) -> dict | None:
     """Run a gog command with --json and return parsed output."""
-    cmd = ["gog"] + args + ["--json", "-a", GOG_ACCOUNT]
+    cmd = ["/usr/local/bin/gog"] + args + ["--json", "-a", GOG_ACCOUNT]
     env = {**os.environ, "GOG_KEYRING_PASSWORD": GOG_KEYRING_PASSWORD}
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
@@ -862,6 +897,7 @@ def build_message(
 # -----------------------------
 
 def main() -> int:
+    ensure_gog_setup()
     now = datetime.now(tz=HKT)
     today = now.date()
     dow = _dow_token(today)
