@@ -17,6 +17,7 @@ RULES:
 - Your Comments is the 2nd column for quick input
 """
 import json, requests, sys, time, os
+from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
 # === CONFIG ===
@@ -517,6 +518,9 @@ def main():
     print("11. Adding footer...")
     add_footer(page_id)
 
+    # 12. Block calendar for the week
+    cal_blocks = block_week_calendar(tasks, today, tomorrow)
+
     # Summary
     page_url = f"https://www.notion.so/{page_id.replace('-', '')}"
     total = added1 + added2
@@ -545,6 +549,13 @@ def main():
             tg_lines.append(f"  • {t['content'][:50]}")
     if completed:
         tg_lines.append(f"\n🏆 *Completed:* {len(completed)} tasks since last standup")
+    if cal_blocks:
+        tg_lines.append(f"\n📅 *Calendar blocked ({len(cal_blocks)} focus blocks):*")
+        for b in cal_blocks:
+            day_fmt = datetime.strptime(b["day"], "%Y-%m-%d").strftime("%a %b %-d")
+            start_t = b["start"][11:16]
+            end_t   = b["end"][11:16]
+            tg_lines.append(f"  • {day_fmt} {start_t}–{end_t}: {b['task'][:45]}")
 
     tg_summary = "\n".join(tg_lines) if tg_lines else "All clear — no urgent items"
 
@@ -559,6 +570,202 @@ def main():
     print(f"__OVERDUE__={overdue_count}")
     print(f"__TODAY__={today_count}")
     print(f"__TG_SUMMARY__={tg_summary}")
+
+
+# === CALENDAR BLOCKING ===
+
+CALENDAR_ID = "guillermo.ginesta@gmail.com"
+SA_KEY_FILE = "/data/workspace/credentials/google-service-account.json"
+
+def _get_calendar_token():
+    """Get a Google Calendar API access token via service account JWT."""
+    try:
+        from cryptography.hazmat.primitives import hashes, serialization
+        from cryptography.hazmat.primitives.asymmetric import padding
+        import base64, urllib.parse, urllib.request as ureq
+        with open(SA_KEY_FILE) as f:
+            sa = json.load(f)
+        now = int(time.time())
+        header = base64.urlsafe_b64encode(json.dumps({"alg":"RS256","typ":"JWT"}).encode()).rstrip(b'=')
+        payload_data = {"iss": sa["client_email"], "scope": "https://www.googleapis.com/auth/calendar",
+                        "aud": "https://oauth2.googleapis.com/token", "exp": now+3600, "iat": now}
+        payload = base64.urlsafe_b64encode(json.dumps(payload_data).encode()).rstrip(b'=')
+        key = serialization.load_pem_private_key(sa["private_key"].encode(), password=None)
+        sig_input = header + b'.' + payload
+        sig = key.sign(sig_input, padding.PKCS1v15(), hashes.SHA256())
+        jwt = (sig_input + b'.' + base64.urlsafe_b64encode(sig).rstrip(b'=')).decode()
+        data = urllib.parse.urlencode({"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer", "assertion": jwt}).encode()
+        req = ureq.Request("https://oauth2.googleapis.com/token", data=data)
+        with ureq.urlopen(req) as r:
+            return json.load(r)["access_token"]
+    except Exception as e:
+        print(f"   ⚠️ Calendar auth failed: {e}")
+        return None
+
+
+def _get_existing_events(token, date_str):
+    """Get events for a given date (YYYY-MM-DD) from Guillermo's calendar."""
+    import urllib.request as ureq, urllib.parse
+    day_start = f"{date_str}T00:00:00+08:00"
+    day_end   = f"{date_str}T23:59:59+08:00"
+    params = urllib.parse.urlencode({
+        "timeMin": day_start, "timeMax": day_end,
+        "singleEvents": "true", "orderBy": "startTime"
+    })
+    url = f"https://www.googleapis.com/calendar/v3/calendars/{urllib.parse.quote(CALENDAR_ID)}/events?{params}"
+    req = ureq.Request(url, headers={"Authorization": f"Bearer {token}"})
+    try:
+        with ureq.urlopen(req) as r:
+            return json.load(r).get("items", [])
+    except Exception:
+        return []
+
+
+def _find_free_slot(events, date_str, duration_hours=1.5):
+    """Find a free morning slot on date_str. Returns (start_iso, end_iso) or None."""
+    # Candidate slots: 9:00, 9:30, 10:00, 10:30, 11:00, 11:30 HKT
+    slots = [(9,0),(9,30),(10,0),(10,30),(11,0),(11,30)]
+    # Build list of busy intervals (start, end) in HKT minutes-from-midnight
+    busy = []
+    for ev in events:
+        s = ev.get("start", {}).get("dateTime")
+        e = ev.get("end", {}).get("dateTime")
+        if not s or not e:
+            continue  # all-day
+        try:
+            s_dt = datetime.fromisoformat(s).astimezone(HKT)
+            e_dt = datetime.fromisoformat(e).astimezone(HKT)
+            busy.append((s_dt.hour*60+s_dt.minute, e_dt.hour*60+e_dt.minute))
+        except Exception:
+            continue
+
+    dur_min = int(duration_hours * 60)
+    for h, m in slots:
+        slot_start = h*60+m
+        slot_end   = slot_start + dur_min
+        if slot_end > 13*60:  # don't go past 1PM
+            continue
+        overlap = any(not (slot_end <= bs or slot_start >= be) for bs, be in busy)
+        if not overlap:
+            s_iso = f"{date_str}T{h:02d}:{m:02d}:00+08:00"
+            eh, em = divmod(slot_end, 60)
+            e_iso = f"{date_str}T{eh:02d}:{em:02d}:00+08:00"
+            return s_iso, e_iso
+    return None
+
+
+def _already_has_focus_block(events, task_name_fragment):
+    """Return True if a Molty focus block or task-matching event already exists."""
+    frag = task_name_fragment[:25].lower().strip()
+    for ev in events:
+        summary = ev.get("summary", "").lower()
+        desc = ev.get("description", "").lower()
+        # Match our own auto-created focus blocks (🎯 prefix)
+        if summary.startswith("🎯"):
+            return True
+        # Match manually-created blocks referencing the same task
+        if frag and len(frag) > 5 and frag in summary:
+            return True
+        # Match if description says "blocked by molty"
+        if "molty" in desc and ("focus block" in desc or "standup" in desc):
+            return True
+    return False
+
+
+def _create_event(token, summary, description, start_iso, end_iso, color_id="11"):
+    import urllib.request as ureq, urllib.parse
+    event = {
+        "summary": summary, "description": description,
+        "start": {"dateTime": start_iso, "timeZone": "Asia/Hong_Kong"},
+        "end":   {"dateTime": end_iso,   "timeZone": "Asia/Hong_Kong"},
+        "colorId": color_id,
+        "reminders": {"useDefault": False, "overrides": [{"method": "popup", "minutes": 15}]},
+    }
+    url = f"https://www.googleapis.com/calendar/v3/calendars/{urllib.parse.quote(CALENDAR_ID)}/events"
+    req = ureq.Request(url, data=json.dumps(event).encode(), method="POST",
+                       headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
+    with ureq.urlopen(req) as r:
+        return json.load(r)
+
+
+def block_week_calendar(all_tasks, today, tomorrow):
+    """
+    Block Guillermo's calendar for the next 5 working days based on task priority.
+    - P1 tasks: 2-hour block, red
+    - P2 tasks: 1.5-hour block, yellow
+    - One block per day, morning slot (9:00–13:00 HKT)
+    - Skips days that already have a focus block for that task
+    """
+    print("\n12. Blocking calendar for the week...")
+    token = _get_calendar_token()
+    if not token:
+        print("   ⚠️ Skipped — could not authenticate with Google Calendar")
+        return []
+
+    # Build working days: tomorrow + next 4 (skip weekends)
+    working_days = []
+    d = datetime.strptime(tomorrow, "%Y-%m-%d")
+    while len(working_days) < 5:
+        if d.weekday() < 5:  # Mon–Fri
+            working_days.append(d.strftime("%Y-%m-%d"))
+        d += timedelta(days=1)
+
+    # Group tasks by their due date, sorted by priority (highest first)
+    by_day = defaultdict(list)
+    for t in all_tasks:
+        due = t.get("due", {}).get("date", "")[:10] if t.get("due") else ""
+        if due and due >= tomorrow:
+            by_day[due].append(t)
+    # Overdue tasks → assign to tomorrow
+    for t in all_tasks:
+        due = t.get("due", {}).get("date", "")[:10] if t.get("due") else ""
+        if due and due < tomorrow and t.get("priority", 4) >= 3:  # P1/P2 overdue
+            by_day[tomorrow].append(t)
+    for day in by_day:
+        by_day[day].sort(key=lambda t: -t.get("priority", 1))
+
+    created = []
+    for day in working_days:
+        day_tasks = by_day.get(day, [])
+        if not day_tasks:
+            continue
+
+        # Pick top task for the day
+        top = day_tasks[0]
+        priority = top.get("priority", 4)
+        if priority < 3:  # Only P1 (priority=4) and P2 (priority=3) — Todoist inverts: 4=P1, 3=P2
+            continue
+
+        task_name = top["content"]
+        events = _get_existing_events(token, day)
+
+        if _already_has_focus_block(events, task_name):
+            print(f"   ⏭️  {day}: already has block for '{task_name[:40]}'")
+            continue
+
+        duration = 2.0 if priority == 4 else 1.5  # P1=2h, P2=1.5h
+        color = "11" if priority == 4 else "5"    # tomato=P1, banana=P2
+        slot = _find_free_slot(events, day, duration)
+
+        if not slot:
+            print(f"   ⚠️  {day}: no free morning slot for '{task_name[:40]}'")
+            continue
+
+        start_iso, end_iso = slot
+        p_label = "P1" if priority == 4 else "P2"
+        summary = f"🎯 [{p_label}] {task_name[:80]}"
+        day_fmt = datetime.strptime(day, "%Y-%m-%d").strftime("%a %b %-d")
+        description = (f"Focus block — standup priority for {day_fmt}.\n"
+                       f"Blocked automatically by Molty daily standup.")
+        try:
+            ev = _create_event(token, summary, description, start_iso, end_iso, color)
+            print(f"   ✅ {day}: '{task_name[:50]}' → {start_iso[11:16]}–{end_iso[11:16]}")
+            created.append({"day": day, "task": task_name, "start": start_iso, "end": end_iso})
+        except Exception as e:
+            print(f"   ❌ {day}: failed to create event — {e}")
+
+    print(f"   📅 {len(created)} focus block(s) created")
+    return created
 
 
 if __name__ == "__main__":
