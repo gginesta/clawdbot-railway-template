@@ -98,6 +98,16 @@ RUN set -eux; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends brave-browser; \
   rm -rf /var/lib/apt/lists/*
 
+
+# Install gogcli (Google Workspace CLI for Gmail, Calendar, Drive)
+# Baked in so it survives container restarts/redeployments
+RUN set -eux; \
+  curl -fsSL https://github.com/steipete/gogcli/releases/download/v0.11.0/gogcli_0.11.0_linux_amd64.tar.gz \
+    -o /tmp/gogcli.tar.gz; \
+  tar -xzf /tmp/gogcli.tar.gz -C /usr/local/bin gog; \
+  chmod +x /usr/local/bin/gog; \
+  rm /tmp/gogcli.tar.gz
+
 # `openclaw update` expects pnpm. Provide it in the runtime image.
 RUN corepack enable && corepack prepare pnpm@10.23.0 --activate
 
