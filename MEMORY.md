@@ -54,7 +54,7 @@
 | Leonardo 🔵 | leonardo-production.up.railway.app | ✅ Active |
 
 ### Key Config
-- **OpenClaw version:** 2026.2.19 (latest tag; see lesson 57-58)
+- **OpenClaw version:** 2026.2.21 (upgraded Feb 22; code live on disk, Railway redeploy pending for all agents)
 - **Primary model:** Claude Sonnet 4.6 (switched Feb 20; 5x cheaper, 1M context)
 - **Cron model:** `anthropic/claude-haiku-4-5` (direct Anthropic via Max plan)
 - **Deploy:** Dockerfile `OPENCLAW_GIT_REF` controls version. `gateway restart` reloads config only, not binary—need full Railway redeploy for upgrades.
@@ -96,7 +96,7 @@
 55. **ggv.molt@gmail.com / GCP project reinstated (Feb 22).** Appeal succeeded — project `molty-assistant-486411` reinstated. `gog` binary reinstalled to `/usr/local/bin/gog`. Keyring tokens backed up to `/data/workspace/credentials/gogcli-keyring/`. Morning briefing script now self-heals: auto-installs gog + restores keyring on container restart.
 56. **`gateway restart` reloads config only, not binary.** Full Railway redeploy required for OpenClaw version upgrades.
 57. **Dockerfile `OPENCLAW_GIT_REF` arg** controls which OpenClaw version gets installed. Always update when upgrading.
-58. **Latest OpenClaw tag is v2026.2.19** (not v2026.2.20; 2026.2.20 only exists as a git commit, not a tag).
+58. **Latest OpenClaw tag is v2026.2.21** (upgraded Feb 22). Template Dockerfile updated. Railway redeploy needed to activate on running containers.
 59. **Railway API deploy permissions:** Workspace token needs correct mutation scope for `serviceInstanceRedeploy`. Currently returns "Not Authorized"—investigate.
 
 ---
