@@ -63,11 +63,16 @@ def ensure_gog_setup() -> None:
         except Exception as e:
             print(f"⚠️ Could not install gog: {e}", file=sys.stderr)
             return
-    # 2. Restore OAuth client credentials if missing
+    # 2. Restore OAuth client credentials if missing (run via gog auth credentials, not raw copy)
     creds_path = os.path.join(GOG_CREDENTIALS_DIR, "credentials.json")
     if not os.path.exists(creds_path) and os.path.exists(GOG_CREDENTIALS_BACKUP):
         os.makedirs(GOG_CREDENTIALS_DIR, exist_ok=True)
-        shutil.copy(GOG_CREDENTIALS_BACKUP, creds_path)
+        try:
+            env = {**os.environ, "GOG_KEYRING_PASSWORD": GOG_KEYRING_PASSWORD}
+            subprocess.run([GOG_BIN, "auth", "credentials", GOG_CREDENTIALS_BACKUP],
+                           env=env, capture_output=True, timeout=15)
+        except Exception:
+            shutil.copy(GOG_CREDENTIALS_BACKUP, creds_path)  # fallback
     # 3. Restore keyring tokens if missing
     if os.path.isdir(GOG_KEYRING_BACKUP) and not os.path.isdir(GOG_KEYRING_DIR):
         os.makedirs(os.path.dirname(GOG_KEYRING_DIR), exist_ok=True)
