@@ -74,4 +74,4 @@ Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
 
 ## Leonardo Webhook
 - **URL:** `https://leonardo-production.up.railway.app/hooks/agent`
-- **Token:** `b990098bbdbcefafbd7b8fb65e97e9a18baae8b4ee1cdcfc2d9b95c80fa52b87`
+- **Token:** `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd`

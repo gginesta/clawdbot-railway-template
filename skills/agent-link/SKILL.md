@@ -32,7 +32,7 @@ Use `exec` with `curl` to send a webhook message:
 
 ```bash
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
-  -H 'Authorization: Bearer HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU' \
+  -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
   -H 'Content-Type: application/json' \
   -d '{"message": "YOUR MESSAGE HERE", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
@@ -41,7 +41,7 @@ curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
 
 ```bash
 curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
-  -H 'Authorization: Bearer HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU' \
+  -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
   -H 'Content-Type: application/json' \
   -d '{"message": "YOUR MESSAGE HERE", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
@@ -63,7 +63,7 @@ curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
 **Molty sends to Raphael:**
 ```bash
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
-  -H 'Authorization: Bearer HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU' \
+  -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
   -H 'Content-Type: application/json' \
   -d '{"message": "Hey Raphael, status check - how is Brinc prep going?", "sessionKey": "agent:main:main", "wakeMode": "now"}'
 ```
@@ -76,6 +76,6 @@ curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
 
 ## Security
 
-- Token: `HSYgqkBANp8ChScOEs2bo09fQ2hnFw0lqW5tZjOPmvkrCffmcuce6aVyF7p1vfTU` (shared between trusted agents only)
+- Token: `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd` (shared between trusted agents only)
 - All traffic over HTTPS
 - Webhooks only accept POST with valid auth
