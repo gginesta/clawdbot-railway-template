@@ -231,11 +231,28 @@ def create_standup_page(today_disp):
     return page_id
 
 
-def add_top_blocks(page_id, today_disp, completed, needs_input_count, pipeline_count, overdue_tasks):
-    """Add top priority callout, completed section, and section headers."""
+def get_tomorrow_priority(all_tasks, tomorrow):
+    """Return the single highest-priority task due tomorrow (or top overdue/P1 if none)."""
+    tomorrow_tasks = [
+        t for t in all_tasks
+        if t.get("due", {}) and t.get("due", {}).get("date", "")[:10] == tomorrow
+    ]
+    if tomorrow_tasks:
+        tomorrow_tasks.sort(key=lambda t: -t.get("priority", 1))
+        return tomorrow_tasks[0]
+    # Fallback: highest priority overdue P1, then P2
+    high_pri = [t for t in all_tasks if t.get("priority", 4) <= 2]
+    if high_pri:
+        high_pri.sort(key=lambda t: -t.get("priority", 1))
+        return high_pri[0]
+    return all_tasks[0] if all_tasks else None
+
+
+def add_top_blocks(page_id, today_disp, tomorrow_disp, completed, needs_input_count, pipeline_count, overdue_tasks, tomorrow_task):
+    """Add top priority callout, tomorrow focus, completed section, and section headers."""
     children = []
 
-    # Top Priority callout
+    # Summary callout
     overdue_summary = ""
     if overdue_tasks:
         overdue_lines = [f"• {t['content'][:60]}" for t in overdue_tasks[:3]]
@@ -253,6 +270,21 @@ def add_top_blocks(page_id, today_disp, completed, needs_input_count, pipeline_c
             "color": "default"
         }
     })
+
+    # Tomorrow's top priority callout
+    if tomorrow_task:
+        task_name = tomorrow_task["content"][:120]
+        children.append({
+            "object": "block", "type": "callout",
+            "callout": {
+                "rich_text": [
+                    {"text": {"content": f"Tomorrow's top priority ({tomorrow_disp})\n"}, "annotations": {"bold": True}},
+                    {"text": {"content": task_name}}
+                ],
+                "icon": {"type": "emoji", "emoji": "🎯"},
+                "color": "yellow_background"
+            }
+        })
 
     # Completed section
     if completed:
@@ -401,6 +433,9 @@ def add_task_to_db(db_id, task, section, today):
 def main():
     today = today_str()
     disp = today_display()
+    tomorrow_dt = datetime.strptime(today, "%Y-%m-%d") + timedelta(days=1)
+    tomorrow = tomorrow_dt.strftime("%Y-%m-%d")
+    tomorrow_disp = tomorrow_dt.strftime("%a %b %-d")
 
     print(f"=== Daily Standup: {disp} ===\n")
 
@@ -453,9 +488,10 @@ def main():
     print("6. Creating Notion page...")
     page_id = create_standup_page(disp)
 
-    # 7. Add top blocks (callout + completed + Table 1 header)
+    # 7. Add top blocks (callout + tomorrow priority + completed + Table 1 header)
     print("7. Adding top blocks...")
-    add_top_blocks(page_id, disp, completed, len(needs_input), len(pipeline), overdue_tasks)
+    tomorrow_task = get_tomorrow_priority(tasks, tomorrow)
+    add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks, tomorrow_task)
 
     # 8. Create Table 1: Needs Your Input
     print("8. Creating Table 1: Needs Your Input...")
