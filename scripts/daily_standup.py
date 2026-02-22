@@ -263,9 +263,7 @@ def add_top_blocks(page_id, today_disp, completed, needs_input_count, pipeline_c
                              "bulleted_list_item": {"rich_text": [{"text": {"content": item[:100]}}]}})
         children.append({"object": "block", "type": "divider", "divider": {}})
 
-    # Table 1 header
-    children.append({"object": "block", "type": "heading_2",
-                     "heading_2": {"rich_text": [{"text": {"content": "🔥 Needs Your Input"}}]}})
+    # Table 1 description (no heading — database title serves as the header)
     children.append({"object": "block", "type": "paragraph",
                      "paragraph": {"rich_text": [{"text": {"content":
                          "New, overdue, or needs a decision. Set Action + leave comments."}}]}})
@@ -278,8 +276,7 @@ def add_pipeline_header(page_id):
     """Add pipeline section header + footer after Table 1."""
     children = [
         {"object": "block", "type": "divider", "divider": {}},
-        {"object": "block", "type": "heading_2",
-         "heading_2": {"rich_text": [{"text": {"content": "📋 Active Pipeline"}}]}},
+        # No heading_2 here — the database title serves as the section header
         {"object": "block", "type": "paragraph",
          "paragraph": {"rich_text": [{"text": {"content":
              "Already decided — clear owners, dates, plans. Scan occasionally."}}]}},
