@@ -20,8 +20,8 @@
 | 1.6 | The Sewer (activity feed) | Phase 1 | ✅ Live — real-time feed with filters |
 | 1.7 | Turtle Tracker (agent status) | Phase 1 | ✅ Live — health bar + agent cards |
 | 1.8 | HTTP API endpoints for agents | Phase 1 | ✅ Done (5 endpoints on Convex) |
-| 1.9 | `mission-control` OpenClaw skill | Phase 1 | ❌ Not started |
-| 1.10 | Connect Molty to Mission Control | Phase 1 | ⚠️ Partial — API tested manually, skill not built |
+| 1.9 | `mission-control` OpenClaw skill | Phase 1 | ✅ Done — `/data/workspace/skills/mission-control/SKILL.md` |
+| 1.10 | Connect Molty to Mission Control | Phase 1 | ✅ Done — status + activity posted via API |
 | 1.11 | Seed initial data | Phase 1 | ✅ Done (3 agents, 4 tasks, 5 activities) |
 | 1.12 | Basic auth | Phase 1 | ❌ Not started |
 
@@ -42,15 +42,14 @@ Badge, TaskCard, AgentCard, ActivityItem, FilterBar, KanbanColumn, Modal, Health
 
 ---
 
-## Phase 1 Remaining Work (Priority Order)
+## Phase 1 Remaining Work
 
 | Priority | Task | Est. Time | Notes |
 |----------|------|-----------|-------|
-| **P1** | Build `mission-control` OpenClaw skill | 2h | Lets agents post activity/status/tasks via natural language |
-| **P1** | Connect Molty's heartbeat to MC | 1h | First live agent integration |
 | **P2** | Basic auth (token or password) | 1h | Currently open to anyone with the URL |
+| **P2** | Deploy MC skill to Raphael + Leonardo | 1h | Phase 2 overlap — they need the skill in their workspace |
 
-**Total remaining Phase 1 effort: ~4 hours**
+**Total remaining: ~2 hours (auth is optional for now — URL is obscure)**
 
 ---
 
