@@ -121,6 +121,43 @@ tmnt-mission-control/
 
 ---
 
+## Convex Wiring — Feb 23, 2026, 11:45 HKT
+
+### All 4 Screens Wired to Real-Time Data
+
+**Problem:** All screens rendered mock data from `src/lib/utils.ts`. Convex backend had real data but UI wasn't connected.
+
+**Data Shape Mismatches Found:**
+| Field | Convex | UI |
+|-------|--------|-----|
+| Priority | `"p0"` | `"P0"` |
+| Task status | `"in_progress"` | `"In Progress"` |
+| Task assignees | `string[]` | `{ id, name, emoji }[]` |
+| Activity | no agent name/emoji/color | needs all three |
+| Agent | `kingdom`, `lastHeartbeat` (ms) | `kingdomTheme`, `lastSeen` ("2 min ago") |
+
+**Solution:** Created `src/lib/convex-helpers.ts` mapping layer (200 lines):
+- `mapTask()`, `mapActivity()`, `mapAgent()` — Convex → UI
+- `priorityToConvex()`, `statusToConvex()`, `projectToConvex()` — UI → Convex
+- `timeAgo()`, `formatDueDate()` — timestamp formatting
+
+**Changes:**
+| File | Change |
+|------|--------|
+| `src/lib/convex-helpers.ts` | **NEW** — data mapping layer |
+| `src/app/layout.tsx` | Mount ConvexClientProvider |
+| `convex/tasks.ts` | Add `stats` query |
+| `src/app/tracker/page.tsx` | Wire to `api.agents.list` |
+| `src/app/sewer/page.tsx` | Wire to `api.activities.list` + `api.agents.list` |
+| `src/app/war-room/page.tsx` | Wire to `api.tasks.list` + `api.tasks.create` |
+| `src/app/page.tsx` | Wire to 4 queries (tasks, agents, activities, stats) |
+
+**Verified:** TypeScript clean, Convex deployed, Next.js build passes, API tested (activity POST + heartbeat POST both return `{"ok":true}`), Vercel production deploy successful.
+
+**Commit:** `f030afa`
+
+---
+
 ## What's Next
 
 ### Phase 2 (Week 2) — Agent Integration + Memory
