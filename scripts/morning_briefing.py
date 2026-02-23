@@ -898,6 +898,29 @@ def build_message(
 
 
 # -----------------------------
+# Deduplication
+# -----------------------------
+
+def _dedup_events(events: list[CalEvent]) -> list[CalEvent]:
+    """Remove duplicate events (same summary + start time) across calendars.
+    
+    If the same event appears in multiple calendars, merge the calendar labels.
+    """
+    seen: dict[tuple, CalEvent] = {}
+    out: list[CalEvent] = []
+    for ev in events:
+        key = (ev.summary, ev.start)
+        if key in seen:
+            existing = seen[key]
+            if ev.calendar_label not in existing.calendar_label:
+                existing.calendar_label = f"{existing.calendar_label} + {ev.calendar_label}"
+        else:
+            seen[key] = ev
+            out.append(ev)
+    return out
+
+
+# -----------------------------
 # Main
 # -----------------------------
 
@@ -934,6 +957,7 @@ def main() -> int:
             )
 
     todays_events.sort(key=lambda e: (e.start or start_today, e.all_day))
+    todays_events = _dedup_events(todays_events)
 
     start_up = end_today
     end_up = end_today + timedelta(days=5)
@@ -953,6 +977,7 @@ def main() -> int:
             )
 
     upcoming_events.sort(key=lambda e: (e.start or start_up, e.all_day))
+    upcoming_events = _dedup_events(upcoming_events)
 
     env = _load_env_file(TODOIST_ENV)
     todo_token = env.get("TODOIST_API_TOKEN") or os.environ.get("TODOIST_API_TOKEN")
