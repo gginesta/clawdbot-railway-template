@@ -158,21 +158,102 @@ tmnt-mission-control/
 
 ---
 
+## Phase 2 — Feb 23, 2026, 12:00–12:50 HKT
+
+### 1A. API Auth Hardening (12:00)
+
+- Generated proper API key: `232e4ddf...` (64 hex chars)
+- Set as `MC_API_KEY` env var in Convex dashboard
+- Updated `validateAuth()` in `http.ts` to check `process.env.MC_API_KEY`
+- **Verified:** Old key returns 401, new key returns 200, no key returns 401
+- Updated MC skill with new key
+- **Commit:** `f2b6ce3`
+
+### 2G. Sub-Agent Tracking (12:02)
+
+- Added `subAgentId`, `subAgentName`, `subAgentEmoji` to Activity interface
+- Updated `mapActivity()` to look up sub-agent from lead's roster
+- Updated `ActivityItem` component: shows "Lead → 🤖 Sub-agent" attribution
+- **Quick win:** Schema already supported `subAgentId`, just needed UI wiring
+
+### 2E. Comment Threads (12:03)
+
+- **New component:** `src/components/ui/task-detail.tsx` (170 lines)
+  - Modal with task header (badges, assignees, due date)
+  - Chronological comment list with author avatars
+  - @mention autocomplete dropdown (filters as you type)
+  - Mentions rendered in emerald green with agent emoji
+  - Comment timestamps formatted
+- **Updated:** `TaskCard` now clickable → opens TaskDetail modal
+- **Backend:** Used existing `comments.listByTask` + `comments.add`
+
+### 2C. Shell Calendar (12:04)
+
+- **New page:** `src/app/calendar/page.tsx` (250 lines)
+- **Features:**
+  - Week/month toggle
+  - Navigate forward/backward with arrows + "Today" button
+  - Agent swim lanes (horizontal rows per agent with emoji + role)
+  - Tasks plotted by `dueDate` (scheduled) or `completedAt` (done)
+  - Color-coded: green = done (strikethrough), red = P0/blocked, blue = scheduled
+  - Today column highlighted in emerald
+  - Legend bar
+- **Data:** Uses existing `tasks.list` + `agents.list` queries (no new backend needed)
+
+### 2D. The Vault — Memory Browser (12:05)
+
+- **New file:** `convex/memories.ts` — `list`, `stats`, `sync` queries/mutations
+- **New endpoints:** `POST /api/memory` (push) + `GET /api/memories` (query)
+- **Memory sync is upsert:** same agent + date + source updates existing entry
+- **New page:** `src/app/vault/page.tsx` (200 lines)
+  - Two-panel layout: memory list (left) + content viewer (right)
+  - Search bar (filters title + content + tags)
+  - Agent filter tabs
+  - Stats row (total memories, per-agent breakdown)
+  - Date and source shown per entry
+  - Tag badges
+  - Selected memory renders full markdown content
+- **Seeded:** Pushed Molty's daily memory + MEMORY.md as test data
+
+### 2A. Deploy Skill to Raphael + Leonardo (12:06)
+
+- Copied `skills/mission-control/` to `/data/shared/skills/mission-control/`
+- Sent webhooks to both agents with installation instructions
+- Both acknowledged: Raphael `runId: 0751d427`, Leonardo `runId: a41f1124`
+
+### 2B. Heartbeat Integration (12:07)
+
+- **Decision:** Use dedicated cron instead of HEARTBEAT.md
+  - HEARTBEAT.md spins up full agent session on every cycle (wasteful)
+  - Cron uses Haiku (cheapest), isolated session, auto-discards HEARTBEAT_OK
+- **Cron created:** `MC Heartbeat Ping` (`46d1ca32-...`)
+  - Schedule: `0 */2 * * *` (every 2 hours)
+  - Model: `anthropic/claude-haiku-4-5`
+  - Action: curl MC heartbeat endpoint, reply HEARTBEAT_OK
+  - Delivery: `--best-effort-deliver`
+- **HEARTBEAT.md:** Kept empty with comment pointing to cron
+
+### 2F. Task Notifications (12:08)
+
+- **New query:** `comments.mentionsFor(agentId, since?)` — returns recent @mentions with task title
+- **New endpoint:** `GET /api/notifications?agentId=X&since=T`
+- Agents can poll this on heartbeat to check for new @mentions
+
+### Phase 2 Commits
+
+| Commit | Description |
+|--------|-------------|
+| `f2b6ce3` | API auth hardening + memory endpoints |
+| `c813a2b` | Sub-agent tracking, comments, Calendar, Vault |
+| `dad8898` | Task notifications + @mentions query |
+
+### Deployment
+
+All changes deployed to Vercel production and Convex in sequence.
+Total Phase 2 build time: **~50 minutes**.
+
+---
+
 ## What's Next
 
-### Phase 2 (Week 2) — Agent Integration + Memory
-- Deploy mission-control skill to all agents
-- Heartbeat integration (agents report status automatically)
-- Comment threads with @mentions
-- The Vault (memory browser with search)
-- Memory sync (agents push summaries to Convex)
-- Sub-agent tracking in activity feed
-- Optional Todoist sync
-
-### Phase 3 (Week 3-4) — Polish + Intelligence
-- Pizza Tracker (metrics, velocity, cost tracking)
-- Shell Calendar (timeline with agent swim lanes)
-- Daily standup auto-generation from Mission Control data
-- Mobile-responsive polish
-- Project views (Brinc/Cerebro/Mana tabs)
-- Task templates, notification preferences
+See `/data/workspace/docs/mission-control/PHASE3-PLAN.md` for detailed Phase 3 plan.

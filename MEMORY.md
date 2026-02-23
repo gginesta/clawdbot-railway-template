@@ -115,12 +115,15 @@
 - **Live:** https://tmnt-mission-control.vercel.app
 - **Repo:** github.com/gginesta/tmnt-mission-control (private)
 - **Tech:** NextJS 14 + Convex + Vercel (all free tier, $0/month)
-- **Convex:** dev:resilient-chinchilla-241 | Team: guillermo-ginesta | Dashboard: https://dashboard.convex.dev/t/guillermo-ginesta/tmnt-mission-control
-- **HTTP API:** https://resilient-chinchilla-241.convex.site (endpoints: /api/activity, /api/status, /api/heartbeat, /api/task, /api/tasks)
-- **Phase 1 live:** Dojo (home), War Room (kanban), Sewer (activity feed), Turtle Tracker (agents)
-- **Phase 2 planned:** Agent integration, memory browser, comment threads, calendar
-- **Spec:** `/data/workspace/docs/mission-control/SPEC.md`
-- **Build log:** `/data/workspace/docs/mission-control/BUILD-LOG.md`
+- **Convex:** dev:resilient-chinchilla-241 | Team: guillermo-ginesta
+- **HTTP API:** https://resilient-chinchilla-241.convex.site
+- **API Key:** In Convex env `MC_API_KEY` + skill SKILL.md
+- **Phase 1+2 complete.** 6 live screens, 8 API endpoints, auth hardened
+- **Screens:** Dojo, War Room (kanban + comments), Sewer (activity + sub-agents), Tracker (health bar), Calendar (swim lanes), Vault (memory browser)
+- **Placeholders:** Pizza Tracker (metrics), Splinter's Den (settings)
+- **Heartbeat:** Cron `46d1ca32` every 2h (Haiku), pings MC `/api/heartbeat`
+- **Skill:** `/data/workspace/skills/mission-control/SKILL.md` + `/data/shared/skills/mission-control/`
+- **Docs:** `docs/mission-control/` — SPEC.md, STATUS.md, BUILD-LOG.md, PHASE2-PLAN.md, PHASE3-PLAN.md
 - **Molty owns the build.** Guillermo reviews product/UX. Todoist stays as personal tool.
 
 ---

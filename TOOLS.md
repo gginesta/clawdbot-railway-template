@@ -69,7 +69,7 @@ Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
 
 ---
 
-## Convex
+## Convex / Mission Control
 
 | What | Value |
 |------|-------|
@@ -79,6 +79,9 @@ Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
 | URL | https://resilient-chinchilla-241.convex.cloud |
 | HTTP API | https://resilient-chinchilla-241.convex.site |
 | Dashboard | https://dashboard.convex.dev/t/guillermo-ginesta/tmnt-mission-control |
+| MC API Key | `232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc` |
+| MC Heartbeat Cron | `46d1ca32-0bd0-43f4-bfa9-3e9e385271cd` (every 2h, Haiku) |
+| MC Skill | `/data/workspace/skills/mission-control/SKILL.md` |
 
 ---
 

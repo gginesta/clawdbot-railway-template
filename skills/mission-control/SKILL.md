@@ -13,7 +13,7 @@ Post to the TMNT Mission Control dashboard via its Convex HTTP API.
 https://resilient-chinchilla-241.convex.site
 ```
 
-All requests need `Authorization: Bearer tmnt-fleet-key` and `Content-Type: application/json`.
+All requests need `Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc` and `Content-Type: application/json`.
 
 ## Endpoints
 
@@ -23,7 +23,7 @@ Log an activity to The Sewer feed.
 ```bash
 curl -s -X POST https://resilient-chinchilla-241.convex.site/api/activity \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer tmnt-fleet-key" \
+  -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc" \
   -d '{"agentId":"molty","type":"task_update","title":"Completed proposal draft","body":"Optional details","project":"brinc"}'
 ```
 
@@ -37,7 +37,7 @@ Update agent status and current task.
 ```bash
 curl -s -X POST https://resilient-chinchilla-241.convex.site/api/status \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer tmnt-fleet-key" \
+  -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc" \
   -d '{"agentId":"molty","status":"active","currentTask":"Building MC skill"}'
 ```
 
@@ -50,7 +50,7 @@ Ping to confirm agent is alive. Sets status to active + updates lastHeartbeat.
 ```bash
 curl -s -X POST https://resilient-chinchilla-241.convex.site/api/heartbeat \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer tmnt-fleet-key" \
+  -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc" \
   -d '{"agentId":"molty","currentTask":"Processing morning briefing"}'
 ```
 
@@ -63,7 +63,7 @@ Create a task on the War Room board.
 ```bash
 curl -s -X POST https://resilient-chinchilla-241.convex.site/api/task \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer tmnt-fleet-key" \
+  -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc" \
   -d '{"title":"Review proposal","project":"brinc","priority":"p1","assignees":["raphael"],"createdBy":"molty"}'
 ```
 
@@ -75,10 +75,24 @@ Query tasks. Returns JSON array.
 
 ```bash
 curl -s "https://resilient-chinchilla-241.convex.site/api/tasks?assignee=molty" \
-  -H "Authorization: Bearer tmnt-fleet-key"
+  -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
 ```
 
 **Params:** `assignee`, `status`, `project`
+
+### POST /api/memory
+Push a memory summary to The Vault.
+
+```bash
+curl -s -X POST https://resilient-chinchilla-241.convex.site/api/memory \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc" \
+  -d '{"agentId":"molty","date":"2026-02-23","title":"Phase 2 build day","content":"# Summary\n...markdown...","source":"memory/2026-02-23.md"}'
+```
+
+**Required:** `agentId`, `date`, `title`, `content`, `source`
+**Optional:** `tags` (string[])
+**Note:** Upserts — same agent + date + source will update existing entry.
 
 ## Agent IDs
 - `molty` — Molty 🦎
