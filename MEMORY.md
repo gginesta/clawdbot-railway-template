@@ -119,7 +119,7 @@
 - **Convex:** dev:resilient-chinchilla-241 | Team: guillermo-ginesta
 - **HTTP API:** https://resilient-chinchilla-241.convex.site
 - **API Key:** In Convex env `MC_API_KEY` + skill SKILL.md
-- **Phase 1+2 complete.** 6 live screens, 8 API endpoints, auth hardened
+- **Phase 1+2+3 complete.** 11 screens, 12 API endpoints, auth + middleware
 - **Screens:** Dojo, War Room (kanban + comments), Sewer (activity + sub-agents), Tracker (health bar), Calendar (swim lanes), Vault (memory browser)
 - **Placeholders:** Pizza Tracker (metrics), Splinter's Den (settings)
 - **Heartbeat:** Cron `46d1ca32` every 2h (Haiku), pings MC `/api/heartbeat` + syncs daily memory to Vault

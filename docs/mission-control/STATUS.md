@@ -1,187 +1,171 @@
-# 🐢 TMNT Mission Control — Project Status
+# TMNT Mission Control — Status
 
-**Last Updated:** 2026-02-23 12:55 HKT
-**Owner:** Molty 🦎
-**Live URL:** https://tmnt-mission-control.vercel.app
-
----
-
-## Current State: Phase 1 ✅ + Phase 2 ✅ Complete
-
----
-
-## Phase 1: Foundation + Core ✅
-
-| # | Item | Status | Notes |
-|---|------|--------|-------|
-| 1.1 | Init NextJS + Convex, push to GitHub | ✅ | Commit `5dc3743` |
-| 1.2 | Deploy to Vercel, confirm Convex connection | ✅ | Free tier, $0/month |
-| 1.3 | Convex schema (5 tables) | ✅ | agents, tasks, activities, comments, memories |
-| 1.4 | The Dojo (home dashboard) | ✅ | Real-time stats, priority tasks, fleet cards, activity feed |
-| 1.5 | The War Room (kanban) | ✅ | Kanban with create task mutation, clickable → detail view |
-| 1.6 | The Sewer (activity feed) | ✅ | Real-time feed with agent/project filters, sub-agent attribution |
-| 1.7 | Turtle Tracker (agent status) | ✅ | Fleet health bar, agent cards with Kingdom sub-agents |
-| 1.8 | HTTP API endpoints | ✅ | 8 endpoints (activity, status, heartbeat, task, tasks, memory, memories, notifications) |
-| 1.9 | `mission-control` skill | ✅ | `/data/workspace/skills/mission-control/SKILL.md` + shared via Syncthing |
-| 1.10 | Connect Molty to MC | ✅ | Cron heartbeat every 2h + API tested |
-| 1.11 | Seed initial data | ✅ | 3 agents, 4 tasks, 5+ activities, 2 memories |
-| 1.12 | API auth | ✅ | Bearer token validated against `MC_API_KEY` env var in Convex |
-
----
-
-## Phase 2: Agent Integration + Memory ✅
-
-| # | Item | Status | Notes |
-|---|------|--------|-------|
-| 2A | Deploy MC skill to Raphael + Leonardo | ✅ | Skill copied to `/data/shared/skills/`, webhooks sent |
-| 2B | Heartbeat integration | ✅ | Cron `46d1ca32` every 2h, Haiku model, `HEARTBEAT.md` kept empty |
-| 2C | Shell Calendar | ✅ | Week/month view, agent swim lanes, task timeline by due/completed date |
-| 2D | The Vault (memory browser) | ✅ | Search, agent filter, stats, markdown content viewer, 2 memories synced |
-| 2E | Comment threads | ✅ | Task detail modal with @mention autocomplete, chronological comments |
-| 2F | Task notifications | ✅ | `GET /api/notifications?agentId=X&since=T` for @mention alerts |
-| 2G | Sub-agent tracking | ✅ | Activity feed shows "Lead → Sub-agent: action" attribution |
-
-**Deferred from Phase 2:** Todoist sync (optional, low priority)
-
----
-
-## Phase 3: Polish + Intelligence — In Progress
-
-### Tier 1 ✅ Complete
-
-| # | Item | Status | Notes |
-|---|------|--------|-------|
-| A1 | Pizza Tracker — Metrics | ✅ Done | Velocity chart, activity volume, project/priority breakdown, agent table |
-| A3 | Daily Standup Auto-Gen | ✅ Done | Cron `62aaf754` at 08:00 HKT, queries MC tasks, delivers formatted standup |
-| C3 | Memory Auto-Sync | ✅ Done | Heartbeat cron now also pushes daily memory to Vault |
-| D5 | Fleet Alerts | ✅ Done | Stale detection (>4h), amber border + warning banner on agent cards |
-| B5 | Loading & Empty States | ✅ Done | Empty Kanban columns, all screens have loading spinners |
-
-### Tier 2 — Not Started
-
-| # | Item | Status |
-|---|------|--------|
-| B1 | Mobile-Responsive Polish | ❌ |
-| C1 | Project Views | ❌ |
-| B3 | Enhanced Dojo | ❌ |
-| A2 | Cost Tracking | ❌ |
-| B4 | Drag-and-Drop Kanban | ❌ |
-
-### Tier 3+ — Not Started
-
-See `PHASE3-PLAN.md` for full breakdown.
+**Last updated:** 2026-02-23 16:30 HKT
+**Version:** v0.2.0 (Phase 3 complete)
+**Live:** https://tmnt-mission-control.vercel.app
 
 ---
 
 ## Architecture
 
-```
-┌──────────────────────┐     ┌──────────────────────┐
-│   Vercel (Frontend)  │     │   Convex (Backend)   │
-│                      │     │                      │
-│  NextJS 14 App       │────▶│  Schema (5 tables)   │
-│  12 UI components    │     │  Queries/Mutations   │
-│  Tailwind CSS        │     │  HTTP API (8 routes) │
-│  convex-helpers.ts   │     │  Real-time subs      │
-└──────────────────────┘     └──────────────────────┘
-                                       ▲
-                                       │ POST /api/*
-                              ┌────────┴────────┐
-                              │   TMNT Agents    │
-                              │                  │
-                              │  Molty 🦎 (2h)   │
-                              │  Raphael 🔴      │
-                              │  Leonardo 🔵     │
-                              └─────────────────┘
-```
-
-## Screens
-
-| Screen | Route | Status | Description |
-|--------|-------|--------|-------------|
-| 🏠 The Dojo | `/` | ✅ Live | Home — stats, priority tasks, fleet, recent activity |
-| 🗺️ War Room | `/war-room` | ✅ Live | Kanban board — create tasks, click → comment threads |
-| 🕳️ The Sewer | `/sewer` | ✅ Live | Activity feed — agent/project filters, sub-agent attribution |
-| 🐢 Turtle Tracker | `/tracker` | ✅ Live | Fleet health bar, agent cards, Kingdom view |
-| 🗓️ Shell Calendar | `/calendar` | ✅ Live | Week/month timeline, agent swim lanes |
-| 📚 The Vault | `/vault` | ✅ Live | Memory browser — search, stats, markdown viewer |
-| 🍕 Pizza Tracker | `/pizza` | 📋 Placeholder | Metrics/analytics — Phase 3 |
-| ⚙️ Splinter's Den | `/settings` | 📋 Placeholder | Settings/config — Phase 3 |
-
-## HTTP API Endpoints
-
-| Endpoint | Method | Purpose |
-|----------|--------|---------|
-| `/api/activity` | POST | Agents post activity updates |
-| `/api/status` | POST | Agents update their status |
-| `/api/heartbeat` | POST | Agents send heartbeat pings |
-| `/api/task` | POST | Agents create tasks |
-| `/api/tasks` | GET | Agents query their assigned tasks |
-| `/api/memory` | POST | Agents push memory summaries |
-| `/api/memories` | GET | Query memories (agent filter + text search) |
-| `/api/notifications` | GET | Agents check for @mention alerts |
-
-**Base URL:** `https://resilient-chinchilla-241.convex.site`
-**Auth:** `Authorization: Bearer <MC_API_KEY>`
-
-## File Structure
-
-```
-tmnt-mission-control/
-├── convex/                    # Backend
-│   ├── schema.ts              # 5 tables (agents, tasks, activities, comments, memories)
-│   ├── agents.ts              # Agent queries & mutations (list, get, upsert, updateStatus, heartbeat)
-│   ├── tasks.ts               # Task CRUD + stats query
-│   ├── activities.ts          # Activity feed (list, recent, post)
-│   ├── comments.ts            # Comments (listByTask, mentionsFor, add)
-│   ├── memories.ts            # Memory browser (list, stats, sync)
-│   ├── http.ts                # HTTP API (8 endpoints, auth validation)
-│   └── seed.ts                # Initial data seeding
-├── src/
-│   ├── app/                   # Pages (all wired to Convex)
-│   │   ├── page.tsx           # The Dojo
-│   │   ├── war-room/page.tsx  # War Room
-│   │   ├── sewer/page.tsx     # The Sewer
-│   │   ├── tracker/page.tsx   # Turtle Tracker
-│   │   ├── calendar/page.tsx  # Shell Calendar
-│   │   ├── vault/page.tsx     # The Vault
-│   │   ├── pizza/page.tsx     # Placeholder
-│   │   └── settings/page.tsx  # Placeholder
-│   ├── components/
-│   │   ├── ui/                # 12 components (Badge, TaskCard, TaskDetail, AgentCard, ActivityItem, FilterBar, KanbanColumn, Modal, HealthBar, StatCard, PageHeader, PlaceholderScreen)
-│   │   ├── layout/sidebar.tsx
-│   │   └── providers/convex-provider.tsx
-│   └── lib/
-│       ├── utils.ts           # Types, constants, color helpers
-│       └── convex-helpers.ts  # Convex ↔ UI data mapping layer
-└── package.json
-```
-
-## Credentials & URLs
-
-| Resource | Value |
-|----------|-------|
-| Live site | https://tmnt-mission-control.vercel.app |
-| Convex dashboard | https://dashboard.convex.dev/t/guillermo-ginesta/tmnt-mission-control |
-| Convex HTTP API | https://resilient-chinchilla-241.convex.site |
-| Convex deployment | dev:resilient-chinchilla-241 |
-| GitHub repo | github.com/gginesta/tmnt-mission-control (private) |
-| Vercel project | tmnt-mission-control |
-| MC API key | In Convex env var `MC_API_KEY` + skill SKILL.md |
-| MC Heartbeat Cron | `46d1ca32-0bd0-43f4-bfa9-3e9e385271cd` (every 2h) |
-
-## Git History
-
-| Commit | Description |
-|--------|-------------|
-| `dad8898` | Task notifications + comment @mentions query |
-| `c813a2b` | Phase 2 — sub-agent tracking, comments, Calendar, Vault |
-| `f2b6ce3` | API auth hardening + memory endpoints |
-| `f030afa` | Wire all screens to Convex (replace mock data) |
-| `bb388f4` | Gemini-designed light theme UI + component library |
-| `aa05d29` | Seed data, Vercel deployment config |
-| `5dc3743` | TMNT Mission Control v0.1.0 — scaffold |
+| Component | Tech | URL |
+|-----------|------|-----|
+| Frontend | Next.js 15 + React 19 + Tailwind CSS | Vercel (free tier) |
+| Backend | Convex (real-time, serverless) | `rosy-crocodile-290.convex.cloud` |
+| Auth | Middleware password gate | Set `MC_PASSWORD` env to enable |
+| Repo | `gginesta/tmnt-mission-control` (private) | GitHub |
+| Local path | `/data/workspace/tmnt-mission-control/` | — |
 
 ---
 
-*This file tracks implementation status. Spec: `SPEC.md` | Build log: `BUILD-LOG.md` | Phase 3 plan: `PHASE3-PLAN.md`*
+## Screens (11 routes + login)
+
+| Route | Name | Description |
+|-------|------|-------------|
+| `/` | **The Dojo** | Dashboard: stats, priority tasks, fleet status, activity, Commander's Tasks (Todoist) |
+| `/war-room` | **War Room** | Kanban board with drag-and-drop, create tasks, filter by project |
+| `/sewer` | **The Sewer** | Real-time activity feed, filterable by agent/type/project |
+| `/tracker` | **Turtle Tracker** | Agent health cards with stale detection (>4h) |
+| `/calendar` | **Shell Calendar** | Week/month view with agent swim lanes |
+| `/vault` | **The Vault** | Memory browser with search, browse by agent/date |
+| `/pizza` | **Pizza Tracker** | Metrics: velocity, activity volume, per-project/priority breakdown, cost tracking |
+| `/project/[slug]` | **Project Views** | Per-project filtered view (brinc, cerebro, mana) |
+| `/settings` | **Splinter's Den** | Agent registry, task templates, cron status, API config |
+| `/login` | **Login** | Password gate (dark themed) |
+| `/_not-found` | **404** | Not found page |
+
+---
+
+## API Endpoints (12)
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/api/activity` | Log agent activity |
+| POST | `/api/status` | Update agent status |
+| POST | `/api/heartbeat` | Agent heartbeat ping |
+| POST | `/api/task` | Create task |
+| PATCH | `/api/task` | Update task status/fields |
+| GET | `/api/tasks` | Query tasks (filterable) |
+| POST | `/api/memory` | Sync memory to Vault |
+| GET | `/api/memories` | Query memories |
+| GET | `/api/notifications` | Check @mentions |
+| POST | `/api/cost` | Report token usage/cost |
+| POST | `/api/todoist-sync` | Sync Todoist tasks |
+
+All endpoints require `Authorization: Bearer <MC_API_KEY>`.
+
+---
+
+## Convex Tables (8)
+
+| Table | Purpose |
+|-------|---------|
+| `agents` | Agent registry (status, heartbeat, sub-agents) |
+| `tasks` | Fleet task board (kanban) |
+| `comments` | Task comments with @mentions |
+| `activities` | Activity feed (the sewer) |
+| `costs` | Token usage + cost tracking |
+| `memories` | Synced memory files (the vault) |
+| `taskTemplates` | Reusable task templates |
+| `todoistTasks` | Read-only Todoist sync |
+
+---
+
+## Cron Jobs
+
+| Job | Schedule | ID | Status |
+|-----|----------|----|--------|
+| Heartbeat + Memory Sync | Every 2h | `46d1ca32` | ✅ Active |
+| Daily Standup | 08:00 HKT | `62aaf754` | ✅ Active |
+| Memory Health Check | Mon 10:00 HKT | `3db9477e` | ✅ Active |
+| Todoist Sync | Every 30min | — | 📋 Planned |
+| Weekly Digest | Fri 17:00 HKT | — | 📋 Planned |
+| Usage Report | With heartbeat | — | 📋 Planned |
+
+---
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/mc-todoist-sync.sh` | Pull Todoist tasks → MC (API v1) |
+| `scripts/mc-usage-report.sh` | Report OpenRouter credits + Anthropic tokens to MC |
+| `scripts/mc-weekly-digest.sh` | Generate weekly fleet summary |
+
+---
+
+## Phase History
+
+### Phase 1 ✅ (Feb 23 morning)
+- Scaffold: Next.js 14 + Convex + Vercel
+- 5 Convex tables, 5 HTTP routes, seed data
+- 4 core screens: Dojo, War Room, Sewer, Tracker
+
+### Phase 2 ✅ (Feb 23 morning)
+- Auth hardened (MC_API_KEY)
+- Sub-agent tracking, comment threads
+- Shell Calendar, The Vault
+- MC skill deployed to agents
+- Heartbeat cron, task notifications
+
+### Phase 3 ✅ (Feb 23 afternoon)
+
+**Tier 1:**
+- Pizza Tracker metrics dashboard
+- Fleet alerts (stale >4h detection)
+- Daily standup cron
+- Memory auto-sync on heartbeat
+- Loading & empty states
+
+**Tier 2:**
+- Mobile responsive (bottom nav, responsive grids)
+- Project views (`/project/brinc`, `/project/cerebro`, `/project/mana`)
+- Enhanced Dojo (quick actions, overdue alerts)
+- Cost tracking (costs table + POST /api/cost + Pizza Tracker charts)
+- Drag-and-drop Kanban
+
+**Tier 3:**
+- Todoist sync (29 tasks, read-only, API v1)
+- Task templates (4 seeded + CRUD UI)
+- Splinter's Den settings page
+- Password auth (middleware + login page)
+- Weekly digest script
+
+**Skipped:** Dark mode (not needed)
+
+---
+
+## Remaining Work (tracked in MC War Room)
+
+1. Wire Todoist sync cron (every 30min)
+2. Wire weekly digest cron (Fri 17:00 HKT)
+3. Integrate usage report into heartbeat cron
+4. Enable MC_PASSWORD on Vercel
+5. Clean up ESLint warnings
+
+---
+
+## Key Decisions
+
+- **Next.js 16 → 15 downgrade:** Next.js 16 has a known prerender bug with useContext (#85668)
+- **NODE_ENV=production in container:** Causes npm to skip devDependencies silently — always use `NODE_ENV=development npm install`
+- **Todoist API v1:** REST v2 (`api.todoist.com/rest/v2/`) returns HTTP 410 Gone. Use `/api/v1/` instead.
+- **No chart library:** CSS-based bar charts keep bundle small
+- **Convex prod deployment:** `rosy-crocodile-290` (changed from `resilient-chinchilla-241` dev)
+- **Auth is opt-in:** Set `MC_PASSWORD` env var to enable; disabled by default for easy dev
+
+---
+
+## Git History
+
+| Hash | Description |
+|------|-------------|
+| `b3aecfd` | Phase 3 Tier 3 — Todoist, templates, settings, auth, digest |
+| `9aa26a5` | Phase 3 Tier 2 — mobile, projects, Dojo, costs, DnD |
+| `0acfb06` | Next.js 15 downgrade + ESLint fixes |
+| `7b386e8` | TS types fix + error pages |
+| `c3e2746` | PATCH /api/task endpoint |
+| `0b3f234` | Phase 3 Tier 1 — Pizza Tracker, alerts, empty states |
+| `dad8898` | Task notifications + comment @mentions |
+| `c813a2b` | Phase 2 — sub-agents, comments, Calendar, Vault |
+| `f2b6ce3` | Phase 1 seed data |

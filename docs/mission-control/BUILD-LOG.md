@@ -1,5 +1,37 @@
 # 🐢 TMNT Mission Control — Build Log
 
+## 2026-02-23 — Phase 3 Complete
+
+### Tier 2 (14:30-15:30 HKT)
+- **B1 Mobile Responsive:** Bottom nav component, hidden sidebar at md breakpoint, responsive padding/grids
+- **C1 Project Views:** Dynamic `/project/[slug]` route with filtered tasks/activities/agents + sidebar shortcuts
+- **B3 Enhanced Dojo:** Quick actions bar, overdue task alert banner
+- **A2 Cost Tracking:** `costs` table, `POST /api/cost`, OpenRouter integration, Pizza Tracker cost charts
+- **B4 DnD Kanban:** Native HTML drag-and-drop between War Room columns
+
+### Tier 3 (15:55-16:15 HKT)
+- **C2 Todoist Sync:** New API v1 (v2 is HTTP 410!), 29 tasks synced, Commander's Tasks in Dojo
+- **C4 Splinter's Den:** Full settings page with agent registry, template CRUD, cron status, API config
+- **D1 Task Templates:** 4 seeded templates, create/delete from UI
+- **D6 User Auth:** Middleware password gate + dark login page
+- **A4 Weekly Digest:** Script for Friday cron
+- **Usage Tracking:** OpenRouter credits ($31.21) + Anthropic token volume scripts
+
+### Fixes
+- **NODE_ENV=production** in container was silently skipping npm devDependencies — root cause of TypeScript errors
+- **Next.js 16→15 downgrade** — prerender useContext crash is a known bug (#85668)
+- Cleaned up 9 unused deps from Gemini scaffold (156MB saved)
+- Fixed all ESLint errors, zero TS errors
+- Convex prod deployment changed to `rosy-crocodile-290`
+
+### Stats
+- 11 routes + login, 12 API endpoints, 8 Convex tables
+- 3 utility scripts for cron jobs
+- Commits: 7b386e8 → 0acfb06 → 9aa26a5 → b3aecfd
+
+---
+
+
 ## Phase 1, Day 1 — Feb 23, 2026
 
 ### What We Built
