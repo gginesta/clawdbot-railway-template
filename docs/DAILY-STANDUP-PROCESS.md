@@ -1,69 +1,70 @@
-# Daily Standup Process v2
+# Daily Standup Process v3
 
-*Updated: Feb 20, 2026*
+*Updated: Feb 23, 2026*
 
-## Flow
+## Flow (strict order — no skipping steps)
 
-### Step 1: Pull Todoist
-- Fetch all tasks across all projects
-- Fetch recently completed tasks (last 24h)
+### Step 1: Run the script
+```bash
+/data/workspace/.venv/bin/python3 /data/workspace/scripts/daily_standup.py
+```
+- Timeout: **120 seconds minimum**
+- Fetches Todoist tasks, deduplicates, groups sub-tasks
+- Classifies into 🔥 Needs Your Input + 📋 Active Pipeline
+- Creates Notion standup page with two inline databases
+- Blocks NO calendar yet — wait for Guillermo's input first
 
-### Step 2: Process Every Task (BEFORE creating Notion page!)
-Every task MUST have:
-- **Clear title** — rewrite vague/lazy titles. "Divinate" what Guillermo meant. Ask if unclear.
-- **Priority** (P1-P4) — based on urgency + importance
-- **Time estimate** (15min / 30min / 1h / 2h+)
-- **Owner** (Guillermo / Molty / Raphael / Leonardo)
-- **Project** — move out of Inbox to correct project
-- **Section** — Overdue / Today / Upcoming / Backlog
-- **Molty's Notes** — actionable context. NEVER "Needs triage".
+### Step 2: Send Telegram summary
+- Overdue count + task names (not just numbers)
+- Items needing decision + top 3 names
+- What Molty is handling
+- Notion page link
+- **DO NOT block calendar yet**
 
-### Step 3: Handle Sub-Tasks
-- Keep parent/child structure intact — don't flatten
-- Sub-tasks display as bullets in parent's Molty's Notes
-- Parent task gets the overall priority/estimate
+### Step 3: Guillermo reviews Notion page
+- Sets Action column (✅ Keep / 📅 Reschedule / 🗑️ Drop / 🔀 Delegate / ✔️ Done)
+- Leaves comments in "Your Comments" column
+- Signals done (e.g. "standup done", "done", "reviewed")
 
-### Step 4: Split into Two Tables
-- **🔥 Needs Your Input** — overdue, inbox/untriaged, needs Guillermo's decision, today items for Guillermo
-- **📋 Active Pipeline** — decided tasks with clear owners/dates/plans, Molty-owned, future backlog
-- Guillermo focuses on Table 1 only. Table 2 is reference.
+### Step 4: Molty processes Guillermo's decisions
+**Only after Guillermo says done:**
+1. Read the Notion page — process every Action + Comment
+2. Update Todoist tasks accordingly (reschedule, complete, delegate)
+3. Block calendar for tasks that need focus time
+4. Identify what Molty handles vs what goes to Raphael/Leonardo
+5. Route tasks to other agents via webhook if needed
+6. Send confirmation to Guillermo
 
-### Step 5: Create Notion Standup Page
-Page structure (top to bottom):
-1. 📋 **Callout** — date, counts, overdue highlights
-2. ✅ **Completed since last standup** — bullet list (momentum!)
-3. 🔥 **Needs Your Input** (Table 1) — Guillermo's focus
-4. 📋 **Active Pipeline** (Table 2) — reference only
-5. 🧱 **Blockers**
+## Notion Page Format
 
-**Column order (both tables):** Task → Your Comments → Action → Due Date → Molty's Notes → Owner → Priority → Section → Time Est. → Project
+### Column order (both tables)
+**Task → Your Comments → Action → Due Date → Molty's Notes → Owner → Priority → Section → Time Est. → Project**
 
-### Step 6: Send Guillermo the Telegram Briefing
-**NOT just numbers.** The message must be actionable:
-- 🔥 What's overdue + task names
-- 🎯 How many items need decision + top 3 names
-- ✅ What Molty is handling today
-- 🏆 Completed count
-- 🔗 Notion link
+"Your Comments" is ALWAYS the 2nd column (next to Task) so Guillermo can quickly scan and respond.
 
-### Step 7: Guillermo Reviews → Calendar Blocking
-- Guillermo says "standup done" (or similar)
-- Molty reads comments/decisions from Notion page
-- Updates Todoist accordingly
-- Blocks calendar for the next few days
-- Sends confirmation
+### Page structure (top to bottom)
+1. 📋 Callout — date, counts, overdue highlights
+2. 🎯 Tomorrow's top priority callout (yellow)
+3. ✅ Completed since last standup (bullet list)
+4. 🔥 Needs Your Input (Table 1) — Guillermo's focus
+5. 📋 Active Pipeline (Table 2) — reference only
+6. 🧱 Blockers
+
+### Molty's Notes quality
+- **NEVER** generic ("Overdue by 2 days; I'll handle")
+- **ALWAYS** actionable: what specifically will happen, or what decision is needed
+- Every task gets notes — no empty cells
+- Include description/labels as context
 
 ## Cron
-- **Trigger:** 5PM HKT weekdays
-- **Job ID:** `bdb28765-f508-4271-a04d-9408d39f49fd`
+- **Trigger:** 5PM HKT daily
 - **Script:** `/data/workspace/scripts/daily_standup.py`
+- **Timeout:** 120s
+- **Model:** Haiku (cheap)
 
-## Anti-Patterns
-- ❌ Dumping raw Todoist tasks without processing
-- ❌ Flattening sub-tasks into separate top-level rows
-- ❌ Sending the Notion link before processing is done
-- ❌ Missing priorities or time estimates on any task
-- ❌ Telegram message with just counts ("18 tasks, 1 overdue") — USELESS
-- ❌ Saying "needs triage" in Molty's Notes — triage it YOURSELF
-- ❌ Your Comments column buried at the end — must be SECOND column
-- ❌ One mega table mixing decided + undecided tasks — use two tables
+## Anti-patterns (never do these)
+- ❌ Skip the script and send a manual summary
+- ❌ Block calendar before Guillermo reviews
+- ❌ Send just numbers without task names
+- ❌ Leave empty Molty's Notes
+- ❌ Ignore prior session instructions about format
