@@ -7,3 +7,4 @@ PRIORITY_BRIEFING.md
 credentials/*tokens*.json
 credentials/*oauth*.json
 credentials/*.env
+tmnt-mission-control/
