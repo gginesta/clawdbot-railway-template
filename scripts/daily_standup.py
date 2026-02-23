@@ -97,31 +97,72 @@ def determine_owner(task):
 
 
 def generate_notes(task, section, today):
-    """Generate ACTIONABLE notes. Never say 'Needs triage'."""
+    """Generate ACTIONABLE notes. Never say 'Needs triage'. Every task gets meaningful context."""
     content = task["content"]
     pid = task["project_id"]
+    owner = determine_owner(task)
     notes = []
 
+    # Overdue context — be specific about recommended action
     if section == "Overdue":
         due = task.get("due", {}).get("date", "")[:10]
         if due:
             days = (datetime.strptime(today, "%Y-%m-%d") - datetime.strptime(due, "%Y-%m-%d")).days
             notes.append(f"⚠️ Overdue by {days} day{'s' if days != 1 else ''}")
+            if owner == "Molty":
+                notes.append("I'll complete this today or reschedule with a realistic date")
+            elif owner == "Guillermo":
+                if days >= 3:
+                    notes.append("Consider: still relevant? Reschedule or drop?")
+                else:
+                    notes.append("Slipped — needs new date or quick action")
+            else:
+                notes.append(f"Assigned to {owner} — I'll follow up")
 
-    owner = determine_owner(task)
-    if owner == "Molty" and section in ("Today", "Overdue"):
-        notes.append("I'll handle this today")
-    elif owner == "Molty":
-        notes.append("Assigned to me — will schedule")
+    # Inbox tasks — be specific about where they should go
+    elif pid == "6M5rpCXmg7x7RC2Q":  # Inbox
+        notes.append("In Inbox — needs project assignment and priority")
+        if owner == "Molty":
+            notes.append("I'll move to the right project after your input")
 
-    if pid == "6M5rpCXmg7x7RC2Q":  # Inbox
-        notes.append("In Inbox — I'll move to the right project")
+    # Today tasks — what's the plan?
+    elif section == "Today":
+        if owner == "Molty":
+            notes.append("On my plate today — will update you when done")
+        elif owner == "Guillermo":
+            notes.append("Due today — block time or reschedule?")
+        else:
+            notes.append(f"Due today for {owner}")
 
+    # Upcoming/backlog — brief status
+    elif section == "Upcoming":
+        if owner == "Molty":
+            notes.append("Scheduled — I'll handle on the due date")
+        else:
+            notes.append("Coming up — on track")
+    elif section == "Backlog":
+        if owner == "Molty":
+            notes.append("Parked — will pick up when prioritized")
+        else:
+            notes.append("Backlog — review when ready")
+
+    # Add description if present (always useful context)
     if task.get("description"):
-        desc = task["description"][:100]
-        notes.append(f"Details: {desc}")
+        desc = task["description"][:120].strip()
+        if desc:
+            notes.append(f"Details: {desc}")
 
-    return "; ".join(notes) if notes else ""
+    # Add labels as context
+    labels = task.get("labels", [])
+    if labels:
+        notes.append(f"Tags: {', '.join(labels)}")
+
+    # Ensure we never return empty
+    if not notes:
+        project = PROJECT_MAP.get(pid, "Other")
+        notes.append(f"{project} · {owner} · {section}")
+
+    return "; ".join(notes)
 
 
 def is_decided(task, section):
@@ -330,6 +371,8 @@ def add_footer(page_id):
     }, timeout=15)
 
 
+# Column order matters! Notion respects dict insertion order on creation.
+# Desired order: Task → Your Comments → Action → Due Date → Molty's Notes → Owner → Priority → Section → Time Est. → Project
 DB_PROPERTIES = {
     "Task": {"title": {}},
     "Your Comments": {"rich_text": {}},
