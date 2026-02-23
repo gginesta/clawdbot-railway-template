@@ -224,7 +224,18 @@ The landing page. Quick overview of everything.
 - Quick stats: tasks completed this week, active tasks, pending reviews
 - Quick actions: create task, ping agent, search memory
 
-### 4.6 Pizza Tracker 🍕 (Daily Debrief / Metrics)
+### 4.6 Shell Calendar 🗓️ (Timeline View)
+
+Calendar view showing what the fleet has done and what's scheduled.
+
+- **Past view:** Completed tasks plotted on timeline — see what each agent shipped and when
+- **Future view:** Upcoming tasks with due dates, scheduled cron work, planned deliverables
+- **Agent lanes:** Each lead gets a swim lane so you see parallel work streams
+- **Integration:** Pulls from War Room tasks (due dates) + activity feed (completions) + cron schedule
+- Week/month toggle
+- Can live as a tab in The Dojo or standalone screen
+
+### 4.7 Pizza Tracker 🍕 (Daily Debrief / Metrics)
 
 Auto-generated daily summary + fleet performance metrics.
 
@@ -385,13 +396,14 @@ Sidebar with TMNT-themed icons:
 
 ---
 
-## 9. Open Questions
+## 9. Decisions (Locked Feb 23)
 
-1. **Domain:** Do we want a custom domain? `mission.tmnt.dev`? Or `mission-control-tmnt.vercel.app` is fine?
-2. **Convex vs Supabase:** I've recommended Convex but if you have a strong preference for Postgres/Supabase, it works too. Convex is better for real-time; Supabase is more flexible for complex queries.
-3. **GitHub repo:** New repo (`gginesta/tmnt-mission-control`)? Or monorepo with agents?
-4. **Railway deployment of Convex:** Convex is cloud-hosted (their servers). If you want fully self-hosted DB, we'd need Supabase or raw Postgres. For now, Convex cloud is the pragmatic choice.
-5. **Scope of "task":** Should Mission Control tasks replace the current Todoist-based standup system? Or run in parallel?
+1. **Domain:** Vercel default for now (`tmnt-mission-control.vercel.app`). Custom domain later if needed.
+2. **Database:** Convex (cloud-hosted). Best real-time DX, validated by both reference projects.
+3. **GitHub repo:** `gginesta/tmnt-mission-control` (new repo).
+4. **Todoist:** Runs in parallel. Mission Control = fleet system. Todoist + daily standups + calendar blocks = Guillermo's personal system. No replacement.
+5. **Calendar view:** Added — integrated into The Dojo or its own tab. Shows what team has worked on + what's scheduled.
+6. **Decision authority:** Molty owns technical decisions going forward. Guillermo reviews product/UX.
 
 ---
 

@@ -59,6 +59,29 @@ Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
 
 ---
 
+## Vercel
+
+| What | Value |
+|------|-------|
+| Token | `vcp_7dd90Ihydd6STMuelqNXRCb7eOTfe4oX2HvTDmyLw4PnNpQ4FF1A1Jcg` |
+| Project | tmnt-mission-control |
+| URL | https://tmnt-mission-control.vercel.app |
+
+---
+
+## Convex
+
+| What | Value |
+|------|-------|
+| Project | tmnt-mission-control |
+| Team | guillermo-ginesta |
+| Deployment | dev:resilient-chinchilla-241 |
+| URL | https://resilient-chinchilla-241.convex.cloud |
+| HTTP API | https://resilient-chinchilla-241.convex.site |
+| Dashboard | https://dashboard.convex.dev/t/guillermo-ginesta/tmnt-mission-control |
+
+---
+
 ## GitHub
 
 **Token:** `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`
