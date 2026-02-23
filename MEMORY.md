@@ -55,7 +55,8 @@
 
 ### Key Config
 - **OpenClaw version:** 2026.2.21 (upgraded Feb 22; code live on disk, Railway redeploy pending for all agents)
-- **Primary model:** Claude Sonnet 4.6 (switched Feb 20; 5x cheaper, 1M context)
+- **Primary model:** `anthropic/claude-sonnet-4-6` — **DIRECT Anthropic only, NOT OpenRouter** (fleet-wide standing rule, Guillermo directive Feb 22)
+- **Fallback:** OpenAI Codex / GPT-5.2 via OpenAI OAuth
 - **Cron model:** `anthropic/claude-haiku-4-5` (direct Anthropic via Max plan)
 - **Deploy:** Dockerfile `OPENCLAW_GIT_REF` controls version. `gateway restart` reloads config only, not binary—need full Railway redeploy for upgrades.
 - **Memory System:** A1.1 with standardized indexing
@@ -98,6 +99,29 @@
 57. **Dockerfile `OPENCLAW_GIT_REF` arg** controls which OpenClaw version gets installed. Always update when upgrading.
 58. **Latest OpenClaw tag is v2026.2.21** (upgraded Feb 22). Template Dockerfile updated. Railway redeploy needed to activate on running containers.
 59. **Railway API deploy permissions:** Workspace token needs correct mutation scope for `serviceInstanceRedeploy`. Currently returns "Not Authorized"—investigate.
+
+---
+
+## 🖥️ Hosting Decision (Feb 23, 2026)
+
+- **Staying on Railway** — persistence, simplicity, fleet managed by Molty. Not worth the migration overhead.
+- **DO App Platform explored** — cheaper only if trimming to 2GB RAM per agent. Ephemeral containers need Spaces backup layer. Ruled out for now.
+- **Mac Mini floated** — Guillermo interested in getting Molty a Mac Mini. M4 24GB (~$799) would host full TMNT fleet, break-even ~6-7 months vs Railway. Local LLMs possible. **Revisit when timing is right.**
+
+---
+
+## 🐢 Mission Control (Feb 23, 2026)
+
+- **Live:** https://tmnt-mission-control.vercel.app
+- **Repo:** github.com/gginesta/tmnt-mission-control (private)
+- **Tech:** NextJS 14 + Convex + Vercel (all free tier, $0/month)
+- **Convex:** dev:resilient-chinchilla-241 | Team: guillermo-ginesta | Dashboard: https://dashboard.convex.dev/t/guillermo-ginesta/tmnt-mission-control
+- **HTTP API:** https://resilient-chinchilla-241.convex.site (endpoints: /api/activity, /api/status, /api/heartbeat, /api/task, /api/tasks)
+- **Phase 1 live:** Dojo (home), War Room (kanban), Sewer (activity feed), Turtle Tracker (agents)
+- **Phase 2 planned:** Agent integration, memory browser, comment threads, calendar
+- **Spec:** `/data/workspace/docs/mission-control/SPEC.md`
+- **Build log:** `/data/workspace/docs/mission-control/BUILD-LOG.md`
+- **Molty owns the build.** Guillermo reviews product/UX. Todoist stays as personal tool.
 
 ---
 
