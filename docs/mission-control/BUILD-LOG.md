@@ -254,6 +254,65 @@ Total Phase 2 build time: **~50 minutes**.
 
 ---
 
+---
+
+## Phase 3, Tier 1 — Feb 23, 2026, 13:47–13:55 HKT
+
+### Phase 3 Plan Loaded into Mission Control
+
+Created 16 tasks in MC War Room covering all 4 streams (A-D), tiered P1-P3. Development now tracked in MC itself.
+
+### [A1] Pizza Tracker — Metrics Dashboard
+
+- **New file:** `convex/metrics.ts` — `dashboard` query computing:
+  - Tasks by status, project, priority (distribution bars)
+  - Completed per agent this week
+  - Avg time-to-done (hours)
+  - Weekly velocity (last 4 weeks bar chart)
+  - Activity volume (last 7 days bar chart)
+  - Agent performance summary table
+- **New page:** `src/app/pizza/page.tsx` — CSS bar charts, no external chart library
+- **Commit:** `0b3f234`
+
+### [D5] Fleet Alerts — Stale Agent Detection
+
+- Added `isStale` flag to Agent interface (threshold: 4 hours)
+- `mapAgent()` computes staleness from `lastHeartbeat` timestamp
+- AgentCard: amber border + warning banner when stale
+- No new backend needed — computed client-side
+
+### [B5] Loading & Empty States
+
+- War Room: empty Kanban columns show "No tasks" message
+- All screens already had loading spinners from Phase 1 wiring
+
+### [C3] Memory Auto-Sync on Heartbeat
+
+- Updated cron `46d1ca32` to also push today's memory file to MC `/api/memory`
+- Fixed model: switched from OpenRouter Haiku to direct `anthropic/claude-haiku-4-5`
+- Vault now stays current automatically every 2 hours
+
+### [A3] Daily Standup Auto-Generation
+
+- Created cron `62aaf754` ("MC Daily Standup")
+- Schedule: `0 8 * * *` (08:00 HKT daily)
+- Queries MC `/api/tasks`, compiles standup: done yesterday, in progress today, blocked, P0 items
+- Model: Haiku, announces to last channel (Telegram)
+
+### PATCH /api/task Endpoint
+
+- Added `PATCH /api/task` HTTP endpoint for agents to update task fields
+- Used to mark completed tasks directly from agent sessions
+- **Commit:** `c3e2746`
+
+### Task Tracking
+
+Marked 5 Tier 1 tasks as "done" in MC War Room: A1, A3, C3, D5, B5.
+
+---
+
 ## What's Next
 
-See `/data/workspace/docs/mission-control/PHASE3-PLAN.md` for detailed Phase 3 plan.
+Phase 3 Tier 2: Mobile responsive (B1), Project views (C1), Enhanced Dojo (B3), Cost tracking (A2), Drag-and-drop Kanban (B4).
+
+See `/data/workspace/docs/mission-control/PHASE3-PLAN.md` for full plan.

@@ -99,6 +99,7 @@
 57. **Dockerfile `OPENCLAW_GIT_REF` arg** controls which OpenClaw version gets installed. Always update when upgrading.
 58. **Latest OpenClaw tag is v2026.2.21** (upgraded Feb 22). Template Dockerfile updated. Railway redeploy needed to activate on running containers.
 59. **Railway API deploy permissions:** Workspace token needs correct mutation scope for `serviceInstanceRedeploy`. Currently returns "Not Authorized"—investigate.
+60. **Shared credentials rule:** All credentials that need to reach multiple agents go in `/data/shared/credentials/` from day one. Agents read from there at startup — no distribution step needed. Webhooks deliver messages, they don't execute file writes. Never design a "Molty pushes token → agent writes file" flow again. (Lesson from MC token distribution pain, Feb 23 2026.)
 
 ---
 
@@ -121,7 +122,8 @@
 - **Phase 1+2 complete.** 6 live screens, 8 API endpoints, auth hardened
 - **Screens:** Dojo, War Room (kanban + comments), Sewer (activity + sub-agents), Tracker (health bar), Calendar (swim lanes), Vault (memory browser)
 - **Placeholders:** Pizza Tracker (metrics), Splinter's Den (settings)
-- **Heartbeat:** Cron `46d1ca32` every 2h (Haiku), pings MC `/api/heartbeat`
+- **Heartbeat:** Cron `46d1ca32` every 2h (Haiku), pings MC `/api/heartbeat` + syncs daily memory to Vault
+- **Daily Standup:** Cron `62aaf754` at 08:00 HKT (Haiku), queries MC tasks, compiles standup
 - **Skill:** `/data/workspace/skills/mission-control/SKILL.md` + `/data/shared/skills/mission-control/`
 - **Docs:** `docs/mission-control/` — SPEC.md, STATUS.md, BUILD-LOG.md, PHASE2-PLAN.md, PHASE3-PLAN.md
 - **Molty owns the build.** Guillermo reviews product/UX. Todoist stays as personal tool.

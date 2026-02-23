@@ -45,9 +45,31 @@
 
 ---
 
-## Phase 3: Polish + Intelligence — Not Started
+## Phase 3: Polish + Intelligence — In Progress
 
-See `/data/workspace/docs/mission-control/PHASE3-PLAN.md` for detailed plan.
+### Tier 1 ✅ Complete
+
+| # | Item | Status | Notes |
+|---|------|--------|-------|
+| A1 | Pizza Tracker — Metrics | ✅ Done | Velocity chart, activity volume, project/priority breakdown, agent table |
+| A3 | Daily Standup Auto-Gen | ✅ Done | Cron `62aaf754` at 08:00 HKT, queries MC tasks, delivers formatted standup |
+| C3 | Memory Auto-Sync | ✅ Done | Heartbeat cron now also pushes daily memory to Vault |
+| D5 | Fleet Alerts | ✅ Done | Stale detection (>4h), amber border + warning banner on agent cards |
+| B5 | Loading & Empty States | ✅ Done | Empty Kanban columns, all screens have loading spinners |
+
+### Tier 2 — Not Started
+
+| # | Item | Status |
+|---|------|--------|
+| B1 | Mobile-Responsive Polish | ❌ |
+| C1 | Project Views | ❌ |
+| B3 | Enhanced Dojo | ❌ |
+| A2 | Cost Tracking | ❌ |
+| B4 | Drag-and-Drop Kanban | ❌ |
+
+### Tier 3+ — Not Started
+
+See `PHASE3-PLAN.md` for full breakdown.
 
 ---
 
