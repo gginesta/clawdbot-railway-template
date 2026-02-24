@@ -371,11 +371,26 @@ def add_footer(page_id):
     }, timeout=15)
 
 
+# Todoist projects that sync to MC by default (Option C rules)
+SYNCED_TO_MC_PROJECTS = {"6M5rpGgV6q865hrX", "6Rr9p6MxWHFwHXGC"}  # Brinc, Mana Capital
+
+def should_be_in_mc(task):
+    """Pre-fill the 'In MC?' checkbox based on Option C sync rules."""
+    pid    = task.get("project_id", "")
+    labels = task.get("labels", [])
+    if "personal" in labels:  # explicit opt-out
+        return False
+    if "mc" in labels:        # explicit opt-in
+        return True
+    return pid in SYNCED_TO_MC_PROJECTS
+
+
 # Column order matters! Notion respects dict insertion order on creation.
-# Desired order: Task → Your Notes → Action → Due Date → Molty's Notes → Owner → Priority → Section → Time Est. → Project
+# Desired order: Task → Your Notes → In MC? → Action → Due Date → Molty's Notes → Owner → Priority → Section → Time Est. → Project
 DB_PROPERTIES = {
     "Task": {"title": {}},
     "Your Notes": {"rich_text": {}},
+    "In MC?": {"checkbox": {}},
     "Action": {"select": {"options": [
         {"name": "✅ Keep", "color": "green"},
         {"name": "📅 Reschedule", "color": "yellow"},
@@ -441,6 +456,7 @@ def add_task_to_db(db_id, task, section, today):
     owner = determine_owner(task)
     time_est = estimate_time(task)
     notes = generate_notes(task, section, today)
+    in_mc = should_be_in_mc(task)
 
     children = task.get("_children", [])
     if children:
@@ -453,6 +469,7 @@ def add_task_to_db(db_id, task, section, today):
 
     props = {
         "Task": {"title": [{"text": {"content": task["content"]}}]},
+        "In MC?": {"checkbox": in_mc},
         "Project": {"select": {"name": project}},
         "Priority": {"select": {"name": priority}},
         "Section": {"select": {"name": section}},
