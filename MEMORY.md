@@ -1,6 +1,6 @@
 # MEMORY.md - Long-Term Memory
 
-*Last updated: 2026-02-20*
+*Last updated: 2026-02-23*
 
 ---
 
@@ -100,6 +100,10 @@
 58. **Latest OpenClaw tag is v2026.2.21** (upgraded Feb 22). Template Dockerfile updated. Railway redeploy needed to activate on running containers.
 59. **Railway API deploy permissions:** Workspace token needs correct mutation scope for `serviceInstanceRedeploy`. Currently returns "Not Authorized"—investigate.
 60. **Shared credentials rule:** All credentials that need to reach multiple agents go in `/data/shared/credentials/` from day one. Agents read from there at startup — no distribution step needed. Webhooks deliver messages, they don't execute file writes. Never design a "Molty pushes token → agent writes file" flow again. (Lesson from MC token distribution pain, Feb 23 2026.)
+61. **Change control protocol:** One change per cycle, declare blast radius, no mixed objectives. STOP means STOP. Distribute plan to affected teams BEFORE execution. Approved changes go to Change Tickets. (Feb 23 incident/change control rollout.)
+62. **Change Ticket #001 scheduled for Tuesday 2026-02-24 03:00 HKT** — Per-agent webhook token rotation (cron `2b8f72fa-ec71-4f13-bdb4-52a34ad65977`). Plan: `/data/shared/memory-vault/knowledge/squad/CHANGE-TICKET-001-PER-AGENT-TOKENS.md`. Rollback: revert to shared token if any agent fails. Monitor #command-center.
+63. **QMD cleanup freed 300MB:** Removed node-llama-cpp (289MB) + @tobilu/qmd + binary. OOM risk on Railway gone. Switched to OpenAI `text-embedding-3-small` (built-in). (Feb 23, Molty.)
+64. **Cron/heartbeat model is `anthropic/claude-haiku-4-5` direct (NOT OpenRouter).** Uses Max plan daily allowance. (Feb 23 clarification.)
 
 ---
 
@@ -115,17 +119,18 @@
 
 - **Live:** https://tmnt-mission-control.vercel.app
 - **Repo:** github.com/gginesta/tmnt-mission-control (private)
-- **Tech:** NextJS 14 + Convex + Vercel (all free tier, $0/month)
-- **Convex:** dev:resilient-chinchilla-241 | Team: guillermo-ginesta
+- **Tech:** NextJS 15 (downgrade from 16 due to prerender useContext bug) + Convex + Vercel (all free tier, $0/month)
+- **Convex:** dev:resilient-chinchilla-241 | Deployment: rosy-crocodile-290 | Team: guillermo-ginesta
 - **HTTP API:** https://resilient-chinchilla-241.convex.site
 - **API Key:** In Convex env `MC_API_KEY` + skill SKILL.md
-- **Phase 1+2+3 complete.** 11 screens, 12 API endpoints, auth + middleware
-- **Screens:** Dojo, War Room (kanban + comments), Sewer (activity + sub-agents), Tracker (health bar), Calendar (swim lanes), Vault (memory browser)
-- **Placeholders:** Pizza Tracker (metrics), Splinter's Den (settings)
-- **Heartbeat:** Cron `46d1ca32` every 2h (Haiku), pings MC `/api/heartbeat` + syncs daily memory to Vault
+- **Phase 1+2+3 Tier 1 COMPLETE.** 8 live screens, 8 API endpoints, auth + middleware + features
+- **Live screens:** Dojo (with quick actions + overdue alerts), War Room (kanban DnD + comments), Sewer (activity + sub-agents), Tracker (health bars + fleet alerts), Calendar (week/month swim lanes), Vault (memory browser + search), Pizza Tracker (metrics: velocity/activity/performance), Splinter's Den (settings + registry + templates)
+- **Features:** Todoist sync (29 tasks), task templates (4 seeded), user auth (password gate), weekly digest cron, cost tracking, mobile responsive (bottom nav), stale agent detection (>4h), memory auto-sync, daily standup report
+- **Heartbeat:** Cron `46d1ca32-0bd0-43f4-bfa9-3e9e385271cd` every 2h at :00 (Haiku), pings MC `/api/heartbeat` + syncs daily memory to Vault. Schedule: `0 */2 * * *`, jitter 5min.
 - **Daily Standup:** Cron `62aaf754` at 08:00 HKT (Haiku), queries MC tasks, compiles standup
-- **Skill:** `/data/workspace/skills/mission-control/SKILL.md` + `/data/shared/skills/mission-control/`
-- **Docs:** `docs/mission-control/` — SPEC.md, STATUS.md, BUILD-LOG.md, PHASE2-PLAN.md, PHASE3-PLAN.md
+- **Skill:** `/data/workspace/skills/mission-control/SKILL.md` + `/data/shared/skills/mission-control/` (deployed to Raphael + Leonardo)
+- **Docs:** `docs/mission-control/` — SPEC.md, STATUS.md, BUILD-LOG.md, DESIGN-BRIEF.md
+- **Critical commits (Feb 23):** `b3aecfd` (Tier 3), `9aa26a5` (Tier 2), `f030afa` (Convex wire Phase 1), `f2b6ce3`/`c813a2b`/`dad8898` (Phase 2), `0b3f234`/`c3e2746` (Tier 1)
 - **Molty owns the build.** Guillermo reviews product/UX. Todoist stays as personal tool.
 
 ---
