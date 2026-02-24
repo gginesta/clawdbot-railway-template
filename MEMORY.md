@@ -104,6 +104,10 @@
 62. **Change Ticket #001 scheduled for Tuesday 2026-02-24 03:00 HKT** — Per-agent webhook token rotation (cron `2b8f72fa-ec71-4f13-bdb4-52a34ad65977`). Plan: `/data/shared/memory-vault/knowledge/squad/CHANGE-TICKET-001-PER-AGENT-TOKENS.md`. Rollback: revert to shared token if any agent fails. Monitor #command-center.
 63. **QMD cleanup freed 300MB:** Removed node-llama-cpp (289MB) + @tobilu/qmd + binary. OOM risk on Railway gone. Switched to OpenAI `text-embedding-3-small` (built-in). (Feb 23, Molty.)
 64. **Cron/heartbeat model is `anthropic/claude-haiku-4-5` direct (NOT OpenRouter).** Uses Max plan daily allowance. (Feb 23 clarification.)
+65. **OpenClaw auth: auth.json is the TRUE source, auth-profiles.json is derived.** Never write to auth-profiles.json directly — gateway regenerates it from auth.json on startup. To fix auth, write to auth.json OR use `openclaw models auth paste-token` (requires TTY). Path: `/data/.openclaw/agents/main/agent/auth.json`. Structure: `{"anthropic": {"type": "api_key", "key": "sk-ant-oat01-..."}}`.
+66. **Isolated sub-agent webhook processes do NOT inherit container env vars.** Scripts reading env vars in webhook sub-agents get empty strings. Must hardcode values.
+67. **Railway CLI `railway shell` = local subshell with env vars injected, NOT a container shell.** Use `railway connect` to SSH into the actual running container. Or use browser Connect tab in Railway dashboard.
+68. **Leonardo Anthropic auth broken as of Feb 24.** Fix: `railway connect` into container → `openclaw models auth paste-token --provider anthropic` → paste full OAuth token. Until fixed, Leonardo falls back to Grok-3.
 
 ---
 
