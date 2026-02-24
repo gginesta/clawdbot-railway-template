@@ -14,7 +14,7 @@ RULES:
 - Titles are rewritten to be clear and actionable
 - Every task has priority, time estimate, owner, notes
 - "Needs triage" is NEVER acceptable in Molty's Notes
-- Your Comments is the 2nd column for quick input
+- Your Notes is the 2nd column for quick input
 """
 import json, requests, sys, time, os
 from collections import defaultdict
@@ -372,10 +372,10 @@ def add_footer(page_id):
 
 
 # Column order matters! Notion respects dict insertion order on creation.
-# Desired order: Task → Your Comments → Action → Due Date → Molty's Notes → Owner → Priority → Section → Time Est. → Project
+# Desired order: Task → Your Notes → Action → Due Date → Molty's Notes → Owner → Priority → Section → Time Est. → Project
 DB_PROPERTIES = {
     "Task": {"title": {}},
-    "Your Comments": {"rich_text": {}},
+    "Your Notes": {"rich_text": {}},
     "Action": {"select": {"options": [
         {"name": "✅ Keep", "color": "green"},
         {"name": "📅 Reschedule", "color": "yellow"},
