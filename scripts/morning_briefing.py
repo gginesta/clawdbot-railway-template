@@ -632,6 +632,54 @@ def _fmt_duration(mins: int | None) -> str:
     return f" ({h}h{'' if m == 0 else f'{m}m'})"
 
 
+def _get_overnight_summary(today: date) -> list[str] | None:
+    """Read last night's task worker log and return summary lines for the briefing."""
+    yesterday = today - timedelta(days=1)
+    log_dir = "/data/workspace/logs"
+    # Check yesterday's log (task worker runs at 02:00 HKT so it's "today" in UTC terms,
+    # but the log is dated yesterday HKT — try both dates)
+    for d in [today, yesterday]:
+        path = os.path.join(log_dir, f"overnight-tasks-{d.isoformat()}.md")
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                content = f.read()
+            lines: list[str] = []
+            completed, flagged, failed = [], [], []
+            section = None
+            for line in content.split("\n"):
+                line = line.strip()
+                if "## ✅ Completed" in line:
+                    section = "completed"
+                elif "## ⏭️ Flagged" in line:
+                    section = "flagged"
+                elif "## ❌ Failed" in line:
+                    section = "failed"
+                elif line.startswith("- ") and section:
+                    item = line[2:].strip()
+                    if section == "completed":
+                        completed.append(item)
+                    elif section == "flagged":
+                        flagged.append(item)
+                    elif section == "failed":
+                        failed.append(item)
+            if not (completed or flagged or failed):
+                return None
+            if completed:
+                lines.append(f"✅ Done ({len(completed)}): " + " · ".join(
+                    c.split("→")[0].strip() for c in completed[:3]
+                ) + ("..." if len(completed) > 3 else ""))
+            if flagged:
+                lines.append(f"⏭️ Flagged ({len(flagged)}) — will surface in standup")
+            if failed:
+                lines.append(f"❌ Failed ({len(failed)}) — check logs")
+            return lines if lines else None
+        except Exception:
+            continue
+    return None
+
+
 def _get_openclaw_update_summary() -> str | None:
     """Read the latest OpenClaw update cron result from session transcripts.
 
@@ -870,7 +918,14 @@ def build_message(
     else:
         lines.append("No overnight highlights")
 
-    # 7) OpenClaw Update Summary (from 5:30 AM cron)
+    # 7) Overnight task completions (from nightly task worker)
+    overnight = _get_overnight_summary(today)
+    if overnight:
+        lines.append("")
+        lines.append("🌙 Overnight Work")
+        lines.extend(overnight)
+
+    # 8) OpenClaw Update Summary (from 5:30 AM cron)
     update_summary = _get_openclaw_update_summary()
     if update_summary:
         lines.append("")
