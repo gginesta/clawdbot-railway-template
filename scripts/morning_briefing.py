@@ -632,6 +632,70 @@ def _fmt_duration(mins: int | None) -> str:
     return f" ({h}h{'' if m == 0 else f'{m}m'})"
 
 
+# -----------------------------
+# Mission Control — Squad Status
+# -----------------------------
+
+MC_API = "https://resilient-chinchilla-241.convex.site"
+MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+
+AGENT_EMOJI = {
+    "molty":     "🦎",
+    "raphael":   "🔴",
+    "leonardo":  "🔵",
+    "donatello": "🟣",
+    "april":     "📰",
+}
+
+
+@dataclass
+class SquadStatus:
+    p0_tasks: list[dict]
+    blocked_tasks: list[dict]
+    agent_tasks: dict[str, dict]   # agent_id → their top active task
+    guillermo_queue: list[dict]    # tasks assigned to guillermo, not done
+
+
+def get_squad_status(errors: list[str]) -> SquadStatus | None:
+    """Fetch a compact squad snapshot from Mission Control for the morning briefing."""
+    status, payload = _http_json(
+        f"{MC_API}/api/tasks",
+        headers={"Authorization": f"Bearer {MC_KEY}"},
+        timeout=10,
+    )
+    if status != 200 or not payload:
+        errors.append(f"MC squad status unavailable (HTTP {status})")
+        return None
+
+    tasks = payload if isinstance(payload, list) else payload.get("tasks", [])
+
+    active = [t for t in tasks if t.get("status") not in ("done",)]
+
+    p0 = [t for t in active if t.get("priority") == "p0"][:3]
+    blocked = [t for t in active if t.get("status") == "blocked"][:3]
+
+    # Top active task per non-Guillermo agent (in_progress first, then assigned)
+    agent_tasks: dict[str, dict] = {}
+    status_rank = {"in_progress": 0, "review": 1, "assigned": 2, "inbox": 3, "blocked": 4}
+    for t in sorted(active, key=lambda x: status_rank.get(x.get("status", ""), 9)):
+        for ag in t.get("assignees", []):
+            if ag != "guillermo" and ag not in agent_tasks:
+                agent_tasks[ag] = t
+
+    # Guillermo's open queue (he should see this)
+    g_queue = [
+        t for t in active
+        if "guillermo" in t.get("assignees", [])
+    ][:5]
+
+    return SquadStatus(
+        p0_tasks=p0,
+        blocked_tasks=blocked,
+        agent_tasks=agent_tasks,
+        guillermo_queue=g_queue,
+    )
+
+
 def _get_overnight_summary(today: date) -> list[str] | None:
     """Read last night's task worker log and return summary lines for the briefing."""
     yesterday = today - timedelta(days=1)
@@ -773,6 +837,7 @@ def build_message(
     upcoming_events: list[CalEvent],
     unread_count: int | None,
     email_highlights: list[EmailHighlight],
+    squad: SquadStatus | None,
     errors: list[str],
 ) -> str:
     today = now.date()
@@ -873,7 +938,51 @@ def build_message(
 
     lines.append("")
 
-    # 5) Upcoming this week (next 3-5 days)
+    # 5) Squad status (from Mission Control)
+    lines.append("🐢 Squad")
+    if squad:
+        if squad.p0_tasks:
+            lines.append("🔴 P0 CRITICAL:")
+            for t in squad.p0_tasks:
+                ags = ", ".join(
+                    f"{AGENT_EMOJI.get(a, '')} {a}" for a in t.get("assignees", [])
+                )
+                lines.append(f"  • {t['title']} [{ags}]")
+        if squad.blocked_tasks:
+            lines.append("🧱 Blocked:")
+            for t in squad.blocked_tasks:
+                ags = ", ".join(t.get("assignees", []))
+                lines.append(f"  • {t['title']} ({ags})")
+        # Agent snapshot
+        agent_lines = []
+        for ag in ["molty", "raphael", "leonardo"]:
+            task = squad.agent_tasks.get(ag)
+            emoji = AGENT_EMOJI.get(ag, "")
+            if task:
+                status_sym = {"in_progress": "⚡", "review": "👀", "assigned": "📋"}.get(
+                    task.get("status", ""), "·"
+                )
+                agent_lines.append(f"{emoji} {ag}: {status_sym} {task['title'][:55]}")
+            else:
+                agent_lines.append(f"{emoji} {ag}: idle")
+        lines.extend(agent_lines)
+        # Guillermo's MC queue
+        if squad.guillermo_queue:
+            prio_sym = {"p0": "🔴", "p1": "🟡", "p2": "🔵", "p3": "⚪"}
+            lines.append("Your MC queue:")
+            for t in squad.guillermo_queue[:3]:
+                sym = prio_sym.get(t.get("priority", "p3"), "·")
+                lines.append(f"  {sym} {t['title'][:60]}")
+            if len(squad.guillermo_queue) > 3:
+                lines.append(f"  … +{len(squad.guillermo_queue) - 3} more")
+        if not squad.p0_tasks and not squad.blocked_tasks:
+            lines.append("All clear — no P0s or blockers")
+    else:
+        lines.append("⚠️ MC unavailable")
+
+    lines.append("")
+
+    # 6) Upcoming this week (next 3-5 days)
     lines.append("🔜 Next 5 days")
     upcoming_lines = 0
 
@@ -905,7 +1014,7 @@ def build_message(
 
     lines.append("")
 
-    # 6) Email highlights
+    # 7) Email highlights
     lines.append("✉️ Email")
     if unread_count is None:
         lines.append("Unread: ⚠️ unavailable")
@@ -1081,6 +1190,9 @@ def main() -> int:
     unread_count = get_gmail_unread_count(errors)
     email_highlights = get_gmail_highlights(errors=errors)
 
+    # Squad status from Mission Control
+    squad = get_squad_status(errors)
+
     # Weekend mode adjustments
     if dow in {"SA", "SU"}:
         p1_due = [t for t in tasks_due if t.priority == 4]
@@ -1098,6 +1210,7 @@ def main() -> int:
         upcoming_events=upcoming_events,
         unread_count=unread_count,
         email_highlights=email_highlights,
+        squad=squad,
         errors=errors,
     )
 
