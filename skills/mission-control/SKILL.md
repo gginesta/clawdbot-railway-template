@@ -70,6 +70,21 @@ curl -s -X POST https://resilient-chinchilla-241.convex.site/api/task \
 **Required:** `title`, `project`, `createdBy`
 **Optional:** `description`, `priority` (p0|p1|p2|p3, default p2), `assignees` (string[]), `dueDate` (ISO), `tags`, `status` (inbox|assigned|in_progress|review|done|blocked)
 
+### PATCH /api/task
+Update task status or fields. Use `id` (the Convex document ID from GET /api/tasks).
+
+```bash
+curl -s -X PATCH https://resilient-chinchilla-241.convex.site/api/task \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc" \
+  -d '{"id":"<convex-task-id>","status":"done"}'
+```
+
+**Required:** `id` (Convex document ID — from GET /api/tasks response as `_id` field)
+**Optional:** `status` (inbox|assigned|in_progress|review|done|blocked), `title`, `priority`, `assignees`, `dueDate`, `tags`, `description`
+
+⚠️ Field is `id`, NOT `taskId`.
+
 ### GET /api/tasks
 Query tasks. Returns JSON array.
 
