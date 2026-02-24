@@ -1,0 +1,70 @@
+[20:54:36] === mc-todoist-sync-v2 START [DRY RUN] ===
+[20:54:36] Fetching Todoist active tasks...
+[20:54:36]   → 24 active Todoist tasks
+[20:54:36] Fetching MC tasks...
+[20:54:37]   → 60 MC tasks
+[20:54:37] 
+[20:54:37] --- Block 1: Todoist → MC ---
+[20:55:48] === mc-todoist-sync-v2 START [DRY RUN] ===
+[20:55:48] Fetching Todoist active tasks...
+[20:55:49]   → 24 active Todoist tasks
+[20:55:49] Fetching MC tasks...
+[20:55:49]   → 60 MC tasks
+[20:55:49] 
+[20:55:49] --- Block 1: Todoist → MC (new tasks from synced projects) ---
+[20:55:49]   MC tasks already linked to Todoist: 0
+[20:55:49]   [CREATE] 📄 Complete Brinc sales material samples — pitch deck + one-pager
+[20:55:49]            → brinc / p2 / due=2026-02-21
+[20:55:49]   [CREATE] 🔴 Fill Brinc Deep Dive Q&A for Raphael
+[20:55:49]            → brinc / p1 / due=2026-02-23
+[20:55:49]   [CREATE] 🇪🇸 SLTRA — check subsidies eligibility for non-Spanish companies (EU g
+[20:55:49]            → mana / p1 / due=2026-04-30
+[20:55:49]   Block 1 done: 3 tasks created in MC
+[20:55:49] 
+[20:55:49] --- Block 2: MC → Todoist (Guillermo tasks missing todoistId) ---
+[20:55:49]   MC tasks for Guillermo without Todoist link: 0
+[20:55:49]   Block 2 done: 0 tasks pushed to Todoist
+[20:55:49] 
+[20:55:49] --- Block 3: Completion sync (bidirectional) ---
+[20:55:49]   Open MC tasks with todoistId: 0
+[20:55:49]   Done MC tasks with todoistId: 0
+[20:55:49]   Block 3 done: closed 0 in MC, closed 0 in Todoist
+[20:55:49] 
+[20:55:49] === SYNC COMPLETE [DRY RUN] ===
+[20:55:49]   Block 1 (Todoist→MC):  3 tasks created in MC
+[20:55:49]   Block 2 (MC→Todoist):  0 tasks pushed to Todoist
+[20:55:49]   Block 3 (completion):  0 closed in MC, 0 closed in Todoist
+[20:55:49]   Log: /data/workspace/logs/sync-2026-02-24.log
+[20:55:58] === mc-todoist-sync-v2 START ===
+[20:55:58] Fetching Todoist active tasks...
+[20:55:59]   → 24 active Todoist tasks
+[20:55:59] Fetching MC tasks...
+[20:55:59]   → 60 MC tasks
+[20:55:59] 
+[20:55:59] --- Block 1: Todoist → MC (new tasks from synced projects) ---
+[20:55:59]   MC tasks already linked to Todoist: 0
+[20:55:59]   [CREATE] 📄 Complete Brinc sales material samples — pitch deck + one-pager
+[20:55:59]            → brinc / p2 / due=2026-02-21
+[20:55:59]            ✓ MC id=jn78vd70m2mwff089y4zw8sy2s81s4ad
+[20:55:59]   [CREATE] 🔴 Fill Brinc Deep Dive Q&A for Raphael
+[20:55:59]            → brinc / p1 / due=2026-02-23
+[20:55:59]            ✓ MC id=jn7dqr5fw018ff9szvpdcky5nh81s63s
+[20:55:59]   [CREATE] 🇪🇸 SLTRA — check subsidies eligibility for non-Spanish companies (EU g
+[20:55:59]            → mana / p1 / due=2026-04-30
+[20:56:00]            ✓ MC id=jn76km4fvx6ypcq2ec7rx8nsq181rsbf
+[20:56:00]   Block 1 done: 3 tasks created in MC
+[20:56:00] 
+[20:56:00] --- Block 2: MC → Todoist (Guillermo tasks missing todoistId) ---
+[20:56:00]   MC tasks for Guillermo without Todoist link: 0
+[20:56:00]   Block 2 done: 0 tasks pushed to Todoist
+[20:56:00] 
+[20:56:00] --- Block 3: Completion sync (bidirectional) ---
+[20:56:00]   Open MC tasks with todoistId: 3
+[20:56:00]   Done MC tasks with todoistId: 0
+[20:56:00]   Block 3 done: closed 0 in MC, closed 0 in Todoist
+[20:56:00] 
+[20:56:00] === SYNC COMPLETE ===
+[20:56:00]   Block 1 (Todoist→MC):  3 tasks created in MC
+[20:56:00]   Block 2 (MC→Todoist):  0 tasks pushed to Todoist
+[20:56:00]   Block 3 (completion):  0 closed in MC, 0 closed in Todoist
+[20:56:00]   Log: /data/workspace/logs/sync-2026-02-24.log
