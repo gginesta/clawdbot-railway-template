@@ -16,7 +16,7 @@ RULES:
 - "Needs triage" is NEVER acceptable in Molty's Notes
 - Your Notes is the 2nd column for quick input
 """
-import json, requests, sys, time, os
+import json, requests, sys, time, os, uuid, urllib.request
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
@@ -29,6 +29,95 @@ NH = {"Authorization": f"Bearer {NOTION_API_KEY}", "Notion-Version": "2022-06-28
 TH = {"Authorization": f"Bearer {TODOIST_TOKEN}"}
 
 HKT = timezone(timedelta(hours=8))
+NOTION_SPACE_ID = "375629bd-cc72-4ad8-a3be-84139fa2fb3b"
+NOTION_TOKEN_V2_PATH = "/data/workspace/credentials/notion-token-v2.txt"
+
+# Desired column order for "Needs Your Input" table
+COLUMN_ORDER = ["Task", "Your Notes", "Action", "Due Date", "In MC?", "Owner", "Priority", "Time Est.", "Project", "Section", "Molty's Notes"]
+COLUMN_WIDTHS = {"Task": 280, "Your Notes": 220, "Action": 130, "Due Date": 120, "In MC?": 80, "Owner": 110, "Priority": 90, "Time Est.": 90, "Project": 120, "Section": 100, "Molty's Notes": 280}
+
+
+def fix_column_order(db_block_id: str) -> bool:
+    """Fix column order in a newly created Notion database using the internal API.
+    Reads token_v2 from NOTION_TOKEN_V2_PATH. Silently skips if token missing."""
+    if not os.path.exists(NOTION_TOKEN_V2_PATH):
+        print(f"   ⚠️ token_v2 not found — skipping column fix")
+        return False
+    with open(NOTION_TOKEN_V2_PATH) as f:
+        token_v2 = f.read().strip()
+    if not token_v2:
+        return False
+
+    internal_headers = {
+        "Content-Type": "application/json",
+        "Cookie": f"token_v2={token_v2}",
+        "notion-client-version": "23.13.0.36",
+        "x-notion-space-id": NOTION_SPACE_ID,
+    }
+
+    try:
+        # Step 1: Get block → find collection_id and view_id
+        req = urllib.request.Request(
+            "https://www.notion.so/api/v3/getRecordValues",
+            data=json.dumps({"requests": [{"table": "block", "id": db_block_id}]}).encode(),
+            method="POST", headers=internal_headers
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            block_value = json.loads(r.read())["results"][0].get("value", {})
+        if not block_value:
+            print(f"   ⚠️ Block {db_block_id} not found via internal API"); return False
+
+        collection_id = block_value.get("collection_id")
+        view_ids = block_value.get("view_ids", [])
+        if not collection_id or not view_ids:
+            print(f"   ⚠️ Missing collection_id/view_ids"); return False
+        view_id = view_ids[0]
+
+        # Step 2: Get collection schema → name→internal_id map
+        req = urllib.request.Request(
+            "https://www.notion.so/api/v3/getRecordValues",
+            data=json.dumps({"requests": [{"table": "collection", "id": collection_id}]}).encode(),
+            method="POST", headers=internal_headers
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            schema = json.loads(r.read())["results"][0].get("value", {}).get("schema", {})
+        if not schema:
+            print(f"   ⚠️ Empty schema"); return False
+
+        name_to_id = {v.get("name"): k for k, v in schema.items()}
+
+        # Step 3: Build table_properties in desired order
+        table_properties = [
+            {"property": name_to_id[col], "visible": True, "width": COLUMN_WIDTHS.get(col, 120)}
+            for col in COLUMN_ORDER if col in name_to_id
+        ]
+
+        # Step 4: saveTransactions
+        payload = {
+            "requestId": str(uuid.uuid4()),
+            "transactions": [{
+                "id": str(uuid.uuid4()),
+                "spaceId": NOTION_SPACE_ID,
+                "operations": [{
+                    "pointer": {"table": "collection_view", "id": view_id, "spaceId": NOTION_SPACE_ID},
+                    "command": "update",
+                    "path": ["format"],
+                    "args": {"table_properties": table_properties}
+                }]
+            }]
+        }
+        req = urllib.request.Request(
+            "https://www.notion.so/api/v3/saveTransactions",
+            data=json.dumps(payload).encode(), method="POST", headers=internal_headers
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            r.read()
+        print(f"   ✅ Column order fixed ({len(table_properties)} columns)")
+        return True
+
+    except Exception as e:
+        print(f"   ⚠️ Column order fix failed: {e}")
+        return False
 
 PROJECT_MAP = {
     "6M5rpCXmg7x7RC2Q": "Inbox 📥",
@@ -561,6 +650,8 @@ def main():
     # 8. Create Table 1: Needs Your Input
     print("8. Creating Table 1: Needs Your Input...")
     db1_id = create_db(page_id, "🔥 Needs Your Input")
+    print("8b. Fixing column order...")
+    fix_column_order(db1_id)
     added1 = 0
     for task in needs_input:
         if add_task_to_db(db1_id, task, task["_section"], today):
