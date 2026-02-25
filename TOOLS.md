@@ -37,6 +37,18 @@
 
 ---
 
+## Notion
+
+| What | Value |
+|------|-------|
+| API Key | `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` |
+| Space ID | `375629bd-cc72-4ad8-a3be-84139fa2fb3b` |
+| Standup DB | `2fe39dd69afd81f189f7e58925dad602` |
+| token_v2 | `/data/workspace/credentials/notion-token-v2.txt` (session cookie — expires) |
+| Internal API | `https://www.notion.so/api/v3/` + `Cookie: token_v2=...` |
+
+---
+
 ## Railway
 
 **Auth:** Workspace API token (scope: gginesta's Projects)
