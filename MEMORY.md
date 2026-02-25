@@ -1,6 +1,6 @@
 # MEMORY.md - Long-Term Memory
 
-*Last updated: 2026-02-23*
+*Last updated: 2026-02-25*
 
 ---
 
@@ -107,7 +107,14 @@
 65. **OpenClaw auth: auth.json is the TRUE source, auth-profiles.json is derived.** Never write to auth-profiles.json directly — gateway regenerates it from auth.json on startup. To fix auth, write to auth.json OR use `openclaw models auth paste-token` (requires TTY). Path: `/data/.openclaw/agents/main/agent/auth.json`. Structure: `{"anthropic": {"type": "api_key", "key": "sk-ant-oat01-..."}}`.
 66. **Isolated sub-agent webhook processes do NOT inherit container env vars.** Scripts reading env vars in webhook sub-agents get empty strings. Must hardcode values.
 67. **Railway CLI `railway shell` = local subshell with env vars injected, NOT a container shell.** Use `railway connect` to SSH into the actual running container. Or use browser Connect tab in Railway dashboard.
-68. **Leonardo Anthropic auth broken as of Feb 24.** Fix: `railway connect` into container → `openclaw models auth paste-token --provider anthropic` → paste full OAuth token. Until fixed, Leonardo falls back to Grok-3.
+68. **Leonardo Anthropic auth fixed Feb 25.** Root cause: auth.json on volume had empty/wrong token. Fix applied via Railway start command injection (Python script patched auth.json + openclaw.json before startup). FAILED deployment still writes to persistent volume — use this two-step pattern: step 1 = inject fix script as start command (deployment may fail health check but files ARE written), step 2 = revert to clean start command and redeploy (reads fixed volume, succeeds).
+69. **Railway start command injection — two-step pattern.** Patching volume files via custom start command works but often fails health check (supervisord race condition). The files DO persist on the volume even from a FAILED deployment. Pattern: (1) set start command = Python patch script, trigger redeploy → FAILS but patches files, (2) revert start command to `None`/startup.sh, trigger redeploy → SUCCESS reads patched files.
+70. **agents.defaults.model is the correct config key for sub-agent defaults.** There is NO `agents.defaults.subagents.model` key. The same `agents.defaults.model` controls both main sessions and spawned sub-agents. Patching a nonexistent key silently does nothing.
+71. **OpenClaw cooldown ≠ API rate limit.** "Provider X in cooldown" means OpenClaw internally backed off after repeated errors from that provider (401s or 429s). It's per-process and self-resolving in ~5-15 min. Does NOT affect other agents even on the same token because it's internal state.
+72. **Per-IP rate limits isolate agents.** Railway services run on different IPs. Even with the same Anthropic OAuth token, one agent can hit a per-minute rate limit while others are unaffected. Don't assume shared token = shared rate limit.
+73. **Don't spam webhooks + sub-agent tests in rapid succession.** Doing so burns through per-minute API limits and triggers OpenClaw cooldowns on all providers simultaneously. Space testing by at least 5 min between attempts.
+74. **Always include openai-codex/gpt-5.2 as final fallback.** It uses OAuth (cached, no rate limit issues) and supports tool use. Without it, rate limit cooldowns leave the agent with zero functional models. Fleet standard fallback chain: `anthropic/claude-sonnet-4-6` → `anthropic/claude-haiku-4-5` → `xai/grok-3` → `openai-codex/gpt-5.2`.
+75. **Leonardo MC Heartbeat cron still pending.** Fix auth first, then set up: schedule `30 */2 * * *` HKT, model `anthropic/claude-haiku-4-5`, sessionTarget isolated, pings MC heartbeat endpoint.
 
 ---
 
