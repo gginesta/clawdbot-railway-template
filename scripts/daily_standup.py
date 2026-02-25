@@ -619,6 +619,19 @@ def main():
 
     tg_summary = "\n".join(tg_lines) if tg_lines else "All clear — no urgent items"
 
+    # Write state file so process_standup.py can find the page reliably
+    state = {
+        "date": today,
+        "page_id": page_id,
+        "page_url": page_url,
+        "db1_id": db1_id,
+        "db2_id": db2_id,
+        "created_at": datetime.now(HKT).isoformat()
+    }
+    os.makedirs("/data/workspace/logs", exist_ok=True)
+    with open("/data/workspace/logs/standup-state.json", "w") as f:
+        json.dump(state, f, indent=2)
+
     # Output for caller
     print(f"\n__PAGE_ID__={page_id}")
     print(f"__PAGE_URL__={page_url}")
