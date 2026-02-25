@@ -137,17 +137,19 @@ Reserve 10-15 mins after the 06:30 brief to action any "Under Review" items and 
 - ☐ Verify Todoist API token in `/data/shared/credentials/` for Raphael + Leonardo
 - ☐ Confirm Raphael has exec tool available for overnight cron use
 
-### Stage 1 — Rules in place `jn79cbk1g4n7w2cgnkz1jrnkpd81vgpn`
+### Stage 1 — Rules in place `jn79cbk1g4n7w2cgnkz1jrnkpd81vgpn` ✅ DONE (2026-02-25)
 *Can run parallel to Stage 0*
-- ☐ Update AGENTS.md on all three agents (MC discipline + overnight work rules)
-- ☐ Notify Raphael and Leonardo via webhook
+- ✅ Update AGENTS.md on Molty (local, commit `f9854913`)
+- ✅ Notify Raphael via #brinc-private (Discord msg `1476138241919811585`)
+- ✅ Notify Leonardo via #launchpad-private (Discord msg `1476138273511440549`)
+- ⏳ Awaiting confirmation from Raphael + Leonardo that their AGENTS.md is updated
 
-### Stage 2 — Todoist queues + standup routing `jn74z0w8qy0qdb0v369p41y72s81t6c8`
+### Stage 2 — Todoist queues + standup routing `jn74z0w8qy0qdb0v369p41y72s81t6c8` ✅ DONE (2026-02-25)
 *Depends on Stage 0*
-- ☐ Confirm Todoist project IDs: Brinc (Raphael) + Cerebro (Leonardo)
-- ☐ Update Notion standup template: add Raphael/Leonardo as Action options
-- ☐ Update `process_standup.py` to route to all three queues
-- ☐ Test routing end-to-end
+- ✅ Todoist project IDs confirmed: Brinc=`6M5rpGgV6q865hrX`, Cerebro=`6g53F7ccF8HHjgXM` (created)
+- ✅ Standup Action column updated: Molty🦎 / Raphael🔴 / Leonardo🔵 (replaces Delegate) — `daily_standup.py`
+- ✅ `process_standup.py` updated: three-way routing (Molty's Den / Brinc / Cerebro) — commit `f9854913`
+- ⏳ End-to-end test: tonight's 5PM standup (first live run with new Action options)
 
 ### Stage 3 — Overnight crons `jn7fn5mb0308sqfyrk440vnhms81t8zh`
 *Depends on Stage 0 + Stage 2*
