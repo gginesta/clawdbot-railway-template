@@ -31,10 +31,11 @@ TH = {"Authorization": f"Bearer {TODOIST_TOKEN}"}
 HKT = timezone(timedelta(hours=8))
 NOTION_SPACE_ID = "375629bd-cc72-4ad8-a3be-84139fa2fb3b"
 NOTION_TOKEN_V2_PATH = "/data/workspace/credentials/notion-token-v2.txt"
+PERSISTENT_DB_CONFIG = "/data/workspace/credentials/notion-standup-db.json"
 
-# Desired column order for "Needs Your Input" table
-COLUMN_ORDER = ["Task", "Your Notes", "Action", "Due Date", "In MC?", "Owner", "Priority", "Time Est.", "Project", "Section", "Molty's Notes"]
-COLUMN_WIDTHS = {"Task": 280, "Your Notes": 220, "Action": 130, "Due Date": 120, "In MC?": 80, "Owner": 110, "Priority": 90, "Time Est.": 90, "Project": 120, "Section": 100, "Molty's Notes": 280}
+# Desired column order for the persistent standup DB
+COLUMN_ORDER = ["Task", "Your Notes", "In MC?", "Action", "Due Date", "Molty's Notes", "Owner", "Priority", "Section", "Time Est.", "Project", "Standup Date", "Type"]
+COLUMN_WIDTHS = {"Task": 280, "Your Notes": 220, "In MC?": 80, "Action": 130, "Due Date": 120, "Molty's Notes": 280, "Owner": 110, "Priority": 90, "Section": 100, "Time Est.": 90, "Project": 120, "Standup Date": 120, "Type": 130}
 
 
 def fix_column_order(db_block_id: str) -> bool:
@@ -380,8 +381,8 @@ def get_tomorrow_priority(all_tasks, tomorrow):
     return all_tasks[0] if all_tasks else None
 
 
-def add_top_blocks(page_id, today_disp, tomorrow_disp, completed, needs_input_count, pipeline_count, overdue_tasks, tomorrow_task):
-    """Add top priority callout, tomorrow focus, completed section, and section headers."""
+def add_top_blocks(page_id, today_disp, tomorrow_disp, completed, needs_input_count, pipeline_count, overdue_tasks, tomorrow_task, persistent_db_id=None):
+    """Add top priority callout, tomorrow focus, completed section, and link to persistent DB."""
     children = []
 
     # Summary callout
@@ -427,10 +428,22 @@ def add_top_blocks(page_id, today_disp, tomorrow_disp, completed, needs_input_co
                              "bulleted_list_item": {"rich_text": [{"text": {"content": item[:100]}}]}})
         children.append({"object": "block", "type": "divider", "divider": {}})
 
-    # Table 1 description (no heading — database title serves as the header)
-    children.append({"object": "block", "type": "paragraph",
-                     "paragraph": {"rich_text": [{"text": {"content":
-                         "New, overdue, or needs a decision. Set Action + leave comments."}}]}})
+    # Link to persistent DB (bookmark block) — filtered view of today's tasks
+    if persistent_db_id:
+        db_url = f"https://www.notion.so/{persistent_db_id.replace('-', '')}"
+        children.append({"object": "block", "type": "paragraph",
+                         "paragraph": {"rich_text": [
+                             {"type": "text", "text": {"content": "📋 View today's tasks in TMNT Standup Board → "},
+                              "annotations": {"bold": True}},
+                             {"type": "text", "text": {"content": "Open database", "link": {"url": db_url}},
+                              "annotations": {"color": "blue"}},
+                         ]}})
+        children.append({"object": "block", "type": "bookmark",
+                         "bookmark": {"url": db_url, "caption": []}})
+    else:
+        children.append({"object": "block", "type": "paragraph",
+                         "paragraph": {"rich_text": [{"text": {"content":
+                             "New, overdue, or needs a decision. Set Action + leave comments."}}]}})
 
     requests.patch(f"https://api.notion.com/v1/blocks/{page_id}/children",
                    headers=NH, json={"children": children}, timeout=15)
@@ -526,6 +539,11 @@ DB_PROPERTIES = {
         {"name": "Inbox 📥", "color": "gray"},
         {"name": "Ideas 💡", "color": "yellow"},
     ]}},
+    "Standup Date": {"date": {}},
+    "Type": {"select": {"options": [
+        {"name": "Needs Input", "color": "red"},
+        {"name": "Active Pipeline", "color": "blue"},
+    ]}},
 }
 
 
@@ -542,7 +560,69 @@ def create_db(page_id, title):
     return resp.json()["id"]
 
 
-def add_task_to_db(db_id, task, section, today):
+def get_or_create_persistent_db(page_id: str) -> str:
+    """Return the persistent TMNT Standup Board DB ID, creating it once if needed.
+
+    Config file: /data/workspace/credentials/notion-standup-db.json
+    - If config exists and DB is valid: return stored ID (page_id not used)
+    - If not: create new DB titled '📋 TMNT Standup Board' as child of page_id,
+      save ID to config, fix column order.
+    """
+    # --- Try stored config ---
+    if os.path.exists(PERSISTENT_DB_CONFIG):
+        try:
+            with open(PERSISTENT_DB_CONFIG) as f:
+                config = json.load(f)
+            db_id = config.get("persistent_db_id", "")
+            if db_id:
+                resp = requests.get(
+                    f"https://api.notion.com/v1/databases/{db_id}",
+                    headers=NH, timeout=10
+                )
+                if resp.status_code == 200:
+                    print(f"   ♻️  Reusing persistent DB: {db_id}")
+                    return db_id
+                print(f"   ⚠️ Stored DB not found (HTTP {resp.status_code}), creating new...")
+        except Exception as e:
+            print(f"   ⚠️ Config read error: {e} — creating new DB...")
+
+    # --- Create new persistent DB ---
+    print("   📦 Creating new persistent TMNT Standup Board...")
+    resp = requests.post("https://api.notion.com/v1/databases", headers=NH, json={
+        "parent": {"type": "page_id", "page_id": page_id},
+        "title": [{"type": "text", "text": {"content": "📋 TMNT Standup Board"}}],
+        "is_inline": True,
+        "properties": DB_PROPERTIES,
+    }, timeout=15)
+    if resp.status_code != 200:
+        print(f"ERROR creating persistent DB: {resp.status_code} {resp.text}")
+        sys.exit(1)
+
+    db_id = resp.json()["id"]
+    print(f"   ✅ Created persistent DB: {db_id}")
+
+    # --- Save config ---
+    os.makedirs(os.path.dirname(PERSISTENT_DB_CONFIG), exist_ok=True)
+    with open(PERSISTENT_DB_CONFIG, "w") as f:
+        json.dump({
+            "persistent_db_id": db_id,
+            "created_at": datetime.now(HKT).isoformat(),
+        }, f, indent=2)
+    print(f"   💾 Config saved: {PERSISTENT_DB_CONFIG}")
+
+    # --- Fix column order (best-effort, requires token_v2) ---
+    print("   🔧 Fixing column order...")
+    fix_column_order(db_id)
+
+    return db_id
+
+
+def add_task_to_db(db_id, task, section, today, task_type="Needs Input"):
+    """Add a task row to the persistent DB.
+
+    task_type: "Needs Input" | "Active Pipeline"
+    Standup Date is always set to today so rows can be filtered by day.
+    """
     due_str = task.get("due", {}).get("date", "") if task.get("due") else ""
     project = PROJECT_MAP.get(task["project_id"], "Other")
     priority = PRIO_MAP.get(task["priority"], "⚪ P4")
@@ -568,6 +648,8 @@ def add_task_to_db(db_id, task, section, today):
         "Section": {"select": {"name": section}},
         "Owner": {"select": {"name": owner}},
         "Time Est.": {"select": {"name": time_est}},
+        "Standup Date": {"date": {"start": today}},
+        "Type": {"select": {"name": task_type}},
     }
     if due_str:
         props["Due Date"] = {"date": {"start": due_str[:10]}}
@@ -642,31 +724,27 @@ def main():
     print("6. Creating Notion page...")
     page_id = create_standup_page(disp)
 
-    # 7. Add top blocks (callout + tomorrow priority + completed + Table 1 header)
-    print("7. Adding top blocks...")
-    tomorrow_task = get_tomorrow_priority(tasks, tomorrow)
-    add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks, tomorrow_task)
+    # 7. Get or create the persistent TMNT Standup Board DB
+    print("7. Getting/creating persistent standup DB...")
+    persistent_db_id = get_or_create_persistent_db(page_id)
 
-    # 8. Create Table 1: Needs Your Input
-    print("8. Creating Table 1: Needs Your Input...")
-    db1_id = create_db(page_id, "🔥 Needs Your Input")
-    print("8b. Fixing column order...")
-    fix_column_order(db1_id)
+    # 8. Add top blocks (callout + tomorrow priority + completed + link to persistent DB)
+    print("8. Adding top blocks...")
+    tomorrow_task = get_tomorrow_priority(tasks, tomorrow)
+    add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks, tomorrow_task, persistent_db_id)
+
+    # 9. Add Needs Input tasks to persistent DB
+    print("9. Adding 'Needs Input' tasks to persistent DB...")
     added1 = 0
     for task in needs_input:
-        if add_task_to_db(db1_id, task, task["_section"], today):
+        if add_task_to_db(persistent_db_id, task, task["_section"], today, "Needs Input"):
             added1 += 1
 
-    # 9. Add pipeline header
-    print("9. Adding pipeline section...")
-    add_pipeline_header(page_id)
-
-    # 10. Create Table 2: Active Pipeline
-    print("10. Creating Table 2: Active Pipeline...")
-    db2_id = create_db(page_id, "📋 Active Pipeline")
+    # 10. Add Active Pipeline tasks to persistent DB
+    print("10. Adding 'Active Pipeline' tasks to persistent DB...")
     added2 = 0
     for task in pipeline:
-        if add_task_to_db(db2_id, task, task["_section"], today):
+        if add_task_to_db(persistent_db_id, task, task["_section"], today, "Active Pipeline"):
             added2 += 1
 
     # 11. Footer
@@ -678,13 +756,15 @@ def main():
 
     # Summary
     page_url = f"https://www.notion.so/{page_id.replace('-', '')}"
+    db_url = f"https://www.notion.so/{persistent_db_id.replace('-', '')}"
     total = added1 + added2
     overdue_count = len(overdue_tasks)
     today_count = sum(1 for t in tasks if t.get("_section") == "Today")
 
     print(f"\n✅ Standup ready! {total} tasks ({overdue_count} overdue, {today_count} today)")
     print(f"   🔥 Needs Input: {added1} | 📋 Pipeline: {added2}")
-    print(f"📄 {page_url}")
+    print(f"📄 Page: {page_url}")
+    print(f"🗃️  DB:   {db_url}")
 
     # Build Telegram summary lines for caller
     tg_lines = []
@@ -719,8 +799,11 @@ def main():
         "date": today,
         "page_id": page_id,
         "page_url": page_url,
-        "db1_id": db1_id,
-        "db2_id": db2_id,
+        "persistent_db_id": persistent_db_id,
+        "db_url": db_url,
+        # Legacy keys kept for backward-compat with any readers of this file
+        "db1_id": persistent_db_id,
+        "db2_id": persistent_db_id,
         "created_at": datetime.now(HKT).isoformat()
     }
     os.makedirs("/data/workspace/logs", exist_ok=True)
@@ -730,8 +813,8 @@ def main():
     # Output for caller
     print(f"\n__PAGE_ID__={page_id}")
     print(f"__PAGE_URL__={page_url}")
-    print(f"__DB1_ID__={db1_id}")
-    print(f"__DB2_ID__={db2_id}")
+    print(f"__PERSISTENT_DB_ID__={persistent_db_id}")
+    print(f"__DB_URL__={db_url}")
     print(f"__TASK_COUNT__={total}")
     print(f"__NEEDS_INPUT__={added1}")
     print(f"__PIPELINE__={added2}")
