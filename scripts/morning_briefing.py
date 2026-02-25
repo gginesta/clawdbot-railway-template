@@ -714,6 +714,9 @@ def _get_overnight_summary(today: date) -> list[str] | None:
             section = None
             for line in content.split("\n"):
                 line = line.strip()
+                if line.startswith("## "):
+                    # Reset section on any header, then check for known sections
+                    section = None
                 if "## ✅ Completed" in line:
                     section = "completed"
                 elif "## ⏭️ Flagged" in line:
