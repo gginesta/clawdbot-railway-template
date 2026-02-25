@@ -129,16 +129,45 @@ Reserve 10-15 mins after the 06:30 brief to action any "Under Review" items and 
 
 ---
 
-## Rollout Steps (pending approval)
+## Staged Rollout (MC tasks created — pending approval)
 
-1. ☐ Approve this plan
-2. ☐ Update AGENTS.md on all three agents (overnight rule + MC rule)
-3. ☐ Confirm Todoist project IDs for Brinc and Cerebro
-4. ☐ Update `process_standup.py` to route to all three Todoist projects
-5. ☐ Add overnight crons to Raphael and Leonardo
-6. ☐ Update morning briefing to include overnight report section
-7. ☐ Notify Raphael and Leonardo via webhook that new rules are active
-8. ☐ Each agent backfills any active multi-step work into MC
+### Stage 0 — Prerequisites `jn79ypa14hcv9b2ajg7dmevdw181vd61`
+*Gate: must be done before Stage 3*
+- ☐ Confirm Leonardo sub-agent fix is live (anthropic/claude-haiku-4-5)
+- ☐ Verify Todoist API token in `/data/shared/credentials/` for Raphael + Leonardo
+- ☐ Confirm Raphael has exec tool available for overnight cron use
+
+### Stage 1 — Rules in place `jn79cbk1g4n7w2cgnkz1jrnkpd81vgpn`
+*Can run parallel to Stage 0*
+- ☐ Update AGENTS.md on all three agents (MC discipline + overnight work rules)
+- ☐ Notify Raphael and Leonardo via webhook
+
+### Stage 2 — Todoist queues + standup routing `jn74z0w8qy0qdb0v369p41y72s81t6c8`
+*Depends on Stage 0*
+- ☐ Confirm Todoist project IDs: Brinc (Raphael) + Cerebro (Leonardo)
+- ☐ Update Notion standup template: add Raphael/Leonardo as Action options
+- ☐ Update `process_standup.py` to route to all three queues
+- ☐ Test routing end-to-end
+
+### Stage 3 — Overnight crons `jn7fn5mb0308sqfyrk440vnhms81t8zh`
+*Depends on Stage 0 + Stage 2*
+- ☐ Add Raphael cron (00:30 HKT)
+- ☐ Add Leonardo cron (01:30 HKT)
+- ☐ Update Molty 03:00 cron to include MC feed post + #squad-updates
+
+### Stage 4 — Morning briefing update `jn7fdjjarmxya2kkyatp1wa1ps81vatg`
+*Depends on Stage 3*
+- ☐ Update `morning_briefing.py` to query MC overnight activity per agent
+- ☐ Format overnight report section into 06:30 Telegram brief
+- ☐ Highlight Under Review items (with links) + blocked items
+
+### Stage 5 — Backfill + go live `jn7ex2wpx6ge1vrhgjz014sn9d81t7b8`
+*Depends on Stages 1-4*
+- ☐ Each agent runs MC backfill audit (active multi-step tasks not yet in MC)
+- ☐ Confirm overnight queues populated from standup
+- ☐ First full overnight cycle — all three agents
+- ☐ Review morning brief output, adjust if needed
+- ☐ Sign off with Guillermo
 
 ---
 
@@ -149,4 +178,12 @@ Reserve 10-15 mins after the 06:30 brief to action any "Under Review" items and 
 
 ---
 
-*Last updated: 2026-02-25 14:01 HKT by Molty — open questions closed*
+## Audit Improvements (added Feb 25)
+- Added **Stage 0** as prerequisite gate — Leonardo sub-agent fix must be confirmed before overnight crons go live
+- Added **Notion standup template update** to Stage 2 — Action column needs Raphael/Leonardo options
+- Added **Todoist token distribution check** — Raphael/Leonardo need API access before Stage 3
+- Made **Stage 5 backfill concrete** — specific per-agent audit command, not vague "review"
+
+---
+
+*Last updated: 2026-02-25 14:15 HKT by Molty — staged into MC (6 tasks), audit improvements added*
