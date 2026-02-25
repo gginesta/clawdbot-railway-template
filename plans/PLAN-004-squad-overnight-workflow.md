@@ -32,13 +32,13 @@ By morning standup (incorporated into 06:30 HKT daily brief), Guillermo should s
 - Own your MC tasks: update status immediately when it changes (not at end of day)
 - Check MC before starting any new work — no duplicate tasks, no ghost starts
 - **Claim before starting**: set task to "In Progress" in MC *before* doing the work
-- **Under Review**: when work is done but needs Guillermo's eyes → set MC status to "Under Review" and include a direct link to the deliverable (Notion page, doc, GitHub PR, etc.)
+- **Under Review**: when work is done but needs Guillermo's eyes → set MC status to "Under Review" and include a direct link to the deliverable. **Notion page preferred** — any URL accepted as fallback
 
 ### Overnight Work
 - Each agent has a scheduled overnight window (see schedule below)
 - **Plan before doing (PPEE)**: review your task backlog in MC strategically — pick tasks that are high-value and completable within ~90 mins. Do NOT try to clear the entire backlog. Use good judgment.
 - **Time budget: target 90 mins, hard stop at 2h.** If a task will take longer, work on the first completable milestone and leave a clear "stopping point" note in MC.
-- After the window: update MC (completed/blocked/in-progress) and post a summary to #squad-updates
+- After the window: update MC task statuses (completed/blocked/in-progress) + post activity to MC feed + post summary to #squad-updates
 - If blocked or something failed → post it clearly with a specific ask for Guillermo. **Never be silent.**
 - **No re-delegating up at runtime**: if a task is too large or unclear, break it down or ask clarifying questions at 5PM standup — not at 1am mid-run.
 
@@ -142,11 +142,11 @@ Reserve 10-15 mins after the 06:30 brief to action any "Under Review" items and 
 
 ---
 
-## Open Questions
+## Decisions Locked
 
-- [ ] Does Guillermo want overnight summaries in MC activity feed too, or just #squad-updates + morning brief?
-- [ ] What should the "Under Review" link format be — Notion preferred, or any URL works?
+- ✅ Overnight summaries go to **both** MC activity feed AND #squad-updates + morning brief — more visibility preferred
+- ✅ "Under Review" links → **Notion pages preferred**. Any URL accepted as fallback (GitHub PR, doc, etc.) — just needs to be something Guillermo can open and review without context-switching
 
 ---
 
-*Last updated: 2026-02-25 by Molty*
+*Last updated: 2026-02-25 14:01 HKT by Molty — open questions closed*
