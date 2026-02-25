@@ -36,6 +36,7 @@ PROJECT_MAP = {
     "6M5rpGgV6q865hrX": "Brinc 🔴",
     "6Rr9p6MxWHFwHXGC": "Mana Capital 🟠",
     "6fwH32grqrCJF23R": "Molty's Den 🦎",
+    "6g53F7ccF8HHjgXM": "Cerebro 🔵",
     "6fx5GV7Q93Hp4QgM": "Ideas 💡",
 }
 
@@ -395,7 +396,9 @@ DB_PROPERTIES = {
         {"name": "✅ Keep", "color": "green"},
         {"name": "📅 Reschedule", "color": "yellow"},
         {"name": "🗑️ Drop", "color": "red"},
-        {"name": "🔀 Delegate", "color": "blue"},
+        {"name": "🦎 Molty", "color": "green"},
+        {"name": "🔴 Raphael", "color": "red"},
+        {"name": "🔵 Leonardo", "color": "blue"},
         {"name": "✔️ Done", "color": "green"},
     ]}},
     "Due Date": {"date": {}},
@@ -430,6 +433,7 @@ DB_PROPERTIES = {
         {"name": "Brinc 🔴", "color": "red"},
         {"name": "Mana Capital 🟠", "color": "orange"},
         {"name": "Molty's Den 🦎", "color": "green"},
+        {"name": "Cerebro 🔵", "color": "blue"},
         {"name": "Inbox 📥", "color": "gray"},
         {"name": "Ideas 💡", "color": "yellow"},
     ]}},

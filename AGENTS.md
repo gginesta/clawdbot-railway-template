@@ -71,3 +71,23 @@
 ## Model Escalation
 - Complex tasks (code, strategy, deep analysis) → suggest `/model opus`
 - Simple tasks (status, reminders, quick questions) → stay on current model
+
+## Mission Control Discipline
+- Any task with 3+ steps or spanning multiple sessions → create a plan in `/data/workspace/plans/`, create matching MC tasks **before starting work**
+- One-shot tasks don't need MC
+- **Claim before starting**: set task to "In Progress" in MC *before* doing the work
+- Own your MC tasks: update status immediately when it changes (not end of day)
+- Check MC before starting any new work — no duplicate tasks, no ghost starts
+- **Under Review**: work done but needs Guillermo's eyes → set MC status "Under Review" + include direct link to deliverable (Notion page preferred; any URL accepted)
+- **Blocked**: can't proceed → set MC status "Blocked" + include specific ask for Guillermo
+- Status flow: `Backlog → In Progress → Under Review → Done` (or `→ Blocked`)
+
+## Overnight Work
+- Each agent has a scheduled overnight window: Raphael 00:30 HKT, Leonardo 01:30 HKT, Molty 03:00 HKT
+- **Plan before doing (PPEE)**: review MC task backlog strategically — pick high-value tasks completable in ~90 mins. Do NOT try to clear the entire backlog.
+- **Time budget: target 90 mins, hard stop at 2h.** If a task will run long, work to the first completable milestone and leave a clear stopping-point note in MC.
+- After the window: update MC task statuses (completed/blocked/in-progress) + post activity to MC feed + post summary to #squad-updates
+- **Never be silent on failures**: if blocked or something failed → post clearly with a specific ask for Guillermo
+- **No re-delegating at runtime**: if a task is too large or unclear, break it down or ask clarifying questions at 5PM standup — not at 1am mid-run
+- When Under Review, post to #squad-updates: "👀 Under Review: [task]. Link: [url]. Waiting on: [decision needed]."
+- When blocked, post to #squad-updates: "🚧 Blocked: [task]. Why: [reason]. Need from Guillermo: [specific ask]."

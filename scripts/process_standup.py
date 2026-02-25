@@ -23,6 +23,8 @@ NOTION_API_KEY = os.environ.get("NOTION_API_KEY", "ntn_155329891818KSc19jULDle5I
 TODOIST_TOKEN  = os.environ.get("TODOIST_API_TOKEN", "9a26743814658c9e82d92aa716b46a9b0a2257c4")
 STANDUP_DB_ID  = "2fe39dd69afd81f189f7e58925dad602"
 MOLTY_DEN_ID   = "6fwH32grqrCJF23R"
+BRINC_ID       = "6M5rpGgV6q865hrX"
+CEREBRO_ID     = "6g53F7ccF8HHjgXM"
 BRINC_CAL_ID   = "guillermo.ginesta@brinc.io"
 PERSONAL_CAL_ID = "guillermo.ginesta@gmail.com"
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8292515315:AAETOvDJgl4r13qF3_32qhpn8h7jIOVJQDA")
@@ -38,6 +40,7 @@ PROJECT_MAP = {
     "6M5rpGgV6q865hrX": "Brinc 🔴",
     "6Rr9p6MxWHFwHXGC": "Mana Capital 🟠",
     "6fwH32grqrCJF23R": "Molty's Den 🦎",
+    "6g53F7ccF8HHjgXM": "Cerebro 🔵",
     "6fx5GV7Q93Hp4QgM": "Ideas 💡",
 }
 
@@ -284,10 +287,10 @@ def find_todoist_task(tasks: list, title: str) -> Optional[dict]:
         return best_task
     return None
 
-def move_task_to_molty(task_id: str) -> bool:
+def move_task_to_project(task_id: str, project_id: str) -> bool:
     try:
         url = f"https://api.todoist.com/api/v1/tasks/{task_id}/move"
-        body = json.dumps({"project_id": MOLTY_DEN_ID}).encode()
+        body = json.dumps({"project_id": project_id}).encode()
         h = {**TH, "Content-Type": "application/json"}
         req = urllib.request.Request(url, data=body, method="POST", headers=h)
         with urllib.request.urlopen(req, timeout=10) as r:
@@ -384,7 +387,8 @@ def process(target_date: str):
     print("4. Processing 'Needs Your Input'...")
     rows = query_database(needs_input_db)
 
-    delegated, kept, dropped, unmatched = [], [], [], []
+    routed_molty, routed_raphael, routed_leonardo = [], [], []
+    kept, dropped, unmatched = [], [], []
 
     cal_token = None  # lazy-load
     cal_bookings = []
@@ -404,21 +408,38 @@ def process(target_date: str):
         # Match to Todoist task
         matched = find_todoist_task(all_tasks, title)
 
-        if "Delegate" in action:
+        # Determine routing target
+        route_target = None
+        route_project_id = None
+        route_label = None
+        if "Molty" in action or "🦎" in action or "Delegate" in action:
+            route_target = routed_molty
+            route_project_id = MOLTY_DEN_ID
+            route_label = "Molty's Den"
+        elif "Raphael" in action or "🔴" in action:
+            route_target = routed_raphael
+            route_project_id = BRINC_ID
+            route_label = "Brinc (Raphael)"
+        elif "Leonardo" in action or "🔵" in action:
+            route_target = routed_leonardo
+            route_project_id = CEREBRO_ID
+            route_label = "Cerebro (Leonardo)"
+
+        if route_target is not None:
             if matched:
-                ok = move_task_to_molty(matched["id"])
+                ok = move_task_to_project(matched["id"], route_project_id)
                 if ok:
-                    delegated.append(title)
-                    print(f"     ✅ Moved to Molty's Den: {matched['id']}")
+                    route_target.append(title)
+                    print(f"     ✅ Moved to {route_label}: {matched['id']}")
                 else:
                     unmatched.append(f"{title} (move failed)")
             else:
-                # Create new task in Molty's Den
+                # Create new task in target project
                 try:
-                    body = {"content": title, "project_id": MOLTY_DEN_ID}
-                    new_t = todoist_post("/tasks", body)
-                    delegated.append(title)
-                    print(f"     ✅ Created in Molty's Den (no match found)")
+                    body = {"content": title, "project_id": route_project_id}
+                    todoist_post("/tasks", body)
+                    route_target.append(title)
+                    print(f"     ✅ Created in {route_label} (no Todoist match found)")
                 except Exception as e:
                     unmatched.append(f"{title} (create failed: {e})")
 
@@ -473,9 +494,17 @@ def process(target_date: str):
     print("\n5. Sending summary...")
     lines = [f"✅ *Standup Processed — {target_date}*", f"[View page]({page_url})\n"]
 
-    if delegated:
-        lines.append(f"🔀 *Delegated to Molty's Den ({len(delegated)}):*")
-        for t in delegated:
+    if routed_molty:
+        lines.append(f"🦎 *→ Molty's Den ({len(routed_molty)}):*")
+        for t in routed_molty:
+            lines.append(f"  • {t[:70]}")
+    if routed_raphael:
+        lines.append(f"\n🔴 *→ Raphael / Brinc ({len(routed_raphael)}):*")
+        for t in routed_raphael:
+            lines.append(f"  • {t[:70]}")
+    if routed_leonardo:
+        lines.append(f"\n🔵 *→ Leonardo / Cerebro ({len(routed_leonardo)}):*")
+        for t in routed_leonardo:
             lines.append(f"  • {t[:70]}")
 
     if dropped:
@@ -493,7 +522,7 @@ def process(target_date: str):
         for t in unmatched:
             lines.append(f"  • {t[:70]}")
 
-    if not delegated and not dropped and not cal_bookings:
+    if not routed_molty and not routed_raphael and not routed_leonardo and not dropped and not cal_bookings:
         lines.append("_Nothing to process — no Delegate/Drop/Keep actions found yet._")
         lines.append("_Fill in the Action column in Notion, then run again._")
 
