@@ -15,7 +15,12 @@ Direct agent-to-agent messaging via webhooks. Bypasses Telegram bot limitations.
 | Raphael | 🔴 | Brinc Lead | https://ggv-raphael.up.railway.app/hooks/agent |
 | Leonardo | 🔵 | Launchpad Lead | https://leonardo-production.up.railway.app/hooks/agent |
 
-**Shared token (all agents):** `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd`
+**Per-agent tokens (Change Ticket #001):**
+| Agent | Token | Status |
+|-------|-------|--------|
+| Molty (inbound) | `ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562` | ✅ Active |
+| Raphael (inbound) | `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd` | ⏳ Old shared token — pending rotation |
+| Leonardo (inbound) | `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758` | ✅ Active |
 **⚠️ sessionKey is DISABLED** on these deployments (`allowRequestSessionKey=false`). Omit it — messages still route correctly without it.
 
 ## ⚠️ STOP — USE DISCORD FIRST!
