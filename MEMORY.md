@@ -115,7 +115,8 @@
 73. **Don't spam webhooks + sub-agent tests in rapid succession.** Doing so burns through per-minute API limits and triggers OpenClaw cooldowns on all providers simultaneously. Space testing by at least 5 min between attempts.
 74. **Always include openai-codex/gpt-5.2 as final fallback.** It uses OAuth (cached, no rate limit issues) and supports tool use. Without it, rate limit cooldowns leave the agent with zero functional models. Fleet standard fallback chain: `anthropic/claude-sonnet-4-6` → `anthropic/claude-haiku-4-5` → `xai/grok-3` → `openai-codex/gpt-5.2`.
 75. **Leonardo MC Heartbeat cron still pending.** Fix auth first, then set up: schedule `30 */2 * * *` HKT, model `anthropic/claude-haiku-4-5`, sessionTarget isolated, pings MC heartbeat endpoint.
-76. **Always verify current state before reporting a task as incomplete.** Feb 26: told Guillermo PLAN-003 needed a 90-min coding session — it was already done (overnight run built the DB at 01:03 HKT). Daily logs go stale. Check config files, APIs, and MC before making any "not done" claim.
+76. **Content workflow: Twitter-first, LinkedIn is curated mirror.** Pikachu owns Content Pipeline (Twitter/X). Review + approval happens there. LinkedIn Tracker (Raphael/Brinc) only gets pieces selected for mirroring — roughly 5:2 ratio. Never pre-populate LinkedIn tracker before Twitter post is approved/live. Guillermo feels more authentic on Twitter; LinkedIn versions are adapted, not independent.
+77. **Always verify current state before reporting a task as incomplete.** Feb 26: told Guillermo PLAN-003 needed a 90-min coding session — it was already done (overnight run built the DB at 01:03 HKT). Daily logs go stale. Check config files, APIs, and MC before making any "not done" claim.
 
 ---
 
