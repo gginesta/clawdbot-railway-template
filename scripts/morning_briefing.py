@@ -292,59 +292,55 @@ class WeatherSummary:
 
 
 def get_weather(today: date, *, school_day: bool, errors: list[str]) -> WeatherSummary | None:
-    """Return today's weather plus an outlook for the next 3 days (Open-Meteo)."""
-    url = (
-        "https://api.open-meteo.com/v1/forecast?"
-        + urllib.parse.urlencode(
-            {
-                "latitude": HK_LAT,
-                "longitude": HK_LON,
-                "daily": "temperature_2m_max,temperature_2m_min,precipitation_probability_max",
-                "hourly": "precipitation_probability",
-                "timezone": "Asia/Hong_Kong",
-            }
-        )
-    )
+    """Return today's weather plus an outlook for the next 3 days (HKO official API)."""
 
-    status, payload = _http_json(url)
+    # PSR (Probability of Significant Rain) → approximate % for display
+    _PSR_MAP = {"Low": 15, "Medium": 50, "High": 75, "Very High": 95}
+
+    # 9-day forecast — temps + PSR per day
+    status, fnd = _http_json(
+        "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=en"
+    )
     if not status or status >= 300:
-        errors.append(
-            f"Weather unavailable: {payload.get('reason', payload.get('error', 'unknown error'))}"
-        )
+        errors.append(f"Weather unavailable (HKO): HTTP {status}")
         return None
 
     try:
-        daily = payload["daily"]
+        fc_by_date: dict[date, dict] = {}
+        for fc in fnd.get("weatherForecast", []):
+            d_str = str(fc.get("forecastDate", ""))
+            if len(d_str) == 8:
+                try:
+                    d = date(int(d_str[:4]), int(d_str[4:6]), int(d_str[6:8]))
+                    fc_by_date[d] = fc
+                except Exception:
+                    pass
 
-        days = [date.fromisoformat(d) for d in daily["time"]]
-        i = days.index(today)
+        def mk_day(d: date) -> ForecastDay:
+            fc = fc_by_date.get(d)
+            if not fc:
+                return ForecastDay(day=d, tmin=None, tmax=None, rain_prob_max=None)
+            tmin_v = fc.get("forecastMintemp", {}).get("value")
+            tmax_v = fc.get("forecastMaxtemp", {}).get("value")
+            psr = fc.get("PSR", "")
+            rain = _PSR_MAP.get(psr)
+            return ForecastDay(
+                day=d,
+                tmin=float(tmin_v) if tmin_v is not None else None,
+                tmax=float(tmax_v) if tmax_v is not None else None,
+                rain_prob_max=rain,
+            )
 
-        def mk_day(idx: int) -> ForecastDay:
-            tmax = float(daily["temperature_2m_max"][idx]) if daily.get("temperature_2m_max") else None
-            tmin = float(daily["temperature_2m_min"][idx]) if daily.get("temperature_2m_min") else None
-            rain = None
-            if daily.get("precipitation_probability_max"):
-                v = daily["precipitation_probability_max"][idx]
-                rain = int(v) if v is not None else None
-            return ForecastDay(day=days[idx], tmin=tmin, tmax=tmax, rain_prob_max=rain)
+        today_fc = mk_day(today)
+        outlook: list[ForecastDay] = [mk_day(today + timedelta(days=i)) for i in range(1, 4)]
 
-        today_fc = mk_day(i)
-        outlook: list[ForecastDay] = []
-        for j in range(i + 1, min(i + 4, len(days))):
-            outlook.append(mk_day(j))
-
+        # Drop-off rain proxy: use today's PSR (HKO doesn't give hourly rain probability)
         dropoff = None
-        if school_day:
-            # Take max of 08:00 and 09:00 hourly probability (cheap approximation for 08:00-08:30).
-            hourly = payload.get("hourly", {})
-            ht = hourly.get("time", [])
-            hp = hourly.get("precipitation_probability", [])
-            want = {f"{today.isoformat()}T08:00", f"{today.isoformat()}T09:00"}
-            probs = [int(p) for t, p in zip(ht, hp) if t in want and p is not None]
-            if probs:
-                dropoff = max(probs)
+        if school_day and today_fc.rain_prob_max is not None:
+            dropoff = today_fc.rain_prob_max
 
         return WeatherSummary(today=today_fc, outlook_3d=outlook, dropoff_rain_prob=dropoff)
+
     except Exception as e:
         errors.append(f"Weather parse error: {e}")
         return None
