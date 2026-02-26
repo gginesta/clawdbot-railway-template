@@ -617,8 +617,43 @@ def get_or_create_persistent_db(page_id: str) -> str:
     return db_id
 
 
+_EXISTING_TASKS_CACHE: set | None = None
+
+def get_existing_task_keys(db_id: str, today: str) -> set:
+    """Return set of 'title|type' keys already in the DB for today — used to skip duplicates."""
+    global _EXISTING_TASKS_CACHE
+    if _EXISTING_TASKS_CACHE is not None:
+        return _EXISTING_TASKS_CACHE
+    keys = set()
+    cursor = None
+    while True:
+        body = {"page_size": 100, "filter": {"property": "Standup Date", "date": {"equals": today}}}
+        if cursor:
+            body["start_cursor"] = cursor
+        r = requests.post(f"https://api.notion.com/v1/databases/{db_id}/query",
+                          headers=NH, json=body, timeout=15)
+        data = r.json()
+        for row in data.get("results", []):
+            props = row.get("properties", {})
+            title = (props.get("Task", {}).get("title") or [{}])[0].get("plain_text", "")
+            typ = (props.get("Type", {}).get("select") or {}).get("name", "")
+            if title:
+                keys.add(f"{title}|{typ}")
+        if not data.get("has_more"):
+            break
+        cursor = data.get("next_cursor")
+    _EXISTING_TASKS_CACHE = keys
+    return keys
+
+
 def add_task_to_db_with_retry(db_id, task, section, today, task_type="Needs Input", retries=3, sort_order: int = 999) -> bool:
     """Wrapper: retry add_task_to_db on timeout/failure with exponential backoff."""
+    # Skip if already written for today (prevents duplicates on re-run)
+    existing = get_existing_task_keys(db_id, today)
+    key = f"{task.get('content', '')}|{task_type}"
+    if key in existing:
+        return True  # Already there, treat as success
+
     for attempt in range(1, retries + 1):
         try:
             result = add_task_to_db(db_id, task, section, today, task_type, sort_order=sort_order)
