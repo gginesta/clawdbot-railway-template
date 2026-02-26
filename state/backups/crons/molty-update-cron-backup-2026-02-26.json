@@ -1,0 +1,36 @@
+[
+  {
+    "id": "c0705ffd-9c7f-4f90-839b-7f3a9d660371",
+    "agentId": "main",
+    "name": "Morning Update Check + Install (5:30 AM HKT)",
+    "enabled": true,
+    "createdAtMs": 1771119666523,
+    "updatedAtMs": 1772055050335,
+    "schedule": {
+      "kind": "cron",
+      "expr": "30 5 * * *",
+      "tz": "Asia/Hong_Kong"
+    },
+    "sessionTarget": "isolated",
+    "wakeMode": "now",
+    "payload": {
+      "kind": "agentTurn",
+      "message": "OpenClaw morning update check, feature analysis, and install.\n\n1. Check commit distance: cd /openclaw && git fetch origin 2>/dev/null && git rev-list HEAD..origin/main --count\n2. If 0 commits behind \u2192 reply HEARTBEAT_OK (no post needed)\n3. If ANY commits behind:\n   a. Get the new commit messages: git log HEAD..origin/main --oneline\n   b. Summarize NEW FEATURES and changes in plain language\n   c. For each notable feature, assess: Can TMNT squad adopt this? How would it improve our architecture?\n   d. Run the update: use the gateway tool with action update.run and note 'Morning auto-update'\n   e. Return plain text summary with format:\n\n\ud83d\udce6 OpenClaw Updated \u2014 [X] new commits installed\n\nNew Features:\n- [feature 1]: [what it does] \u2192 [TMNT opportunity]\n\nArchitecture Recommendations:\n- [suggestion]\n\n\u2705 Update applied and restarting.\n\nDo NOT post to any channel; return plain text only. The delivery system handles routing.",
+      "model": "anthropic/claude-haiku-4-5",
+      "timeoutSeconds": 180
+    },
+    "delivery": {
+      "mode": "announce",
+      "channel": "discord",
+      "to": "channel:1468164160398557216"
+    },
+    "state": {
+      "nextRunAtMs": 1772141400000,
+      "lastRunAtMs": 1772055000013,
+      "lastStatus": "error",
+      "lastDurationMs": 50322,
+      "consecutiveErrors": 6,
+      "lastError": "cron announce delivery failed"
+    }
+  }
+]

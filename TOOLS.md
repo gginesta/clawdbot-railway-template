@@ -111,14 +111,11 @@ Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
 ---
 
 ## Webhook Tokens (Change Ticket #001 — Feb 24 2026)
-| Agent | Inbound Token (they receive) | Status |
-|-------|-------------------------------|--------|
-| Molty | `ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562` | ✅ Applied |
-| Raphael | `a006d3378215cfd0cb6e46e2f67f196e9b8960379370f1e3378a4e1258c07c73` | ⏳ Pending |
-| Leonardo | `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758` | ✅ Applied |
-
-**Use old shared token for outbound to Raphael/Leonardo until they confirm:**
-`ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd`
+| Agent | Inbound Token | Status |
+|-------|---------------|--------|
+| Molty | `ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562` | ✅ Active |
+| Raphael | `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd` | ✅ Active (old shared) |
+| Leonardo | `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758` | ✅ Active (new) |
 
 ## Leonardo Webhook
 - **URL:** `https://leonardo-production.up.railway.app/hooks/agent`

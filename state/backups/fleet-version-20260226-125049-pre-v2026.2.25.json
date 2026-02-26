@@ -5,13 +5,13 @@
     "updated_at": "2026-02-26"
   },
   "raphael": {
-    "current": "v2026.2.25",
+    "current": "v2026.2.24",
     "last_good": "v2026.2.24",
-    "updated_at": "2026-02-26T12:52:45.008100+08:00"
+    "updated_at": ""
   },
   "leonardo": {
-    "current": "v2026.2.25",
+    "current": "v2026.2.24",
     "last_good": "v2026.2.24",
-    "updated_at": "2026-02-26T13:49:24.935429+08:00"
+    "updated_at": ""
   }
 }
