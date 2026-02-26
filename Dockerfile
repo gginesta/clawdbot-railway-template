@@ -215,9 +215,9 @@ RUN printf '%s\n' \
   '  mkdir -p "$GOG_KEYRING_DIR"' \
   '  cp -f "$GOG_KEYRING_BACKUP"/token:* "$GOG_KEYRING_DIR/" 2>/dev/null && echo "[startup] gog keyring restored"' \
   'fi' \
-  'if [ ! -f "$GOG_CREDS_DIR" ] && [ -f "$GOG_CREDS_BACKUP" ]; then' \
-  '  mkdir -p "$(dirname "$GOG_CREDS_DIR")"' \
-  '  cp -f "$GOG_CREDS_BACKUP" "$GOG_CREDS_DIR" && echo "[startup] gog credentials restored"' \
+  'if [ -f "$GOG_CREDS_BACKUP" ]; then' \
+  '  export GOG_KEYRING_PASSWORD="molty2026"' \
+  '  /usr/local/bin/gog auth credentials "$GOG_CREDS_BACKUP" 2>/dev/null && echo "[startup] gog credentials registered"' \
   'fi' \
   'exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' \
   > /usr/local/bin/startup.sh \
