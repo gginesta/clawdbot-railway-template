@@ -395,12 +395,32 @@ def process(target_date: str):
 
     for row in rows:
         props = row.get("properties", {})
-        title   = get_text(props.get("Task"))
-        action  = get_text(props.get("Action"))
-        owner   = get_text(props.get("Owner"))
-        project = get_text(props.get("Project"))
+        title      = get_text(props.get("Task"))
+        action     = get_text(props.get("Action"))
+        your_notes = get_text(props.get("Your Notes"))
+        owner      = get_text(props.get("Owner"))
+        project    = get_text(props.get("Project"))
 
-        if not title or not action:
+        if not title:
+            continue
+
+        # If no Action set, infer from Your Notes before skipping
+        if not action and your_notes:
+            notes_lower = your_notes.lower()
+            if any(x in notes_lower for x in ["mark as done", "already done", "this is done", "already told you", "completed", "i did this", "we're not using", "not using it", "decided no", "cancel", "drop this"]):
+                action = "Drop"
+                print(f"   [Drop — inferred from Your Notes] {title[:60]}: \"{your_notes[:80]}\"")
+            elif any(x in notes_lower for x in ["molty", "delegate", "for molty"]):
+                action = "Molty"
+                print(f"   [Molty — inferred from Your Notes] {title[:60]}")
+            elif any(x in notes_lower for x in ["raphael", "for raphael"]):
+                action = "Raphael"
+                print(f"   [Raphael — inferred from Your Notes] {title[:60]}")
+            elif any(x in notes_lower for x in ["leonardo", "for leonardo"]):
+                action = "Leonardo"
+                print(f"   [Leonardo — inferred from Your Notes] {title[:60]}")
+
+        if not action:
             continue
 
         print(f"   [{action}] {title[:60]}")
