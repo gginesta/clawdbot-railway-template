@@ -720,6 +720,64 @@ def _get_overnight_summary(today: date) -> list[str] | None:
     return None
 
 
+def _get_overnight_squad_report(now: datetime) -> list[str] | None:
+    """Pull per-agent overnight activity from Mission Control.
+
+    Covers tasks updated in the ~10h window before the 06:30 briefing
+    (i.e. anything that happened during the overnight runs).
+    Returns formatted lines ready for the briefing, or None if nothing to report.
+    """
+    OVERNIGHT_HOURS = 10  # look back 10h from briefing time
+    cutoff_ms = int((now.timestamp() - OVERNIGHT_HOURS * 3600) * 1000)
+
+    status_code, payload = _http_json(
+        f"{MC_API}/api/tasks",
+        headers={"Authorization": f"Bearer {MC_KEY}"},
+        timeout=10,
+    )
+    if status_code != 200 or not payload:
+        return None
+
+    tasks = payload if isinstance(payload, list) else payload.get("tasks", [])
+    # Only tasks updated overnight
+    overnight = [t for t in tasks if (t.get("updatedAt") or 0) >= cutoff_ms]
+    if not overnight:
+        return None
+
+    AGENT_INFO = {
+        "raphael":  ("🔴", "Raphael"),
+        "leonardo": ("🔵", "Leonardo"),
+        "molty":    ("🦎", "Molty"),
+    }
+    STATUS_SYM = {"done": "✅", "review": "👀", "blocked": "🚧", "in_progress": "⚡"}
+
+    lines: list[str] = []
+    for agent_id, (emoji, label) in AGENT_INFO.items():
+        agent_tasks = [t for t in overnight if agent_id in t.get("assignees", [])]
+        if not agent_tasks:
+            continue
+
+        done    = [t for t in agent_tasks if t.get("status") == "done"]
+        review  = [t for t in agent_tasks if t.get("status") == "review"]
+        blocked = [t for t in agent_tasks if t.get("status") == "blocked"]
+
+        parts: list[str] = []
+        if done:
+            titles = ", ".join(t["title"][:35] for t in done[:3])
+            parts.append(f"✅ {titles}" + (" +" + str(len(done) - 3) + " more" if len(done) > 3 else ""))
+        if review:
+            titles = ", ".join(t["title"][:35] for t in review[:2])
+            parts.append(f"👀 {titles} — needs your review")
+        if blocked:
+            titles = ", ".join(t["title"][:35] for t in blocked[:2])
+            parts.append(f"🚧 {titles} — blocked")
+
+        if parts:
+            lines.append(f"{emoji} {label}: " + " | ".join(parts))
+
+    return lines if lines else None
+
+
 def _get_openclaw_update_summary() -> str | None:
     """Read the latest OpenClaw update cron result from session transcripts.
 
@@ -1003,12 +1061,17 @@ def build_message(
     else:
         lines.append("No overnight highlights")
 
-    # 7) Overnight task completions (from nightly task worker)
-    overnight = _get_overnight_summary(today)
-    if overnight:
+    # 7) Overnight squad report (MC-based per-agent) + Molty log detail
+    squad_overnight = _get_overnight_squad_report(now)
+    molty_log = _get_overnight_summary(today)
+    if squad_overnight or molty_log:
         lines.append("")
-        lines.append("🌙 Overnight Work")
-        lines.extend(overnight)
+        lines.append("🌙 Overnight Report")
+        if squad_overnight:
+            lines.extend(squad_overnight)
+        elif molty_log:
+            # Fallback: just show Molty's log if MC has no overnight data
+            lines.extend(molty_log)
 
     # 8) OpenClaw Update Summary (from 5:30 AM cron)
     update_summary = _get_openclaw_update_summary()
