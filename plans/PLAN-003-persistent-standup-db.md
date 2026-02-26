@@ -1,5 +1,5 @@
 # PLAN-003: Persistent Standup Database
-**Created:** 2026-02-24 | **Status:** Approved — execute overnight tonight
+**Created:** 2026-02-24 | **Status:** ✅ COMPLETE (2026-02-26)
 **Approved approach:** Option B — single persistent Notion database, reused daily
 
 ---
@@ -94,8 +94,9 @@ After creating the persistent DB (once only):
 1. [x] Plan documented
 2. [x] Overnight one-shot cron created: b4bd2c2a, fires 2026-02-25T17:00Z (01:00 HKT)
 3. [x] Todoist task: 6g4pFvM9V9gm39pR | MC task: jn76q9csr7mzynfz35xetdaxjn81s77w
-4. [ ] Verify tomorrow's 5PM standup uses persistent DB
-5. [ ] Get token_v2 from Guillermo for programmatic column order fix (or set manually once)
+4. [x] Persistent DB created 2026-02-26 01:03 HKT — ID: 31239dd6-9afd-81ad-8ffd-d1db09b1dd36
+5. [x] Column order fixed via internal API (token_v2) — 13 columns set correctly
+6. [x] DB verified: rows populating, Standup Date + Type properties working
 
 ---
 
