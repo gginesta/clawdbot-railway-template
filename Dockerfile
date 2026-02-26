@@ -205,6 +205,20 @@ RUN printf '%s\n' \
   '  rm -f "$profile_dir/SingletonLock" "$profile_dir/SingletonSocket" "$profile_dir/SingletonCookie"' \
   '  echo "[startup] Cleared browser locks in $profile_dir"' \
   'done' \
+  '# Restore gog credentials + keyring from persistent volume backup' \
+  '# (/root/.config is ephemeral -- wiped on every container restart/redeploy)' \
+  'GOG_KEYRING_BACKUP="/data/workspace/credentials/gogcli-keyring/keyring"' \
+  'GOG_KEYRING_DIR="/root/.config/gogcli/keyring"' \
+  'GOG_CREDS_BACKUP="/data/workspace/credentials/google-oauth-client.json"' \
+  'GOG_CREDS_DIR="/root/.config/gogcli/credentials.json"' \
+  'if [ -d "$GOG_KEYRING_BACKUP" ] && [ "$(ls -A "$GOG_KEYRING_BACKUP" 2>/dev/null)" ]; then' \
+  '  mkdir -p "$GOG_KEYRING_DIR"' \
+  '  cp -f "$GOG_KEYRING_BACKUP"/token:* "$GOG_KEYRING_DIR/" 2>/dev/null && echo "[startup] gog keyring restored"' \
+  'fi' \
+  'if [ ! -f "$GOG_CREDS_DIR" ] && [ -f "$GOG_CREDS_BACKUP" ]; then' \
+  '  mkdir -p "$(dirname "$GOG_CREDS_DIR")"' \
+  '  cp -f "$GOG_CREDS_BACKUP" "$GOG_CREDS_DIR" && echo "[startup] gog credentials restored"' \
+  'fi' \
   'exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' \
   > /usr/local/bin/startup.sh \
   && chmod +x /usr/local/bin/startup.sh
