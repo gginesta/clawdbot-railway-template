@@ -617,6 +617,42 @@ def get_or_create_persistent_db(page_id: str) -> str:
     return db_id
 
 
+def add_task_to_db_with_retry(db_id, task, section, today, task_type="Needs Input", retries=3) -> bool:
+    """Wrapper: retry add_task_to_db on timeout/failure with exponential backoff."""
+    for attempt in range(1, retries + 1):
+        try:
+            result = add_task_to_db(db_id, task, section, today, task_type)
+            if result:
+                return True
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+            wait = 2 ** attempt
+            print(f"   ⚠️  Notion timeout on attempt {attempt}/{retries} — retrying in {wait}s ({e})")
+            time.sleep(wait)
+        except Exception as e:
+            print(f"   ❌ Unexpected error adding task: {e}")
+            return False
+    print(f"   ❌ Failed after {retries} retries: {task.get('content','?')[:50]}")
+    return False
+
+
+def alert_telegram_failure(error_msg: str):
+    """Send immediate Telegram alert when standup fails."""
+    try:
+        import urllib.request as ur
+        payload = json.dumps({
+            "chat_id": "1097408992",
+            "text": f"⚠️ *Daily Standup Failed*\n\nError: {error_msg[:300]}\n\nI'll retry shortly. Check /data/workspace/logs/standup.log for details.",
+            "parse_mode": "Markdown"
+        }).encode()
+        token = os.environ.get("TELEGRAM_BOT_TOKEN", "8292515315:AAETOvDJgl4r13qF3_32qhpn8h7jIOVJQDA")
+        ur.urlopen(ur.Request(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=payload, headers={"Content-Type": "application/json"}
+        ), timeout=10)
+    except Exception:
+        pass  # Best-effort only
+
+
 def add_task_to_db(db_id, task, section, today, task_type="Needs Input"):
     """Add a task row to the persistent DB.
 
@@ -737,14 +773,14 @@ def main():
     print("9. Adding 'Needs Input' tasks to persistent DB...")
     added1 = 0
     for task in needs_input:
-        if add_task_to_db(persistent_db_id, task, task["_section"], today, "Needs Input"):
+        if add_task_to_db_with_retry(persistent_db_id, task, task["_section"], today, "Needs Input"):
             added1 += 1
 
     # 10. Add Active Pipeline tasks to persistent DB
     print("10. Adding 'Active Pipeline' tasks to persistent DB...")
     added2 = 0
     for task in pipeline:
-        if add_task_to_db(persistent_db_id, task, task["_section"], today, "Active Pipeline"):
+        if add_task_to_db_with_retry(persistent_db_id, task, task["_section"], today, "Active Pipeline"):
             added2 += 1
 
     # 11. Footer
@@ -1020,4 +1056,12 @@ def block_week_calendar(all_tasks, today, tomorrow):
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        import traceback
+        err = f"{type(e).__name__}: {e}"
+        print(f"\n❌ Standup crashed: {err}", file=sys.stderr)
+        traceback.print_exc()
+        alert_telegram_failure(err)
+        sys.exit(1)
