@@ -45,38 +45,15 @@ GOG_CREDENTIALS_DIR = "/root/.config/gogcli"
 
 
 def ensure_gog_setup() -> None:
-    """Self-healing: install gog binary and restore keyring if missing after container restart."""
-    import shutil
-    import urllib.request as _req
-    # 1. Install binary if missing
-    if not os.path.exists(GOG_BIN):
-        url = "https://github.com/steipete/gogcli/releases/download/v0.11.0/gogcli_0.11.0_linux_amd64.tar.gz"
-        try:
-            import tarfile, tempfile
-            with tempfile.NamedTemporaryFile(suffix=".tar.gz", delete=False) as tmp:
-                _req.urlretrieve(url, tmp.name)
-                with tarfile.open(tmp.name) as tf:
-                    member = next(m for m in tf.getmembers() if m.name == "gog")
-                    member.name = "gog"
-                    tf.extract(member, "/usr/local/bin")
-            os.chmod(GOG_BIN, 0o755)
-        except Exception as e:
-            print(f"⚠️ Could not install gog: {e}", file=sys.stderr)
-            return
-    # 2. Restore OAuth client credentials if missing (run via gog auth credentials, not raw copy)
-    creds_path = os.path.join(GOG_CREDENTIALS_DIR, "credentials.json")
-    if not os.path.exists(creds_path) and os.path.exists(GOG_CREDENTIALS_BACKUP):
-        os.makedirs(GOG_CREDENTIALS_DIR, exist_ok=True)
+    """Self-healing: restore gog auth and sync backup via setup-gog-auth.sh."""
+    setup_script = "/data/workspace/scripts/setup-gog-auth.sh"
+    if os.path.exists(setup_script):
         try:
             env = {**os.environ, "GOG_KEYRING_PASSWORD": GOG_KEYRING_PASSWORD}
-            subprocess.run([GOG_BIN, "auth", "credentials", GOG_CREDENTIALS_BACKUP],
-                           env=env, capture_output=True, timeout=15)
-        except Exception:
-            shutil.copy(GOG_CREDENTIALS_BACKUP, creds_path)  # fallback
-    # 3. Restore keyring tokens if missing
-    if os.path.isdir(GOG_KEYRING_BACKUP) and not os.path.isdir(GOG_KEYRING_DIR):
-        os.makedirs(os.path.dirname(GOG_KEYRING_DIR), exist_ok=True)
-        shutil.copytree(GOG_KEYRING_BACKUP, GOG_KEYRING_DIR)
+            subprocess.run(["/bin/bash", setup_script], env=env, timeout=30,
+                           capture_output=True)
+        except Exception as e:
+            print(f"⚠️ setup-gog-auth.sh failed: {e}", file=sys.stderr)
 
 # Hong Kong (Central) coordinates for weather
 HK_LAT = 22.3193
