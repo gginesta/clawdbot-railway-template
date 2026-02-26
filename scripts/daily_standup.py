@@ -736,6 +736,186 @@ def add_task_to_db(db_id, task, section, today, task_type="Needs Input", sort_or
     return resp.status_code == 200
 
 
+# === YESTERDAY'S ACTION PROCESSOR ===
+
+# Map Action column values → behaviour
+ACTION_MAP = {
+    # done / close
+    "done":     "close",
+    "✓ done":   "close",
+    "✅ done":  "close",
+    # keep — no change, will appear in today's standup normally
+    "keep":     "keep",
+    "✅ keep":  "keep",
+    # dispatch agents
+    "raphael":      "dispatch_raphael",
+    "🔴 raphael":   "dispatch_raphael",
+    "🔴":            "dispatch_raphael",
+    "leonardo":     "dispatch_leonardo",
+    "🔵 leonardo":  "dispatch_leonardo",
+    "🔵":            "dispatch_leonardo",
+    "molty":        "keep",   # stays in standup for Molty to own
+    "🦎 molty":     "keep",
+    "🦎":            "keep",
+    # park / snooze 60 days
+    "park":     "snooze",
+    "🅿️ park":  "snooze",
+    "snooze":   "snooze",
+    "delete":   "close",
+}
+
+WEBHOOK_TOKENS = {
+    "raphael":  "ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd",
+    "leonardo": "08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758",
+}
+WEBHOOK_URLS = {
+    "raphael":  "https://ggv-raphael.up.railway.app/hooks/agent",
+    "leonardo": "https://leonardo-production.up.railway.app/hooks/agent",
+}
+
+def _todoist_close(task_id: str) -> bool:
+    r = requests.post(f"https://api.todoist.com/api/v1/tasks/{task_id}/close",
+                      headers=TH, timeout=10)
+    return r.status_code == 204
+
+def _todoist_snooze(task_id: str, days: int = 60) -> bool:
+    from datetime import date
+    snooze_to = (datetime.now(HKT) + timedelta(days=days)).strftime("%Y-%m-%d")
+    r = requests.post(f"https://api.todoist.com/api/v1/tasks/{task_id}",
+                      headers={**TH, "Content-Type": "application/json"},
+                      json={"due_date": snooze_to}, timeout=10)
+    return r.status_code == 200
+
+def _dispatch_agent(agent: str, task_title: str, your_notes: str, molty_notes: str, due: str) -> bool:
+    note_ctx = f"\nGuillermo's notes: \"{your_notes}\"" if your_notes else ""
+    molty_ctx = f"\nMolty's context: \"{molty_notes}\"" if molty_notes else ""
+    due_ctx = f"\nDue: {due}" if due else ""
+    msg = (
+        f"🦎 Standup dispatch from Molty — task assigned to you:\n\n"
+        f"**{task_title}**{due_ctx}{note_ctx}{molty_ctx}\n\n"
+        f"Please pick this up, update MC when started, and post results when done."
+    )
+    data = json.dumps({"message": msg, "wakeMode": "now"}).encode()
+    try:
+        req = urllib.request.Request(
+            WEBHOOK_URLS[agent], data=data, method="POST",
+            headers={"Authorization": f"Bearer {WEBHOOK_TOKENS[agent]}",
+                     "Content-Type": "application/json"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as r:
+            resp = json.loads(r.read())
+            return resp.get("ok", False)
+    except Exception as e:
+        print(f"   ⚠️  Webhook to {agent} failed: {e}")
+        return False
+
+def _find_todoist_id(all_tasks: list, title: str) -> str | None:
+    """Fuzzy match task title → Todoist task id."""
+    title_lower = title.lower().strip()
+    # Exact match first
+    for t in all_tasks:
+        if t.get("content","").lower().strip() == title_lower:
+            return t["id"]
+    # Partial match (title starts with or contains)
+    for t in all_tasks:
+        c = t.get("content","").lower()
+        if title_lower[:30] in c or c[:30] in title_lower:
+            return t["id"]
+    return None
+
+def process_yesterday_actions(all_tasks: list) -> dict:
+    """
+    Read yesterday's standup DB rows. For each row with an Action set,
+    execute the action (close, snooze, dispatch).
+    Returns summary dict for logging.
+    """
+    yesterday = (datetime.now(HKT) - timedelta(days=1)).strftime("%Y-%m-%d")
+    DB_ID = "31239dd6-9afd-81ad-8ffd-d1db09b1dd36"
+
+    print(f"\n0. Processing yesterday's standup actions ({yesterday})...")
+
+    # Fetch yesterday's rows
+    rows, cursor = [], None
+    while True:
+        body = {"page_size": 100,
+                "filter": {"property": "Standup Date", "date": {"equals": yesterday}}}
+        if cursor:
+            body["start_cursor"] = cursor
+        r = requests.post(f"https://api.notion.com/v1/databases/{DB_ID}/query",
+                          headers=NH, json=body, timeout=15)
+        data = r.json()
+        rows += data.get("results", [])
+        if not data.get("has_more"):
+            break
+        cursor = data.get("next_cursor")
+
+    if not rows:
+        print(f"   No rows found for {yesterday} — skipping")
+        return {}
+
+    print(f"   Found {len(rows)} rows from yesterday")
+
+    summary = {"closed": [], "snoozed": [], "dispatched": [], "kept": [], "skipped": []}
+
+    for row in rows:
+        props = row.get("properties", {})
+        title_parts = props.get("Task", {}).get("title") or []
+        title = title_parts[0].get("plain_text", "") if title_parts else ""
+        if not title:
+            continue
+
+        raw_action = (props.get("Action", {}).get("select") or {}).get("name", "")
+        your_notes = ((props.get("Your Notes", {}).get("rich_text") or [{}])[0].get("plain_text", ""))
+        molty_notes = ((props.get("Molty's Notes", {}).get("rich_text") or [{}])[0].get("plain_text", ""))
+        due = (props.get("Due Date", {}).get("date") or {}).get("start", "")
+
+        # If no Action set, try to infer intent from Your Notes
+        if not raw_action:
+            notes_lower = your_notes.lower()
+            if any(x in notes_lower for x in ["mark as done", "already done", "this is done", "already told you", "completed", "i did this"]):
+                raw_action = "done"
+            elif any(x in notes_lower for x in ["dont want to see", "don't want to see", "remove this", "delete this", "park this", "not relevant"]):
+                raw_action = "snooze"
+            else:
+                summary["skipped"].append(title[:50])
+                continue
+
+        behaviour = ACTION_MAP.get(raw_action.lower().strip(), "keep")
+
+        if behaviour == "close":
+            tid = _find_todoist_id(all_tasks, title)
+            if tid and _todoist_close(tid):
+                print(f"   ✅ Closed: {title[:55]}")
+                summary["closed"].append(title[:55])
+            else:
+                print(f"   ⚠️  Could not close (no Todoist match): {title[:55]}")
+                summary["skipped"].append(title[:55])
+
+        elif behaviour == "snooze":
+            tid = _find_todoist_id(all_tasks, title)
+            if tid and _todoist_snooze(tid):
+                print(f"   💤 Snoozed 60d: {title[:55]}")
+                summary["snoozed"].append(title[:55])
+            else:
+                print(f"   ⚠️  Could not snooze: {title[:55]}")
+                summary["skipped"].append(title[:55])
+
+        elif behaviour in ("dispatch_raphael", "dispatch_leonardo"):
+            agent = "raphael" if "raphael" in behaviour else "leonardo"
+            if _dispatch_agent(agent, title, your_notes, molty_notes, due):
+                print(f"   📤 Dispatched to {agent}: {title[:50]}")
+                summary["dispatched"].append(f"{agent}: {title[:50]}")
+            else:
+                summary["skipped"].append(f"dispatch-failed: {title[:50]}")
+
+        elif behaviour == "keep":
+            summary["kept"].append(title[:50])
+
+    total_acted = len(summary["closed"]) + len(summary["snoozed"]) + len(summary["dispatched"])
+    print(f"   Done — {total_acted} actions taken, {len(summary['kept'])} kept, {len(summary['skipped'])} skipped\n")
+    return summary
+
+
 # === MAIN ===
 
 def main():
@@ -752,6 +932,14 @@ def main():
     resp = requests.get("https://api.todoist.com/api/v1/tasks?limit=100", headers=TH, timeout=15)
     tasks = resp.json().get("results", [])
     print(f"   Raw tasks: {len(tasks)}")
+
+    # 0. Process yesterday's standup actions BEFORE building today's view
+    yesterday_summary = process_yesterday_actions(tasks)
+    # Refresh task list so closed/snoozed tasks don't appear today
+    if yesterday_summary.get("closed") or yesterday_summary.get("snoozed"):
+        r2 = requests.get("https://api.todoist.com/api/v1/tasks?limit=100", headers=TH, timeout=15)
+        tasks = r2.json().get("results", [])
+        print(f"   Refreshed task list: {len(tasks)} tasks")
 
     # 2. Deduplicate
     print("2. Deduplicating...")
