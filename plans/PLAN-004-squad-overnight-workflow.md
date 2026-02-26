@@ -1,6 +1,6 @@
 # PLAN-004 — Squad Overnight Workflow & Mission Control Discipline
-*Status: DRAFT — pending approval*
-*Owner: Molty | Created: 2026-02-25 | Last updated: 2026-02-25*
+*Status: LIVE — first full overnight run tonight*
+*Owner: Molty | Created: 2026-02-25 | Last updated: 2026-02-26*
 
 ---
 
@@ -131,45 +131,38 @@ Reserve 10-15 mins after the 06:30 brief to action any "Under Review" items and 
 
 ## Staged Rollout (MC tasks created — pending approval)
 
-### Stage 0 — Prerequisites `jn79ypa14hcv9b2ajg7dmevdw181vd61`
-*Gate: must be done before Stage 3*
-- ☐ Confirm Leonardo sub-agent fix is live (anthropic/claude-haiku-4-5)
-- ☐ Verify Todoist API token in `/data/shared/credentials/` for Raphael + Leonardo
-- ☐ Confirm Raphael has exec tool available for overnight cron use
+### Stage 0 — Prerequisites `jn79ypa14hcv9b2ajg7dmevdw181vd61` ✅ DONE (2026-02-26)
+- ✅ Raphael overnight slot confirmed live (proved by #squad-updates report, Feb 26 00:30)
+- ✅ Molty overnight slot confirmed live (03:00 HKT log confirmed)
+- ⚠️ Leonardo overnight slot NOT confirmed — directive sent 2026-02-26 via #launchpad-private
 
 ### Stage 1 — Rules in place `jn79cbk1g4n7w2cgnkz1jrnkpd81vgpn` ✅ DONE (2026-02-25)
-*Can run parallel to Stage 0*
-- ✅ Update AGENTS.md on Molty (local, commit `f9854913`)
-- ✅ Notify Raphael via #brinc-private (Discord msg `1476138241919811585`)
-- ✅ Notify Leonardo via #launchpad-private (Discord msg `1476138273511440549`)
-- ⏳ Awaiting confirmation from Raphael + Leonardo that their AGENTS.md is updated
+- ✅ AGENTS.md updated on Molty (commit `f9854913`)
+- ✅ Raphael + Leonardo notified via Discord
+- ✅ Overnight schedule + MC discipline rules in AGENTS.md (fleet-wide)
 
 ### Stage 2 — Todoist queues + standup routing `jn74z0w8qy0qdb0v369p41y72s81t6c8` ✅ DONE (2026-02-25)
-*Depends on Stage 0*
-- ✅ Todoist project IDs confirmed: Brinc=`6M5rpGgV6q865hrX`, Cerebro=`6g53F7ccF8HHjgXM` (created)
-- ✅ Standup Action column updated: Molty🦎 / Raphael🔴 / Leonardo🔵 (replaces Delegate) — `daily_standup.py`
-- ✅ `process_standup.py` updated: three-way routing (Molty's Den / Brinc / Cerebro) — commit `f9854913`
-- ⏳ End-to-end test: tonight's 5PM standup (first live run with new Action options)
+- ✅ Todoist projects: Brinc=`6M5rpGgV6q865hrX`, Cerebro=`6g53F7ccF8HHjgXM`
+- ✅ Standup Action column: Molty🦎 / Raphael🔴 / Leonardo🔵
+- ✅ `process_standup.py`: three-way routing
 
-### Stage 3 — Overnight crons `jn7fn5mb0308sqfyrk440vnhms81t8zh`
-*Depends on Stage 0 + Stage 2*
-- ☐ Add Raphael cron (00:30 HKT)
-- ☐ Add Leonardo cron (01:30 HKT)
-- ☐ Update Molty 03:00 cron to include MC feed post + #squad-updates
+### Stage 3 — Overnight crons `jn7fn5mb0308sqfyrk440vnhms81t8zh` ✅ DONE (partial — Leonardo pending)
+- ✅ Raphael 00:30 HKT — confirmed live
+- ✅ Molty 03:00 HKT — confirmed live
+- ⏳ Leonardo 01:30 HKT — directive sent, awaiting confirmation
 
-### Stage 4 — Morning briefing update `jn7fdjjarmxya2kkyatp1wa1ps81vatg`
-*Depends on Stage 3*
-- ☐ Update `morning_briefing.py` to query MC overnight activity per agent
-- ☐ Format overnight report section into 06:30 Telegram brief
-- ☐ Highlight Under Review items (with links) + blocked items
+### Stage 4 — Morning briefing update `jn7fdjjarmxya2kkyatp1wa1ps81vatg` ✅ DONE (2026-02-26)
+- ✅ `_get_overnight_squad_report()` added — queries MC tasks updated in 10h overnight window
+- ✅ Per-agent breakdown: 🔴 Raphael / 🔵 Leonardo / 🦎 Molty with ✅/👀/🚧 status
+- ✅ Replaces flat "Done (N)" with attributed per-agent report — commit `5f8341fd`
 
-### Stage 5 — Backfill + go live `jn7ex2wpx6ge1vrhgjz014sn9d81t7b8`
-*Depends on Stages 1-4*
-- ☐ Each agent runs MC backfill audit (active multi-step tasks not yet in MC)
-- ☐ Confirm overnight queues populated from standup
-- ☐ First full overnight cycle — all three agents
-- ☐ Review morning brief output, adjust if needed
-- ☐ Sign off with Guillermo
+### Stage 5 — Backfill + go live `jn7ex2wpx6ge1vrhgjz014sn9d81t7b8` 🔄 IN PROGRESS (2026-02-26)
+- ✅ MC task statuses updated (Stages 1-4 marked done)
+- ✅ Raphael MC backfill confirmed (36 active tasks tracked)
+- ✅ Leonardo MC backfill confirmed (12 active tasks tracked)
+- ⏳ Leonardo overnight cron confirmation pending
+- ⏳ First FULL overnight cycle (all 3 agents) — tonight 2026-02-26
+- ☐ Review tomorrow morning brief, sign off with Guillermo
 
 ---
 
