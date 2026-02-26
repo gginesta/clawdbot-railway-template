@@ -134,7 +134,7 @@ Reserve 10-15 mins after the 06:30 brief to action any "Under Review" items and 
 ### Stage 0 — Prerequisites `jn79ypa14hcv9b2ajg7dmevdw181vd61` ✅ DONE (2026-02-26)
 - ✅ Raphael overnight slot confirmed live (proved by #squad-updates report, Feb 26 00:30)
 - ✅ Molty overnight slot confirmed live (03:00 HKT log confirmed)
-- ⚠️ Leonardo overnight slot NOT confirmed — directive sent 2026-02-26 via #launchpad-private
+- ✅ Leonardo overnight slot confirmed via Discord (2026-02-26)
 
 ### Stage 1 — Rules in place `jn79cbk1g4n7w2cgnkz1jrnkpd81vgpn` ✅ DONE (2026-02-25)
 - ✅ AGENTS.md updated on Molty (commit `f9854913`)
@@ -146,22 +146,22 @@ Reserve 10-15 mins after the 06:30 brief to action any "Under Review" items and 
 - ✅ Standup Action column: Molty🦎 / Raphael🔴 / Leonardo🔵
 - ✅ `process_standup.py`: three-way routing
 
-### Stage 3 — Overnight crons `jn7fn5mb0308sqfyrk440vnhms81t8zh` ✅ DONE (partial — Leonardo pending)
+### Stage 3 — Overnight crons `jn7fn5mb0308sqfyrk440vnhms81t8zh` ✅ DONE (2026-02-26)
 - ✅ Raphael 00:30 HKT — confirmed live
 - ✅ Molty 03:00 HKT — confirmed live
-- ⏳ Leonardo 01:30 HKT — directive sent, awaiting confirmation
+- ✅ Leonardo 01:30 HKT — confirmed via Discord (2026-02-26)
 
 ### Stage 4 — Morning briefing update `jn7fdjjarmxya2kkyatp1wa1ps81vatg` ✅ DONE (2026-02-26)
 - ✅ `_get_overnight_squad_report()` added — queries MC tasks updated in 10h overnight window
 - ✅ Per-agent breakdown: 🔴 Raphael / 🔵 Leonardo / 🦎 Molty with ✅/👀/🚧 status
 - ✅ Replaces flat "Done (N)" with attributed per-agent report — commit `5f8341fd`
 
-### Stage 5 — Backfill + go live `jn7ex2wpx6ge1vrhgjz014sn9d81t7b8` 🔄 IN PROGRESS (2026-02-26)
-- ✅ MC task statuses updated (Stages 1-4 marked done)
+### Stage 5 — Backfill + go live `jn7ex2wpx6ge1vrhgjz014sn9d81t7b8` ✅ DONE (2026-02-26)
+- ✅ MC task statuses updated (all stages marked)
 - ✅ Raphael MC backfill confirmed (36 active tasks tracked)
 - ✅ Leonardo MC backfill confirmed (12 active tasks tracked)
-- ⏳ Leonardo overnight cron confirmation pending
-- ⏳ First FULL overnight cycle (all 3 agents) — tonight 2026-02-26
+- ✅ All 3 overnight crons confirmed live
+- ⏳ First FULL overnight cycle tonight — Raphael 00:30, Leonardo 01:30, Molty 03:00
 - ☐ Review tomorrow morning brief, sign off with Guillermo
 
 ---
