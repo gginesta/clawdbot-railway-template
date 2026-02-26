@@ -617,11 +617,11 @@ def get_or_create_persistent_db(page_id: str) -> str:
     return db_id
 
 
-def add_task_to_db_with_retry(db_id, task, section, today, task_type="Needs Input", retries=3) -> bool:
+def add_task_to_db_with_retry(db_id, task, section, today, task_type="Needs Input", retries=3, sort_order: int = 999) -> bool:
     """Wrapper: retry add_task_to_db on timeout/failure with exponential backoff."""
     for attempt in range(1, retries + 1):
         try:
-            result = add_task_to_db(db_id, task, section, today, task_type)
+            result = add_task_to_db(db_id, task, section, today, task_type, sort_order=sort_order)
             if result:
                 return True
         except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
@@ -653,7 +653,7 @@ def alert_telegram_failure(error_msg: str):
         pass  # Best-effort only
 
 
-def add_task_to_db(db_id, task, section, today, task_type="Needs Input"):
+def add_task_to_db(db_id, task, section, today, task_type="Needs Input", sort_order: int = 999):
     """Add a task row to the persistent DB.
 
     task_type: "Needs Input" | "Active Pipeline"
@@ -691,6 +691,7 @@ def add_task_to_db(db_id, task, section, today, task_type="Needs Input"):
         props["Due Date"] = {"date": {"start": due_str[:10]}}
     if notes:
         props["Molty's Notes"] = {"rich_text": [{"text": {"content": notes}}]}
+    props["Sort Order"] = {"number": sort_order}
 
     resp = requests.post("https://api.notion.com/v1/pages", headers=NH, json={
         "parent": {"database_id": db_id},
@@ -769,18 +770,19 @@ def main():
     tomorrow_task = get_tomorrow_priority(tasks, tomorrow)
     add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks, tomorrow_task, persistent_db_id)
 
-    # 9. Add Needs Input tasks to persistent DB
+    # 9. Add Needs Input tasks to persistent DB (sort: 1..N, Overdue P1 first)
     print("9. Adding 'Needs Input' tasks to persistent DB...")
     added1 = 0
-    for task in needs_input:
-        if add_task_to_db_with_retry(persistent_db_id, task, task["_section"], today, "Needs Input"):
+    for i, task in enumerate(needs_input, start=1):
+        if add_task_to_db_with_retry(persistent_db_id, task, task["_section"], today, "Needs Input", sort_order=i):
             added1 += 1
 
-    # 10. Add Active Pipeline tasks to persistent DB
+    # 10. Add Active Pipeline tasks to persistent DB (sort: continues after Needs Input)
     print("10. Adding 'Active Pipeline' tasks to persistent DB...")
     added2 = 0
-    for task in pipeline:
-        if add_task_to_db_with_retry(persistent_db_id, task, task["_section"], today, "Active Pipeline"):
+    pipeline_offset = len(needs_input) + 1
+    for i, task in enumerate(pipeline, start=pipeline_offset):
+        if add_task_to_db_with_retry(persistent_db_id, task, task["_section"], today, "Active Pipeline", sort_order=i):
             added2 += 1
 
     # 11. Footer
