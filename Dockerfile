@@ -219,6 +219,13 @@ RUN printf '%s\n' \
   '  export GOG_KEYRING_PASSWORD="molty2026"' \
   '  /usr/local/bin/gog auth credentials "$GOG_CREDS_BACKUP" 2>/dev/null && echo "[startup] gog credentials registered"' \
   'fi' \
+  'AGENT_NAME="${OPENCLAW_AGENT_NAME:-molty}"' \
+  'DIRECTIVES_SCRIPT="/data/shared/scripts/check_directives.py"' \
+  'PENDING_DIR="/data/shared/pending-directives/$AGENT_NAME"' \
+  'if [ -f "$DIRECTIVES_SCRIPT" ] && [ -d "$PENDING_DIR" ] && ls "$PENDING_DIR"/*.sh 2>/dev/null | grep -q .; then' \
+  '  echo "[startup] Running pending directives for $AGENT_NAME..."' \
+  '  python3 "$DIRECTIVES_SCRIPT" "$AGENT_NAME" && echo "[startup] Directives complete"' \
+  'fi' \
   'exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' \
   > /usr/local/bin/startup.sh \
   && chmod +x /usr/local/bin/startup.sh
