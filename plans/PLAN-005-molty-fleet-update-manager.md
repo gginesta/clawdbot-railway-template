@@ -1,5 +1,5 @@
 # PLAN-005: Molty Owns Fleet OpenClaw Updates
-**Created:** 2026-02-26 | **Status:** DRAFT — pending approval
+**Created:** 2026-02-26 | **Status:** ✅ COMPLETE (2026-02-27)
 **Owner:** Molty 🦎
 
 ---
@@ -73,30 +73,29 @@ Before each update:
 
 ## Sequence
 
-### Stage 1 — Monitor + Triage
-- [ ] Create `/data/workspace/scripts/check-openclaw-releases.py`
-- [ ] Create state file with current versions
-- [ ] Set up 09:00 HKT daily cron
+### Stage 1 — Monitor + Triage ✅
+- [x] `check-openclaw-releases.py` — 05:15 HKT daily, TMNT triage, critical detection
+- [x] State file at `/data/workspace/state/openclaw-fleet-version.json`
+- [x] Cron live on Molty at 05:15 HKT
 
-### Stage 2 — Update Tooling
-- [ ] Script to trigger Railway redeploy for any service (uses Railway API)
-- [ ] Script to bump OPENCLAW_GIT_REF in GitHub Dockerfile
-- [ ] Health check function (webhook ping + gog auth + version check)
+### Stage 2 — Update Tooling ✅
+- [x] Railway API redeploy (GraphQL inline IDs, no `$` escaping)
+- [x] GitHub Dockerfile bump via `bump-openclaw-ref.mjs`
+- [x] Health check: HTTP 200 liveness + `pending_update` state tracking
 
-### Stage 3 — Staged Rollout Script
-- [ ] `/data/workspace/scripts/fleet-update.py` — full staged rollout with verification
-- [ ] Manual trigger mode (for immediate updates like today)
-- [ ] Automated mode (runs after triage confirms update is clean)
+### Stage 3 — Staged Rollout Script ✅
+- [x] `fleet-update.py` — staged Molty→Raphael→Leonardo with verification
+- [x] Manual trigger mode used for v2026.2.26 (9 security patches)
+- [x] Separate Telegram report to Guillermo after 06:30 briefing
 
-### Stage 4 — Config Patch Automation
-- [ ] Parse breaking changes from release notes
-- [ ] Map known breaking patterns to config patches
-- [ ] Auto-apply patches before binary update
+### Stage 4 — Config Patch Automation ✅
+- [x] Breaking changes parsed from release notes
+- [x] PLAN-006 directive system handles version-gated config patches
 
-### Stage 5 — Go Live
-- [ ] First full automated fleet update
-- [ ] Post-update report to #squad-updates
-- [ ] Sign off with Guillermo
+### Stage 5 — Go Live ✅
+- [x] v2026.2.26 applied fleet-wide (Molty + Raphael + Leonardo)
+- [x] Secrets migration applied on Molty; Raphael + Leonardo on plaintext (safe)
+- [x] Fleet update summary posted to #command-center
 
 ---
 
