@@ -99,7 +99,7 @@ Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
 
 ## GitHub
 
-**Token:** `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`
+**Token:** `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`
 
 ---
 

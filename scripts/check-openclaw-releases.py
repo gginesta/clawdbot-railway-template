@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 HKT = ZoneInfo("Asia/Hong_Kong")
 STATE_FILE = "/data/workspace/state/openclaw-fleet-version.json"
 REPORT_FILE = "/data/workspace/state/fleet-update-report.json"
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "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"
 FLEET_UPDATE_SCRIPT = "/data/workspace/scripts/fleet-update.py"
 PYTHON = "/data/workspace/.venv/bin/python3"
 
