@@ -142,6 +142,7 @@
 - **Live:** https://tmnt-mission-control.vercel.app
 - **Repo:** github.com/gginesta/tmnt-mission-control (private)
 - **Tech:** NextJS 15 (downgrade from 16 due to prerender useContext bug) + Convex + Vercel (all free tier, $0/month)
+- **Vercel↔GitHub:** Connected Feb 27 2026 — push to `main` = auto-deploy (no manual redeploy needed)
 - **Convex:** dev:resilient-chinchilla-241 | Deployment: rosy-crocodile-290 | Team: guillermo-ginesta
 - **HTTP API:** https://resilient-chinchilla-241.convex.site
 - **API Key:** In Convex env `MC_API_KEY` + skill SKILL.md
