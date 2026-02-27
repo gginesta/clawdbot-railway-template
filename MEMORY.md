@@ -119,6 +119,8 @@
 77. **Always verify current state before reporting a task as incomplete.** Feb 26: told Guillermo PLAN-003 needed a 90-min coding session — it was already done (overnight run built the DB at 01:03 HKT). Daily logs go stale. Check config files, APIs, and MC before making any "not done" claim.
 78. **Change Ticket #001 — Per-agent webhook tokens (Feb 26 status).** Leonardo ✅ rotated to `08d506d4...`. Raphael ✅ rotated to `a006d337...`. Molty ✅ rotated to `ab0100a5...`. Old shared token (`ed691e4...`) now inactive.
 79. **PLAN-004 — Squad Overnight Workflow COMPLETE (Feb 26).** All 5 stages done: crons live (Raphael 00:30 ✅, Leonardo 01:30 ✅, Molty 03:00 ✅), squad report integrated into morning briefing, MC backfills confirmed. First full 3-agent overnight cycle starts tonight.
+80. **Anthropic token is shared fleet-wide.** Same `sk-ant-*` token used by Molty, Raphael, and Leonardo. secrets.json on shared volume has the correct token for all agents.
+81. **PLAN-005 — Fleet Update Manager COMPLETE (Feb 27).** Molty owns all OpenClaw updates. Daily check 05:15 HKT, staged rollout Molty→Raphael→Leonardo with health checks, Railway API + webhook fallback. Separate Telegram report to Guillermo after 06:30 briefing. v2026.2.26 applied fleet-wide (9 security patches). Secrets migration done on Molty; Raphael + Leonardo apply pending (scripts on shared volume).
 
 ---
 
