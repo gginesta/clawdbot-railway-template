@@ -446,19 +446,39 @@ def process(target_date: str):
             route_label = "Cerebro (Leonardo)"
 
         if route_target is not None:
+            # Build a prefixed title so Guillermo can see it was processed
+            PREFIX_MAP = {
+                "Molty's Den": "🦎",
+                "Brinc (Raphael)": "🔴",
+                "Cerebro (Leonardo)": "🔵",
+            }
+            prefix = PREFIX_MAP.get(route_label, "")
+            # Strip existing agent prefix if present (avoid double-prefixing)
+            clean_title = title
+            for p in ["🦎 ", "🔴 ", "🔵 "]:
+                if clean_title.startswith(p):
+                    clean_title = clean_title[len(p):]
+            new_title = f"{prefix} {clean_title}".strip() if prefix else clean_title
+
             if matched:
                 ok = move_task_to_project(matched["id"], route_project_id)
                 if ok:
-                    route_target.append(title)
+                    # Update title to show it was processed
+                    try:
+                        todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
+                        print(f"     ✏️ Title updated: {new_title[:60]}")
+                    except Exception as e:
+                        print(f"     ⚠️ Title update failed: {e}")
+                    route_target.append(new_title)
                     print(f"     ✅ Moved to {route_label}: {matched['id']}")
                 else:
                     unmatched.append(f"{title} (move failed)")
             else:
-                # Create new task in target project
+                # Create new task in target project with prefixed title
                 try:
-                    body = {"content": title, "project_id": route_project_id}
+                    body = {"content": new_title, "project_id": route_project_id}
                     todoist_post("/tasks", body)
-                    route_target.append(title)
+                    route_target.append(new_title)
                     print(f"     ✅ Created in {route_label} (no Todoist match found)")
                 except Exception as e:
                     unmatched.append(f"{title} (create failed: {e})")
