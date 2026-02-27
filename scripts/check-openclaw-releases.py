@@ -1,10 +1,17 @@
 #!/data/workspace/.venv/bin/python3
 """check-openclaw-releases.py
 
-Daily cron (09:00 HKT): checks for new OpenClaw releases, triages release notes,
-posts TMNT-relevant summary to #squad-updates, triggers fleet-update.py if safe to auto-apply.
+Daily cron (05:15 HKT): checks for new OpenClaw releases, triages release notes
+for TMNT relevance, triggers fleet-update.py if a new version is found.
 
-State file: /data/workspace/state/openclaw-fleet-version.json
+A separate report file is written for morning_briefing.py to pick up and
+send to Guillermo as a separate Telegram message after the 06:30 briefing.
+
+Critical releases (security patches) update immediately.
+Standard releases update during the 05:15 maintenance window.
+
+State: /data/workspace/state/openclaw-fleet-version.json
+Report: /data/workspace/state/fleet-update-report.json
 """
 from __future__ import annotations
 import json, os, subprocess, sys, urllib.request
@@ -13,26 +20,53 @@ from zoneinfo import ZoneInfo
 
 HKT = ZoneInfo("Asia/Hong_Kong")
 STATE_FILE = "/data/workspace/state/openclaw-fleet-version.json"
+REPORT_FILE = "/data/workspace/state/fleet-update-report.json"
 GITHUB_TOKEN = "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"
-DISCORD_SQUAD_UPDATES = "1468164181155909743"
-MC_API = "https://resilient-chinchilla-241.convex.site"
-MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cba"
+FLEET_UPDATE_SCRIPT = "/data/workspace/scripts/fleet-update.py"
+PYTHON = "/data/workspace/.venv/bin/python3"
 
-# Keywords that flag a release note as TMNT-relevant
+# ── TMNT Relevance Filters ────────────────────────────────────────────────────
+# Features/fixes in these areas directly affect our fleet
 RELEVANT_KEYWORDS = [
     "subagent", "sub-agent", "cron", "heartbeat", "webhook", "discord",
     "telegram", "memory", "session", "delivery", "routing", "config",
     "gateway", "agent", "tool", "skill", "railway", "redeploy",
+    "isolated", "hook", "queue", "drain", "NO_REPLY", "typing",
+    "secrets", "auth", "spawn", "thread",
 ]
-BREAKING_KEYWORDS = ["breaking", "BREAKING", "Breaking"]
+SECURITY_KEYWORDS = [
+    "security", "Security", "SECURITY", "CVE", "vulnerability",
+    "SSRF", "sandbox", "path escape", "injection", "auth bypass",
+    "spoofing", "bypass", "hardening", "harden",
+]
+BREAKING_KEYWORDS = ["breaking", "BREAKING", "Breaking Change"]
 
-def _http(url: str, method="GET", data: bytes | None = None, headers: dict | None = None):
-    h = {"Authorization": f"token {GITHUB_TOKEN}", "Accept": "application/json"}
+# ── How TMNT uses features — maps release keywords to incorporation notes ─────
+INCORPORATION_MAP = {
+    "secrets": "Migrate TMNT credentials to `openclaw secrets` — stop hardcoding tokens in scripts",
+    "cron": "Overnight crons benefit automatically from reliability improvements",
+    "NO_REPLY": "NO_REPLY suppression fix applies fleet-wide automatically",
+    "isolated": "Isolated cron session routing fix — overnight task workers benefit automatically",
+    "subagent": "Sub-agent spawning improvements — check thread=true behaviour in Discord sessions",
+    "thread": "Thread-bound agent sessions — review sub-agent Discord routing",
+    "delivery": "Delivery queue improvements — better Telegram reliability fleet-wide",
+    "webhook": "Webhook routing improvements — test TMNT webhook endpoints post-update",
+    "discord": "Discord fixes apply to #command-center and squad channel monitoring",
+    "telegram": "Telegram fixes apply to Guillermo's briefing and alert delivery",
+    "typing": "Typing indicator cleanup — no action needed, applies automatically",
+    "memory": "Memory system improvements — no action needed",
+    "auth": "Auth handling improvements — verify all agent tokens post-update",
+    "canvas": "Canvas improvements — available for Molty web previews if needed",
+}
+
+
+def _http(url: str, headers: dict | None = None, timeout: int = 15):
+    h = {"Authorization": f"token {GITHUB_TOKEN}", "Accept": "application/vnd.github+json"}
     if headers:
         h.update(headers)
-    req = urllib.request.Request(url, data=data, method=method, headers=h)
+    req = urllib.request.Request(url, headers=h)
     try:
-        with urllib.request.urlopen(req, timeout=15) as r:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.status, json.loads(r.read())
     except Exception as e:
         return 0, {"error": str(e)}
@@ -41,133 +75,136 @@ def load_state() -> dict:
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE) as f:
             return json.load(f)
-    return {"molty": {}, "raphael": {}, "leonardo": {}}
+    return {}
 
-def save_state(state: dict):
-    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
-    with open(STATE_FILE, "w") as f:
-        json.dump(state, f, indent=2)
-
-def get_latest_tag() -> str | None:
-    status, data = _http("https://api.github.com/repos/openclaw/openclaw/tags?per_page=5")
-    if status == 200 and data:
-        for tag in data:
-            name = tag.get("name", "")
-            if name.startswith("v") and "-beta" not in name:
-                return name
+def get_latest_stable_tag() -> str | None:
+    status, tags = _http("https://api.github.com/repos/openclaw/openclaw/tags?per_page=10")
+    if status != 200:
+        print(f"GitHub API error: {status} {tags}")
+        return None
+    for tag in tags:
+        name = tag.get("name", "")
+        if name.startswith("v") and "beta" not in name and "alpha" not in name:
+            return name
     return None
 
 def get_release_notes(tag: str) -> str:
     status, data = _http(f"https://api.github.com/repos/openclaw/openclaw/releases/tags/{tag}")
     if status == 200:
         return data.get("body", "")
-    # Fallback: compare endpoint
     return ""
 
 def triage_release(tag: str, notes: str) -> dict:
-    """Parse release notes into breaking / relevant / summary buckets."""
+    """
+    Parse release notes into:
+    - breaking: breaking change items
+    - security: security fix items (triggers critical=True)
+    - highlights: TMNT-relevant feature/fix items (for the report)
+    - incorporation: how we'll use new features in the TMNT squad
+    """
     lines = notes.split("\n")
-    breaking = []
-    relevant = []
+    breaking, security, highlights = [], [], []
+    incorporation_seen = set()
+    incorporation = []
+
     in_breaking = False
-
     for line in lines:
-        line = line.strip()
-        if not line:
+        stripped = line.strip()
+        if not stripped:
             continue
-        if any(k in line for k in BREAKING_KEYWORDS):
-            in_breaking = True
-        if in_breaking and line.startswith("-"):
-            breaking.append(line.lstrip("- ").strip())
+
+        # Section header detection
+        if stripped.startswith("###"):
+            in_breaking = "Breaking" in stripped or "BREAKING" in stripped
             continue
-        if line.startswith("###") and "Breaking" not in line:
-            in_breaking = False
-        if line.startswith("-") and any(k.lower() in line.lower() for k in RELEVANT_KEYWORDS):
-            relevant.append(line.lstrip("- ").strip()[:120])
 
-    return {"tag": tag, "breaking": breaking, "relevant": relevant}
+        if not stripped.startswith("-"):
+            continue
 
-def post_discord(channel_id: str, message: str):
-    """Post to Discord via the message tool (uses openclaw CLI)."""
-    try:
-        subprocess.run(
-            ["openclaw", "send", "--channel", "discord", "--to", f"channel:{channel_id}", message],
-            capture_output=True, timeout=15
-        )
-    except Exception as e:
-        print(f"Discord post failed: {e}", file=sys.stderr)
+        item = stripped.lstrip("- ").strip()
 
-def mc_activity(title: str, body: str):
-    data = json.dumps({
-        "agentId": "molty", "type": "deploy",
-        "title": title, "body": body, "project": "fleet"
-    }).encode()
-    req = urllib.request.Request(
-        f"{MC_API}/api/activity", data=data, method="POST",
-        headers={"Authorization": f"Bearer {MC_KEY}", "Content-Type": "application/json"}
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=10) as r:
-            pass
-    except Exception:
-        pass
+        # Classify
+        is_security = any(k in item for k in SECURITY_KEYWORDS)
+        is_breaking = in_breaking or any(k in item for k in BREAKING_KEYWORDS)
+        is_relevant = any(k.lower() in item.lower() for k in RELEVANT_KEYWORDS)
+
+        if is_security:
+            security.append(item[:120])
+
+        if is_breaking:
+            breaking.append(item[:120])
+
+        if is_relevant and not is_security:
+            highlights.append(item[:130])
+
+        # Map to incorporation notes
+        for keyword, note in INCORPORATION_MAP.items():
+            if keyword.lower() in item.lower() and note not in incorporation_seen:
+                incorporation.append(note)
+                incorporation_seen.add(note)
+
+    # Security patches always get an incorporation note
+    if security and "Verify all agent tokens post-update" not in str(incorporation):
+        incorporation.insert(0, f"🔒 {len(security)} security patches — update is mandatory, no config changes required")
+
+    return {
+        "tag": tag,
+        "breaking": breaking[:5],
+        "security": security[:10],
+        "highlights": highlights[:8],
+        "incorporation": incorporation[:6],
+        "is_critical": len(security) > 0,
+    }
+
 
 def main():
     state = load_state()
-    molty_current = state.get("molty", {}).get("current", "v0.0.0")
+    current = state.get("molty", {}).get("current", "v0.0.0")
 
-    latest = get_latest_tag()
+    latest = get_latest_stable_tag()
     if not latest:
-        print("Could not fetch latest tag")
+        print("Could not fetch latest tag — skipping")
         sys.exit(0)
 
-    print(f"Latest: {latest} | Molty current: {molty_current}")
+    print(f"Latest stable: {latest} | Fleet current: {current}")
 
-    if latest == molty_current:
+    if latest == current:
         print("Already up to date — no action needed")
+        # Clear any stale report
+        if os.path.exists(REPORT_FILE):
+            data = json.load(open(REPORT_FILE))
+            if data.get("version") == latest and data.get("all_ok"):
+                pass  # leave it, briefing may not have sent it yet
         sys.exit(0)
 
-    # New release found
+    # New version found
+    print(f"New version available: {latest}")
     notes = get_release_notes(latest)
     triage = triage_release(latest, notes)
 
-    breaking_block = ""
-    if triage["breaking"]:
-        breaking_block = "\n🚨 **Breaking changes:**\n" + "\n".join(f"• {b[:100]}" for b in triage["breaking"][:5])
+    is_critical = triage["is_critical"]
+    print(f"Critical: {is_critical} | Security fixes: {len(triage['security'])} | Highlights: {len(triage['highlights'])}")
 
-    relevant_block = ""
-    if triage["relevant"]:
-        relevant_block = "\n✅ **TMNT-relevant fixes:**\n" + "\n".join(f"• {r[:100]}" for r in triage["relevant"][:6])
-
-    fleet_versions = (
-        f"\n📦 **Fleet versions:** "
-        f"Molty `{molty_current}` → `{latest}` | "
-        f"Raphael `{state.get('raphael',{}).get('current','?')}` | "
-        f"Leonardo `{state.get('leonardo',{}).get('current','?')}`"
-    )
-
-    msg = (
-        f"🔄 **OpenClaw {latest} available** — running fleet update\n"
-        f"{breaking_block}{relevant_block}{fleet_versions}\n\n"
-        f"Staged rollout: Molty ✅ → Raphael 🔄 → Leonardo 🔄"
-    )
-
-    print(msg)
-    post_discord(DISCORD_SQUAD_UPDATES, msg)
-    mc_activity(f"OpenClaw {latest} fleet update starting", f"Breaking: {len(triage['breaking'])} | Relevant fixes: {len(triage['relevant'])}")
+    # Write context file for fleet-update.py
+    context_file = "/data/workspace/state/fleet-update-context.json"
+    os.makedirs(os.path.dirname(context_file), exist_ok=True)
+    with open(context_file, "w") as f:
+        json.dump({
+            "highlights": triage["highlights"],
+            "incorporation": triage["incorporation"],
+            "is_critical": is_critical,
+            "breaking": triage["breaking"],
+            "security_count": len(triage["security"]),
+        }, f, indent=2)
 
     # Trigger fleet update
-    fleet_script = "/data/workspace/scripts/fleet-update.py"
-    if os.path.exists(fleet_script):
-        print(f"Triggering fleet-update.py for {latest}...")
-        result = subprocess.run(
-            ["/data/workspace/.venv/bin/python3", fleet_script, latest],
-            capture_output=False, timeout=600
-        )
-        sys.exit(result.returncode)
-    else:
-        print("fleet-update.py not found — manual update required")
-        sys.exit(1)
+    print(f"Triggering fleet update → {latest}...")
+    result = subprocess.run(
+        [PYTHON, FLEET_UPDATE_SCRIPT, latest, "--context", context_file],
+        timeout=900  # 15 min max for full fleet rollout
+    )
+    sys.exit(result.returncode)
+
 
 if __name__ == "__main__":
     main()

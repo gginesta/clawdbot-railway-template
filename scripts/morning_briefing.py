@@ -1254,7 +1254,90 @@ def main() -> int:
     )
 
     sys.stdout.write(msg)
+
+    # ── Fleet update report (sent as separate Telegram message after briefing) ──
+    _send_fleet_update_report_if_pending()
+
     return 0
+
+
+def _send_fleet_update_report_if_pending():
+    """
+    If fleet-update.py ran since last briefing, build and send a separate
+    Telegram message to Guillermo with version, highlights, and incorporation plan.
+    Clears the report file after sending so it doesn't repeat.
+    """
+    import subprocess
+    REPORT_FILE = "/data/workspace/state/fleet-update-report.json"
+    TELEGRAM_GUILLERMO = "1097408992"
+
+    if not os.path.exists(REPORT_FILE):
+        return
+
+    try:
+        with open(REPORT_FILE) as f:
+            report = json.load(f)
+    except Exception:
+        return
+
+    # Only send if report is fresh (updated within last 4h — covers 05:15 → 06:30 window)
+    updated_at_str = report.get("updated_at", "")
+    if updated_at_str:
+        try:
+            from datetime import timezone
+            updated_at = datetime.fromisoformat(updated_at_str)
+            age_hours = (datetime.now(updated_at.tzinfo) - updated_at).total_seconds() / 3600
+            if age_hours > 4:
+                return  # stale — already sent or skipped
+        except Exception:
+            pass
+
+    version = report.get("version", "?")
+    results = report.get("results", {})
+    highlights = report.get("highlights", [])
+    incorporation = report.get("incorporation", [])
+    is_critical = report.get("is_critical", False)
+    all_ok = report.get("all_ok", False)
+
+    emoji = "🚨" if is_critical else "📦"
+    status = "✅ All agents updated" if all_ok else "⚠️ Partial update — check #command-center"
+
+    agent_lines = []
+    for agent, result in results.items():
+        icons = {"molty": "🦎", "raphael": "🔴", "leonardo": "🔵"}
+        agent_lines.append(f"{icons.get(agent, '•')} {agent}: {result}")
+
+    lines = [
+        f"{emoji} OpenClaw {version} — {status}",
+        "",
+        *agent_lines,
+    ]
+
+    if highlights:
+        lines += ["", "What's new (TMNT-relevant):"]
+        for h in highlights[:5]:
+            lines.append(f"• {h[:100]}")
+
+    if incorporation:
+        lines += ["", "How we're using it:"]
+        for i in incorporation:
+            lines.append(f"• {i}")
+
+    msg = "\n".join(lines)
+
+    try:
+        subprocess.run(
+            ["openclaw", "send", "--channel", "telegram",
+             "--to", TELEGRAM_GUILLERMO, msg],
+            capture_output=True, timeout=20
+        )
+        # Mark sent by removing updated_at so it won't re-send
+        report["sent_at"] = datetime.now().isoformat()
+        report["updated_at"] = ""  # clear so age check skips on next run
+        with open(REPORT_FILE, "w") as f:
+            json.dump(report, f, indent=2)
+    except Exception as e:
+        print(f"[fleet-report] Telegram send failed: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
