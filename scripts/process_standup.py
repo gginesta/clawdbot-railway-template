@@ -491,6 +491,20 @@ def process(target_date: str):
             else:
                 dropped.append(f"{title} (not found in Todoist)")
 
+        elif "Done" in action:
+            if matched:
+                # Mark title as confirmed done so Guillermo can see it was processed
+                new_title = f"✅ {title}" if not title.startswith("✅") else title
+                try:
+                    todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
+                    close_task(matched["id"])
+                    print(f"     ✅ Marked done + title updated: {new_title[:60]}")
+                except Exception as e:
+                    print(f"     ⚠️ Done update failed: {e}")
+                dropped.append(new_title)
+            else:
+                dropped.append(f"{title} (not found in Todoist — marked done in standup only)")
+
         elif "Keep" in action and ("Guillermo" in owner or not owner):
             # Book calendar slot
             dur = estimate_duration(title)
@@ -517,6 +531,13 @@ def process(target_date: str):
                     day_label = slot_start.strftime("%a %b %-d")
                     time_label = f"{slot_start.strftime('%H:%M')}-{slot_end.strftime('%H:%M')}"
                     cal_bookings.append(f"{day_label} {time_label} — {title[:50]}")
+                    # Update title to show it was scheduled
+                    if matched:
+                        new_title = f"📅 {title}" if not title.startswith("📅") else title
+                        try:
+                            todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
+                        except Exception:
+                            pass
                     kept.append(title)
                     print(f"     📅 Booked: {day_label} {time_label}")
                 else:
@@ -528,6 +549,13 @@ def process(target_date: str):
 
         else:
             # Keep with no calendar booking needed (Molty tasks, etc.)
+            # Still update title so Guillermo sees it was processed
+            if matched:
+                new_title = f"👀 {title}" if not any(title.startswith(p) for p in ["👀","🦎","🔴","🔵","✅","📅","🗑️"]) else title
+                try:
+                    todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
+                except Exception:
+                    pass
             kept.append(title)
 
     # 5. Build Telegram summary
