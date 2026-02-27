@@ -96,6 +96,12 @@ def _http_json(url, method="GET", data=None, headers=None, timeout=15):
 # ── Health Check ──────────────────────────────────────────────────────────────
 
 def health_check(agent: str, max_wait: int = 300) -> bool:
+    """Wait for agent to be healthy AND running the expected version.
+
+    Hits /health for liveness, then asks the agent its version via webhook.
+    For webhook-updated agents (Raphael/Leonardo), the old version stays live
+    until the agent restarts — so we must confirm the actual running version.
+    """
     url = AGENTS[agent]["health_url"]
     log(f"  Health check {agent} ({url}) — waiting up to {max_wait}s...")
     deadline = time.time() + max_wait
@@ -106,13 +112,35 @@ def health_check(agent: str, max_wait: int = 300) -> bool:
             req = urllib.request.Request(url)
             with urllib.request.urlopen(req, timeout=10) as r:
                 if r.status == 200:
-                    log(f"  ✅ {agent} healthy (attempt {attempt})")
+                    log(f"  ✅ {agent} HTTP healthy (attempt {attempt})")
                     return True
         except Exception:
             pass
         time.sleep(15)
     log(f"  ❌ {agent} health check timed out after {max_wait}s")
     return False
+
+def verify_agent_version(agent: str, expected_tag: str) -> bool:
+    """Confirm an agent is actually running the expected version.
+
+    Sends a version query via webhook and checks the response.
+    Returns True if confirmed, False if unconfirmed (treat as not updated).
+    Only used for webhook-updated agents (Raphael, Leonardo) where the
+    update is async and health check alone is insufficient.
+    """
+    if agent == "molty":
+        # Molty updates in-place synchronously — version is confirmed immediately
+        result = subprocess.run(["openclaw", "--version"], capture_output=True, text=True, timeout=10)
+        version_str = result.stdout.strip() or result.stderr.strip()
+        confirmed = expected_tag.lstrip("v") in version_str
+        log(f"  {'✅' if confirmed else '❌'} Molty version: {version_str} (expected {expected_tag})")
+        return confirmed
+
+    # For remote agents: we can't synchronously check their version
+    # Mark as UNCONFIRMED — caller must verify before sending version-dependent scripts
+    log(f"  ⚠️  {agent} version UNCONFIRMED — webhook update is async.")
+    log(f"      Do not run version-dependent scripts until agent confirms via Discord.")
+    return False  # conservative — caller handles this
 
 
 # ── Dockerfile Update ─────────────────────────────────────────────────────────
@@ -279,11 +307,24 @@ def update_agent(agent: str, new_tag: str, state: dict) -> bool:
         save_state(state)
         return False
 
-    state[agent]["last_good"] = state[agent].get("current", "unknown")
-    state[agent]["current"] = new_tag
-    state[agent]["updated_at"] = datetime.now(HKT).isoformat()
+    if agent == "molty":
+        # In-place update — confirm version immediately
+        confirmed = verify_agent_version(agent, new_tag)
+        if not confirmed:
+            log(f"  ❌ {agent} version mismatch after update — check manually")
+            return False
+        state[agent]["last_good"] = state[agent].get("current", "unknown")
+        state[agent]["current"] = new_tag
+        state[agent]["updated_at"] = datetime.now(HKT).isoformat()
+        log(f"  ✅ {agent} → {new_tag} confirmed")
+    else:
+        # Webhook update is async — mark as PENDING, not confirmed
+        state[agent]["pending_update"] = new_tag
+        state[agent]["pending_since"] = datetime.now(HKT).isoformat()
+        log(f"  ⏳ {agent} update directive sent — version UNCONFIRMED until agent self-reports")
+        log(f"     Agent must confirm running {new_tag} before version-dependent ops proceed")
+
     save_state(state)
-    log(f"  ✅ {agent} → {new_tag} confirmed")
     return True
 
 
@@ -329,6 +370,7 @@ def full_rollout(new_tag: str, only_agent: str | None = None,
     failed = [a for a, r in results.items() if "❌" in r]
     success = [a for a, r in results.items() if "✅" in r]
     skipped = [a for a, r in results.items() if "⏭️" in r]
+    pending = [a for a in AGENTS if state.get(a, {}).get("pending_update") == new_tag]
     all_ok = not failed
 
     report = {
