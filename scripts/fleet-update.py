@@ -201,9 +201,9 @@ def railway_redeploy(agent: str) -> bool:
     info = AGENTS[agent]
     svc = info["railway_service"]
     env = info["railway_env"]
+    # Note: use inline IDs, not GraphQL variables — avoids $-escaping issues in Python strings
     payload = json.dumps({
-        "query": "mutation Redeploy($svc: String!, $env: String!) { serviceInstanceRedeploy(serviceId: $svc, environmentId: $env) }",
-        "variables": {"svc": svc, "env": env},
+        "query": f'mutation {{ serviceInstanceRedeploy(serviceId: "{svc}", environmentId: "{env}") }}'
     }).encode()
     status, resp = _http_json(
         RAILWAY_API, method="POST", data=payload,
