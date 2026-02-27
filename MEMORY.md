@@ -113,19 +113,19 @@
 71. **OpenClaw cooldown ≠ API rate limit.** "Provider X in cooldown" means OpenClaw internally backed off after repeated errors from that provider (401s or 429s). It's per-process and self-resolving in ~5-15 min. Does NOT affect other agents even on the same token because it's internal state.
 72. **Per-IP rate limits isolate agents.** Railway services run on different IPs. Even with the same Anthropic OAuth token, one agent can hit a per-minute rate limit while others are unaffected. Don't assume shared token = shared rate limit.
 73. **Don't spam webhooks + sub-agent tests in rapid succession.** Doing so burns through per-minute API limits and triggers OpenClaw cooldowns on all providers simultaneously. Space testing by at least 5 min between attempts.
-74. **Always include openai-codex/gpt-5.2 as final fallback.** It uses OAuth (cached, no rate limit issues) and supports tool use. Without it, rate limit cooldowns leave the agent with zero functional models. Fleet standard fallback chain: `anthropic/claude-sonnet-4-6` → `anthropic/claude-haiku-4-5` → `xai/grok-3` → `openai-codex/gpt-5.2`.
-75. **Leonardo MC Heartbeat cron live (Feb 26).** Schedule `0 */2 * * *`, model `anthropic/claude-haiku-4-5` direct. Leonardo confirmed working post-auth fix.
-76. **Content workflow: Twitter-first, LinkedIn is curated mirror.** Pikachu owns Content Pipeline (Twitter/X). Review + approval happens there. LinkedIn Tracker (Raphael/Brinc) only gets pieces selected for mirroring — roughly 5:2 ratio. Never pre-populate LinkedIn tracker before Twitter post is approved/live. Guillermo feels more authentic on Twitter; LinkedIn versions are adapted, not independent.
-77. **Always verify current state before reporting a task as incomplete.** Feb 26: told Guillermo PLAN-003 needed a 90-min coding session — it was already done (overnight run built the DB at 01:03 HKT). Daily logs go stale. Check config files, APIs, and MC before making any "not done" claim.
+74. **Always include openai-codex/gpt-5.2 as final fallback.** OAuth-cached, no rate limits, supports tools. Fleet chain: `anthropic/claude-sonnet-4-6` → `anthropic/claude-haiku-4-5` → `xai/grok-3` → `openai-codex/gpt-5.2`.
+75. **Leonardo MC Heartbeat cron live (Feb 26).** Schedule `0 */2 * * *`, Haiku direct. Confirmed working.
+76. **Content workflow: Twitter-first, LinkedIn is curated mirror.** Pikachu owns Twitter/X pipeline. LinkedIn gets ~2 in 5 pieces, adapted from Twitter. Never pre-populate LinkedIn before Twitter post is live.
+77. **Verify current state before reporting a task incomplete.** Daily logs go stale. Check config files, APIs, and MC before claiming something isn't done.
 78. **Change Ticket #001 — Per-agent webhook tokens (Feb 26 status).** Leonardo ✅ rotated to `08d506d4...`. Raphael ✅ rotated to `a006d337...`. Molty ✅ rotated to `ab0100a5...`. Old shared token (`ed691e4...`) now inactive.
-79. **PLAN-004 — Squad Overnight Workflow COMPLETE (Feb 26).** All 5 stages done: crons live (Raphael 00:30 ✅, Leonardo 01:30 ✅, Molty 03:00 ✅), squad report integrated into morning briefing, MC backfills confirmed. First full 3-agent overnight cycle starts tonight.
+79. **PLAN-004 — Squad Overnight Workflow COMPLETE (Feb 26).** Crons: Raphael 00:30, Leonardo 01:30, Molty 03:00. Squad report in morning briefing. MC backfills confirmed.
 80. **Anthropic token is shared fleet-wide.** Same `sk-ant-*` token used by Molty, Raphael, and Leonardo. secrets.json on shared volume has the correct token for all agents.
-81. **PLAN-005 — Fleet Update Manager COMPLETE (Feb 27).** Molty owns all OpenClaw updates. Daily check 05:15 HKT, staged rollout Molty→Raphael→Leonardo with health checks, Railway API (inline IDs) + webhook fallback. Separate Telegram report after 06:30 briefing. v2026.2.26 applied fleet-wide. Secrets migration done on all agents.
-82. **PLAN-006 — Fleet Directive System (Feb 27).** /data/shared/pending-directives/<agent>/ queue. check_directives.py runner on shared volume. write_directive.py on Molty. REQUIRES_VERSION header gates execution. Molty 15-min cron live (bc60c335). Raphael + Leonardo bootstrap pending (one Discord message each).
-83. **process_standup.py silently skipped rows with no Action set — never read Your Notes.** Fixed: infer Drop/Molty/Raphael/Leonardo from notes text before skipping. Same pattern already in daily_standup.py. Commit fc6d0355.
-84. **Railway API GraphQL: use inline IDs, not variables with \$ syntax.** Python f-string escaping of `\$` generates malformed JSON → 403. Fix: `f'mutation {{ serviceInstanceRedeploy(serviceId: "{svc}", environmentId: "{env}") }}'`. Railway token IS workspace-scoped — covers all agents.
-85. **HTTP 200 health check ≠ version confirmed for webhook-updated agents.** Webhook ACK means "message received", not "update applied". fleet-update.py now marks remote agents as `pending_update` until confirmed. Never send version-dependent scripts without a confirmed version gate.
-86. **Secrets migration: patch ALL agents' openclaw.json providers block BEFORE writing any tokenRef/keyRef.** Molty's migration wrote tokenRef to shared auth-profiles.json but didn't add filemain provider to Leonardo's openclaw.json. v2026.2.26 enforces fail-fast on missing providers (v2026.2.25 was lenient) → Leonardo crashed on every startup. Fix via Railway start command injection. Sequence: (1) add providers to openclaw.json on every agent, (2) then write refs.
+81. **PLAN-005 — Fleet Update Manager COMPLETE (Feb 27).** Molty owns all OpenClaw updates. Daily 05:15 HKT check, staged rollout Molty→Raphael→Leonardo via Railway API `OPENCLAW_GIT_REF`. Report after 06:30 briefing. v2026.2.26 fleet-wide.
+82. **PLAN-006 — Fleet Directive System (Feb 27).** Queue: `/data/shared/pending-directives/<agent>/`. Scripts: `check_directives.py` + `write_directive.py`. `REQUIRES_VERSION` header gates execution. Molty 15-min cron `bc60c335` live. Raphael + Leonardo bootstrap pending.
+83. **process_standup.py fix:** silently skipped rows with no Action — never read Your Notes. Fixed to infer owner from notes text. Commit `fc6d0355`.
+84. **Railway API GraphQL: use inline IDs, not `$variable` syntax.** f-string `$` escaping → malformed JSON → 403. Use: `f'mutation {{ serviceInstanceRedeploy(serviceId: "{svc}", environmentId: "{env}") }}'`.
+85. **HTTP 200 health check ≠ version confirmed.** Webhook ACK = "received", not "applied". Never send version-dependent scripts without confirmed version gate.
+86. **Secrets migration: patch ALL agents' openclaw.json providers block BEFORE writing tokenRef/keyRef.** Missing provider → v2026.2.26 fail-fast crash. Fix: (1) add providers to openclaw.json on every agent, (2) then write refs.
 
 ---
 
@@ -146,15 +146,10 @@
 - **Convex:** dev:resilient-chinchilla-241 | Deployment: rosy-crocodile-290 | Team: guillermo-ginesta
 - **HTTP API:** https://resilient-chinchilla-241.convex.site
 - **API Key:** In Convex env `MC_API_KEY` + skill SKILL.md
-- **Phase 1+2+3 Tier 1 COMPLETE.** 8 live screens, 8 API endpoints, auth + middleware + features
-- **Live screens:** Dojo (with quick actions + overdue alerts), War Room (kanban DnD + comments), Sewer (activity + sub-agents), Tracker (health bars + fleet alerts), Calendar (week/month swim lanes), Vault (memory browser + search), Pizza Tracker (metrics: velocity/activity/performance), Splinter's Den (settings + registry + templates)
-- **Features:** Todoist sync (29 tasks), task templates (4 seeded), user auth (password gate), weekly digest cron, cost tracking, mobile responsive (bottom nav), stale agent detection (>4h), memory auto-sync, daily standup report
-- **Heartbeat:** Cron `46d1ca32-0bd0-43f4-bfa9-3e9e385271cd` every 2h at :00 (Haiku), pings MC `/api/heartbeat` + syncs daily memory to Vault. Schedule: `0 */2 * * *`, jitter 5min.
-- **Daily Standup:** Cron `62aaf754` at 08:00 HKT (Haiku), queries MC tasks, compiles standup
-- **Skill:** `/data/workspace/skills/mission-control/SKILL.md` + `/data/shared/skills/mission-control/` (deployed to Raphael + Leonardo)
-- **Docs:** `docs/mission-control/` — SPEC.md, STATUS.md, BUILD-LOG.md, DESIGN-BRIEF.md
-- **Critical commits (Feb 23):** `b3aecfd` (Tier 3), `9aa26a5` (Tier 2), `f030afa` (Convex wire Phase 1), `f2b6ce3`/`c813a2b`/`dad8898` (Phase 2), `0b3f234`/`c3e2746` (Tier 1)
-- **Molty owns the build.** Guillermo reviews product/UX. Todoist stays as personal tool.
+- **COMPLETE.** 8 live screens, 8 API endpoints, auth + all features (Todoist sync, kanban, memory vault, pizza tracker, calendar, cost tracking, stale agent alerts)
+- **Heartbeat:** Cron `46d1ca32` every 2h, Haiku, pings `/api/heartbeat` + syncs daily memory to Vault
+- **Skill:** `/data/workspace/skills/mission-control/SKILL.md` (deployed to Raphael + Leonardo)
+- **Molty owns the build.** Guillermo reviews product/UX.
 
 ---
 
