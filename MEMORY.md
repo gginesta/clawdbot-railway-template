@@ -177,3 +177,16 @@
 89. **The overnight context fix is entirely in the prompt.** Mandatory pre-flight: (1) cat memory log files, (2) curl MC for task statuses, (3) scan log text for each task before executing. If mentioned → skip.
 90. **Read the docs before proposing architecture changes.** CRON_JOB_TEMPLATE.md, SUB-AGENT-OPERATING-STANDARD.md, and openclaw-best-practices.md contained all necessary constraints. Reading them first would have prevented a full day of whack-a-mole.
 91. **Fleet directives go to #command-center, not split channels.** One message, all agents see it. Don't open parallel threads across brinc-private and launchpad-private for the same topic.
+
+## 🏥 Insurance & Benefits
+
+### Bupa Health Insurance
+- **Policy:** Bupa group membership (Brinc corporate)
+- **Email:** Renewal docs forwarded to ggv.molt@gmail.com Feb 20 2026
+- **Action:** Review renewal documents, confirm coverage details when asked
+
+### Accountant
+- **Name:** Raeniel CAAGBAY
+- **Email:** raeniel@imsg.com.hk
+- **Role:** Guillermo's accountant — ggv.molt added for visibility on relevant threads
+- **Action:** Monitor for items needing Guillermo's attention, flag FY threads
