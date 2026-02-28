@@ -1,0 +1,21 @@
+{
+  "is_critical": true,
+  "security_count": 9,
+  "highlights": [
+    "9 security patches (sandbox escape, SSRF, auth bypass, node exec hardening)",
+    "Cron/queue reliability hardening — overnight runs benefit automatically",
+    "NO_REPLY suppression fixed — no more sentinel text leaking into channels",
+    "Isolated cron session key routing fixed — no more double-prefix on agent:main sessions",
+    "External Secrets Management — new `openclaw secrets` workflow for credential management",
+    "Delivery queue backoff — better Telegram/Discord retry reliability",
+    "Agent compaction safety — prevents destructive double-compaction"
+  ],
+  "incorporation": [
+    "🔒 9 security patches — mandatory update, no config changes needed",
+    "Cron reliability + isolated routing fixes apply to all overnight crons automatically",
+    "NO_REPLY fix applies fleet-wide — cleaner channel output",
+    "External Secrets Management: migrate hardcoded tokens in scripts to `openclaw secrets` (backlog task)",
+    "Delivery queue improvements: better reliability for Guillermo's morning briefing delivery"
+  ],
+  "breaking": []
+}

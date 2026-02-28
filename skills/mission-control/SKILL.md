@@ -57,6 +57,21 @@ curl -s -X POST https://resilient-chinchilla-241.convex.site/api/heartbeat \
 **Required:** `agentId`
 **Optional:** `currentTask`
 
+### PATCH /api/task
+Update an existing task's status, priority, assignees, or other fields.
+
+```bash
+curl -s -X PATCH https://resilient-chinchilla-241.convex.site/api/task \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc" \
+  -d '{"id":"<task_id>","status":"done"}'
+```
+
+**Required:** `id` (task `_id` from GET /api/tasks)
+**Optional:** `status` (inbox|assigned|in_progress|review|done|blocked), `title`, `description`, `priority`, `assignees`, `dueDate`, `tags`
+
+To get task IDs: `GET /api/tasks?project=cerebro` — returns `_id` field on each task.
+
 ### POST /api/task
 Create a task on the War Room board.
 
