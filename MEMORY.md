@@ -171,3 +171,9 @@
 
 ### Files
 - **Local:** `/data/shared/cerebro/meetcerebro/` (Syncthing copy, no git history)
+
+87. **`sessionTarget: isolated` is mandatory for `agentTurn` crons.** Documented explicitly in CRON_JOB_TEMPLATE.md. `sessionTarget: main` only works with `payload.kind: systemEvent`. Proposing "Model B" (main session overnight) was architecturally wrong — should have read the docs first.
+88. **Isolated cron sessions cannot reliably use `memory_search`.** No existing cron uses it. Memory access in isolated sessions = file reads via `cat` + API calls via `curl`. Never instruct an isolated agentTurn session to use memory_search for pre-flight.
+89. **The overnight context fix is entirely in the prompt.** Mandatory pre-flight: (1) cat memory log files, (2) curl MC for task statuses, (3) scan log text for each task before executing. If mentioned → skip.
+90. **Read the docs before proposing architecture changes.** CRON_JOB_TEMPLATE.md, SUB-AGENT-OPERATING-STANDARD.md, and openclaw-best-practices.md contained all necessary constraints. Reading them first would have prevented a full day of whack-a-mole.
+91. **Fleet directives go to #command-center, not split channels.** One message, all agents see it. Don't open parallel threads across brinc-private and launchpad-private for the same topic.
