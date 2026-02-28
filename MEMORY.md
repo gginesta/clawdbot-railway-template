@@ -190,3 +190,8 @@
 - **Email:** raeniel@imsg.com.hk
 - **Role:** Guillermo's accountant — ggv.molt added for visibility on relevant threads
 - **Action:** Monitor for items needing Guillermo's attention, flag FY threads
+
+## 📬 Email Clarity (important)
+- **guillermo.ginesta@gmail.com** — Guillermo's personal email. Molty has NO access. Only sees what Guillermo forwards, CCs, or BCCs to ggv.molt@gmail.com.
+- **ggv.molt@gmail.com** — Molty's OWN inbox. Must check daily (cron re-enabled 2026-02-28, 3x daily 6AM/9AM/3PM HKT). Process everything: Notion notifications, forwards from Guillermo, accountant threads, etc.
+- **AgentMail** — reviewed 2026-02-28. Not needed now. Revisit if agents need outbound email at scale (Raphael sales, Cerebro outreach).
