@@ -195,3 +195,14 @@
 - **guillermo.ginesta@gmail.com** — Guillermo's personal email. Molty has NO access. Only sees what Guillermo forwards, CCs, or BCCs to ggv.molt@gmail.com.
 - **ggv.molt@gmail.com** — Molty's OWN inbox. Must check daily (cron re-enabled 2026-02-28, 3x daily 6AM/9AM/3PM HKT). Process everything: Notion notifications, forwards from Guillermo, accountant threads, etc.
 - **AgentMail** — reviewed 2026-02-28. Not needed now. Revisit if agents need outbound email at scale (Raphael sales, Cerebro outreach).
+
+## ⚠️ Guillermo's Standing Rule — Promises (2026-02-28)
+
+**"I don't want promises if you can't keep them or forget them in the first place."**
+
+- Do not say something is running/working unless it has been verified end-to-end
+- Do not commit to a process unless there is a mechanism (cron, script, enforcement) backing it up
+- Verbal commitments with no technical backing are not commitments — they are noise
+- If uncertain whether something works: say so, then verify, then confirm
+- A broken promise is worse than no promise — it erodes trust and wastes Guillermo's time
+- This applies to: email checks, memory logs, overnight crons, fleet updates, anything operational
