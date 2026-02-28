@@ -249,6 +249,30 @@ def mc_post(title: str, body: str):
         headers={"Authorization": f"Bearer {MC_KEY}", "Content-Type": "application/json"}
     )
 
+def discord_send(msg: str):
+    """Post to #command-center directly via openclaw CLI."""
+    result = subprocess.run(
+        ["openclaw", "message", "send", "--channel", "discord",
+         "--target", DISCORD_COMMAND_CENTER, "-m", msg],
+        capture_output=True, text=True, timeout=30
+    )
+    if result.returncode == 0:
+        log("  ✅ Discord #command-center post sent")
+    else:
+        log(f"  ⚠️  Discord post failed (rc={result.returncode}): {result.stderr[:200]}")
+
+def telegram_send(msg: str):
+    """Send Telegram message to Guillermo directly via openclaw CLI."""
+    result = subprocess.run(
+        ["openclaw", "message", "send", "--channel", "telegram",
+         "--target", TELEGRAM_GUILLERMO, "-m", msg],
+        capture_output=True, text=True, timeout=30
+    )
+    if result.returncode == 0:
+        log("  ✅ Telegram report sent to Guillermo")
+    else:
+        log(f"  ⚠️  Telegram send failed (rc={result.returncode}): {result.stderr[:200]}")
+
 def webhook_update(agent: str) -> bool:
     """Send openclaw update directive to a remote agent via its inbound webhook."""
     info = AGENTS[agent]
@@ -404,15 +428,41 @@ def full_rollout(new_tag: str, only_agent: str | None = None,
     if failed:
         discord_msg += f"\n⚠️ Failed: {', '.join(failed)} — Molty investigating"
 
+    # Telegram message (plain text, no markdown formatting)
+    tg_msg = (
+        f"{'🚨' if is_critical else '📦'} OpenClaw {new_tag} — "
+        f"{'All agents updated ✅' if all_ok else 'Partial update ⚠️'}\n"
+    )
+    for a in AGENTS:
+        if a in results:
+            tg_msg += f"{AGENTS[a]['emoji']} {a}: {results[a]}\n"
+    if highlights:
+        tg_msg += "\nWhat's new (TMNT-relevant):\n"
+        for h in highlights[:5]:
+            tg_msg += f"• {h}\n"
+    if incorporation:
+        tg_msg += "\nHow we're using it:\n"
+        for i in incorporation:
+            tg_msg += f"• {i}\n"
+    if failed:
+        tg_msg += f"\n⚠️ Failed: {', '.join(failed)} — Molty investigating"
+
     # MC activity post (direct API — always works from script context)
     mc_post(
         f"Fleet {'updated' if all_ok else 'partial update'} → {new_tag}",
         f"Results: {results} | Critical: {is_critical}"
     )
 
-    # Discord + Telegram handled by the cron agent turn (reads report file)
+    # Discord #command-center + Telegram — send directly now
+    log("\nSending notifications...")
+    discord_send(discord_msg)
+    telegram_send(tg_msg)
+
+    # Mark report as sent
+    report["sent_at"] = datetime.now(HKT).isoformat()
+    save_report(report)
+
     log(f"\n{'✅ Done' if all_ok else '⚠️ Partial'}: {results}")
-    log(f"Report written to {REPORT_FILE} — cron agent will post to Discord + Telegram")
     sys.exit(0 if all_ok else 1)
 
 

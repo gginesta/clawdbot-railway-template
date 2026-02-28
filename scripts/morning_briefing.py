@@ -1280,17 +1280,9 @@ def _send_fleet_update_report_if_pending():
     except Exception:
         return
 
-    # Only send if report is fresh (updated within last 4h — covers 05:15 → 06:30 window)
-    updated_at_str = report.get("updated_at", "")
-    if updated_at_str:
-        try:
-            from datetime import timezone
-            updated_at = datetime.fromisoformat(updated_at_str)
-            age_hours = (datetime.now(updated_at.tzinfo) - updated_at).total_seconds() / 3600
-            if age_hours > 4:
-                return  # stale — already sent or skipped
-        except Exception:
-            pass
+    # Only send if not already sent (sent_at field is absent or empty)
+    if report.get("sent_at"):
+        return  # already delivered — skip
 
     version = report.get("version", "?")
     results = report.get("results", {})
@@ -1327,13 +1319,12 @@ def _send_fleet_update_report_if_pending():
 
     try:
         subprocess.run(
-            ["openclaw", "send", "--channel", "telegram",
-             "--to", TELEGRAM_GUILLERMO, msg],
+            ["openclaw", "message", "send", "--channel", "telegram",
+             "--target", TELEGRAM_GUILLERMO, "-m", msg],
             capture_output=True, timeout=20
         )
-        # Mark sent by removing updated_at so it won't re-send
+        # Mark sent so it won't re-send on next briefing
         report["sent_at"] = datetime.now().isoformat()
-        report["updated_at"] = ""  # clear so age check skips on next run
         with open(REPORT_FILE, "w") as f:
             json.dump(report, f, indent=2)
     except Exception as e:
