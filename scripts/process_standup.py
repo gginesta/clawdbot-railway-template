@@ -378,10 +378,22 @@ def process(target_date: str):
         send_telegram("❌ Could not find 'Needs Your Input' table on today's standup page.")
         return
 
-    # 3. Load all Todoist tasks (for matching)
+    # 3. Load all Todoist tasks (active + recently completed, for matching)
     print("3. Loading Todoist tasks...")
     all_tasks = get_all_tasks()
-    print(f"   {len(all_tasks)} tasks loaded")
+    print(f"   {len(all_tasks)} active tasks loaded")
+
+    # Also fetch recently completed tasks (last 7 days) to avoid re-creating finished work
+    completed_tasks = []
+    try:
+        since = (datetime.now(HKT) - timedelta(days=7)).strftime("%Y-%m-%dT%H:%M:%S")
+        resp = todoist_get(f"/tasks/completed/get_all?limit=50&since={urllib.parse.quote(since)}")
+        completed_tasks = resp.get("items", resp) if isinstance(resp, dict) else resp
+        print(f"   {len(completed_tasks)} completed tasks loaded (last 7 days)")
+    except Exception as e:
+        print(f"   Warning: couldn't fetch completed tasks: {e}")
+
+    all_tasks_for_matching = all_tasks + completed_tasks
 
     # 4. Process "Needs Your Input" table
     print("4. Processing 'Needs Your Input'...")
@@ -393,6 +405,10 @@ def process(target_date: str):
     cal_token = None  # lazy-load
     cal_bookings = []
 
+    # Deduplication: track seen titles so rows appearing in multiple DB sections
+    # (Needs Input + Active Pipeline) don't get processed twice
+    seen_titles = set()
+
     for row in rows:
         props = row.get("properties", {})
         title      = get_text(props.get("Task"))
@@ -403,6 +419,12 @@ def process(target_date: str):
 
         if not title:
             continue
+
+        # Deduplication — skip if we've already processed this title
+        title_key = title.lower().strip()
+        if title_key in seen_titles:
+            continue
+        seen_titles.add(title_key)
 
         # If no Action set, infer from Your Notes before skipping
         if not action and your_notes:
@@ -425,8 +447,9 @@ def process(target_date: str):
 
         print(f"   [{action}] {title[:60]}")
 
-        # Match to Todoist task
+        # Match to Todoist task — check active first, then completed
         matched = find_todoist_task(all_tasks, title)
+        matched_completed = None if matched else find_todoist_task(completed_tasks, title)
 
         # Determine routing target
         route_target = None
@@ -463,7 +486,6 @@ def process(target_date: str):
             if matched:
                 ok = move_task_to_project(matched["id"], route_project_id)
                 if ok:
-                    # Update title to show it was processed
                     try:
                         todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
                         print(f"     ✏️ Title updated: {new_title[:60]}")
@@ -473,13 +495,17 @@ def process(target_date: str):
                     print(f"     ✅ Moved to {route_label}: {matched['id']}")
                 else:
                     unmatched.append(f"{title} (move failed)")
+            elif matched_completed:
+                # Already completed — don't recreate. Just log it.
+                print(f"     ⏭️ Already completed in Todoist — skipping creation")
+                dropped.append(f"{title} (already completed by {matched_completed.get('responsible_uid', 'agent')})")
             else:
-                # Create new task in target project with prefixed title
+                # Genuinely new task — create in target project
                 try:
                     body = {"content": new_title, "project_id": route_project_id}
                     todoist_post("/tasks", body)
                     route_target.append(new_title)
-                    print(f"     ✅ Created in {route_label} (no Todoist match found)")
+                    print(f"     ✅ Created in {route_label} (new task)")
                 except Exception as e:
                     unmatched.append(f"{title} (create failed: {e})")
 
@@ -504,6 +530,38 @@ def process(target_date: str):
                 dropped.append(new_title)
             else:
                 dropped.append(f"{title} (not found in Todoist — marked done in standup only)")
+
+        elif "Reschedule" in action:
+            # Extract new date from Your Notes (look for YYYY-MM-DD or "March 2" style)
+            import re
+            new_date = None
+            # Try ISO date
+            iso_match = re.search(r"(\d{4}-\d{2}-\d{2})", your_notes)
+            if iso_match:
+                new_date = iso_match.group(1)
+            else:
+                # Try "Month Day" style e.g. "March 2", "Mar 2"
+                month_match = re.search(r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})", your_notes, re.IGNORECASE)
+                if month_match:
+                    try:
+                        new_date = datetime.strptime(f"{month_match.group(1)} {month_match.group(2)} {now.year}", "%b %d %Y").strftime("%Y-%m-%d")
+                    except Exception:
+                        pass
+            if new_date and matched:
+                try:
+                    todoist_post(f"/tasks/{matched['id']}", {"due_date": new_date}, method="POST")
+                    new_title = f"📅 {title}" if not title.startswith("📅") else title
+                    todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
+                    kept.append(f"{title} → rescheduled to {new_date}")
+                    print(f"     📅 Rescheduled to {new_date}: {matched['id']}")
+                except Exception as e:
+                    unmatched.append(f"{title} (reschedule failed: {e})")
+            elif new_date:
+                kept.append(f"{title} → rescheduled to {new_date} (no Todoist match)")
+                print(f"     ⚠️ Reschedule: no Todoist match for '{title[:50]}'")
+            else:
+                unmatched.append(f"{title} (reschedule: no date found in notes — '{your_notes[:60]}')")
+                print(f"     ⚠️ Reschedule: no date found in notes for '{title[:50]}'")
 
         elif "Keep" in action and ("Guillermo" in owner or not owner):
             # Book calendar slot
