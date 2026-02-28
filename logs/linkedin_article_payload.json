@@ -1,0 +1,26 @@
+{
+  "parent": {"type": "page_id", "page_id": "31439dd6-9afd-8169-93f8-e34b8c7f4d7e"},
+  "properties": {
+    "title": {"title": [{"text": {"content": "DRAFT: LinkedIn Article — How We Built AI Email Automation at Brinc"}}]}
+  },
+  "children": [
+    {"object":"block","type":"callout","callout":{"rich_text":[{"text":{"content":"DRAFT — written by Molty overnight 2026-03-01. Needs Guillermo review + screenshots + personal voice polish before publishing."}}],"icon":{"emoji":"⚠️"}}},
+    {"object":"block","type":"heading_1","heading_1":{"rich_text":[{"text":{"content":"We Stopped Spending Hours on Email. Here's What We Built Instead."}}]}},
+    {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"Managing partner life means a relentless inbox. Portfolio updates, LP communications, deal flow, partner requests — all demanding attention at the same time, all formatted differently, all urgent. A few months ago I started working with an AI system to handle the parts of email that drain the most time: triaging, summarising, and surfacing what actually matters. What started as an experiment became something we now rely on daily."}}]}},
+    {"object":"block","type":"heading_2","heading_2":{"rich_text":[{"text":{"content":"The Problem"}}]}},
+    {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"The issue was never volume — it was signal vs. noise. We wanted a daily digest of what matters, automatic triage by priority, and zero context-switching to determine if something needs action."}}]}},
+    {"object":"block","type":"heading_2","heading_2":{"rich_text":[{"text":{"content":"What We Built"}}]}},
+    {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"The system pulls from Gmail, categorises threads, summarises long chains, and delivers a clean HTML digest at 6am. Think of it as a daily briefing from your own EA. The HTML format matters: high-priority threads at the top, clear action items, direct links to threads. It reads like a newspaper, not a data dump."}}]}},
+    {"object":"block","type":"callout","callout":{"rich_text":[{"text":{"content":"[Screenshot: Example HTML digest — add before publishing]"}}],"icon":{"emoji":"📸"}}},
+    {"object":"block","type":"heading_2","heading_2":{"rich_text":[{"text":{"content":"The Stack"}}]}},
+    {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"Gmail API + Claude (Anthropic) for summarisation + Python for orchestration and HTML rendering + Telegram for delivery + cron server running daily at 6am HKT"}}]}},
+    {"object":"block","type":"heading_2","heading_2":{"rich_text":[{"text":{"content":"What Changed"}}]}},
+    {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"I check email less, and miss less. The digest ensures important items always surface. The bigger change is cognitive: starting the day with a structured briefing instead of an unstructured inbox is a fundamentally different way to work."}}]}},
+    {"object":"block","type":"heading_2","heading_2":{"rich_text":[{"text":{"content":"What Didn't Work"}}]}},
+    {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"Automating replies — bad idea. Human judgment on tone is irreplaceable. We also overbuilt v1 with too many categories. Three buckets is right: needs action, FYI, skip."}}]}},
+    {"object":"block","type":"heading_2","heading_2":{"rich_text":[{"text":{"content":"What's Next"}}]}},
+    {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"Extending to deal flow and portfolio reporting. Same digest approach to what used to be a manual weekly review.\n\n---\nHappy to share more about the architecture. If you've built something similar, what worked?"}}]}},
+    {"object":"block","type":"heading_2","heading_2":{"rich_text":[{"text":{"content":"Editing Notes for Guillermo"}}]}},
+    {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"1. Add 2-3 screenshots of the actual HTML digest\n2. Personalise opening with a specific memory that triggered building this\n3. Verify tech stack matches exactly\n4. Add a metric if you have one (time saved, etc.)\n5. Tune to your LinkedIn voice — this is professional-casual\n6. Approx 600 words — right length for LinkedIn article"}}]}}
+  ]
+}
