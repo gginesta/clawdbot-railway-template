@@ -669,6 +669,108 @@ def get_squad_status(errors: list[str]) -> SquadStatus | None:
     )
 
 
+def _get_notion_comment_mentions(lookback_days: int = 3) -> list[str] | None:
+    """Check Notion for recent comments/mentions on recently-modified pages.
+
+    Uses official Notion API (v1). Scans pages modified in the last `lookback_days`
+    days, checks each for comments, returns lines for the morning briefing.
+    Only surfaces pages that actually have comments (graceful if none found).
+    """
+    NOTION_KEY = "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"
+    headers = {
+        "Authorization": f"Bearer {NOTION_KEY}",
+        "Notion-Version": "2022-06-28",
+        "Content-Type": "application/json",
+    }
+    cutoff = datetime.now(tz=HKT) - timedelta(days=lookback_days)
+    found: list[str] = []
+
+    try:
+        # 1. Search for recently modified pages
+        body = json.dumps({
+            "sort": {"direction": "descending", "timestamp": "last_edited_time"},
+            "page_size": 30,
+        }).encode()
+        req = urllib.request.Request(
+            "https://api.notion.com/v1/search", data=body, headers=headers
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            search_data = json.loads(r.read())
+        pages = search_data.get("results", [])
+
+        # 2. For each page edited within lookback window, check comments
+        for page in pages:
+            edited_str = page.get("last_edited_time", "")
+            try:
+                edited = datetime.fromisoformat(edited_str.replace("Z", "+00:00")).astimezone(HKT)
+            except Exception:
+                continue
+            if edited < cutoff:
+                break  # sorted desc; once past cutoff we can stop
+
+            page_id = page.get("id", "")
+            if not page_id:
+                continue
+
+            # Fetch comments for this page
+            try:
+                comment_req = urllib.request.Request(
+                    f"https://api.notion.com/v1/comments?block_id={page_id}",
+                    headers={"Authorization": f"Bearer {NOTION_KEY}",
+                             "Notion-Version": "2022-06-28"},
+                )
+                with urllib.request.urlopen(comment_req, timeout=10) as cr:
+                    comment_data = json.loads(cr.read())
+                comments = comment_data.get("results", [])
+            except Exception:
+                continue
+
+            if not comments:
+                continue
+
+            # Get page title for context
+            page_url = page.get("url", "")
+            props = page.get("properties", {})
+            title_text = "Untitled"
+            for prop in props.values():
+                if prop.get("type") == "title":
+                    title_arr = prop.get("title", [])
+                    if title_arr:
+                        title_text = "".join(t.get("plain_text", "") for t in title_arr)
+                        break
+
+            # Filter: any comment in the lookback window
+            recent_comments = []
+            for c in comments:
+                created_str = c.get("created_time", "")
+                try:
+                    created = datetime.fromisoformat(
+                        created_str.replace("Z", "+00:00")
+                    ).astimezone(HKT)
+                except Exception:
+                    created = cutoff  # include if can't parse
+
+                if created >= cutoff:
+                    rich = c.get("rich_text", [])
+                    text = "".join(t.get("plain_text", "") for t in rich).strip()
+                    author_id = c.get("created_by", {}).get("id", "")
+                    recent_comments.append((created, text, author_id))
+
+            if recent_comments:
+                # Sort newest first
+                recent_comments.sort(key=lambda x: x[0], reverse=True)
+                short_url = page_url.split("notion.so/")[-1].split("?")[0][:50]
+                found.append(f"💬 {title_text[:40]}: {len(recent_comments)} comment(s)")
+                for _dt, text, _author in recent_comments[:2]:
+                    found.append(f'  \u201c{text[:80]}\u201d')
+
+    except Exception as e:
+        # Non-fatal: comment monitoring should never break the briefing
+        return None
+
+    return found if found else None
+
+
 def _get_overnight_summary(today: date) -> list[str] | None:
     """Read last night's task worker log and return summary lines for the briefing."""
     yesterday = today - timedelta(days=1)
@@ -1199,7 +1301,14 @@ def build_message(
             # Fallback: just show Molty's log if MC has no overnight data
             lines.extend(molty_log)
 
-    # 8) OpenClaw Update Summary (from 5:30 AM cron)
+    # 8) Notion comment mentions (recent pages with comments)
+    notion_comments = _get_notion_comment_mentions(lookback_days=3)
+    if notion_comments:
+        lines.append("")
+        lines.append("💬 Notion Comments")
+        lines.extend(notion_comments)
+
+    # 9) OpenClaw Update Summary (from 5:30 AM cron)
     update_summary = _get_openclaw_update_summary()
     if update_summary:
         lines.append("")
