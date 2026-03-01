@@ -773,6 +773,39 @@ WEBHOOK_URLS = {
     "leonardo": "https://leonardo-production.up.railway.app/hooks/agent",
 }
 
+MC_API_URL = "https://resilient-chinchilla-241.convex.site"
+MC_TOKEN   = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_HDR     = {"Authorization": f"Bearer {MC_TOKEN}", "Content-Type": "application/json"}
+
+def _mc_close_by_title(title: str) -> bool:
+    """Find MC task by title (fuzzy) and mark it done."""
+    try:
+        r = requests.get(f"{MC_API_URL}/api/tasks", headers=MC_HDR, timeout=10)
+        if r.status_code != 200:
+            return False
+        tasks = r.json() if isinstance(r.json(), list) else []
+        title_lower = title.lower().strip()
+        match = None
+        for t in tasks:
+            if t.get("status") in ("done", "blocked"):
+                continue
+            t_title = t.get("title", "").lower().strip()
+            if t_title == title_lower or title_lower[:40] in t_title or t_title[:40] in title_lower:
+                match = t
+                break
+        if not match:
+            return False
+        patch = requests.patch(
+            f"{MC_API_URL}/api/task",
+            headers=MC_HDR,
+            json={"id": match["_id"], "status": "done"},
+            timeout=10,
+        )
+        return patch.status_code == 200
+    except Exception:
+        return False
+
+
 def _todoist_close(task_id: str) -> bool:
     r = requests.post(f"https://api.todoist.com/api/v1/tasks/{task_id}/close",
                       headers=TH, timeout=10)
@@ -887,15 +920,24 @@ def process_yesterday_actions(all_tasks: list) -> dict:
             if tid and _todoist_close(tid):
                 print(f"   ✅ Closed: {title[:55]}")
                 summary["closed"].append(title[:55])
+                # Sync to MC immediately — don't wait for audit
+                if _mc_close_by_title(title):
+                    print(f"   🔄 MC synced: {title[:55]}")
             else:
                 print(f"   ⚠️  Could not close (no Todoist match): {title[:55]}")
-                summary["skipped"].append(title[:55])
+                # Still try to close in MC even if Todoist match failed
+                if _mc_close_by_title(title):
+                    print(f"   🔄 MC synced (no Todoist match): {title[:55]}")
+                    summary["closed"].append(title[:55])
+                else:
+                    summary["skipped"].append(title[:55])
 
         elif behaviour == "snooze":
             tid = _find_todoist_id(all_tasks, title)
             if tid and _todoist_snooze(tid):
                 print(f"   💤 Snoozed 60d: {title[:55]}")
                 summary["snoozed"].append(title[:55])
+                # MC: leave open (snoozed = still relevant, just deferred)
             else:
                 print(f"   ⚠️  Could not snooze: {title[:55]}")
                 summary["skipped"].append(title[:55])
