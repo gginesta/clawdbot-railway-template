@@ -721,15 +721,47 @@ def _get_overnight_summary(today: date) -> list[str] | None:
 
 
 def _get_overnight_squad_report(now: datetime) -> list[str] | None:
-    """Pull per-agent overnight activity from Mission Control.
+    """Read overnight report from consolidated log file (PLAN-008).
 
-    Covers tasks updated in the ~10h window before the 06:30 briefing
-    (i.e. anything that happened during the overnight runs).
-    Returns formatted lines ready for the briefing, or None if nothing to report.
+    Primary: /data/workspace/logs/overnight-consolidated-YYYY-MM-DD.md
+    Fallback: individual agent files from /data/shared/logs/ + Molty's own log
+    Last resort: MC query (original behaviour, kept as safety net)
     """
-    OVERNIGHT_HOURS = 10  # look back 10h from briefing time
-    cutoff_ms = int((now.timestamp() - OVERNIGHT_HOURS * 3600) * 1000)
+    today_str = now.strftime("%Y-%m-%d")
+    yesterday_str = (now - timedelta(days=1)).strftime("%Y-%m-%d")
 
+    # Try today and yesterday (Molty cron runs at 03:00 so date may be today or yesterday)
+    for date_str in [today_str, yesterday_str]:
+        consolidated = f"/data/workspace/logs/overnight-consolidated-{date_str}.md"
+        if os.path.exists(consolidated):
+            return _parse_consolidated_log(consolidated)
+
+    # Fallback: try individual agent files
+    lines: list[str] = []
+    agents = [
+        ("🔴", "Raphael", f"/data/shared/logs/overnight-raphael-{today_str}.md",
+                          f"/data/shared/logs/overnight-raphael-{yesterday_str}.md"),
+        ("🔵", "Leonardo", f"/data/shared/logs/overnight-leonardo-{today_str}.md",
+                           f"/data/shared/logs/overnight-leonardo-{yesterday_str}.md"),
+        ("🦎", "Molty",   f"/data/workspace/logs/overnight-tasks-{today_str}.md",
+                          f"/data/workspace/logs/overnight-tasks-{yesterday_str}.md"),
+    ]
+    found_any = False
+    for emoji, label, path_today, path_yesterday in agents:
+        for path in [path_today, path_yesterday]:
+            if os.path.exists(path):
+                summary = _summarise_agent_log(path, emoji, label)
+                if summary:
+                    lines.append(summary)
+                    found_any = True
+                break
+
+    if found_any:
+        return lines
+
+    # Last resort: MC query (cannot distinguish daytime vs overnight completions)
+    OVERNIGHT_HOURS = 10
+    cutoff_ms = int((now.timestamp() - OVERNIGHT_HOURS * 3600) * 1000)
     status_code, payload = _http_json(
         f"{MC_API}/api/tasks",
         headers={"Authorization": f"Bearer {MC_KEY}"},
@@ -737,30 +769,23 @@ def _get_overnight_squad_report(now: datetime) -> list[str] | None:
     )
     if status_code != 200 or not payload:
         return None
-
     tasks = payload if isinstance(payload, list) else payload.get("tasks", [])
-    # Only tasks updated overnight
     overnight = [t for t in tasks if (t.get("updatedAt") or 0) >= cutoff_ms]
     if not overnight:
         return None
-
     AGENT_INFO = {
         "raphael":  ("🔴", "Raphael"),
         "leonardo": ("🔵", "Leonardo"),
         "molty":    ("🦎", "Molty"),
     }
-    STATUS_SYM = {"done": "✅", "review": "👀", "blocked": "🚧", "in_progress": "⚡"}
-
-    lines: list[str] = []
+    mc_lines: list[str] = []
     for agent_id, (emoji, label) in AGENT_INFO.items():
         agent_tasks = [t for t in overnight if agent_id in t.get("assignees", [])]
         if not agent_tasks:
             continue
-
         done    = [t for t in agent_tasks if t.get("status") == "done"]
         review  = [t for t in agent_tasks if t.get("status") == "review"]
         blocked = [t for t in agent_tasks if t.get("status") == "blocked"]
-
         parts: list[str] = []
         if done:
             titles = ", ".join(t["title"][:35] for t in done[:3])
@@ -771,11 +796,112 @@ def _get_overnight_squad_report(now: datetime) -> list[str] | None:
         if blocked:
             titles = ", ".join(t["title"][:35] for t in blocked[:2])
             parts.append(f"🚧 {titles} — blocked")
-
         if parts:
-            lines.append(f"{emoji} {label}: " + " | ".join(parts))
+            mc_lines.append(f"{emoji} {label}: " + " | ".join(parts))
+    return mc_lines if mc_lines else None
 
-    return lines if lines else None
+
+def _parse_consolidated_log(path: str) -> list[str] | None:
+    """Parse the consolidated overnight log into briefing lines."""
+    try:
+        with open(path) as f:
+            content = f.read()
+        lines: list[str] = []
+        current_agent = None
+        completed, review, flagged = [], [], []
+
+        for line in content.split("\n"):
+            line = line.strip()
+            if line.startswith("## 🔴"):
+                if current_agent:
+                    lines.extend(_format_agent_summary(current_agent, completed, review, flagged))
+                current_agent, completed, review, flagged = line[3:].strip(), [], [], []
+            elif line.startswith("## 🔵"):
+                if current_agent:
+                    lines.extend(_format_agent_summary(current_agent, completed, review, flagged))
+                current_agent, completed, review, flagged = line[3:].strip(), [], [], []
+            elif line.startswith("## 🦎"):
+                if current_agent:
+                    lines.extend(_format_agent_summary(current_agent, completed, review, flagged))
+                current_agent, completed, review, flagged = line[3:].strip(), [], [], []
+            elif line.startswith("## ✅") or "Completed" in line:
+                pass  # section marker
+            elif line.startswith("## 👀") or "Under Review" in line:
+                pass
+            elif line.startswith("## 🚩") or "Flagged" in line:
+                pass
+            elif line.startswith("- ") and current_agent:
+                item = line[2:].strip()
+                if "→ needs:" in item or "needs your review" in item.lower():
+                    review.append(item)
+                elif "→" in item and not item.startswith("No summary"):
+                    completed.append(item)
+                else:
+                    flagged.append(item)
+
+        if current_agent:
+            lines.extend(_format_agent_summary(current_agent, completed, review, flagged))
+
+        return lines if lines else None
+    except Exception:
+        return None
+
+
+def _format_agent_summary(agent: str, completed: list, review: list, flagged: list) -> list[str]:
+    """Format one agent's overnight summary into briefing lines."""
+    parts = []
+    if completed:
+        parts.append(f"✅ {len(completed)} done")
+    if review:
+        titles = ", ".join(r.split("→")[0].strip()[:35] for r in review[:2])
+        parts.append(f"👀 {titles} — needs your review")
+    if flagged:
+        parts.append(f"🚩 {len(flagged)} flagged")
+    if not parts:
+        return []
+    return [f"{agent}: " + " | ".join(parts)]
+
+
+def _summarise_agent_log(path: str, emoji: str, label: str) -> str | None:
+    """Read an individual agent overnight log and return a one-line summary."""
+    try:
+        with open(path) as f:
+            content = f.read()
+        completed, review, flagged, failed = 0, [], 0, 0
+        section = None
+        for line in content.split("\n"):
+            line = line.strip()
+            if "## ✅" in line or "Completed" in line:
+                section = "done"
+            elif "## 👀" in line or "Under Review" in line:
+                section = "review"
+            elif "## 🚩" in line or "Flagged" in line:
+                section = "flagged"
+            elif "## ❌" in line or "Failed" in line:
+                section = "failed"
+            elif line.startswith("- ") and section:
+                if section == "done":
+                    completed += 1
+                elif section == "review":
+                    review.append(line[2:].split("→")[0].strip()[:35])
+                elif section == "flagged":
+                    flagged += 1
+                elif section == "failed":
+                    failed += 1
+        parts = []
+        if completed:
+            parts.append(f"✅ {completed} done")
+        if review:
+            parts.append(f"👀 {', '.join(review[:2])} — needs your review")
+        if flagged:
+            parts.append(f"🚩 {flagged} flagged")
+        if failed:
+            parts.append(f"❌ {failed} failed")
+        if not parts:
+            return None
+        return f"{emoji} {label}: " + " | ".join(parts)
+    except Exception:
+        return None
 
 
 def _get_openclaw_update_summary() -> str | None:

@@ -916,6 +916,82 @@ def process_yesterday_actions(all_tasks: list) -> dict:
     return summary
 
 
+# === POST-STANDUP AUDIT ===
+
+def _post_standup_audit(today: str) -> None:
+    """Cross-check MC task statuses vs Todoist after standup completes.
+
+    For each agent, find MC tasks in assigned/in_progress status that have a
+    todoistId — if the Todoist task is already complete, sync MC to done.
+    Log results to /data/workspace/logs/standup-audit-YYYY-MM-DD.md.
+    """
+    import requests as _req
+    MC_API_URL = "https://resilient-chinchilla-241.convex.site"
+    MC_TOKEN   = os.environ.get("MC_API_KEY", "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc")
+    MC_HDR     = {"Authorization": f"Bearer {MC_TOKEN}", "Content-Type": "application/json"}
+    TD_TOKEN   = os.environ.get("TODOIST_API_TOKEN", "")
+    TD_HDR     = {"Authorization": f"Bearer {TD_TOKEN}"}
+
+    audit_lines = [f"# Post-Standup Audit — {today}\n"]
+    synced, skipped, errors = [], [], []
+
+    try:
+        # Fetch all MC tasks
+        r = _req.get(f"{MC_API_URL}/api/tasks", headers=MC_HDR, timeout=10)
+        mc_tasks = r.json() if r.status_code == 200 else []
+
+        # Fetch open Todoist tasks (as a set of IDs)
+        td_open_ids: set[str] = set()
+        if TD_TOKEN:
+            td_r = _req.get("https://api.todoist.com/api/v1/tasks?limit=200", headers=TD_HDR, timeout=10)
+            if td_r.status_code == 200:
+                for t in td_r.json().get("results", []):
+                    td_open_ids.add(str(t["id"]))
+
+        for task in mc_tasks:
+            status = task.get("status", "")
+            if status in ("done", "blocked"):
+                continue
+            tid = task.get("todoistId") or task.get("metadata", {}).get("todoistId") if isinstance(task.get("metadata"), dict) else None
+            if not tid:
+                continue
+            # If Todoist task is NOT in the open set → it's been completed
+            if str(tid) not in td_open_ids and TD_TOKEN:
+                try:
+                    patch = _req.patch(
+                        f"{MC_API_URL}/api/task",
+                        headers=MC_HDR,
+                        json={"id": task["_id"], "status": "done"},
+                        timeout=10,
+                    )
+                    if patch.status_code == 200:
+                        synced.append(f"- ✅ Synced to done: {task['title'][:70]}")
+                    else:
+                        errors.append(f"- ⚠️ Patch failed ({patch.status_code}): {task['title'][:60]}")
+                except Exception as e:
+                    errors.append(f"- ❌ Error patching {task['title'][:50]}: {e}")
+            else:
+                skipped.append(task["title"][:60])
+
+    except Exception as e:
+        audit_lines.append(f"\n❌ Audit crashed: {e}\n")
+    else:
+        audit_lines.append(f"Synced: {len(synced)} | Skipped (still open): {len(skipped)} | Errors: {len(errors)}\n")
+        if synced:
+            audit_lines.append("\n## Synced to Done")
+            audit_lines.extend(synced)
+        if errors:
+            audit_lines.append("\n## Errors")
+            audit_lines.extend(errors)
+        if not synced and not errors:
+            audit_lines.append("\n✅ All MC task statuses look correct — nothing to sync.")
+
+    audit_path = f"/data/workspace/logs/standup-audit-{today}.md"
+    with open(audit_path, "w") as f:
+        f.write("\n".join(audit_lines) + "\n")
+    print(f"   Audit complete → {audit_path} | Synced: {len(synced)} | Errors: {len(errors)}")
+
+
 # === MAIN ===
 
 def main():
@@ -1070,6 +1146,10 @@ def main():
     os.makedirs("/data/workspace/logs", exist_ok=True)
     with open("/data/workspace/logs/standup-state.json", "w") as f:
         json.dump(state, f, indent=2)
+
+    # === POST-STANDUP AUDIT ===
+    print("\n12. Running post-standup task pool audit...")
+    _post_standup_audit(today)
 
     # Output for caller
     print(f"\n__PAGE_ID__={page_id}")
