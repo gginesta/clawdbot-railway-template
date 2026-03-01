@@ -86,7 +86,6 @@
 60. **Shared credentials rule:** Credentials for multiple agents go in `/data/shared/credentials/` from day one. Agents read at startup — no distribution step. Webhooks deliver messages, not file writes. (Feb 23 2026.)
 61. **Change control protocol:** One change per cycle, declare blast radius, no mixed objectives. STOP means STOP. Distribute plan to affected teams BEFORE execution. Approved changes go to Change Tickets. (Feb 23 incident/change control rollout.)
 62. **Change Ticket #001 — Per-agent webhook token rotation.** Executed Feb 24/26. Tokens in TOOLS.md. Old shared token inactive.
-63. **QMD cleanup freed 300MB:** Removed node-llama-cpp (289MB) + @tobilu/qmd + binary. OOM risk on Railway gone. Switched to OpenAI `text-embedding-3-small` (built-in). (Feb 23, Molty.)
 64. **Cron/heartbeat model is `anthropic/claude-haiku-4-5` direct (NOT OpenRouter).** Uses Max plan daily allowance. (Feb 23 clarification.)
 65. **OpenClaw auth: auth.json is the TRUE source, auth-profiles.json is derived.** Never write to auth-profiles.json directly. Fix auth via auth.json or `openclaw models auth paste-token` (TTY required). Path: `/data/.openclaw/agents/main/agent/auth.json`.
 66. **Isolated sub-agent webhook processes do NOT inherit container env vars.** Scripts get empty strings. Must hardcode values.
@@ -98,7 +97,6 @@
 72. **Per-IP rate limits isolate agents.** Different Railway IPs → one agent hitting limits doesn't affect others on the same token.
 73. **Don't spam webhooks + sub-agent tests rapidly.** Burns rate limits and triggers cooldowns on all providers. Space by 5+ min.
 74. **Always include openai-codex/gpt-5.2 as final fallback.** OAuth-cached, no rate limits, supports tools. Fleet chain: `anthropic/claude-sonnet-4-6` → `anthropic/claude-haiku-4-5` → `xai/grok-3` → `openai-codex/gpt-5.2`.
-75. **Leonardo MC Heartbeat cron live (Feb 26).** `0 */2 * * *`, Haiku direct. ✅
 76. **Content workflow: Twitter-first, LinkedIn is curated mirror.** Pikachu owns Twitter/X pipeline. LinkedIn gets ~2 in 5 pieces, adapted from Twitter. Never pre-populate LinkedIn before Twitter post is live.
 77. **Verify current state before reporting a task incomplete.** Daily logs go stale. Check config files, APIs, and MC before claiming something isn't done.
 78. **Change Ticket #001 — Per-agent webhook tokens (Feb 26 status).** Leonardo ✅ rotated to `08d506d4...`. Raphael ✅ rotated to `a006d337...`. Molty ✅ rotated to `ab0100a5...`. Old shared token (`ed691e4...`) now inactive.
@@ -142,11 +140,6 @@
 - **Repo:** `gginesta/cerebro` (private GitHub), v1.0.0, 19 features complete
 - **Live:** www.meetcerebro.com — Railway project `efcddaea-6972-...`, service `456f8881-8927-...`, env `cb8a3105-90b5-...`
 - **Tech:** React+TS+Tailwind / Node+Express / Railway Postgres / Gemini OCR / xAI Grok / Stripe / Cloudinary / Resend
-
-### Critical Issues (Feb 20)
-1. **Live site: white page** — SPA loads but nothing renders. API healthy (200ms). Needs browser console debug.
-2. **Missing prod env vars:** STRIPE_SECRET_KEY, STRIPE_PUBLISHABLE_KEY, STRIPE_WEBHOOK_SECRET, GEMINI_API_KEY, Stripe price IDs.
-3. **DB ambiguity:** .env references Neon; prod uses Railway Postgres. Schema parity unconfirmed.
 
 ### Plans
 - **Dev plan:** `/data/shared/cerebro/CEREBRO-DEVELOPMENT-PLAN.md` (3 workstreams: A=Molty/unblock, B=Leonardo+Codex/polish, C=Guillermo+Raphael/sell)
