@@ -1,31 +1,36 @@
-# Pre-flight — Molty Nightly — 2026-03-02 03:00 HKT
+# Overnight Pre-flight — 2026-03-02
 
-## Memory Logs
-- No memory/2026-03-02.md or memory/2026-03-01.md found (first run of the night)
+## Todoist Tasks Reviewed
+- Whoop Health Integration → FLAG (Whoop API access blocked, needs scope decision)
+- Cerebro CRM feature → FLAG (Leonardo's domain, needs Guillermo+Leo alignment)
+- Personal finance batch → FLAG (requires decisions)
+- Life insurance quotes → FLAG (external action)
+- Car body shop → FLAG (external action)
+- Health insurance renew → FLAG (needs provider prefs)
+- Joint accounts → FLAG (requires both parties + bank)
+- Last will → FLAG (legal, requires solicitor)
+- Credit card clearing → FLAG (financial action)
+- Credit card swap → FLAG (financial decision)
+- Patagonia trip plan → AUTO ✅
+- Fix Discord read access → SKIP (already done in MC - architectural constraint documented)
+- Brinc Deep Dive Q&A → FLAG (Raphael's domain, needs Guillermo input)
+- Cerebro marketing strategy → AUTO ✅
+- Brinc roadshow - invite GetLinks → FLAG (external send required)
+- Build Notion comment monitoring → SKIP (already done in MC, marked done)
 
-## Todoist Tasks (open)
-- Whoop Health Integration (due 2026-03-31) — complex multi-session build, SKIP tonight
-- Cerebro CRM feature (🔵 Leonardo domain, already review per Leonardo log) — SKIP
-- Personal finance batch (FLAG — needs Guillermo) — SKIP
-- Sub-tasks of personal finance (FLAG — external actions) — SKIP
-- Fix Discord read (done in MC) — SKIP
-- Brinc Deep Dive Q&A for Raphael (FLAG — Raphael's domain) — SKIP
-- Cerebro marketing strategy (done per Leonardo log) — SKIP
-- Brinc roadshow invite GetLinks (FLAG — external send) — SKIP
-- Build Notion comment monitoring (in_progress in MC, p1) — **EXECUTE**
-- SLTRA subsidies research (due 2026-04-28, AUTO research) — **EXECUTE**
+## MC Backlog (assigned status)
+- Integrate usage report into heartbeat cron (p2) → AUTO ✅
+- Enable MC_PASSWORD on Vercel (p3) → AUTO ✅
+- [B4] Drag-and-Drop Kanban (p2) → deferred (complex UI, >90min risk)
+- [A2] Pizza Tracker Cost Tracking (p2) → deferred (schema change needed)
+- [B3] Enhanced Dojo Quick Actions (p2) → deferred
+- [C1] Project Views (p2) → deferred
+- [B1] Mobile-Responsive Polish (p2) → deferred
+- Phase 3 p3 tasks (C2, C4, D1-D6, A4, B2) → deferred
 
-## MC Tasks (open)
-- jn7d4mhb6g00377fmx0phqae1x81vt80 — Notion comment monitoring — in_progress — **EXECUTE**
-- jn7c8kstshq063p3wasandxfmh81qwd1 — MC Phase 1 deployment — in_progress — complex, SKIP
-- jn7efj8tj4zg8sxh29rdf41htn81qwvz — Wire weekly digest cron — assigned — **EXECUTE**
-- jn71fqz0ymrkj056n0gkw0218d81qd4j — Wire Todoist sync cron — assigned — **EXECUTE**
-- Various p3 MC UI tasks (assigned) — low priority, SKIP
+## Execution Plan (target 90min)
+1. Patagonia trip research + draft itinerary
+2. Cerebro marketing strategy draft  
+3. Integrate usage report into heartbeat cron
+4. Enable MC_PASSWORD on Vercel
 
-## Tonight's Execution Plan
-1. Build Notion comment monitoring → add to morning_briefing.py
-2. Wire weekly digest cron (mc-weekly-digest.sh → openclaw)
-3. Wire Todoist sync cron (mc-todoist-sync.sh → openclaw)
-4. SLTRA EU grants research
-
-## Logs
