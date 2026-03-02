@@ -845,8 +845,8 @@ def _get_overnight_squad_report(now: datetime) -> list[str] | None:
                           f"/data/shared/logs/overnight-raphael-{yesterday_str}.md"),
         ("🔵", "Leonardo", f"/data/shared/logs/overnight-leonardo-{today_str}.md",
                            f"/data/shared/logs/overnight-leonardo-{yesterday_str}.md"),
-        ("🦎", "Molty",   f"/data/workspace/logs/overnight-tasks-{today_str}.md",
-                          f"/data/workspace/logs/overnight-tasks-{yesterday_str}.md"),
+        ("🦎", "Molty",   f"/data/shared/logs/overnight-molty-{today_str}.md",
+                          f"/data/shared/logs/overnight-molty-{yesterday_str}.md"),
     ]
     found_any = False
     for emoji, label, path_today, path_yesterday in agents:
@@ -973,19 +973,30 @@ def _summarise_agent_log(path: str, emoji: str, label: str) -> str | None:
         section = None
         for line in content.split("\n"):
             line = line.strip()
-            if "## ✅" in line or "Completed" in line:
+            # --- separator marks end of structured sections (e.g. pre-flight notes follow)
+            if line == "---":
+                section = None
+                continue
+            if line.startswith("## ✅") or line == "## Completed":
                 section = "done"
-            elif "## 👀" in line or "Under Review" in line:
+            elif line.startswith("## 👀") or line == "## Under Review":
                 section = "review"
-            elif "## 🚩" in line or "Flagged" in line:
+            elif line.startswith("## 🚩") or line == "## Flagged / Blocked":
                 section = "flagged"
-            elif "## ❌" in line or "Failed" in line:
+            elif line.startswith("## ❌") or line == "## Failed":
                 section = "failed"
+            elif line.startswith("### "):
+                # sub-headers like "### Pre-flight notes" — stop counting
+                section = None
             elif line.startswith("- ") and section:
+                item = line[2:].strip()
+                # skip placeholder "none" entries
+                if item.lower() in ("none", "(none)"):
+                    continue
                 if section == "done":
                     completed += 1
                 elif section == "review":
-                    review.append(line[2:].split("→")[0].strip()[:35])
+                    review.append(item.split("→")[0].strip()[:35])
                 elif section == "flagged":
                     flagged += 1
                 elif section == "failed":
