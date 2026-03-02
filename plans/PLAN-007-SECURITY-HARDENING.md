@@ -9,11 +9,16 @@
 
 ## Execution Log
 
-### 2026-03-02 09:30 HKT — Phase 1 (Molty)
+### 2026-03-02 09:30 HKT — Phase 1 + 3 (Molty)
 - ✅ Changed `channels.discord.groupPolicy` from `"open"` to `"allowlist"`
 - ✅ Guild already had `users: ["779143499655151646"]` configured
-- ✅ Audit now shows: **0 critical** · 3 warn · 3 info
+- ✅ Added `gateway.auth.rateLimit` (10 attempts / 1 min window / 5 min lockout)
+- ✅ Audit now shows: **0 critical** · 2 warn · 3 info
 - ✅ `groups: open=0, allowlist=2`
+
+### 2026-03-02 09:44 HKT — Directive sent
+- ✅ Guillermo posted hardening directive to #command-center
+- ⏳ Awaiting Raphael + Leonardo to apply and report back
 
 ---
 
