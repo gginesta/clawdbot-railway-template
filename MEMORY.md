@@ -149,6 +149,8 @@
 ### Files
 - **Local:** `/data/shared/cerebro/meetcerebro/` (Syncthing copy, no git history)
 
+93. **Memory index corruption pattern:** If `openclaw memory status` shows 0 files but >0 embedding cache entries, the index is corrupted. Fix: `openclaw memory index --force`. Weekly health check should auto-detect and fix this.
+
 92. **OpenClaw update incorporation — PARKED (Mar 2 2026).** When next update drops, flag it to Guillermo and discuss incorporation together before building anything. Don't auto-incorporate. Daily check still runs at 05:15 HKT — report "already on latest ✅" even when no update. Revisit plan when next release lands.
 
 87. **`sessionTarget: isolated` is mandatory for `agentTurn` crons.** Documented explicitly in CRON_JOB_TEMPLATE.md. `sessionTarget: main` only works with `payload.kind: systemEvent`. Proposing "Model B" (main session overnight) was architecturally wrong — should have read the docs first.
