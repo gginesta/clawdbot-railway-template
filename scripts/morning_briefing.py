@@ -1095,18 +1095,6 @@ def _get_openclaw_update_summary() -> str | None:
             continue
 
     if heartbeat_found:
-        # Check if we have a feature tip from the last update
-        report_file = "/data/workspace/state/fleet-update-report.json"
-        if os.path.exists(report_file):
-            try:
-                with open(report_file) as rf:
-                    rdata = json.load(rf)
-                tip = rdata.get("tip")
-                version = rdata.get("version", "")
-                if tip:
-                    return f"No updates - already on {version} ✅\n💡 Feature tip: {tip}"
-            except Exception:
-                pass
         return "No updates - already on latest version ✅"
     return None
 

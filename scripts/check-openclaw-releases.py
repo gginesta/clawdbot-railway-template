@@ -170,35 +170,6 @@ def main():
 
     if latest == current:
         print("Already up to date — no action needed")
-        # Write/refresh a "no update" report with rotating feature tip for the morning briefing
-        tip_index = 0
-        if os.path.exists(REPORT_FILE):
-            try:
-                existing = json.load(open(REPORT_FILE))
-                tip_index = (existing.get("tip_index", 0) + 1)
-            except Exception:
-                pass
-        # Load highlights from the last known update context
-        context_file = "/data/workspace/state/fleet-update-context.json"
-        highlights, incorporation = [], []
-        if os.path.exists(context_file):
-            try:
-                ctx = json.load(open(context_file))
-                highlights = ctx.get("highlights", [])
-                incorporation = ctx.get("incorporation", [])
-            except Exception:
-                pass
-        tip = highlights[tip_index % len(highlights)] if highlights else None
-        with open(REPORT_FILE, "w") as f:
-            json.dump({
-                "version": latest,
-                "all_ok": True,
-                "no_update": True,
-                "tip_index": tip_index,
-                "tip": tip,
-                "highlights": highlights,
-                "incorporation": incorporation,
-            }, f, indent=2)
         sys.exit(0)
 
     # New version found
