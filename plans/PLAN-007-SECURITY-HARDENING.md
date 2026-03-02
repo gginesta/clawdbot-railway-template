@@ -1,9 +1,19 @@
 # PLAN-007: Fleet Security Hardening
 
 **Created:** 2026-03-02
-**Status:** Draft — awaiting Guillermo approval
+**Status:** Phase 1 complete (Molty), pending Raphael + Leonardo
 **Owner:** Molty
 **Scope:** All TMNT agents (Molty, Raphael, Leonardo)
+
+---
+
+## Execution Log
+
+### 2026-03-02 09:30 HKT — Phase 1 (Molty)
+- ✅ Changed `channels.discord.groupPolicy` from `"open"` to `"allowlist"`
+- ✅ Guild already had `users: ["779143499655151646"]` configured
+- ✅ Audit now shows: **0 critical** · 3 warn · 3 info
+- ✅ `groups: open=0, allowlist=2`
 
 ---
 
