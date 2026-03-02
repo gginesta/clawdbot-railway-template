@@ -1,7 +1,7 @@
 # PLAN-008: Smarter Calendar Booking Logic
 
 **Created:** 2026-03-02
-**Status:** In Progress
+**Status:** ✅ COMPLETE
 **Owner:** Molty
 
 ---
@@ -91,8 +91,23 @@ Simple approach:
 
 ## Success Criteria
 
-- [ ] "Needs Calendar Slot" property exists in Notion
-- [ ] Script respects the flag
-- [ ] Related events detected and logged
-- [ ] No duplicate bookings for tasks with existing appointments
-- [ ] Ambiguous cases flagged for review (not auto-booked)
+- [x] "Needs Calendar Slot" property exists in Notion
+- [x] Script respects the flag
+- [x] Related events detected and logged
+- [x] No duplicate bookings for tasks with existing appointments
+- [x] Ambiguous cases flagged for review (not auto-booked)
+
+---
+
+## Execution Log
+
+### 2026-03-02 10:55 HKT
+- ✅ Added "Needs Calendar Slot" checkbox to Notion standup database
+- ✅ Added `extract_keywords()` function for keyword matching
+- ✅ Added `find_related_events()` function to check calendar
+- ✅ Updated booking logic:
+  - `needs_slot = True` → auto-book
+  - `needs_slot = False/empty` → check for related events
+    - Related found → skip, log reason
+    - No related → skip, flag for review
+- ✅ Syntax validated, committed
