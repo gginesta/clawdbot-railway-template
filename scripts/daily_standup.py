@@ -688,38 +688,62 @@ def alert_telegram_failure(error_msg: str):
         pass  # Best-effort only
 
 
-def find_existing_task(db_id, title_key):
-    """Check if a task with similar title already exists in the DB.
-    Returns page_id if found, None otherwise."""
-    # Normalize title for comparison
-    title_norm = title_key.lower().strip()[:40]
+# Global cache for existing tasks — loaded once per run
+_EXISTING_TASKS_CACHE = {}
+
+
+def load_existing_tasks(db_id):
+    """Load all existing tasks from DB into cache. Call once at start."""
+    global _EXISTING_TASKS_CACHE
+    _EXISTING_TASKS_CACHE = {}
     
     try:
-        resp = requests.post(
-            f"https://api.notion.com/v1/databases/{db_id}/query",
-            headers=NH,
-            json={"page_size": 100},
-            timeout=15
-        )
-        if resp.status_code != 200:
-            return None
+        # Handle pagination
+        has_more = True
+        start_cursor = None
         
-        for page in resp.json().get("results", []):
-            if page.get("archived"):
-                continue
-            props = page.get("properties", {})
-            for k, v in props.items():
-                if v.get("type") == "title":
-                    existing_title = ""
-                    texts = v.get("title", [])
-                    if texts:
-                        existing_title = texts[0].get("plain_text", "")
-                    existing_norm = existing_title.lower().strip()[:40]
-                    if existing_norm == title_norm:
-                        return page.get("id")
-        return None
-    except Exception:
-        return None
+        while has_more:
+            body = {"page_size": 100}
+            if start_cursor:
+                body["start_cursor"] = start_cursor
+            
+            resp = requests.post(
+                f"https://api.notion.com/v1/databases/{db_id}/query",
+                headers=NH,
+                json=body,
+                timeout=15
+            )
+            if resp.status_code != 200:
+                break
+            
+            data = resp.json()
+            for page in data.get("results", []):
+                if page.get("archived"):
+                    continue
+                props = page.get("properties", {})
+                for k, v in props.items():
+                    if v.get("type") == "title":
+                        texts = v.get("title", [])
+                        if texts:
+                            title = texts[0].get("plain_text", "")
+                            # Normalize: lowercase, strip, first 50 chars
+                            key = title.lower().strip()[:50]
+                            _EXISTING_TASKS_CACHE[key] = page.get("id")
+                        break
+            
+            has_more = data.get("has_more", False)
+            start_cursor = data.get("next_cursor")
+            time.sleep(0.3)
+        
+        print(f"   📋 Loaded {len(_EXISTING_TASKS_CACHE)} existing tasks into cache")
+    except Exception as e:
+        print(f"   ⚠️ Failed to load existing tasks: {e}")
+
+
+def find_existing_task(title_key):
+    """Check cache for existing task. Returns page_id or None."""
+    key = title_key.lower().strip()[:50]
+    return _EXISTING_TASKS_CACHE.get(key)
 
 
 def add_task_to_db(db_id, task, section, today, task_type="Needs Input", sort_order: int = 999):
@@ -763,7 +787,7 @@ def add_task_to_db(db_id, task, section, today, task_type="Needs Input", sort_or
     props["Sort Order"] = {"number": sort_order}
 
     # Check if task already exists — update instead of creating duplicate
-    existing_id = find_existing_task(db_id, task["content"])
+    existing_id = find_existing_task(task["content"])
     
     if existing_id:
         # Update existing task (don't overwrite Action or Your Notes)
@@ -1162,23 +1186,27 @@ def main():
     tomorrow_task = get_tomorrow_priority(tasks, tomorrow)
     add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks, tomorrow_task, persistent_db_id)
 
-    # 9. Add Needs Input tasks to persistent DB (sort: 1..N, Overdue P1 first)
-    print("9. Adding 'Needs Input' tasks to persistent DB...")
+    # 9. Load existing tasks into cache (one query, prevents duplicates)
+    print("9. Loading existing tasks into cache...")
+    load_existing_tasks(persistent_db_id)
+
+    # 10. Add Needs Input tasks to persistent DB (sort: 1..N, Overdue P1 first)
+    print("10. Adding 'Needs Input' tasks to persistent DB...")
     added1 = 0
     for i, task in enumerate(needs_input, start=1):
         if add_task_to_db_with_retry(persistent_db_id, task, task["_section"], today, "Needs Input", sort_order=i):
             added1 += 1
 
-    # 10. Add Active Pipeline tasks to persistent DB (sort: continues after Needs Input)
-    print("10. Adding 'Active Pipeline' tasks to persistent DB...")
+    # 11. Add Active Pipeline tasks to persistent DB (sort: continues after Needs Input)
+    print("11. Adding 'Active Pipeline' tasks to persistent DB...")
     added2 = 0
     pipeline_offset = len(needs_input) + 1
     for i, task in enumerate(pipeline, start=pipeline_offset):
         if add_task_to_db_with_retry(persistent_db_id, task, task["_section"], today, "Active Pipeline", sort_order=i):
             added2 += 1
 
-    # 11. Footer
-    print("11. Adding footer...")
+    # 12. Footer
+    print("12. Adding footer...")
     add_footer(page_id)
 
     # 12. Block calendar for the week
