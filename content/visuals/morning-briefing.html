@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f0f;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .telegram-chat {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #1c1c1e;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .header {
+      background: #2c2c2e;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .header-text h3 {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .header-text span {
+      color: #8e8e93;
+      font-size: 13px;
+    }
+    .messages {
+      padding: 15px;
+    }
+    .message {
+      background: #2c2c2e;
+      border-radius: 18px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .message .time {
+      color: #8e8e93;
+      font-size: 12px;
+      text-align: right;
+      margin-top: 6px;
+    }
+    .emoji { font-size: 16px; }
+    .section-title {
+      color: #10b981;
+      font-weight: 600;
+      margin: 12px 0 6px 0;
+    }
+    .item {
+      color: #d1d5db;
+      padding-left: 8px;
+      margin: 4px 0;
+    }
+    .highlight {
+      color: #fbbf24;
+    }
+    .weather-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="telegram-chat">
+    <div class="header">
+      <div class="avatar">🦎</div>
+      <div class="header-text">
+        <h3>Molty</h3>
+        <span>online</span>
+      </div>
+    </div>
+    <div class="messages">
+      <div class="message">
+        <div><strong>Good morning, Guillermo — Mon 2 Mar (HKT)</strong></div>
+        <div style="color: #8e8e93; font-size: 13px;">School day: yes (drop-off 08:00-08:30)</div>
+        
+        <div class="section-title">🌤 Weather</div>
+        <div class="item">21-25°C · Rain chance up to 50%</div>
+        <div class="item highlight">⚠️ Rain risk at drop-off: ~50%</div>
+        
+        <div class="section-title">📅 Today</div>
+        <div class="item">07:30 Workout</div>
+        <div class="item">08:00 🏫 School Drop-off</div>
+        <div class="item">09:00 GBA-HK Sync</div>
+        <div class="item">10:00 Therapy</div>
+        <div class="item" style="color: #8e8e93;">… +8 more</div>
+        
+        <div class="section-title">🌙 Overnight Report</div>
+        <div class="item">🔴 Raphael: ✅ 3 done | 👀 On Hold Deals — needs review</div>
+        <div class="item">🔵 Leonardo: ✅ 2 done | 👀 Free tier PR — needs review</div>
+        <div class="item">🦎 Molty: ✅ 4 done | Research complete</div>
+        
+        <div class="time">6:30 AM ✓✓</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
