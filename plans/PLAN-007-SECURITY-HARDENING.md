@@ -1,7 +1,7 @@
 # PLAN-007: Fleet Security Hardening
 
 **Created:** 2026-03-02
-**Status:** Phase 1 complete (Molty), pending Raphael + Leonardo
+**Status:** ✅ COMPLETE
 **Owner:** Molty
 **Scope:** All TMNT agents (Molty, Raphael, Leonardo)
 
@@ -18,7 +18,11 @@
 
 ### 2026-03-02 09:44 HKT — Directive sent
 - ✅ Guillermo posted hardening directive to #command-center
-- ⏳ Awaiting Raphael + Leonardo to apply and report back
+
+### 2026-03-02 09:46 HKT — Fleet complete
+- ✅ **Raphael:** Discord already allowlist, added auth rate limiting
+- ✅ **Leonardo:** Applied groupPolicy allowlist + auth rate limiting
+- ✅ **All agents now at 0 critical findings**
 
 ---
 
