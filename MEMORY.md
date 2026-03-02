@@ -149,6 +149,8 @@
 ### Files
 - **Local:** `/data/shared/cerebro/meetcerebro/` (Syncthing copy, no git history)
 
+92. **OpenClaw update incorporation — PARKED (Mar 2 2026).** When next update drops, flag it to Guillermo and discuss incorporation together before building anything. Don't auto-incorporate. Daily check still runs at 05:15 HKT — report "already on latest ✅" even when no update. Revisit plan when next release lands.
+
 87. **`sessionTarget: isolated` is mandatory for `agentTurn` crons.** Documented explicitly in CRON_JOB_TEMPLATE.md. `sessionTarget: main` only works with `payload.kind: systemEvent`. Proposing "Model B" (main session overnight) was architecturally wrong — should have read the docs first.
 88. **Isolated cron sessions cannot reliably use `memory_search`.** No existing cron uses it. Memory access in isolated sessions = file reads via `cat` + API calls via `curl`. Never instruct an isolated agentTurn session to use memory_search for pre-flight.
 89. **The overnight context fix is entirely in the prompt.** Mandatory pre-flight: (1) cat memory log files, (2) curl MC for task statuses, (3) scan log text for each task before executing. If mentioned → skip.
