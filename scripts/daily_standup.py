@@ -688,8 +688,42 @@ def alert_telegram_failure(error_msg: str):
         pass  # Best-effort only
 
 
+def find_existing_task(db_id, title_key):
+    """Check if a task with similar title already exists in the DB.
+    Returns page_id if found, None otherwise."""
+    # Normalize title for comparison
+    title_norm = title_key.lower().strip()[:40]
+    
+    try:
+        resp = requests.post(
+            f"https://api.notion.com/v1/databases/{db_id}/query",
+            headers=NH,
+            json={"page_size": 100},
+            timeout=15
+        )
+        if resp.status_code != 200:
+            return None
+        
+        for page in resp.json().get("results", []):
+            if page.get("archived"):
+                continue
+            props = page.get("properties", {})
+            for k, v in props.items():
+                if v.get("type") == "title":
+                    existing_title = ""
+                    texts = v.get("title", [])
+                    if texts:
+                        existing_title = texts[0].get("plain_text", "")
+                    existing_norm = existing_title.lower().strip()[:40]
+                    if existing_norm == title_norm:
+                        return page.get("id")
+        return None
+    except Exception:
+        return None
+
+
 def add_task_to_db(db_id, task, section, today, task_type="Needs Input", sort_order: int = 999):
-    """Add a task row to the persistent DB.
+    """Add a task row to the persistent DB, or update if it already exists.
 
     task_type: "Needs Input" | "Active Pipeline"
     Standup Date is always set to today so rows can be filtered by day.
@@ -728,12 +762,29 @@ def add_task_to_db(db_id, task, section, today, task_type="Needs Input", sort_or
         props["Molty's Notes"] = {"rich_text": [{"text": {"content": notes}}]}
     props["Sort Order"] = {"number": sort_order}
 
-    resp = requests.post("https://api.notion.com/v1/pages", headers=NH, json={
-        "parent": {"database_id": db_id},
-        "properties": props
-    }, timeout=15)
-    time.sleep(0.35)
-    return resp.status_code == 200
+    # Check if task already exists — update instead of creating duplicate
+    existing_id = find_existing_task(db_id, task["content"])
+    
+    if existing_id:
+        # Update existing task (don't overwrite Action or Your Notes)
+        update_props = {k: v for k, v in props.items() if k not in ["Action", "Your Notes"]}
+        update_props["Standup Date"] = {"date": {"start": today}}  # Update to today
+        resp = requests.patch(
+            f"https://api.notion.com/v1/pages/{existing_id}",
+            headers=NH,
+            json={"properties": update_props},
+            timeout=15
+        )
+        time.sleep(0.35)
+        return resp.status_code == 200
+    else:
+        # Create new task
+        resp = requests.post("https://api.notion.com/v1/pages", headers=NH, json={
+            "parent": {"database_id": db_id},
+            "properties": props
+        }, timeout=15)
+        time.sleep(0.35)
+        return resp.status_code == 200
 
 
 # === YESTERDAY'S ACTION PROCESSOR ===
