@@ -1,6 +1,6 @@
 # MEMORY.md - Long-Term Memory
 
-*Last updated: 2026-02-26*
+*Last updated: 2026-03-02*
 
 ---
 
@@ -165,6 +165,9 @@
 89. **The overnight context fix is entirely in the prompt.** Mandatory pre-flight: (1) cat memory log files, (2) curl MC for task statuses, (3) scan log text for each task before executing. If mentioned → skip.
 90. **Read the docs before proposing architecture changes.** CRON_JOB_TEMPLATE.md, SUB-AGENT-OPERATING-STANDARD.md, and openclaw-best-practices.md contained all necessary constraints. Reading them first would have prevented a full day of whack-a-mole.
 91. **Fleet directives go to #command-center, not split channels.** One message, all agents see it. Don't open parallel threads across brinc-private and launchpad-private for the same topic.
+101. **process_standup.py deduplication optimization (Mar 2, commit 02b29303).** Changed from O(N²) Notion API calls (checking duplicates per task) to O(1) lookups via in-memory dict. Load all existing tasks once at start via `load_existing_tasks()` (paginated), build `{normalized_title: page_id}` dict, then lookups are instant. Massive perf improvement for dailies with 50+ tasks.
+102. **Cron agentId must never be empty string.** If `agentId: ""` in cron config, writes fail silently. Always set to `"main"` or the target agent ID. Fix via `openclaw cron edit <id> --agent <name>`.
+103. **Weekly Memory Health Check now auto-fixes index corruption (Mar 2).** Detection pattern: if `status` shows 0 files but embeddings > 0, run `openclaw memory index --force` automatically and re-check. No more manual intervention needed.
 
 ## 🏥 Insurance & Benefits
 
