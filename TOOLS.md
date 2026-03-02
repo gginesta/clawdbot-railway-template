@@ -99,7 +99,8 @@ Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
 
 ## GitHub
 
-**Token:** `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`
+**Token:** `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` (classic PAT, expires May 28 2026 — active)
+**Fine-grained tokens:** Leonardo-Cerebro (exp May 27 2026), Raphael-Proposal Studio (exp Mar 26 2026), MoltyToken (expired Mar 2 2026 — never used, let it die)
 
 ---
 
