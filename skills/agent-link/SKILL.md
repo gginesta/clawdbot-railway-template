@@ -5,40 +5,32 @@ description: Send messages to other TMNT agents (Raphael, Leonardo, etc.) via se
 
 # Agent Link 🔗
 
-Direct agent-to-agent messaging via webhooks. Bypasses Telegram bot limitations.
+Direct agent-to-agent messaging via webhooks. Each agent has their own inbound token and knows how to reach every other agent.
 
 ## Team Directory
 
-| Agent | Emoji | Role | Webhook URL |
-|-------|-------|------|-------------|
-| Molty | 🦎 | Coordinator | https://ggvmolt.up.railway.app/hooks/agent |
-| Raphael | 🔴 | Brinc Lead | https://ggv-raphael.up.railway.app/hooks/agent |
-| Leonardo | 🔵 | Launchpad Lead | https://leonardo-production.up.railway.app/hooks/agent |
+| Agent | Emoji | Role | Webhook URL | Inbound Token |
+|-------|-------|------|-------------|---------------|
+| Molty | 🦎 | Coordinator | https://ggvmolt.up.railway.app/hooks/agent | `ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562` |
+| Raphael | 🔴 | Brinc Lead | https://ggv-raphael.up.railway.app/hooks/agent | `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd` |
+| Leonardo | 🔵 | Launchpad Lead | https://leonardo-production.up.railway.app/hooks/agent | `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758` |
 
-**Per-agent tokens (Change Ticket #001):**
-| Agent | Token | Status |
-|-------|-------|--------|
-| Molty (inbound) | `ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562` | ✅ Active |
-| Raphael (inbound) | `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd` | ⏳ Old shared token — pending rotation |
-| Leonardo (inbound) | `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758` | ✅ Active |
-**⚠️ sessionKey is DISABLED** on these deployments (`allowRequestSessionKey=false`). Omit it — messages still route correctly without it.
+**⚠️ sessionKey is DISABLED** on all deployments (`allowRequestSessionKey=false`). Always omit it.
 
 ## ⚠️ STOP — USE DISCORD FIRST!
 
-**Webhooks are for emergencies ONLY.** Guillermo has said this 5+ times.
+**Webhooks are for emergencies or triggering immediate isolated agent actions.** Default is Discord channels.
 
-**Default:** Send messages to other agents via Discord channels:
-- Raphael → `#brinc-private` (1468164139674238976) or `#brinc-general` (1468164121420628081)
-- Use the `message` tool with `channel=discord` and `target=<channel_id>`
+**Default routing:**
+- → Raphael: `#brinc-private` (1468164139674238976) or `#brinc-general` (1468164121420628081)
+- → Leonardo: `#launchpad-private` (1470919437975814226) or `#launchpad-general` (1470919420791619758)
+- → Molty: `#command-center` (1468164160398557216)
 
-**Only use webhooks when:** Discord is down, or you need to trigger an immediate isolated agent action.
+**Use webhooks when:** Discord is down, or you need to trigger an immediate isolated agent action that requires a direct wakeMode=now push.
 
-## Webhook Fallback (EMERGENCY ONLY)
+## Webhook Examples
 
-Use `exec` with `curl` to send a webhook message:
-
-### Send to Raphael 🔴
-
+### Molty → Raphael 🔴
 ```bash
 curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
   -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
@@ -46,22 +38,44 @@ curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
   -d '{"message": "YOUR message here", "wakeMode": "now"}'
 ```
 
-### Send to Leonardo 🔵
-
+### Molty → Leonardo 🔵
 ```bash
 curl -s -X POST https://leonardo-production.up.railway.app/hooks/agent \
-  -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
+  -H 'Authorization: Bearer 08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758' \
   -H 'Content-Type: application/json' \
-  -d '{"message": "Your message here", "wakeMode": "now"}'
+  -d '{"message": "YOUR message here", "wakeMode": "now"}'
 ```
 
-### Send to Molty 🦎
-
+### Raphael → Molty 🦎
 ```bash
 curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
+  -H 'Authorization: Bearer ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562' \
+  -H 'Content-Type: application/json' \
+  -d '{"message": "YOUR message here", "wakeMode": "now"}'
+```
+
+### Raphael → Leonardo 🔵
+```bash
+curl -s -X POST https://leonardo-production.up.railway.app/hooks/agent \
+  -H 'Authorization: Bearer 08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758' \
+  -H 'Content-Type: application/json' \
+  -d '{"message": "YOUR message here", "wakeMode": "now"}'
+```
+
+### Leonardo → Molty 🦎
+```bash
+curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
+  -H 'Authorization: Bearer ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562' \
+  -H 'Content-Type: application/json' \
+  -d '{"message": "YOUR message here", "wakeMode": "now"}'
+```
+
+### Leonardo → Raphael 🔴
+```bash
+curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
   -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
   -H 'Content-Type: application/json' \
-  -d '{"message": "Your message here", "wakeMode": "now"}'
+  -d '{"message": "YOUR message here", "wakeMode": "now"}'
 ```
 
 ## Parameters
@@ -76,24 +90,12 @@ curl -s -X POST https://ggvmolt.up.railway.app/hooks/agent \
 - `401`: Invalid or missing token
 - `400`: Invalid payload
 
-## Example: Status Check
+## Domain Ownership (routing guide)
 
-**Molty sends to Raphael:**
-```bash
-curl -s -X POST https://ggv-raphael.up.railway.app/hooks/agent \
-  -H 'Authorization: Bearer ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd' \
-  -H 'Content-Type: application/json' \
-  -d '{"message": "Hey Raphael, status check - how is Brinc prep going?", "wakeMode": "now"}'
-```
+| Domain | Owner | Don't route to |
+|--------|-------|----------------|
+| Brinc | Raphael 🔴 | Leonardo, Molty |
+| Cerebro / Launchpad | Leonardo 🔵 | Raphael, Molty |
+| Fleet / Infrastructure / Coordination | Molty 🦎 | — |
 
-**Raphael receives and can respond back via webhook to Molty.**
-
-## Critical: sessionKey
-
-**Do NOT include `sessionKey`** — it is disabled on all deployments (`allowRequestSessionKey=false`). Including it returns a 200 but the message won't route correctly. Messages still reach the agent's active session without it.
-
-## Security
-
-- Token: `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd` (shared between trusted agents only)
-- All traffic over HTTPS
-- Webhooks only accept POST with valid auth
+Cross-domain tasks → escalate to Molty first.
