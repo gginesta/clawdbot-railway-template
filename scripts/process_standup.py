@@ -192,6 +192,57 @@ def find_free_slot(token, cal_ids, duration_min, start_from_dt):
 
     return None, None  # No slot found in 7 days
 
+
+def extract_keywords(title: str) -> list[str]:
+    """Extract meaningful keywords from a task title for event matching."""
+    STOP_WORDS = {
+        "the", "a", "an", "to", "for", "of", "in", "on", "at", "by", "with",
+        "and", "or", "but", "is", "are", "was", "were", "be", "been", "being",
+        "have", "has", "had", "do", "does", "did", "will", "would", "could",
+        "should", "may", "might", "must", "shall", "can", "need", "dare",
+        "my", "your", "his", "her", "its", "our", "their", "this", "that",
+        "these", "those", "i", "you", "he", "she", "it", "we", "they",
+        "what", "which", "who", "whom", "whose", "where", "when", "why", "how",
+        "all", "each", "every", "both", "few", "more", "most", "other", "some",
+        "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too",
+        "very", "just", "also", "now", "then", "once", "here", "there", "up",
+        "review", "check", "update", "prepare", "do", "get", "make", "send",
+    }
+    # Remove emoji prefixes and special chars
+    import re
+    clean = re.sub(r'^[^\w\s]+', '', title)  # strip leading emoji
+    clean = re.sub(r'[^\w\s]', ' ', clean)   # replace special chars with space
+    words = clean.lower().split()
+    keywords = [w for w in words if w not in STOP_WORDS and len(w) > 2]
+    return keywords[:5]  # Max 5 keywords
+
+
+def find_related_events(token, cal_ids: list[str], task_title: str, search_days: int = 7) -> list[str]:
+    """Search calendar for events with similar keywords in title.
+    Returns list of matching event summaries, or empty list."""
+    keywords = extract_keywords(task_title)
+    if not keywords:
+        return []
+
+    now = datetime.now(tz=HKT)
+    time_min = now.isoformat()
+    time_max = (now + timedelta(days=search_days)).isoformat()
+
+    matches = []
+    for cal_id in cal_ids:
+        try:
+            events = cal_get(token, cal_id, time_min, time_max)
+            for e in events:
+                summary = (e.get("summary") or "").lower()
+                # Check if any keyword matches
+                if any(kw in summary for kw in keywords):
+                    matches.append(e.get("summary", "(no title)"))
+        except Exception as ex:
+            print(f"  Warning: find_related_events failed for {cal_id}: {ex}")
+
+    return matches
+
+
 # ─────────────────── Notion helpers ───────────────────
 
 def find_todays_standup(target_date: str) -> Optional[str]:
@@ -416,6 +467,7 @@ def process(target_date: str):
         your_notes = get_text(props.get("Your Notes"))
         owner      = get_text(props.get("Owner"))
         project    = get_text(props.get("Project"))
+        needs_slot = props.get("Needs Calendar Slot", {}).get("checkbox", False)
 
         if not title:
             continue
@@ -564,9 +616,8 @@ def process(target_date: str):
                 print(f"     ⚠️ Reschedule: no date found in notes for '{title[:50]}'")
 
         elif "Keep" in action and ("Guillermo" in owner or not owner):
-            # Book calendar slot
+            # Smart calendar booking logic
             dur = estimate_duration(title)
-            # Pick calendar: Brinc vs Personal based on project name
             cal_id = BRINC_CAL_ID if any(w in project for w in ["Brinc", "Mana", "Cerebro"]) else PERSONAL_CAL_ID
             cal_ids = [BRINC_CAL_ID, PERSONAL_CAL_ID]  # check both when finding free slot
 
@@ -575,32 +626,54 @@ def process(target_date: str):
                     cal_token = get_sa_token()
                     print(f"   Calendar token: OK")
 
-                # Start searching from tomorrow 09:00
-                search_from = datetime(now.year, now.month, now.day, 9, 0, tzinfo=HKT) + timedelta(days=1)
-                slot_start, slot_end = find_free_slot(cal_token, cal_ids, dur, search_from)
+                should_book = False
+                skip_reason = None
 
-                if slot_start:
-                    label = f"🗓️ {title[:60]}"
-                    link = cal_create(
-                        cal_token, cal_id, label,
-                        slot_start.isoformat(), slot_end.isoformat(),
-                        description=f"Task from standup {target_date}. Duration: {dur}min."
-                    )
-                    day_label = slot_start.strftime("%a %b %-d")
-                    time_label = f"{slot_start.strftime('%H:%M')}-{slot_end.strftime('%H:%M')}"
-                    cal_bookings.append(f"{day_label} {time_label} — {title[:50]}")
-                    # Update title to show it was scheduled
-                    if matched:
-                        new_title = f"📅 {title}" if not title.startswith("📅") else title
-                        try:
-                            todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
-                        except Exception:
-                            pass
-                    kept.append(title)
-                    print(f"     📅 Booked: {day_label} {time_label}")
+                if needs_slot:
+                    # Explicit flag set — book automatically
+                    should_book = True
+                    print(f"     ℹ️ Needs Calendar Slot = True → will book")
                 else:
-                    kept.append(f"{title} (no slot found in 7 days)")
-                    print(f"     ⚠️ No free slot found in 7 days for: {title[:40]}")
+                    # Check for related events before booking
+                    related = find_related_events(cal_token, cal_ids, title, search_days=7)
+                    if related:
+                        skip_reason = f"Related event exists: '{related[0][:40]}'"
+                        print(f"     ⏭️ Skipped booking — {skip_reason}")
+                    else:
+                        skip_reason = "Needs Calendar Slot not checked, no related event found — flagged for review"
+                        print(f"     👀 {skip_reason}")
+
+                if should_book:
+                    # Start searching from tomorrow 09:00
+                    search_from = datetime(now.year, now.month, now.day, 9, 0, tzinfo=HKT) + timedelta(days=1)
+                    slot_start, slot_end = find_free_slot(cal_token, cal_ids, dur, search_from)
+
+                    if slot_start:
+                        label = f"🗓️ {title[:60]}"
+                        link = cal_create(
+                            cal_token, cal_id, label,
+                            slot_start.isoformat(), slot_end.isoformat(),
+                            description=f"Task from standup {target_date}. Duration: {dur}min."
+                        )
+                        day_label = slot_start.strftime("%a %b %-d")
+                        time_label = f"{slot_start.strftime('%H:%M')}-{slot_end.strftime('%H:%M')}"
+                        cal_bookings.append(f"{day_label} {time_label} — {title[:50]}")
+                        # Update title to show it was scheduled
+                        if matched:
+                            new_title = f"📅 {title}" if not title.startswith("📅") else title
+                            try:
+                                todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
+                            except Exception:
+                                pass
+                        kept.append(title)
+                        print(f"     📅 Booked: {day_label} {time_label}")
+                    else:
+                        kept.append(f"{title} (no slot found in 7 days)")
+                        print(f"     ⚠️ No free slot found in 7 days for: {title[:40]}")
+                else:
+                    # Not booking — log the reason
+                    kept.append(f"{title} (skipped: {skip_reason[:50]})")
+
             except Exception as e:
                 kept.append(title)
                 print(f"     ⚠️ Calendar booking failed: {e}")
