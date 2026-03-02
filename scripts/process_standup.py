@@ -478,13 +478,45 @@ def process(target_date: str):
             continue
         seen_titles.add(title_key)
 
-        # If no Action set, infer from Your Notes before skipping
+        # ALWAYS check Your Notes first — Guillermo's notes override everything
+        if your_notes:
+            notes_lower = your_notes.lower()
+            
+            # Check for "don't show until [date]" patterns — archive until that date
+            hide_match = re.search(r"(?:don'?t\s+(?:want\s+to\s+)?(?:see|show)|hide).*?until\s+(?:march|mar)\s*(\d+)", notes_lower)
+            if hide_match:
+                day = int(hide_match.group(1))
+                print(f"   [Archive until Mar {day}] {title[:50]}")
+                try:
+                    notion_patch(row_id, {"properties": {
+                        "Action": {"select": {"name": "📦 Archive"}},
+                        "Due Date": {"date": {"start": f"2026-03-{day:02d}"}}
+                    }})
+                except Exception as ex:
+                    print(f"     ⚠️ Failed to archive: {ex}")
+                continue
+            
+            # Check for done/completed patterns — mark done and skip
+            done_phrases = [
+                "mark as done", "already done", "this is done", "already told you", 
+                "completed", "i did this", "we're not using", "not using it", 
+                "decided no", "cancel", "drop this", "move out of here",
+                "already booked", "appointment booked", "its already booked",
+                "leonardo already did", "raphael already did", "molty already did",
+                "i did this myself", "this was completed"
+            ]
+            if any(x in notes_lower for x in done_phrases):
+                print(f"   [Done — Your Notes] {title[:50]}")
+                try:
+                    notion_patch(row_id, {"properties": {"Action": {"select": {"name": "✔️ Done"}}}})
+                except Exception:
+                    pass
+                continue
+        
+        # If no Action set, infer from Your Notes
         if not action and your_notes:
             notes_lower = your_notes.lower()
-            if any(x in notes_lower for x in ["mark as done", "already done", "this is done", "already told you", "completed", "i did this", "we're not using", "not using it", "decided no", "cancel", "drop this"]):
-                action = "Drop"
-                print(f"   [Drop — inferred from Your Notes] {title[:60]}: \"{your_notes[:80]}\"")
-            elif any(x in notes_lower for x in ["molty", "delegate", "for molty"]):
+            if any(x in notes_lower for x in ["molty", "delegate", "for molty"]):
                 action = "Molty"
                 print(f"   [Molty — inferred from Your Notes] {title[:60]}")
             elif any(x in notes_lower for x in ["raphael", "for raphael"]):
