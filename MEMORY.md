@@ -150,6 +150,13 @@
 - **Local:** `/data/shared/cerebro/meetcerebro/` (Syncthing copy, no git history)
 
 93. **Memory index corruption pattern:** If `openclaw memory status` shows 0 files but >0 embedding cache entries, the index is corrupted. Fix: `openclaw memory index --force`. Weekly health check should auto-detect and fix this.
+94. **PLAN-008 — Three-agent overnight system LIVE (Mar 1 2026).** Molty 03:00 HKT consolidates overnight logs + posts to #squad-updates. Raphael 00:30 HKT + Leonardo 01:30 HKT run tasks, write summaries to /data/shared/logs/. Morning briefing includes overnight section.
+95. **TTS/Voice live (Feb 28).** ElevenLabs API. Voice: Daniel (onwK4e9ZLuTAKqWW03F9), eleven_multilingual_v2. Mode: inbound only (reply with audio when Guillermo sends voice note). Credentials: /data/workspace/credentials/elevenlabs.env.
+96. **Email cron re-enabled Feb 28** (was disabled since Feb 15). ggv.molt@gmail.com = Molty's OWN inbox. Guillermo CCs/forwards for visibility only. 3x daily: 6AM/9AM/3PM HKT.
+97. **Daily Memory Log cron added (Feb 28).** Cron ID: b2d4e6ce-7826-4cd7-b173-2272d7bea43a. 23:00 HKT, Haiku, isolated. Fleet directive sent — Raphael + Leonardo must have equivalent crons.
+98. **Notion comment monitoring — P1 (Feb 28).** Public API returns empty. Use internal API loadPageChunk + token_v2. MC task: jn7d4mhb6g00377fmx0phqae1x81vt80.
+99. **process_standup.py scope:** Generate page → Guillermo fills in → run process_standup.py. Don't dump output back at Guillermo as tasks for him — dispatched tasks are already handled.
+100. **Overnight cron prompt must include explicit pre-flight:** (1) cat memory files, (2) curl MC API for task statuses, (3) skip if already mentioned in logs. No memory_search in isolated sessions.
 
 92. **OpenClaw update incorporation — PARKED (Mar 2 2026).** When next update drops, flag it to Guillermo and discuss incorporation together before building anything. Don't auto-incorporate. Daily check still runs at 05:15 HKT — report "already on latest ✅" even when no update. Revisit plan when next release lands.
 
