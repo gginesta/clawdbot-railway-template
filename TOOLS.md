@@ -1,5 +1,33 @@
 # TOOLS.md - Local Notes
 
+## 🧾 Summarize CLI (`@steipete/summarize`)
+
+### Server-side (Molty on Railway)
+| What | Value |
+|------|-------|
+| Binary | `summarize` v0.11.1 — globally installed |
+| yt-dlp | v2026.02.21 — `/usr/local/bin/yt-dlp` (symlink from venv) |
+| ffmpeg | v7.0.2 static — `/usr/local/bin/ffmpeg` |
+| Config | `~/.summarize/config.json` — Gemini 2.5 Flash default, Anthropic fallback |
+| Skill | `/openclaw/skills/summarize/SKILL.md` — auto-discovered (binary on PATH) |
+| Works | Web articles, direct audio/video URLs (Whisper via OPENAI_API_KEY) |
+| Blocked | YouTube + podcast RSS — Railway IPs flagged as bots by Google |
+
+### Guillermo's Chrome Extension (local — Windows)
+| What | Value |
+|------|-------|
+| Extension | [Summarize Side Panel](https://chromewebstore.google.com/detail/summarize/cejgnmmhbbpdmjnfppjdfkocebngehfg) |
+| CLI (local) | `npm install -g @steipete/summarize` (Node 22+ required) |
+| Daemon | `summarize daemon install --token <token>` (autostart via Scheduled Task) |
+| Status | Installed 2026-03-03 |
+| Works | YouTube (native transcript in browser), articles, PDFs, any tab |
+| Config | `~/.summarize/config.json` on Windows — set `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` |
+
+**Usage:** Trigger phrase in chat → "summarize this" + URL, or paste a YouTube/podcast link.
+**Skill trigger:** `summarize`, `what's this video about`, `transcribe this YouTube`
+
+
+
 ## Discord Channel Ownership
 
 | Channel | ID | Owner |
