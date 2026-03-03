@@ -63,6 +63,22 @@
 
 ---
 
+## 🗂 Daily Standup System — Agreed Design (2026-03-03)
+
+**Source of truth:** `/data/workspace/plans/standup-system-redesign.md`
+**Quick ref:** `/data/workspace/memory/refs/standup-process.md`
+
+Key rules that must never be forgotten:
+- **Verbal "done" = immediate action** in Todoist + Notion + MC. Same response. No "I'll note that."
+- **Tomorrow's Focus = ONE item** — blank callout, Guillermo fills it, becomes a calendar event
+- **Calendar booking = post-review ONLY**, never at generation time
+- **Calendar bias = BLOCK** — better to over-book than miss. Guillermo can move it.
+- **Clarifying questions = preferred** over silence + mistakes. Both Telegram + Notion.
+- **Pre-standup prep at 4:30**: Todoist new tasks, MC sync, squad lead webhook (wait 10 min), email scan
+- **Overnight log must include**: Completed / Under Review / **Failed (with why)** / Blocked (specific ask) / Skipped
+
+Agreed settings: Tomorrow's Focus=1 item | Calendar horizon=5 working days | Title edit=silent rewrite | Questions=both channels
+
 ## 📝 New Key Lessons
 
 39. **Direct Anthropic Auth:** Prefer direct model authentication over OpenRouter when possible.

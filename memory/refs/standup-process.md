@@ -1,56 +1,103 @@
-# Daily Standup Process (v2 — Feb 13, 2026)
+# Daily Standup & Productivity System — Process Reference
+*Source of truth: /data/workspace/plans/standup-system-redesign.md*
+*Last updated: 2026-03-03 08:48 HKT — v2.1 approved by Guillermo*
 
-## Quality Standard (EVERY task must have)
-1. **Priority** — P1-P4 via Eisenhower matrix
-2. **Time Estimate** — 15min/30min/1h/2h+
-3. **Section** — Overdue/Today/Upcoming/Inbox/Backlog
-4. **Owner** — Guillermo/Molty/Raphael/Leonardo
-5. **Molty's Notes** — Actionable context, not just labels. Include: status, what's blocking, what I suggest, what I'll do.
+---
 
-## Pre-Processing Rules
-- **Deduplicate** by normalized task content before inserting
-- **Never dump raw tasks** — every task gets processed with context
-- **Inbox tasks** → suggest correct project + owner, add triage note
-- **Overdue tasks** → flag with days overdue + suggest action (close/reschedule)
-- **Molty-assigned research tasks** → I do the research BEFORE standup, include findings in notes
-- **Recurring tasks** → note recurrence, suggest close if already done today
+## Core Rules (never forget these)
 
-## Template (Gold Standard: Feb 7 page)
-1. 📋 Callout with date + instructions (mention Action dropdown)
-2. Inline "Task Review" child_database (columns: Task, Project, Priority, Section, Due Date, Action, Owner, Time Est., Molty's Notes, Your Comments)
-3. Divider
-4. 🎯 Tomorrow's Top Priority heading + placeholder
-5. Divider  
-6. 🧱 Blockers heading + status
+1. **Verbal "done" = immediate action** — close Todoist + Notion + MC in the same response. No "I'll note that."
+2. **Tomorrow's Focus = ONE item** — the single thing that makes tomorrow worthwhile. Left blank by the script. Guillermo writes it. It becomes a calendar event.
+3. **Calendar booking = post-review ONLY** — never at generation time
+4. **Calendar bias = BLOCK** — better to book than miss. Guillermo can move it.
+5. **Clarifying questions = always ask** — preferred over silence + mistakes. Both Telegram + Notion.
+6. **Design changes = update the plan doc immediately** — /data/workspace/plans/standup-system-redesign.md
 
-## Post-Review (after "standup done")
-1. Process Guillermo's Action selections in Todoist (close/reschedule/delegate)
-2. Process "Your Comments" as action items
-3. Create Google Calendar time blocks for next 1-2 days
-4. Send Telegram summary with Notion link
+---
 
-## Script
-- `/data/workspace/scripts/daily_standup.py` — main standup generator
-- Cron: `bdb28765-f508-4271-a04d-9408d39f49fd` at 5PM HKT
+## Agreed Settings (2026-03-03)
 
-## Sub-Task Handling
-- Todoist tasks can have parent_id (nested sub-tasks)
-- **Rule:** Show parent task as a row, list sub-tasks as bullet points in Molty's Notes
-- Do NOT create separate rows for sub-tasks — they clutter the view
-- Example: "Post Transaction Backlog" has 10 sub-tasks (Life insurance, Tax, etc.) — show as one row with sub-tasks listed
-- When a parent is deferred/removed, its children follow
+| Setting | Value |
+|---------|-------|
+| Tomorrow's Focus max items | 1 |
+| Calendar horizon | 5 working days |
+| Squad pre-standup check | Webhook at 4:30, wait 10 min, proceed regardless |
+| Task title edit format | Silent rewrite (specific + actionable = the signal) |
+| Clarifying questions | Both Telegram + Notion |
+| MC backlog (15 tasks) | Review together with Guillermo |
 
-## Correct DB ID
-- The standup script must track which DB it created (only ONE child_database per page)
-- **LESSON #62**: Script created duplicate template blocks → two DBs on page → read wrong one → couldn't see comments
-- Fix: Script outputs DB_ID, only create template once, verify block count after creation
+---
 
-## Known Issues Fixed (Feb 13)
-- Duplicate tasks from Todoist (same task, different IDs) → deduplicate by content
-- Missing time estimates → auto-estimate based on task type
-- Missing Molty's Notes → auto-generate actionable context
-- Empty pages → script now creates full template end-to-end
-- Bare inbox tasks → auto-suggest triage
-- Sub-tasks flattened as separate rows → now grouped under parent
-- Duplicate template blocks (2 DBs on page) → script now creates exactly once
-- Read wrong DB for comments → fixed by tracking correct DB ID
+## The Six Phases
+
+### Phase 0: Real-time (all day)
+- G says done → Todoist closed + Notion row updated + MC done. Same message. No exceptions.
+- New Todoist task → rewrite title (once, first intake only), assign project/owner/priority/estimate
+- Context from chat → update task immediately, not at standup
+
+### Phase 1: Pre-standup prep (4:30 PM, silent)
+1. Fetch new Todoist tasks → process each (title, priority, owner, project, time, calendar flag, MC flag)
+2. Webhook Raphael + Leonardo → "what did you complete today not in MC?" → wait 10 min
+3. MC check: cross-reference done tasks with Todoist, sync both ways
+4. ggv.molt inbox scan → flag relevant items
+5. Sync Notion DB: mark completed, add new, update statuses
+6. Form clarifying questions (genuine uncertainty only)
+
+### Phase 2: Standup generation (5:00 PM)
+Notion page structure:
+- Summary callout (situation, squad status from pre-standup check)
+- Tomorrow's Focus (blank yellow callout — Guillermo fills in ONE item)
+- Email highlights (if any)
+- Clarifying questions callout (if any — answer before reviewing table)
+- Task DB (persistent, filtered to active + new)
+- Blockers section (MC blocked tasks from agents)
+
+Telegram: "Standup ready + link + questions if any"
+
+### Phase 3: Guillermo reviews
+- Answer questions → fill Tomorrow's Focus → review table → say "standup done"
+- Should NOT need to re-enter anything discussed during the day
+
+### Phase 4: Post-review processing (on "standup done")
+1. Tomorrow's Focus → calendar event tomorrow, first free slot 9–13 HKT
+2. Action=Done/Drop → close Todoist + MC + Notion
+3. Action=Reschedule → update Todoist due date (parse from Your Notes)
+4. Owner=Raphael/Leonardo → move Todoist + webhook with full context
+5. In MC? ticked → create/update MC task (deduplicate first — fuzzy ≥55%)
+6. Book Calendar? ticked → book focus block (check both cals, 5-day horizon)
+7. Telegram summary: booked / MC updated / dispatched / closed / open questions
+
+### Phase 5: Overnight
+- Raphael 00:30 → Leonardo 01:30 → Molty 03:00
+- Each: pull MC assigned → work (90-min budget) → update MC → write log
+- Log sections: ✅ Completed / 👀 Under Review / ❌ Failed (why) / 🚧 Blocked (ask) / ⏭ Skipped
+- Molty 03:00: read R+L logs, check ggv.molt, update MC, consolidate, post #squad-updates
+
+### Phase 6: Morning briefing (06:30)
+Order: Yesterday's Focus (did it happen?) → Overnight Report → Calendar → Squad → P1/P2 tasks → Email → Fleet
+
+---
+
+## Notion DB Columns (in order)
+Task | Your Notes | Action (Keep/Done/Drop/Reschedule) | Owner (G/Molty/Raphael/Leonardo) | Book Calendar? | In MC? | Due Date | Priority | Time Est. | Project | Section | Molty's Notes | Standup Date
+
+## Pre-tick logic
+- Book Calendar? YES: P1/P2 + owner=G + not already in cal. Default to YES when uncertain.
+- Book Calendar? NO: agent-owned, P3/P4, already in cal
+- In MC? YES: agent-owned + multi-step + project=Brinc/Cerebro/Mana/Fleet + not already in MC open
+
+## Calendar settings
+- Brinc tasks → Brinc cal | Everything else → Personal cal
+- Horizon: 5 working days | Hours: 9–18 HKT (morning preferred)
+- Format: 🎯 [P1] Task name | 15-min popup | Duration from Time Est.
+- Check BOTH cals for conflicts
+
+## MC task creation
+- Deduplicate: fuzzy ≥55% match first
+- Required: title, project, priority, assignees, createdBy="molty", status="assigned"
+- Description = Guillermo's Notes + Molty's Notes
+- Update if exists + open. Skip if exists + done. Create only if genuinely new.
+
+## Overnight log location
+/data/shared/logs/overnight-<agent>-YYYY-MM-DD.md
+Consolidated: /data/shared/logs/overnight-consolidated-YYYY-MM-DD.md
