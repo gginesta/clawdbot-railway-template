@@ -1245,10 +1245,8 @@ def main():
     if os.path.exists(prep_file):
         try:
             prep = json.load(open(prep_file))
-            squad_status = prep.get("squad_status")
             email_highlights = prep.get("email_highlights", [])
             if email_highlights:
-                # Add email highlights to clarifying questions block
                 lines = ["📬 Email items that may affect today's tasks:"]
                 for e in email_highlights[:3]:
                     lines.append(f"• {e.get('sender','?')}: {e.get('subject','?')[:70]}")
@@ -1256,6 +1254,27 @@ def main():
             print(f"   Prep state loaded: {prep.get('summary', 'ok')}")
         except Exception as e:
             print(f"   ⚠️ Could not read prep state: {e}")
+
+    # Read agent status files (written by Raphael + Leonardo after 4:30 PM ping)
+    # Falls back to "no update received" if files not present
+    today_str = today.strftime("%Y-%m-%d")
+    squad_lines = []
+    for agent, label in [("raphael", "🔴 Raphael"), ("leonardo", "🔵 Leonardo")]:
+        path = f"/data/shared/logs/standup-status-{today_str}-{agent}.txt"
+        if os.path.exists(path):
+            try:
+                content = open(path).read().strip()
+                if content:
+                    short = content[:180] + ("…" if len(content) > 180 else "")
+                    squad_lines.append(f"{label}: {short}")
+                    print(f"   ✅ {agent} status file found")
+                else:
+                    squad_lines.append(f"{label}: no update received")
+            except Exception:
+                squad_lines.append(f"{label}: could not read status file")
+        else:
+            squad_lines.append(f"{label}: no pre-standup update received")
+    squad_status = "\n".join(squad_lines) if squad_lines else None
 
     # NOTE: tomorrow_task removed — Tomorrow's Focus is BLANK for Guillermo to fill
     add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks,

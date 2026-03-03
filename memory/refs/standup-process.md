@@ -114,3 +114,13 @@ Consolidated: /data/shared/logs/overnight-consolidated-YYYY-MM-DD.md
 ## Morning Briefing Order (v2.1)
 Yesterday's Focus → Overnight Report (under_review/blocked/squad) → Weather → Calendar → Tasks → Squad → Email → Fleet
 
+
+## Squad Status Handler (standing instruction for Molty main session)
+When you receive a webhook message from Raphael or Leonardo that contains pre-standup status
+(keywords: "COMPLETED:", "IN_PROGRESS:", "BLOCKED:", or "pre-standup"):
+1. Extract the content
+2. Call: /data/workspace/.venv/bin/python3 /data/workspace/scripts/standup_status_reader.py
+   (programmatically: import standup_status_reader; standup_status_reader.write_agent_status("raphael", content))
+3. Confirm written to /data/shared/logs/standup-status-{DATE}-{agent}.txt
+
+This ensures daily_standup.py reads real agent status at 5PM, not just "ping sent".

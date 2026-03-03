@@ -238,14 +238,22 @@ def fuzzy_match(title, candidates, threshold=0.55):
 # ── Webhook squad check ───────────────────────────────────────────────────────
 
 def ping_squad_agents():
-    """Webhook Raphael + Leonardo. Returns dict of agent → reply received."""
+    """Webhook Raphael + Leonardo. Returns dict of agent → sent successfully."""
+    today = NOW.strftime("%Y-%m-%d")
     msg = (
-        "🦎 Pre-standup check (4:30 PM)\n\n"
-        "Quick status update needed before today's standup:\n"
-        "1. What tasks have you completed today that may not be updated in MC yet?\n"
-        "2. Any tasks started but not finished?\n"
-        "3. Any blockers Guillermo needs to know about?\n\n"
-        "Reply within 10 minutes. Going ahead with standup either way."
+        f"🦎 Pre-standup check (4:30 PM HKT — {today})\n\n"
+        "Quick status update needed before today's 5PM standup:\n"
+        "1. What did you complete today that may not be updated in MC yet?\n"
+        "2. Anything started but not finished?\n"
+        "3. Any blockers Guillermo needs to know about tonight?\n\n"
+        "IMPORTANT: Write your reply as a plain text file to:\n"
+        f"/data/shared/logs/standup-status-{today}-{{AGENT_NAME}}.txt\n"
+        "(replace {AGENT_NAME} with raphael or leonardo)\n\n"
+        "Format:\n"
+        "COMPLETED: [task 1, task 2, ...]\n"
+        "IN_PROGRESS: [task 1, ...]\n"
+        "BLOCKED: [task 1 — need from Guillermo: ...]\n\n"
+        "Write the file first, then reply to this message. Going ahead at 5PM regardless."
     )
     results = {}
     for agent, (url, token) in WEBHOOKS.items():
