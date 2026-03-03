@@ -206,3 +206,5 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 
 ## ⚠️ Promises Rule (Guillermo, Feb 28)
 **"Don't promise what you can't keep."** Only commit to things with a technical mechanism backing them. Verify before confirming. A broken promise is worse than no promise.
+
+106. **Fleet update cron = check + notify only. NEVER auto-update.** `openclaw update` doesn't exist. Correct update path: change `OPENCLAW_GIT_REF` Railway env var + trigger redeploy via Railway API. Updates are PARKED — always ask Guillermo first. Cron: `c0705ffd` at 21:15 HKT, state file: `/data/workspace/state/openclaw-fleet-version.json`. (2026-03-03)
