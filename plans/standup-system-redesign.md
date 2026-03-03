@@ -248,11 +248,14 @@ Triggered immediately when Guillermo says "standup done".
 ### 4a. Tomorrow's Focus → Calendar
 
 - Parse the text from the callout block
-- Book as a calendar event for tomorrow, first available slot 9:00–13:00 HKT
-- Check both Brinc and Personal calendars for conflicts
-- Brinc-related → Brinc calendar. Everything else → Personal calendar
-- Duration: 1 hour default (or estimate from task context)
+- Book as a calendar event for tomorrow, first available slot (prefer 09:00–17:00 HKT)
+- **Check ALL 3 calendars for conflicts:** Brinc + Personal + Shenanigans (family)
+- Calendar routing: Brinc keywords → Brinc cal | Family keywords → Shenanigans | else → Personal
+- **Auto-add Brinc "Busy [private]" block** for all non-Brinc bookings (colleagues see unavailability, not details)
+- **Never book over protected slots:** school drop-off 08:00–08:30 MoWeFr (LOCKED), school pick-up 10:30–11:00 MoWeFr, focus time 08:30–10:30 WeFr
+- Duration: 30 min default (or estimate from task context)
 - If nothing written → warn in Telegram summary
+- Full calendar config: `/data/workspace/credentials/calendar-config.json`
 
 ### 4b. Action column → Todoist
 
@@ -297,10 +300,11 @@ For every ticked row:
 1. Check if similar event exists in next 5 working days (keyword match)
 2. If not → find free slot:
    - Duration from Time Est. column
-   - Check BOTH calendars for conflicts
+   - Check ALL 3 calendars for conflicts (Brinc + Personal + Shenanigans)
    - Work hours: 9:00–18:00 HKT
    - Preferred: morning first (9–13), then afternoon (14–18)
-   - Book in correct calendar (Brinc vs Personal)
+   - Book in correct calendar: Brinc / Personal / Shenanigans (per write_rules)
+   - Auto-add Brinc "Busy [private]" block for non-Brinc bookings
 3. Event: `🎯 [P1] Task name` + 15-min popup reminder
 4. If no slot in 5 days → flag in summary (rare, but note it)
 
@@ -529,8 +533,9 @@ dueDate (if known)
 - Hours: 9:00–18:00 HKT, morning preferred
 - Duration: from Time Est. column (30min default)
 - Format: `🎯 [P1] Task name` + 15-min popup reminder
-- Brinc project → Brinc calendar | Everything else → Personal calendar
-- Check BOTH calendars for conflicts before booking
+- Brinc project → Brinc calendar | Family → Shenanigans | Everything else → Personal calendar
+- Check ALL 3 calendars for conflicts before booking
+- Auto-add Brinc "Busy [private]" block for all non-Brinc bookings
 
 ---
 

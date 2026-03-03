@@ -124,3 +124,25 @@ When you receive a webhook message from Raphael or Leonardo that contains pre-st
 3. Confirm written to /data/shared/logs/standup-status-{DATE}-{agent}.txt
 
 This ensures daily_standup.py reads real agent status at 5PM, not just "ping sent".
+
+---
+
+## Calendar Booking Rules (updated 2026-03-03 — STANDING RULE)
+
+### Check for conflicts across ALL 3 calendars before every booking:
+- Brinc: `guillermo.ginesta@brinc.io`
+- Personal: `guillermo.ginesta@gmail.com`
+- Shenanigans (family): `vuce6sc8mts8rfgvbsqtl62m1c@group.calendar.google.com`
+
+### Write rules:
+- Brinc work → Brinc calendar (visible to colleagues)
+- Family events → Shenanigans
+- Personal / Mana / Molty infra → Personal calendar
+- **Every non-Brinc booking → also add "Busy [private]" block on Brinc calendar**
+
+### Protected slots (never book over):
+- 08:00–08:30 Mo/We/Fr — School drop-off (LOCKED)
+- 10:30–11:00 Mo/We/Fr — School pick-up (yield only for P1)
+- 08:30–10:30 We/Fr — Focus time (no calls/meetings)
+
+### Config: `/data/workspace/credentials/calendar-config.json`
