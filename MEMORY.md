@@ -1,6 +1,6 @@
 # MEMORY.md - Long-Term Memory
 
-*Last updated: 2026-03-02*
+*Last updated: 2026-03-03*
 
 ---
 
@@ -63,23 +63,46 @@
 
 ---
 
-## 🗂 Daily Standup System — Agreed Design (2026-03-03)
+## 🗂 Daily Standup System v2.1 — COMPLETE (2026-03-03)
 
-**Source of truth:** `/data/workspace/plans/standup-system-redesign.md`
+**Source of truth:** `/data/workspace/plans/standup-build-plan-2026-03-03.md` (19.5KB)
+**Design spec:** `/data/workspace/plans/standup-system-redesign.md`
 **Quick ref:** `/data/workspace/memory/refs/standup-process.md`
+**Git:** master fcea521e → 12e16e95
 
-Key rules that must never be forgotten:
-- **Verbal "done" = immediate action** in Todoist + Notion + MC. Same response. No "I'll note that."
-- **Real-time sync during the day** — Todoist + MC must never diverge >2h. Every heartbeat: check MC completions → close Todoist. Check Todoist closures → close MC. Work is fluid and happens throughout the day.
-- **Task title format (one-time on intake):** `Reply to Raeniel re: accounts — 30min 🦎` — specific + actionable + time estimate + 🦎 at end. Never rewrite the same task again.
-- **Tomorrow's Focus = ONE item** — blank callout, Guillermo fills it, becomes a calendar event
-- **Calendar booking = post-review ONLY**, never at generation time
-- **Calendar bias = BLOCK** — better to over-book than miss. Guillermo can move it.
-- **Clarifying questions = preferred** over silence + mistakes. Both Telegram + Notion.
-- **Pre-standup prep at 4:30**: Todoist new tasks, MC sync, squad lead webhook (wait 10 min), email scan
-- **Overnight log must include**: Completed / Under Review / **Failed (with why)** / Blocked (specific ask) / Skipped
+### Cron Registry
+| ID | Name | Time | Model |
+|----|------|------|-------|
+| 13b4eaa0 | Todoist Inbox Triage | Hourly, HKT | Haiku |
+| ad96575e | Pre-Standup Prep | 4:30 PM HKT | Haiku |
+| bdb28765 | Daily Standup | 5:00 PM HKT | Sonnet |
+| 8991c017 | Overnight Sync (MC→Todoist→Notion) | 04:00 HKT | Haiku |
+| 8b748f23 | Morning Briefing | 6:30 AM HKT | (main) |
+| 80105aa4 | Molty Nightly | 03:00 HKT | Sonnet |
 
-Agreed settings: Tomorrow's Focus=1 item | Calendar horizon=5 working days | Title edit=silent rewrite + 🦎 at end | Questions=both channels
+### Scripts (all compile clean)
+todoist_triage.py · standup_prep.py · standup_status_reader.py · daily_standup.py · process_standup.py · overnight_sync.py · morning_briefing.py
+
+### Rules (never forget)
+- **Verbal "done"** = close Todoist + Notion + MC in same response. No deferral.
+- **Todoist + MC** must never diverge >2h. Heartbeat syncs completions both ways.
+- **Task title** (one-time on intake): `Reply to Raeniel — 30min 🦎` — specific + time + 🦎 at end.
+- **Tomorrow's Focus** = ONE item, blank callout, Guillermo fills it → calendar event post-review.
+- **Calendar** = post-review ONLY, never at generation. Bias: BLOCK (over-book > miss).
+- **Clarifying questions** = preferred over silence. Both Telegram + Notion callout.
+- **Overnight log format**: ✅ Completed / 👀 Under Review / ❌ Failed (why) / 🚧 Blocked (ask) / ⏭ Skipped
+- **Squad status**: agents write to `/data/shared/logs/standup-status-{DATE}-{agent}.txt`
+- **Overnight sync** at 04:00 HKT closes Todoist + Notion rows for MC-done tasks
+
+### MC Fleet Tasks (Molty — Mission Control Phase 3)
+13 active (assigned), execute overnight P2 first: A2→B1→C1→B3→B4 then P3s
+Parked: B2 Dark Mode ("don't care"), C5 File Attachments ("don't need it") — Guillermo 2026-03-03
+Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 Memory Timeline
+
+### Backup
+- Cron d9da8767: 21:00 HKT daily, backup.sh only ✅
+- **Never move without explicit Guillermo confirmation in conversation**
+- Spurious "21:30" webhook on 2026-03-03 was a confused agent status check — ignored, no change made
 
 ## 📝 New Key Lessons
 
@@ -167,25 +190,20 @@ Agreed settings: Tomorrow's Focus=1 item | Calendar horizon=5 working days | Tit
 ### Files
 - **Local:** `/data/shared/cerebro/meetcerebro/` (Syncthing copy, no git history)
 
-93. **Memory index corruption pattern:** If `openclaw memory status` shows 0 files but >0 embedding cache entries, the index is corrupted. Fix: `openclaw memory index --force`. Weekly health check should auto-detect and fix this.
-94. **PLAN-008 — Three-agent overnight system LIVE (Mar 1 2026).** Molty 03:00 HKT consolidates overnight logs + posts to #squad-updates. Raphael 00:30 HKT + Leonardo 01:30 HKT run tasks, write summaries to /data/shared/logs/. Morning briefing includes overnight section.
-95. **TTS/Voice live (Feb 28).** ElevenLabs API. Voice: Daniel (onwK4e9ZLuTAKqWW03F9), eleven_multilingual_v2. Mode: inbound only (reply with audio when Guillermo sends voice note). Credentials: /data/workspace/credentials/elevenlabs.env.
-96. **Email cron re-enabled Feb 28** (was disabled since Feb 15). ggv.molt@gmail.com = Molty's OWN inbox. Guillermo CCs/forwards for visibility only. 3x daily: 6AM/9AM/3PM HKT.
-97. **Daily Memory Log cron added (Feb 28).** Cron ID: b2d4e6ce-7826-4cd7-b173-2272d7bea43a. 23:00 HKT, Haiku, isolated. Fleet directive sent — Raphael + Leonardo must have equivalent crons.
-98. **Notion comment monitoring — P1 (Feb 28).** Public API returns empty. Use internal API loadPageChunk + token_v2. MC task: jn7d4mhb6g00377fmx0phqae1x81vt80.
-99. **process_standup.py scope:** Generate page → Guillermo fills in → run process_standup.py. Don't dump output back at Guillermo as tasks for him — dispatched tasks are already handled.
-100. **Overnight cron prompt must include explicit pre-flight:** (1) cat memory files, (2) curl MC API for task statuses, (3) skip if already mentioned in logs. No memory_search in isolated sessions.
-
-92. **OpenClaw update incorporation — PARKED (Mar 2 2026).** When next update drops, flag it to Guillermo and discuss incorporation together before building anything. Don't auto-incorporate. Daily check still runs at 05:15 HKT — report "already on latest ✅" even when no update. Revisit plan when next release lands.
-
-87. **`sessionTarget: isolated` is mandatory for `agentTurn` crons.** Documented explicitly in CRON_JOB_TEMPLATE.md. `sessionTarget: main` only works with `payload.kind: systemEvent`. Proposing "Model B" (main session overnight) was architecturally wrong — should have read the docs first.
-88. **Isolated cron sessions cannot reliably use `memory_search`.** No existing cron uses it. Memory access in isolated sessions = file reads via `cat` + API calls via `curl`. Never instruct an isolated agentTurn session to use memory_search for pre-flight.
-89. **The overnight context fix is entirely in the prompt.** Mandatory pre-flight: (1) cat memory log files, (2) curl MC for task statuses, (3) scan log text for each task before executing. If mentioned → skip.
-90. **Read the docs before proposing architecture changes.** CRON_JOB_TEMPLATE.md, SUB-AGENT-OPERATING-STANDARD.md, and openclaw-best-practices.md contained all necessary constraints. Reading them first would have prevented a full day of whack-a-mole.
-91. **Fleet directives go to #command-center, not split channels.** One message, all agents see it. Don't open parallel threads across brinc-private and launchpad-private for the same topic.
-101. **process_standup.py deduplication optimization (Mar 2, commit 02b29303).** Changed from O(N²) Notion API calls (checking duplicates per task) to O(1) lookups via in-memory dict. Load all existing tasks once at start via `load_existing_tasks()` (paginated), build `{normalized_title: page_id}` dict, then lookups are instant. Massive perf improvement for dailies with 50+ tasks.
-102. **Cron agentId must never be empty string.** If `agentId: ""` in cron config, writes fail silently. Always set to `"main"` or the target agent ID. Fix via `openclaw cron edit <id> --agent <name>`.
-103. **Weekly Memory Health Check now auto-fixes index corruption (Mar 2).** Detection pattern: if `status` shows 0 files but embeddings > 0, run `openclaw memory index --force` automatically and re-check. No more manual intervention needed.
+87. **`sessionTarget: isolated` mandatory for `agentTurn` crons.** `sessionTarget: main` only for `systemEvent`. Isolated crons can't use memory_search — use `cat` + `curl` for pre-flight.
+88. **Overnight cron pre-flight (mandatory):** (1) cat memory logs, (2) curl MC for task statuses, (3) skip if already in logs. No memory_search in isolated sessions.
+89. **Fleet directives go to #command-center.** One message, all agents. Don't split across brinc-private / launchpad-private.
+90. **OpenClaw update incorporation — PARKED.** Flag to Guillermo when next update drops, discuss before building. Daily check at 05:15 HKT still runs.
+91. **Memory index corruption:** `openclaw memory index --force` if status shows 0 files but >0 embeddings. Weekly health check auto-detects + fixes.
+92. **Three-agent overnight system:** Raphael 00:30, Leonardo 01:30, Molty 03:00. Logs to /data/shared/logs/. Molty consolidates + posts #squad-updates.
+93. **TTS/Voice:** ElevenLabs, Daniel voice (onwK4e9ZLuTAKqWW03F9), inbound only. Credentials: /data/workspace/credentials/elevenlabs.env.
+94. **Email:** ggv.molt@gmail.com = Molty's own inbox. 3x daily (6AM/9AM/3PM HKT). Guillermo CCs/forwards for visibility only.
+95. **Notion comment monitoring:** Public API returns empty. Use internal API loadPageChunk + token_v2.
+96. **process_standup.py:** Don't dump dispatched tasks back at Guillermo. Dedup via in-memory dict O(1) (commit 02b29303). Dedup threshold: 55% fuzzy match.
+97. **Cron agentId must not be empty string** — set to "main" or target agent ID. Writes fail silently if empty.
+98. **Standup system v2.1 COMPLETE (Mar 3 2026).** See standup section above. Tonight is first live run.
+99. **Backup cron d9da8767:** 21:00 HKT, backup.sh only. Never move without explicit Guillermo confirmation. Spurious "21:30" webhook on 2026-03-03 was ignored (confused agent status check).
+100. **MC fleet tasks (Molty):** 13 active, execute overnight P2 first. B2 Dark Mode + C5 File Attachments parked (Guillermo, Mar 3).
 
 ## 🏥 Insurance & Benefits
 
