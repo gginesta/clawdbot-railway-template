@@ -75,7 +75,11 @@ MORNING BRIEFING (06:30)
 
 ## PHASE 0: Real-Time During the Day
 
-### Rule: Verbal "done" = immediate action. Every time.
+**This is the foundation. The standup is only as good as the data going into it. That data must be maintained continuously — not accumulated at 5PM.**
+
+Work is fluid. Guillermo adds tasks to Todoist throughout the day. Squad leads add tasks to MC. Things get completed, reprioritised, handed off. Molty must stay on top of ALL of it — Todoist AND MC — and keep both in sync so that by 5PM, the standup page reflects reality, not a snapshot from this morning.
+
+### Rule 1: Verbal "done" = immediate action. Every time.
 
 The moment Guillermo says a task is complete — in any conversation, on any platform:
 
@@ -85,20 +89,31 @@ The moment Guillermo says a task is complete — in any conversation, on any pla
 4. Update MC — mark done (fuzzy title match)
 5. Confirm: "Closed ✅" — not "I'll do that"
 
-**No exceptions. This is the foundation everything else depends on.**
+**No exceptions. This is the single most important rule in the system.**
 
-### Task intake during the day
+### Rule 2: New Todoist tasks get processed on intake
 
-When a new task appears in Todoist (via heartbeat or notification):
-- Rewrite title: specific + actionable + time estimate (e.g. "reply raeniel" → "Reply to Raeniel re: FY2025 accounts — 30min")
-- This is a one-time edit. Never rewrite the same task again.
-- Assign: project, owner, priority (Eisenhower), time estimate, due date if obvious
-- Flag: Book Calendar? and In MC? based on judgment
-- This is lightweight — full triage happens at 5PM standup
+When a new raw task appears in Todoist (via heartbeat check):
+- **Rewrite title**: specific + actionable + time signal + 🦎 at the end
+  - Raw: `reply raeniel`
+  - Processed: `Reply to Raeniel re: FY2025 accounts — 30min 🦎`
+- **One-time edit only** — never rewrite the same task again. The 🦎 confirms it's been seen.
+- **Assign**: project, owner, priority (Eisenhower), time estimate, due date if obvious
+- **Flag**: Book Calendar? and In MC? based on judgment
+- Lightweight triage — full context added at standup
 
-### Context from day conversations
+### Rule 3: MC is monitored continuously, not just at 5PM
 
-If Guillermo mentions something in chat that changes a task's status, priority, owner, or scope — update it immediately. He should never have to re-explain at standup what he already told me.
+Every heartbeat (every 2h), Molty checks MC for:
+- **New tasks** added by squad leads → cross-reference with Todoist. Already there? Sync. Not there? Note for standup.
+- **Completed tasks** in MC → close corresponding Todoist task immediately
+- **Blocked tasks** → flag immediately, don't wait for standup or morning briefing
+
+If a squad lead completes something in MC and hasn't updated Todoist, Molty closes it in Todoist. If Guillermo closes something in Todoist and MC is still open, Molty closes it in MC. The two systems must never diverge for more than 2 hours.
+
+### Rule 4: Context from chat updates tasks immediately
+
+If Guillermo mentions anything in conversation that changes a task — priority, owner, scope, status, deadline — update it in Todoist and MC on the spot. He should never have to re-explain at standup what he already said during the day.
 
 ---
 

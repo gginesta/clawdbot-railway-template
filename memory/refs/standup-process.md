@@ -30,10 +30,13 @@
 
 ## The Six Phases
 
-### Phase 0: Real-time (all day)
+### Phase 0: Real-time (all day) — THE FOUNDATION
 - G says done → Todoist closed + Notion row updated + MC done. Same message. No exceptions.
-- New Todoist task → rewrite title (once, first intake only), assign project/owner/priority/estimate
-- Context from chat → update task immediately, not at standup
+- New Todoist task → rewrite title (ONCE, first intake only): "Reply to Raeniel re: accounts — 30min 🦎" (specific + actionable + time + 🦎 at end)
+- Every heartbeat (2h): check MC for new/completed tasks → sync to Todoist. The two must never diverge >2h.
+- MC task completed by squad lead → close Todoist immediately
+- Todoist task closed → close MC immediately
+- Context from chat → update Todoist + MC immediately, not at standup
 
 ### Phase 1: Pre-standup prep (4:30 PM, silent)
 1. Fetch new Todoist tasks → process each (title, priority, owner, project, time, calendar flag, MC flag)
