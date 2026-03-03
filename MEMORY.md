@@ -107,7 +107,6 @@ Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 
 ## 📝 New Key Lessons
 
 39. **Direct Anthropic Auth:** Prefer direct model authentication over OpenRouter when possible.
-40. **Content Writing Workflow:** Guillermo ideas → Molty outlines → Pikachu writes on Sonnet 4.6
 41. **Sub-agent Limitations:** Can't use exec tool or directly update Notion
 42. **Discord Channel Monitoring:** Set `requireMention: false` for owned channels
 43. **Notion Public API can't reorder blocks** — use internal API (`/api/v3/saveTransactions`) with `token_v2` cookie
@@ -138,25 +137,17 @@ Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 
 72. **Per-IP rate limits isolate agents.** Different Railway IPs → one agent hitting limits doesn't affect others on the same token.
 73. **Don't spam webhooks + sub-agent tests rapidly.** Burns rate limits and triggers cooldowns on all providers. Space by 5+ min.
 74. **Always include openai-codex/gpt-5.2 as final fallback.** OAuth-cached, no rate limits, supports tools. Fleet chain: `anthropic/claude-sonnet-4-6` → `anthropic/claude-haiku-4-5` → `xai/grok-3` → `openai-codex/gpt-5.2`.
-76. **Content workflow: Twitter-first, LinkedIn is curated mirror.** Pikachu owns Twitter/X pipeline. LinkedIn gets ~2 in 5 pieces, adapted from Twitter. Never pre-populate LinkedIn before Twitter post is live.
 77. **Verify current state before reporting a task incomplete.** Daily logs go stale. Check config files, APIs, and MC before claiming something isn't done.
-78. **Change Ticket #001 — Per-agent webhook tokens (Feb 26 status).** Leonardo ✅ rotated to `08d506d4...`. Raphael ✅ rotated to `a006d337...`. Molty ✅ rotated to `ab0100a5...`. Old shared token (`ed691e4...`) now inactive.
-79. **PLAN-004 — Squad Overnight Workflow COMPLETE (Feb 26).** Crons: Raphael 00:30, Leonardo 01:30, Molty 03:00. Squad report in morning briefing. MC backfills confirmed.
 80. **Anthropic token is shared fleet-wide.** Same `sk-ant-*` token used by Molty, Raphael, and Leonardo. secrets.json on shared volume has the correct token for all agents.
-81. **PLAN-005 — Fleet Update Manager COMPLETE (Feb 27).** Molty owns all OpenClaw updates. Daily 05:15 HKT check, staged rollout Molty→Raphael→Leonardo via Railway API `OPENCLAW_GIT_REF`. Report after 06:30 briefing. v2026.2.26 fleet-wide.
 82. **PLAN-006 — Fleet Directive System (Feb 27).** Queue: `/data/shared/pending-directives/<agent>/`. Scripts: `check_directives.py` + `write_directive.py`. `REQUIRES_VERSION` header gates execution. Molty 15-min cron `bc60c335` live. Raphael + Leonardo bootstrap pending.
-83. **process_standup.py fix:** silently skipped rows with no Action — never read Your Notes. Fixed to infer owner from notes text. Commit `fc6d0355`.
 84. **Railway API GraphQL: use inline IDs, not `$variable` syntax.** f-string `$` escaping → malformed JSON → 403. Use: `f'mutation {{ serviceInstanceRedeploy(serviceId: "{svc}", environmentId: "{env}") }}'`.
 85. **HTTP 200 health check ≠ version confirmed.** Webhook ACK = "received", not "applied". Never send version-dependent scripts without confirmed version gate.
 86. **Secrets migration: patch ALL agents' openclaw.json providers block BEFORE writing tokenRef/keyRef.** Missing provider → v2026.2.26 fail-fast crash. Fix: (1) add providers to openclaw.json on every agent, (2) then write refs.
 
 ---
 
-## 🖥️ Hosting Decision (Feb 23, 2026)
-
-- **Staying on Railway** — persistence, simplicity, fleet managed by Molty. Not worth the migration overhead.
-- **DO App Platform explored** — cheaper only if trimming to 2GB RAM per agent. Ephemeral containers need Spaces backup layer. Ruled out for now.
-- **Mac Mini floated** — Guillermo interested in getting Molty a Mac Mini. M4 24GB (~$799) would host full TMNT fleet, break-even ~6-7 months vs Railway. Local LLMs possible. **Revisit when timing is right.**
+## 🖥️ Hosting
+- **Railway** — staying. Mac Mini floated (M4 24GB ~$799, break-even ~6-7mo), revisit when timing right.
 
 ---
 
@@ -177,20 +168,6 @@ Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 
 Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|personal|fleet), `createdBy`, optional `assignees`, `priority` (p0-p3), `status`.
 
 ---
-
-## 🐢 Mission Control — Build Details (Feb 23, 2026)
-
-- **Live:** https://tmnt-mission-control.vercel.app
-- **Repo:** github.com/gginesta/tmnt-mission-control (private)
-- **Tech:** NextJS 15 (downgrade from 16 due to prerender useContext bug) + Convex + Vercel (all free tier, $0/month)
-- **Vercel↔GitHub:** Connected Feb 27 2026 — push to `main` = auto-deploy (no manual redeploy needed)
-- **Convex:** dev:resilient-chinchilla-241 | Deployment: rosy-crocodile-290 | Team: guillermo-ginesta
-- **HTTP API:** https://resilient-chinchilla-241.convex.site
-- **API Key:** In Convex env `MC_API_KEY` + skill SKILL.md
-- **COMPLETE.** 8 live screens, 8 API endpoints, auth + all features (Todoist sync, kanban, memory vault, pizza tracker, calendar, cost tracking, stale agent alerts)
-- **Heartbeat:** Cron `46d1ca32` every 2h, Haiku, pings `/api/heartbeat` + syncs daily memory to Vault
-- **Skill:** `/data/workspace/skills/mission-control/SKILL.md` (deployed to Raphael + Leonardo)
-- **Molty owns the build.** Guillermo reviews product/UX.
 
 ---
 
@@ -223,7 +200,7 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 99. **Backup cron d9da8767:** 21:00 HKT, backup.sh only. Never move without explicit Guillermo confirmation. Spurious "21:30" webhook on 2026-03-03 was ignored (confused agent status check).
 100. **MC fleet tasks (Molty):** 13 active, execute overnight P2 first. B2 Dark Mode + C5 File Attachments parked (Guillermo, Mar 3).
 101. **Unbrowse DIY — audited 2026-03-03. PARKED.** Code is good (cdp-capture.js + skill-gen.py + wrapper). Gaps: requires interactive browsing + manual Brave debug port + no fleet distribution + no skill registration + OAuth not handled. NOT worth deploying — all current integrations (HubSpot/Notion/Todoist/Cerebro) have documented APIs. Pull out only if we ever need to call an undocumented internal portal/tool with no public API. Scripts at: `scripts/api-capture/`. Suggested P3 improvements: auto-browse mode, credential persistence, fleet directive on generation.
-102. **summarize CLI — installed 2026-03-03.** `npm install -g @steipete/summarize` (v0.11.1), yt-dlp v2026.02.21, ffmpeg v7.0.2 (static). Config: `~/.summarize/config.json` (Gemini 2.5 Flash default, Anthropic fallback). OPENAI_API_KEY is in env (sk-proj-...). Skill at `/openclaw/skills/summarize/SKILL.md` — auto-discovered on next session (binary on PATH). **What works:** web articles (fast, clean), direct audio/video URLs (Whisper via OPENAI_API_KEY). **What doesn't:** YouTube (Railway IPs blocked by bot detection — both yt-dlp AND transcript APIs), podcast RSS (29MB+ too large or no inline transcript). Chrome extension approach works for YouTube locally but not server-side. Plan: `/data/workspace/plans/summarize-setup-2026-03-03.md`. Code is good (cdp-capture.js + skill-gen.py + wrapper). Gaps: requires interactive browsing + manual Brave debug port + no fleet distribution + no skill registration + OAuth not handled. NOT worth deploying — all current integrations (HubSpot/Notion/Todoist/Cerebro) have documented APIs. Pull out only if we ever need to call an undocumented internal portal/tool with no public API. Scripts at: `scripts/api-capture/`. Suggested P3 improvements: auto-browse mode, credential persistence, fleet directive on generation.
+102. **summarize CLI — installed 2026-03-03.** v0.11.1 + yt-dlp + ffmpeg. Config: `~/.summarize/config.json` (Gemini 2.5 Flash). Works: web articles, direct audio URLs. Broken: YouTube (Railway IPs blocked), podcast RSS (too large). Plan: `/data/workspace/plans/summarize-setup-2026-03-03.md`.
 
 ## 🏥 Insurance & Benefits
 
