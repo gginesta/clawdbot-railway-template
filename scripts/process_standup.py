@@ -27,8 +27,12 @@ STANDUP_DB_ID  = "2fe39dd69afd81f189f7e58925dad602"
 MOLTY_DEN_ID   = "6fwH32grqrCJF23R"
 BRINC_ID       = "6M5rpGgV6q865hrX"
 CEREBRO_ID     = "6g53F7ccF8HHjgXM"
-BRINC_CAL_ID   = "guillermo.ginesta@brinc.io"
-PERSONAL_CAL_ID = "guillermo.ginesta@gmail.com"
+BRINC_CAL_ID      = "guillermo.ginesta@brinc.io"
+PERSONAL_CAL_ID   = "guillermo.ginesta@gmail.com"
+# SHENANIGANS_CAL_ID — family calendar. ID unknown, no service account access yet.
+# DO NOT book personal slots until this is resolved + Shenanigans access granted.
+# When set: personal events go here, plus a Brinc "Busy [private]" block.
+SHENANIGANS_CAL_ID = None  # TODO: get from Guillermo
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8292515315:AAETOvDJgl4r13qF3_32qhpn8h7jIOVJQDA")
 TELEGRAM_CHAT_ID   = "1097408992"
 
@@ -319,13 +323,22 @@ def cal_get(token, cal_id, start_iso, end_iso):
     with urllib.request.urlopen(req, timeout=10) as r:
         return json.loads(r.read()).get("items", [])
 
-def cal_create(token, cal_id, summary, start_iso, end_iso, description=""):
+def cal_create(token, cal_id, summary, start_iso, end_iso, description="",
+               visibility="default", add_brinc_busy=False):
+    """Create a calendar event.
+
+    Calendar rules (Guillermo directive 2026-03-03):
+    - Personal events → SHENANIGANS_CAL_ID (family calendar)
+    - Brinc events → BRINC_CAL_ID, visibility="public" (colleagues can see)
+    - ALL non-Brinc bookings → also create Brinc "Busy [private]" block (add_brinc_busy=True)
+    """
     encoded = urllib.parse.quote(cal_id, safe="")
     event = {
         "summary": summary,
         "description": description,
         "start": {"dateTime": start_iso, "timeZone": "Asia/Hong_Kong"},
         "end":   {"dateTime": end_iso,   "timeZone": "Asia/Hong_Kong"},
+        "visibility": visibility,
         "reminders": {"useDefault": False, "overrides": [{"method": "popup", "minutes": 10}]}
     }
     data = json.dumps(event).encode()
@@ -336,7 +349,31 @@ def cal_create(token, cal_id, summary, start_iso, end_iso, description=""):
     )
     with urllib.request.urlopen(req, timeout=10) as r:
         resp = json.loads(r.read())
-        return resp.get("htmlLink", "")
+        link = resp.get("htmlLink", "")
+
+    # Always add a Brinc "Busy [private]" block for non-Brinc bookings
+    # so colleagues see unavailability without seeing personal details
+    if add_brinc_busy and cal_id != BRINC_CAL_ID:
+        try:
+            busy_event = {
+                "summary": "Busy",
+                "description": "Private — unavailable",
+                "start": {"dateTime": start_iso, "timeZone": "Asia/Hong_Kong"},
+                "end":   {"dateTime": end_iso,   "timeZone": "Asia/Hong_Kong"},
+                "visibility": "private",
+                "reminders": {"useDefault": False}
+            }
+            brinc_enc = urllib.parse.quote(BRINC_CAL_ID, safe="")
+            busy_req = urllib.request.Request(
+                f"https://www.googleapis.com/calendar/v3/calendars/{brinc_enc}/events",
+                data=json.dumps(busy_event).encode(), method="POST",
+                headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+            )
+            with urllib.request.urlopen(busy_req, timeout=10): pass
+        except Exception as e:
+            print(f"   ⚠️ Could not add Brinc busy block: {e}")
+
+    return link
 
 def get_busy_slots(token, cal_ids, day):
     """Return list of (start_dt, end_dt) tuples for the given day across all calendars."""
