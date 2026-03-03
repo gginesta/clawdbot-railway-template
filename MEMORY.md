@@ -160,7 +160,25 @@ Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 
 
 ---
 
-## 🐢 Mission Control (Feb 23, 2026)
+## 🐢 Mission Control — WHAT IT IS (fleet-wide definition)
+
+**TMNT Mission Control ≠ Notion.** These are two different systems.
+
+| System | What it is | Use for |
+|--------|-----------|---------|
+| **TMNT Mission Control (MC)** | Custom fleet dashboard (NextJS + Convex) | Fleet-wide tasks, agent status, heartbeats, cross-agent visibility |
+| **Notion Brinc HQ Tasks DB** | Raphael's domain task tracker | Brinc-specific work, proposals, sales tasks |
+
+**MC = https://tmnt-mission-control.vercel.app**
+**API = https://resilient-chinchilla-241.convex.site**
+**API Key = Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc**
+**Skill = /data/workspace/skills/mission-control/SKILL.md** (must be installed on all agents)
+
+Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|personal|fleet), `createdBy`, optional `assignees`, `priority` (p0-p3), `status`.
+
+---
+
+## 🐢 Mission Control — Build Details (Feb 23, 2026)
 
 - **Live:** https://tmnt-mission-control.vercel.app
 - **Repo:** github.com/gginesta/tmnt-mission-control (private)
