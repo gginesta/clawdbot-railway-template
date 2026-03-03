@@ -501,39 +501,45 @@ AGENT_PROJECTS = {"6fwH32grqrCJF23R"}  # Molty's Den
 
 def should_be_in_mc(task):
     """Pre-fill the 'In MC?' checkbox.
-    YES: agent-owned + multi-step work in Brinc/Cerebro/Mana/Fleet projects.
-    NO: personal/admin tasks, 15-min quick tasks, already in MC open."""
+    YES: agent-owned work in Brinc/Cerebro/Mana/Fleet projects.
+    NO: Guillermo-owned, personal tasks, pure admin (call/email/check).
+    Bias: when in doubt for agent tasks, tick. Guillermo can untick."""
     pid    = task.get("project_id", "")
     labels = task.get("labels", [])
     owner  = determine_owner(task)
-    est    = estimate_time(task)
+    content = task.get("content", "").lower()
 
     if "personal" in labels:   # explicit opt-out
         return False
     if "mc" in labels:         # explicit opt-in
         return True
-    # Agent-owned + non-trivial + in a tracked project
-    if owner in ("Molty", "Raphael", "Leonardo"):
-        if pid in SYNCED_TO_MC_PROJECTS or pid in AGENT_PROJECTS:
-            return est != "15min"  # skip trivial tasks
-    return False
+    if owner not in ("Molty", "Raphael", "Leonardo"):
+        return False  # Guillermo-owned → no MC task
+    if pid not in SYNCED_TO_MC_PROJECTS and pid not in AGENT_PROJECTS:
+        return False  # wrong project
+    # Skip obvious personal-admin tasks that have leaked into agent projects
+    # (e.g. "call dentist", "email accountant", "buy coffee") — these are not agent work
+    personal_admin = ["call dentist", "call doctor", "buy ", "order food", "book appointment", "book flight"]
+    if any(w in content for w in personal_admin):
+        return False
+    return True
 
 
 def should_book_calendar(task, section):
     """Pre-fill the 'Book Calendar?' checkbox.
     Philosophy: bias toward booking. Guillermo can always move a block.
-    YES: P1/P2 + owner=Guillermo. When in doubt, tick.
-    NO: agent-owned, P4, already in calendar (can't check here — post-review does conflict check)."""
+    YES: P1/P2 + owner=Guillermo + not backlog.
+    NO: agent-owned, P4, Backlog section."""
     owner    = determine_owner(task)
-    priority = task.get("priority", 1)  # Todoist: 4=P1, 3=P2, 2=P3, 1=P4
+    priority = task.get("priority", 1)  # Todoist inverted: 4=P1, 3=P2, 2=P3, 1=P4
 
     if owner != "Guillermo":
         return False  # agent work — no G time needed
-    if priority == 1:  # P4 in display
+    if priority == 1:  # P4 in display — don't book
         return False
-    if section == "Backlog" and priority <= 2:  # P3/P4 backlog — don't block
-        return False
-    # P1 (priority=4) or P2 (priority=3) owned by Guillermo → block
+    if section == "Backlog":
+        return False  # not due soon — don't block calendar for backlog items
+    # P1 (priority=4) or P2 (priority=3) owned by Guillermo, not backlog → book
     return priority >= 3
 
 
