@@ -1,30 +1,30 @@
 {
-  "version": "v2026.3.1",
-  "updated_at": "2026-03-02T22:04:03.859386+08:00",
+  "version": "v2026.3.2",
+  "updated_at": "2026-03-03T21:15:05.217756+08:00",
   "results": {
-    "molty": "\u2705",
+    "molty": "\u274c failed",
     "raphael": "\u2705",
     "leonardo": "\u2705"
   },
   "highlights": [
-    "Agents/Thinking defaults: set `adaptive` as the default thinking level for Anthropic Claude 4.6 models (including Bedrock Claude 4",
-    "Gateway/Container probes: add built-in HTTP liveness/readiness endpoints (`/health`, `/healthz`, `/ready`, `/readyz`) for Docker/K",
-    "Android/Nodes: add `camera.list`, `device.permissions`, `device.health`, and `notifications.actions` (`open`/`dismiss`/`reply`) on",
-    "Discord/Thread bindings: replace fixed TTL lifecycle with inactivity (`idleHours`, default 24h) plus optional hard `maxAgeHours` l",
-    "Telegram/DM topics: add per-DM `direct` + topic config (allowlists, `dmPolicy`, `skills`, `systemPrompt`, `requireTopic`), route D",
-    "Web UI/Cron i18n: localize cron page labels, filters, form help text, and validation/error messaging in English and zh-CN. (#29315",
-    "OpenAI/Streaming transport: make `openai` Responses WebSocket-first by default (`transport: \"auto\"` with SSE fallback), add shared",
-    "CLI/Config: add `openclaw config file` to print the active config file path resolved from `OPENCLAW_CONFIG_PATH` or the default lo"
+    "Secrets/SecretRef coverage: expand SecretRef support across the full supported user-supplied credential surface (64 targets total)",
+    "Tools/PDF analysis: add a first-class `pdf` tool with native Anthropic and Google PDF provider support, extraction fallback for no",
+    "Outbound adapters/plugins: add shared `sendPayload` support across direct-text-media, Discord, Slack, WhatsApp, Zalo, and Zalouser",
+    "Models/MiniMax: add first-class `MiniMax-M2.5-highspeed` support across built-in provider catalogs, onboarding flows, and MiniMax ",
+    "Sessions/Attachments: add inline file attachment support for `sessions_spawn` (subagent runtime only) with base64/utf8 encoding, t",
+    "Telegram/Streaming defaults: default `channels.telegram.streaming` to `partial` (from `off`) so new Telegram setups get live previ",
+    "Telegram/DM streaming: use `sendMessageDraft` for private preview streaming, keep reasoning/answer preview lanes separated in DM r",
+    "Telegram/voice mention gating: add optional `disableAudioPreflight` on group/topic config to skip mention-detection preflight tran"
   ],
   "incorporation": [
-    "\ud83d\udd12 13 security patches \u2014 update is mandatory, no config changes required",
-    "Thread-bound agent sessions \u2014 review sub-agent Discord routing",
+    "\ud83d\udd12 38 security patches \u2014 update is mandatory, no config changes required",
+    "Migrate TMNT credentials to `openclaw secrets` \u2014 stop hardcoding tokens in scripts",
     "Discord fixes apply to #command-center and squad channel monitoring",
-    "Telegram fixes apply to Guillermo's briefing and alert delivery",
     "Auth handling improvements \u2014 verify all agent tokens post-update",
-    "Overnight crons benefit automatically from reliability improvements"
+    "Sub-agent spawning improvements \u2014 check thread=true behaviour in Discord sessions",
+    "Telegram fixes apply to Guillermo's briefing and alert delivery"
   ],
   "is_critical": true,
-  "all_ok": true,
-  "sent_at": "2026-03-02T22:05:14.793571+08:00"
+  "all_ok": false,
+  "sent_at": "2026-03-03T21:17:03.667271+08:00"
 }
