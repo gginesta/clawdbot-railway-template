@@ -1273,7 +1273,7 @@ def main():
             except Exception:
                 squad_lines.append(f"{label}: could not read status file")
         else:
-            squad_lines.append(f"{label}: no pre-standup update received")
+            pass  # No file = agent didn't respond — omit silently, don't pollute the callout
     squad_status = "\n".join(squad_lines) if squad_lines else None
 
     # NOTE: tomorrow_task removed — Tomorrow's Focus is BLANK for Guillermo to fill
