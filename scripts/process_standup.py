@@ -27,12 +27,22 @@ STANDUP_DB_ID  = "2fe39dd69afd81f189f7e58925dad602"
 MOLTY_DEN_ID   = "6fwH32grqrCJF23R"
 BRINC_ID       = "6M5rpGgV6q865hrX"
 CEREBRO_ID     = "6g53F7ccF8HHjgXM"
-BRINC_CAL_ID      = "guillermo.ginesta@brinc.io"
-PERSONAL_CAL_ID   = "guillermo.ginesta@gmail.com"
-# SHENANIGANS_CAL_ID — family calendar. ID unknown, no service account access yet.
-# DO NOT book personal slots until this is resolved + Shenanigans access granted.
-# When set: personal events go here, plus a Brinc "Busy [private]" block.
-SHENANIGANS_CAL_ID = None  # TODO: get from Guillermo
+# Load calendar config from canonical source
+_CAL_CONFIG_PATH = "/data/workspace/credentials/calendar-config.json"
+with open(_CAL_CONFIG_PATH) as _f:
+    _CAL_CFG = json.load(_f)
+_CALS = _CAL_CFG["calendars"]
+
+BRINC_CAL_ID       = _CALS["brinc"]["id"]         # guillermo.ginesta@brinc.io
+PERSONAL_CAL_ID    = _CALS["personal"]["id"]       # guillermo.ginesta@gmail.com
+SHENANIGANS_CAL_ID = _CALS["shenanigans"]["id"]    # vuce6sc8mts8rfgvbsqtl62m1c@group.calendar.google.com
+
+# Life commitment blocks — always protect these slots (from calendar-config.json)
+# school_dropoff: 08:00-08:30 MO/WE/FR (LOCKED)
+# school_pickup: 10:30-11:00 MO/WE/FR (preferred, yield only for P1)
+# focus_between_runs: 08:30-10:30 WE/FR (no calls/meetings)
+_LIFE = _CAL_CFG.get("life_commitments", {})
+_WRITE_RULES = _CAL_CFG.get("write_rules", {})  # family→shenanigans, work_brinc→brinc, personal→personal
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8292515315:AAETOvDJgl4r13qF3_32qhpn8h7jIOVJQDA")
 TELEGRAM_CHAT_ID   = "1097408992"
 
@@ -705,10 +715,16 @@ def process(target_date: str):
         while tomorrow_dt.weekday() >= 5:
             tomorrow_dt += timedelta(days=1)
         search_from = tomorrow_dt.replace(hour=9, minute=0, second=0, microsecond=0)
-        cal_ids = [BRINC_CAL_ID, PERSONAL_CAL_ID]
-        # Determine which calendar based on keywords
+        # Check conflicts across ALL calendars (incl. Shenanigans for family events)
+        cal_ids = [BRINC_CAL_ID, PERSONAL_CAL_ID, SHENANIGANS_CAL_ID]
+        # Determine which calendar to write to (per write_rules in calendar-config.json)
         focus_lower = tomorrows_focus.lower()
-        target_cal = BRINC_CAL_ID if any(w in focus_lower for w in ["brinc", "raphael", "proposal", "helm", "client", "deal"]) else PERSONAL_CAL_ID
+        if any(w in focus_lower for w in ["brinc", "raphael", "proposal", "helm", "client", "deal"]):
+            target_cal = BRINC_CAL_ID
+        elif any(w in focus_lower for w in ["family", "stephanie", "memo", "kids", "school"]):
+            target_cal = SHENANIGANS_CAL_ID
+        else:
+            target_cal = PERSONAL_CAL_ID
 
         dur = estimate_duration(tomorrows_focus)
         slot_start, slot_end = find_free_slot(cal_token, cal_ids, dur, search_from)
@@ -718,7 +734,8 @@ def process(target_date: str):
                     cal_token, target_cal,
                     f"🎯 {tomorrows_focus[:80]}",
                     slot_start.isoformat(), slot_end.isoformat(),
-                    description=f"Tomorrow's Focus from standup {target_date}.\nSet by Guillermo."
+                    description=f"Tomorrow's Focus from standup {target_date}.\nSet by Guillermo.",
+                    add_brinc_busy=(target_cal != BRINC_CAL_ID)
                 )
                 day_fmt = slot_start.strftime("%a %b %-d")
                 time_fmt = f"{slot_start.strftime('%H:%M')}–{slot_end.strftime('%H:%M')}"
@@ -861,10 +878,18 @@ def process(target_date: str):
             dur_map = {"15min": 15, "30min": 30, "1h": 60, "2h+": 120}
             dur = dur_map.get(time_est, estimate_duration(title))
 
-            # Determine calendar
+            # Determine calendar (per write_rules + Shenanigans for family)
             brinc_kw = ["brinc", "raphael", "proposal", "helm", "client", "deal", "mana"]
-            target_cal = BRINC_CAL_ID if any(w in (project_disp + title).lower() for w in brinc_kw) else PERSONAL_CAL_ID
-            cal_ids = [BRINC_CAL_ID, PERSONAL_CAL_ID]
+            family_kw = ["family", "stephanie", "memo", "kids", "school", "havana"]
+            combo = (project_disp + title).lower()
+            if any(w in combo for w in brinc_kw):
+                target_cal = BRINC_CAL_ID
+            elif any(w in combo for w in family_kw):
+                target_cal = SHENANIGANS_CAL_ID
+            else:
+                target_cal = PERSONAL_CAL_ID
+            # Always check ALL calendars for conflicts (incl. Shenanigans)
+            cal_ids = [BRINC_CAL_ID, PERSONAL_CAL_ID, SHENANIGANS_CAL_ID]
 
             # Check for existing related event first
             related = find_related_events(cal_token, cal_ids, title, search_days=5)
@@ -881,7 +906,8 @@ def process(target_date: str):
                             cal_token, target_cal,
                             f"🎯 [{p_label}] {title[:70]}",
                             slot_start.isoformat(), slot_end.isoformat(),
-                            description=f"Focus block from standup {target_date}.\nG notes: {your_notes[:200]}"
+                            description=f"Focus block from standup {target_date}.\nG notes: {your_notes[:200]}",
+                            add_brinc_busy=(target_cal != BRINC_CAL_ID)
                         )
                         day_fmt  = slot_start.strftime("%a %b %-d")
                         time_fmt = f"{slot_start.strftime('%H:%M')}–{slot_end.strftime('%H:%M')}"

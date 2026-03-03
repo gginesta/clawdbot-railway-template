@@ -58,7 +58,7 @@
 |----------|-----|--------|
 | Brinc | `guillermo.ginesta@brinc.io` | ✅ Service account |
 | Personal | `guillermo.ginesta@gmail.com` | ✅ Service account |
-| **Shenanigans** (family) | ❓ Unknown | ❌ No access yet — MUST GET |
+| **Shenanigans** (family) | `vuce6sc8mts8rfgvbsqtl62m1c@group.calendar.google.com` | ✅ Service account |
 
 ### Rules
 1. **Check conflicts first** — query ALL calendars (including Shenanigans) before booking any slot
@@ -67,10 +67,8 @@
 4. **Every booking** → ALSO add a **"Busy" [private]** block on Brinc calendar so colleagues see unavailability without details
 5. Exception: Brinc meetings → Brinc calendar visible, no extra private block needed
 
-### ⚠️ Blocker: No Shenanigans Access
-Cannot safely book personal slots without Shenanigans access.
+### ✅ Shenanigans Access Confirmed
 Ask Guillermo to share Shenanigans calendar with service account or provide the ID.
-**DO NOT book personal time until this is resolved.**
 
 ---
 
