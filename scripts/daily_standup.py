@@ -1239,7 +1239,7 @@ def main():
     # 8. Add top blocks (summary callout + blank Tomorrow's Focus + DB link)
     print("8. Adding top blocks...")
     # Read prep state (from standup_prep.py run at 4:30 PM)
-    prep_file = f"/data/workspace/logs/standup-prep-{today.strftime('%Y-%m-%d')}.json"
+    prep_file = f"/data/workspace/logs/standup-prep-{today}.json"
     squad_status = None
     clarifying_questions = None
     if os.path.exists(prep_file):
@@ -1257,10 +1257,10 @@ def main():
 
     # Read agent status files (written by Raphael + Leonardo after 4:30 PM ping)
     # Falls back to "no update received" if files not present
-    today_str = today.strftime("%Y-%m-%d")
+    today_date = today  # Already a string
     squad_lines = []
     for agent, label in [("raphael", "🔴 Raphael"), ("leonardo", "🔵 Leonardo")]:
-        path = f"/data/shared/logs/standup-status-{today_str}-{agent}.txt"
+        path = f"/data/shared/logs/standup-status-{today_date}-{agent}.txt"
         if os.path.exists(path):
             try:
                 content = open(path).read().strip()
