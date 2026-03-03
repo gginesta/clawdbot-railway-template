@@ -822,6 +822,76 @@ def _get_overnight_summary(today: date) -> list[str] | None:
     return None
 
 
+def get_yesterdays_focus(today: date) -> str | None:
+    """Read yesterday's standup state file and fetch the Tomorrow's Focus callout text."""
+    STATE_FILE = "/data/workspace/logs/standup-state.json"
+    NOTION_KEY = "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"
+    NH = {"Authorization": f"Bearer {NOTION_KEY}", "Notion-Version": "2022-06-28"}
+    yesterday = (today - timedelta(days=1)).isoformat()
+
+    try:
+        if not os.path.exists(STATE_FILE):
+            return None
+        state = json.load(open(STATE_FILE))
+        # State file date should be yesterday's standup
+        if state.get("date") != yesterday:
+            return None
+        page_id = state.get("page_id")
+        if not page_id:
+            return None
+
+        req = urllib.request.Request(
+            f"https://api.notion.com/v1/blocks/{page_id}/children?page_size=20",
+            headers=NH
+        )
+        with urllib.request.urlopen(req, timeout=10) as r:
+            blocks = json.loads(r.read()).get("results", [])
+
+        for block in blocks:
+            if block.get("type") != "callout":
+                continue
+            rich_text = block.get("callout", {}).get("rich_text", [])
+            full_text = "".join(t.get("plain_text", "") for t in rich_text)
+            if "Tomorrow's Focus" in full_text or "Tomorrow's Top Priority" in full_text:
+                lines = full_text.strip().split("\n")
+                content_lines = [
+                    l.strip() for l in lines
+                    if l.strip()
+                    and "Tomorrow's Focus" not in l
+                    and "Tomorrow's Top Priority" not in l
+                    and "ONE thing" not in l
+                    and "makes tomorrow worthwhile" not in l
+                    and "calendar event" not in l
+                    and "One item only" not in l
+                ]
+                if content_lines:
+                    return " ".join(content_lines)
+        return None
+    except Exception:
+        return None
+
+
+def get_mc_attention_items(errors: list[str]) -> tuple[list[dict], list[dict]]:
+    """Return (under_review_tasks, blocked_tasks) from MC that need Guillermo's attention."""
+    MC_API = "https://resilient-chinchilla-241.convex.site"
+    MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+    try:
+        req = urllib.request.Request(
+            f"{MC_API}/api/tasks",
+            headers={"Authorization": f"Bearer {MC_KEY}"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as r:
+            tasks = json.loads(r.read())
+        if not isinstance(tasks, list):
+            tasks = tasks.get("tasks", [])
+        under_review = [t for t in tasks if t.get("status") in ("under_review", "review")][:5]
+        blocked = [t for t in tasks if t.get("status") == "blocked"][:5]
+        return under_review, blocked
+    except Exception as e:
+        errors.append(f"MC attention items unavailable: {e}")
+        return [], []
+
+
 def _get_overnight_squad_report(now: datetime) -> list[str] | None:
     """Read overnight report from consolidated log file (PLAN-008).
 
@@ -965,51 +1035,57 @@ def _format_agent_summary(agent: str, completed: list, review: list, flagged: li
 
 
 def _summarise_agent_log(path: str, emoji: str, label: str) -> str | None:
-    """Read an individual agent overnight log and return a one-line summary."""
+    """Read an individual agent overnight log and return a one-line summary.
+    
+    Handles new v2.1 log format:
+    ## ✅ Completed / ## 👀 Under Review / ## ❌ Failed / ## 🚧 Blocked / ## ⏭ Skipped
+    """
     try:
         with open(path) as f:
             content = f.read()
-        completed, review, flagged, failed = 0, [], 0, 0
+        completed, review, failed, blocked = 0, [], [], []
         section = None
         for line in content.split("\n"):
             line = line.strip()
-            # --- separator marks end of structured sections (e.g. pre-flight notes follow)
             if line == "---":
                 section = None
                 continue
-            if line.startswith("## ✅") or line == "## Completed":
+            if line.startswith("## ✅") or "Completed" in line and line.startswith("##"):
                 section = "done"
-            elif line.startswith("## 👀") or line == "## Under Review":
+            elif line.startswith("## 👀") or "Under Review" in line and line.startswith("##"):
                 section = "review"
-            elif line.startswith("## 🚩") or line == "## Flagged / Blocked":
-                section = "flagged"
-            elif line.startswith("## ❌") or line == "## Failed":
+            elif line.startswith("## ❌") or "Failed" in line and line.startswith("##"):
                 section = "failed"
-            elif line.startswith("### "):
-                # sub-headers like "### Pre-flight notes" — stop counting
+            elif line.startswith("## 🚧") or "Blocked" in line and line.startswith("##"):
+                section = "blocked"
+            elif line.startswith("## ⏭") or "Skipped" in line and line.startswith("##"):
+                section = "skipped"
+            elif line.startswith("## ") or line.startswith("### "):
                 section = None
             elif line.startswith("- ") and section:
                 item = line[2:].strip()
-                # skip placeholder "none" entries
-                if item.lower() in ("none", "(none)"):
+                if item.lower() in ("none", "(none)", ""):
                     continue
                 if section == "done":
                     completed += 1
                 elif section == "review":
-                    review.append(item.split("→")[0].strip()[:35])
-                elif section == "flagged":
-                    flagged += 1
+                    # Extract title before any "→" context
+                    review.append(item.split("→")[0].strip()[:40])
                 elif section == "failed":
-                    failed += 1
+                    # Extract why it failed
+                    failed.append(item[:60])
+                elif section == "blocked":
+                    # Extract the blocker ask
+                    blocked.append(item[:60])
         parts = []
         if completed:
             parts.append(f"✅ {completed} done")
         if review:
             parts.append(f"👀 {', '.join(review[:2])} — needs your review")
-        if flagged:
-            parts.append(f"🚩 {flagged} flagged")
         if failed:
-            parts.append(f"❌ {failed} failed")
+            parts.append(f"❌ {len(failed)} failed")
+        if blocked:
+            parts.append(f"🚧 {len(blocked)} blocked")
         if not parts:
             return None
         return f"{emoji} {label}: " + " | ".join(parts)
@@ -1112,6 +1188,9 @@ def build_message(
     email_highlights: list[EmailHighlight],
     squad: SquadStatus | None,
     errors: list[str],
+    yesterdays_focus: str | None = None,
+    mc_under_review: list[dict] | None = None,
+    mc_blocked: list[dict] | None = None,
 ) -> str:
     today = now.date()
 
@@ -1125,7 +1204,40 @@ def build_message(
 
     lines.append("")
 
-    # 2) Weather
+    # 2) Yesterday's declared focus — accountability loop
+    if yesterdays_focus:
+        lines.append(f"📌 Yesterday's Focus: \"{yesterdays_focus}\"")
+        lines.append("")
+
+    # 3) Overnight report — under review + blocked + squad summary
+    squad_overnight = _get_overnight_squad_report(now)
+    has_overnight = squad_overnight or mc_under_review or mc_blocked
+    if has_overnight:
+        lines.append("🌙 Overnight Report")
+        # Under review first — these need Guillermo's eyes
+        if mc_under_review:
+            lines.append("👀 Needs your review:")
+            for t in mc_under_review[:3]:
+                ags = ", ".join(t.get("assignees", []))
+                desc = (t.get("description") or "")[:60]
+                lines.append(f"  • {t.get('title','?')[:55]} ({ags})")
+                if desc:
+                    lines.append(f"    {desc}")
+        # Blocked — specific asks
+        if mc_blocked:
+            lines.append("🚧 Blocked — need your input:")
+            for t in mc_blocked[:3]:
+                ags = ", ".join(t.get("assignees", []))
+                desc = (t.get("description") or "")[:80]
+                lines.append(f"  • {t.get('title','?')[:55]} ({ags})")
+                if desc:
+                    lines.append(f"    Ask: {desc}")
+        # Squad summary from logs
+        if squad_overnight:
+            lines.extend(squad_overnight)
+        lines.append("")
+
+    # 4) Weather
     if weather:
         tmin = weather.today.tmin
         tmax = weather.today.tmax
@@ -1300,18 +1412,6 @@ def build_message(
     else:
         lines.append("No overnight highlights")
 
-    # 7) Overnight squad report (MC-based per-agent) + Molty log detail
-    squad_overnight = _get_overnight_squad_report(now)
-    molty_log = _get_overnight_summary(today)
-    if squad_overnight or molty_log:
-        lines.append("")
-        lines.append("🌙 Overnight Report")
-        if squad_overnight:
-            lines.extend(squad_overnight)
-        elif molty_log:
-            # Fallback: just show Molty's log if MC has no overnight data
-            lines.extend(molty_log)
-
     # 8) Notion comment mentions (recent pages with comments)
     notion_comments = _get_notion_comment_mentions(lookback_days=3)
     if notion_comments:
@@ -1478,6 +1578,10 @@ def main() -> int:
     # Squad status from Mission Control
     squad = get_squad_status(errors)
 
+    # Yesterday's Focus + MC attention items
+    yesterdays_focus = get_yesterdays_focus(today)
+    mc_under_review, mc_blocked = get_mc_attention_items(errors)
+
     # Weekend mode adjustments
     if dow in {"SA", "SU"}:
         p1_due = [t for t in tasks_due if t.priority == 4]
@@ -1497,6 +1601,9 @@ def main() -> int:
         email_highlights=email_highlights,
         squad=squad,
         errors=errors,
+        yesterdays_focus=yesterdays_focus,
+        mc_under_review=mc_under_review,
+        mc_blocked=mc_blocked,
     )
 
     sys.stdout.write(msg)

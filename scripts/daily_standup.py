@@ -1238,8 +1238,28 @@ def main():
 
     # 8. Add top blocks (summary callout + blank Tomorrow's Focus + DB link)
     print("8. Adding top blocks...")
+    # Read prep state (from standup_prep.py run at 4:30 PM)
+    prep_file = f"/data/workspace/logs/standup-prep-{today.strftime('%Y-%m-%d')}.json"
+    squad_status = None
+    clarifying_questions = None
+    if os.path.exists(prep_file):
+        try:
+            prep = json.load(open(prep_file))
+            squad_status = prep.get("squad_status")
+            email_highlights = prep.get("email_highlights", [])
+            if email_highlights:
+                # Add email highlights to clarifying questions block
+                lines = ["📬 Email items that may affect today's tasks:"]
+                for e in email_highlights[:3]:
+                    lines.append(f"• {e.get('sender','?')}: {e.get('subject','?')[:70]}")
+                clarifying_questions = "\n".join(lines)
+            print(f"   Prep state loaded: {prep.get('summary', 'ok')}")
+        except Exception as e:
+            print(f"   ⚠️ Could not read prep state: {e}")
+
     # NOTE: tomorrow_task removed — Tomorrow's Focus is BLANK for Guillermo to fill
-    add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks, persistent_db_id=persistent_db_id)
+    add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks,
+                   persistent_db_id=persistent_db_id, squad_status=squad_status, clarifying_questions=clarifying_questions)
 
     # 9. Load existing tasks into cache (one query, prevents duplicates)
     print("9. Loading existing tasks into cache...")
