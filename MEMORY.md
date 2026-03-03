@@ -119,8 +119,8 @@ Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 
 50. **Browser stale lock files:** Brave won't start after redeploy due to `Singleton*` lock files persisting on volume. Manual fix: `rm -f /data/.openclaw/browser/*/user-data/Singleton*`. Permanent fix in startup.sh (committed f0f39aa).
 51. **Anthropic is a built-in provider:** No `models.providers.anthropic` block needed. Just `auth.profiles.anthropic:default` with `mode: "token"`.
 52. **Sonnet 4.6 replaces Opus 4.6 as primary:** 5x cheaper, 1M context, faster, wins on agentic benchmarks. Switched fleet-wide Feb 20.
-53. **All cron/heartbeat on direct Anthropic Haiku:** `anthropic/claude-3-5-haiku-latest` — uses Max plan daily allowance, not OpenRouter credits.54. **Calendar ownership rule:** NEVER put Molty tasks on Guillermo's calendar. Only tasks requiring Guillermo's time.
-55. **ggv.molt@gmail.com GCP project reinstated (Feb 22).** `gog` binary at `/usr/local/bin/gog`. Keyring at `/data/workspace/credentials/gogcli-keyring/`. Morning briefing self-heals on restart.
+53. **All cron/heartbeat on direct Anthropic Haiku:** `anthropic/claude-haiku-4-5` direct — Max plan daily allowance.
+54. **Calendar ownership rule:** NEVER put Molty tasks on Guillermo's calendar. Only tasks requiring Guillermo's time.
 56. **`gateway restart` reloads config only, not binary.** Full Railway redeploy required for OpenClaw version upgrades.
 57. **`OPENCLAW_GIT_REF` Railway env var** controls which OpenClaw version gets cloned at container start. Update it + auto-redeploy to upgrade fleet.
 60. **Shared credentials rule:** Credentials for multiple agents go in `/data/shared/credentials/` from day one. Agents read at startup — no distribution step. Webhooks deliver messages, not file writes. (Feb 23 2026.)
@@ -130,11 +130,9 @@ Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 
 65. **OpenClaw auth: auth.json is the TRUE source, auth-profiles.json is derived.** Never write to auth-profiles.json directly. Fix auth via auth.json or `openclaw models auth paste-token` (TTY required). Path: `/data/.openclaw/agents/main/agent/auth.json`.
 66. **Isolated sub-agent webhook processes do NOT inherit container env vars.** Scripts get empty strings. Must hardcode values.
 67. **Railway CLI `railway shell` = local subshell, NOT container.** Use `railway connect` to SSH into the container.
-68. **Leonardo Anthropic auth fixed Feb 25** via Railway start command injection. FAILED deployments still write to persistent volume — two-step pattern: (1) inject fix script as start command → deploy FAILS but files written, (2) revert start command → redeploy SUCCESS reads fixed files.
-69. **Raphael Anthropic auth restored Feb 28** via `ANTHROPIC_API_KEY` Railway env var. Simpler than two-step injection when token is available. The `default` secrets provider reads env vars first.
+68. **Auth fix patterns:** Leonardo via Railway start command injection (two-step: FAIL writes files, revert SUCCESS reads). Raphael via `ANTHROPIC_API_KEY` env var (simpler when token available — `default` provider reads env vars first).
 70. **`agents.defaults.model` controls both main + sub-agent sessions.** No separate `agents.defaults.subagents.model` key exists.
 71. **OpenClaw cooldown ≠ API rate limit.** Internal backoff after repeated errors. Self-resolving in ~5-15 min, per-process only.
-72. **Per-IP rate limits isolate agents.** Different Railway IPs → one agent hitting limits doesn't affect others on the same token.
 73. **Don't spam webhooks + sub-agent tests rapidly.** Burns rate limits and triggers cooldowns on all providers. Space by 5+ min.
 74. **Always include openai-codex/gpt-5.2 as final fallback.** OAuth-cached, no rate limits, supports tools. Fleet chain: `anthropic/claude-sonnet-4-6` → `anthropic/claude-haiku-4-5` → `xai/grok-3` → `openai-codex/gpt-5.2`.
 77. **Verify current state before reporting a task incomplete.** Daily logs go stale. Check config files, APIs, and MC before claiming something isn't done.
@@ -177,13 +175,8 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 - **Live:** www.meetcerebro.com — Railway project `efcddaea-6972-...`, service `456f8881-8927-...`, env `cb8a3105-90b5-...`
 - **Tech:** React+TS+Tailwind / Node+Express / Railway Postgres / Gemini OCR / xAI Grok / Stripe / Cloudinary / Resend
 
-### Plans
-- **Dev plan:** `/data/shared/cerebro/CEREBRO-DEVELOPMENT-PLAN.md` (3 workstreams: A=Molty/unblock, B=Leonardo+Codex/polish, C=Guillermo+Raphael/sell)
-- **Codex plan:** `/data/shared/cerebro/CODEX-INTEGRATION-PLAN.md` (GitHub issues → Codex execution → auto-deploy)
-- **Target:** 10 paying customers in 12 weeks
-
-### Files
-- **Local:** `/data/shared/cerebro/meetcerebro/` (Syncthing copy, no git history)
+- **Plans:** dev plan + codex plan in `/data/shared/cerebro/`. Target: 10 paying customers in 12 weeks.
+- **Local copy:** `/data/shared/cerebro/meetcerebro/` (Syncthing, no git history)
 
 87. **`sessionTarget: isolated` mandatory for `agentTurn` crons.** `sessionTarget: main` only for `systemEvent`. Isolated crons can't use memory_search — use `cat` + `curl` for pre-flight.
 88. **Overnight cron pre-flight (mandatory):** (1) cat memory logs, (2) curl MC for task statuses, (3) skip if already in logs. No memory_search in isolated sessions.
