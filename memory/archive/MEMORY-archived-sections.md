@@ -6,7 +6,7 @@
 ### Build Queue (Molty's Den 🦎)
 | Project | Status | Priority | Next Step |
 |---------|--------|----------|-----------|
-| **Unbrowse DIY** (API Skill Auto-Capture) | ✅ Phase 1 live | P2 | Test on real authenticated site (HubSpot?) |
+| **Unbrowse DIY** (API Skill Auto-Capture) | ✅ Built, audited 2026-03-03 | Parked | No current use case — pull out for undocumented portals only |
 | **Morning Briefing** (7:30 AM Telegram) | Script ready | P2 | Deploy cron when Guillermo says go |
 | **WebClaw** (Better web UI) | Scoped | P2 | Deploy vanilla this weekend |
 | **Smart Scheduling Engine** | Spec done | P2 | Build Phase 1 (fetch + classify) |

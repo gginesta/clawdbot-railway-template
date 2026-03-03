@@ -204,6 +204,7 @@ Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 
 98. **Standup system v2.1 COMPLETE (Mar 3 2026).** See standup section above. Tonight is first live run.
 99. **Backup cron d9da8767:** 21:00 HKT, backup.sh only. Never move without explicit Guillermo confirmation. Spurious "21:30" webhook on 2026-03-03 was ignored (confused agent status check).
 100. **MC fleet tasks (Molty):** 13 active, execute overnight P2 first. B2 Dark Mode + C5 File Attachments parked (Guillermo, Mar 3).
+101. **Unbrowse DIY — audited 2026-03-03. PARKED.** Code is good (cdp-capture.js + skill-gen.py + wrapper). Gaps: requires interactive browsing + manual Brave debug port + no fleet distribution + no skill registration + OAuth not handled. NOT worth deploying — all current integrations (HubSpot/Notion/Todoist/Cerebro) have documented APIs. Pull out only if we ever need to call an undocumented internal portal/tool with no public API. Scripts at: `scripts/api-capture/`. Suggested P3 improvements: auto-browse mode, credential persistence, fleet directive on generation.
 
 ## 🏥 Insurance & Benefits
 
