@@ -104,3 +104,13 @@ Task | Your Notes | Action (Keep/Done/Drop/Reschedule) | Owner (G/Molty/Raphael/
 ## Overnight log location
 /data/shared/logs/overnight-<agent>-YYYY-MM-DD.md
 Consolidated: /data/shared/logs/overnight-consolidated-YYYY-MM-DD.md
+
+## Scripts + Crons
+- standup_prep.py — 4:30 PM HKT (cron ad96575e): triage Todoist, ping squad, sync MC, scan email → writes standup-prep-YYYY-MM-DD.json
+- daily_standup.py — 5PM (cron bdb28765): reads prep state, generates Notion page
+- process_standup.py — triggered by 'standup done': calendars, MC, dispatch, Todoist
+- morning_briefing.py — 6:30 AM: Yesterday's Focus + overnight report + calendar + tasks
+
+## Morning Briefing Order (v2.1)
+Yesterday's Focus → Overnight Report (under_review/blocked/squad) → Weather → Calendar → Tasks → Squad → Email → Fleet
+
