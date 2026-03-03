@@ -51,6 +51,29 @@
 
 ---
 
+## 📅 Calendar Booking Rules (Guillermo — confirmed 2026-03-03)
+
+### Calendar IDs
+| Calendar | ID | Access |
+|----------|-----|--------|
+| Brinc | `guillermo.ginesta@brinc.io` | ✅ Service account |
+| Personal | `guillermo.ginesta@gmail.com` | ✅ Service account |
+| **Shenanigans** (family) | ❓ Unknown | ❌ No access yet — MUST GET |
+
+### Rules
+1. **Check conflicts first** — query ALL calendars (including Shenanigans) before booking any slot
+2. **Personal events** → book on **Shenanigans** calendar
+3. **Brinc events** → book on **Brinc** calendar, visible (not private)
+4. **Every booking** → ALSO add a **"Busy" [private]** block on Brinc calendar so colleagues see unavailability without details
+5. Exception: Brinc meetings → Brinc calendar visible, no extra private block needed
+
+### ⚠️ Blocker: No Shenanigans Access
+Cannot safely book personal slots without Shenanigans access.
+Ask Guillermo to share Shenanigans calendar with service account or provide the ID.
+**DO NOT book personal time until this is resolved.**
+
+---
+
 ## 📧 Google Workspace — ✅ gog CLI (authed Feb 19)
 
 | What | Value |
