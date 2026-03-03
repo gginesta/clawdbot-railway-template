@@ -51,24 +51,37 @@
 
 ---
 
-## 📅 Calendar Booking Rules (Guillermo — confirmed 2026-03-03)
+## 📅 Calendar Booking Rules — STANDING RULE (confirmed Guillermo 2026-03-03)
 
 ### Calendar IDs
-| Calendar | ID | Access |
-|----------|-----|--------|
-| Brinc | `guillermo.ginesta@brinc.io` | ✅ Service account |
-| Personal | `guillermo.ginesta@gmail.com` | ✅ Service account |
-| **Shenanigans** (family) | `vuce6sc8mts8rfgvbsqtl62m1c@group.calendar.google.com` | ✅ Service account |
+| Calendar | ID | Access | Write rule |
+|----------|-----|--------|------------|
+| Brinc | `guillermo.ginesta@brinc.io` | ✅ | Brinc work events — visible to colleagues |
+| Personal | `guillermo.ginesta@gmail.com` | ✅ | Personal / Mana / Molty infra |
+| **Shenanigans** | `vuce6sc8mts8rfgvbsqtl62m1c@group.calendar.google.com` | ✅ | Family events |
 
-### Rules
-1. **Check conflicts first** — query ALL calendars (including Shenanigans) before booking any slot
-2. **Personal events** → book on **Shenanigans** calendar
-3. **Brinc events** → book on **Brinc** calendar, visible (not private)
-4. **Every booking** → ALSO add a **"Busy" [private]** block on Brinc calendar so colleagues see unavailability without details
-5. Exception: Brinc meetings → Brinc calendar visible, no extra private block needed
+**Service account:** `molty-assistant@molty-assistant-487823.iam.gserviceaccount.com`
+**Full config:** `/data/workspace/credentials/calendar-config.json`
 
-### ✅ Shenanigans Access Confirmed
-Ask Guillermo to share Shenanigans calendar with service account or provide the ID.
+### Booking Rules
+1. **Always check ALL 3 calendars for conflicts** before booking any slot
+2. **Family events** → Shenanigans calendar
+3. **Personal/work events** → Personal calendar
+4. **Brinc events** → Brinc calendar, visible (colleagues can see the name)
+5. **Every non-Brinc booking** → also create "Busy [private]" block on Brinc calendar
+
+### Protected Slots (never book over these)
+| Slot | Days | Type |
+|------|------|------|
+| 08:00–08:30 | Mo/We/Fr | School drop-off (LOCKED) |
+| 10:30–11:00 | Mo/We/Fr | School pick-up (preferred, yield only for P1) |
+| 08:30–10:30 | We/Fr | Focus time — no calls/meetings |
+
+### Energy Schedule (prefer these windows)
+- **09:00–12:00** — Deep work (P1/P2 tasks)
+- **12:00–14:00** — Light tasks / lunch
+- **14:00–17:00** — Meetings / calls
+- **17:00–18:00** — Standup + planning
 
 ---
 
