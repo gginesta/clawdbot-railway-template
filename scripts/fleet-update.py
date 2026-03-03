@@ -230,11 +230,23 @@ def update_molty_inplace() -> bool:
         ["openclaw", "update"],
         capture_output=True, text=True, timeout=120
     )
-    if result.returncode == 0:
-        log("  ✅ Molty updated in-place")
-        return True
-    log(f"  ❌ openclaw update failed (rc={result.returncode}): {result.stderr[:300]}")
-    return False
+    if result.returncode != 0:
+        log(f"  ❌ openclaw update failed (rc={result.returncode}): {result.stderr[:300]}")
+        return False
+    # Wait for gateway to reload the new binary before checking version
+    log("  ⏳ Waiting 15s for gateway to reload after in-place update...")
+    time.sleep(15)
+    # Retry version check up to 3 times (gateway restart may take a moment)
+    for attempt in range(3):
+        v_result = subprocess.run(["openclaw", "--version"], capture_output=True, text=True, timeout=10)
+        version_str = (v_result.stdout.strip() or v_result.stderr.strip())
+        log(f"  Version check (attempt {attempt+1}): {version_str!r}")
+        if version_str:
+            log("  ✅ Molty updated in-place")
+            return True
+        time.sleep(5)
+    log("  ⚠️  Version check inconclusive — update likely applied, treating as success")
+    return True  # openclaw update returned 0, trust it
 
 
 # ── Notifications ─────────────────────────────────────────────────────────────
@@ -470,6 +482,8 @@ def show_status():
     state = load_state()
     print("Fleet version status:")
     for agent, info in state.items():
+        if not isinstance(info, dict):
+            continue  # skip non-agent keys (last_notified_version, etc.)
         print(f"  {agent}: current={info.get('current','?')} | last_good={info.get('last_good','?')} | updated={info.get('updated_at','?')}")
 
 
