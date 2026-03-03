@@ -1,20 +1,24 @@
 #!/data/workspace/.venv/bin/python3
 """
-Daily Standup Script v2 — Two-table format with full pre-triage.
+Daily Standup Script v3 — Redesigned 2026-03-03 per agreed system v2.1
 
 PAGE STRUCTURE:
-1. 🎯 Top Priority (callout at top)
-2. ✅ Completed since last standup (bullet list)
-3. 🔥 Needs Your Input (Table 1) — new, untriaged, needs Guillermo's decision
-4. 📋 Active Pipeline (Table 2) — decided tasks with clear plans
-5. 🧱 Blockers
+1. 📋 Summary callout (situation, squad status)
+2. 🎯 Tomorrow's Focus — BLANK callout for Guillermo to fill (ONE item)
+3. 📬 Email highlights (if any)
+4. ❓ Clarifying questions (if any)
+5. 📋 Task DB — persistent, pre-triaged
+6. 🧱 Blockers
 
 RULES:
 - ALL tasks are fully triaged BEFORE the page is sent
-- Titles are rewritten to be clear and actionable
+- Titles are rewritten to be clear and actionable + 🦎 at end (first intake only)
 - Every task has priority, time estimate, owner, notes
-- "Needs triage" is NEVER acceptable in Molty's Notes
-- Your Notes is the 2nd column for quick input
+- Book Calendar? pre-ticked for P1/P2 owner=Guillermo (bias: tick more not less)
+- In MC? pre-ticked for agent-owned multi-step work
+- Action column: Keep / Done / Drop / Reschedule ONLY (routing is Owner column)
+- NO automatic calendar blocking at generation time — calendar happens post-review
+- Tomorrow's Focus: BLANK — Guillermo writes ONE item — it becomes a calendar event
 """
 import json, requests, sys, time, os, uuid, urllib.request
 from collections import defaultdict
@@ -34,8 +38,8 @@ NOTION_TOKEN_V2_PATH = "/data/workspace/credentials/notion-token-v2.txt"
 PERSISTENT_DB_CONFIG = "/data/workspace/credentials/notion-standup-db.json"
 
 # Desired column order for the persistent standup DB
-COLUMN_ORDER = ["Task", "Your Notes", "In MC?", "Action", "Due Date", "Molty's Notes", "Owner", "Priority", "Section", "Time Est.", "Project", "Standup Date", "Type"]
-COLUMN_WIDTHS = {"Task": 280, "Your Notes": 220, "In MC?": 80, "Action": 130, "Due Date": 120, "Molty's Notes": 280, "Owner": 110, "Priority": 90, "Section": 100, "Time Est.": 90, "Project": 120, "Standup Date": 120, "Type": 130}
+COLUMN_ORDER = ["Task", "Your Notes", "Action", "Owner", "Book Calendar?", "In MC?", "Due Date", "Priority", "Time Est.", "Project", "Section", "Molty's Notes", "Standup Date", "Type"]
+COLUMN_WIDTHS = {"Task": 280, "Your Notes": 220, "Action": 130, "Owner": 110, "Book Calendar?": 100, "In MC?": 80, "Due Date": 120, "Priority": 90, "Time Est.": 90, "Project": 120, "Section": 100, "Molty's Notes": 280, "Standup Date": 120, "Type": 130}
 
 
 def fix_column_order(db_block_id: str) -> bool:
@@ -381,15 +385,19 @@ def get_tomorrow_priority(all_tasks, tomorrow):
     return all_tasks[0] if all_tasks else None
 
 
-def add_top_blocks(page_id, today_disp, tomorrow_disp, completed, needs_input_count, pipeline_count, overdue_tasks, tomorrow_task, persistent_db_id=None):
-    """Add top priority callout, tomorrow focus, completed section, and link to persistent DB."""
+def add_top_blocks(page_id, today_disp, tomorrow_disp, completed, needs_input_count, pipeline_count, overdue_tasks, tomorrow_task=None, persistent_db_id=None, squad_status=None, clarifying_questions=None):
+    """Add summary callout, blank Tomorrow's Focus, optional email/question blocks, completed section."""
     children = []
 
-    # Summary callout
+    # Summary callout — situation + squad status
     overdue_summary = ""
     if overdue_tasks:
         overdue_lines = [f"• {t['content'][:60]}" for t in overdue_tasks[:3]]
-        overdue_summary = f"\n\n🔥 Overdue:\n" + "\n".join(overdue_lines)
+        overdue_summary = "\n\n🔥 Overdue:\n" + "\n".join(overdue_lines)
+
+    squad_text = ""
+    if squad_status:
+        squad_text = f"\n\n{squad_status}"
 
     children.append({
         "object": "block", "type": "callout",
@@ -398,24 +406,37 @@ def add_top_blocks(page_id, today_disp, tomorrow_disp, completed, needs_input_co
                 f"Daily Standup — {today_disp}\n"
                 f"🎯 {needs_input_count} items need your input | 📋 {pipeline_count} in active pipeline"
                 f"{overdue_summary}"
+                f"{squad_text}"
             }}],
             "icon": {"type": "emoji", "emoji": "📋"},
             "color": "default"
         }
     })
 
-    # Tomorrow's top priority callout
-    if tomorrow_task:
-        task_name = tomorrow_task["content"][:120]
+    # Tomorrow's Focus — BLANK. Guillermo fills in ONE item. It becomes a calendar event.
+    children.append({
+        "object": "block", "type": "callout",
+        "callout": {
+            "rich_text": [
+                {"text": {"content": f"🎯 Tomorrow's Focus ({tomorrow_disp})\n"}, "annotations": {"bold": True}},
+                {"text": {"content": "Write the ONE thing that makes tomorrow worthwhile.\nThis becomes a calendar event. One item only."}, "annotations": {"color": "gray", "italic": True}},
+            ],
+            "icon": {"type": "emoji", "emoji": "🎯"},
+            "color": "yellow_background"
+        }
+    })
+
+    # Clarifying questions (if any)
+    if clarifying_questions:
         children.append({
             "object": "block", "type": "callout",
             "callout": {
                 "rich_text": [
-                    {"text": {"content": f"Tomorrow's top priority ({tomorrow_disp})\n"}, "annotations": {"bold": True}},
-                    {"text": {"content": task_name}}
+                    {"text": {"content": "❓ Clarifying Questions — answer these before reviewing the table\n"}, "annotations": {"bold": True}},
+                    {"text": {"content": clarifying_questions}}
                 ],
-                "icon": {"type": "emoji", "emoji": "🎯"},
-                "color": "yellow_background"
+                "icon": {"type": "emoji", "emoji": "❓"},
+                "color": "blue_background"
             }
         })
 
@@ -474,18 +495,46 @@ def add_footer(page_id):
     }, timeout=15)
 
 
-# Todoist projects that sync to MC by default (Option C rules)
-SYNCED_TO_MC_PROJECTS = {"6M5rpGgV6q865hrX", "6Rr9p6MxWHFwHXGC"}  # Brinc, Mana Capital
+# Todoist projects that sync to MC by default
+SYNCED_TO_MC_PROJECTS = {"6M5rpGgV6q865hrX", "6Rr9p6MxWHFwHXGC", "6g53F7ccF8HHjgXM"}  # Brinc, Mana, Cerebro
+AGENT_PROJECTS = {"6fwH32grqrCJF23R"}  # Molty's Den
 
 def should_be_in_mc(task):
-    """Pre-fill the 'In MC?' checkbox based on Option C sync rules."""
+    """Pre-fill the 'In MC?' checkbox.
+    YES: agent-owned + multi-step work in Brinc/Cerebro/Mana/Fleet projects.
+    NO: personal/admin tasks, 15-min quick tasks, already in MC open."""
     pid    = task.get("project_id", "")
     labels = task.get("labels", [])
-    if "personal" in labels:  # explicit opt-out
+    owner  = determine_owner(task)
+    est    = estimate_time(task)
+
+    if "personal" in labels:   # explicit opt-out
         return False
-    if "mc" in labels:        # explicit opt-in
+    if "mc" in labels:         # explicit opt-in
         return True
-    return pid in SYNCED_TO_MC_PROJECTS
+    # Agent-owned + non-trivial + in a tracked project
+    if owner in ("Molty", "Raphael", "Leonardo"):
+        if pid in SYNCED_TO_MC_PROJECTS or pid in AGENT_PROJECTS:
+            return est != "15min"  # skip trivial tasks
+    return False
+
+
+def should_book_calendar(task, section):
+    """Pre-fill the 'Book Calendar?' checkbox.
+    Philosophy: bias toward booking. Guillermo can always move a block.
+    YES: P1/P2 + owner=Guillermo. When in doubt, tick.
+    NO: agent-owned, P4, already in calendar (can't check here — post-review does conflict check)."""
+    owner    = determine_owner(task)
+    priority = task.get("priority", 1)  # Todoist: 4=P1, 3=P2, 2=P3, 1=P4
+
+    if owner != "Guillermo":
+        return False  # agent work — no G time needed
+    if priority == 1:  # P4 in display
+        return False
+    if section == "Backlog" and priority <= 2:  # P3/P4 backlog — don't block
+        return False
+    # P1 (priority=4) or P2 (priority=3) owned by Guillermo → block
+    return priority >= 3
 
 
 # Column order matters! Notion respects dict insertion order on creation.
@@ -493,16 +542,14 @@ def should_be_in_mc(task):
 DB_PROPERTIES = {
     "Task": {"title": {}},
     "Your Notes": {"rich_text": {}},
-    "In MC?": {"checkbox": {}},
     "Action": {"select": {"options": [
         {"name": "✅ Keep", "color": "green"},
         {"name": "📅 Reschedule", "color": "yellow"},
         {"name": "🗑️ Drop", "color": "red"},
-        {"name": "🦎 Molty", "color": "green"},
-        {"name": "🔴 Raphael", "color": "red"},
-        {"name": "🔵 Leonardo", "color": "blue"},
         {"name": "✔️ Done", "color": "green"},
     ]}},
+    "Book Calendar?": {"checkbox": {}},
+    "In MC?": {"checkbox": {}},
     "Due Date": {"date": {}},
     "Molty's Notes": {"rich_text": {}},
     "Owner": {"select": {"options": [
@@ -759,6 +806,7 @@ def add_task_to_db(db_id, task, section, today, task_type="Needs Input", sort_or
     time_est = estimate_time(task)
     notes = generate_notes(task, section, today)
     in_mc = should_be_in_mc(task)
+    book_cal = should_book_calendar(task, section)
 
     children = task.get("_children", [])
     if children:
@@ -771,6 +819,7 @@ def add_task_to_db(db_id, task, section, today, task_type="Needs Input", sort_or
 
     props = {
         "Task": {"title": [{"text": {"content": task["content"]}}]},
+        "Book Calendar?": {"checkbox": book_cal},
         "In MC?": {"checkbox": in_mc},
         "Project": {"select": {"name": project}},
         "Priority": {"select": {"name": priority}},
@@ -1181,10 +1230,10 @@ def main():
     print("7. Getting/creating persistent standup DB...")
     persistent_db_id = get_or_create_persistent_db(page_id)
 
-    # 8. Add top blocks (callout + tomorrow priority + completed + link to persistent DB)
+    # 8. Add top blocks (summary callout + blank Tomorrow's Focus + DB link)
     print("8. Adding top blocks...")
-    tomorrow_task = get_tomorrow_priority(tasks, tomorrow)
-    add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks, tomorrow_task, persistent_db_id)
+    # NOTE: tomorrow_task removed — Tomorrow's Focus is BLANK for Guillermo to fill
+    add_top_blocks(page_id, disp, tomorrow_disp, completed, len(needs_input), len(pipeline), overdue_tasks, persistent_db_id=persistent_db_id)
 
     # 9. Load existing tasks into cache (one query, prevents duplicates)
     print("9. Loading existing tasks into cache...")
@@ -1209,8 +1258,8 @@ def main():
     print("12. Adding footer...")
     add_footer(page_id)
 
-    # 12. Block calendar for the week
-    cal_blocks = block_week_calendar(tasks, today, tomorrow)
+    # Calendar blocking removed from generation — happens post-review only (process_standup.py)
+    cal_blocks = []
 
     # Summary
     page_url = f"https://www.notion.so/{page_id.replace('-', '')}"
@@ -1224,7 +1273,7 @@ def main():
     print(f"📄 Page: {page_url}")
     print(f"🗃️  DB:   {db_url}")
 
-    # Build Telegram summary lines for caller
+    # Build Telegram summary
     tg_lines = []
     if overdue_tasks:
         tg_lines.append("🔥 *Overdue:*")
@@ -1232,23 +1281,19 @@ def main():
             due = t.get("due", {}).get("date", "")[:10] if t.get("due") else "?"
             tg_lines.append(f"  • {t['content'][:50]} (due {due})")
     if needs_input:
-        tg_lines.append(f"\n🎯 *{len(needs_input)} items need your decision*")
+        tg_lines.append(f"\n🎯 *{len(needs_input)} items need your input*")
         for t in needs_input[:3]:
             tg_lines.append(f"  • {t['content'][:50]}")
-    molty_today = [t for t in tasks if determine_owner(t) == "Molty" and t.get("_section") in ("Today", "Overdue")]
-    if molty_today:
-        tg_lines.append(f"\n✅ *Molty handling today:*")
-        for t in molty_today[:3]:
-            tg_lines.append(f"  • {t['content'][:50]}")
     if completed:
-        tg_lines.append(f"\n🏆 *Completed:* {len(completed)} tasks since last standup")
-    if cal_blocks:
-        tg_lines.append(f"\n📅 *Calendar blocked ({len(cal_blocks)} focus blocks):*")
-        for b in cal_blocks:
-            day_fmt = datetime.strptime(b["day"], "%Y-%m-%d").strftime("%a %b %-d")
-            start_t = b["start"][11:16]
-            end_t   = b["end"][11:16]
-            tg_lines.append(f"  • {day_fmt} {start_t}–{end_t}: {b['task'][:45]}")
+        tg_lines.append(f"\n✅ *Completed today:* {len(completed)} tasks")
+
+    # Count pre-ticked calendar + MC flags for context
+    cal_flagged = sum(1 for t in tasks if should_book_calendar(t, t.get("_section", "Backlog")) and determine_owner(t) == "Guillermo")
+    mc_flagged  = sum(1 for t in tasks if should_be_in_mc(t))
+    tg_lines.append(f"\n📅 *Calendar blocks queued:* {cal_flagged} (booked after you say 'standup done')")
+    tg_lines.append(f"🐢 *MC tasks queued:* {mc_flagged} (created after you say 'standup done')")
+    tg_lines.append(f"\n⚠️ *Fill in Tomorrow's Focus first* — ONE item, top of the page")
+    tg_lines.append(f"Then review the table and say *standup done*")
 
     tg_summary = "\n".join(tg_lines) if tg_lines else "All clear — no urgent items"
 

@@ -1,13 +1,15 @@
 #!/data/workspace/.venv/bin/python3
 """
-process_standup.py — Standup Completion Handler
+process_standup.py — Standup Completion Handler v2.1 (redesigned 2026-03-03)
 
-Run this after Guillermo finishes filling in the daily standup.
-It finds today's standup page, reads actions, and executes them:
+Run after Guillermo says "standup done". Processes the Notion standup page:
 
-  🔀 Delegate  → move Todoist task to Molty's Den
-  ✅ Keep       → book a calendar slot for Guillermo
-  ❌ Drop       → close/delete the Todoist task
+  Tomorrow's Focus callout → book as calendar event (first free slot tomorrow)
+  Action = Done/Drop       → close in Todoist + MC + Notion
+  Action = Reschedule      → update Todoist due date (parse from Your Notes)
+  Owner = Raphael/Leonardo → move Todoist task + webhook agent with context
+  In MC? = ticked          → create/update MC task (deduplicate first)
+  Book Calendar? = ticked  → book focus block (5-day horizon, check both cals)
 
 Usage:
   python3 process_standup.py             # processes today's standup
@@ -29,6 +31,35 @@ BRINC_CAL_ID   = "guillermo.ginesta@brinc.io"
 PERSONAL_CAL_ID = "guillermo.ginesta@gmail.com"
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8292515315:AAETOvDJgl4r13qF3_32qhpn8h7jIOVJQDA")
 TELEGRAM_CHAT_ID   = "1097408992"
+
+# Mission Control
+MC_API_URL = "https://resilient-chinchilla-241.convex.site"
+MC_TOKEN   = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_HDR     = {"Authorization": f"Bearer {MC_TOKEN}", "Content-Type": "application/json"}
+
+# Todoist project IDs
+MANA_ID    = "6Rr9p6MxWHFwHXGC"
+PERSONAL_ID = "6M5rpGfw5jR9Qg9R"
+
+# Webhook endpoints for agents
+WEBHOOK_URLS   = {
+    "raphael":  "https://ggv-raphael.up.railway.app/hooks/agent",
+    "leonardo": "https://leonardo-production.up.railway.app/hooks/agent",
+}
+WEBHOOK_TOKENS = {
+    "raphael":  "ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd",
+    "leonardo": "08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758",
+}
+
+# Todoist project → MC project name
+PROJECT_TO_MC = {
+    "6M5rpGgV6q865hrX": "brinc",
+    "6g53F7ccF8HHjgXM": "cerebro",
+    "6Rr9p6MxWHFwHXGC": "mana",
+    "6fwH32grqrCJF23R": "fleet",
+    "6M5rpGfw5jR9Qg9R": "personal",
+    "6M5rpCXmg7x7RC2Q": "personal",
+}
 
 HKT = timezone(timedelta(hours=8))
 NH = {"Authorization": f"Bearer {NOTION_API_KEY}", "Notion-Version": "2022-06-28", "Content-Type": "application/json"}
@@ -96,6 +127,176 @@ def send_telegram(msg):
             return json.loads(r.read())
     except Exception as e:
         print(f"Telegram error: {e}")
+
+# ─────────────────── Mission Control helpers ───────────────────
+
+def mc_get_tasks():
+    """Fetch all open MC tasks."""
+    try:
+        req = urllib.request.Request(f"{MC_API_URL}/api/tasks", headers=MC_HDR)
+        with urllib.request.urlopen(req, timeout=10) as r:
+            data = json.loads(r.read())
+            return data if isinstance(data, list) else []
+    except Exception as e:
+        print(f"  ⚠️ MC fetch failed: {e}")
+        return []
+
+def mc_fuzzy_match(tasks, title, threshold=0.55):
+    """Find existing MC task by fuzzy title match. Returns task or None."""
+    title_norm = title.lower().strip()
+    best_score, best_task = 0, None
+    for t in tasks:
+        if t.get("status") in ("done",):
+            continue
+        score = difflib.SequenceMatcher(None, title_norm, t.get("title", "").lower().strip()).ratio()
+        if score > best_score:
+            best_score, best_task = score, t
+    return best_task if best_score >= threshold else None
+
+def mc_create_task(title, project, priority_str, assignee, due_date, description):
+    """Create a new MC task. Returns task id or None."""
+    # Map Notion priority to MC priority
+    prio_map = {"🔴 P1": "p1", "🟡 P2": "p2", "🔵 P3": "p3", "⚪ P4": "p4"}
+    mc_prio = prio_map.get(priority_str, "p2")
+    # Map owner to MC assignee id
+    owner_map = {"Guillermo": "guillermo", "Molty": "molty", "Raphael": "raphael", "Leonardo": "leonardo"}
+    mc_assignee = owner_map.get(assignee, "molty")
+
+    payload = {
+        "title": title,
+        "project": project,
+        "priority": mc_prio,
+        "assignees": [mc_assignee],
+        "createdBy": "molty",
+        "status": "assigned",
+        "description": description[:2000] if description else "",
+    }
+    if due_date:
+        payload["dueDate"] = due_date
+
+    try:
+        data = json.dumps(payload).encode()
+        req = urllib.request.Request(f"{MC_API_URL}/api/task", data=data, method="POST", headers=MC_HDR)
+        with urllib.request.urlopen(req, timeout=10) as r:
+            resp = json.loads(r.read())
+            return resp.get("id") or resp.get("_id")
+    except Exception as e:
+        print(f"  ⚠️ MC create failed for '{title[:40]}': {e}")
+        return None
+
+def mc_update_task(task_id, updates):
+    """Update an existing MC task."""
+    try:
+        payload = {"id": task_id, **updates}
+        data = json.dumps(payload).encode()
+        req = urllib.request.Request(f"{MC_API_URL}/api/task", data=data, method="PATCH", headers=MC_HDR)
+        with urllib.request.urlopen(req, timeout=10) as r:
+            r.read()
+            return True
+    except Exception as e:
+        print(f"  ⚠️ MC update failed for {task_id}: {e}")
+        return False
+
+def process_in_mc(title, project_id, priority_str, owner, due_date, g_notes, molty_notes, action, mc_tasks):
+    """Create or update MC task based on In MC? checkbox. Returns (action_taken, detail)."""
+    description = ""
+    if g_notes:
+        description += f"Guillermo's notes: {g_notes}\n"
+    if molty_notes:
+        description += f"Molty's notes: {molty_notes}"
+
+    mc_project = PROJECT_TO_MC.get(project_id, "personal")
+    existing = mc_fuzzy_match(mc_tasks, title)
+
+    if action in ("✔️ Done", "Done", "🗑️ Drop", "Drop"):
+        # Close in MC if exists
+        if existing:
+            mc_update_task(existing["_id"], {"status": "done"})
+            return ("closed", title[:50])
+        return ("skipped", f"{title[:50]} (not in MC)")
+
+    if existing:
+        # Update existing — don't duplicate
+        updates = {"priority": {"🔴 P1": "p1", "🟡 P2": "p2", "🔵 P3": "p3", "⚪ P4": "p4"}.get(priority_str, "p2")}
+        if due_date:
+            updates["dueDate"] = due_date
+        if description:
+            updates["description"] = description[:2000]
+        mc_update_task(existing["_id"], updates)
+        return ("updated", title[:50])
+    else:
+        # Create new
+        task_id = mc_create_task(title, mc_project, priority_str, owner, due_date, description)
+        if task_id:
+            return ("created", title[:50])
+        return ("failed", title[:50])
+
+
+def dispatch_agent(agent, title, your_notes, molty_notes, due, priority):
+    """Webhook an agent with task assignment."""
+    note_ctx = f"\nGuillermo's notes: \"{your_notes}\"" if your_notes else ""
+    molty_ctx = f"\nMolty's context: \"{molty_notes}\"" if molty_notes else ""
+    due_ctx = f"\nDue: {due}" if due else ""
+    prio_ctx = f"\nPriority: {priority}" if priority else ""
+    msg = (
+        f"🦎 Standup dispatch — task assigned to you:\n\n"
+        f"**{title}**{prio_ctx}{due_ctx}{note_ctx}{molty_ctx}\n\n"
+        f"Pick this up, update MC when started, post results when done."
+    )
+    data = json.dumps({"message": msg, "wakeMode": "now"}).encode()
+    try:
+        req = urllib.request.Request(
+            WEBHOOK_URLS[agent], data=data, method="POST",
+            headers={"Authorization": f"Bearer {WEBHOOK_TOKENS[agent]}", "Content-Type": "application/json"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as r:
+            resp = json.loads(r.read())
+            return resp.get("ok", False)
+    except Exception as e:
+        print(f"  ⚠️ Webhook to {agent} failed: {e}")
+        return False
+
+
+# ─────────────────── Tomorrow's Focus reader ───────────────────
+
+def read_tomorrows_focus(page_id):
+    """Read the Tomorrow's Focus callout block from the standup page.
+    Returns the text Guillermo wrote, or None if blank/not found."""
+    try:
+        req = urllib.request.Request(
+            f"https://api.notion.com/v1/blocks/{page_id}/children?page_size=20",
+            headers=NH
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            blocks = json.loads(r.read()).get("results", [])
+
+        for block in blocks:
+            if block.get("type") != "callout":
+                continue
+            rich_text = block.get("callout", {}).get("rich_text", [])
+            full_text = "".join(t.get("plain_text", "") for t in rich_text)
+            # Identify the Tomorrow's Focus callout
+            if "Tomorrow's Focus" in full_text or "Tomorrow's Top Priority" in full_text:
+                # Strip the header line, get what Guillermo wrote
+                lines = full_text.strip().split("\n")
+                # Skip header lines (italic hint text + bold header)
+                content_lines = [
+                    l.strip() for l in lines
+                    if l.strip()
+                    and "Tomorrow's Focus" not in l
+                    and "Tomorrow's Top Priority" not in l
+                    and "ONE thing" not in l
+                    and "makes tomorrow worthwhile" not in l
+                    and "calendar event" not in l
+                    and "One item only" not in l
+                ]
+                if content_lines:
+                    return " ".join(content_lines)
+        return None
+    except Exception as e:
+        print(f"  ⚠️ Could not read Tomorrow's Focus: {e}")
+        return None
+
 
 # ─────────────────── Calendar helpers ───────────────────
 
@@ -383,8 +584,9 @@ def pick_calendar(task_title: str, project_id: str) -> str:
 # ─────────────────── MAIN LOGIC ───────────────────
 
 def process(target_date: str):
+    import re
     now = datetime.now(HKT)
-    print(f"\n🚀 Processing standup for {target_date}...\n")
+    print(f"\n🚀 Processing standup for {target_date} (v2.1)...\n")
 
     # 1. Find today's standup page (state file first, then Notion query)
     print("1. Finding standup page...")
@@ -412,355 +614,308 @@ def process(target_date: str):
     page_url = f"https://www.notion.so/{page_id.replace('-', '')}"
     print(f"   Page: {page_url}")
 
-    # 2. Get child databases (use hints from state file if available)
-    print("2. Finding child databases...")
-    dbs = {}
-    if db1_id_hint and db2_id_hint:
-        dbs = {"🔥 Needs Your Input": db1_id_hint, "📋 Active Pipeline": db2_id_hint}
-        print(f"   Using state file DB IDs")
-    else:
+    # 2. Get persistent standup DB id from state file
+    print("2. Finding standup DB...")
+    persistent_db_id = db1_id_hint  # state file has persistent_db_id
+    if not persistent_db_id:
+        # Fallback: look for child database on the page
         dbs = get_child_databases(page_id)
-    print(f"   DBs found: {list(dbs.keys())}")
-
-    needs_input_db = next((v for k, v in dbs.items() if "Input" in k or "input" in k), None)
-    pipeline_db    = next((v for k, v in dbs.items() if "Pipeline" in k or "pipeline" in k), None)
-
-    if not needs_input_db:
-        send_telegram("❌ Could not find 'Needs Your Input' table on today's standup page.")
+        persistent_db_id = next(iter(dbs.values()), None) if dbs else None
+    if not persistent_db_id:
+        send_telegram("❌ Could not find standup DB. Has today's standup been generated?")
         return
+    print(f"   DB: {persistent_db_id}")
 
-    # 3. Load all Todoist tasks (active + recently completed, for matching)
-    print("3. Loading Todoist tasks...")
+    # 3. Read Tomorrow's Focus from page
+    print("3. Reading Tomorrow's Focus...")
+    tomorrows_focus = read_tomorrows_focus(page_id)
+    if tomorrows_focus:
+        print(f"   Focus: '{tomorrows_focus[:80]}'")
+    else:
+        print("   No focus written — will warn in summary")
+
+    # 4. Load Todoist tasks + MC tasks for matching/deduplication
+    print("4. Loading tasks...")
     all_tasks = get_all_tasks()
-    print(f"   {len(all_tasks)} active tasks loaded")
+    print(f"   Todoist: {len(all_tasks)} active tasks")
 
-    # Also fetch recently completed tasks (last 7 days) to avoid re-creating finished work
     completed_tasks = []
     try:
         since = (datetime.now(HKT) - timedelta(days=7)).strftime("%Y-%m-%dT%H:%M:%S")
         resp = todoist_get(f"/tasks/completed/get_all?limit=50&since={urllib.parse.quote(since)}")
         completed_tasks = resp.get("items", resp) if isinstance(resp, dict) else resp
-        print(f"   {len(completed_tasks)} completed tasks loaded (last 7 days)")
+        print(f"   Todoist completed (7d): {len(completed_tasks)}")
     except Exception as e:
-        print(f"   Warning: couldn't fetch completed tasks: {e}")
+        print(f"   ⚠️ Couldn't fetch completed tasks: {e}")
 
-    all_tasks_for_matching = all_tasks + completed_tasks
+    mc_tasks = mc_get_tasks()
+    print(f"   MC open tasks: {len(mc_tasks)}")
 
-    # 4. Process "Needs Your Input" table
-    print("4. Processing 'Needs Your Input'...")
-    rows = query_database(needs_input_db)
+    # 5. Get calendar token (lazy — used for both Tomorrow's Focus and Book Calendar?)
+    cal_token = None
+    try:
+        cal_token = get_sa_token()
+        print("5. Calendar token: OK")
+    except Exception as e:
+        print(f"5. ⚠️ Calendar auth failed: {e}")
 
-    routed_molty, routed_raphael, routed_leonardo = [], [], []
-    kept, dropped, unmatched = [], [], []
+    # 6. Book Tomorrow's Focus as calendar event
+    focus_booked = None
+    if tomorrows_focus and cal_token:
+        print(f"6. Booking Tomorrow's Focus...")
+        tomorrow_dt = datetime.now(HKT) + timedelta(days=1)
+        # Skip weekend — find next weekday
+        while tomorrow_dt.weekday() >= 5:
+            tomorrow_dt += timedelta(days=1)
+        search_from = tomorrow_dt.replace(hour=9, minute=0, second=0, microsecond=0)
+        cal_ids = [BRINC_CAL_ID, PERSONAL_CAL_ID]
+        # Determine which calendar based on keywords
+        focus_lower = tomorrows_focus.lower()
+        target_cal = BRINC_CAL_ID if any(w in focus_lower for w in ["brinc", "raphael", "proposal", "helm", "client", "deal"]) else PERSONAL_CAL_ID
 
-    cal_token = None  # lazy-load
-    cal_bookings = []
+        dur = estimate_duration(tomorrows_focus)
+        slot_start, slot_end = find_free_slot(cal_token, cal_ids, dur, search_from)
+        if slot_start:
+            try:
+                cal_create(
+                    cal_token, target_cal,
+                    f"🎯 {tomorrows_focus[:80]}",
+                    slot_start.isoformat(), slot_end.isoformat(),
+                    description=f"Tomorrow's Focus from standup {target_date}.\nSet by Guillermo."
+                )
+                day_fmt = slot_start.strftime("%a %b %-d")
+                time_fmt = f"{slot_start.strftime('%H:%M')}–{slot_end.strftime('%H:%M')}"
+                focus_booked = f"{day_fmt} {time_fmt}: {tomorrows_focus[:60]}"
+                print(f"   ✅ Booked: {focus_booked}")
+            except Exception as e:
+                print(f"   ⚠️ Calendar create failed: {e}")
+    elif not tomorrows_focus:
+        print("6. Skipping — Tomorrow's Focus not filled in")
 
-    # Deduplication: track seen titles so rows appearing in multiple DB sections
-    # (Needs Input + Active Pipeline) don't get processed twice
+    # 7. Process all rows from the standup DB
+    print("7. Processing standup rows...")
+    rows = query_database(persistent_db_id)
+    # Filter to today's rows only
+    rows = [r for r in rows if (r.get("properties", {}).get("Standup Date", {}).get("date") or {}).get("start", "") == target_date]
+    print(f"   Rows for {target_date}: {len(rows)}")
+
+    closed, rescheduled, routed_raphael, routed_leonardo, routed_molty = [], [], [], [], []
+    mc_created, mc_updated, mc_closed = [], [], []
+    cal_bookings, unmatched = [], []
     seen_titles = set()
 
     for row in rows:
         props = row.get("properties", {})
-        title      = get_text(props.get("Task"))
-        action     = get_text(props.get("Action"))
-        your_notes = get_text(props.get("Your Notes"))
-        owner      = get_text(props.get("Owner"))
-        project    = get_text(props.get("Project"))
-        needs_slot = props.get("Needs Calendar Slot", {}).get("checkbox", False)
+        title       = get_text(props.get("Task"))
+        action      = get_text(props.get("Action"))
+        owner       = get_text(props.get("Owner"))
+        your_notes  = get_text(props.get("Your Notes"))
+        molty_notes = get_text(props.get("Molty's Notes"))
+        priority    = get_text(props.get("Priority"))
+        project_disp = get_text(props.get("Project"))
+        time_est    = get_text(props.get("Time Est."))
+        in_mc       = props.get("In MC?", {}).get("checkbox", False)
+        book_cal    = props.get("Book Calendar?", {}).get("checkbox", False)
+        due_date    = (props.get("Due Date", {}).get("date") or {}).get("start", "")
 
         if not title:
             continue
-
-        # Deduplication — skip if we've already processed this title
         title_key = title.lower().strip()
         if title_key in seen_titles:
             continue
         seen_titles.add(title_key)
 
-        # ALWAYS check Your Notes first — Guillermo's notes override everything
+        # Check Your Notes for implicit done signals
         if your_notes:
             notes_lower = your_notes.lower()
-            
-            # Check for "don't show until [date]" patterns — archive until that date
-            hide_match = re.search(r"(?:don'?t\s+(?:want\s+to\s+)?(?:see|show)|hide).*?until\s+(?:march|mar)\s*(\d+)", notes_lower)
-            if hide_match:
-                day = int(hide_match.group(1))
-                print(f"   [Archive until Mar {day}] {title[:50]}")
-                try:
-                    notion_patch(row_id, {"properties": {
-                        "Action": {"select": {"name": "📦 Archive"}},
-                        "Due Date": {"date": {"start": f"2026-03-{day:02d}"}}
-                    }})
-                except Exception as ex:
-                    print(f"     ⚠️ Failed to archive: {ex}")
-                continue
-            
-            # Check for done/completed patterns — mark done and skip
-            done_phrases = [
-                "mark as done", "already done", "this is done", "already told you", 
-                "completed", "i did this", "we're not using", "not using it", 
-                "decided no", "cancel", "drop this", "move out of here",
-                "already booked", "appointment booked", "its already booked",
-                "leonardo already did", "raphael already did", "molty already did",
-                "i did this myself", "this was completed"
-            ]
+            done_phrases = ["mark as done", "already done", "this is done", "completed",
+                            "i did this", "already told you", "drop this", "cancel"]
             if any(x in notes_lower for x in done_phrases):
-                print(f"   [Done — Your Notes] {title[:50]}")
-                try:
-                    notion_patch(row_id, {"properties": {"Action": {"select": {"name": "✔️ Done"}}}})
-                except Exception:
-                    pass
-                continue
-        
-        # If no Action set, infer from Your Notes
-        if not action and your_notes:
-            notes_lower = your_notes.lower()
-            if any(x in notes_lower for x in ["molty", "delegate", "for molty"]):
-                action = "Molty"
-                print(f"   [Molty — inferred from Your Notes] {title[:60]}")
-            elif any(x in notes_lower for x in ["raphael", "for raphael"]):
-                action = "Raphael"
-                print(f"   [Raphael — inferred from Your Notes] {title[:60]}")
-            elif any(x in notes_lower for x in ["leonardo", "for leonardo"]):
-                action = "Leonardo"
-                print(f"   [Leonardo — inferred from Your Notes] {title[:60]}")
+                action = "✔️ Done"
 
-        if not action:
-            continue
+        print(f"  [{action or '—'}] [{owner or '—'}] {title[:55]}")
 
-        print(f"   [{action}] {title[:60]}")
-
-        # Match to Todoist task — check active first, then completed
         matched = find_todoist_task(all_tasks, title)
-        matched_completed = None if matched else find_todoist_task(completed_tasks, title)
 
-        # Determine routing target
-        route_target = None
-        route_project_id = None
-        route_label = None
-        if "Molty" in action or "🦎" in action or "Delegate" in action:
-            route_target = routed_molty
-            route_project_id = MOLTY_DEN_ID
-            route_label = "Molty's Den"
-        elif "Raphael" in action or "🔴" in action:
-            route_target = routed_raphael
-            route_project_id = BRINC_ID
-            route_label = "Brinc (Raphael)"
-        elif "Leonardo" in action or "🔵" in action:
-            route_target = routed_leonardo
-            route_project_id = CEREBRO_ID
-            route_label = "Cerebro (Leonardo)"
-
-        if route_target is not None:
-            # Build a prefixed title so Guillermo can see it was processed
-            PREFIX_MAP = {
-                "Molty's Den": "🦎",
-                "Brinc (Raphael)": "🔴",
-                "Cerebro (Leonardo)": "🔵",
-            }
-            prefix = PREFIX_MAP.get(route_label, "")
-            # Strip existing agent prefix if present (avoid double-prefixing)
-            clean_title = title
-            for p in ["🦎 ", "🔴 ", "🔵 "]:
-                if clean_title.startswith(p):
-                    clean_title = clean_title[len(p):]
-            new_title = f"{prefix} {clean_title}".strip() if prefix else clean_title
-
+        # ── 7a. Process Action ──────────────────────────────────
+        if action in ("✔️ Done", "Done"):
             if matched:
-                ok = move_task_to_project(matched["id"], route_project_id)
-                if ok:
-                    try:
-                        todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
-                        print(f"     ✏️ Title updated: {new_title[:60]}")
-                    except Exception as e:
-                        print(f"     ⚠️ Title update failed: {e}")
-                    route_target.append(new_title)
-                    print(f"     ✅ Moved to {route_label}: {matched['id']}")
-                else:
-                    unmatched.append(f"{title} (move failed)")
-            elif matched_completed:
-                # Already completed — don't recreate. Just log it.
-                print(f"     ⏭️ Already completed in Todoist — skipping creation")
-                dropped.append(f"{title} (already completed by {matched_completed.get('responsible_uid', 'agent')})")
-            else:
-                # Genuinely new task — create in target project
-                try:
-                    body = {"content": new_title, "project_id": route_project_id}
-                    todoist_post("/tasks", body)
-                    route_target.append(new_title)
-                    print(f"     ✅ Created in {route_label} (new task)")
-                except Exception as e:
-                    unmatched.append(f"{title} (create failed: {e})")
+                close_task(matched["id"])
+                print(f"    ✅ Todoist closed")
+            closed.append(title[:60])
 
-        elif "Drop" in action:
+        elif action in ("🗑️ Drop", "Drop"):
             if matched:
-                ok = close_task(matched["id"])
-                dropped.append(title)
-                print(f"     🗑️ Closed: {matched['id']}")
-            else:
-                dropped.append(f"{title} (not found in Todoist)")
+                close_task(matched["id"])
+                print(f"    🗑️ Todoist dropped")
+            closed.append(f"[dropped] {title[:55]}")
 
-        elif "Done" in action:
-            if matched:
-                # Mark title as confirmed done so Guillermo can see it was processed
-                new_title = f"✅ {title}" if not title.startswith("✅") else title
-                try:
-                    todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
-                    close_task(matched["id"])
-                    print(f"     ✅ Marked done + title updated: {new_title[:60]}")
-                except Exception as e:
-                    print(f"     ⚠️ Done update failed: {e}")
-                dropped.append(new_title)
-            else:
-                dropped.append(f"{title} (not found in Todoist — marked done in standup only)")
-
-        elif "Reschedule" in action:
-            # Extract new date from Your Notes (look for YYYY-MM-DD or "March 2" style)
-            import re
+        elif action in ("📅 Reschedule", "Reschedule"):
             new_date = None
-            # Try ISO date
             iso_match = re.search(r"(\d{4}-\d{2}-\d{2})", your_notes)
             if iso_match:
                 new_date = iso_match.group(1)
             else:
-                # Try "Month Day" style e.g. "March 2", "Mar 2"
-                month_match = re.search(r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})", your_notes, re.IGNORECASE)
-                if month_match:
+                m = re.search(r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})", your_notes, re.IGNORECASE)
+                if m:
                     try:
-                        new_date = datetime.strptime(f"{month_match.group(1)} {month_match.group(2)} {now.year}", "%b %d %Y").strftime("%Y-%m-%d")
+                        new_date = datetime.strptime(f"{m.group(1)} {m.group(2)} {now.year}", "%b %d %Y").strftime("%Y-%m-%d")
                     except Exception:
                         pass
             if new_date and matched:
                 try:
                     todoist_post(f"/tasks/{matched['id']}", {"due_date": new_date}, method="POST")
-                    new_title = f"📅 {title}" if not title.startswith("📅") else title
-                    todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
-                    kept.append(f"{title} → rescheduled to {new_date}")
-                    print(f"     📅 Rescheduled to {new_date}: {matched['id']}")
+                    rescheduled.append(f"{title[:50]} → {new_date}")
+                    print(f"    📅 Rescheduled to {new_date}")
                 except Exception as e:
-                    unmatched.append(f"{title} (reschedule failed: {e})")
-            elif new_date:
-                kept.append(f"{title} → rescheduled to {new_date} (no Todoist match)")
-                print(f"     ⚠️ Reschedule: no Todoist match for '{title[:50]}'")
-            else:
-                unmatched.append(f"{title} (reschedule: no date found in notes — '{your_notes[:60]}')")
-                print(f"     ⚠️ Reschedule: no date found in notes for '{title[:50]}'")
+                    unmatched.append(f"{title[:50]} (reschedule error: {e})")
+            elif not new_date:
+                unmatched.append(f"{title[:50]} (reschedule: no date in notes)")
 
-        elif "Keep" in action and ("Guillermo" in owner or not owner):
-            # Smart calendar booking logic
-            dur = estimate_duration(title)
-            cal_id = BRINC_CAL_ID if any(w in project for w in ["Brinc", "Mana", "Cerebro"]) else PERSONAL_CAL_ID
-            cal_ids = [BRINC_CAL_ID, PERSONAL_CAL_ID]  # check both when finding free slot
+        # ── 7b. Process Owner → routing ──────────────────────────
+        owner_route = owner.strip() if owner else ""
 
-            try:
-                if cal_token is None:
-                    cal_token = get_sa_token()
-                    print(f"   Calendar token: OK")
-
-                should_book = False
-                skip_reason = None
-
-                if needs_slot:
-                    # Explicit flag set — book automatically
-                    should_book = True
-                    print(f"     ℹ️ Needs Calendar Slot = True → will book")
-                else:
-                    # Check for related events before booking
-                    related = find_related_events(cal_token, cal_ids, title, search_days=7)
-                    if related:
-                        skip_reason = f"Related event exists: '{related[0][:40]}'"
-                        print(f"     ⏭️ Skipped booking — {skip_reason}")
-                    else:
-                        skip_reason = "Needs Calendar Slot not checked, no related event found — flagged for review"
-                        print(f"     👀 {skip_reason}")
-
-                if should_book:
-                    # Start searching from tomorrow 09:00
-                    search_from = datetime(now.year, now.month, now.day, 9, 0, tzinfo=HKT) + timedelta(days=1)
-                    slot_start, slot_end = find_free_slot(cal_token, cal_ids, dur, search_from)
-
-                    if slot_start:
-                        label = f"🗓️ {title[:60]}"
-                        link = cal_create(
-                            cal_token, cal_id, label,
-                            slot_start.isoformat(), slot_end.isoformat(),
-                            description=f"Task from standup {target_date}. Duration: {dur}min."
-                        )
-                        day_label = slot_start.strftime("%a %b %-d")
-                        time_label = f"{slot_start.strftime('%H:%M')}-{slot_end.strftime('%H:%M')}"
-                        cal_bookings.append(f"{day_label} {time_label} — {title[:50]}")
-                        # Update title to show it was scheduled
-                        if matched:
-                            new_title = f"📅 {title}" if not title.startswith("📅") else title
-                            try:
-                                todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
-                            except Exception:
-                                pass
-                        kept.append(title)
-                        print(f"     📅 Booked: {day_label} {time_label}")
-                    else:
-                        kept.append(f"{title} (no slot found in 7 days)")
-                        print(f"     ⚠️ No free slot found in 7 days for: {title[:40]}")
-                else:
-                    # Not booking — log the reason
-                    kept.append(f"{title} (skipped: {skip_reason[:50]})")
-
-            except Exception as e:
-                kept.append(title)
-                print(f"     ⚠️ Calendar booking failed: {e}")
-
-        else:
-            # Keep with no calendar booking needed (Molty tasks, etc.)
-            # Still update title so Guillermo sees it was processed
+        if "Raphael" in owner_route:
+            # Move to Brinc project in Todoist
             if matched:
-                new_title = f"👀 {title}" if not any(title.startswith(p) for p in ["👀","🦎","🔴","🔵","✅","📅","🗑️"]) else title
-                try:
-                    todoist_post(f"/tasks/{matched['id']}", {"content": new_title}, method="POST")
-                except Exception:
-                    pass
-            kept.append(title)
+                move_task_to_project(matched["id"], BRINC_ID)
+            # Webhook Raphael
+            dispatch_agent("raphael", title, your_notes, molty_notes, due_date, priority)
+            routed_raphael.append(title[:60])
+            print(f"    🔴 Routed to Raphael + dispatched")
 
-    # 5. Build Telegram summary
-    print("\n5. Sending summary...")
-    lines = [f"✅ *Standup Processed — {target_date}*", f"[View page]({page_url})\n"]
+        elif "Leonardo" in owner_route:
+            # Move to Cerebro project in Todoist
+            if matched:
+                move_task_to_project(matched["id"], CEREBRO_ID)
+            # Webhook Leonardo
+            dispatch_agent("leonardo", title, your_notes, molty_notes, due_date, priority)
+            routed_leonardo.append(title[:60])
+            print(f"    🔵 Routed to Leonardo + dispatched")
 
-    if routed_molty:
-        lines.append(f"🦎 *→ Molty's Den ({len(routed_molty)}):*")
-        for t in routed_molty:
-            lines.append(f"  • {t[:70]}")
-    if routed_raphael:
-        lines.append(f"\n🔴 *→ Raphael / Brinc ({len(routed_raphael)}):*")
-        for t in routed_raphael:
-            lines.append(f"  • {t[:70]}")
-    if routed_leonardo:
-        lines.append(f"\n🔵 *→ Leonardo / Cerebro ({len(routed_leonardo)}):*")
-        for t in routed_leonardo:
-            lines.append(f"  • {t[:70]}")
+        elif "Molty" in owner_route:
+            # Move to Molty's Den
+            if matched:
+                move_task_to_project(matched["id"], MOLTY_DEN_ID)
+            routed_molty.append(title[:60])
+            print(f"    🦎 Routed to Molty's Den")
 
-    if dropped:
-        lines.append(f"\n🗑️ *Dropped ({len(dropped)}):*")
-        for t in dropped:
-            lines.append(f"  • {t[:70]}")
+        # ── 7c. Process In MC? ────────────────────────────────────
+        if in_mc:
+            # Get Todoist project_id for MC project mapping
+            project_id = matched.get("project_id", "") if matched else ""
+            action_taken, detail = process_in_mc(
+                title, project_id, priority, owner_route or "Guillermo",
+                due_date, your_notes, molty_notes, action, mc_tasks
+            )
+            if action_taken == "created":
+                mc_created.append(detail)
+                print(f"    🐢 MC task created")
+            elif action_taken == "updated":
+                mc_updated.append(detail)
+                print(f"    🐢 MC task updated")
+            elif action_taken == "closed":
+                mc_closed.append(detail)
+                print(f"    🐢 MC task closed")
+
+        # ── 7d. Process Book Calendar? ────────────────────────────
+        if book_cal and cal_token:
+            # Determine duration
+            dur_map = {"15min": 15, "30min": 30, "1h": 60, "2h+": 120}
+            dur = dur_map.get(time_est, estimate_duration(title))
+
+            # Determine calendar
+            brinc_kw = ["brinc", "raphael", "proposal", "helm", "client", "deal", "mana"]
+            target_cal = BRINC_CAL_ID if any(w in (project_disp + title).lower() for w in brinc_kw) else PERSONAL_CAL_ID
+            cal_ids = [BRINC_CAL_ID, PERSONAL_CAL_ID]
+
+            # Check for existing related event first
+            related = find_related_events(cal_token, cal_ids, title, search_days=5)
+            if related:
+                print(f"    ⏭️ Calendar: related event exists '{related[0][:40]}'")
+            else:
+                # Find slot within 5 working days
+                search_from = datetime(now.year, now.month, now.day, 9, 0, tzinfo=HKT) + timedelta(days=1)
+                slot_start, slot_end = find_free_slot(cal_token, cal_ids, dur, search_from)
+                if slot_start:
+                    try:
+                        p_label = priority.split()[-1] if priority else "P2"
+                        cal_create(
+                            cal_token, target_cal,
+                            f"🎯 [{p_label}] {title[:70]}",
+                            slot_start.isoformat(), slot_end.isoformat(),
+                            description=f"Focus block from standup {target_date}.\nG notes: {your_notes[:200]}"
+                        )
+                        day_fmt  = slot_start.strftime("%a %b %-d")
+                        time_fmt = f"{slot_start.strftime('%H:%M')}–{slot_end.strftime('%H:%M')}"
+                        cal_bookings.append(f"{day_fmt} {time_fmt}: {title[:50]}")
+                        print(f"    📅 Booked {day_fmt} {time_fmt}")
+                    except Exception as e:
+                        print(f"    ⚠️ Calendar booking failed: {e}")
+                        unmatched.append(f"cal-fail: {title[:45]}")
+                else:
+                    print(f"    ⚠️ No free slot in 5 days for: {title[:45]}")
+
+    # 8. Send Telegram summary
+    print("\n8. Sending summary to Guillermo...")
+    lines = [f"✅ *Standup processed — {target_date}*\n[View page]({page_url})\n"]
+
+    if focus_booked:
+        lines.append(f"🎯 *Tomorrow's Focus booked:*\n  • {focus_booked}")
+    elif tomorrows_focus:
+        lines.append(f"⚠️ *Tomorrow's Focus not booked* — calendar auth failed")
+    else:
+        lines.append(f"⚠️ *Tomorrow's Focus not set* — fill it in for tomorrow's calendar block")
 
     if cal_bookings:
-        lines.append(f"\n📅 *Calendar blocks booked ({len(cal_bookings)}):*")
+        lines.append(f"\n📅 *Calendar blocks added ({len(cal_bookings)}):*")
         for b in cal_bookings:
             lines.append(f"  • {b}")
 
-    if unmatched:
-        lines.append(f"\n⚠️ *Couldn't match ({len(unmatched)}):*")
-        for t in unmatched:
-            lines.append(f"  • {t[:70]}")
+    if mc_created:
+        lines.append(f"\n🐢 *MC tasks created ({len(mc_created)}):*")
+        for t in mc_created:
+            lines.append(f"  • {t}")
+    if mc_updated:
+        lines.append(f"\n🐢 *MC tasks updated ({len(mc_updated)}):*")
+        for t in mc_updated:
+            lines.append(f"  • {t}")
 
-    if not routed_molty and not routed_raphael and not routed_leonardo and not dropped and not cal_bookings:
-        lines.append("_Nothing to process — no Delegate/Drop/Keep actions found yet._")
-        lines.append("_Fill in the Action column in Notion, then run again._")
+    if routed_raphael:
+        lines.append(f"\n🔴 *Dispatched to Raphael ({len(routed_raphael)}):*")
+        for t in routed_raphael:
+            lines.append(f"  • {t}")
+    if routed_leonardo:
+        lines.append(f"\n🔵 *Dispatched to Leonardo ({len(routed_leonardo)}):*")
+        for t in routed_leonardo:
+            lines.append(f"  • {t}")
+    if routed_molty:
+        lines.append(f"\n🦎 *Molty's Den ({len(routed_molty)}):*")
+        for t in routed_molty:
+            lines.append(f"  • {t}")
+
+    if closed:
+        lines.append(f"\n✔️ *Closed in Todoist ({len(closed)}):*")
+        for t in closed:
+            lines.append(f"  • {t}")
+    if rescheduled:
+        lines.append(f"\n📅 *Rescheduled ({len(rescheduled)}):*")
+        for t in rescheduled:
+            lines.append(f"  • {t}")
+
+    if unmatched:
+        lines.append(f"\n⚠️ *Issues ({len(unmatched)}):*")
+        for t in unmatched:
+            lines.append(f"  • {t}")
+
+    total_actions = len(closed) + len(cal_bookings) + len(mc_created) + len(mc_updated) + len(routed_raphael) + len(routed_leonardo)
+    if total_actions == 0:
+        lines.append("\n_No actions found. Make sure Action and Owner columns are filled in Notion._")
 
     msg = "\n".join(lines)
     print(msg)
     send_telegram(msg)
-    print("\nDone.")
+    print("\n✅ Done.")
 
 
 if __name__ == "__main__":
