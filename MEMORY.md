@@ -195,31 +195,11 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 101. **Unbrowse DIY — audited 2026-03-03. PARKED.** Code is good (cdp-capture.js + skill-gen.py + wrapper). Gaps: requires interactive browsing + manual Brave debug port + no fleet distribution + no skill registration + OAuth not handled. NOT worth deploying — all current integrations (HubSpot/Notion/Todoist/Cerebro) have documented APIs. Pull out only if we ever need to call an undocumented internal portal/tool with no public API. Scripts at: `scripts/api-capture/`. Suggested P3 improvements: auto-browse mode, credential persistence, fleet directive on generation.
 102. **summarize CLI — installed 2026-03-03.** v0.11.1 + yt-dlp + ffmpeg. Config: `~/.summarize/config.json` (Gemini 2.5 Flash). Works: web articles, direct audio URLs. Broken: YouTube (Railway IPs blocked), podcast RSS (too large). Plan: `/data/workspace/plans/summarize-setup-2026-03-03.md`.
 
-## 🏥 Insurance & Benefits
+## 📬 Contacts & Email
+- **Raeniel CAAGBAY** (raeniel@imsg.com.hk) — Guillermo's accountant. Flag FY threads needing his attention.
+- **Bupa** — Group health insurance (Brinc corp). Renewal docs in ggv.molt@gmail.com (Feb 20 2026).
+- **guillermo.ginesta@gmail.com** — Guillermo's personal email. Molty has NO access.
+- **ggv.molt@gmail.com** — Molty's OWN inbox. 3x daily (6AM/9AM/3PM HKT). Process everything.
 
-### Bupa Health Insurance
-- **Policy:** Bupa group membership (Brinc corporate)
-- **Email:** Renewal docs forwarded to ggv.molt@gmail.com Feb 20 2026
-- **Action:** Review renewal documents, confirm coverage details when asked
-
-### Accountant
-- **Name:** Raeniel CAAGBAY
-- **Email:** raeniel@imsg.com.hk
-- **Role:** Guillermo's accountant — ggv.molt added for visibility on relevant threads
-- **Action:** Monitor for items needing Guillermo's attention, flag FY threads
-
-## 📬 Email Clarity (important)
-- **guillermo.ginesta@gmail.com** — Guillermo's personal email. Molty has NO access. Only sees what Guillermo forwards, CCs, or BCCs to ggv.molt@gmail.com.
-- **ggv.molt@gmail.com** — Molty's OWN inbox. Must check daily (cron re-enabled 2026-02-28, 3x daily 6AM/9AM/3PM HKT). Process everything: Notion notifications, forwards from Guillermo, accountant threads, etc.
-- **AgentMail** — reviewed 2026-02-28. Not needed now. Revisit if agents need outbound email at scale (Raphael sales, Cerebro outreach).
-
-## ⚠️ Guillermo's Standing Rule — Promises (2026-02-28)
-
-**"I don't want promises if you can't keep them or forget them in the first place."**
-
-- Do not say something is running/working unless it has been verified end-to-end
-- Do not commit to a process unless there is a mechanism (cron, script, enforcement) backing it up
-- Verbal commitments with no technical backing are not commitments — they are noise
-- If uncertain whether something works: say so, then verify, then confirm
-- A broken promise is worse than no promise — it erodes trust and wastes Guillermo's time
-- This applies to: email checks, memory logs, overnight crons, fleet updates, anything operational
+## ⚠️ Promises Rule (Guillermo, Feb 28)
+**"Don't promise what you can't keep."** Only commit to things with a technical mechanism backing them. Verify before confirming. A broken promise is worse than no promise.
