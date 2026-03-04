@@ -40,7 +40,7 @@
 | Leonardo 🔵 | leonardo-production.up.railway.app | ✅ Active |
 
 ### Key Config
-- **OpenClaw version:** 2026.2.26 (fleet-wide as of Feb 27). Update via `OPENCLAW_GIT_REF` Railway env var + auto-redeploy.
+- **OpenClaw version:** Molty v2026.3.1 (updated Mar 2). Raphael + Leonardo v2026.2.26. v2026.3.2 released 2026-03-03 — pending Guillermo go/no-go for fleet update. Update via `OPENCLAW_GIT_REF` Railway env var + auto-redeploy.
 - **Primary model:** `anthropic/claude-sonnet-4-6` — **DIRECT Anthropic only, NOT OpenRouter** (fleet-wide standing rule, Guillermo directive Feb 22)
 - **Fallback:** OpenAI Codex / GPT-5.2 via OpenAI OAuth
 - **Cron model:** `anthropic/claude-haiku-4-5` (direct Anthropic via Max plan)
@@ -65,54 +65,30 @@
 
 ## 🗂 Daily Standup System v2.1 — COMPLETE (2026-03-03)
 
-**Source of truth:** `/data/workspace/plans/standup-build-plan-2026-03-03.md` (19.5KB)
-**Design spec:** `/data/workspace/plans/standup-system-redesign.md`
-**Quick ref:** `/data/workspace/memory/refs/standup-process.md`
-**Git:** master fcea521e → 12e16e95
+**Quick ref:** `/data/workspace/memory/refs/standup-process.md` | **Build plan:** `/data/workspace/plans/standup-build-plan-2026-03-03.md`
 
 ### Cron Registry
-| ID | Name | Time | Model |
-|----|------|------|-------|
-| 13b4eaa0 | Todoist Inbox Triage | Hourly, HKT | Haiku |
-| ad96575e | Pre-Standup Prep | 4:30 PM HKT | Haiku |
-| bdb28765 | Daily Standup | 5:00 PM HKT | Sonnet |
-| 8991c017 | Overnight Sync (MC→Todoist→Notion) | 04:00 HKT | Haiku |
-| 8b748f23 | Morning Briefing | 6:30 AM HKT | (main) |
-| 80105aa4 | Molty Nightly | 03:00 HKT | Sonnet |
+13b4eaa0 Todoist Triage (hourly) · ad96575e Pre-Standup Prep (4:30PM) · bdb28765 Daily Standup (5PM) · 8991c017 Overnight Sync (4AM) · 8b748f23 Morning Briefing (6:30AM) · 80105aa4 Molty Nightly (3AM) · e94b898e Daily Status #command-center (9AM) — all Haiku/Sonnet, isolated
 
 ### Scripts (all compile clean)
 todoist_triage.py · standup_prep.py · standup_status_reader.py · daily_standup.py · process_standup.py · overnight_sync.py · morning_briefing.py
 
-### Rules (never forget)
-- **Verbal "done"** = close Todoist + Notion + MC in same response. No deferral.
-- **Todoist + MC** must never diverge >2h. Heartbeat syncs completions both ways.
-- **Task title** (one-time on intake): `Reply to Raeniel — 30min 🦎` — specific + time + 🦎 at end.
-- **Tomorrow's Focus** = ONE item, blank callout, Guillermo fills it → calendar event post-review.
-- **Calendar** = post-review ONLY, never at generation. Bias: BLOCK (over-book > miss).
-- **Clarifying questions** = preferred over silence. Both Telegram + Notion callout.
-- **Overnight log format**: ✅ Completed / 👀 Under Review / ❌ Failed (why) / 🚧 Blocked (ask) / ⏭ Skipped
-- **Squad status**: agents write to `/data/shared/logs/standup-status-{DATE}-{agent}.txt`
-- **Overnight sync** at 04:00 HKT closes Todoist + Notion rows for MC-done tasks
+### Rules (never forget) — full detail in quick-ref
+- Verbal "done" = close Todoist + Notion + MC immediately. Calendar = post-review only, bias BLOCK.
+- Tomorrow's Focus = ONE blank callout, Guillermo fills → calendar event. Clarify > assume.
+- Overnight log: ✅ Completed / 👀 Under Review / ❌ Failed (why) / 🚧 Blocked (ask) / ⏭ Skipped
+- Squad status files: `/data/shared/logs/standup-status-{DATE}-{agent}.txt`
 
 ### MC Fleet Tasks (Molty — Mission Control Phase 3)
 13 active (assigned), execute overnight P2 first: A2→B1→C1→B3→B4 then P3s
 Parked: B2 Dark Mode ("don't care"), C5 File Attachments ("don't need it") — Guillermo 2026-03-03
 Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 Memory Timeline
 
-### Backup
-- Cron d9da8767: 21:00 HKT daily, backup.sh only ✅
-- **Never move without explicit Guillermo confirmation in conversation**
-- Spurious "21:30" webhook on 2026-03-03 was a confused agent status check — ignored, no change made
-
 ## 📝 New Key Lessons
 
-39. **Direct Anthropic Auth:** Prefer direct model authentication over OpenRouter when possible.
-41. **Sub-agent Limitations:** Can't use exec tool or directly update Notion
-42. **Discord Channel Monitoring:** Set `requireMention: false` for owned channels
-43. **Notion Public API can't reorder blocks** — use internal API (`/api/v3/saveTransactions`) with `token_v2` cookie
-44. **Notion internal API reorder:** `listRemove` + `listBefore`/`listAfter` on parent `content` array. Include `spaceId` in every pointer.
-45. **Notion space ID:** `375629bd-cc72-4ad8-a3be-84139fa2fb3b`
-46. **Daily standup must process tasks BEFORE creating Notion page** — rewrite titles, estimate time, set priority, assign owner, handle sub-tasks nested
+39. **Direct Anthropic Auth:** Prefer direct auth over OpenRouter. Sub-agents can't use exec tool or directly update Notion. Discord owned channels: `requireMention: false`.
+43. **Notion block reorder:** Use internal API (`/api/v3/saveTransactions`) with `token_v2` cookie. `listRemove` + `listBefore`/`listAfter` on parent `content` array. Space ID: `375629bd-cc72-4ad8-a3be-84139fa2fb3b`.
+44. **Daily standup must process tasks BEFORE creating Notion page** — rewrite titles, estimate time, set priority, assign owner, handle sub-tasks nested
 47. **Todoist CLI:** `todoist-ts-cli` (npm global), needs `TODOIST_API_TOKEN` env var. System Python lacks pip — always use venv.
 48. **Cron scripts must use venv Python** — `/data/workspace/.venv/bin/python3`, not bare `python3`.
 49. **message tool params:** `message` for text, `target` for recipient, `channel` for platform. NOT `activityState`.
@@ -121,26 +97,17 @@ Large tasks needing breakdown before overnight: D6 User Auth, B4 DnD Kanban, D4 
 52. **Sonnet 4.6 replaces Opus 4.6 as primary:** 5x cheaper, 1M context, faster, wins on agentic benchmarks. Switched fleet-wide Feb 20.
 53. **All cron/heartbeat on direct Anthropic Haiku:** `anthropic/claude-haiku-4-5` direct — Max plan daily allowance.
 54. **Calendar ownership rule:** NEVER put Molty tasks on Guillermo's calendar. Only tasks requiring Guillermo's time.
-56. **`gateway restart` reloads config only, not binary.** Full Railway redeploy required for OpenClaw version upgrades.
-57. **`OPENCLAW_GIT_REF` Railway env var** controls which OpenClaw version gets cloned at container start. Update it + auto-redeploy to upgrade fleet.
-60. **Shared credentials rule:** Credentials for multiple agents go in `/data/shared/credentials/` from day one. Agents read at startup — no distribution step. Webhooks deliver messages, not file writes. (Feb 23 2026.)
-61. **Change control protocol:** One change per cycle, declare blast radius, no mixed objectives. STOP means STOP. Distribute plan to affected teams BEFORE execution. Approved changes go to Change Tickets. (Feb 23 incident/change control rollout.)
-62. **Change Ticket #001 — Per-agent webhook token rotation.** Executed Feb 24/26. Tokens in TOOLS.md. Old shared token inactive.
+56. **OpenClaw upgrades:** `gateway restart` reloads config only. Full Railway redeploy required. `OPENCLAW_GIT_REF` env var controls version — update it + auto-redeploy.
+60. **Shared credentials rule:** Go in `/data/shared/credentials/`. Agents read at startup. Webhooks deliver messages, not file writes.
+61. **Change control:** One change per cycle, declare blast radius, no mixed objectives. Distribute plan before execution. Tokens in TOOLS.md (Change Ticket #001 Feb 24/26).
 64. **Cron/heartbeat model is `anthropic/claude-haiku-4-5` direct (NOT OpenRouter).** Uses Max plan daily allowance. (Feb 23 clarification.)
 65. **OpenClaw auth: auth.json is the TRUE source, auth-profiles.json is derived.** Never write to auth-profiles.json directly. Fix auth via auth.json or `openclaw models auth paste-token` (TTY required). Path: `/data/.openclaw/agents/main/agent/auth.json`.
 66. **Isolated sub-agent webhook processes do NOT inherit container env vars.** Scripts get empty strings. Must hardcode values.
-67. **Railway CLI `railway shell` = local subshell, NOT container.** Use `railway connect` to SSH into the container.
-68. **Auth fix patterns:** Leonardo via Railway start command injection (two-step: FAIL writes files, revert SUCCESS reads). Raphael via `ANTHROPIC_API_KEY` env var (simpler when token available — `default` provider reads env vars first).
-70. **`agents.defaults.model` controls both main + sub-agent sessions.** No separate `agents.defaults.subagents.model` key exists.
-71. **OpenClaw cooldown ≠ API rate limit.** Internal backoff after repeated errors. Self-resolving in ~5-15 min, per-process only.
-73. **Don't spam webhooks + sub-agent tests rapidly.** Burns rate limits and triggers cooldowns on all providers. Space by 5+ min.
 74. **Always include openai-codex/gpt-5.2 as final fallback.** OAuth-cached, no rate limits, supports tools. Fleet chain: `anthropic/claude-sonnet-4-6` → `anthropic/claude-haiku-4-5` → `xai/grok-3` → `openai-codex/gpt-5.2`.
 77. **Verify current state before reporting a task incomplete.** Daily logs go stale. Check config files, APIs, and MC before claiming something isn't done.
 80. **Anthropic token is shared fleet-wide.** Same `sk-ant-*` token used by Molty, Raphael, and Leonardo. secrets.json on shared volume has the correct token for all agents.
-82. **PLAN-006 — Fleet Directive System (Feb 27).** Queue: `/data/shared/pending-directives/<agent>/`. Scripts: `check_directives.py` + `write_directive.py`. `REQUIRES_VERSION` header gates execution. Molty 15-min cron `bc60c335` live. Raphael + Leonardo bootstrap pending.
-84. **Railway API GraphQL: use inline IDs, not `$variable` syntax.** f-string `$` escaping → malformed JSON → 403. Use: `f'mutation {{ serviceInstanceRedeploy(serviceId: "{svc}", environmentId: "{env}") }}'`.
-85. **HTTP 200 health check ≠ version confirmed.** Webhook ACK = "received", not "applied". Never send version-dependent scripts without confirmed version gate.
-86. **Secrets migration: patch ALL agents' openclaw.json providers block BEFORE writing tokenRef/keyRef.** Missing provider → v2026.2.26 fail-fast crash. Fix: (1) add providers to openclaw.json on every agent, (2) then write refs.
+82. **Fleet Directive System (Feb 27).** Queue: `/data/shared/pending-directives/<agent>/`. Scripts: `check_directives.py` + `write_directive.py`. `REQUIRES_VERSION` header gates execution. Molty cron `bc60c335` live.
+84. **Railway API GraphQL:** Use inline IDs, not `$variable` syntax — f-string `$` escaping breaks JSON. Webhook ACK = "received", not "applied".
 
 ---
 
@@ -176,10 +143,8 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 - **Tech:** React+TS+Tailwind / Node+Express / Railway Postgres / Gemini OCR / xAI Grok / Stripe / Cloudinary / Resend
 
 - **Plans:** dev plan + codex plan in `/data/shared/cerebro/`. Target: 10 paying customers in 12 weeks.
-- **Local copy:** `/data/shared/cerebro/meetcerebro/` (Syncthing, no git history)
 
-87. **`sessionTarget: isolated` mandatory for `agentTurn` crons.** `sessionTarget: main` only for `systemEvent`. Isolated crons can't use memory_search — use `cat` + `curl` for pre-flight.
-88. **Overnight cron pre-flight (mandatory):** (1) cat memory logs, (2) curl MC for task statuses, (3) skip if already in logs. No memory_search in isolated sessions.
+87. **Isolated crons:** `sessionTarget: isolated` for `agentTurn` crons. Can't use memory_search — use `cat` + `curl`. Pre-flight: cat memory logs, curl MC statuses, skip if already done.
 89. **Fleet directives go to #command-center.** One message, all agents. Don't split across brinc-private / launchpad-private.
 90. **OpenClaw update incorporation — PARKED.** Flag to Guillermo when next update drops, discuss before building. Daily check at 05:15 HKT still runs.
 91. **Memory index corruption:** `openclaw memory index --force` if status shows 0 files but >0 embeddings. Weekly health check auto-detects + fixes.
@@ -192,11 +157,11 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 98. **Standup system v2.1 COMPLETE (Mar 3 2026).** See standup section above. Tonight is first live run.
 99. **Backup cron d9da8767:** 21:00 HKT, backup.sh only. Never move without explicit Guillermo confirmation. Spurious "21:30" webhook on 2026-03-03 was ignored (confused agent status check).
 100. **MC fleet tasks (Molty):** 13 active, execute overnight P2 first. B2 Dark Mode + C5 File Attachments parked (Guillermo, Mar 3).
-101. **Unbrowse DIY — audited 2026-03-03. PARKED.** Code is good (cdp-capture.js + skill-gen.py + wrapper). Gaps: requires interactive browsing + manual Brave debug port + no fleet distribution + no skill registration + OAuth not handled. NOT worth deploying — all current integrations (HubSpot/Notion/Todoist/Cerebro) have documented APIs. Pull out only if we ever need to call an undocumented internal portal/tool with no public API. Scripts at: `scripts/api-capture/`. Suggested P3 improvements: auto-browse mode, credential persistence, fleet directive on generation.
-102. **summarize CLI — installed 2026-03-03.** `npm install -g @steipete/summarize` (v0.11.1), yt-dlp v2026.02.21, ffmpeg v7.0.2 (static). Config: `~/.summarize/config.json` (Gemini 2.5 Flash default, Anthropic fallback). OPENAI_API_KEY is in env (sk-proj-...). Skill at `/openclaw/skills/summarize/SKILL.md` — auto-discovered on next session (binary on PATH). **What works:** web articles (fast, clean), direct audio/video URLs (Whisper via OPENAI_API_KEY). **What doesn't:** YouTube (Railway IPs blocked by bot detection — both yt-dlp AND transcript APIs), podcast RSS (29MB+ too large or no inline transcript). Chrome extension approach works for YouTube locally but not server-side. Plan: `/data/workspace/plans/summarize-setup-2026-03-03.md`.
-103. **Calendar booking rules — STANDING RULE, confirmed by Guillermo 2026-03-03.** (1) ALWAYS check ALL three calendars for conflicts before booking: Brinc (`guillermo.ginesta@brinc.io`), Personal (`guillermo.ginesta@gmail.com`), Shenanigans (`vuce6sc8mts8rfgvbsqtl62m1c@group.calendar.google.com`). (2) Personal events → Personal calendar. Family events → Shenanigans. Brinc events → Brinc calendar (visible to colleagues). (3) ALL non-Brinc bookings → auto-add Brinc "Busy [private]" block so colleagues see unavailability without details. (4) Life commitments (locked): school dropoff 08:00-08:30 MoWeFr, school pickup 10:30-11:00 MoWeFr, focus time 08:30-10:30 WeFr (no calls). Full config: `/data/workspace/credentials/calendar-config.json`. SA: `molty-assistant@molty-assistant-487823.iam.gserviceaccount.com`. process_standup.py wired to enforce all rules (commit 50336348).
+101. **Unbrowse DIY — audited 2026-03-03. PARKED.** CDP-based API skill capture (cdp-capture.js + skill-gen.py). NOT worth deploying — all current integrations have documented APIs. Only useful for undocumented internal portals. Scripts: `scripts/api-capture/`. Pull out on-demand.
+102. **summarize CLI installed (2026-03-03).** v0.11.1 global + yt-dlp + ffmpeg. Config: `~/.summarize/config.json` (Gemini Flash default). Skill: `/openclaw/skills/summarize/SKILL.md`. Works: web articles, direct audio URLs (Whisper). Broken: YouTube (Railway IPs blocked), podcast RSS. YouTube: Guillermo's Chrome extension works locally. See TOOLS.md for full setup.
+103. **Calendar booking rules — LOCKED (Guillermo, 2026-03-03).** Check ALL 3 cals before booking (Brinc/Personal/Shenanigans). Family→Shenanigans, work→Brinc (visible), personal→Personal. All non-Brinc bookings = auto Brinc "Busy [private]" block. Protected: school dropoff 08:00-08:30 MoWeFr (LOCKED), pickup 10:30-11:00 MoWeFr, focus 08:30-10:30 WeFr. Full config: `/data/workspace/credentials/calendar-config.json`. Enforced in process_standup.py (commit 50336348).
 104. **Standup script key lesson — never run debug/test runs after showing Guillermo the URL.** Each run creates new page + updates state file. State file must be locked after presenting to user. Fixed: always check state file points to the user-facing page before running process_standup.py.
-105. **Notion property name matching is strict.** If script writes to a property that doesn't exist in the DB schema, Notion returns 400 and fails silently. Always verify DB property names match script exactly. Fix: log response body on non-200 writes. v0.11.1 + yt-dlp + ffmpeg. Config: `~/.summarize/config.json` (Gemini 2.5 Flash). Works: web articles, direct audio URLs. Broken: YouTube (Railway IPs blocked), podcast RSS (too large). Plan: `/data/workspace/plans/summarize-setup-2026-03-03.md`.
+105. **Notion property name matching is strict.** If script writes to a property that doesn't exist in the DB schema, Notion returns 400 and fails silently. Always verify DB property names match script exactly. Fix: log response body on non-200 writes.
 
 ## 📬 Contacts & Email
 - **Raeniel CAAGBAY** (raeniel@imsg.com.hk) — Guillermo's accountant. Flag FY threads needing his attention.
@@ -204,7 +169,17 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 - **guillermo.ginesta@gmail.com** — Guillermo's personal email. Molty has NO access.
 - **ggv.molt@gmail.com** — Molty's OWN inbox. 3x daily (6AM/9AM/3PM HKT). Process everything.
 
+113. **OpenClaw config: tailscale.mode=serve requires bind=loopback (Mar 4 2026).** When `gateway.tailscale.mode="serve"`, `gateway.bind` must be `"loopback"`. Do not use `"auto"` with serve mode. This was the fix that brought Raphael back online after a 2hr outage.
+114. **OpenClaw config: channels.discord.dm is old format (Mar 4 2026).** The `channels.discord.dm.policy` key is deprecated. Remove it entirely. The new format uses `channels.discord.dmPolicy` at the top level. Having the old `dm` key crashes the gateway.
+115. **PPEE lesson (Mar 4 2026): diagnose before acting on infra issues.** I triggered 8+ redeployments without a clear fix plan. Wasted 2hrs. Rule: read the logs fully, identify root cause, form ONE fix, execute once. Never whack-a-mole Railway deployments. Check if the same issue has been solved before (it had — Raphael fixed the same bind issue on Molty).
+
 ## ⚠️ Promises Rule (Guillermo, Feb 28)
 **"Don't promise what you can't keep."** Only commit to things with a technical mechanism backing them. Verify before confirming. A broken promise is worse than no promise.
 
 106. **Fleet update cron = check + notify only. NEVER auto-update.** `openclaw update` doesn't exist. Correct update path: change `OPENCLAW_GIT_REF` Railway env var + trigger redeploy via Railway API. Updates are PARKED — always ask Guillermo first. Cron: `c0705ffd` at 21:15 HKT, state file: `/data/workspace/state/openclaw-fleet-version.json`. (2026-03-03)
+107. **Cerebro DB migration 003 (2026-03-03).** Added `is_vip BOOLEAN DEFAULT FALSE` to contacts table; created `contact_reminders` table (id, contact_id, user_id, trigger_type, reminder_date, message, sent, created_at) + 2 indexes. Trigger already existed. Leonardo's PR #33 (Smart Follow-up Reminders) now live on prod Railway Postgres.
+108. **Daily status cron — all agents post to #command-center at 09:00 HKT.** Molty cron: `e94b898e`, Haiku, isolated. Raphael + Leonardo instructed via fleet directive. Format: matches Leonardo's established pattern.
+109. **Fleet backup separation rule (2026-03-03).** Updates = Molty only (fleet update cron at 05:15 HKT). Backup = each agent's own dedicated cron, no mixed objectives. Raphael + Leonardo notified via webhook to audit and split if mixed.
+110. **Whoop Health Integration — MC task assigned to Molty.** Scope: research Whoop API (auth flow, data endpoints: recovery score, sleep, HRV, strain), multi-user access (Guillermo + wife), integration plan. Guillermo directive 2026-03-03.
+112. **Python variable shadowing bug (2026-03-03).** Assigning to a name anywhere in a function makes Python treat it as local for the ENTIRE scope. If a local var shares a name with a module-level function that's also called in the same function → UnboundLocalError. Fix: rename local var. Never reuse function names as variable names.
+111. **April + Donatello planning interview — booked Wed Mar 4, 15:45–16:15 HKT.** April (personal assistant) + Donatello (R&D/tinkerer) are pending deployment. Molty to interview Guillermo on plans for both roles. Personal cal + Brinc busy/private block added.

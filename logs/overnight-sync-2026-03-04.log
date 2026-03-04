@@ -1,0 +1,33 @@
+overnight_sync — 2026-03-04 04:00 HKT
+
+overnight_sync — 2026-03-04 04:00 HKT
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-03
+
+1. Fetching MC overnight completions...
+  MC: 177 total tasks, 10 done in overnight window
+  • [leonardo] Beta M0.1: Stripe sandbox ✅ complete — live keys when ready (updated: 1772544863964)
+  • [leonardo] Beta: In-app feedback widget (updated: 1772544863109)
+  • [leonardo] Beta: In-app onboarding pop-up (first login) (updated: 1772542228561)
+  • [leonardo] Beta: Personalized tracking URLs per user (updated: 1772544863434)
+  • [leonardo] M1.2: Re-Engagement Message Composer (Premium) (updated: 1772544863611)
+  • [leonardo] CRM Pipeline Feature — spec review + design decisions (updated: 1772544871918)
+  • [leonardo] Free tier contact limit (10) + upgrade wall + Founding Membe (updated: 1772544863785)
+  • [leonardo] Cerebro — Marketing Strategy (10 paying customers by Mar 31) (updated: 1772559260751)
+  • [molty] [A2] Pizza Tracker — Cost Tracking (updated: 1772560990108)
+  • [molty] [B1] Mobile-Responsive Polish (updated: 1772561281240)
+
+2. Fetching open Todoist tasks...
+  14 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-03...
+  Notion: 5 rows for standup date 2026-03-03
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  MC tasks done overnight:   10
+  Todoist tasks closed:      0
+  Notion rows marked done:   0
