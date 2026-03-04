@@ -144,3 +144,17 @@
 ## Leonardo Webhook
 - **URL:** `https://leonardo-production.up.railway.app/hooks/agent`
 - **Token (active):** `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758`
+
+---
+
+## 🧠 Cerebro — Molty's Account
+
+| What | Value |
+|------|-------|
+| URL | https://www.meetcerebro.com |
+| Email | molty@meetcerebro.com |
+| Password | Molty2026!Cerebro |
+| Tier | owner |
+| is_admin | TRUE |
+| Dashboard | https://www.meetcerebro.com/admin/dashboard |
+| User ID | afb0dca9-7176-49ab-b5d0-98d61253f7c6 |
