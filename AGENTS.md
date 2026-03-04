@@ -10,8 +10,27 @@
 ## Before Any Calendar Operation
 - Use SA token ONLY: `google-service-account.json` + no delegation. See `memory/refs/standup-process.md`.
 - Do NOT use `calendar-tokens-brinc.json` — it expires and can't be refreshed headlessly.
-- Every non-Brinc booking → IMMEDIATELY add Brinc "Busy [private]" block in the same call.
-- Do NOT say "I'll add it" or "I should add it" — add it now or it won't happen.
+- Brinc busy block is now AUTOMATIC in cal_create — no flag needed.
+- Check all 3 calendars for conflicts before booking.
+
+## Before Any MC API Call
+- GET = `/api/tasks` (plural). POST/PATCH = `/api/task` (singular).
+- Wrong endpoint = silent failure. Double-check before executing.
+
+## Before Any Railway / OpenClaw Config Change
+- PPEE: Pause → Plan → Evaluate → Execute. One fix, not many attempts.
+- `gateway.bind` must be `"loopback"` when `tailscale.mode="serve"`.
+- Check if this exact issue was solved before (memory_search or check memory/refs/).
+- Read logs fully before touching anything.
+
+## Before Claiming Something Is Done or Documented
+- Can you cite the exact file and line? If yes: state it.
+- If no: say "I need to do that" — NOT "I did that."
+- Log mistakes to `memory/refs/mistake-tracker.md` immediately when called out.
+
+## Before Any External Send (email, webhook, message)
+- Is this Guillermo's voice or Molty's? Don't conflate.
+- Draft first, confirm before sending for anything non-routine.
 
 ## Memory
 - **Daily:** `memory/YYYY-MM-DD.md` — raw logs

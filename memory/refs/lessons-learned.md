@@ -130,3 +130,75 @@
 50. **Combined backup+update cron is the standard.** Single cron job that: (1) runs backup.sh first, (2) fails safely if backup fails (no update), (3) git checkout -- . to clean dirty tree, (4) runs gateway update.run, (5) announces results to #command-center via delivery. Adopted from Raphael's pattern. All agents should use this. (2026-02-14)
 
 51. **Daily status post via cron delivery.** Don't need a separate status cron — the combined backup+update cron announces its results to #command-center, which serves as the daily status. Leonardo has a dedicated status cron as an alternative pattern. (2026-02-14)
+
+### March 2026 (PLAN-010 Migration)
+
+**Migrated from MEMORY.md 2026-03-04:**
+
+39. **Direct Anthropic Auth:** Prefer direct auth over OpenRouter. Sub-agents can't use exec tool or directly update Notion.
+
+43. **Notion block reorder:** Use internal API (`/api/v3/saveTransactions`) with `token_v2` cookie.
+
+47-48. **Python/venv:** System Python lacks pip — always use `/data/workspace/.venv/bin/python3`.
+
+49. **message tool params:** `message` for text, `target` for recipient, `channel` for platform.
+
+50. **Browser stale lock files:** Fixed in startup.sh (f0f39aa). Automatic cleanup on deploy.
+
+51. **Anthropic is a built-in provider:** No `models.providers.anthropic` block needed.
+
+54. **Calendar ownership rule:** NEVER put Molty tasks on Guillermo's calendar.
+
+56. **OpenClaw upgrades:** `gateway restart` reloads config only. Full Railway redeploy required for binary upgrades.
+
+60. **Shared credentials rule:** Go in `/data/shared/credentials/`. Webhooks deliver messages, not file writes.
+
+61. **Change control:** One change per cycle, declare blast radius, no mixed objectives.
+
+65. **OpenClaw auth:** auth.json is TRUE source, auth-profiles.json is derived. Path: `/data/.openclaw/agents/main/agent/auth.json`.
+
+66. **Isolated sub-agent webhook processes:** Do NOT inherit container env vars. Must hardcode values.
+
+74. **Model fallback chain:** Primary → Haiku → Grok-3 → Codex/GPT-5.2.
+
+77. **Verify current state:** Check config files, APIs, and MC before claiming something isn't done.
+
+80. **Anthropic token is fleet-wide:** Same `sk-ant-*` token for Molty, Raphael, Leonardo.
+
+82. **Fleet Directive System:** Queue: `/data/shared/pending-directives/<agent>/`.
+
+84. **Railway API GraphQL:** Use inline IDs, not `$variable` syntax.
+
+87. **Isolated crons:** Can't use memory_search — use `cat` + `curl`. Pre-flight checks.
+
+89. **Fleet directives:** Go to #command-center. One message, all agents.
+
+91. **Memory index corruption:** `openclaw memory index --force` if 0 files but >0 embeddings.
+
+92. **Three-agent overnight system:** Raphael 00:30, Leonardo 01:30, Molty 03:00 HKT.
+
+95. **Notion comment monitoring:** Public API returns empty. Use internal API loadPageChunk.
+
+96. **process_standup.py:** Dedup via in-memory dict. Threshold: 55% fuzzy match.
+
+97. **Cron agentId:** Must not be empty string — set to "main".
+
+104. **Standup script:** Never run debug/test after showing Guillermo the URL.
+
+105. **Notion property names:** Strict matching. Log response body on non-200.
+
+106. **Fleet update cron:** Check + notify only. NEVER auto-update.
+
+108-109. **Fleet crons:** Daily status 09:00 HKT. Backup = each agent's own cron.
+
+112. **Python variable shadowing:** Local var shadows module function → UnboundLocalError.
+
+113. **OpenClaw config:** `gateway.bind="loopback"` when `tailscale.mode="serve"`.
+
+114. **OpenClaw config:** `channels.discord.dm` is deprecated. Use `dmPolicy` at top level.
+
+115. **PPEE lesson:** Diagnose before acting. One fix, not many attempts.
+
+116. **MC API endpoints:** GET `/api/tasks` (plural). POST/PATCH `/api/task` (singular).
+
+117. **Calendar token fix:** SA token (no delegation). Don't use calendar-tokens-brinc.json.

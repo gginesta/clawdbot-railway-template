@@ -62,4 +62,10 @@ RESULT=$(curl -s -X POST "$MC_API/api/todoist-sync" \
   -H "Content-Type: application/json" \
   -d @"$TMPDIR/payload.json")
 
-echo "Todoist sync: $RESULT"
+# Parse and display result
+if echo "$RESULT" | python3 -m json.tool > /dev/null 2>&1; then
+  SYNCED=$(echo "$RESULT" | python3 -c "import json, sys; print(json.load(sys.stdin).get('synced', 0))")
+  echo "✓ Todoist → MC sync complete: $SYNCED tasks synced"
+else
+  echo "Sync response: $RESULT"
+fi
