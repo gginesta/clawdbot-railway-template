@@ -169,6 +169,8 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 - **guillermo.ginesta@gmail.com** — Guillermo's personal email. Molty has NO access.
 - **ggv.molt@gmail.com** — Molty's OWN inbox. 3x daily (6AM/9AM/3PM HKT). Process everything.
 
+117. **Calendar token fix (Mar 4 2026):** SA token (no delegation) is the correct path for calendar reads/writes. Use `google.oauth2.service_account.Credentials` without `.with_subject()` — the calendars are directly shared with `molty-assistant@molty-assistant-487823.iam.gserviceaccount.com`. Do NOT use `calendar-tokens-brinc.json` (expires and can't be refreshed headlessly). gog CLI works for brinc.io (Workspace) but NOT gmail.com (consumer). Always use the SA token pattern from `process_standup.py::get_sa_token()`.
+
 116. **MC API endpoint naming (Mar 4 2026):** `GET /api/tasks` (plural) for reads. `POST /api/task` + `PATCH /api/task` (singular) for writes. Using singular for GET returns "No matching routes found". Fixed in HEARTBEAT.md.
 
 113. **OpenClaw config: tailscale.mode=serve requires bind=loopback (Mar 4 2026).** When `gateway.tailscale.mode="serve"`, `gateway.bind` must be `"loopback"`. Do not use `"auto"` with serve mode. This was the fix that brought Raphael back online after a 2hr outage.
