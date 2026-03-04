@@ -2,29 +2,15 @@
 
 ## 🧾 Summarize CLI (`@steipete/summarize`)
 
-### Server-side (Molty on Railway)
 | What | Value |
 |------|-------|
 | Binary | `summarize` v0.11.1 — globally installed |
-| yt-dlp | v2026.02.21 — `/usr/local/bin/yt-dlp` (symlink from venv) |
+| yt-dlp | v2026.02.21 — `/usr/local/bin/yt-dlp` |
 | ffmpeg | v7.0.2 static — `/usr/local/bin/ffmpeg` |
-| Config | `~/.summarize/config.json` — Gemini 2.5 Flash default, Anthropic fallback |
-| Skill | `/openclaw/skills/summarize/SKILL.md` — auto-discovered (binary on PATH) |
-| Works | Web articles, direct audio/video URLs (Whisper via OPENAI_API_KEY) |
-| Blocked | YouTube + podcast RSS — Railway IPs flagged as bots by Google |
-
-### Guillermo's Chrome Extension (local — Windows)
-| What | Value |
-|------|-------|
-| Extension | [Summarize Side Panel](https://chromewebstore.google.com/detail/summarize/cejgnmmhbbpdmjnfppjdfkocebngehfg) |
-| CLI (local) | `npm install -g @steipete/summarize` (Node 22+ required) |
-| Daemon | `summarize daemon install --token <token>` (autostart via Scheduled Task) |
-| Status | Installed 2026-03-03 |
-| Works | YouTube (native transcript in browser), articles, PDFs, any tab |
-| Config | `~/.summarize/config.json` on Windows — set `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` |
-
-**Usage:** Trigger phrase in chat → "summarize this" + URL, or paste a YouTube/podcast link.
-**Skill trigger:** `summarize`, `what's this video about`, `transcribe this YouTube`
+| Config | `~/.summarize/config.json` — Gemini 2.5 Flash default |
+| Skill | `/openclaw/skills/summarize/SKILL.md` (auto-discovered) |
+| Works | Web articles, direct audio/video URLs |
+| Blocked | YouTube + podcast RSS — Railway IPs blocked by Google |
 
 
 
@@ -41,9 +27,6 @@
 | `#launchpad-general` | 1470919420791619758 | **Leonardo** 🔵 |
 | `#launchpad-private` | 1470919437975814226 | **Leonardo** 🔵 |
 | `#launchpad-cerebro` | 1472224798158618735 | **Leonardo** 🔵 |
-| `#brinc-sales` | 1470416628272463976 | **Raphael** 🔴 |
-
-**Forums:** `#squad-decisions` (1470223676845723771), `#project-updates` (1470223696349237445), `#research-findings` (1470223714112245873)
 
 **Rule:** Don't own it → stay silent unless @mentioned or Guillermo asks.
 
@@ -95,7 +78,6 @@
 | Guillermo's email | `guillermo.ginesta@gmail.com` |
 | Services | gmail, calendar, drive, docs, sheets, contacts, tasks, chat, forms, slides |
 | Calendar access | Service account (R/W all Guillermo's calendars) |
-| Legacy script | `/data/workspace/scripts/gmail.sh` (deprecated, replaced by gog) |
 
 ---
 
@@ -127,9 +109,7 @@
 | API Key (Molty) | `AIzaSyApzvaLAGWebLU2kRdx8qxC00uBbfYC_bY` |
 | Project | gen-lang-client-0128730112 (project 226575193033) |
 | Creds file | `/data/workspace/credentials/gemini.env` |
-| **Status** | ⚠️ Free tier — Nano Banana Pro (image gen) needs billing enabled |
-
-Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
+| Status | Free tier |
 
 ---
 
@@ -162,7 +142,6 @@ Also have keys for Raphael (`...ksug`) and another project (`...8bU4`).
 ## GitHub
 
 **Token:** `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` (classic PAT, expires May 28 2026 — active)
-**Fine-grained tokens:** Leonardo-Cerebro (exp May 27 2026), Raphael-Proposal Studio (exp Mar 26 2026), MoltyToken (expired Mar 2 2026 — never used, let it die)
 
 ---
 
