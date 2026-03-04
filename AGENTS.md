@@ -7,6 +7,12 @@
 4. **Main session only:** Read `MEMORY.md`
 5. Read `PRIORITY_BRIEFING.md` — surface priorities FIRST when Guillermo messages
 
+## Before Any Calendar Operation
+- Use SA token ONLY: `google-service-account.json` + no delegation. See `memory/refs/standup-process.md`.
+- Do NOT use `calendar-tokens-brinc.json` — it expires and can't be refreshed headlessly.
+- Every non-Brinc booking → IMMEDIATELY add Brinc "Busy [private]" block in the same call.
+- Do NOT say "I'll add it" or "I should add it" — add it now or it won't happen.
+
 ## Memory
 - **Daily:** `memory/YYYY-MM-DD.md` — raw logs
 - **Long-term:** `MEMORY.md` — curated, under 15KB
