@@ -47,37 +47,26 @@
 **Full config:** `/data/workspace/credentials/calendar-config.json`
 
 ### Booking Rules
-1. **Always check ALL 3 calendars for conflicts** before booking any slot
-2. **Family events** → Shenanigans calendar
-3. **Personal/work events** → Personal calendar
-4. **Brinc events** → Brinc calendar, visible (colleagues can see the name)
-5. **Every non-Brinc booking** → also create "Busy [private]" block on Brinc calendar
+1. Check ALL 3 calendars for conflicts before booking
+2. Family → Shenanigans | Personal/work → Personal | Brinc → Brinc calendar
+3. Every non-Brinc booking → also add "Busy [private]" block on Brinc calendar
 
-### Protected Slots (never book over these)
+### Protected Slots
 | Slot | Days | Type |
 |------|------|------|
 | 08:00–08:30 | Mo/We/Fr | School drop-off (LOCKED) |
-| 10:30–11:00 | Mo/We/Fr | School pick-up (preferred, yield only for P1) |
-| 08:30–10:30 | We/Fr | Focus time — no calls/meetings |
-
-### Energy Schedule (prefer these windows)
-- **09:00–12:00** — Deep work (P1/P2 tasks)
-- **12:00–14:00** — Light tasks / lunch
-- **14:00–17:00** — Meetings / calls
-- **17:00–18:00** — Standup + planning
+| 10:30–11:00 | Mo/We/Fr | School pick-up |
+| 08:30–10:30 | We/Fr | Focus time — no calls |
 
 ---
 
-## 📧 Google Workspace — ✅ gog CLI (authed Feb 19)
+## 📧 Google Workspace — gog CLI
 
 | What | Value |
 |------|-------|
-| CLI | `gog` v0.11.0 |
-| Account | `ggv.molt@gmail.com` |
+| CLI | `gog` v0.11.0 · account: `ggv.molt@gmail.com` |
 | Keyring | `GOG_KEYRING_PASSWORD="molty2026"` |
-| Guillermo's email | `guillermo.ginesta@gmail.com` |
-| Services | gmail, calendar, drive, docs, sheets, contacts, tasks, chat, forms, slides |
-| Calendar access | Service account (R/W all Guillermo's calendars) |
+| Calendar | Service account (R/W all Guillermo's calendars) |
 
 ---
 
