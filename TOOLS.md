@@ -129,10 +129,8 @@
 
 ---
 
-## Twitter/X — USE x-reader SKILL (not bird CLI)
-
-**Account:** @Molton_Sanchez | **Creds:** `/data/workspace/credentials/twitter.env`
-**Status:** Read-only (posting blocked by bot detection)
+## Twitter/X — USE x-reader SKILL
+**Account:** @Molton_Sanchez | Read-only (bot detection blocks posting)
 
 ---
 
