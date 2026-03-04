@@ -127,6 +127,22 @@ This ensures daily_standup.py reads real agent status at 5PM, not just "ping sen
 
 ---
 
+## Calendar Token Access — CANONICAL METHOD (Mar 4 2026)
+Use the SA token pattern — NOT calendar-tokens-brinc.json (expires, can't headlessly refresh):
+```python
+from google.oauth2 import service_account
+from google.auth.transport.requests import Request
+creds = service_account.Credentials.from_service_account_file(
+    "/data/workspace/credentials/google-service-account.json",
+    scopes=["https://www.googleapis.com/auth/calendar"],
+)
+creds.refresh(Request())
+token = creds.token
+```
+Works for: Shenanigans, Brinc, any calendar shared with molty-assistant@molty-assistant-487823.iam.gserviceaccount.com
+Does NOT work for: guillermo.ginesta@gmail.com (consumer, no delegation)
+gog CLI: works for brinc.io (Workspace SA) but NOT gmail.com (consumer)
+
 ## Calendar Booking Rules (updated 2026-03-03 — STANDING RULE)
 
 ### Check for conflicts across ALL 3 calendars before every booking:
