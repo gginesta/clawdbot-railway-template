@@ -169,6 +169,8 @@ Create MC task: `POST /api/task` with `title`, `project` (brinc|cerebro|mana|per
 - **guillermo.ginesta@gmail.com** — Guillermo's personal email. Molty has NO access.
 - **ggv.molt@gmail.com** — Molty's OWN inbox. 3x daily (6AM/9AM/3PM HKT). Process everything.
 
+116. **MC API endpoint naming (Mar 4 2026):** `GET /api/tasks` (plural) for reads. `POST /api/task` + `PATCH /api/task` (singular) for writes. Using singular for GET returns "No matching routes found". Fixed in HEARTBEAT.md.
+
 113. **OpenClaw config: tailscale.mode=serve requires bind=loopback (Mar 4 2026).** When `gateway.tailscale.mode="serve"`, `gateway.bind` must be `"loopback"`. Do not use `"auto"` with serve mode. This was the fix that brought Raphael back online after a 2hr outage.
 114. **OpenClaw config: channels.discord.dm is old format (Mar 4 2026).** The `channels.discord.dm.policy` key is deprecated. Remove it entirely. The new format uses `channels.discord.dmPolicy` at the top level. Having the old `dm` key crashes the gateway.
 115. **PPEE lesson (Mar 4 2026): diagnose before acting on infra issues.** I triggered 8+ redeployments without a clear fix plan. Wasted 2hrs. Rule: read the logs fully, identify root cause, form ONE fix, execute once. Never whack-a-mole Railway deployments. Check if the same issue has been solved before (it had — Raphael fixed the same bind issue on Molty).
