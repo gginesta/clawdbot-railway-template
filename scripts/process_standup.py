@@ -334,13 +334,13 @@ def cal_get(token, cal_id, start_iso, end_iso):
         return json.loads(r.read()).get("items", [])
 
 def cal_create(token, cal_id, summary, start_iso, end_iso, description="",
-               visibility="default", add_brinc_busy=False):
+               visibility="default"):
     """Create a calendar event.
 
     Calendar rules (Guillermo directive 2026-03-03):
     - Personal events → SHENANIGANS_CAL_ID (family calendar)
     - Brinc events → BRINC_CAL_ID, visibility="public" (colleagues can see)
-    - ALL non-Brinc bookings → also create Brinc "Busy [private]" block (add_brinc_busy=True)
+    - ALL non-Brinc bookings automatically get a Brinc "Busy [private]" block — no flag needed
     """
     encoded = urllib.parse.quote(cal_id, safe="")
     event = {
@@ -363,7 +363,7 @@ def cal_create(token, cal_id, summary, start_iso, end_iso, description="",
 
     # Always add a Brinc "Busy [private]" block for non-Brinc bookings
     # so colleagues see unavailability without seeing personal details
-    if add_brinc_busy and cal_id != BRINC_CAL_ID:
+    if cal_id != BRINC_CAL_ID:
         try:
             busy_event = {
                 "summary": "Busy",
@@ -734,8 +734,7 @@ def process(target_date: str):
                     cal_token, target_cal,
                     f"🎯 {tomorrows_focus[:80]}",
                     slot_start.isoformat(), slot_end.isoformat(),
-                    description=f"Tomorrow's Focus from standup {target_date}.\nSet by Guillermo.",
-                    add_brinc_busy=(target_cal != BRINC_CAL_ID)
+                    description=f"Tomorrow's Focus from standup {target_date}.\nSet by Guillermo."
                 )
                 day_fmt = slot_start.strftime("%a %b %-d")
                 time_fmt = f"{slot_start.strftime('%H:%M')}–{slot_end.strftime('%H:%M')}"
@@ -906,8 +905,7 @@ def process(target_date: str):
                             cal_token, target_cal,
                             f"🎯 [{p_label}] {title[:70]}",
                             slot_start.isoformat(), slot_end.isoformat(),
-                            description=f"Focus block from standup {target_date}.\nG notes: {your_notes[:200]}",
-                            add_brinc_busy=(target_cal != BRINC_CAL_ID)
+                            description=f"Focus block from standup {target_date}.\nG notes: {your_notes[:200]}"
                         )
                         day_fmt  = slot_start.strftime("%a %b %-d")
                         time_fmt = f"{slot_start.strftime('%H:%M')}–{slot_end.strftime('%H:%M')}"
