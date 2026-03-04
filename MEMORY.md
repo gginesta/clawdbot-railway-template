@@ -40,7 +40,6 @@
 - **Leonardo:** Config fix (`bind=loopback`, dm key) — directive sent, not yet confirmed applied
 - **Raphael:** 16 Gmail drafts awaiting Guillermo review
 - **Leonardo:** Beta invite list (20 names) pending
-- **April & Donatello:** Planning interview still needs scheduling
 
 ## ⚠️ Core Rules
 1. **PPEE:** Pause → Plan → Evaluate → Execute. One fix, not many.
