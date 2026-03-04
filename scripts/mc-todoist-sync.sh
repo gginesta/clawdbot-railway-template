@@ -10,20 +10,31 @@ TMPDIR=$(mktemp -d)
 trap "rm -rf $TMPDIR" EXIT
 
 # Fetch from Todoist API v1
+echo "[1/3] Fetching tasks from Todoist..."
 curl -s "https://api.todoist.com/api/v1/tasks" \
   -H "Authorization: Bearer $TODOIST_TOKEN" > "$TMPDIR/tasks.json"
 
+echo "[2/3] Fetching projects from Todoist..."
 curl -s "https://api.todoist.com/api/v1/projects" \
   -H "Authorization: Bearer $TODOIST_TOKEN" > "$TMPDIR/projects.json"
 
 # Transform to MC format
-python3 -c "
+echo "[3/3] Transforming and syncing to Mission Control..."
+python3 << PYTHON_EOF
 import json
+import sys
 
-with open('$TMPDIR/tasks.json') as f:
-    data = json.load(f)
-with open('$TMPDIR/projects.json') as f:
-    proj_data = json.load(f)
+try:
+    with open('$TMPDIR/tasks.json') as f:
+        data = json.load(f)
+    with open('$TMPDIR/projects.json') as f:
+        proj_data = json.load(f)
+except json.JSONDecodeError as e:
+    print(f"Error parsing Todoist API response: {e}", file=sys.stderr)
+    sys.exit(1)
+except FileNotFoundError as e:
+    print(f"Error: Missing temp file: {e}", file=sys.stderr)
+    sys.exit(1)
 
 tasks = data.get('results', data) if isinstance(data, dict) else data
 projects = proj_data.get('results', proj_data) if isinstance(proj_data, dict) else proj_data
@@ -44,7 +55,7 @@ for t in tasks[:50]:
         'description': t.get('description', '') or '',
         'projectName': proj_map.get(t.get('project_id', ''), 'Inbox'),
         'priority': t.get('priority', 1),
-        'isCompleted': t.get('is_completed', False),
+        'isCompleted': t.get('is_completed', False) or t.get('checked', False),
         'labels': t.get('labels', []),
     }
     if due:
@@ -53,8 +64,9 @@ for t in tasks[:50]:
 
 with open('$TMPDIR/payload.json', 'w') as f:
     json.dump({'tasks': mc_tasks}, f)
-print(f'Prepared {len(mc_tasks)} tasks')
-"
+
+print(f'Prepared {len(mc_tasks)} tasks for sync')
+PYTHON_EOF
 
 # Push to MC
 RESULT=$(curl -s -X POST "$MC_API/api/todoist-sync" \
@@ -63,9 +75,11 @@ RESULT=$(curl -s -X POST "$MC_API/api/todoist-sync" \
   -d @"$TMPDIR/payload.json")
 
 # Parse and display result
+echo ""
 if echo "$RESULT" | python3 -m json.tool > /dev/null 2>&1; then
-  SYNCED=$(echo "$RESULT" | python3 -c "import json, sys; print(json.load(sys.stdin).get('synced', 0))")
+  SYNCED=$(echo "$RESULT" | python3 -c "import json, sys; r = json.load(sys.stdin); print(r.get('synced', r.get('count', '?')))")
   echo "✓ Todoist → MC sync complete: $SYNCED tasks synced"
+  echo "Timestamp: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
 else
   echo "Sync response: $RESULT"
 fi
