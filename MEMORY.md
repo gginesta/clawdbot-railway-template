@@ -32,8 +32,15 @@
 
 ## 📋 Active Projects
 - **Cerebro:** www.meetcerebro.com — 10 customers in 12 weeks
-- **WHOOP:** Research done, blocked on CLIENT_ID/SECRET from Guillermo
+- **WHOOP:** Research done, blocked on CLIENT_ID/SECRET from Guillermo. Notion spec: `31939dd6...`
 - **MC Phase 3:** 13 tasks assigned, P2s first
+- **ginesta.io:** Personal website brief — MC task `jn7edm8g...` created 2026-03-04
+
+## ⏳ Pending (as of 2026-03-04)
+- **Leonardo:** Config fix (`bind=loopback`, dm key) — directive sent, not yet confirmed applied
+- **Raphael:** 16 Gmail drafts awaiting Guillermo review
+- **Leonardo:** Beta invite list (20 names) pending
+- **April & Donatello:** Planning interview still needs scheduling
 
 ## ⚠️ Core Rules
 1. **PPEE:** Pause → Plan → Evaluate → Execute. One fix, not many.

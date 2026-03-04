@@ -202,3 +202,5 @@
 116. **MC API endpoints:** GET `/api/tasks` (plural). POST/PATCH `/api/task` (singular).
 
 117. **Calendar token fix:** SA token (no delegation). Don't use calendar-tokens-brinc.json.
+
+118. **"Initiate call" means CALL:** Sending prep questions to Telegram is not initiating. Send a voice message or call the phone. Prep materials ≠ the call itself.

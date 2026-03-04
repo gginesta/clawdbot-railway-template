@@ -11,6 +11,7 @@ Track recurring mistakes, their fixes, and whether fixes actually work.
 | 2026-03-04 | 8+ redeployments without diagnosis (Raphael) | Judgment | PPEE reinforced | MEMORY.md #115 | 0 |
 | 2026-03-04 | para_curation.py processes 0 files weekly | System | PARA = archival only | PLAN-010 | 0 |
 | 2026-03-04 | MEMORY.md 117 lessons, unreadable | System | Cull to <4KB | PLAN-010 Phase 5 | 0 |
+| 2026-03-04 | "Initiate call" → only sent prep Qs to Telegram | Procedural | Lesson #118 | lessons-learned.md | 0 |
 
 ---
 
