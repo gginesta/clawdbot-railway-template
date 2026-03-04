@@ -1,227 +1,327 @@
 # PLAN-010: Memory System Overhaul
-*Created: 2026-03-04 | Author: Molty | Status: DRAFT v3 — Ready for Guillermo Review*
-*Passes: self-critique (v2) + Opus independent review (v3)*
+*Created: 2026-03-04 | Status: AWAITING GUILLERMO APPROVAL*
+*Passes: Molty v1 → self-critique v2 → Opus review v3 → final v4*
 
 ---
 
 ## The Actual Problem
 
-Molty makes recurring mistakes. The existing response — document the lesson — hasn't worked because it doesn't address how knowledge arrives at the moment of action.
+Molty makes recurring mistakes. The existing response — document the lesson — hasn't worked.
 
-This is not a storage problem. It's a retrieval problem.
+The reason: **this is a retrieval problem, not a storage problem.**
 
-A 4KB MEMORY.md is just as useless as a 16KB one if the critical rule isn't surfacing when I'm about to do the thing. Every "lesson documented" that didn't prevent a recurrence is proof of this.
+A 4KB MEMORY.md is just as useless as a 16KB one if the right rule doesn't surface at the moment of action. Every "lesson documented" that didn't prevent recurrence is proof of this.
 
-Three things actually prevent mistakes for an amnesiac agent:
-1. **Code that makes wrong actions structurally impossible**
-2. **Context injected at action time** — right before the action, not at session start
-3. **Verified retrieval** — memory_search queried on-demand, not passively loaded
+**Three things actually prevent mistakes for an amnesiac agent:**
+1. Code that makes wrong actions structurally impossible
+2. Context retrieved at action time — not at session start and hope
+3. Verified feedback loop — a way to know if a fix actually worked
 
-Documentation is not on that list. It's a fallback, not a solution.
-
----
-
-## What Opus Identified That My First Draft Missed
-
-1. PARA is over-engineered for an amnesiac agent. Folders multiply hiding places. An agent that wakes up cold doesn't browse — it needs a searchlight, not a filing cabinet.
-2. The "recursive improvement system" assumed discipline that session amnesia prevents. Rules that require future-me to remember to run them will fail. Only mechanical enforcement (cron, code) works.
-3. The sequencing was backwards. Phase 5 (how lessons are tracked) should be designed first, because it determines what the rest of the system needs to capture.
-4. No mistake taxonomy. Calendar booking error and "claiming things are done" are completely different failure modes requiring completely different fixes. The plan treated them as one problem.
-5. Session loading protocol was never defined. The most critical mechanism — what files actually load, in what order — wasn't addressed.
+Documentation is not on that list. It is a fallback of last resort.
 
 ---
 
-## Mistake Taxonomy (Phase 0 — must come first)
+## How Session Memory Actually Works
 
-Before designing any system, define what we're actually fixing.
+OpenClaw injects workspace files into the system prompt at session start. Currently loaded:
 
-| Type | Example | Fix type |
-|------|---------|----------|
-| **Procedural** | Forgot Brinc busy block | Code enforcement — wrong action made impossible |
-| **Retrieval** | Used wrong API endpoint | Action-triggered memory_search before the action |
-| **Overclaim** | "I documented this last night" (unverified) | Hard gate — cannot claim done without citing file+line |
-| **Stale context** | Used expired token | Session-start load of canonical references |
-| **Judgment** | Didn't diagnose before acting (whack-a-mole) | PPEE checklist — can't be code, but can be a hard prompt |
+| File | Size | Problem |
+|------|------|---------|
+| MEMORY.md | 16.7KB | Too dense. 117 lessons. Critical rules buried. |
+| SOUL.md | 10.6KB | 17 days stale. Loads a Feb-15 version of Molty. |
+| IDENTITY.md | 3.6KB | 21 days stale. Raphael/Leonardo still "pending". |
+| AGENTS.md | 5.7KB | Good intent, reactive additions, no pre-action gates. |
+| TOOLS.md | 5.3KB | Mostly current. Some stale entries. |
+| USER.md | ~6KB | Good. Updated Mar 2. |
+| PRIORITY_BRIEFING.md | ~3KB | Auto-generated daily. Correct use. |
+| HEARTBEAT.md | ~0.5KB | Correct. |
 
-These need different solutions. Bundling them into "better documentation" is why nothing has worked.
+Total injected context: ~51KB of workspace files, before any conversation.
+
+The problem with large/stale injected files: the model loads them but critical rules compete with noise for attention. The bigger the file, the less any individual rule gets weighted.
+
+`memory/refs/` files (14 files, ~60KB total) are NOT loaded at session start — they're only accessible via `memory_search`. This is the right pattern for reference material. The mistake has been putting operational rules in MEMORY.md when they should either be in code or in refs (and retrieved on demand).
 
 ---
 
-## The Plan
+## Mistake Taxonomy
 
-### Phase 1: Code Enforcement (highest leverage — do first)
+Before any system design, classify what we're actually fixing. Different mistakes need different solutions.
 
-For every **procedural** mistake: make the wrong action structurally impossible.
+| # | Type | Example from this week | Correct Fix |
+|---|------|----------------------|-------------|
+| 1 | **Procedural** | Forgot Brinc busy block on passport | Code — make wrong action impossible |
+| 2 | **Procedural** | `cal_create` had `add_brinc_busy=False` as default | Code — remove the flag entirely |
+| 3 | **Retrieval** | Used `/api/task` (singular) for GET | Action-triggered `memory_search` before MC calls |
+| 4 | **Retrieval** | Tried expired OAuth token instead of SA token | Session-start canonical ref + token deprecated |
+| 5 | **Overclaim** | "I documented this last night" (unverified) | Hard gate — cite file+line or don't say it |
+| 6 | **Judgment** | 8 redeployments without diagnosing first | PPEE gate — AGENTS.md, can't be code |
+| 7 | **Stale context** | SOUL/IDENTITY files load outdated persona | Scheduled monthly refresh, enforced by cron |
+| 8 | **Memory bloat** | MEMORY.md grows to 117 lessons, becomes unreadable | Size cap enforced monthly, cull protocol |
 
-Already done today:
-- `cal_create` unconditionally adds Brinc busy block — no flag to forget
-- Stale OAuth token file renamed to `.DEPRECATED` — can't be reached by accident
+**Key insight from Opus:** Types 1–2 (procedural) must be fixed in code. Types 3–4 (retrieval) must be fixed with action-triggered search. Types 5–8 need different mechanisms. Lumping them all into "write better docs" is why nothing has worked.
 
-Remaining procedural rules to code-enforce (audit MEMORY.md for these):
-- Any script that calls the MC API uses `/api/tasks` for GET — enforce with a wrapper
-- Any external send (email, webhook) that should have a Brinc-equivalent → add validation layer
-- Identify all other "flag defaults to False" patterns in the codebase
+---
 
-**Deliverable:** A list of procedural rules that are now in code, with the MEMORY.md lesson they replace. Remove those lessons from MEMORY.md after code is verified.
+## Phases
 
-### Phase 2: Action-Triggered Retrieval
+### Phase 1 — Code Enforcement
+*Highest leverage. Do first. Prevents procedural mistakes structurally.*
 
-For every **retrieval** mistake: surface the right rule at the right moment.
+**Already done (today):**
+- `cal_create` in `process_standup.py` — unconditionally adds Brinc busy block. No flag to forget.
+- `credentials/calendar-tokens-brinc.json` → renamed `.DEPRECATED` — can't be reached accidentally.
 
-Instead of loading everything at session start and hoping, query `memory_search` right before each action type.
+**Remaining audit (overnight):**
+Go through MEMORY.md and identify every lesson that is a procedural rule that could be enforced in code. For each:
 
-Proposed gates in AGENTS.md:
-- **Before any calendar operation:** `memory_search("calendar booking rules SA token")`
-- **Before any MC API call:** `memory_search("mission control API endpoints")`
-- **Before any Railway/infra change:** `memory_search("OpenClaw config rules bind tailscale")`
-- **Before claiming something is done:** cite exact file + line, or say "I need to do that" instead
+Known candidates:
+- MC API GET wrapper — any function calling MC API should assert it uses `/api/tasks` (plural) for reads
+- Any script with `flag=False` as a default where the flag should always be True — audit all scripts
+- Morning briefing + overnight cron — verify SA token pattern used everywhere, not OAuth file
 
-This doesn't require perfect session-start loading. It retrieves on demand, at the moment of action.
-
-**Deliverable:** Updated AGENTS.md with pre-action retrieval gates. These gates should be short enough that they actually get followed.
-
-### Phase 3: Session Loading Protocol
-
-Define exactly what loads, in what order, at session start — and make sure it's right.
-
-Currently loaded as project context (from OpenClaw config):
-- AGENTS.md, SOUL.md, USER.md, TOOLS.md, IDENTITY.md, MEMORY.md, HEARTBEAT.md, BOOTSTRAP.md, PRIORITY_BRIEFING.md
-
-Problems:
-- MEMORY.md is 16.7KB — loads into context but is too dense to absorb
-- SOUL.md is 10.6KB and 17 days stale — loads a slightly wrong version of Molty
-- AGENTS.md now has the right pre-action gates (Phase 2) — but needs to be short enough to read
-
-**Changes:**
-- MEMORY.md target: **4KB hard cap** — session-hot facts only, everything else moves to `memory/refs/` where it's retrieval-accessible
-- SOUL.md: trim to under 4KB — core persona only, not a full ops manual; reviewed with Guillermo before committing
-- IDENTITY.md: update to March 2026 reality (Raphael + Leonardo are live, not pending)
-- AGENTS.md: restructure as a short tiered checklist, not a wall of rules
-
-**What "session-hot" means:** information needed within 60 seconds of waking up, before any retrieval step. Everything else can live in `memory/refs/` and be retrieved on demand.
-
-### Phase 4: Mistake Tracker (measurement)
-
-Without measurement, there's no way to know if any of this is working.
-
-A simple `memory/refs/mistake-tracker.md`:
-
+**Deliverable:** A code-enforcement log at `memory/refs/code-enforced-rules.md`:
 ```
-| Date | Mistake | Type | Fix Applied | Recurrences |
-|------|---------|------|-------------|-------------|
-| 2026-03-04 | Used /api/task (singular) for GET | Retrieval | Code wrapper | 0 |
-| 2026-03-04 | No Brinc busy block on passport | Procedural | cal_create unconditional | 0 |
-| 2026-03-04 | OAuth token instead of SA token | Retrieval | Token deprecated + docs | 0 |
-| 2026-03-04 | Claimed "documented last night" without citing | Overclaim | Hard gate in AGENTS.md | 0 |
+| Rule | Script | Function | Commit | MEMORY.md lesson removed |
+|------|--------|----------|--------|--------------------------|
+| Brinc busy block always added | process_standup.py | cal_create | c84f8c1a | lesson 103 |
+| ... | | | | |
 ```
 
-Rules:
-- Every mistake Guillermo calls out → logged here within the same session
-- Recurrence count increments every time it happens again
-- If recurrence count > 0, the fix was insufficient — escalate to code enforcement or a stronger gate
-- Reviewed at weekly standup and monthly core file review
+After each code fix is verified: remove the corresponding MEMORY.md lesson. If it's in code, it doesn't need to be remembered.
 
-**This is the feedback loop that was missing.** Not a vague "lessons learned" file — a specific tracked list of exact mistakes with fix status and recurrence data.
+---
 
-### Phase 5: MEMORY.md Cull + refs/ Refresh
+### Phase 2 — Action-Triggered Retrieval Gates
+*Fixes retrieval mistakes. Surfaces rules at moment of action, not session start.*
 
-Now that phases 1–4 are defined, the cull has clear rules:
+The `memory_search` tool queries `MEMORY.md + memory/*.md`. This means `memory/refs/` files ARE searchable on demand. Use this.
 
-**Remove from MEMORY.md:**
-- Any lesson whose rule is now in code → delete entirely (it's enforced, not needed)
-- Any lesson that is a retrieval/reference item → move to appropriate `memory/refs/` file
-- Any completed project context → move to `memory/refs/` or PARA archive
-- Any credential that's also in TOOLS.md → remove duplicate
+**AGENTS.md pre-action protocol (specific text to add):**
 
-**Keep in MEMORY.md (session-hot only):**
-- Guillermo contact info (quick-ref for messaging)
-- Active project status: one line per project (Brinc, Cerebro, fleet)
-- Agent URLs + key tokens (infrastructure quick-ref)
-- The top 5–8 rules that are genuinely not yet in code and not retrieval-accessible
+```
+## Before Any Calendar Operation
+1. memory_search("calendar booking rules SA token Brinc busy")
+2. Use SA token ONLY: google-service-account.json, no delegation
+3. Non-Brinc booking = Brinc busy block added in same cal_create call (automatic now)
+4. Check all 3 calendars for conflicts before booking
 
-**Refresh `memory/refs/`:**
-- `lessons-learned.md` — currently 12.5KB from Feb 14. Audit: what's obsolete, what needs updating through Mar 4
-- `infrastructure.md` — update for Raphael outage fix, bind/tailscale rules
-- `credentials.md` — verify all entries still accurate
-- Other refs files: flag staleness dates
+## Before Any MC API Call  
+1. memory_search("mission control API endpoint tasks")
+2. GET = /api/tasks (plural). POST/PATCH = /api/task (singular).
 
-**PARA — reduced scope:**
-Opus is right that PARA is over-engineered for an amnesiac agent. Revised scope:
-- PARA = archival only. Completed plans, historical project context, deep reference.
-- Not operational. Not retrieved at session start.
-- `para_curation.py` — fix it to actually move completed plans to archive. That's its real job.
-- Stop pretending PARA is operational memory. It's an archive. That's fine. That's enough.
+## Before Any Railway / OpenClaw Config Change
+1. memory_search("OpenClaw config bind tailscale gateway")
+2. Diagnose fully before touching anything. One fix, not many attempts.
+3. Check if this exact issue was solved before (MEMORY.md or memory/refs/)
 
-### Phase 6: Core Files Refresh
+## Before Claiming Something Is Done or Documented
+1. Can you cite the exact file and line? If yes: state it.
+2. If no: say "I need to do that" — not "I did that."
 
-Last, not first — because Phase 1–4 will reveal what actually needs to change.
+## Before Any External Send (email, webhook, Discord message)
+1. Is this Guillermo's voice or Molty's? Don't conflate.
+2. For emails: draft first, confirm before sending.
+```
 
-**SOUL.md:**
-- Add: Molty's known failure modes and specific responses to them (not aspirational, factual)
-- Add: What Guillermo actually cares about (from 3 weeks of operation, not a first interview)
-- Remove: anything that hasn't proven true in practice
-- Trim from 10.6KB to under 4KB — core persona, not an ops manual
-- **Guillermo reviews before committing** — SOUL.md is too important to change unilaterally
+These gates are short enough to actually follow. They don't require loading a file — they trigger a retrieval query.
+
+---
+
+### Phase 3 — Session Loading Protocol
+*Fixes stale context. Right files, right size, loaded at session start.*
+
+**Target state for injected files:**
+
+| File | Current | Target | Action |
+|------|---------|--------|--------|
+| MEMORY.md | 16.7KB | ≤4KB | Cull — session-hot only |
+| SOUL.md | 10.6KB | ≤4KB | Rewrite — core persona only, Guillermo reviews |
+| IDENTITY.md | 3.6KB | ≤2KB | Update — March 2026 reality |
+| AGENTS.md | 5.7KB | ≤4KB | Restructure — tiered checklist |
+| TOOLS.md | 5.3KB | ≤4KB | Trim — remove refs duplication |
+
+**Total injected context target: ≤25KB** (down from ~51KB). Everything else lives in `memory/refs/` and is retrieved on demand.
+
+**What "session-hot" means for MEMORY.md:**
+Must be true: needed within 60 seconds of waking up, before any retrieval. Concretely:
+- Guillermo: Telegram ID, Discord ID, email, timezone
+- Agent URLs (Molty, Raphael, Leonardo) + health endpoints
+- MC API base URL + auth token
+- Active project status (one line: Brinc / Cerebro / fleet)
+- Calendar booking rule summary (3 lines, not 20)
+- Top 3-5 rules not yet in code and not in refs
+
+Everything else: `→ memory_search("topic")` or `→ memory/refs/X.md`
+
+---
+
+### Phase 4 — Mistake Tracker
+*The feedback loop. Without this, there's no way to know if any fix worked.*
+
+Create `memory/refs/mistake-tracker.md` and seed it with today's incidents:
+
+```markdown
+# Mistake Tracker
+
+| Date | Mistake | Type | Fix Applied | Fix Location | Recurrences |
+|------|---------|------|-------------|--------------|-------------|
+| 2026-03-04 | No Brinc busy block on passport appt | Procedural | cal_create unconditional | process_standup.py | 0 |
+| 2026-03-04 | Used expired OAuth token instead of SA token | Retrieval | Token deprecated, SA pattern documented | memory/refs/standup-process.md | 0 |
+| 2026-03-04 | GET /api/task (singular) for MC query | Retrieval | HEARTBEAT.md fixed, lesson #116 | HEARTBEAT.md + MEMORY.md | 0 |
+| 2026-03-04 | Claimed "documented last night" unverified | Overclaim | Hard gate added to AGENTS.md | AGENTS.md | 0 |
+| 2026-03-04 | 8+ redeployments without diagnosis (Raphael) | Judgment | PPEE gate reinforced in SOUL.md | MEMORY.md #115 | 0 |
+| 2026-03-04 | para_curation.py processes 0 files weekly | System | PARA redefined as archival only | PLAN-010 | 0 |
+```
+
+**Rules (enforced, not aspirational):**
+- Every mistake Guillermo calls out → logged here in the same session, before replying
+- Recurrence count > 0 → current fix is insufficient → escalate to code or stronger gate
+- Reviewed in weekly standup (Friday)
+- Monthly: any mistake with recurrence > 0 gets a mandatory code-level fix
+
+---
+
+### Phase 5 — MEMORY.md Cull + refs/ Refresh
+*Execute after Phases 1–4 are done. Cull with clear rules, not vibes.*
+
+**Cull protocol:**
+
+For each of the 117 lessons in MEMORY.md:
+
+1. Is the rule now enforced in code? → Delete from MEMORY.md entirely
+2. Is it a technical reference (API endpoints, config patterns)? → Move to appropriate `memory/refs/` file
+3. Is it a completed project note? → Move to PARA archive
+4. Is it duplicated in TOOLS.md? → Delete duplicate
+5. Is it session-hot (needed in first 60s)? → Keep in MEMORY.md
+6. Is it a Guillermo contact/credential? → Keep only if not duplicated elsewhere
+7. Anything else → Delete unless strong reason to keep
+
+**Every migrated lesson gets a forwarding pointer** left in MEMORY.md for 30 days:
+`→ [lesson topic] now in memory/refs/infrastructure.md`
+
+**memory/refs/ refresh targets:**
+
+| File | Current state | Action |
+|------|--------------|--------|
+| `lessons-learned.md` | 12.5KB, frozen Feb 14 | Audit: cull obsolete, add Mar 4 lessons |
+| `infrastructure.md` | Feb 11, outdated | Update: Raphael config fix, bind/tailscale rules |
+| `credentials.md` | Feb 11, sparse | Update: SA token canonical path, deprecations |
+| `standup-process.md` | Mar 4, too long | Trim: keep rules, remove historical narrative |
+| `models.md`, `skills.md` etc | Feb 11–15 | Verify accuracy, update or archive |
+
+**PARA — correct scope:**
+PARA = archival only. Completed plans → `memory/vault/knowledge/projects/_archive/`. Historical decisions → `memory/vault/knowledge/areas/`. Not operational. Not session-loaded. Searchable via `memory_search` if needed.
+
+Fix `para_curation.py` to do one real job: scan `/data/workspace/plans/` for completed plans (status: done/closed in the file) and move them to `memory/vault/knowledge/projects/_archive/`.
+
+---
+
+### Phase 6 — Core Files Refresh
+*Last, because Phases 1–4 reveal what actually needs to change.*
+
+**SOUL.md (draft outline — Guillermo reviews before commit):**
+
+Keep:
+- Core identity and voice (Molty as coordinator/operator)
+- Principles that have proven true (PPEE, brevity, opinions)
+- Relationship with Guillermo and the squad
+
+Add:
+- Known failure modes and specific responses (factual, not aspirational)
+- What Guillermo actually cares about after 3 weeks of operation
+- "Code over docs" as a core operating principle
+- Explicit acknowledgement of session amnesia and what compensates for it
+
+Remove / trim:
+- Vague aspirational statements that haven't materialised
+- Operational detail that belongs in AGENTS.md, not SOUL.md
+- Target: ≤4KB, reads in 60 seconds
 
 **IDENTITY.md:**
-- Update: Raphael and Leonardo are live (not "pending")
-- Update: actual domains Molty owns vs. coordinates vs. stays out of
-- Add: honest operational limitations (session amnesia, retrieval-dependent, not self-correcting without mechanical enforcement)
+- Raphael and Leonardo: live and operational (not "pending")
+- Add honest limitations section (session amnesia, retrieval-dependent)
+- Remove "pending deployment" agents from authority section until they actually deploy
 
-### Phase 7: Maintenance Cadence
+**AGENTS.md:**
+- Restructure as 3 sections: Session Start (60-second checklist) / Pre-Action Gates / End of Session
+- Remove accumulated one-off rules that now belong elsewhere
+- Must be completable in under 2 minutes at session start
 
-Sustainable only if mechanical:
+---
 
-| Frequency | What | Mechanism |
-|-----------|------|-----------|
-| Every session | Pre-action retrieval gates | AGENTS.md checklist |
-| Every mistake | Log to mistake-tracker.md, classify, fix | AGENTS.md rule + Guillermo calls out |
-| Weekly Friday | PARA curation (archive completed plans), mistake tracker review | para_curation.py + standup |
-| Monthly 1st | SOUL.md + IDENTITY.md review, MEMORY.md size check | Cron prompt |
-| Monthly 1st | If MEMORY.md > 5KB — mandatory cull before end of day | Cron + hard rule |
+### Phase 7 — Maintenance Cadence
+*Sustainable only if mechanical. Aspirational schedules don't work.*
 
-Monthly review is a cron-prompted session, not a hope. It shows up in PRIORITY_BRIEFING.md and can't be skipped.
+| Frequency | Trigger | Action | Mechanism |
+|-----------|---------|--------|-----------|
+| Every session | Session start | Read PRIORITY_BRIEFING, run pre-action gates | AGENTS.md |
+| Every mistake | Guillermo calls it out | Log to mistake-tracker.md, classify, fix same session | AGENTS.md standing rule |
+| Weekly Fri | Friday standup | Review mistake-tracker, archive completed plans | para_curation.py + standup prompt |
+| Monthly 1st | Cron prompt | Review SOUL.md + IDENTITY.md accuracy, MEMORY.md size check | Cron → PRIORITY_BRIEFING |
+| Monthly 1st | If MEMORY.md > 5KB | Mandatory cull before end of that day | Hard rule in AGENTS.md |
+
+Monthly review appears in PRIORITY_BRIEFING.md on the 1st of each month — can't be missed.
+
+---
+
+## Fleet Rollout (after Molty proof-of-concept)
+
+This plan is Molty-first. Once execution is complete and mistake tracker shows improvement over 2 weeks, the same system rolls out to Raphael and Leonardo via fleet directive.
+
+Fleet rollout scope:
+- Phase 1 (code enforcement): each agent audits their own scripts
+- Phase 2 (AGENTS.md gates): fleet-wide directive with standardised gate language
+- Phase 4 (mistake tracker): each agent maintains their own tracker in `memory/refs/`
+- Phase 6 (core files refresh): each agent updates their own SOUL/IDENTITY with Guillermo review
+- Phase 7 (maintenance crons): each agent adds monthly review to their cron schedule
 
 ---
 
 ## Execution Sequence
 
-1. **Tonight (overnight session):** Phase 1 (code enforcement audit + fixes) + Phase 4 (mistake tracker seeded with today's incidents)
-2. **This week:** Phase 2 (AGENTS.md retrieval gates) + Phase 3 (session loading — MEMORY.md cull, SOUL.md draft)
-3. **At standup (Mar 4 5PM):** Guillermo reviews SOUL.md draft
-4. **After standup approval:** Phase 5 (refs refresh) + Phase 6 (commit core files)
-5. **End of week:** Phase 7 (maintenance crons verified)
-
----
-
-## What's Not In This Plan (deliberately)
-
-- Elaborate PARA folder hierarchy — too complex for an amnesiac agent
-- 90-day lesson expiry without mechanical enforcement — won't happen
-- Weekly curation scripts that process 0 files — we'll keep PARA as archival only, fix curation script to do one real job
+| When | What | Owner |
+|------|------|-------|
+| Tonight (Molty overnight, 03:00 HKT) | Phase 1: code enforcement audit; Phase 4: seed mistake tracker | Molty |
+| Thu Mar 5 AM | Phase 2: AGENTS.md retrieval gates | Molty |
+| Thu Mar 5 | Phase 3: MEMORY.md cull (Phases 1+2 complete first) | Molty |
+| Thu Mar 5 standup | SOUL.md draft → Guillermo review | Molty + Guillermo |
+| Fri Mar 6 AM | Phase 5: refs/ refresh; Phase 6: commit SOUL/IDENTITY | Molty (post-approval) |
+| Fri Mar 6 | Phase 7: verify maintenance crons | Molty |
+| Week of Mar 9 | Fleet rollout Phase 1+2 to Raphael + Leonardo | Molty (directive) |
 
 ---
 
 ## Success Metrics
 
-**2 weeks:** Mistake-tracker.md has 0 recurrences on mistakes logged today.
-**1 month:** No new procedural mistakes (those are now in code). Retrieval mistakes rate < 1/week.
-**90 days:** Guillermo doesn't call out the same mistake twice in a single month.
-
-Measured from mistake-tracker.md, not vibes.
+| Timeline | Metric | Measured by |
+|----------|--------|------------|
+| 2 weeks | 0 recurrences in mistake-tracker.md on today's mistakes | mistake-tracker.md |
+| 1 month | 0 new procedural mistakes (all in code) | mistake-tracker.md |
+| 1 month | Retrieval mistakes < 1/week | mistake-tracker.md |
+| 90 days | Guillermo calls out same mistake class < 1x/month | Standup notes |
 
 ---
 
 ## Risks
 
-| Risk | Mitigation |
-|------|-----------|
-| Over-culling MEMORY.md | Every removed lesson has a forwarding pointer: `→ see memory/refs/X.md` |
-| SOUL.md edit loses voice | Guillermo reviews draft before commit |
-| Plan sits unactioned | MC task created + overnight session scheduled tonight |
-| Fleet agents not covered | Molty-first. Once proven: Raphael + Leonardo get the same treatment. |
-| Phases 2+ never happen after Phase 1 | Phase 1 deliverable includes a specific list of what phases 2+ must address |
+| Risk | Likelihood | Mitigation |
+|------|-----------|-----------|
+| Over-culling MEMORY.md — lose something needed | Medium | Forwarding pointers for 30 days; `memory_search` still finds refs/ content |
+| SOUL.md rewrite loses voice | Low | Guillermo reviews draft; rewrite not overwrite |
+| Plan sits unactioned (happened with PARA before) | Medium | MC task created now; overnight session tonight; morning brief confirms completion |
+| Maintenance cadence degrades after 2 weeks | High | Cron-enforced monthly review; hard MEMORY.md size cap |
+| Fleet rollout creates inconsistency | Low | Molty-first; standardised directive when proven |
 
 ---
 
-*Status: Ready for Guillermo review. Do not execute until approved.*
+## What Deliberately Excluded
+
+- Elaborate PARA folder hierarchy — over-engineered for amnesiac agent, PARA = archival only
+- 90-day lesson expiry rule — aspirational, no mechanical enforcement, will fail
+- Weekly curation that processes 0 files — replaced with one real job (archive completed plans)
+- Vague "improve recursively" without measurement — replaced with mistake-tracker.md
+
+---
+
+*Do not execute until Guillermo approves. MC task to be created at approval.*
