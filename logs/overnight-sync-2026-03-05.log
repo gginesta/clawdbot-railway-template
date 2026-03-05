@@ -1,0 +1,36 @@
+overnight_sync — 2026-03-05 04:00 HKT
+
+overnight_sync — 2026-03-05 04:00 HKT
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-04
+
+1. Fetching MC overnight completions...
+  MC: 180 total tasks, 13 done in overnight window
+  • [molty] Research OpenClaw voice/call capabilities for Telegram (updated: 1772647459901)
+  • [leonardo] Beta: Founding Member countdown banner (Mar 28-31) (updated: 1772630713730)
+  • [leonardo] Beta M4.6: Apr 1 post-beta downgrade script (updated: 1772630715960)
+  • [leonardo] Beta: Pre-invite email questionnaire (Google Form) (updated: 1772630715770)
+  • [leonardo] M1.2: PWA install prompt on iOS Safari (#12) (updated: 1772630714103)
+  • [leonardo] M1.2: Chat mobile layout fix (#11) (updated: 1772630714376)
+  • [leonardo] Stripe webhook + subscription flow (pay → upgrade to Top Tie (updated: 1772630714572)
+  • [leonardo] M1.2: Event-Based Contact Grouping (All tiers) (updated: 1772630714782)
+  • [leonardo] M1.2: Re-Engagement Email Composer (Premium) (updated: 1772630714976)
+  • [leonardo] M1.2: Introduction Drafting Assistant (Premium) (updated: 1772630715167)
+  • [leonardo] M1.1: Beta onboarding kit — email + Getting Started flow (updated: 1772630715372)
+  • [leonardo] Beta candidate list — 30→20 shortlist (ICP matched) (updated: 1772630715576)
+  • [molty] [B3] Enhanced Dojo — Quick Actions (updated: 1772647764505)
+
+2. Fetching open Todoist tasks...
+  13 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-04...
+  Notion: 7 rows for standup date 2026-03-04
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  MC tasks done overnight:   13
+  Todoist tasks closed:      0
+  Notion rows marked done:   0

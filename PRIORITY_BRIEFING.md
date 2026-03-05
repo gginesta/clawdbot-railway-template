@@ -1,48 +1,43 @@
-Good morning, Guillermo - Wed 4 Mar (HKT)
-School day: yes (drop-off 08:00-08:30)
+Good morning, Guillermo - Thu 5 Mar (HKT)
 
-📌 Yesterday's Focus: "Prepare April and Donatello. Molty to interview Guillermo on what the plan is (book in the calendar)"
+📌 Yesterday's Focus: "Reply to Mei Ling"
 
 🌙 Overnight Report
 👀 Needs your review:
-  • M1.2: PWA install prompt on iOS Safari (#12) (leonardo)
-    PWA install prompt not surfaced on iPhone. Add beforeinstall
-  • M1.2: Chat mobile layout fix (#11) (leonardo)
-    Chat window renders sub-optimally on iPhone. Input field hid
-  • M1.2: Event-Based Contact Grouping (All tiers) (leonardo)
-    Auto-tag contacts by event/location at scan time. When scann
+  • Create brief and plan for personal website — www.ginest (molty)
+    From standup Mar 4. Create a brief and plan for Guillermo's 
+  • D2: Guillermo reviews source.pptx files [CHECKPOINT] (raphael)
+    15 source.pptx files ready for Guillermo review. Location on
 🚧 Blocked — need your input:
   • ⌚ Build Whoop Health Integration — daily recovery + sle (molty)
     Ask: Research complete. Full spec at /data/workspace/scripts/WHOOP-INTEGRATION-SPEC.m
-  • Stripe webhook + subscription flow (pay → upgrade to To (leonardo)
-    Ask: Code complete. Blocked on Stripe live keys in Railway. Need: STRIPE_SECRET_KEY, 
   • A8 (BLOCKED Fri): Use live proposal deck as master PPTX (raphael)
     Ask: When Guillermo provides live deck: download, extract slide master, use as Presen
-🔴 Raphael: ✅ 4 done | 👀 Nothing pending review tonight. — needs your review | ❌ 1 failed | 🚧 2 blocked
-🔵 Leonardo: ✅ 1 done | 👀 Pre-invite Google Form, `DISCORD_FEEDBACK_WEBHOOK_URL` — needs your review | 🚧 2 blocked
-🦎 Molty: ✅ 2 done | 🚧 1 blocked
+  • Waiting: Live proposal template from Guillermo (new bra (raphael)
+    Ask: Guillermo to share a live proposal deck with Feb 2026 branding. Use as master PP
+🔴 Raphael: ✅ 14 done | 👀 Nothing pending Guillermo review tonight — needs your review | ❌ 1 failed | 🚧 2 blocked
+🔵 Leonardo: 🚧 4 blocked
+🦎 Molty: ✅ 2 done | 👀 **Personal website brief — www.ginesta.i — needs your review | 🚧 1 blocked
 
-🌤 Weather: 15-17°C · Rain chance up to 75%
-   Outlook: Thu 17-22°C (15%) · Fri 17-23°C (15%) · Sat 18-21°C (15%)
-   ⚠️ Rain risk at drop-off (08:00): ~75%
+🌤 Weather: 16-21°C · Rain chance up to 15%
+   Outlook: Fri 17-23°C (15%) · Sat 18-21°C (15%) · Sun 17-20°C (15%)
 
 📅 Today
+ 19:00  Mayleen in Philippines   · Family
+all-day  Zoe Brown's birthday  · Personal
  07:00  Workout  · Brinc
- 07:45  Raeniel  · Brinc
- 08:00  🏫 School Drop-off  · Family
- 08:00  Helm Proposal  · Brinc
- 08:00  Busy  · Brinc
- 08:30  🎯 Focus Time (Deep Work)  · Personal
  09:00  Desk Work + Triage  · Brinc
- 09:15  Sports Day ⚽️  · Family
- 10:30  🏫 School Pick-up  · Family
+ 09:00  Brinc <> Ripple  · Brinc
+ 10:00  🎯 [Tomorrow's Focus] Reply to Mei Ling  · Personal
+ 10:00  Busy  · Brinc
+ 11:00  🇪🇸 Spanish Passport Appointment — Guillermo + Memo  · Family
+ 11:00  Busy  · Brinc
  12:00  Lunch  · Brinc
-… +8 more
+… +7 more
 
 ✅ Tasks due (P1/P2)
 Personal 🙂
 • [P1] (2026-03-03) I must Reply to Helm Consulting email urgently — 30min 🦎
-• [P1] (2026-03-03) I must Reply to Raeniel email urgently — 30min 🦎
 
 🐢 Squad
 🔴 P0 CRITICAL:
@@ -51,11 +46,11 @@ Personal 🙂
   • G3: Context-aware slide scoring — sector + geography weighting [🔴 raphael]
 🧱 Blocked:
   • ⌚ Build Whoop Health Integration — daily recovery + sleep digest for Guillermo (+ wife multi-user) (molty)
-  • Stripe webhook + subscription flow (pay → upgrade to Top Tier) (leonardo)
   • A8 (BLOCKED Fri): Use live proposal deck as master PPTX template (raphael)
-🦎 molty: 📋 D4: Memory Timeline/Diff in Vault
+  • Waiting: Live proposal template from Guillermo (new branding) (raphael)
+🦎 molty: 👀 Create brief and plan for personal website — www.ginest
 🔴 raphael: ⚡ G2: Module exclusion matrix — enforce correct module-ty
-🔵 leonardo: ⚡ Beta: Pre-invite email questionnaire (Google Form)
+🔵 leonardo: ⚡ M1.1: Beta final 20 selection — confirm list, upgrade D
 Your MC queue:
   🟡 Multi-Layer Referral System — spec, design and build
   🔴 Add Stripe live keys to Railway (prod payment processing)
@@ -63,25 +58,20 @@ Your MC queue:
   … +2 more
 
 🔜 Next 5 days
-Thu  all-day  Zoe Brown's birthday  · Personal
-Thu  07:00  Workout  · Brinc
-Thu  09:00  Desk Work + Triage  · Brinc
-Thu  09:00  Brinc <> Ripple  · Brinc
-Thu  10:15  GBA-HK: G&M Sync  · Brinc
-Thu  11:00  🇪🇸 Spanish Passport Appointment — Guillermo + Memo  · Personal
+Tue  19:00  Mayleen in Philippines   · Family
+Fri  07:00  Workout  · Brinc
+Fri  08:00  🏫 School Drop-off  · Family
+Fri  08:00  Busy  · Brinc
+Fri  08:30  🎯 Focus Time (Deep Work)  · Personal
+Fri  09:00  Desk Work + Triage  · Brinc
 
 ✉️ Email
-Unread: 71
-No overnight highlights
+Unread: 75
+• ⭐ Guillermo Ginesta via Notion - View this page in Notion: "🎙️ Voice Note Processing — OpenClaw Research"
+• ⭐ Guillermo Ginesta - Re: FY23-24
+• Meiling Yik - RE: FY23-24
 
 🔧 OpenClaw Update
 No updates - already on latest version ✅
 
-Focus: I must Reply to Raeniel email urgently — 30min 🦎
-
----
-## ⚠️ Known Failure Modes — Read Before Acting
-- **Calendar:** Use SA token (`google-service-account.json`). Non-Brinc booking = add Brinc busy block IN THE SAME OPERATION.
-- **MC API:** GET uses `/api/tasks` (plural). POST/PATCH use `/api/task` (singular).
-- **Don't claim things are documented unless you can point to the exact file + line.**
-- **Don't say "that's on me" — just fix it and don't repeat it.**
+Focus: I must Reply to Helm Consulting email urgently — 30min 🦎
