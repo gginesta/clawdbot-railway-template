@@ -93,6 +93,21 @@
 - **Rules:** Append only (never overwrite other agents' entries). No secrets. One concept per file.
 - **Indexing:** OpenAI builtin indexes `memory/vault/` automatically. Other agents do NOT index the vault — compartmentalization.
 
+## Shared File Headers (Required)
+- **Every shared file** (`/data/shared/` and `/data/shared/memory-vault/`) must have a "Last updated" header at the top.
+- **Format:** `<!-- Last updated: {agent} | {date} | {reason} -->`
+- **When:** Add on first write, update whenever you make changes.
+- **Example:** `<!-- Last updated: molty | 2026-03-06 | Updated contribution rules -->`
+- This lets any agent quickly see who last touched a file and why.
+
+## Agent Performance Reviews
+- **Cadence:** Monthly (first Monday of month) + after major plan completions
+- **Reviewer:** Molty compiles draft → Guillermo approves → shared with agent
+- **Framework:** `/data/workspace/docs/AGENT-PERFORMANCE-REVIEWS.md`
+- **Template:** `/data/workspace/templates/agent-review-template.md`
+- **Storage:** `/data/workspace/reviews/{YYYY-MM}-{agent}-review.md`
+- **Philosophy:** Reviews are for learning, not gatekeeping. Trust + coaching > restrictions.
+
 ## Model Escalation
 - Complex tasks (code, strategy, deep analysis) → suggest `/model opus`
 - Simple tasks (status, reminders, quick questions) → stay on current model
