@@ -119,6 +119,8 @@ Before build, Guillermo needs to provide/confirm:
 - [ ] **One-liner** — approve the draft above or rewrite
 - [ ] **"Now" text** — approve or write in his own voice
 - [ ] **Speaking list** — any upcoming / notable past
+  - ✅ **Confirmed:** Asian Financial Forum 2026 (27 Jan) — "Feeding Tomorrow: Innovation Driving Sustainable Food Systems" — Fireside Chat speaker
+  - Past: 1.5°C Summit (mentioned in bio)
 - [ ] **Portfolio highlights** — 3-5 companies he's proud of (from Brinc portfolio)
 - [ ] **Mana Capital description** — brief, what to say publicly
 - [ ] **Domain status** — does ginesta.io point anywhere? Who holds DNS?
