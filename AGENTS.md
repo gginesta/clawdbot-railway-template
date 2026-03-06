@@ -6,6 +6,7 @@
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday)
 4. **Main session only:** Read `MEMORY.md`
 5. Read `PRIORITY_BRIEFING.md` — surface priorities FIRST when Guillermo messages
+6. Check `REGRESSIONS.md` — hard rules from past failures. Do not repeat them.
 
 ## Before Any Calendar Operation
 - Use SA token ONLY: `google-service-account.json` + no delegation. See `memory/refs/standup-process.md`.
@@ -133,6 +134,12 @@ No exceptions. This is how you avoid the 8-redeploy debugging spiral.
 - **Under Review**: work done but needs Guillermo's eyes → set MC status "Under Review" + include direct link to deliverable (Notion page preferred; any URL accepted)
 - **Blocked**: can't proceed → set MC status "Blocked" + include specific ask for Guillermo
 - Status flow: `Backlog → In Progress → Under Review → Done` (or `→ Blocked`)
+
+## Meta-Learning (PLAN-012)
+- **REGRESSIONS.md** — Load every session (step 6 above). A mistake listed here = do not repeat.
+- **memory/predictions/** — Log predictions before significant decisions; fill outcomes within 24-48h.
+- **memory/friction-log.md** — Log contradictory instructions when detected; surface at next interaction.
+- When called out on a mistake: add to REGRESSIONS.md immediately + check if it needs code enforcement.
 
 ## Overnight Work
 - Each agent has a scheduled overnight window: Raphael 00:30 HKT, Leonardo 01:30 HKT, Molty 03:00 HKT
