@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: 2026-03-05 | Target: <4KB*
+*Last updated: 2026-03-06 | Target: <4KB*
 
 ---
 
@@ -37,7 +37,7 @@
 - **ginesta.io:** Brief in Notion → https://www.notion.so/Personal-Website-Brief-www-ginesta-io-31a39dd69afd81cea223fbb9f2b2fe39. Waiting on Guillermo's content checklist.
 - **April (agent):** Deployment pending. Notion pages: Setup Qs `31939dd6-9afd-8197` (Guillermo filled ✅), Steph Interview `31939dd6-9afd-81c5` (ready to share, Guillermo will send), Planning notes `31939dd6-9afd-8119`. Channels: WhatsApp (new SIM), Google Calendar + Shenanigans. Voice: yes.
 - **Agent Performance Review:** P1 overnight work planned (PLAN-011). Design review process + add "Last updated by" headers to shared files. Trust/coaching model, not gatekeeping. Cascade to fleet after approval.
-- **gws CLI:** v0.4.4 primary tool. Gmail ✅ Calendar ✅ Drive ✅ Docs ✅ Sheets ✅ (all 9 scopes). Config: `~/.config/gws/`. 11 skills at `/openclaw/skills/gws-*`. gog deprecated as fallback.
+- **gws CLI:** v0.4.4 primary tool. Gmail ✅ Calendar ✅ Drive ✅ Docs ✅ Sheets ✅ (all 9 scopes). Config: `~/.config/gws/`. 11 skills at `/openclaw/skills/gws-*`. gog deprecated as fallback. GCP OAuth project: `847540297795` (separate from Gemini project `226575193033`).
 - **Browser relay:** PARKED. Blocker: relay only included in full gateway, not `openclaw node run`. Node on GUILLERMO-DESKTOP is paired ✅. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
@@ -74,3 +74,4 @@ Send daily standup to **both** webchat AND Telegram going forward.
 118. **Webchat→Telegram duplicate messages (Mar 6 2026):** When session is initiated via Telegram, then accessed via webchat, replies go to BOTH. Root cause: session "channel" is set to the initiating provider. Fix: start session from webchat first, or `/reset` in webchat. Metadata shows `channel: telegram, provider: webchat, surface: webchat` when this happens.
 119. **gws auth export bug:** Encrypted credentials don't export properly. Workaround: manually copy `.encryption_key`, `accounts.json`, and `credentials.<base64-email>.enc` files from authenticated machine. Base64-encode the .enc file for transfer.
 120. **gws CLI correct package:** `@googleworkspace/cli` (npm). NOT `@anthropic-ai/...`. Always verify package names before giving install commands.
+121. **Silent crons need `delivery.mode: "none"` (Mar 6 2026):** Three crons were sending bare "DONE" to Telegram overnight (`13b4eaa0` Todoist Triage, `ad96575e` Pre-Standup Prep, `8991c017` Overnight Sync). Fix: set `delivery.mode: "none"` and change prompt endings to `HEARTBEAT_OK` not "Reply DONE". Always audit new crons for this before activating.
