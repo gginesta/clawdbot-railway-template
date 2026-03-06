@@ -70,3 +70,7 @@ Send daily standup to **both** webchat AND Telegram going forward.
 ---
 
 *Full lesson archive: `memory/refs/lessons-learned.md`*
+
+118. **Webchat→Telegram duplicate messages (Mar 6 2026):** When session is initiated via Telegram, then accessed via webchat, replies go to BOTH. Root cause: session "channel" is set to the initiating provider. Fix: start session from webchat first, or `/reset` in webchat. Metadata shows `channel: telegram, provider: webchat, surface: webchat` when this happens.
+119. **gws auth export bug:** Encrypted credentials don't export properly. Workaround: manually copy `.encryption_key`, `accounts.json`, and `credentials.<base64-email>.enc` files from authenticated machine. Base64-encode the .enc file for transfer.
+120. **gws CLI correct package:** `@googleworkspace/cli` (npm). NOT `@anthropic-ai/...`. Always verify package names before giving install commands.
