@@ -17,6 +17,18 @@
 - GET = `/api/tasks` (plural). POST/PATCH = `/api/task` (singular).
 - Wrong endpoint = silent failure. Double-check before executing.
 
+## Before Any Code Edit, Config Change, or File Modification
+**Recon-First is MANDATORY.** See skill: `recon-first`
+
+The loop: **READ → CITE → PLAN → EXECUTE**
+
+1. **READ** the relevant source files first (not skim — actually read)
+2. **CITE** what you read: `Source: <filepath>#L<start>-L<end>`
+3. **PLAN** your change in one sentence
+4. **EXECUTE** only after steps 1-3 are complete
+
+No exceptions. This is how you avoid the 8-redeploy debugging spiral.
+
 ## Before Any Railway / OpenClaw Config Change
 - PPEE: Pause → Plan → Evaluate → Execute. One fix, not many attempts.
 - `gateway.bind` must be `"loopback"` when `tailscale.mode="serve"`.
