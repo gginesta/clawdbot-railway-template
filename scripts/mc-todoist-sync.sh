@@ -20,14 +20,18 @@ curl -s "https://api.todoist.com/api/v1/projects" \
 
 # Transform to MC format
 echo "[3/3] Transforming and syncing to Mission Control..."
-python3 << EOF
+export TMPDIR
+python3 << 'EOF'
 import json
 import sys
+import os
+
+tmpdir = os.environ['TMPDIR']
 
 try:
-    with open("$TMPDIR/tasks.json") as f:
+    with open(f"{tmpdir}/tasks.json") as f:
         data = json.load(f)
-    with open("$TMPDIR/projects.json") as f:
+    with open(f"{tmpdir}/projects.json") as f:
         proj_data = json.load(f)
 except json.JSONDecodeError as e:
     print(f"Error parsing Todoist API response: {e}", file=sys.stderr)
@@ -62,7 +66,7 @@ for t in tasks[:50]:
         task_obj['due'] = due
     mc_tasks.append(task_obj)
 
-with open("$TMPDIR/payload.json", 'w') as f:
+with open(f"{tmpdir}/payload.json", 'w') as f:
     json.dump({'tasks': mc_tasks}, f)
 
 print(f'Prepared {len(mc_tasks)} tasks for sync')

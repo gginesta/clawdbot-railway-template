@@ -1,0 +1,25 @@
+overnight_sync — 2026-03-06 04:00 HKT
+
+overnight_sync — 2026-03-06 04:00 HKT
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-05
+
+1. Fetching MC overnight completions...
+  MC: 185 total tasks, 2 done in overnight window
+  • [molty] Add Last updated by headers to shared context files (updated: 1772733884235)
+  • [molty] Design Agent Performance Review process (updated: 1772733884053)
+
+2. Fetching open Todoist tasks...
+  13 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-05...
+  Notion: 6 rows for standup date 2026-03-05
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  MC tasks done overnight:   2
+  Todoist tasks closed:      0
+  Notion rows marked done:   0

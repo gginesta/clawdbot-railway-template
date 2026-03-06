@@ -60,13 +60,23 @@
 
 ---
 
-## 📧 Google Workspace — gog CLI
+## 📧 Google Workspace — gws CLI (primary)
 
 | What | Value |
 |------|-------|
-| CLI | `gog` v0.11.0 · account: `ggv.molt@gmail.com` |
+| CLI | `gws` v0.4.4 (@googleworkspace/cli) |
+| Account | `ggv.molt@gmail.com` |
+| Scopes | gmail, calendar, drive, docs, sheets, slides, tasks, people, presentations (9 total) |
+| Config | `~/.config/gws/` |
+| Backup | `/data/workspace/credentials/gws-config-backup/` |
+| Skills | gws-calendar, gws-gmail, gws-drive, gws-docs, gws-sheets + shared |
+
+### Legacy: gog CLI (deprecated)
+| What | Value |
+|------|-------|
+| CLI | `gog` v0.11.0 |
 | Keyring | `GOG_KEYRING_PASSWORD="molty2026"` |
-| Calendar | Service account (R/W all Guillermo's calendars) |
+| Status | Superseded by gws — keep as fallback |
 
 ---
 

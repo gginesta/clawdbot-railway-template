@@ -1,11 +1,14 @@
-Good morning, Guillermo - Thu 5 Mar (HKT)
+Good morning, Guillermo - Fri 6 Mar (HKT)
+School day: yes (drop-off 08:00-08:30)
 
-📌 Yesterday's Focus: "Reply to Mei Ling"
+📌 Yesterday's Focus: "Reply to Raeniel"
 
 🌙 Overnight Report
 👀 Needs your review:
   • Create brief and plan for personal website — www.ginest (molty)
     From standup Mar 4. Create a brief and plan for Guillermo's 
+  • Phase 2 spec: Contact Sharing / v1.1 Network Connection (leonardo)
+    Spec complete (2026-03-06 01:30 HKT). Full spec at /data/wor
   • D2: Guillermo reviews source.pptx files [CHECKPOINT] (raphael)
     15 source.pptx files ready for Guillermo review. Location on
 🚧 Blocked — need your input:
@@ -15,24 +18,24 @@ Good morning, Guillermo - Thu 5 Mar (HKT)
     Ask: When Guillermo provides live deck: download, extract slide master, use as Presen
   • Waiting: Live proposal template from Guillermo (new bra (raphael)
     Ask: Guillermo to share a live proposal deck with Feb 2026 branding. Use as master PP
-🔴 Raphael: ✅ 14 done | 👀 Nothing pending Guillermo review tonight — needs your review | ❌ 1 failed | 🚧 2 blocked
-🔵 Leonardo: 🚧 4 blocked
-🦎 Molty: ✅ 2 done | 👀 **Personal website brief — www.ginesta.i — needs your review | 🚧 1 blocked
+🔴 Raphael: ✅ 2 done | 👀 **D2: source.pptx review** — needs your review | 🚧 4 blocked
+🔵 Leonardo: ✅ 2 done | 👀 Contact Sharing Spec — needs your review | 🚧 2 blocked
+🦎 Molty: ✅ 2 done | 👀 **Agent Performance Review Framework** — needs your review | 🚧 1 blocked
 
-🌤 Weather: 16-21°C · Rain chance up to 15%
-   Outlook: Fri 17-23°C (15%) · Sat 18-21°C (15%) · Sun 17-20°C (15%)
+🌤 Weather: 17-23°C · Rain chance up to 15%
+   Outlook: Sat 18-21°C (15%) · Sun 17-21°C (15%) · Mon 18-21°C (15%)
 
 📅 Today
  19:00  Mayleen in Philippines   · Family
-all-day  Zoe Brown's birthday  · Personal
  07:00  Workout  · Brinc
+ 08:00  🏫 School Drop-off  · Family
+ 08:00  Busy  · Brinc
+ 08:30  🎯 Focus Time (Deep Work)  · Personal
+ 08:30  Helm Proposal  · Brinc
  09:00  Desk Work + Triage  · Brinc
- 09:00  Brinc <> Ripple  · Brinc
- 10:00  🎯 [Tomorrow's Focus] Reply to Mei Ling  · Personal
- 10:00  Busy  · Brinc
- 11:00  🇪🇸 Spanish Passport Appointment — Guillermo + Memo  · Family
- 11:00  Busy  · Brinc
- 12:00  Lunch  · Brinc
+ 10:30  🏫 School Pick-up  · Family
+ 10:30  Guillermo/Toffer  · Brinc
+ 10:30  Busy  · Brinc
 … +7 more
 
 ✅ Tasks due (P1/P2)
@@ -59,17 +62,15 @@ Your MC queue:
 
 🔜 Next 5 days
 Tue  19:00  Mayleen in Philippines   · Family
-Fri  07:00  Workout  · Brinc
-Fri  08:00  🏫 School Drop-off  · Family
-Fri  08:00  Busy  · Brinc
-Fri  08:30  🎯 Focus Time (Deep Work)  · Personal
-Fri  09:00  Desk Work + Triage  · Brinc
+Sun  all-day  Mie Monthly  · Family
+Sun  09:30  Misa  · Family
+Sun  09:30  Swimming   · Family
+Sun  09:30  Busy  · Brinc
+Sun  16:00  Family Meeting  · Family
 
 ✉️ Email
-Unread: 75
-• ⭐ Guillermo Ginesta via Notion - View this page in Notion: "🎙️ Voice Note Processing — OpenClaw Research"
-• ⭐ Guillermo Ginesta - Re: FY23-24
-• Meiling Yik - RE: FY23-24
+Unread: 74
+No overnight highlights
 
 🔧 OpenClaw Update
 No updates - already on latest version ✅
