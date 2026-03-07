@@ -1,0 +1,25 @@
+overnight_sync — 2026-03-07 04:00 HKT
+
+overnight_sync — 2026-03-07 04:00 HKT
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-06
+
+1. Fetching MC overnight completions...
+  MC: 188 total tasks, 2 done in overnight window
+  • [molty] PLAN-012: Meta-Learning Loops Integration (updated: 1772820171848)
+  • [molty] Deploy Google Workspace CLI (gws) across fleet (updated: 1772794858722)
+
+2. Fetching open Todoist tasks...
+  11 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-06...
+  Notion: 4 rows for standup date 2026-03-06
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  MC tasks done overnight:   2
+  Todoist tasks closed:      0
+  Notion rows marked done:   0
