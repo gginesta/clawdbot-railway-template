@@ -41,11 +41,13 @@
 - **Browser relay:** PARKED. Blocker: relay only included in full gateway, not `openclaw node run`. Node on GUILLERMO-DESKTOP is paired ✅. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
-## ⏳ Pending (as of 2026-03-05)
+## ⏳ Pending (as of 2026-03-08)
 - **Leonardo:** Config fix (`bind=loopback`, dm key) — directive sent, not yet confirmed applied
-- **Raphael:** 16 Gmail drafts awaiting Guillermo review
-- **Leonardo:** Beta invite list (20 names) pending
+- **Raphael:** G4a test decks generated at `/tmp/g4a_test_decks/` — awaiting Guillermo review (Stream G validation: G2 exclusion matrix, G3 scoring, G4a deck audit all P0)
+- **Raphael:** A8 blocked — needs live proposal deck from Guillermo as master PPTX template
+- **Leonardo:** Beta invite list (20 names) pending; Beta M2 signup monitoring done ✅
 - **April:** Steph's interview page — Guillermo will send to Steph when ready
+- **MC Phase 3:** 4 more tasks completed overnight Mar 8 (D3 Activity Analytics, B4 Kanban, C1 Project Views, Leo Beta M2)
 
 ## 📣 Standup Delivery (directive 2026-03-05)
 Send daily standup to **both** webchat AND Telegram going forward.
