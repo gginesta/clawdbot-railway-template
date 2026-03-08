@@ -1,0 +1,27 @@
+overnight_sync — 2026-03-08 04:00 HKT
+
+overnight_sync — 2026-03-08 04:00 HKT
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-07
+
+1. Fetching MC overnight completions...
+  MC: 188 total tasks, 4 done in overnight window
+  • [leonardo] Beta M2: Signup monitoring + Day 2-3 nudge process (updated: 1772904919550)
+  • [molty] D3: Activity Analytics in Sewer (updated: 1772906698766)
+  • [molty] [B4] Drag-and-Drop Kanban (updated: 1772906556357)
+  • [molty] [C1] Project Views (Brinc/Cerebro/Mana) (updated: 1772906556176)
+
+2. Fetching open Todoist tasks...
+  11 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-07...
+  Notion: 4 rows for standup date 2026-03-07
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  MC tasks done overnight:   4
+  Todoist tasks closed:      0
+  Notion rows marked done:   0

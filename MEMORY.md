@@ -41,13 +41,16 @@
 - **Browser relay:** PARKED. Blocker: relay only included in full gateway, not `openclaw node run`. Node on GUILLERMO-DESKTOP is paired ✅. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
-## ⏳ Pending (as of 2026-03-08)
+## ⏳ Pending (as of 2026-03-09)
 - **Leonardo:** Config fix (`bind=loopback`, dm key) — directive sent, not yet confirmed applied
-- **Raphael:** G4a test decks generated at `/tmp/g4a_test_decks/` — awaiting Guillermo review (Stream G validation: G2 exclusion matrix, G3 scoring, G4a deck audit all P0)
-- **Raphael:** A8 blocked — needs live proposal deck from Guillermo as master PPTX template
-- **Leonardo:** Beta invite list (20 names) pending; Beta M2 signup monitoring done ✅
-- **April:** Steph's interview page — Guillermo will send to Steph when ready
-- **MC Phase 3:** 4 more tasks completed overnight Mar 8 (D3 Activity Analytics, B4 Kanban, C1 Project Views, Leo Beta M2)
+- **Raphael:** G4a test decks — awaiting Guillermo review. G2 exclusion matrix done (commit fb720fb). C1 recipe audit done.
+- **Raphael:** A8 blocked — needs live Brinc proposal deck (Feb 2026 branding) from Guillermo
+- **Raphael:** D2 (SlideCopier) blocked — needs Guillermo to review 15 source.pptx files on Windows (D:\Molty\brinc\module-library)
+- **April:** Steph's interview page ready to share — Guillermo sends to Steph when ready
+- **MC Phase 3 remaining:** D4 Memory Timeline, D2 Notification Prefs, [D6] Auth, [D1] Templates, [A4] Weekly Digest UI
+- **MC Phase 3 done (Mar 7-8):** D3 Activity Analytics ✅ B4 Kanban DnD ✅ C1 Project Views ✅
+- **Pikachu article:** "What AI Agents Actually Do For Me" — not started; TMNT Management article in MC review
+- **Personal finance tasks:** Life insurance, car estimate, health insurance, joint accounts, last will, credit card — all need Guillermo to drive
 
 ## 📣 Standup Delivery (directive 2026-03-05)
 Send daily standup to **both** webchat AND Telegram going forward.
