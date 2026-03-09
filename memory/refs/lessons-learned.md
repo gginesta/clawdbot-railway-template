@@ -118,7 +118,12 @@
 
 ---
 
-## Lessons #53-58 (Leonardo Deployment Post-Mortem, 2026-02-13)
+## Lessons
+
+### 122. Railway containers are ephemeral — don't use `gateway update.run` (Mar 9 2026)
+**Mistake:** Tried to update OpenClaw via `gateway update.run` + manual git operations on Railway. After restart, container reset to original deploy state. Made Guillermo manually redeploy.
+**Fix:** On Railway, updates require a **redeploy** from the Railway dashboard/CLI, not in-container git operations. `update.run` only works on persistent hosts (VPS, local installs).
+**Rule:** Before attempting `update.run`, check if running on ephemeral infrastructure (Railway, Render, etc.). If yes, tell user to trigger redeploy instead. #53-58 (Leonardo Deployment Post-Mortem, 2026-02-13)
 
 53. **Verify workspace files AFTER every agent deployment** — Check SOUL/IDENTITY/AGENTS via webchat (not Railway CLI). Cross-contamination happens silently.
 54. **The ONLY way to modify remote Railway files is webchat/webhook/setup-API** — `railway run` is LOCAL. If you think you fixed something via Railway CLI, you didn't.
@@ -204,3 +209,11 @@
 117. **Calendar token fix:** SA token (no delegation). Don't use calendar-tokens-brinc.json.
 
 118. **"Initiate call" means CALL:** Sending prep questions to Telegram is not initiating. Send a voice message or call the phone. Prep materials ≠ the call itself.
+
+119. **Never json.load() OpenClaw configs (Mar 9 2026):** Attempted to patch Raphael's config with `json.load()` startCommand. Failed because OpenClaw configs are JSON5/JSONC — they contain comments and trailing commas. `json.load()` crashes on comments. Use proper JSON5 parser or YAML loader, not standard json module.
+
+120. **No untested startCommands in production (Mar 9 2026):** Added a broken `startCommand` script to Raphael without testing. Container crashed on startup — couldn't recover without Guillermo's manual redeploy via Railway dashboard. **Rule: Test all startCommands locally or in a throwaway container BEFORE pushing to production.**
+
+121. **Railway CGNAT range must be in gateway.trustedProxies (Mar 9 2026):** Molty webchat was broken due to "untrusted proxy" errors. Logs showed: `Proxy headers detected from untrusted address. Connection will not be treated as local.` Root cause: Railway's internal proxies (100.64.0.0/10 CGNAT range) were not in `gateway.trustedProxies` — only had `127.0.0.1`. Fix: Add `"trustedProxies": ["127.0.0.1", "100.64.0.0/10"]` to gateway config. **Rule: On Railway deployments, ALWAYS include Railway's CGNAT range in trustedProxies from the start.**
+
+122. **Discord blocking Railway IPs (Cloudflare 429) — change region (Mar 9 2026):** Leonardo's Discord bot token appeared to expire/rotate. Actually caused: Railway us-west2 region's IPs were Cloudflare-blocked by Discord. Symptoms: 429 errors, bot offline, token "appears invalid". Fix: Change Railway region to Singapore (or any non-west region) to get fresh IP allocation that Discord hasn't blocked. **Rule: If Discord API returns 429 and token is valid, change Railway region before assuming auth failure.**

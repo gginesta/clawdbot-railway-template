@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: 2026-03-06 | Target: <4KB*
+*Last updated: 2026-03-09 | Target: <4KB*
 
 ---
 
@@ -42,7 +42,7 @@
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
 ## ⏳ Pending (as of 2026-03-09)
-- **Leonardo:** Config fix (`bind=loopback`, dm key) — directive sent, not yet confirmed applied
+- **Molty webchat:** trustedProxies fix applied 22:12 HKT — pending confirmation it works
 - **Raphael:** G4a test decks — awaiting Guillermo review. G2 exclusion matrix done (commit fb720fb). C1 recipe audit done.
 - **Raphael:** A8 blocked — needs live Brinc proposal deck (Feb 2026 branding) from Guillermo
 - **Raphael:** D2 (SlideCopier) blocked — needs Guillermo to review 15 source.pptx files on Windows (D:\Molty\brinc\module-library)
@@ -80,3 +80,7 @@ Send daily standup to **both** webchat AND Telegram going forward.
 119. **gws auth export bug:** Encrypted credentials don't export properly. Workaround: manually copy `.encryption_key`, `accounts.json`, and `credentials.<base64-email>.enc` files from authenticated machine. Base64-encode the .enc file for transfer.
 120. **gws CLI correct package:** `@googleworkspace/cli` (npm). NOT `@anthropic-ai/...`. Always verify package names before giving install commands.
 121. **Silent crons need `delivery.mode: "none"` (Mar 6 2026):** Three crons were sending bare "DONE" to Telegram overnight (`13b4eaa0` Todoist Triage, `ad96575e` Pre-Standup Prep, `8991c017` Overnight Sync). Fix: set `delivery.mode: "none"` and change prompt endings to `HEARTBEAT_OK` not "Reply DONE". Always audit new crons for this before activating.
+122. **Fleet outage 2026-03-09 ("Rough Monday"):** After v2026.3.7 update, Molty Discord, Raphael, Leonardo Discord, and Molty webchat all went down. Root cause: untested Python `startCommand` in Raphael used `json.load()` on JSONC config → container crash. Lesson: no fleet infra changes without Guillermo sign-off. REG-017/018 added.
+123. **Working Molty webchat (controlUi) config:** `"dangerouslyAllowHostHeaderOriginFallback": true` + `"dangerouslyDisableDeviceAuth": true`. Also requires `gateway.trustedProxies: ["127.0.0.1", "100.64.0.0/10"]` — Railway's CGNAT range must be trusted or websocket connections fail silently. REG-021 added.
+124. **Leonardo Discord token rotation + region fix (Mar 9 2026):** Discord bot token expired/rotated. After updating token, Discord was still blocked (Cloudflare 429 on Railway us-west2). Fix: change Railway region to Singapore → fresh IP → Discord online. REG-022 added.
+125. **Policy: no fleet infrastructure changes without explicit Guillermo sign-off** — Guillermo's words after the Rough Monday outage: "Every time you try to update OpenClaw you break the fleet." Do not push version bumps, startCommands, or config patches fleet-wide without approval.
