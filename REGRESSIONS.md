@@ -14,6 +14,10 @@
 - **REG-004: Webhook sessionKey is DISABLED** — Do not include `sessionKey` in webhook payloads. Use `agentId` instead.
 - **REG-017: Never json.load() OpenClaw configs** — OpenClaw uses JSON5/JSONC (supports comments). Python's `json` module crashes on these. Use `openclaw` CLI or preserve format manually.
 - **REG-018: No untested startCommands in production** — Railway startCommands run before the app. A broken script = container won't start = healthcheck fails. Test locally first or don't do it.
+- **REG-021: Railway trustedProxies must include CGNAT** — On Railway, `gateway.trustedProxies` must include `100.64.0.0/10` (Railway's internal proxy range). Without it, websocket connections fail with "untrusted address" even if other settings are correct.
+- **REG-022: Discord Cloudflare block → change region** — When Discord returns 429/Cloudflare block on Railway, change the Railway region to get a fresh IP range. Don't wait.
+- **REG-023: No git checkout on running Railway containers** — Never run `git checkout` or modify /openclaw on a live Railway deployment. It breaks the container on restart. All version updates must go through proper Docker image builds or Guillermo-approved redeployment.
+- **REG-024: Stop cowboy debugging** — If a fix doesn't work after 2-3 attempts, STOP. Ask for help or escalate. Don't keep trying random things that break production.
 
 ## Calendar
 
@@ -27,6 +31,8 @@
 - **REG-009: PPEE, not brute-force** — Multiple failed deploys without diagnosis is a PPEE violation. READ logs fully before touching anything.
 - **REG-010: X posting is blocked** — Bot detection blocks posting. Do not attempt `bird` POST actions.
 - **REG-011: Recon-First is mandatory** — READ → CITE → PLAN → EXECUTE for every code/config change. No exceptions.
+- **REG-019: Railway is ephemeral** — `gateway update.run` and in-container git operations don't persist on Railway. Updates require Railway redeploy. Don't attempt; tell user to redeploy instead.
+- **REG-020: PPEE before infrastructure changes** — Before ANY infrastructure operation (updates, config, deploys): check deployment type, read docs, verify the operation applies to this environment. The issue isn't "don't do it" — it's "don't guess."
 
 ## Communication
 

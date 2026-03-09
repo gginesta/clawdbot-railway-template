@@ -41,7 +41,8 @@
 - **Browser relay:** PARKED. Blocker: relay only included in full gateway, not `openclaw node run`. Node on GUILLERMO-DESKTOP is paired ✅. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
-## ⏳ Pending (as of 2026-03-09)
+## ⏳ Pending (as of 2026-03-10)
+- **Molty webchat:** Updated to v2026.3.8 (device auth bug fix). Testing now. NOT persistent on Railway yet — needs Docker image update if it works.
 - **Molty webchat:** trustedProxies fix applied 22:12 HKT — pending confirmation it works
 - **Raphael:** G4a test decks — awaiting Guillermo review. G2 exclusion matrix done (commit fb720fb). C1 recipe audit done.
 - **Raphael:** A8 blocked — needs live Brinc proposal deck (Feb 2026 branding) from Guillermo
