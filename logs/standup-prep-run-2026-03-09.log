@@ -1,0 +1,24 @@
+
+🦎 Standup prep — 2026-03-09 08:30 HKT
+
+Last standup: 2026-03-08
+
+1. Fetching Todoist tasks...
+   10 active tasks
+   0 unprocessed inbox tasks
+   Processed 0 new tasks
+
+2. Pinging squad agents...
+  Webhook raphael: ✅ sent
+  Webhook leonardo: ✅ sent
+   Waiting 10 minutes for responses...
+   Proceeding regardless of responses
+
+3. Syncing MC completions to Todoist...
+   Synced 0 completions
+
+4. Scanning ggv.molt inbox...
+  Email: 0 unread, 0 highlights
+
+✅ Prep state written to /data/workspace/logs/standup-prep-2026-03-09.json
+   Summary: All caught up — no new items to process
