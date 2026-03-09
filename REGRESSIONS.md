@@ -12,6 +12,8 @@
 - **REG-002: MC endpoint pluralization** — GET uses `/api/tasks` (plural). POST/PATCH uses `/api/task` (singular). Wrong endpoint = silent failure.
 - **REG-003: Package names require verification** — Never guess npm/pip package names. Verify via web_search or existing install before giving command to Guillermo.
 - **REG-004: Webhook sessionKey is DISABLED** — Do not include `sessionKey` in webhook payloads. Use `agentId` instead.
+- **REG-017: Never json.load() OpenClaw configs** — OpenClaw uses JSON5/JSONC (supports comments). Python's `json` module crashes on these. Use `openclaw` CLI or preserve format manually.
+- **REG-018: No untested startCommands in production** — Railway startCommands run before the app. A broken script = container won't start = healthcheck fails. Test locally first or don't do it.
 
 ## Calendar
 
