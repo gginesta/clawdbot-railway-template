@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: 2026-03-09 | Target: <4KB*
+*Last updated: 2026-03-10 | Target: <4KB*
 
 ---
 
@@ -42,14 +42,15 @@
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
 ## ⏳ Pending (as of 2026-03-10)
-- **Molty webchat:** Updated to v2026.3.8 (device auth bug fix). Testing now. NOT persistent on Railway yet — needs Docker image update if it works.
-- **Molty webchat:** trustedProxies fix applied 22:12 HKT — pending confirmation it works
-- **Raphael:** G4a test decks — awaiting Guillermo review. G2 exclusion matrix done (commit fb720fb). C1 recipe audit done.
+- **Molty webchat device auth:** Confirmed OpenClaw core bug — config flags `dangerouslyDisableDeviceAuth` DO get recognized (logs confirm) but auth still enforced. GitHub issue #41878 opened. Repo reverted to clean state (`07da5fe`). Upstream audit done; 4 commits need manual application to our Dockerfile (see `/data/workspace/plans/upstream-audit-2026-03-10.md`).
+- **Upstream manual patches needed:** `ab2c730` (tini), `b50cff4` (dashboard auth+token sync), `13ffd5d` (WS auth fix), `b178ea1` (exempt /hooks/* from auth) — apply manually to preserve our Dockerfile customizations.
+- **Leonardo:** CRM Pipelines Phase B PR #76 — 724 lines, 3 features (AI suggestions, stale alerts, pipeline chat). Needs Guillermo review before deploy (off-hours only).
+- **Raphael:** G4a test decks — awaiting Guillermo review. G2 exclusion matrix done (commit fb720fb). C5 shipped ✅.
 - **Raphael:** A8 blocked — needs live Brinc proposal deck (Feb 2026 branding) from Guillermo
 - **Raphael:** D2 (SlideCopier) blocked — needs Guillermo to review 15 source.pptx files on Windows (D:\Molty\brinc\module-library)
 - **April:** Steph's interview page ready to share — Guillermo sends to Steph when ready
 - **MC Phase 3 remaining:** D4 Memory Timeline, D2 Notification Prefs, [D6] Auth, [D1] Templates, [A4] Weekly Digest UI
-- **MC Phase 3 done (Mar 7-8):** D3 Activity Analytics ✅ B4 Kanban DnD ✅ C1 Project Views ✅
+- **MC Phase 3 done (Mar 7-10):** D3 Activity Analytics ✅ B4 Kanban DnD ✅ C1 Project Views ✅ C2 Commander's Inbox/Todoist Sync UI ✅
 - **Pikachu article:** "What AI Agents Actually Do For Me" — not started; TMNT Management article in MC review
 - **Personal finance tasks:** Life insurance, car estimate, health insurance, joint accounts, last will, credit card — all need Guillermo to drive
 
@@ -85,3 +86,6 @@ Send daily standup to **both** webchat AND Telegram going forward.
 123. **Working Molty webchat (controlUi) config:** `"dangerouslyAllowHostHeaderOriginFallback": true` + `"dangerouslyDisableDeviceAuth": true`. Also requires `gateway.trustedProxies: ["127.0.0.1", "100.64.0.0/10"]` — Railway's CGNAT range must be trusted or websocket connections fail silently. REG-021 added.
 124. **Leonardo Discord token rotation + region fix (Mar 9 2026):** Discord bot token expired/rotated. After updating token, Discord was still blocked (Cloudflare 429 on Railway us-west2). Fix: change Railway region to Singapore → fresh IP → Discord online. REG-022 added.
 125. **Policy: no fleet infrastructure changes without explicit Guillermo sign-off** — Guillermo's words after the Rough Monday outage: "Every time you try to update OpenClaw you break the fleet." Do not push version bumps, startCommands, or config patches fleet-wide without approval.
+126. **Webchat device auth is an OpenClaw core bug (Mar 10 2026):** `dangerouslyDisableDeviceAuth: true` IS recognized (log: "security warning: dangerous config flags enabled") but device auth still enforced anyway. Issue is in OpenClaw core, not our wrapper config. GitHub issue #41878 opened. Workaround: Tailscale as intended (keep auth on).
+127. **Never blindly sync upstream templates with different container users (REG-025, Mar 10 2026):** arjunkomath Dockerfile runs as `root`; our image runs as `openclaw`. Syncing arjunkomath changed container user → volume files owned by `openclaw` but container running as `root` → OpenClaw refuses to load secrets → total fleet outage. Always check `USER` in Dockerfile before any upstream merge.
+128. **Our Dockerfile is too customized to auto-merge (Mar 10 2026):** 233 lines vs 89 upstream (vignesh07). We have Tailscale, Brave, Syncthing, Supervisor, Chromium. Upstream changes must be manually cherry-picked at the server.js/app layer, not via git merge. Full audit: `/data/workspace/plans/upstream-audit-2026-03-10.md`.
