@@ -1,6 +1,6 @@
 # PLAN: Bringing April Online
 
-**Status:** Ready for overnight execution
+**Status:** Partially complete — Railway CLI needs install + OAuth login
 **Owner:** Molty
 **Timeline:** Execute tonight (Mar 10-11), April live by Mar 11 morning
 **Last Updated:** 2026-03-10 22:15 HKT
@@ -348,7 +348,7 @@ You cannot see:
 ## Tools Available
 
 - WhatsApp (send/receive messages)
-- Email (april@ginesta.io)
+- Email (april.assistant.hk@gmail.com)
 - Google Calendar (read/write Steph's + Shenanigans)
 - Voice transcription (receive voice notes)
 - TTS (reply with voice if requested)
@@ -522,7 +522,7 @@ After interview, April tackles:
 ## Blocked On Guillermo
 
 [ ] Anthropic API token (or confirm using existing key)
-[ ] Email: Confirm april@ginesta.io and create mailbox
+[ ] Email: Create april.assistant.hk@gmail.com and share app password
 [ ] WhatsApp: Scan QR code when ready
 [ ] Calendar: Add SA to Steph's calendar
 
