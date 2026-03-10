@@ -71,6 +71,7 @@ RUN apt-get update \
     xdg-utils \
     syncthing \
     supervisor \
+    tini \
     python3 \
     python3-pip \
     python3-venv \
@@ -230,4 +231,5 @@ RUN printf '%s\n' \
   > /usr/local/bin/startup.sh \
   && chmod +x /usr/local/bin/startup.sh
 
+ENTRYPOINT ["tini", "--"]
 CMD ["/usr/local/bin/startup.sh"]
