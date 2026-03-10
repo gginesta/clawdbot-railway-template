@@ -18,6 +18,7 @@
 - **REG-022: Discord Cloudflare block → change region** — When Discord returns 429/Cloudflare block on Railway, change the Railway region to get a fresh IP range. Don't wait.
 - **REG-023: No git checkout on running Railway containers** — Never run `git checkout` or modify /openclaw on a live Railway deployment. It breaks the container on restart. All version updates must go through proper Docker image builds or Guillermo-approved redeployment.
 - **REG-024: Stop cowboy debugging** — If a fix doesn't work after 2-3 attempts, STOP. Ask for help or escalate. Don't keep trying random things that break production.
+- **REG-025: Check container user when syncing templates** — Different templates run as different users (root vs openclaw). Volume files retain original ownership. Mismatched ownership = secrets won't load = total outage. Always verify `USER` directive in Dockerfile when syncing upstream.
 
 ## Calendar
 
