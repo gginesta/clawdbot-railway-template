@@ -1093,6 +1093,49 @@ def _summarise_agent_log(path: str, emoji: str, label: str) -> str | None:
         return None
 
 
+def _get_active_plans() -> list[str] | None:
+    """Scan plans/ folder for active plans (Status: Ready|in_progress|active).
+    
+    Returns list of plan titles that should be surfaced in morning briefing.
+    """
+    import glob
+    plans_dir = "/data/workspace/plans"
+    active_plans = []
+    
+    try:
+        for f in glob.glob(os.path.join(plans_dir, "*.md")):
+            try:
+                with open(f, "r", encoding="utf-8") as fp:
+                    content = fp.read(2000)  # Read first 2KB only
+                
+                # Check for active status markers
+                if any(marker in content.lower() for marker in [
+                    "status:** ready",
+                    "status:** in progress",
+                    "status:** in_progress", 
+                    "status:** active",
+                    "status: ready",
+                    "status: in progress",
+                    "status: in_progress",
+                    "status: active",
+                ]):
+                    # Extract title from first # heading
+                    lines = content.split("\n")
+                    title = None
+                    for line in lines[:10]:
+                        if line.startswith("# "):
+                            title = line[2:].strip()
+                            break
+                    if title:
+                        active_plans.append(title)
+            except Exception:
+                continue
+        
+        return active_plans if active_plans else None
+    except Exception:
+        return None
+
+
 def _get_openclaw_update_summary() -> str | None:
     """Read the latest OpenClaw update cron result from session transcripts.
 
@@ -1204,9 +1247,10 @@ def build_message(
 
     lines.append("")
 
-    # 2) Yesterday's declared focus — accountability loop
+    # 2) Today's focus — from yesterday's standup "Tomorrow's Focus"
+    # This IS today's focus, not accountability for yesterday
     if yesterdays_focus:
-        lines.append(f"📌 Yesterday's Focus: \"{yesterdays_focus}\"")
+        lines.append(f"🎯 Today's Focus: {yesterdays_focus}")
         lines.append("")
 
     # 3) Overnight report — under review + blocked + squad summary
@@ -1235,6 +1279,14 @@ def build_message(
         # Squad summary from logs
         if squad_overnight:
             lines.extend(squad_overnight)
+        lines.append("")
+
+    # 3.5) Active Plans — from plans/ folder
+    active_plans = _get_active_plans()
+    if active_plans:
+        lines.append("📋 Active Plans")
+        for plan in active_plans[:3]:  # Show max 3
+            lines.append(f"  • {plan}")
         lines.append("")
 
     # 4) Weather
@@ -1399,18 +1451,17 @@ def build_message(
 
     lines.append("")
 
-    # 7) Email highlights
-    lines.append("✉️ Email")
-    if unread_count is None:
-        lines.append("Unread: ⚠️ unavailable")
-    else:
-        lines.append(f"Unread: {unread_count}")
-
+    # 7) Email highlights — show highlights only, not raw unread count
+    # (raw count causes anxiety if we're not actively triaging)
     if email_highlights:
+        lines.append("✉️ Email Highlights")
         for e in email_highlights[:MAX_EMAIL_HIGHLIGHTS]:
-            lines.append(f"• {e.sender} - {e.subject}")
-    else:
-        lines.append("No overnight highlights")
+            lines.append(f"  • {e.sender} - {e.subject}")
+    elif unread_count is not None and unread_count <= 10:
+        # Only show unread count if it's manageable
+        lines.append(f"✉️ Email: {unread_count} unread")
+    # If high unread count and no highlights, omit section entirely
+    # (Molty should be triaging these, not just counting)
 
     # 8) Notion comment mentions (recent pages with comments)
     notion_comments = _get_notion_comment_mentions(lookback_days=3)
@@ -1432,16 +1483,7 @@ def build_message(
         for err in errors[:5]:
             lines.append(f"- {err}")
 
-    focus = None
-    p1 = [t for t in tasks_due if t.priority == 4]
-    if p1:
-        focus = p1[0].content
-    elif todays_events and not todays_events[0].all_day:
-        focus = f"Prep for: {todays_events[0].summary}"
-
-    if focus:
-        lines.append("")
-        lines.append(f"Focus: {focus}")
+    # Today's Focus already shown at top — no duplicate at bottom
 
     return "\n".join(lines).strip() + "\n"
 
