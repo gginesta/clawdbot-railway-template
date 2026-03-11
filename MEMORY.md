@@ -35,7 +35,7 @@
 - **WHOOP:** Research done, blocked on CLIENT_ID/SECRET from Guillermo. Notion spec: `31939dd6...`
 - **MC Phase 3:** 13 tasks assigned, P2s first
 - **ginesta.io:** Brief in Notion → https://www.notion.so/Personal-Website-Brief-www-ginesta-io-31a39dd69afd81cea223fbb9f2b2fe39. Waiting on Guillermo's content checklist.
-- **April (agent):** Deployment pending. Notion pages: Setup Qs `31939dd6-9afd-8197` (Guillermo filled ✅), Steph Interview `31939dd6-9afd-81c5` (ready to share, Guillermo will send), Planning notes `31939dd6-9afd-8119`. Channels: WhatsApp (new SIM), Google Calendar + Shenanigans. Voice: yes.
+- **April (agent):** LIVE ✅ Deployed 2026-03-11. Railway: april-agent-production. Discord ID: 1481167770191401021. Owns: #april-private. Syncthing: hub-and-spoke via Molty. Security audit done. Channels: WhatsApp (new SIM pending), Google Calendar + Shenanigans. Voice: yes.
 - **Agent Performance Review:** P1 overnight work planned (PLAN-011). Design review process + add "Last updated by" headers to shared files. Trust/coaching model, not gatekeeping. Cascade to fleet after approval.
 - **gws CLI:** v0.4.4 primary tool. Gmail ✅ Calendar ✅ Drive ✅ Docs ✅ Sheets ✅ (all 9 scopes). Config: `~/.config/gws/`. 11 skills at `/openclaw/skills/gws-*`. gog deprecated as fallback. GCP OAuth project: `847540297795` (separate from Gemini project `226575193033`).
 - **Browser relay:** PARKED. Blocker: relay only included in full gateway, not `openclaw node run`. Node on GUILLERMO-DESKTOP is paired ✅. Resume when Guillermo wants Raphael to control Waalaxy.

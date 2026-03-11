@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.8"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "/data/workspace",
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "1h"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "30m"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "tools": {
+    "profile": "coding",
+    "message": {
+      "crossContext": {
+        "allowAcrossProviders": true
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "hooks": {
+    "enabled": true,
+    "token": "REPLACE_WITH_GENERATED_TOKEN",
+    "defaultSessionKey": "hook:agent-AGENT_NAME"
+  },
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": "REPLACE_WITH_DISCORD_BOT_TOKEN",
+      "allowBots": "mentions",
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
+      "actions": {
+        "reactions": true,
+        "messages": true,
+        "threads": true,
+        "pins": true,
+        "search": true,
+        "memberInfo": true,
+        "channelInfo": true
+      },
+      "dmPolicy": "pairing",
+      "guilds": {
+        "1468161542473121932": {
+          "slug": "tmnt-squad",
+          "requireMention": true,
+          "users": [
+            "779143499655151646"
+          ],
+          "channels": {
+            "AGENT_PRIVATE_CHANNEL_ID": {
+              "allow": true,
+              "requireMention": false
+            },
+            "command-center": {
+              "allow": true,
+              "requireMention": true
+            },
+            "squad-updates": {
+              "allow": true,
+              "requireMention": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowedOrigins": [
+        "https://AGENT_NAME-production.up.railway.app"
+      ],
+      "dangerouslyAllowHostHeaderOriginFallback": true,
+      "dangerouslyDisableDeviceAuth": false
+    },
+    "auth": {
+      "mode": "token",
+      "token": "REPLACE_WITH_GATEWAY_TOKEN"
+    },
+    "trustedProxies": [
+      "127.0.0.1",
+      "100.64.0.0/10"
+    ],
+    "tailscale": {
+      "mode": "serve",
+      "resetOnExit": false
+    },
+    "remote": {
+      "token": "REPLACE_WITH_GATEWAY_TOKEN"
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {}
+  }
+}

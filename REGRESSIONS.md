@@ -50,6 +50,15 @@
 
 - **REG-026: Cross-check Todoist and Notion** — Standup must check BOTH Todoist and Notion for task status. A task marked done in one system but not the other erodes trust. The standup flow must reconcile both sources before presenting.
 
+## Agent Deployment
+
+- **REG-027: allowBots must be "mentions" not true** — `allowBots: true` accepts ALL bot messages (loop risk). `allowBots: "mentions"` only accepts bot messages that @mention you. Required for safe bot-to-bot comms.
+- **REG-028: Hub-and-spoke Syncthing** — New agents sync through Molty (hub), NOT directly with Guillermo's desktop. Direct connections break the topology and create sync conflicts.
+- **REG-029: Credentials dirs must be 700** — `/data/workspace/credentials/` and `/data/shared/credentials/` must be `chmod 700`. 755 exposes secrets to other processes.
+- **REG-030: Gateway restart for Discord config** — SIGUSR1 may not fully reload Discord config changes. Use `/restart` command or Railway redeploy for Discord config changes to take effect.
+- **REG-031: Agent channel ownership** — Each agent owns specific channels with `requireMention: false`. Other agents need `requireMention: true` on those channels to avoid cross-talk. Document ownership in TOOLS.md.
+- **REG-032: allowBots is top-level Discord config** — `allowBots` goes at `channels.discord.allowBots`, NOT inside `channels.discord.guilds.{id}.allowBots`. Guild-level allowBots is invalid and breaks config.
+
 ---
 
 ## Promotion Criteria
