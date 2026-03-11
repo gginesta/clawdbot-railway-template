@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: 2026-03-10 | Target: <4KB*
+*Last updated: 2026-03-11 | Target: <15KB*
 
 ---
 
@@ -35,7 +35,7 @@
 - **WHOOP:** Research done, blocked on CLIENT_ID/SECRET from Guillermo. Notion spec: `31939dd6...`
 - **MC Phase 3:** 13 tasks assigned, P2s first
 - **ginesta.io:** Brief in Notion → https://www.notion.so/Personal-Website-Brief-www-ginesta-io-31a39dd69afd81cea223fbb9f2b2fe39. Waiting on Guillermo's content checklist.
-- **April (agent):** LIVE ✅ Deployed 2026-03-11. Railway: april-agent-production. Discord ID: 1481167770191401021. Owns: #april-private. Syncthing: hub-and-spoke via Molty. Security audit done. Channels: WhatsApp (new SIM pending), Google Calendar + Shenanigans. Voice: yes.
+- **April (agent):** FULLY OPERATIONAL ✅ Deployed 2026-03-11. Railway service: `ea026a0b-79e0-433d-907e-5cc4f75385e2` (april-agent-production.up.railway.app). Discord ID: 1481167770191401021. Webhook token: `7159178afb1c2c24b1e98bbbac0f0f02dc759aa038cd49ae7fac7873d8acf3ee`. Email: `april.rose.hk@gmail.com`. Channels: Discord ✅ WhatsApp ✅ Google Calendar + Shenanigans ✅ GCP IAM ✅ Syncthing ✅ agent-link ✅. Steph USER.md interview: page not yet shared with Notion integration (pending Guillermo).
 - **Agent Performance Review:** P1 overnight work planned (PLAN-011). Design review process + add "Last updated by" headers to shared files. Trust/coaching model, not gatekeeping. Cascade to fleet after approval.
 - **gws CLI:** v0.4.4 primary tool. Gmail ✅ Calendar ✅ Drive ✅ Docs ✅ Sheets ✅ (all 9 scopes). Config: `~/.config/gws/`. 11 skills at `/openclaw/skills/gws-*`. gog deprecated as fallback. GCP OAuth project: `847540297795` (separate from Gemini project `226575193033`).
 - **Browser relay:** PARKED. Blocker: relay only included in full gateway, not `openclaw node run`. Node on GUILLERMO-DESKTOP is paired ✅. Resume when Guillermo wants Raphael to control Waalaxy.
@@ -89,3 +89,8 @@ Send daily standup to **both** webchat AND Telegram going forward.
 126. **Webchat device auth is an OpenClaw core bug (Mar 10 2026):** `dangerouslyDisableDeviceAuth: true` IS recognized (log: "security warning: dangerous config flags enabled") but device auth still enforced anyway. Issue is in OpenClaw core, not our wrapper config. GitHub issue #41878 opened. Workaround: Tailscale as intended (keep auth on).
 127. **Never blindly sync upstream templates with different container users (REG-025, Mar 10 2026):** arjunkomath Dockerfile runs as `root`; our image runs as `openclaw`. Syncing arjunkomath changed container user → volume files owned by `openclaw` but container running as `root` → OpenClaw refuses to load secrets → total fleet outage. Always check `USER` in Dockerfile before any upstream merge.
 128. **Our Dockerfile is too customized to auto-merge (Mar 10 2026):** 233 lines vs 89 upstream (vignesh07). We have Tailscale, Brave, Syncthing, Supervisor, Chromium. Upstream changes must be manually cherry-picked at the server.js/app layer, not via git merge. Full audit: `/data/workspace/plans/upstream-audit-2026-03-10.md`.
+129. **Railway volume duplication causes startup failure (Mar 11 2026):** When `railway.toml` specifies `requiredMountPath`, Railway auto-creates a volume. Creating another via API → two volumes mounted at `/data` → container can't start and produces no logs. Fix: check for existing volumes before creating one. Delete extras via Railway UI if API delete doesn't fully work.
+130. **Webchat URL token workaround for device auth (Mar 11 2026):** Device auth resets on gateway restart, locking users out. Workaround: append gateway token as URL param — `https://<host>/?token=<gateway_token>`. Avoids repeated setup wizard. Applies to all agents.
+131. **gws "Caller does not have required permission" fix (Mar 11 2026):** If `client_secret.json` contains `project_id`, gws triggers GCP serviceUsageConsumer permission check and fails. Fix: remove `project_id` from `~/.config/gws/client_secret.json`. Also delete stale `.enc` credential files from other machines.
+132. **Discord bot config — use channel NAME not ID (Mar 11 2026):** Channel IDs sometimes don't resolve in OpenClaw Discord config. Use channel name (e.g. `april-private`) instead. Bot also needs OAuth invite with correct permissions (`/api/oauth2/authorize?client_id=<id>&permissions=68608&scope=bot`) plus explicit View/Send/Read History granted per channel.
+133. **MC PATCH API — task ID in body, not URL path (Mar 11 2026):** PATCH `/api/task` requires the task `id` field in the request body. Putting it in the URL path causes silent failure. Confirmed pattern: `PATCH /api/task` with body `{ "id": "<taskId>", ...fields }`.
