@@ -46,6 +46,10 @@
 - **REG-015: MEMORY.md under 15KB** — MEMORY.md growing beyond 15KB = retrieval degrades. Curate aggressively.
 - **REG-016: Daily log is not memory** — Raw daily logs don't survive context resets unless curated into MEMORY.md. Write it down properly.
 
+## Standup
+
+- **REG-026: Cross-check Todoist and Notion** — Standup must check BOTH Todoist and Notion for task status. A task marked done in one system but not the other erodes trust. The standup flow must reconcile both sources before presenting.
+
 ---
 
 ## Promotion Criteria

@@ -291,6 +291,82 @@ def sync_mc_completions_to_todoist(tasks_list, mc_list):
                     break
     return synced
 
+# ── REG-026: Todoist → Notion sync (cross-check) ──────────────────────────────
+
+NOTION_STANDUP_DB = "31239dd69afd81ad8ffdd1db09b1dd36"
+
+def get_todoist_completed_today():
+    """Fetch Todoist tasks completed today."""
+    try:
+        # Use completed_since for today
+        today_iso = NOW.replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
+        url = f"https://api.todoist.com/sync/v9/completed/get_all?since={urllib.parse.quote(today_iso)}&limit=50"
+        req = urllib.request.Request(url, headers=TH)
+        with urllib.request.urlopen(req, timeout=15) as r:
+            data = json.loads(r.read())
+            return data.get("items", [])
+    except Exception as e:
+        print(f"  Todoist completed fetch failed: {e}")
+        return []
+
+def get_notion_standup_tasks():
+    """Fetch all tasks from Notion standup board."""
+    try:
+        url = f"https://api.notion.com/v1/databases/{NOTION_STANDUP_DB}/query"
+        data = json.dumps({}).encode()
+        req = urllib.request.Request(url, data=data, method="POST", headers=NH)
+        with urllib.request.urlopen(req, timeout=15) as r:
+            result = json.loads(r.read())
+            tasks = []
+            for page in result.get("results", []):
+                title_prop = page.get("properties", {}).get("Task", {})
+                title = ""
+                if title_prop.get("title") and title_prop["title"]:
+                    title = title_prop["title"][0].get("plain_text", "")
+                tasks.append({"id": page["id"], "title": title, "archived": page.get("archived", False)})
+            return tasks
+    except Exception as e:
+        print(f"  Notion standup fetch failed: {e}")
+        return []
+
+def archive_notion_task(page_id):
+    """Archive a Notion page."""
+    try:
+        url = f"https://api.notion.com/v1/pages/{page_id}"
+        data = json.dumps({"archived": True}).encode()
+        req = urllib.request.Request(url, data=data, method="PATCH", headers=NH)
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status == 200
+    except Exception:
+        return False
+
+def sync_todoist_completions_to_notion():
+    """REG-026: Cross-check Todoist done → archive matching Notion standup items."""
+    synced = []
+    completed = get_todoist_completed_today()
+    if not completed:
+        print("   No Todoist completions today")
+        return synced
+    
+    print(f"   {len(completed)} Todoist task(s) completed today")
+    
+    notion_tasks = get_notion_standup_tasks()
+    notion_titles = [t["title"] for t in notion_tasks if not t["archived"]]
+    
+    for done_task in completed:
+        done_content = done_task.get("content", "")
+        match = fuzzy_match(done_content, notion_titles)
+        if match:
+            # Find and archive the Notion task
+            for nt in notion_tasks:
+                if nt["title"] == match and not nt["archived"]:
+                    ok = archive_notion_task(nt["id"])
+                    if ok:
+                        synced.append(f"Archived in Notion (Todoist done): {match[:50]}")
+                        print(f"  ✅ Archived Notion task (Todoist done): {match[:50]}")
+                    break
+    return synced
+
 # ── Email scan ────────────────────────────────────────────────────────────────
 
 def scan_email_inbox():
@@ -421,6 +497,12 @@ def main():
     prep["mc_synced"] = synced
     print(f"   Synced {len(synced)} completions")
 
+    # ── Step 3b: REG-026 — Todoist → Notion sync (cross-check) ─────────────────
+    print("\n3b. Syncing Todoist completions to Notion (REG-026)...")
+    notion_synced = sync_todoist_completions_to_notion()
+    prep["notion_synced"] = notion_synced
+    print(f"   Synced {len(notion_synced)} completions to Notion")
+
     # ── Step 4: Email scan ─────────────────────────────────────────────────────
     print("\n4. Scanning ggv.molt inbox...")
     highlights = scan_email_inbox()
@@ -432,6 +514,8 @@ def main():
         summary_parts.append(f"📥 {processed_count} new task(s) processed and triaged")
     if synced:
         summary_parts.append(f"🔄 {len(synced)} MC completion(s) synced to Todoist")
+    if notion_synced:
+        summary_parts.append(f"✅ {len(notion_synced)} Todoist completion(s) archived in Notion")
     if highlights:
         summary_parts.append(f"📬 {len(highlights)} email(s) need your attention")
 
