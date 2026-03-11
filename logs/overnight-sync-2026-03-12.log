@@ -1,0 +1,26 @@
+overnight_sync — 2026-03-12 04:00 HKT
+
+overnight_sync — 2026-03-12 04:00 HKT
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-11
+
+1. Fetching MC overnight completions...
+  MC: 193 total tasks, 3 done in overnight window
+  • [molty] Security audit remediation (April Mar 11) (updated: 1773252374254)
+  • [molty] Discord @mention routing fix (updated: 1773252374562)
+  • [molty] Deploy April — Personal assistant for Steph (updated: 1773246031261)
+
+2. Fetching open Todoist tasks...
+  12 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-11...
+  Notion: 5 rows for standup date 2026-03-11
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  MC tasks done overnight:   3
+  Todoist tasks closed:      0
+  Notion rows marked done:   0
