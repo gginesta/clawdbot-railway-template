@@ -1235,258 +1235,162 @@ def build_message(
     mc_under_review: list[dict] | None = None,
     mc_blocked: list[dict] | None = None,
 ) -> str:
+    """Build a condensed 1-screen morning briefing.
+    
+    Format (v3.0 — Mar 12 2026):
+    - Good morning line
+    - 🎯 Today's Focus
+    - 🚧 Blocked (need you) — max 3
+    - 👀 Ready for review — max 3
+    - 📅 Today — condensed one line with key events
+    - 🔜 Heads up — only if something notable in next 5 days
+    - 🌤 Weather — one line
+    - 🔧 OpenClaw — update status
+    """
     today = now.date()
-
     lines: list[str] = []
 
-    # 1) Good morning + date/day
-    lines.append(f"Good morning, Guillermo - {_fmt_day(today)} (HKT)")
-
-    if school_day:
-        lines.append("School day: yes (drop-off 08:00-08:30)")
-
+    # 1) Good morning — compact header
+    lines.append(f"Good morning — {_fmt_day(today)}")
     lines.append("")
 
-    # 2) Today's focus — from yesterday's standup "Tomorrow's Focus"
-    # This IS today's focus, not accountability for yesterday
+    # 2) Today's Focus — the ONE thing
     if yesterdays_focus:
-        lines.append(f"🎯 Today's Focus: {yesterdays_focus}")
+        lines.append(f"🎯 Focus: {yesterdays_focus}")
         lines.append("")
 
-    # 3) Overnight report — under review + blocked + squad summary
-    squad_overnight = _get_overnight_squad_report(now)
-    has_overnight = squad_overnight or mc_under_review or mc_blocked
-    if has_overnight:
-        lines.append("🌙 Overnight Report")
-        # Under review first — these need Guillermo's eyes
-        if mc_under_review:
-            lines.append("👀 Needs your review:")
-            for t in mc_under_review[:3]:
-                ags = ", ".join(t.get("assignees", []))
-                desc = (t.get("description") or "")[:60]
-                lines.append(f"  • {t.get('title','?')[:55]} ({ags})")
-                if desc:
-                    lines.append(f"    {desc}")
-        # Blocked — specific asks
-        if mc_blocked:
-            lines.append("🚧 Blocked — need your input:")
-            for t in mc_blocked[:3]:
-                ags = ", ".join(t.get("assignees", []))
-                desc = (t.get("description") or "")[:80]
-                lines.append(f"  • {t.get('title','?')[:55]} ({ags})")
-                if desc:
-                    lines.append(f"    Ask: {desc}")
-        # Squad summary from logs
-        if squad_overnight:
-            lines.extend(squad_overnight)
+    # 3) Blocked items — need Guillermo's input
+    if mc_blocked:
+        lines.append("🚧 Blocked (need you):")
+        for t in mc_blocked[:3]:
+            ags = ", ".join(t.get("assignees", []))
+            lines.append(f"• {ags.title()}: {t.get('title','?')[:50]}")
         lines.append("")
 
-    # 3.5) Active Plans — from plans/ folder
-    active_plans = _get_active_plans()
-    if active_plans:
-        lines.append("📋 Active Plans")
-        for plan in active_plans[:3]:  # Show max 3
-            lines.append(f"  • {plan}")
+    # 4) Under review — ready for Guillermo's eyes
+    if mc_under_review:
+        lines.append("👀 Ready for review:")
+        for t in mc_under_review[:3]:
+            ags = ", ".join(t.get("assignees", []))
+            lines.append(f"• {ags.title()}: {t.get('title','?')[:50]}")
         lines.append("")
 
-    # 4) Weather
+    # 5) Today's calendar — condensed to one line with key events
+    if todays_events:
+        # Pick up to 5 key events, format as "Event Time · Event Time"
+        cal_parts = []
+        for ev in todays_events[:5]:
+            if ev.all_day:
+                continue  # skip all-day for the condensed line
+            t = _fmt_hhmm(ev.start) if ev.start else "?"
+            # Shorten common event names
+            summary = ev.summary
+            if len(summary) > 20:
+                summary = summary[:18] + "…"
+            cal_parts.append(f"{summary} {t}")
+        if cal_parts:
+            lines.append("📅 Today: " + " · ".join(cal_parts))
+        else:
+            lines.append("📅 Today: No timed events")
+    else:
+        lines.append("📅 Today: Clear")
+    lines.append("")
+
+    # 6) Heads up — only show if something notable in next 5 days
+    notable_upcoming = _get_notable_upcoming(upcoming_events, tasks_upcoming, today)
+    if notable_upcoming:
+        lines.append(f"🔜 {notable_upcoming}")
+        lines.append("")
+
+    # 7) Weather — single line
     if weather:
         tmin = weather.today.tmin
         tmax = weather.today.tmax
         rain = weather.today.rain_prob_max
-
-        wline = "Weather:"
+        wparts = []
         if tmin is not None and tmax is not None:
-            wline += f" {int(round(tmin))}-{int(round(tmax))}°C"
+            wparts.append(f"{int(round(tmin))}-{int(round(tmax))}°C")
         if rain is not None:
-            wline += f" · Rain chance up to {rain}%"
-        lines.append("🌤 " + wline)
-
-        # Next 3 days outlook
-        if weather.outlook_3d:
-            parts = []
-            for fc in weather.outlook_3d[:3]:
-                label = fc.day.strftime("%a")
-                if fc.tmin is not None and fc.tmax is not None:
-                    p = f"{label} {int(round(fc.tmin))}-{int(round(fc.tmax))}°C"
-                else:
-                    p = f"{label}"
-                if fc.rain_prob_max is not None:
-                    p += f" ({fc.rain_prob_max}%)"
-                parts.append(p)
-            lines.append("   Outlook: " + " · ".join(parts))
-
-        if school_day and weather.dropoff_rain_prob is not None and weather.dropoff_rain_prob >= 40:
-            lines.append(f"   ⚠️ Rain risk at drop-off (08:00): ~{weather.dropoff_rain_prob}%")
+            wparts.append(f"{rain}% rain")
+        lines.append("🌤 " + ", ".join(wparts) if wparts else "🌤 Weather unavailable")
     else:
-        lines.append("🌤 Weather: ⚠️ unavailable")
-
+        lines.append("🌤 Weather unavailable")
     lines.append("")
 
-    # 3) Today's Calendar
-    lines.append("📅 Today")
-    if todays_events:
-        for ev in todays_events[:MAX_CAL_TODAY]:
-            if ev.all_day:
-                t = "all-day"
-            else:
-                t = _fmt_hhmm(ev.start) if ev.start else "?"
-            lines.append(f"{t:>6}  {ev.summary}  · {ev.calendar_label}")
-        if len(todays_events) > MAX_CAL_TODAY:
-            lines.append(f"… +{len(todays_events) - MAX_CAL_TODAY} more")
-    else:
-        lines.append("No events")
-
-    lines.append("")
-
-    # 4) Tasks Due (P1/P2) grouped by project
-    lines.append("✅ Tasks due (P1/P2)")
-    if tasks_due:
-        grouped: dict[str, list[Task]] = {}
-        for t in tasks_due:
-            grouped.setdefault(t.project, []).append(t)
-
-        for proj in sorted(grouped.keys()):
-            lines.append(proj)
-            items = sorted(
-                grouped[proj],
-                key=lambda x: (
-                    -x.priority,
-                    x.due_dt
-                    or datetime.combine(
-                        x.due_date or today, time(23, 59), tzinfo=HKT
-                    ),
-                    x.content.lower(),
-                ),
-            )
-            for t in items[:MAX_TASKS_PER_PROJECT]:
-                due = ""
-                if t.due_dt:
-                    due = f" @ {_fmt_hhmm(t.due_dt)}"
-                elif t.due_date and t.due_date != today:
-                    due = f" ({t.due_date.isoformat()})"
-                lines.append(
-                    f"• [{_prio_label(t.priority)}]{due} {t.content}{_fmt_duration(t.duration_min)}"
-                )
-            if len(items) > MAX_TASKS_PER_PROJECT:
-                lines.append(f"  … +{len(items) - MAX_TASKS_PER_PROJECT} more")
-    else:
-        lines.append("No P1-P2 tasks due")
-
-    lines.append("")
-
-    # 5) Squad status (from Mission Control)
-    lines.append("🐢 Squad")
-    if squad:
-        if squad.p0_tasks:
-            lines.append("🔴 P0 CRITICAL:")
-            for t in squad.p0_tasks:
-                ags = ", ".join(
-                    f"{AGENT_EMOJI.get(a, '')} {a}" for a in t.get("assignees", [])
-                )
-                lines.append(f"  • {t['title']} [{ags}]")
-        if squad.blocked_tasks:
-            lines.append("🧱 Blocked:")
-            for t in squad.blocked_tasks:
-                ags = ", ".join(t.get("assignees", []))
-                lines.append(f"  • {t['title']} ({ags})")
-        # Agent snapshot
-        agent_lines = []
-        for ag in ["molty", "raphael", "leonardo"]:
-            task = squad.agent_tasks.get(ag)
-            emoji = AGENT_EMOJI.get(ag, "")
-            if task:
-                status_sym = {"in_progress": "⚡", "review": "👀", "assigned": "📋"}.get(
-                    task.get("status", ""), "·"
-                )
-                agent_lines.append(f"{emoji} {ag}: {status_sym} {task['title'][:55]}")
-            else:
-                agent_lines.append(f"{emoji} {ag}: idle")
-        lines.extend(agent_lines)
-        # Guillermo's MC queue
-        if squad.guillermo_queue:
-            prio_sym = {"p0": "🔴", "p1": "🟡", "p2": "🔵", "p3": "⚪"}
-            lines.append("Your MC queue:")
-            for t in squad.guillermo_queue[:3]:
-                sym = prio_sym.get(t.get("priority", "p3"), "·")
-                lines.append(f"  {sym} {t['title'][:60]}")
-            if len(squad.guillermo_queue) > 3:
-                lines.append(f"  … +{len(squad.guillermo_queue) - 3} more")
-        if not squad.p0_tasks and not squad.blocked_tasks:
-            lines.append("All clear — no P0s or blockers")
-    else:
-        lines.append("⚠️ MC unavailable")
-
-    lines.append("")
-
-    # 6) Upcoming this week (next 3-5 days)
-    lines.append("🔜 Next 5 days")
-    upcoming_lines = 0
-
-    if upcoming_events:
-        for ev in upcoming_events[:MAX_UPCOMING]:
-            d = ev.start.astimezone(HKT).date() if ev.start else today
-            label = d.strftime("%a")
-            if ev.all_day:
-                lines.append(
-                    f"{label}  all-day  {ev.summary}  · {ev.calendar_label}"
-                )
-            else:
-                lines.append(
-                    f"{label}  {_fmt_hhmm(ev.start)}  {ev.summary}  · {ev.calendar_label}"
-                )
-            upcoming_lines += 1
-
-    if tasks_upcoming:
-        for t in tasks_upcoming[: max(0, MAX_UPCOMING - upcoming_lines)]:
-            dd = t.due_dt.astimezone(HKT).date() if t.due_dt else t.due_date
-            if not dd:
-                continue
-            label = dd.strftime("%a")
-            lines.append(f"{label}  {_prio_label(t.priority)}  {t.content}  · {t.project}")
-            upcoming_lines += 1
-
-    if upcoming_lines == 0:
-        lines.append("Nothing notable")
-
-    lines.append("")
-
-    # 7) Email highlights — show highlights only, not raw unread count
-    # (raw count causes anxiety if we're not actively triaging)
-    if email_highlights:
-        lines.append("✉️ Email Highlights")
-        for e in email_highlights[:MAX_EMAIL_HIGHLIGHTS]:
-            lines.append(f"  • {e.sender} - {e.subject}")
-    elif unread_count is not None and unread_count <= 10:
-        # Only show unread count if it's manageable
-        lines.append(f"✉️ Email: {unread_count} unread")
-    # If high unread count and no highlights, omit section entirely
-    # (Molty should be triaging these, not just counting)
-
-    # 8) Notion comment mentions (recent pages with comments)
-    notion_comments = _get_notion_comment_mentions(lookback_days=3)
-    if notion_comments:
-        lines.append("")
-        lines.append("💬 Notion Comments")
-        lines.extend(notion_comments)
-
-    # 9) OpenClaw Update Summary (from 5:30 AM cron)
+    # 8) OpenClaw Update — always show
     update_summary = _get_openclaw_update_summary()
     if update_summary:
-        lines.append("")
-        lines.append("🔧 OpenClaw Update")
-        lines.append(update_summary)
+        # Condense to one line if possible
+        if "No updates" in update_summary or "latest" in update_summary.lower():
+            lines.append("🔧 OpenClaw: Up to date ✅")
+        elif "📦" in update_summary:
+            # Extract version from update message
+            lines.append(f"🔧 {update_summary.split(chr(10))[0]}")
+        else:
+            lines.append(f"🔧 OpenClaw: {update_summary[:60]}")
+    else:
+        lines.append("🔧 OpenClaw: Up to date ✅")
 
-    if errors:
+    # Errors — only if critical
+    critical_errors = [e for e in errors if "unavailable" not in e.lower()]
+    if critical_errors:
         lines.append("")
-        lines.append("⚠️ Notes")
-        for err in errors[:5]:
-            lines.append(f"- {err}")
-
-    # Today's Focus already shown at top — no duplicate at bottom
+        lines.append("⚠️ " + "; ".join(critical_errors[:2]))
 
     return "\n".join(lines).strip() + "\n"
 
+
+def _get_notable_upcoming(
+    upcoming_events: list[CalEvent],
+    tasks_upcoming: list[Task],
+    today: date,
+) -> str | None:
+    """Return a single-line heads-up for the next 5 days, or None if nothing notable.
+    
+    Notable = school drop-off, external meetings, P1 deadlines, family events
+    """
+    notable = []
+    
+    for ev in upcoming_events[:10]:
+        if not ev.start:
+            continue
+        d = ev.start.astimezone(HKT).date()
+        day_label = d.strftime("%a")
+        summary_lower = ev.summary.lower()
+        
+        # Notable: school, external meetings, family, important keywords
+        is_notable = any(kw in summary_lower for kw in [
+            "school", "drop-off", "pickup", "pick-up",
+            "meeting", "call", "sync",
+            "birthday", "anniversary", "dinner", "lunch with",
+            "flight", "travel", "trip",
+            "deadline", "due", "submit",
+        ])
+        # Family calendar is always notable
+        if ev.calendar_label == "Family":
+            is_notable = True
+        
+        if is_notable:
+            t = _fmt_hhmm(ev.start) if not ev.all_day else ""
+            short_summary = ev.summary[:25] if len(ev.summary) > 25 else ev.summary
+            notable.append(f"{day_label}: {short_summary}" + (f" {t}" if t else ""))
+            if len(notable) >= 2:
+                break
+    
+    # Also check P1 tasks due soon
+    for t in tasks_upcoming[:5]:
+        if t.priority == 4:  # P1
+            dd = t.due_dt.astimezone(HKT).date() if t.due_dt else t.due_date
+            if dd and dd > today:
+                day_label = dd.strftime("%a")
+                notable.append(f"{day_label}: P1 {t.content[:20]}")
+                if len(notable) >= 2:
+                    break
+    
+    if not notable:
+        return None
+    
+    return ", ".join(notable[:2])
 
 # -----------------------------
 # Deduplication

@@ -1,11 +1,19 @@
 # PLAN-004: Morning Briefing — Squad Status Integration
 **Created:** 2026-02-24  
-**Status:** ✅ COMPLETE (implemented 2026-02-24)  
+**Status:** ✅ COMPLETE (implemented 2026-02-24) → **SUPERSEDED by PLAN-013 (v3.0)**  
 **Author:** Molty 🦎
 
 ---
 
-## Problem
+## ⚠️ SUPERSEDED
+
+This plan was superseded by **PLAN-013** on 2026-03-12. The briefing format was condensed from 4 screens to ~1 screen.
+
+**Current format (v3.0):** See `/data/workspace/plans/PLAN-013-briefing-v3-condensed.md`
+
+---
+
+## Historical Context (v2.0)
 
 Two separate morning messages were being sent:
 1. **06:30 HKT** — Daily Morning Briefing (personal: calendar, tasks, email)
@@ -15,11 +23,11 @@ These served different purposes in theory but were redundant in practice — esp
 
 ---
 
-## Solution
+## Solution (v2.0 — now superseded)
 
 Merged squad status into the morning briefing as a new Section 5. Retired the 08:00 MC standup cron.
 
-**New briefing structure (06:30 HKT):**
+**Old briefing structure (v2.0):**
 1. 🌤️ Weather
 2. 📅 Today's calendar
 3. ✅ Tasks due (P1/P2)

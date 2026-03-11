@@ -77,7 +77,14 @@ Telegram: "Standup ready + link + questions if any"
 - Molty 03:00: read R+L logs, check ggv.molt, update MC, consolidate, post #squad-updates
 
 ### Phase 6: Morning briefing (06:30)
-Order: Yesterday's Focus (did it happen?) → Overnight Report → Calendar → Squad → P1/P2 tasks → Email → Fleet
+**Format v3.0** (condensed to ~1 screen — PLAN-013):
+1. 🎯 Focus — the ONE thing for today
+2. 🚧 Blocked — max 3 items needing Guillermo's input
+3. 👀 Ready for review — max 3 items awaiting eyes
+4. 📅 Today — condensed one line with up to 5 events
+5. 🔜 Heads up — notable upcoming only (school, family, P1 deadline)
+6. 🌤 Weather — single line (temp + rain %)
+7. 🔧 OpenClaw — update status
 
 ---
 
@@ -111,8 +118,10 @@ Consolidated: /data/shared/logs/overnight-consolidated-YYYY-MM-DD.md
 - process_standup.py — triggered by 'standup done': calendars, MC, dispatch, Todoist
 - morning_briefing.py — 6:30 AM: Yesterday's Focus + overnight report + calendar + tasks
 
-## Morning Briefing Order (v2.1)
-Yesterday's Focus → Overnight Report (under_review/blocked/squad) → Weather → Calendar → Tasks → Squad → Email → Fleet
+## Morning Briefing Order (v3.0)
+Focus → Blocked → Review → Calendar (condensed) → Heads up (notable only) → Weather → OpenClaw
+
+**Removed in v3.0:** Full overnight report, active plans, task list, squad section, email, Notion comments, weather outlook
 
 
 ## Squad Status Handler (standing instruction for Molty main session)
