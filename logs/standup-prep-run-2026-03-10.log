@@ -1,0 +1,25 @@
+
+🦎 Standup prep — 2026-03-10 08:32 HKT
+
+Last standup: 2026-03-09
+
+1. Fetching Todoist tasks...
+   12 active tasks
+   0 unprocessed inbox tasks
+   Processed 0 new tasks
+
+2. Pinging squad agents...
+  POST https://ggv-raphael.up.railway.app/hooks/agent failed: The read operation timed out
+  Webhook raphael: ⚠️ failed
+  Webhook leonardo: ✅ sent
+   Waiting 30 seconds for responses...
+   Proceeding regardless of responses
+
+3. Syncing MC completions to Todoist...
+   Synced 0 completions
+
+4. Scanning ggv.molt inbox...
+  Email: 0 unread, 0 highlights
+
+✅ Prep state written to /data/workspace/logs/standup-prep-2026-03-10.json
+   Summary: All caught up — no new items to process

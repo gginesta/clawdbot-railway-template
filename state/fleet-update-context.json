@@ -1,28 +1,27 @@
 {
   "highlights": [
-    "Secrets/SecretRef coverage: expand SecretRef support across the full supported user-supplied credential surface (64 targets total)",
-    "Tools/PDF analysis: add a first-class `pdf` tool with native Anthropic and Google PDF provider support, extraction fallback for no",
-    "Outbound adapters/plugins: add shared `sendPayload` support across direct-text-media, Discord, Slack, WhatsApp, Zalo, and Zalouser",
-    "Models/MiniMax: add first-class `MiniMax-M2.5-highspeed` support across built-in provider catalogs, onboarding flows, and MiniMax ",
-    "Sessions/Attachments: add inline file attachment support for `sessions_spawn` (subagent runtime only) with base64/utf8 encoding, t",
-    "Telegram/Streaming defaults: default `channels.telegram.streaming` to `partial` (from `off`) so new Telegram setups get live previ",
-    "Telegram/DM streaming: use `sendMessageDraft` for private preview streaming, keep reasoning/answer preview lanes separated in DM r",
-    "Telegram/voice mention gating: add optional `disableAudioPreflight` on group/topic config to skip mention-detection preflight tran"
+    "Agents/context engine plugin interface: add `ContextEngine` plugin slot with full lifecycle hooks (`bootstrap`, `ingest`, `assembl",
+    "ACP/persistent channel bindings: add durable Discord channel and Telegram topic binding storage, routing resolution, and CLI/docs ",
+    "Telegram/ACP topic bindings: accept Telegram Mac Unicode dash option prefixes in `/acp spawn`, support Telegram topic thread bindi",
+    "Telegram/topic agent routing: support per-topic `agentId` overrides in forum groups and DM topics so topics can route to dedicated",
+    "Onboarding/web search: add provider selection step and full provider list in configure wizard, with SecretRef ref-mode support dur",
+    "Tools/Web search: switch Perplexity provider to Search API with structured results plus new language/region/time filters. (#33822)",
+    "Gateway: add SecretRef support for gateway.auth.token with auth-mode guardrails. (#35094) Thanks @joshavant.",
+    "Hooks/Compaction lifecycle: emit `session:compact:before` and `session:compact:after` internal events plus plugin compaction callb"
   ],
   "incorporation": [
-    "\ud83d\udd12 38 security patches \u2014 update is mandatory, no config changes required",
-    "Migrate TMNT credentials to `openclaw secrets` \u2014 stop hardcoding tokens in scripts",
-    "Discord fixes apply to #command-center and squad channel monitoring",
-    "Auth handling improvements \u2014 verify all agent tokens post-update",
+    "\ud83d\udd12 57 security patches \u2014 update is mandatory, no config changes required",
     "Sub-agent spawning improvements \u2014 check thread=true behaviour in Discord sessions",
-    "Telegram fixes apply to Guillermo's briefing and alert delivery"
+    "Thread-bound agent sessions \u2014 review sub-agent Discord routing",
+    "Discord fixes apply to #command-center and squad channel monitoring",
+    "Telegram fixes apply to Guillermo's briefing and alert delivery",
+    "Isolated cron session routing fix \u2014 overnight task workers benefit automatically"
   ],
   "is_critical": true,
   "breaking": [
-    "**BREAKING:** Onboarding now defaults `tools.profile` to `messaging` for new local installs (interactive + non-interacti",
-    "**BREAKING:** ACP dispatch now defaults to enabled unless explicitly disabled (`acp.dispatch.enabled=false`). If you nee",
-    "**BREAKING:** Plugin SDK removed `api.registerHttpHandler(...)`. Plugins must register explicit HTTP routes via `api.reg",
-    "**BREAKING:** Zalo Personal plugin (`@openclaw/zalouser`) no longer depends on external `zca`-compatible CLI binaries (`"
+    "**BREAKING:** Gateway auth now requires explicit `gateway.auth.mode` when both `gateway.auth.token` and `gateway.auth.pa",
+    "Gateway/chat.send route inheritance: keep explicit external delivery for channel-scoped sessions while preventing shared",
+    "Docker/token persistence on reconfigure: reuse the existing `.env` gateway token during `docker-setup.sh` reruns and ali"
   ],
   "security_count": 10
 }

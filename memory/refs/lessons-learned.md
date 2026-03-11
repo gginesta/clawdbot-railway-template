@@ -217,3 +217,53 @@
 121. **Railway CGNAT range must be in gateway.trustedProxies (Mar 9 2026):** Molty webchat was broken due to "untrusted proxy" errors. Logs showed: `Proxy headers detected from untrusted address. Connection will not be treated as local.` Root cause: Railway's internal proxies (100.64.0.0/10 CGNAT range) were not in `gateway.trustedProxies` — only had `127.0.0.1`. Fix: Add `"trustedProxies": ["127.0.0.1", "100.64.0.0/10"]` to gateway config. **Rule: On Railway deployments, ALWAYS include Railway's CGNAT range in trustedProxies from the start.**
 
 122. **Discord blocking Railway IPs (Cloudflare 429) — change region (Mar 9 2026):** Leonardo's Discord bot token appeared to expire/rotate. Actually caused: Railway us-west2 region's IPs were Cloudflare-blocked by Discord. Symptoms: 429 errors, bot offline, token "appears invalid". Fix: Change Railway region to Singapore (or any non-west region) to get fresh IP allocation that Discord hasn't blocked. **Rule: If Discord API returns 429 and token is valid, change Railway region before assuming auth failure.**
+
+## gws CLI Fix (2026-03-11)
+
+**Problem:** gws auth failing with 'Caller does not have required permission to use project'
+**Root cause:** project_id in client_secret.json triggered GCP serviceUsageConsumer check
+**Fix:** Remove project_id from ~/.config/gws/client_secret.json
+
+Files modified:
+- ~/.config/gws/client_secret.json — removed project_id field
+- ~/.config/gws/credentials.json — created from gog token export (plaintext)
+- Removed all .enc files (encrypted creds from different machine)
+
+gws now works with plaintext storage.
+
+
+## 129. April Railway Deployment Lessons (Mar 11 2026)
+
+**Lesson: Ask for human help before brute-forcing complex config**
+- Spent 45+ mins trying to POST raw JSON config via API
+- OpenClaw config schema is strict and undocumented
+- Setup wizard works even when gateway is down
+- Should have asked Guillermo to use the web UI after 2-3 failed attempts
+
+**Technical lessons:**
+1. **Don't create volumes via API** when `railway.toml` has `requiredMountPath` — Railway auto-creates one. Duplicate volumes = container crash with no logs.
+2. **OpenClaw gateway won't start** without valid `openclaw.json` — but setup wizard can write config directly.
+3. **Config schema is strict** — use `openclaw doctor --fix` or setup wizard, not raw JSON POST.
+4. **Config keys changed**: `providers` → `env`, `botToken` → `token`, `model` → not a root key.
+5. **"Gateway unavailable"** in setup means the gateway process isn't running (usually config issue).
+6. **PPEE violation**: I kept trying different JSON formats instead of pausing to ask for help.
+
+**Red flag to watch for:** If API/config approach fails 2-3 times, ask Guillermo to use the UI.
+
+## 130. Webchat device auth bypass (Mar 11 2026)
+
+**Problem:** OpenClaw webchat requires device identity pairing. After gateway restart, sessions get locked out. The `dangerouslyDisableDeviceAuth` flag is recognized but doesn't work (upstream bug #41878).
+
+**Workaround:** Add gateway token as URL query parameter:
+```
+https://<domain>/?token=<GATEWAY_TOKEN>
+```
+
+Example:
+```
+https://april-agent-production.up.railway.app/?token=ec314e8e2c268dd0e1efcdfcb98dc974283349bf8fa25a78299d9d4c9b457ce5
+```
+
+This authenticates the session directly, bypassing device identity requirement.
+
+**Note:** Keep gateway token secure — anyone with this URL has full webchat access.

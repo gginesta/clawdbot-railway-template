@@ -1,0 +1,24 @@
+overnight_sync — 2026-03-10 04:00 HKT
+
+overnight_sync — 2026-03-10 04:00 HKT
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-09
+
+1. Fetching MC overnight completions...
+  MC: 188 total tasks, 1 done in overnight window
+  • [molty] [C2] Todoist Sync (Read-Only) (updated: 1773079528931)
+
+2. Fetching open Todoist tasks...
+  12 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-09...
+  Notion: 5 rows for standup date 2026-03-09
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  MC tasks done overnight:   1
+  Todoist tasks closed:      0
+  Notion rows marked done:   0

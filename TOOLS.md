@@ -150,10 +150,15 @@
 | Molty | `ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562` | ✅ Active |
 | Raphael | `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd` | ✅ Active (old shared) |
 | Leonardo | `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758` | ✅ Active (new) |
+| April | `7159178afb1c2c24b1e98bbbac0f0f02dc759aa038cd49ae7fac7873d8acf3ee` | ✅ Active |
 
 ## Leonardo Webhook
 - **URL:** `https://leonardo-production.up.railway.app/hooks/agent`
 - **Token (active):** `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758`
+
+## April Webhook
+- **URL:** `https://april-agent-production.up.railway.app/hooks/agent`
+- **Token (active):** `7159178afb1c2c24b1e98bbbac0f0f02dc759aa038cd49ae7fac7873d8acf3ee`
 
 ---
 

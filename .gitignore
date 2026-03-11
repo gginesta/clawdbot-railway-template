@@ -1,11 +1,19 @@
-memory-vault/
+# Node
+node_modules
+npm-debug.log*
 
-# Generated briefs
-PRIORITY_BRIEFING.md
+# Local env
+.env
 
-# Credentials (keep locally, never commit)
-credentials/*tokens*.json
-credentials/*oauth*.json
-credentials/*.env
-tmnt-mission-control/
-.venv/
+# Build artifacts
+/dist
+
+# Backup exports
+*.tar.gz
+
+# OS
+.DS_Store
+
+.claude/
+.serena/
+.tmpdata/

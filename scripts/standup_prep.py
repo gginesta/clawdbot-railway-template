@@ -399,8 +399,8 @@ def main():
     print("\n2. Pinging squad agents...")
     squad_results = ping_squad_agents()
     prep["squad_pinged"] = squad_results
-    print("   Waiting 10 minutes for responses...")
-    time.sleep(600)  # 10 minutes
+    print("   Waiting 30 seconds for responses...")
+    time.sleep(30)  # reduced from 600 for testing
     print("   Proceeding regardless of responses")
 
     # Build squad status text from what we know (actual responses come via webhook back to Molty)

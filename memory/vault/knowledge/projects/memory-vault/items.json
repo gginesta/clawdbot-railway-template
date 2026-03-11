@@ -1,0 +1,67 @@
+{
+  "$schema": "../../../schemas/items.schema.json",
+  "entity": "memory-vault",
+  "type": "project",
+  "facts": [
+    {
+      "id": "mv-001",
+      "content": "Memory Vault uses a three-layer architecture: Knowledge Graph (PARA), Daily Notes, and Tacit Knowledge",
+      "source": "Nat Eliason article on AI memory",
+      "createdAt": "2026-02-01T13:00:00Z",
+      "lastAccessed": "2026-02-01T13:00:00Z",
+      "accessCount": 1,
+      "status": "active",
+      "tags": ["architecture", "design"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "mv-002",
+      "content": "Facts should never be deleted, only superseded — preserves 'what did I believe at time X' queries",
+      "source": "Nat Eliason article on AI memory",
+      "createdAt": "2026-02-01T13:00:00Z",
+      "lastAccessed": "2026-02-01T13:00:00Z",
+      "accessCount": 1,
+      "status": "active",
+      "tags": ["design-principle"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "mv-003",
+      "content": "Memory decay tiers: Hot (accessed in last 7 days), Warm (last 30 days), Cold (older)",
+      "source": "Nat Eliason article on AI memory",
+      "createdAt": "2026-02-01T13:00:00Z",
+      "lastAccessed": "2026-02-01T13:00:00Z",
+      "accessCount": 1,
+      "status": "active",
+      "tags": ["architecture", "decay"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "mv-004",
+      "content": "qmd by Tobi Lütke provides hybrid search (BM25 + vector similarity) for markdown files",
+      "source": "https://github.com/tobi/qmd",
+      "createdAt": "2026-02-01T13:00:00Z",
+      "lastAccessed": "2026-02-01T13:00:00Z",
+      "accessCount": 1,
+      "status": "active",
+      "tags": ["tool", "search"],
+      "supersedes": null,
+      "supersededBy": null
+    },
+    {
+      "id": "mv-005",
+      "content": "Repository hosted at github.com/gginesta/memory-vault",
+      "source": "Project setup",
+      "createdAt": "2026-02-01T13:26:00Z",
+      "lastAccessed": "2026-02-01T13:26:00Z",
+      "accessCount": 1,
+      "status": "active",
+      "tags": ["meta"],
+      "supersedes": null,
+      "supersededBy": null
+    }
+  ]
+}

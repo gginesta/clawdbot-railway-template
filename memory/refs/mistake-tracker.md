@@ -28,3 +28,16 @@ Track recurring mistakes, their fixes, and whether fixes actually work.
 ---
 
 *Last updated: 2026-03-04*
+
+## 2026-03-11 — Missed calendar task from email (Guillermo)
+- **What:** Guillermo emailed Mar 6 asking to add Sports Day (Mar 20) to Shenanigans + Brinc busy block
+- **Failure:** I never actioned it, never confirmed, never tracked it
+- **Why:** Email request wasn't converted to an actionable task or reminder
+- **Fix:** Fixed now (event added). Need better email → task capture process
+
+
+### 2026-03-11 — Failed to track completed steps (April deployment)
+- **What:** Guillermo completed calendar sharing + GCP permission, I suggested them again as "next steps"
+- **Impact:** Frustration, wasted time, makes me look inattentive
+- **Fix:** Write to memory file IMMEDIATELY after each completed step, not at the end
+- **Pattern:** Same as not logging actions in real-time

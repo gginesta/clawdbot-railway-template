@@ -45,7 +45,7 @@
 | BRAVE_API_KEY | Fleet-wide | ✅ Use existing | For web_search |
 | Discord bot token | New for April | ⏳ Create above | Unique per agent |
 | Telegram bot token | Optional | ⏳ If needed | Via @BotFather |
-| Gmail credentials | New | ⏳ Needs Guillermo | april.assistant.hk@gmail.com |
+| Gmail credentials | New | ⏳ Needs Guillermo | april.rose.hk@gmail.com |
 
 ### A4. Railway Project Setup
 - [ ] Create new Railway project: `april-production`
@@ -57,7 +57,7 @@
 ### A5. Communication Channels
 - [ ] Create Discord channel: `#april-private` (Molty + Guillermo + April access)
 - [ ] WhatsApp: Android phone with SIM ready
-- [ ] Email: april.assistant.hk@gmail.com (Guillermo creates)
+- [ ] Email: april.rose.hk@gmail.com (Guillermo creates)
 
 ---
 
@@ -294,7 +294,7 @@ curl -s https://april-production.up.railway.app/hooks/agent \
 - [ ] Phone stays powered on and connected
 
 ### 4.4 Email Setup (Needs Guillermo)
-- [ ] Create april.assistant.hk@gmail.com
+- [ ] Create april.rose.hk@gmail.com
 - [ ] Enable 2FA
 - [ ] Generate app password
 - [ ] Add to Railway secrets: GMAIL_USER, GMAIL_APP_PASSWORD
@@ -447,7 +447,7 @@ After interview, April tackles:
 | Item | Action Needed | Priority |
 |------|---------------|----------|
 | Anthropic token | Confirm using fleet-wide key | P1 |
-| Gmail | Create april.assistant.hk@gmail.com + app password | P1 |
+| Gmail | Create april.rose.hk@gmail.com + app password | P1 |
 | Discord bot | Create application, enable Message Content Intent | P1 |
 | WhatsApp | Scan QR code when Railway is up | P2 |
 | Calendar | Have Steph add SA to her calendar | P2 |
