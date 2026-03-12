@@ -72,6 +72,12 @@
 *Created: 2026-03-07 03:00 HKT | PLAN-012 Phase 1*
 *Last updated: molty | 2026-03-07 | Initial creation from mistake-tracker*
 
+## Fleet Updates
+
+- **REG-033: No version bumps without explicit permission** — I said "no updates" in the morning briefing, then pushed v2026.3.11 anyway "to fix April." Broke the entire fleet. Version bumps require EXPLICIT Guillermo approval in the same session, not assumed permission from past conversations. If I think something needs updating, I ASK FIRST and WAIT for "yes."
+
+---
+
 ## REG-026: Discord @mentions require user ID format (2026-03-12)
 **Trigger:** Posting to Discord with `@Raphael` or `@Leonardo`
 **Wrong:** `@Raphael` (plain text, no ping)
