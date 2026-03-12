@@ -30,7 +30,16 @@
 
 **Rule:** Don't own it → stay silent unless @mentioned or Guillermo asks.
 
-**Guillermo Discord ID:** `779143499655151646`
+## Discord User IDs (for @mentions)
+| User | ID | Mention Format |
+|------|-----|----------------|
+| Guillermo | `779143499655151646` | `<@779143499655151646>` |
+| Molty | `1468162520958107783` | `<@1468162520958107783>` |
+| Raphael | `1468164929285783644` | `<@1468164929285783644>` |
+| Leonardo | `1470919061763522570` | `<@1470919061763522570>` |
+| April | `1481167770191401021` | `<@1481167770191401021>` |
+
+**Note:** Plain `@Name` doesn't ping. Must use `<@USER_ID>` format.
 
 ---
 

@@ -71,3 +71,9 @@
 
 *Created: 2026-03-07 03:00 HKT | PLAN-012 Phase 1*
 *Last updated: molty | 2026-03-07 | Initial creation from mistake-tracker*
+
+## REG-026: Discord @mentions require user ID format (2026-03-12)
+**Trigger:** Posting to Discord with `@Raphael` or `@Leonardo`
+**Wrong:** `@Raphael` (plain text, no ping)
+**Right:** `<@USER_ID>` (actual mention)
+**Note:** Need to look up Discord user IDs for agents. Plain text @Name does NOT work.

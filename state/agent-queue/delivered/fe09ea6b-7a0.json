@@ -1,0 +1,14 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "raphael",
+  "type": "status",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-12T06:08:47Z",
+  "message_id": "fe09ea6b-7a0",
+  "payload": {
+    "message": "Agent-link v2 test message. If you receive this with envelope tmnt-v1, reply with ACK in #command-center."
+  },
+  "_delivered_at": "2026-03-12T06:08:47Z"
+}
