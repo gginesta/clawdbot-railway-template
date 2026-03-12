@@ -144,6 +144,14 @@
 
 ---
 
+## Overnight Schedule (HKT)
+| Time | Agent | Focus |
+|------|-------|-------|
+| 00:30 | Raphael 🔴 | Brinc proposals, sales |
+| 01:30 | Leonardo 🔵 | Cerebro, ventures |
+| 02:00 | April 🌸 | Family, Steph tasks, research |
+| 03:00 | Molty 🦎 | Consolidation, fleet |
+
 ## Webhook Tokens (Change Ticket #001 — Feb 24 2026)
 | Agent | Inbound Token | Status |
 |-------|---------------|--------|
