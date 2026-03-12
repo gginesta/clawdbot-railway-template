@@ -15,20 +15,20 @@ for (const suffix of ["PUBLIC_PORT", "STATE_DIR", "WORKSPACE_DIR", "GATEWAY_TOKE
   const newKey = `OPENCLAW_${suffix}`;
   if (process.env[oldKey] && !process.env[newKey]) {
     process.env[newKey] = process.env[oldKey];
-    // Best-effort compatibility shim for old Railway templates.
-    // Intentionally no warning: Railway templates can still set legacy keys and warnings are noisy.
+    console.warn(`[migration] Copied ${oldKey} → ${newKey}. Please rename this variable in your Railway settings.`);
   }
-  // Avoid forwarding legacy variables into OpenClaw subprocesses.
-  // OpenClaw logs a warning when deprecated CLAWDBOT_* variables are present.
-  delete process.env[oldKey];
 }
 
-// Railway injects PORT at runtime and routes traffic to that port.
-// Do not force a different public port in the container image, or the service may
-// boot but the Railway domain will be routed to a different port.
+// Railway deployments sometimes inject PORT=3000 by default. We want the wrapper to
+// reliably listen on 8080 unless explicitly overridden.
 //
-// OPENCLAW_PUBLIC_PORT is kept as an escape hatch for non-Railway deployments.
-const PORT = Number.parseInt(process.env.PORT ?? process.env.OPENCLAW_PUBLIC_PORT ?? "3000", 10);
+// Prefer OPENCLAW_PUBLIC_PORT (set in the Dockerfile / template) over PORT.
+const PORT = Number.parseInt(
+  process.env.OPENCLAW_PUBLIC_PORT?.trim() ??
+    process.env.PORT ??
+    "8080",
+  10,
+);
 
 // State/workspace
 // OpenClaw defaults to ~/.openclaw.
@@ -137,6 +137,13 @@ function isConfigured() {
 let gatewayProc = null;
 let gatewayStarting = null;
 
+// Optional sidecars (Tailscale + Syncthing)
+// Railway sometimes ignores Docker CMD and runs this wrapper directly.
+// To keep VPN-only file sharing working in that case, we can launch sidecars here.
+let tailscaledProc = null;
+let tailscaleUpProc = null;
+let syncthingProc = null;
+
 // Debug breadcrumbs for common Railway failures (502 / "Application failed to respond").
 let lastGatewayError = null;
 let lastGatewayExit = null;
@@ -145,6 +152,160 @@ let lastDoctorAt = null;
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+function envFlag(name, defaultValue = false) {
+  const v = process.env[name];
+  if (v == null) return defaultValue;
+  return ["1", "true", "yes", "on"].includes(String(v).toLowerCase());
+}
+
+async function waitForUnixSocket(socketPath, timeoutMs = 20_000) {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    try {
+      const st = fs.statSync(socketPath);
+      if (st.isSocket()) return true;
+    } catch {
+      // not ready
+    }
+    await sleep(150);
+  }
+  return false;
+}
+
+async function startTailscale() {
+  // Allow disabling if the user ends up running supervisord instead.
+  if (envFlag("OPENCLAW_DISABLE_WRAPPER_SIDEcars", false)) {
+    console.log("[tailscale] wrapper sidecars disabled via OPENCLAW_DISABLE_WRAPPER_SIDEcars");
+    return;
+  }
+
+  const authKey = process.env.TAILSCALE_AUTHKEY;
+  if (!authKey) {
+    console.log("[tailscale] TAILSCALE_AUTHKEY not set; skipping tailscale startup");
+    return;
+  }
+  if (tailscaledProc) {
+    console.log("[tailscale] already running; skipping");
+    return;
+  }
+
+  const stateDir = process.env.TAILSCALE_STATE_DIR || "/data/.tailscale";
+  const socketPath = "/tmp/tailscaled.sock";
+
+  try {
+    fs.mkdirSync(stateDir, { recursive: true });
+  } catch (e) {
+    console.error(`[tailscale] failed to create state dir ${stateDir}: ${String(e)}`);
+  }
+
+  console.log(`[tailscale] starting tailscaled (userspace) state=${stateDir}`);
+  tailscaledProc = childProcess.spawn(
+    "/usr/sbin/tailscaled",
+    [
+      `--state=${path.join(stateDir, "tailscaled.state")}`,
+      `--socket=${socketPath}`,
+      "--tun=userspace-networking",
+    ],
+    { stdio: "inherit", env: { ...process.env } },
+  );
+
+  tailscaledProc.on("exit", (code, signal) => {
+    console.error(`[tailscale] tailscaled exited code=${code} signal=${signal}`);
+    tailscaledProc = null;
+  });
+
+  // Bring it up (best-effort; don't crash the wrapper if it fails)
+  const ok = await waitForUnixSocket(socketPath, 30_000);
+  if (!ok) {
+    console.error("[tailscale] tailscaled socket did not appear; skipping tailscale up");
+    return;
+  }
+
+  const hostname = process.env.TAILSCALE_HOSTNAME;
+  const args = [
+    `--socket=${socketPath}`,
+    "up",
+    "--reset",
+    `--authkey=${authKey}`,
+    ...(hostname ? [`--hostname=${hostname}`] : []),
+    "--accept-dns=false",
+    "--accept-routes=false",
+  ];
+
+  console.log("[tailscale] running: tailscale " + args.join(" "));
+  tailscaleUpProc = childProcess.spawn("/usr/bin/tailscale", args, { stdio: "inherit" });
+  tailscaleUpProc.on("exit", (code, signal) => {
+    if (code === 0) {
+      console.log("[tailscale] up complete");
+      // Ensure we didn't persist shields-up from a previous run.
+      try {
+        childProcess.spawnSync(
+          "/usr/bin/tailscale",
+          [`--socket=${socketPath}`, "set", "--shields-up=false"],
+          { stdio: "inherit" },
+        );
+      } catch {
+        // ignore
+      }
+
+      // On some platforms (esp. userspace networking), inbound connections to
+      // local services can be unreliable unless we explicitly proxy via `tailscale serve`.
+      // Expose Syncthing GUI over the tailnet.
+      try {
+        childProcess.spawnSync(
+          "/usr/bin/tailscale",
+          [`--socket=${socketPath}`, "serve", "--bg", "--tcp=8384", "127.0.0.1:8384"],
+          { stdio: "inherit" },
+        );
+      } catch {
+        // ignore
+      }
+    } else {
+      console.error(`[tailscale] up failed code=${code} signal=${signal}`);
+    }
+    tailscaleUpProc = null;
+  });
+}
+
+async function startSyncthing() {
+  if (envFlag("OPENCLAW_DISABLE_WRAPPER_SIDEcars", false)) {
+    console.log("[syncthing] wrapper sidecars disabled via OPENCLAW_DISABLE_WRAPPER_SIDEcars");
+    return;
+  }
+
+  // Only start if user wants it; default on when using the template.
+  const enabled = envFlag("SYNCTHING_ENABLED", true);
+  if (!enabled) {
+    console.log("[syncthing] SYNCTHING_ENABLED=false; skipping syncthing startup");
+    return;
+  }
+  if (syncthingProc) {
+    console.log("[syncthing] already running; skipping");
+    return;
+  }
+
+  const home = process.env.SYNCTHING_HOME || "/data/.syncthing";
+  const gui = process.env.SYNCTHING_GUI_ADDRESS || "0.0.0.0:8384";
+
+  try {
+    fs.mkdirSync(home, { recursive: true });
+  } catch {
+    // ignore
+  }
+
+  console.log(`[syncthing] starting (home=${home} gui=${gui})`);
+  syncthingProc = childProcess.spawn(
+    "/usr/bin/syncthing",
+    ["serve", `--home=${home}`, `--gui-address=${gui}`, "--no-browser"],
+    { stdio: "inherit", env: { ...process.env } },
+  );
+
+  syncthingProc.on("exit", (code, signal) => {
+    console.error(`[syncthing] exited code=${code} signal=${signal}`);
+    syncthingProc = null;
+  });
 }
 
 async function waitForGatewayReady(opts = {}) {
@@ -297,7 +458,12 @@ function requireSetupAuth(req, res, next) {
 
 const app = express();
 app.disable("x-powered-by");
-app.use(express.json({ limit: "1mb" }));
+// Only parse JSON for /setup routes - don't consume body for proxied routes (webhooks)
+const jsonParser = express.json({ limit: "1mb" });
+app.use((req, res, next) => {
+  if (req.path.startsWith('/setup')) return jsonParser(req, res, next);
+  next();
+});
 
 // Minimal health endpoint for Railway.
 app.get("/setup/healthz", (_req, res) => res.json({ ok: true }));
@@ -705,16 +871,14 @@ function runCmd(cmd, args, opts = {}) {
 
 app.post("/setup/api/run", requireSetupAuth, async (req, res) => {
   try {
-    const respondJson = (status, body) => {
-      if (res.writableEnded || res.headersSent) return;
-      res.status(status).json(body);
+    const safeWrite = (msg) => {
+      try {
+        if (!res.writableEnded) res.write(String(msg) + "\n");
+      } catch {}
     };
     if (isConfigured()) {
       await ensureGatewayRunning();
-      return respondJson(200, {
-        ok: true,
-        output: "Already configured.\nUse Reset setup if you want to rerun onboarding.\n",
-      });
+      return res.json({ ok: true, output: "Already configured.\nUse Reset setup if you want to rerun onboarding.\n" });
     }
 
     fs.mkdirSync(STATE_DIR, { recursive: true });
@@ -726,10 +890,10 @@ app.post("/setup/api/run", requireSetupAuth, async (req, res) => {
     try {
       onboardArgs = buildOnboardArgs(payload);
     } catch (err) {
-      return respondJson(400, { ok: false, output: `Setup input error: ${String(err)}` });
+      return res.status(400).json({ ok: false, output: `Setup input error: ${String(err)}` });
     }
 
-    const prefix = "[setup] running openclaw onboard...\n";
+    safeWrite("[setup] running openclaw onboard...");
     const onboard = await runCmd(OPENCLAW_NODE, clawArgs(onboardArgs));
 
   let extra = "";
@@ -876,13 +1040,13 @@ app.post("/setup/api/run", requireSetupAuth, async (req, res) => {
     await restartGateway();
   }
 
-  return respondJson(ok ? 200 : 500, {
+  return res.status(ok ? 200 : 500).json({
     ok,
-    output: `${prefix}${onboard.output}${extra}`,
+    output: `${onboard.output}${extra}`,
   });
   } catch (err) {
     console.error("[/setup/api/run] error:", err);
-    return respondJson(500, { ok: false, output: `Internal error: ${String(err)}` });
+    return res.status(500).json({ ok: false, output: `Internal error: ${String(err)}` });
   }
 });
 
@@ -1328,44 +1492,7 @@ proxy.on("error", (err, _req, res) => {
   }
 });
 
-// --- Dashboard password protection ---
-// Require the same SETUP_PASSWORD for the entire Control UI dashboard,
-// not just the /setup routes.  Healthcheck is excluded so Railway probes work.
-function requireDashboardAuth(req, res, next) {
-  if (req.path === "/healthz" || req.path === "/setup/healthz") return next();
-  if (req.path.startsWith("/hooks")) return next(); // allow OpenClaw webhook endpoints to bypass dashboard auth
-  if (!SETUP_PASSWORD) return next(); // no password configured → open
-  const header = req.headers.authorization || "";
-  const [scheme, encoded] = header.split(" ");
-  if (scheme !== "Basic" || !encoded) {
-    res.set("WWW-Authenticate", 'Basic realm="OpenClaw Dashboard"');
-    return res.status(401).send("Auth required");
-  }
-  const decoded = Buffer.from(encoded, "base64").toString("utf8");
-  const idx = decoded.indexOf(":");
-  const password = idx >= 0 ? decoded.slice(idx + 1) : "";
-  if (password !== SETUP_PASSWORD) {
-    res.set("WWW-Authenticate", 'Basic realm="OpenClaw Dashboard"');
-    return res.status(401).send("Invalid password");
-  }
-  return next();
-}
-
-// --- Gateway token injection ---
-// The gateway is only reachable from this container. The Control UI in the browser
-// cannot set custom Authorization headers for WebSocket connections, so we inject
-// the token into proxied requests at the wrapper level.
-function attachGatewayAuthHeader(req) {
-  if (!req?.headers?.authorization && OPENCLAW_GATEWAY_TOKEN) {
-    req.headers.authorization = `Bearer ${OPENCLAW_GATEWAY_TOKEN}`;
-  }
-}
-
-proxy.on("proxyReqWs", (_proxyReq, req) => {
-  attachGatewayAuthHeader(req);
-});
-
-app.use(requireDashboardAuth, async (req, res) => {
+app.use(async (req, res) => {
   // If not configured, force users to /setup for any non-setup routes.
   if (!isConfigured() && !req.path.startsWith("/setup")) {
     return res.redirect("/setup");
@@ -1387,7 +1514,6 @@ app.use(requireDashboardAuth, async (req, res) => {
     }
   }
 
-  attachGatewayAuthHeader(req);
   return proxy.web(req, res, { target: GATEWAY_TARGET });
 });
 
@@ -1406,45 +1532,16 @@ const server = app.listen(PORT, "0.0.0.0", async () => {
 
   console.log(`[wrapper] gateway token: ${OPENCLAW_GATEWAY_TOKEN ? "(set)" : "(missing)"}`);
   console.log(`[wrapper] gateway target: ${GATEWAY_TARGET}`);
+  console.log(`[wrapper] tailscale authkey: ${process.env.TAILSCALE_AUTHKEY ? "(set)" : "(missing)"}`);
+  console.log(`[wrapper] syncthing enabled: ${envFlag("SYNCTHING_ENABLED", true) ? "true" : "false"}`);
   if (!SETUP_PASSWORD) {
     console.warn("[wrapper] WARNING: SETUP_PASSWORD is not set; /setup will error.");
   }
 
-  // Optional operator hook to install/persist extra tools under /data.
-  // This is intentionally best-effort and should be used to set up persistent
-  // prefixes (npm/pnpm/python venv), not to mutate the base image.
-  const bootstrapPath = path.join(WORKSPACE_DIR, "bootstrap.sh");
-  if (fs.existsSync(bootstrapPath)) {
-    console.log(`[wrapper] running bootstrap: ${bootstrapPath}`);
-    try {
-      await runCmd("bash", [bootstrapPath], {
-        env: {
-          ...process.env,
-          OPENCLAW_STATE_DIR: STATE_DIR,
-          OPENCLAW_WORKSPACE_DIR: WORKSPACE_DIR,
-        },
-        timeoutMs: 10 * 60 * 1000,
-      });
-      console.log("[wrapper] bootstrap complete");
-    } catch (err) {
-      console.warn(`[wrapper] bootstrap failed (continuing): ${String(err)}`);
-    }
-  }
-
-  // Sync gateway tokens in config with the current env var on every startup.
-  // This prevents "gateway token mismatch" when OPENCLAW_GATEWAY_TOKEN changes
-  // (e.g. Railway variable update) but the config file still has the old value.
-  if (isConfigured() && OPENCLAW_GATEWAY_TOKEN) {
-    console.log("[wrapper] syncing gateway tokens in config...");
-    try {
-      await runCmd(OPENCLAW_NODE, clawArgs(["config", "set", "gateway.auth.mode", "token"]));
-      await runCmd(OPENCLAW_NODE, clawArgs(["config", "set", "gateway.auth.token", OPENCLAW_GATEWAY_TOKEN]));
-      await runCmd(OPENCLAW_NODE, clawArgs(["config", "set", "gateway.remote.token", OPENCLAW_GATEWAY_TOKEN]));
-      console.log("[wrapper] gateway tokens synced");
-    } catch (err) {
-      console.warn(`[wrapper] failed to sync gateway tokens: ${String(err)}`);
-    }
-  }
+  // Sidecars: best-effort. If Railway is running the wrapper directly (common),
+  // this is what makes Syncthing + Tailscale actually come up.
+  startTailscale().catch((e) => console.error(`[tailscale] startup error: ${String(e)}`));
+  startSyncthing().catch((e) => console.error(`[syncthing] startup error: ${String(e)}`));
 
   // Auto-start the gateway if already configured so polling channels (Telegram/Discord/etc.)
   // work even if nobody visits the web UI.
@@ -1460,10 +1557,6 @@ const server = app.listen(PORT, "0.0.0.0", async () => {
 });
 
 server.on("upgrade", async (req, socket, head) => {
-  // Note: browsers cannot attach arbitrary HTTP headers (including Authorization: Basic)
-  // in WebSocket handshakes. Do not enforce dashboard Basic auth at the upgrade layer.
-  // The gateway authenticates at the protocol layer and we inject the gateway token below.
-
   if (!isConfigured()) {
     socket.destroy();
     return;
@@ -1474,7 +1567,6 @@ server.on("upgrade", async (req, socket, head) => {
     socket.destroy();
     return;
   }
-  attachGatewayAuthHeader(req);
   proxy.ws(req, socket, head, { target: GATEWAY_TARGET });
 });
 
