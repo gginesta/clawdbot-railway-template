@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: 2026-03-11 | Target: <15KB*
+*Last updated: 2026-03-12 | Target: <15KB*
 
 ---
 
@@ -38,6 +38,7 @@
 - **April (agent):** FULLY OPERATIONAL ✅ Deployed 2026-03-11. Railway service: `ea026a0b-79e0-433d-907e-5cc4f75385e2` (april-agent-production.up.railway.app). Discord ID: 1481167770191401021. Webhook token: `7159178afb1c2c24b1e98bbbac0f0f02dc759aa038cd49ae7fac7873d8acf3ee`. Email: `april.rose.hk@gmail.com`. Channels: Discord ✅ WhatsApp ✅ Google Calendar + Shenanigans ✅ GCP IAM ✅ Syncthing ✅ agent-link ✅. Steph USER.md interview: page not yet shared with Notion integration (pending Guillermo).
 - **Agent Performance Review:** P1 overnight work planned (PLAN-011). Design review process + add "Last updated by" headers to shared files. Trust/coaching model, not gatekeeping. Cascade to fleet after approval.
 - **gws CLI:** v0.4.4 primary tool. Gmail ✅ Calendar ✅ Drive ✅ Docs ✅ Sheets ✅ (all 9 scopes). Config: `~/.config/gws/`. 11 skills at `/openclaw/skills/gws-*`. gog deprecated as fallback. GCP OAuth project: `847540297795` (separate from Gemini project `226575193033`).
+- **Agent-Link v2 (PLAN-015):** IMPLEMENTED ✅ Mar 12. Worker + queue + health system live. Leonardo/April webhooks still timing out → messages auto-queued and retried. Root cause TBD (gateway hangs on `/hooks/agent` endpoint — services ARE up).
 - **Browser relay:** PARKED. Blocker: relay only included in full gateway, not `openclaw node run`. Node on GUILLERMO-DESKTOP is paired ✅. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
@@ -95,3 +96,6 @@ Send daily standup to **both** webchat AND Telegram going forward.
 132. **Discord bot config — use channel NAME not ID (Mar 11 2026):** Channel IDs sometimes don't resolve in OpenClaw Discord config. Use channel name (e.g. `april-private`) instead. Bot also needs OAuth invite with correct permissions (`/api/oauth2/authorize?client_id=<id>&permissions=68608&scope=bot`) plus explicit View/Send/Read History granted per channel.
 133. **MC PATCH API — task ID in body, not URL path (Mar 11 2026):** PATCH `/api/task` requires the task `id` field in the request body. Putting it in the URL path causes silent failure. Confirmed pattern: `PATCH /api/task` with body `{ "id": "<taskId>", ...fields }`.
 134. **Morning briefing v3.0 — condensed format (Mar 12 2026):** Briefing was 4 screens → now ~1 screen. Keeps: Focus, Blocked (max 3), Review (max 3), Calendar (one line), Heads up (notable only), Weather (one line), OpenClaw. Removes: overnight report details, plans, tasks, squad, email, Notion comments, weather outlook. See PLAN-013.
+135. **OpenClaw agent config — model placement (Mar 12 2026):** `model` must go under `agents.defaults.model` as `{primary: "...", fallbacks: [...]}` — NOT at root config level. Also: `cron.jobs` key does NOT exist in config; add crons via `/cron add` tool only. Learned during April PLAN-014 integration.
+136. **Agent-Link v2 IMPLEMENTED (PLAN-015, Mar 12 2026):** Trusted fleet messaging with `tmnt-v1` envelope, persistent retry queue, health-aware routing. Key files: worker `/data/shared/scripts/agent-link-worker.py`, health `/data/shared/health/{agent}.json`, token `/data/shared/credentials/agent-link-token.txt`, delivery log `/data/shared/logs/agent-link-deliveries.log`. Queue processor cron: `57a4956a-5f79-4fe1-a7c3-257c09741314` (every 5min). Raphael ✅, Leonardo ⚠️ still timing out (queued for retry).
+137. **Discord @mentions require `<@USER_ID>` format (REG-026, Mar 12 2026):** Plain `@Name` does NOT ping in Discord. Must use `<@779143499655151646>` style with numeric user ID. IDs in TOOLS.md for all agents + Guillermo.
