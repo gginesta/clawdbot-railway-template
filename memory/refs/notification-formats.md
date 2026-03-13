@@ -77,6 +77,41 @@ Nothing else.
 
 ---
 
+## OpenClaw Update Summary
+
+**When:** Fleet update check detects new version (cron `c0705ffd-9c7f-4f90-839b-7f3a9d660371` at 21:15 HKT)
+
+**Format:**
+```
+**OpenClaw 2026.X.Y — Top Features for Us:**
+
+| Feature | What It Does | How We Use It |
+|---------|--------------|---------------|
+| **🎛️ Feature Name** | One-line description | Practical application for TMNT |
+| **⚡ Feature 2** | What it does | How it helps us |
+| **🛡️ Feature 3** | Description | Our use case |
+
+**Most Relevant for Us:**
+1. **Feature A** — why it matters to our workflow
+2. **Feature B** — specific benefit
+3. **Feature C** — how it fixes a pain point
+
+**To Update:**
+`/update`
+```
+
+**Rules:**
+- Fetch release notes from GitHub (`https://github.com/openclaw/openclaw/releases/tag/vX.Y.Z`)
+- Table format: Feature | What It Does | How We Use It
+- Focus on TMNT-relevant features (skip irrelevant providers like BlueBubbles)
+- Call out fixes for issues we've hit (e.g., cron duplication)
+- End with clear action: `/update`
+- Use emoji prefixes for visual scanning
+
+**Source:** Fetch tweet from @openclaw + GitHub release notes
+
+---
+
 ## General Principles
 
 1. **Readable over compact** — full sentences beat truncated gibberish
@@ -84,6 +119,7 @@ Nothing else.
 3. **Bold headers** — visual hierarchy matters on mobile
 4. **Filter noise** — don't show recurring/known events
 5. **Silent if nothing** — don't send "all clear" messages
+6. **Tables for comparisons** — easier to scan than paragraphs
 
 ---
 
