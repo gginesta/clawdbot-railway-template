@@ -1225,46 +1225,58 @@ def build_message(
     mc_under_review: list[dict] | None = None,
     mc_blocked: list[dict] | None = None,
 ) -> str:
-    """Build a pretty, scannable morning briefing.
+    """Build a readable morning briefing with full context.
     
-    Format (v3.2 — Mar 13 2026):
-    Cards style with arrows, filtered recurring events.
+    Format (v3.3 — Mar 13 2026):
+    Bold headers, full descriptions, weather outlook, no truncation.
     """
     today = now.date()
     lines: list[str] = []
 
-    # Header with weather inline
-    weather_str = ""
-    if weather and weather.today.tmin is not None and weather.today.tmax is not None:
-        weather_str = f" · {int(round(weather.today.tmin))}-{int(round(weather.today.tmax))}°C"
-    lines.append(f"☀️ {_fmt_day(today)}{weather_str}")
-    lines.append("")
-
-    # Blocked items
-    if mc_blocked:
-        lines.append("🚧 Blocked")
-        for t in mc_blocked[:3]:
-            title = _smart_truncate(t.get('title', '?'), 40)
-            lines.append(f"→ {title}")
-        lines.append("")
-
-    # Under review
-    if mc_under_review:
-        lines.append("👀 Review")
-        for t in mc_under_review[:3]:
-            title = _smart_truncate(t.get('title', '?'), 40)
-            lines.append(f"→ {title}")
-        lines.append("")
-
-    # Today's calendar — filter recurring/noise events
-    # Recurring/noise events to filter out
+    # Noise patterns to filter
     NOISE_PATTERNS = [
         "mayleen", "mie", "helper", "domestic",
         "busy", "focus time", "deep work", "block",
         "school drop", "drop-off", "pickup", "pick-up",
         "desk work", "admin", "lunch break",
     ]
-    
+
+    # Header with weather + outlook
+    weather_line = f"☀️ **{_fmt_day(today)}**"
+    if weather and weather.today.tmin is not None and weather.today.tmax is not None:
+        temp = f"{int(round(weather.today.tmin))}-{int(round(weather.today.tmax))}°C"
+        rain_days = [d for d in weather.outlook_3d if d.rain_prob_max and d.rain_prob_max >= 50]
+        if rain_days:
+            weather_line += f" · {temp}, rain likely {rain_days[0].day.strftime('%a')}"
+        elif weather.today.rain_prob_max and weather.today.rain_prob_max >= 30:
+            weather_line += f" · {temp}, {weather.today.rain_prob_max}% rain"
+        else:
+            weather_line += f" · {temp}"
+    lines.append(weather_line)
+    lines.append("")
+
+    # Blocked items — full readable descriptions
+    if mc_blocked:
+        lines.append("🚧 **Blocked**")
+        for t in mc_blocked[:4]:
+            assignees = t.get("assignees", [])
+            owner = assignees[0].title() if assignees else ""
+            title = t.get("title", "?")
+            desc = t.get("description", "")
+            summary = _make_blocker_readable(title, desc, owner)
+            lines.append(f"→ {summary}")
+        lines.append("")
+
+    # Under review — meaningful descriptions
+    if mc_under_review:
+        lines.append("👀 **Review**")
+        for t in mc_under_review[:4]:
+            title = t.get("title", "?")
+            readable = _make_title_readable(title)
+            lines.append(f"→ {readable}")
+        lines.append("")
+
+    # Calendar — full event names
     filtered_events = []
     for ev in todays_events:
         if ev.all_day:
@@ -1274,33 +1286,81 @@ def build_message(
             continue
         filtered_events.append(ev)
     
+    lines.append("📅 **Today**")
     if filtered_events:
-        cal_parts = []
-        for ev in filtered_events[:3]:
+        for ev in filtered_events[:5]:
             t = _fmt_hhmm(ev.start) if ev.start else "?"
-            summary = _smart_truncate(ev.summary, 12)
-            cal_parts.append(f"{summary} {t}")
-        lines.append("📅 " + " · ".join(cal_parts))
+            lines.append(f"→ {ev.summary} {t}")
     else:
-        lines.append("📅 Clear day")
+        lines.append("→ Clear day")
+    lines.append("")
 
-    # Heads up — only truly notable upcoming events
-    notable_upcoming = _get_notable_upcoming_filtered(upcoming_events, tasks_upcoming, today, NOISE_PATTERNS)
-    if notable_upcoming:
-        lines.append(f"🔜 {notable_upcoming}")
+    # Coming up — notable events only
+    notable = _get_notable_upcoming_filtered(upcoming_events, tasks_upcoming, today, NOISE_PATTERNS)
+    if notable:
+        lines.append("🔜 **Coming up**")
+        lines.append(f"→ {notable}")
+        lines.append("")
 
     # OpenClaw status
     update_summary = _get_openclaw_update_summary()
     if update_summary and "Update available" in update_summary:
         lines.append(f"🔧 {update_summary}")
+        lines.append("   Reply /update to install")
     
-    # Errors — only if critical
+    # Errors
     critical_errors = [e for e in errors if "unavailable" not in e.lower()]
     if critical_errors:
         lines.append("")
         lines.append("⚠️ " + "; ".join(critical_errors[:2]))
 
     return "\n".join(lines).strip() + "\n"
+
+
+def _make_blocker_readable(title: str, desc: str, owner: str) -> str:
+    """Convert blocked task to human-readable summary."""
+    title_lower = title.lower()
+    
+    if "waiting" in title_lower:
+        if "proposal" in title_lower or "proposal" in desc.lower():
+            return f"{owner}: Needs live proposal deck from you"
+        if "template" in title_lower:
+            return f"{owner}: Needs template from you"
+        parts = title.split(":")
+        if len(parts) > 1:
+            return f"{owner}: {parts[-1].strip()}"
+    
+    if "research" in title_lower:
+        return f"{owner}: Research pending your review"
+    
+    if title_lower[:1].isalpha() and len(title) > 2 and title[1].isdigit():
+        if "proposal" in title_lower or "proposal" in desc.lower():
+            return f"{owner}: Needs live proposal deck"
+    
+    if owner:
+        return f"{owner}: {title[:50]}"
+    return title[:60]
+
+
+def _make_title_readable(title: str) -> str:
+    """Convert task title to human-readable format."""
+    title_lower = title.lower()
+    
+    if "tmnt" in title_lower and "article" in title_lower:
+        return "TMNT Agent Management article"
+    if "ginesta.io" in title_lower or "personal website" in title_lower:
+        return "Ginesta.io website brief"
+    if "crm" in title_lower and "pipeline" in title_lower:
+        return "Cerebro CRM Pipelines Phase B"
+    if "brief" in title_lower and "plan" in title_lower:
+        return "Website brief and plan"
+    
+    for prefix in ["Write ", "Create ", "Build ", "Design "]:
+        if title.startswith(prefix):
+            title = title[len(prefix):]
+    
+    return title[:55] if len(title) > 55 else title
+
 
 
 def _get_notable_upcoming(
