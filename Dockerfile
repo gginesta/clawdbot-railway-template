@@ -43,11 +43,12 @@ RUN pnpm ui:install && pnpm ui:build
 FROM node:22-bookworm
 ENV NODE_ENV=production
 
-# Install OS deps + Syncthing
+# Install OS deps + Syncthing + tini (zombie reaper)
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
+    tini \
     gnupg \
     chromium \
     chromium-sandbox \
@@ -230,4 +231,6 @@ RUN printf '%s\n' \
   > /usr/local/bin/startup.sh \
   && chmod +x /usr/local/bin/startup.sh
 
+# Ensure PID 1 reaps zombies and forwards signals (upstream ab2c730)
+ENTRYPOINT ["tini", "--"]
 CMD ["/usr/local/bin/startup.sh"]
