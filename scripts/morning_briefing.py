@@ -1225,98 +1225,75 @@ def build_message(
     mc_under_review: list[dict] | None = None,
     mc_blocked: list[dict] | None = None,
 ) -> str:
-    """Build a condensed 1-screen morning briefing.
+    """Build a pretty, scannable morning briefing.
     
-    Format (v3.0 — Mar 12 2026):
-    - Good morning line
-    - 🎯 Today's Focus
-    - 🚧 Blocked (need you) — max 3
-    - 👀 Ready for review — max 3
-    - 📅 Today — condensed one line with key events
-    - 🔜 Heads up — only if something notable in next 5 days
-    - 🌤 Weather — one line
-    - 🔧 OpenClaw — update status
+    Format (v3.2 — Mar 13 2026):
+    Cards style with arrows, filtered recurring events.
     """
     today = now.date()
     lines: list[str] = []
 
-    # 1) Good morning — compact header
-    lines.append(f"Good morning — {_fmt_day(today)}")
+    # Header with weather inline
+    weather_str = ""
+    if weather and weather.today.tmin is not None and weather.today.tmax is not None:
+        weather_str = f" · {int(round(weather.today.tmin))}-{int(round(weather.today.tmax))}°C"
+    lines.append(f"☀️ {_fmt_day(today)}{weather_str}")
     lines.append("")
 
-    # 2) Today's Focus — the ONE thing
-    if yesterdays_focus:
-        lines.append(f"🎯 Focus: {yesterdays_focus}")
-        lines.append("")
-
-    # 3) Blocked items — need Guillermo's input
+    # Blocked items
     if mc_blocked:
-        lines.append("🚧 Blocked (need you):")
+        lines.append("🚧 Blocked")
         for t in mc_blocked[:3]:
-            ags = ", ".join(t.get("assignees", []))
-            title = _smart_truncate(t.get('title', '?'), 45)
-            lines.append(f"• {ags.title()}: {title}")
+            title = _smart_truncate(t.get('title', '?'), 40)
+            lines.append(f"→ {title}")
         lines.append("")
 
-    # 4) Under review — ready for Guillermo's eyes
+    # Under review
     if mc_under_review:
-        lines.append("👀 Ready for review:")
+        lines.append("👀 Review")
         for t in mc_under_review[:3]:
-            ags = ", ".join(t.get("assignees", []))
-            title = _smart_truncate(t.get('title', '?'), 45)
-            lines.append(f"• {ags.title()}: {title}")
+            title = _smart_truncate(t.get('title', '?'), 40)
+            lines.append(f"→ {title}")
         lines.append("")
 
-    # 5) Today's calendar — max 3 key events, clean format
-    if todays_events:
+    # Today's calendar — filter recurring/noise events
+    # Recurring/noise events to filter out
+    NOISE_PATTERNS = [
+        "mayleen", "mie", "helper", "domestic",
+        "busy", "focus time", "deep work", "block",
+        "school drop", "drop-off", "pickup", "pick-up",
+        "desk work", "admin", "lunch break",
+    ]
+    
+    filtered_events = []
+    for ev in todays_events:
+        if ev.all_day:
+            continue
+        summary_lower = ev.summary.lower()
+        if any(noise in summary_lower for noise in NOISE_PATTERNS):
+            continue
+        filtered_events.append(ev)
+    
+    if filtered_events:
         cal_parts = []
-        for ev in todays_events:
-            if ev.all_day:
-                continue
-            if len(cal_parts) >= 3:
-                break
+        for ev in filtered_events[:3]:
             t = _fmt_hhmm(ev.start) if ev.start else "?"
-            summary = _smart_truncate(ev.summary, 15)
+            summary = _smart_truncate(ev.summary, 12)
             cal_parts.append(f"{summary} {t}")
-        if cal_parts:
-            lines.append("📅 " + " · ".join(cal_parts))
-        else:
-            lines.append("📅 No meetings today")
+        lines.append("📅 " + " · ".join(cal_parts))
     else:
         lines.append("📅 Clear day")
-    lines.append("")
 
-    # 6) Heads up — only show if something notable in next 5 days
-    notable_upcoming = _get_notable_upcoming(upcoming_events, tasks_upcoming, today)
+    # Heads up — only truly notable upcoming events
+    notable_upcoming = _get_notable_upcoming_filtered(upcoming_events, tasks_upcoming, today, NOISE_PATTERNS)
     if notable_upcoming:
         lines.append(f"🔜 {notable_upcoming}")
-        lines.append("")
 
-    # 7) Weather — single line
-    if weather:
-        tmin = weather.today.tmin
-        tmax = weather.today.tmax
-        rain = weather.today.rain_prob_max
-        wparts = []
-        if tmin is not None and tmax is not None:
-            wparts.append(f"{int(round(tmin))}-{int(round(tmax))}°C")
-        if rain is not None:
-            wparts.append(f"{rain}% rain")
-        lines.append("🌤 " + ", ".join(wparts) if wparts else "🌤 Weather unavailable")
-    else:
-        lines.append("🌤 Weather unavailable")
-    lines.append("")
-
-    # 8) OpenClaw Update — always show
+    # OpenClaw status
     update_summary = _get_openclaw_update_summary()
-    if update_summary:
-        if "Update available" in update_summary:
-            lines.append(f"🔧 OpenClaw: {update_summary} ⬆️")
-        else:
-            lines.append(f"🔧 OpenClaw: {update_summary}")
-    else:
-        lines.append("🔧 OpenClaw: Up to date ✅")
-
+    if update_summary and "Update available" in update_summary:
+        lines.append(f"🔧 {update_summary}")
+    
     # Errors — only if critical
     critical_errors = [e for e in errors if "unavailable" not in e.lower()]
     if critical_errors:
@@ -1331,34 +1308,46 @@ def _get_notable_upcoming(
     tasks_upcoming: list[Task],
     today: date,
 ) -> str | None:
-    """Return a single-line heads-up for the next 5 days, or None if nothing notable.
+    """Legacy function — use _get_notable_upcoming_filtered instead."""
+    return _get_notable_upcoming_filtered(upcoming_events, tasks_upcoming, today, [])
+
+
+def _get_notable_upcoming_filtered(
+    upcoming_events: list[CalEvent],
+    tasks_upcoming: list[Task],
+    today: date,
+    noise_patterns: list[str],
+) -> str | None:
+    """Return a single-line heads-up for the next 5 days, filtering noise.
     
-    Notable = school drop-off, external meetings, P1 deadlines, family events
+    Only shows: birthdays, travel, external meetings, P1 deadlines.
     """
     notable = []
     
-    for ev in upcoming_events[:10]:
+    for ev in upcoming_events[:15]:
         if not ev.start:
             continue
-        d = ev.start.astimezone(HKT).date()
-        day_label = d.strftime("%a")
+        
         summary_lower = ev.summary.lower()
         
-        # Notable: school, external meetings, family, important keywords
+        # Skip noise events
+        if any(noise in summary_lower for noise in noise_patterns):
+            continue
+        
+        d = ev.start.astimezone(HKT).date()
+        day_label = d.strftime("%a")
+        
+        # Only truly notable: birthdays, travel, dinners, external meetings
         is_notable = any(kw in summary_lower for kw in [
-            "school", "drop-off", "pickup", "pick-up",
-            "meeting", "call", "sync",
-            "birthday", "anniversary", "dinner", "lunch with",
+            "birthday", "anniversary", 
             "flight", "travel", "trip",
-            "deadline", "due", "submit",
+            "dinner", "lunch with", "drinks",
+            "doctor", "dentist", "appointment",
         ])
-        # Family calendar is always notable
-        if ev.calendar_label == "Family":
-            is_notable = True
         
         if is_notable:
             t = _fmt_hhmm(ev.start) if not ev.all_day else ""
-            short_summary = ev.summary[:25] if len(ev.summary) > 25 else ev.summary
+            short_summary = _smart_truncate(ev.summary, 20)
             notable.append(f"{day_label}: {short_summary}" + (f" {t}" if t else ""))
             if len(notable) >= 2:
                 break
@@ -1369,7 +1358,7 @@ def _get_notable_upcoming(
             dd = t.due_dt.astimezone(HKT).date() if t.due_dt else t.due_date
             if dd and dd > today:
                 day_label = dd.strftime("%a")
-                notable.append(f"{day_label}: P1 {t.content[:20]}")
+                notable.append(f"{day_label}: P1 {_smart_truncate(t.content, 18)}")
                 if len(notable) >= 2:
                     break
     
