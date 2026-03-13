@@ -161,6 +161,18 @@ def _fmt_day(d: date) -> str:
     return f"{d.strftime('%a')} {d.day} {d.strftime('%b')}"
 
 
+def _smart_truncate(text: str, max_len: int) -> str:
+    """Truncate text at word boundary, not mid-word."""
+    if len(text) <= max_len:
+        return text
+    # Find last space before max_len
+    truncated = text[:max_len]
+    last_space = truncated.rfind(' ')
+    if last_space > max_len // 2:  # Only use space if it's not too early
+        return truncated[:last_space] + "…"
+    return truncated[:-1] + "…"
+
+
 # -----------------------------
 # gog CLI helper
 # -----------------------------
@@ -274,7 +286,12 @@ def get_weather(today: date, *, school_day: bool, errors: list[str]) -> WeatherS
     # PSR (Probability of Significant Rain) → approximate % for display
     _PSR_MAP = {"Low": 15, "Medium": 50, "High": 75, "Very High": 95}
 
-    # 9-day forecast — temps + PSR per day
+    # Current weather for today (flw = local weather forecast)
+    status_flw, flw = _http_json(
+        "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=en"
+    )
+    
+    # 9-day forecast — temps + PSR per day (starts from tomorrow)
     status, fnd = _http_json(
         "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=en"
     )
@@ -308,10 +325,36 @@ def get_weather(today: date, *, school_day: bool, errors: list[str]) -> WeatherS
                 rain_prob_max=rain,
             )
 
-        today_fc = mk_day(today)
+        # For today, use tomorrow's forecast as proxy (9-day doesn't include today)
+        # Or extract from flw if available
+        tomorrow = today + timedelta(days=1)
+        tomorrow_fc = fc_by_date.get(tomorrow, {})
+        
+        # Build today's forecast from tomorrow's data (best available)
+        today_fc = ForecastDay(
+            day=today,
+            tmin=tomorrow_fc.get("forecastMintemp", {}).get("value"),
+            tmax=tomorrow_fc.get("forecastMaxtemp", {}).get("value"),
+            rain_prob_max=_PSR_MAP.get(tomorrow_fc.get("PSR", ""))
+        )
+        
+        # If flw has today's outlook, try to extract temp range
+        if status_flw and status_flw < 300 and flw:
+            outlook_text = flw.get("forecastDesc", "") + " " + flw.get("outlook", "")
+            # Try to find temperature mentions like "around 21 degrees"
+            import re
+            temps = re.findall(r'(\d{1,2})\s*(?:to|and|–|-)\s*(\d{1,2})\s*degrees', outlook_text, re.I)
+            if temps:
+                today_fc = ForecastDay(
+                    day=today,
+                    tmin=float(temps[0][0]),
+                    tmax=float(temps[0][1]),
+                    rain_prob_max=today_fc.rain_prob_max
+                )
+        
         outlook: list[ForecastDay] = [mk_day(today + timedelta(days=i)) for i in range(1, 4)]
 
-        # Drop-off rain proxy: use today's PSR (HKO doesn't give hourly rain probability)
+        # Drop-off rain proxy
         dropoff = None
         if school_day and today_fc.rain_prob_max is not None:
             dropoff = today_fc.rain_prob_max
@@ -1137,85 +1180,32 @@ def _get_active_plans() -> list[str] | None:
 
 
 def _get_openclaw_update_summary() -> str | None:
-    """Read the latest OpenClaw update cron result from session transcripts.
-
-    Looks for sessions modified in the last 4 hours that contain update markers.
-    Skips files larger than 1MB (main session) to avoid slow reads.
+    """Check actual OpenClaw update status by running `openclaw update status`.
+    
+    Returns a concise status line for the briefing.
     """
-    import glob
-    sessions_dir = "/data/.openclaw/agents/main/sessions"
-    now_ts = datetime.now(tz=UTC).timestamp()
-    candidates = []
     try:
-        for f in glob.glob(os.path.join(sessions_dir, "*.jsonl")):
-            stat = os.stat(f)
-            # Skip files >1MB (main session) and older than 4 hours
-            if stat.st_size > 1_000_000:
-                continue
-            if now_ts - stat.st_mtime > 14400:
-                continue
-            candidates.append((stat.st_mtime, f))
+        result = subprocess.run(
+            ["openclaw", "update", "status"],
+            capture_output=True, text=True, timeout=15
+        )
+        output = result.stdout + result.stderr
+        
+        # Parse the output for update status
+        if "Update available" in output or "npm update" in output:
+            # Extract version number
+            import re
+            match = re.search(r'npm update (\d+\.\d+\.\d+)', output)
+            if match:
+                return f"Update available: v{match.group(1)}"
+            return "Update available"
+        elif "up to date" in output.lower() or "deps ok" in output:
+            # Check if actually on latest
+            if "available" not in output.lower():
+                return None  # Will show "Up to date ✅"
+        return None
     except Exception:
         return None
-
-    if not candidates:
-        return None
-
-    candidates.sort(reverse=True)
-    heartbeat_found = False
-
-    for _, fpath in candidates[:10]:
-        try:
-            with open(fpath, "r") as fh:
-                content = fh.read()
-            if "OpenClaw Updated" not in content and "HEARTBEAT_OK" not in content:
-                continue
-            # Must be an update session (not just any session mentioning these words)
-            if "commit" not in content.lower() and "HEARTBEAT_OK" not in content:
-                continue
-            # Extract the assistant's final message
-            for line in reversed(content.strip().split("\n")):
-                try:
-                    rec = json.loads(line)
-                    # Support both flat format (role at top) and nested (message.role)
-                    msg = rec.get("message", rec)
-                    if msg.get("role") != "assistant":
-                        continue
-                    text = ""
-                    c = msg.get("content", "")
-                    if isinstance(c, str):
-                        text = c
-                    elif isinstance(c, list):
-                        for part in c:
-                            if isinstance(part, dict) and part.get("type") == "text":
-                                text = part.get("text", "")
-                                break
-                    if not text:
-                        continue
-                    if "HEARTBEAT_OK" in text:
-                        # Don't return yet - keep looking for an actual update message
-                        heartbeat_found = True
-                        continue
-                    if "OpenClaw Updated" in text:
-                        result_lines = []
-                        for tl in text.split("\n"):
-                            tl = tl.strip()
-                            if not tl:
-                                continue
-                            if tl.startswith("📦") or tl.startswith("- ") or tl.startswith("✅"):
-                                result_lines.append(tl)
-                            if len(result_lines) >= 5:
-                                break
-                        if result_lines:
-                            return "\n".join(result_lines)
-                except (json.JSONDecodeError, KeyError):
-                    continue
-        except Exception:
-            continue
-
-    if heartbeat_found:
-        return "No updates - already on latest version ✅"
-    return None
 
 
 def build_message(
@@ -1264,7 +1254,8 @@ def build_message(
         lines.append("🚧 Blocked (need you):")
         for t in mc_blocked[:3]:
             ags = ", ".join(t.get("assignees", []))
-            lines.append(f"• {ags.title()}: {t.get('title','?')[:50]}")
+            title = _smart_truncate(t.get('title', '?'), 45)
+            lines.append(f"• {ags.title()}: {title}")
         lines.append("")
 
     # 4) Under review — ready for Guillermo's eyes
@@ -1272,28 +1263,27 @@ def build_message(
         lines.append("👀 Ready for review:")
         for t in mc_under_review[:3]:
             ags = ", ".join(t.get("assignees", []))
-            lines.append(f"• {ags.title()}: {t.get('title','?')[:50]}")
+            title = _smart_truncate(t.get('title', '?'), 45)
+            lines.append(f"• {ags.title()}: {title}")
         lines.append("")
 
-    # 5) Today's calendar — condensed to one line with key events
+    # 5) Today's calendar — max 3 key events, clean format
     if todays_events:
-        # Pick up to 5 key events, format as "Event Time · Event Time"
         cal_parts = []
-        for ev in todays_events[:5]:
+        for ev in todays_events:
             if ev.all_day:
-                continue  # skip all-day for the condensed line
+                continue
+            if len(cal_parts) >= 3:
+                break
             t = _fmt_hhmm(ev.start) if ev.start else "?"
-            # Shorten common event names
-            summary = ev.summary
-            if len(summary) > 20:
-                summary = summary[:18] + "…"
+            summary = _smart_truncate(ev.summary, 15)
             cal_parts.append(f"{summary} {t}")
         if cal_parts:
-            lines.append("📅 Today: " + " · ".join(cal_parts))
+            lines.append("📅 " + " · ".join(cal_parts))
         else:
-            lines.append("📅 Today: No timed events")
+            lines.append("📅 No meetings today")
     else:
-        lines.append("📅 Today: Clear")
+        lines.append("📅 Clear day")
     lines.append("")
 
     # 6) Heads up — only show if something notable in next 5 days
@@ -1320,14 +1310,10 @@ def build_message(
     # 8) OpenClaw Update — always show
     update_summary = _get_openclaw_update_summary()
     if update_summary:
-        # Condense to one line if possible
-        if "No updates" in update_summary or "latest" in update_summary.lower():
-            lines.append("🔧 OpenClaw: Up to date ✅")
-        elif "📦" in update_summary:
-            # Extract version from update message
-            lines.append(f"🔧 {update_summary.split(chr(10))[0]}")
+        if "Update available" in update_summary:
+            lines.append(f"🔧 OpenClaw: {update_summary} ⬆️")
         else:
-            lines.append(f"🔧 OpenClaw: {update_summary[:60]}")
+            lines.append(f"🔧 OpenClaw: {update_summary}")
     else:
         lines.append("🔧 OpenClaw: Up to date ✅")
 
