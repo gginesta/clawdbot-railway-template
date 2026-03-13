@@ -42,17 +42,15 @@
 - **Browser relay:** PARKED. Blocker: relay only included in full gateway, not `openclaw node run`. Node on GUILLERMO-DESKTOP is paired ✅. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
-## ⏳ Pending (as of 2026-03-10)
-- **Molty webchat device auth:** Confirmed OpenClaw core bug — config flags `dangerouslyDisableDeviceAuth` DO get recognized (logs confirm) but auth still enforced. GitHub issue #41878 opened. Repo reverted to clean state (`07da5fe`). Upstream audit done; 4 commits need manual application to our Dockerfile (see `/data/workspace/plans/upstream-audit-2026-03-10.md`).
-- **Upstream manual patches needed:** `ab2c730` (tini), `b50cff4` (dashboard auth+token sync), `13ffd5d` (WS auth fix), `b178ea1` (exempt /hooks/* from auth) — apply manually to preserve our Dockerfile customizations.
-- **Leonardo:** CRM Pipelines Phase B PR #76 — 724 lines, 3 features (AI suggestions, stale alerts, pipeline chat). Needs Guillermo review before deploy (off-hours only).
-- **Raphael:** G4a test decks — awaiting Guillermo review. G2 exclusion matrix done (commit fb720fb). C5 shipped ✅.
+## ⏳ Pending (as of 2026-03-13)
+- **Molty webchat device auth:** Confirmed OpenClaw core bug — config flags `dangerouslyDisableDeviceAuth` DO get recognized (logs confirm) but auth still enforced. GitHub issue #41878 opened. Upstream audit done; 4 commits need manual cherry-pick to Dockerfile (see `/data/workspace/plans/upstream-audit-2026-03-10.md`).
+- **Agent-Link webhook timeouts:** All agents (Raphael, Leonardo, April) timing out on fleet message delivery. Messages queue but delivery hangs. Gateway's `/hooks/agent` endpoint investigation needed.
+- **Leonardo:** CRM Pipelines Phase B PR #76 — 724 lines, 3 features. Needs Guillermo review before deploy.
+- **Raphael:** G4a test decks — awaiting Guillermo review. G2 exclusion matrix done ✅. C5 shipped ✅.
 - **Raphael:** A8 blocked — needs live Brinc proposal deck (Feb 2026 branding) from Guillermo
-- **Raphael:** D2 (SlideCopier) blocked — needs Guillermo to review 15 source.pptx files on Windows (D:\Molty\brinc\module-library)
 - **April:** Steph's interview page ready to share — Guillermo sends to Steph when ready
 - **MC Phase 3 remaining:** D4 Memory Timeline, D2 Notification Prefs, [D6] Auth, [D1] Templates, [A4] Weekly Digest UI
-- **MC Phase 3 done (Mar 7-10):** D3 Activity Analytics ✅ B4 Kanban DnD ✅ C1 Project Views ✅ C2 Commander's Inbox/Todoist Sync UI ✅
-- **Pikachu article:** "What AI Agents Actually Do For Me" — not started; TMNT Management article in MC review
+- **Pikachu article:** "What AI Agents Actually Do For Me" — not started
 - **Personal finance tasks:** Life insurance, car estimate, health insurance, joint accounts, last will, credit card — all need Guillermo to drive
 
 ## 📣 Standup Delivery (directive 2026-03-05)
@@ -79,10 +77,6 @@ Send daily standup to **both** webchat AND Telegram going forward.
 
 *Full lesson archive: `memory/refs/lessons-learned.md`*
 
-118. **Webchat→Telegram duplicate messages (Mar 6 2026):** When session is initiated via Telegram, then accessed via webchat, replies go to BOTH. Root cause: session "channel" is set to the initiating provider. Fix: start session from webchat first, or `/reset` in webchat. Metadata shows `channel: telegram, provider: webchat, surface: webchat` when this happens.
-119. **gws auth export bug:** Encrypted credentials don't export properly. Workaround: manually copy `.encryption_key`, `accounts.json`, and `credentials.<base64-email>.enc` files from authenticated machine. Base64-encode the .enc file for transfer.
-120. **gws CLI correct package:** `@googleworkspace/cli` (npm). NOT `@anthropic-ai/...`. Always verify package names before giving install commands.
-121. **Silent crons need `delivery.mode: "none"` (Mar 6 2026):** Three crons were sending bare "DONE" to Telegram overnight (`13b4eaa0` Todoist Triage, `ad96575e` Pre-Standup Prep, `8991c017` Overnight Sync). Fix: set `delivery.mode: "none"` and change prompt endings to `HEARTBEAT_OK` not "Reply DONE". Always audit new crons for this before activating.
 122. **Fleet outage 2026-03-09 ("Rough Monday"):** After v2026.3.7 update, Molty Discord, Raphael, Leonardo Discord, and Molty webchat all went down. Root cause: untested Python `startCommand` in Raphael used `json.load()` on JSONC config → container crash. Lesson: no fleet infra changes without Guillermo sign-off. REG-017/018 added.
 123. **Working Molty webchat (controlUi) config:** `"dangerouslyAllowHostHeaderOriginFallback": true` + `"dangerouslyDisableDeviceAuth": true`. Also requires `gateway.trustedProxies: ["127.0.0.1", "100.64.0.0/10"]` — Railway's CGNAT range must be trusted or websocket connections fail silently. REG-021 added.
 124. **Leonardo Discord token rotation + region fix (Mar 9 2026):** Discord bot token expired/rotated. After updating token, Discord was still blocked (Cloudflare 429 on Railway us-west2). Fix: change Railway region to Singapore → fresh IP → Discord online. REG-022 added.
@@ -109,3 +103,4 @@ Send daily standup to **both** webchat AND Telegram going forward.
 144. **`agents.defaults.tools` NOT a valid schema path (Mar 13 2026):** Gateway rejects this path on config apply. Do not use it. Configure tool access at the provider/agent level directly — not via `agents.defaults.tools`.
 145. **Bot-to-bot Discord requires `allowBots: true` (Mar 13 2026):** Default `allowBots: false` silently drops bot messages. Each receiving agent needs `channels.discord.allowBots: true`. Directives to patch all agents: `/data/shared/pending-directives/{agent}/patch-discord-allowbots.sh`.
 146. **Startup directives must patch JSON directly (Mar 13 2026):** `openclaw config set` fails silently in startup directives — CLI runs before gateway starts. Patch `config.json` directly via Python/jq instead.
+147. **Discord bot-to-bot messaging — allowBots + directive scripts (Mar 13 2026):** Implemented solution to let agents send each other Discord messages. Each receiving agent needs `channels.discord.allowBots: true`. Directives created at `/data/shared/pending-directives/{raphael,leonardo,april}/patch-discord-allowbots.sh` (uses Python JSON patching, not CLI). Railway redeployments triggered via API (all three agents). Status: test ping pending. Full gateway tokens documented in TOOLS.md.

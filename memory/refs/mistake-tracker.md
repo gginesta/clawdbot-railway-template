@@ -76,3 +76,16 @@ I keep finding exceptions to rules I know exist. "This time is different" is alw
 
 **Guillermo's trust:**
 Every time this happens, I erode trust. He has to drop what he's doing to fix my mess. This is the opposite of helpful.
+
+## 2026-03-13 — Garbage messages sent to Discord
+
+**What happened:** Sent internal debugging messages to #april-private: 'I'm having trouble with the message tool because I haven't included the required message content. Let me correct this.' and 'I apologize for the ongoing issue...'
+
+**Why:** Internal processing/tool-failure handling got posted as actual Discord messages instead of being handled silently.
+
+**Root cause:** When message tool fails, I was narrating my confusion publicly instead of failing gracefully.
+
+**Fix:** Never post 'I'm having trouble with X' to public channels. If a tool fails, either fix it silently or report the actual problem — not the debugging process.
+
+**Guillermo said:** 'Whatever you did totally broke it. So annoying constantly having to fix your mistakes'
+
