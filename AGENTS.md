@@ -74,6 +74,18 @@ No exceptions. This is how you avoid the 8-redeploy debugging spiral.
 - Stay silent when: casual banter, already answered, "yeah"/"nice" territory
 - React with emoji sparingly (1 per 5-10 exchanges)
 
+### Discord @Mentions — REQUIRED FORMAT
+Plain `@Name` does NOT ping. Use `<@USER_ID>` format:
+| Agent | Mention |
+|-------|---------|
+| Guillermo | `<@779143499655151646>` |
+| Molty | `<@1468162520958107783>` |
+| Raphael | `<@1468164929285783644>` |
+| Leonardo | `<@1470919061763522570>` |
+| April | `<@1481167770191401021>` |
+
+Full reference: `/data/shared/DISCORD_MENTIONS.md`
+
 ## Agent-to-Agent (TMNT) — v2 Protocol
 - Use Discord channels first, webhooks for structured tasks
 - Respond immediately to incoming fleet messages
