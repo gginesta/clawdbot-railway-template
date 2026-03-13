@@ -267,3 +267,15 @@ https://april-agent-production.up.railway.app/?token=ec314e8e2c268dd0e1efcdfcb98
 This authenticates the session directly, bypassing device identity requirement.
 
 **Note:** Keep gateway token secure — anyone with this URL has full webchat access.
+
+### Railway dockerfilePath fix (2026-03-12)
+**Problem:** Railway was using railpack instead of our Dockerfile for Raphael, despite `builder = "dockerfile"` in railway.toml.
+**Root cause:** ServiceInstance level setting was `builder: RAILPACK`, and railway.toml override wasn't being respected (caching bug).
+**Fix:** Set `dockerfilePath: "Dockerfile"` explicitly via `serviceInstanceUpdate` mutation. This forced Railway to use our Dockerfile.
+**Lesson:** When Railway ignores railway.toml builder settings, set `dockerfilePath` at the ServiceInstance level to force Dockerfile builds.
+
+### startCommand REG-017 violation (2026-03-12)
+**Problem:** Raphael's startCommand used Python `json.load()` on OpenClaw config, which is JSONC (has comments).
+**Root cause:** `json.load()` crashes silently on JSONC → script never completes → supervisord never starts → healthcheck fails.
+**Fix:** Removed the startCommand entirely. The config patching it did was already correct, and it violated REG-017.
+**Lesson:** Never use Python `json.load()` on OpenClaw configs. If you need to patch config at startup, use a shell script or the openclaw CLI.

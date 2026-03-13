@@ -32,31 +32,38 @@ Nothing else.
 
 ## Morning Briefing
 
-**Format:** (from PLAN-013 v3.0)
+**Format:** (v3.1 — Mar 13 2026)
 ```
-Good morning — [Day] [Date]
+Good morning — Fri 13 Mar
 
 🚧 Blocked (need you):
-• [Agent]: [Task truncated]
+• Molty: Research: Chrome extension + remote…
+• Raphael: A8 (BLOCKED Fri): Use live proposal…
 
 👀 Ready for review:
-• [Agent]: [Task truncated]
+• Leonardo: CRM Pipelines Phase B — AI Layer…
 
-📅 Today: [events on one line]
+📅 Event… 19:00 · Workout 07:00 · School… 08:00
 
-🔜 [Notable upcoming]
+🔜 Tue: Event 19:00, Sat: Birthday 16:00
 
-🌤 [Weather one line]
+🌤 16-21°C, 15% rain
 
-🔧 OpenClaw: [status]
+🔧 OpenClaw: Update available: v2026.3.12 ⬆️
 ```
 
 **Rules:**
-- ~1 screen max
+- ~1 screen max (~15 lines)
 - Max 3 blocked, max 3 review items
-- Calendar on one line
-- Weather one line
-- No overnight report details, no full task lists
+- Calendar: max 3 events, smart truncation at word boundary
+- Weather: temp range + rain % (one line)
+- OpenClaw: ACTUALLY checks version (runs `openclaw update status`)
+- Smart truncation: cuts at word boundary, not mid-word
+
+**Fixes (Mar 13 2026):**
+- Weather was "unavailable" — HKO 9-day doesn't include today, now uses tomorrow as proxy
+- OpenClaw was lying "Up to date" — now runs actual version check
+- Truncation was ugly ("Pikachu co") — now smart word-boundary truncation
 
 **Cron:** `8b748f23-91d0-425d-9e4b-e7246e46ce8c` (6:30 AM HKT)
 
