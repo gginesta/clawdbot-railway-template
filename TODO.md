@@ -1,14 +1,37 @@
 # TODO.md - Molty's Task Tracker
 
-*Last updated: 2026-03-14 08:53 HKT*
+*Last updated: 2026-03-14 20:57 HKT*
 
 ---
 
-## 🔴 In Progress
-- [ ] April config fixes — WhatsApp stability, tools.allow fixed, testing debounce
+## 🔴 Tonight (Sat 03:00 HKT)
+| Task | Effort | Plan |
+|------|--------|------|
+| [C4] Splinter Den Settings | 2h | MC Sprint |
+| Security audit with April | 30min | Tailscale + OpenClaw --deep |
+| Discord cross-bot fix | 30min | allowBots config |
+| **Total** | **3h** | |
+
+## 🟡 PLAN-016: Todoist↔MC Sync v2
+| Phase | Task | Target |
+|-------|------|--------|
+| 1 | Prefix parsing (`Raphael:` → `[Raphael]` + MC task) | Sat night |
+| 2 | Standup triage ("2 Raphael" processing) | Sat night |
+| 3 | Bi-directional completion sync | Sun night |
+| 4 | Test full cycle | Sun night |
+| 5 | First real test at Monday standup | Mon 5PM |
+
+## 🟡 MC Sprint Backlog (after PLAN-016)
+| Task | Effort | Night |
+|------|--------|-------|
+| [D1] Task Templates | 3h | Mon |
+| [D6] User Auth (Login) | 4h | Mon-Tue |
+| D2: Notification Preferences | 2h | Tue |
+| D4: Memory Timeline/Diff | 3h | Wed |
+| C5: File Attachments | 3h | Wed |
 
 ## 🟡 Pending
-- [ ] Test new webchat standup flow at 5PM today
+- [x] ~~Test new webchat standup flow at 5PM today~~ (done, fixed cron bug)
 
 ## 🟢 Done (last 7 days)
 - [x] **2026-03-14:** Standup v3.0 — webchat-native, Notion task DB dropped, crons + docs updated

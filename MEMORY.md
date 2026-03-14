@@ -61,6 +61,16 @@
 - Flow: I send formatted review → Guillermo replies inline → I process
 - Full spec: `memory/refs/standup-process.md`
 
+## 📋 PLAN-016: Todoist↔MC Sync v2 (approved 2026-03-14)
+**Single source of truth in Todoist, mirrored to MC.**
+- Guillermo captures fast in Todoist (no extra fields)
+- Assignment: prefix (`Raphael: do X`) OR standup triage
+- Molty edits task → `[Raphael] do X` + creates MC task
+- Fleet tasks STAY in Todoist (Guillermo keeps visibility)
+- Completion syncs both ways
+- Plan: `/data/workspace/plans/PLAN-016-todoist-mc-sync-v2.md`
+- Status: Phase 1-2 tonight, Phase 3-4 Sunday, test Monday
+
 ## ⚠️ Core Rules
 1. **PPEE:** Pause → Plan → Evaluate → Execute. One fix, not many.
 2. **Don't claim done without citing file+line.**
