@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: 2026-03-12 | Target: <15KB*
+*Last updated: 2026-03-14 | Target: <15KB*
 
 ---
 
@@ -11,11 +11,13 @@
 - **Style:** Casual, efficient, no fluff. Likes tables.
 
 ## 🖥️ Fleet
+**Version:** v2026.3.13 (deployed 2026-03-14, all 4 agents ✅)
 | Agent | URL | Model |
 |-------|-----|-------|
 | Molty 🦎 | ggvmolt.up.railway.app | Opus (primary) |
 | Raphael 🔴 | ggv-raphael.up.railway.app | Sonnet |
 | Leonardo 🔵 | leonardo-production.up.railway.app | Sonnet |
+| April 🌸 | april-agent-production.up.railway.app | Sonnet |
 
 **Cron model:** Haiku direct | **Fallback:** Codex/GPT-5.2
 
@@ -35,7 +37,7 @@
 - **WHOOP:** Research done, blocked on CLIENT_ID/SECRET from Guillermo. Notion spec: `31939dd6...`
 - **MC Phase 3:** 13 tasks assigned, P2s first
 - **ginesta.io:** Brief in Notion → https://www.notion.so/Personal-Website-Brief-www-ginesta-io-31a39dd69afd81cea223fbb9f2b2fe39. Waiting on Guillermo's content checklist.
-- **April (agent):** FULLY OPERATIONAL ✅ Deployed 2026-03-11. Railway service: `ea026a0b-79e0-433d-907e-5cc4f75385e2` (april-agent-production.up.railway.app). Discord ID: 1481167770191401021. Webhook token: `7159178afb1c2c24b1e98bbbac0f0f02dc759aa038cd49ae7fac7873d8acf3ee`. Email: `april.rose.hk@gmail.com`. Channels: Discord ✅ WhatsApp ✅ Google Calendar + Shenanigans ✅ GCP IAM ✅ Syncthing ✅ agent-link ✅. Steph USER.md interview: page not yet shared with Notion integration (pending Guillermo).
+- **April (agent):** FULLY OPERATIONAL ✅ Deployed 2026-03-11. Discord ✅ WhatsApp ✅ Calendar ✅ agent-link ✅. Steph USER.md interview pending Guillermo. Config: no `tools.allow` restriction (full profile). WhatsApp: `debounceMs: 3000`.
 - **Agent Performance Review:** P1 overnight work planned (PLAN-011). Design review process + add "Last updated by" headers to shared files. Trust/coaching model, not gatekeeping. Cascade to fleet after approval.
 - **gws CLI:** v0.4.4 primary tool. Gmail ✅ Calendar ✅ Drive ✅ Docs ✅ Sheets ✅ (all 9 scopes). Config: `~/.config/gws/`. 11 skills at `/openclaw/skills/gws-*`. gog deprecated as fallback. GCP OAuth project: `847540297795` (separate from Gemini project `226575193033`).
 - **Agent-Link v2 (PLAN-015):** IMPLEMENTED ✅ Mar 12. Worker + queue + health system live. Leonardo/April webhooks still timing out → messages auto-queued and retried. Root cause TBD (gateway hangs on `/hooks/agent` endpoint — services ARE up).
@@ -43,8 +45,8 @@
 - **Content/Pikachu:** Tamagotchi Trap posted (X + LinkedIn) 2026-03-05. Standing permission: generate kawaii robot images for future articles. Next article: "What AI Agents Actually Do For Me".
 
 ## ⏳ Pending (as of 2026-03-13)
-- **Molty webchat device auth:** Confirmed OpenClaw core bug — config flags `dangerouslyDisableDeviceAuth` DO get recognized (logs confirm) but auth still enforced. GitHub issue #41878 opened. Upstream audit done; 4 commits need manual cherry-pick to Dockerfile (see `/data/workspace/plans/upstream-audit-2026-03-10.md`).
-- **Agent-Link webhook timeouts:** All agents (Raphael, Leonardo, April) timing out on fleet message delivery. Messages queue but delivery hangs. Gateway's `/hooks/agent` endpoint investigation needed.
+- **Molty webchat device auth:** OpenClaw core bug — `dangerouslyDisableDeviceAuth` recognized but auth still enforced. Issue #41878 open. Workaround: URL token param `?token=<gateway_token>`.
+- **Agent-Link webhooks:** ✅ Confirmed working for all agents after v2026.3.13 (Mar 14). HTTP 200 + ok:true.
 - **Leonardo:** CRM Pipelines Phase B PR #76 — 724 lines, 3 features. Needs Guillermo review before deploy.
 - **Raphael:** G4a test decks — awaiting Guillermo review. G2 exclusion matrix done ✅. C5 shipped ✅.
 - **Raphael:** A8 blocked — needs live Brinc proposal deck (Feb 2026 branding) from Guillermo
@@ -97,16 +99,15 @@
 124. **Leonardo Discord token rotation + region fix (Mar 9 2026):** Discord bot token expired/rotated. After updating token, Discord was still blocked (Cloudflare 429 on Railway us-west2). Fix: change Railway region to Singapore → fresh IP → Discord online. REG-022 added.
 125. **Policy: no fleet infrastructure changes without explicit Guillermo sign-off** — Guillermo's words after the Rough Monday outage: "Every time you try to update OpenClaw you break the fleet." Do not push version bumps, startCommands, or config patches fleet-wide without approval.
 126. **Webchat device auth is an OpenClaw core bug (Mar 10 2026):** `dangerouslyDisableDeviceAuth: true` IS recognized (log: "security warning: dangerous config flags enabled") but device auth still enforced anyway. Issue is in OpenClaw core, not our wrapper config. GitHub issue #41878 opened. Workaround: Tailscale as intended (keep auth on).
-127. **Never blindly sync upstream templates with different container users (REG-025, Mar 10 2026):** arjunkomath Dockerfile runs as `root`; our image runs as `openclaw`. Syncing arjunkomath changed container user → volume files owned by `openclaw` but container running as `root` → OpenClaw refuses to load secrets → total fleet outage. Always check `USER` in Dockerfile before any upstream merge.
-128. **Our Dockerfile is too customized to auto-merge (Mar 10 2026):** 233 lines vs 89 upstream (vignesh07). We have Tailscale, Brave, Syncthing, Supervisor, Chromium. Upstream changes must be manually cherry-picked at the server.js/app layer, not via git merge. Full audit: `/data/workspace/plans/upstream-audit-2026-03-10.md`.
-129. **Railway volume duplication causes startup failure (Mar 11 2026):** When `railway.toml` specifies `requiredMountPath`, Railway auto-creates a volume. Creating another via API → two volumes mounted at `/data` → container can't start and produces no logs. Fix: check for existing volumes before creating one. Delete extras via Railway UI if API delete doesn't fully work.
+127. **Dockerfile container user mismatch causes fleet outage (REG-025, Mar 10 2026):** arjunkomath upstream uses `root`; ours uses `openclaw`. Upstream merge changed container user → secrets unreadable → total outage. Always check `USER` in Dockerfile before any upstream merge. Our Dockerfile (233 lines) has Tailscale/Brave/Syncthing — must cherry-pick manually, never `git merge`. Audit: `plans/upstream-audit-2026-03-10.md`.
+129. **Railway volume duplication causes startup failure (Mar 11 2026):** `railway.toml requiredMountPath` auto-creates a volume. Adding another via API → two volumes at `/data` → no-boot, no logs. Check existing volumes before creating. Delete extras via UI.
 130. **Webchat URL token workaround for device auth (Mar 11 2026):** Device auth resets on gateway restart, locking users out. Workaround: append gateway token as URL param — `https://<host>/?token=<gateway_token>`. Avoids repeated setup wizard. Applies to all agents.
 131. **gws "Caller does not have required permission" fix (Mar 11 2026):** If `client_secret.json` contains `project_id`, gws triggers GCP serviceUsageConsumer permission check and fails. Fix: remove `project_id` from `~/.config/gws/client_secret.json`. Also delete stale `.enc` credential files from other machines.
 132. **Discord bot config — use channel NAME not ID (Mar 11 2026):** Channel IDs sometimes don't resolve in OpenClaw Discord config. Use channel name (e.g. `april-private`) instead. Bot also needs OAuth invite with correct permissions (`/api/oauth2/authorize?client_id=<id>&permissions=68608&scope=bot`) plus explicit View/Send/Read History granted per channel.
 133. **MC PATCH API — task ID in body, not URL path (Mar 11 2026):** PATCH `/api/task` requires the task `id` field in the request body. Putting it in the URL path causes silent failure. Confirmed pattern: `PATCH /api/task` with body `{ "id": "<taskId>", ...fields }`.
 134. **Morning briefing v3.0 — condensed format (Mar 12 2026):** Briefing was 4 screens → now ~1 screen. Keeps: Focus, Blocked (max 3), Review (max 3), Calendar (one line), Heads up (notable only), Weather (one line), OpenClaw. Removes: overnight report details, plans, tasks, squad, email, Notion comments, weather outlook. See PLAN-013.
 135. **OpenClaw agent config — model placement (Mar 12 2026):** `model` must go under `agents.defaults.model` as `{primary: "...", fallbacks: [...]}` — NOT at root config level. Also: `cron.jobs` key does NOT exist in config; add crons via `/cron add` tool only. Learned during April PLAN-014 integration.
-136. **Agent-Link v2 IMPLEMENTED (PLAN-015, Mar 12 2026):** Trusted fleet messaging with `tmnt-v1` envelope, persistent retry queue, health-aware routing. Key files: worker `/data/shared/scripts/agent-link-worker.py`, health `/data/shared/health/{agent}.json`, token `/data/shared/credentials/agent-link-token.txt`, delivery log `/data/shared/logs/agent-link-deliveries.log`. Queue processor cron: `57a4956a-5f79-4fe1-a7c3-257c09741314` (every 5min). Raphael ✅, Leonardo ⚠️ still timing out (queued for retry).
+136. **Agent-Link v2 IMPLEMENTED (PLAN-015, Mar 12 2026):** Trusted fleet messaging with `tmnt-v1` envelope, retry queue. Worker: `/data/shared/scripts/agent-link-worker.py`. Health: `/data/shared/health/{agent}.json`. Queue cron: `57a4956a` (every 5min). All webhooks ✅ confirmed Mar 14 after v2026.3.13.
 137. **Discord @mentions require `<@USER_ID>` format (REG-026, Mar 12 2026):** Plain `@Name` does NOT ping in Discord. Must use `<@779143499655151646>` style with numeric user ID. IDs in TOOLS.md for all agents + Guillermo.
 138. **April missing `message` tool config (Mar 12 2026):** April's OpenClaw config lacks `message` tool in `agents.defaults.tools` array. Instruction sent to patch. Needed for Discord/Telegram sends.
 139. **TOOLS.md + AGENTS.md over cap (Mar 12 2026):** TOOLS.md +900B, AGENTS.md +500B. Both need trim to meet project caps. Action: consolidate/archive to memory/refs/ where appropriate. Size check: `wc -c /data/workspace/TOOLS.md /data/workspace/AGENTS.md`.
@@ -120,4 +121,7 @@
 144. **`agents.defaults.tools` NOT a valid schema path (Mar 13 2026):** Gateway rejects this path on config apply. Do not use it. Configure tool access at the provider/agent level directly — not via `agents.defaults.tools`.
 145. **Bot-to-bot Discord requires `allowBots: true` (Mar 13 2026):** Default `allowBots: false` silently drops bot messages. Each receiving agent needs `channels.discord.allowBots: true`. Directives to patch all agents: `/data/shared/pending-directives/{agent}/patch-discord-allowbots.sh`.
 146. **Startup directives must patch JSON directly (Mar 13 2026):** `openclaw config set` fails silently in startup directives — CLI runs before gateway starts. Patch `config.json` directly via Python/jq instead.
-147. **Discord bot-to-bot messaging — allowBots + directive scripts (Mar 13 2026):** Implemented solution to let agents send each other Discord messages. Each receiving agent needs `channels.discord.allowBots: true`. Directives created at `/data/shared/pending-directives/{raphael,leonardo,april}/patch-discord-allowbots.sh` (uses Python JSON patching, not CLI). Railway redeployments triggered via API (all three agents). Status: test ping pending. Full gateway tokens documented in TOOLS.md.
+147. **Discord bot-to-bot messaging — `allowBots: true` required (Mar 13 2026):** Each receiving agent needs `channels.discord.allowBots: true`. Directives at `/data/shared/pending-directives/{raphael,leonardo,april}/patch-discord-allowbots.sh` (Python JSON patch, not CLI). Redeployments triggered via API.
+148. **April `tools.allow` restriction causes raw XML output (Mar 14 2026):** If `tools.allow: ["message"]` (or any restrictive list) is set in agent config, the agent is blocked from all other tools and outputs raw `<function_calls>` XML to the channel instead of executing. Fix: remove `tools.allow` entirely to grant full profile access. WhatsApp rate limit (428): add `debounceMs: 3000` to WhatsApp channel config.
+149. **Standup cron `delivery.mode: "none"` required (Mar 14 2026):** Cron job `bdb28765` was sending a second message to Guillermo with "STANDUP_SENT" diagnostics. Cause: `delivery.mode: "announce"` forwards agent run summary to user. Fix: `delivery.mode: "none"`. Rule: any standup/notification cron that sends via message tool must have `delivery.mode: "none"` to avoid duplicate/internal messages leaking.
+150. **Standup task ownership — show ALL, mark correctly (Mar 14 2026):** Don't filter tasks by owner before displaying. Show all overdue/due tasks but mark ownership: 😊 = Guillermo's task, 🦎 = Molty's task, 🔴 = Raphael, 🔵 = Leonardo. Never show Guillermo's personal tasks with 🦎 agent emoji.
