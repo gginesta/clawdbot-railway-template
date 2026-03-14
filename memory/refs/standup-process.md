@@ -37,16 +37,28 @@ Notion      → Docs only (specs, briefs, plans)
 - Every heartbeat (2h): MC ↔ Todoist sync
 - Context from chat → update immediately, not at standup
 
-### Phase 1: Pre-standup prep (4:30 PM, silent)
-1. Fetch Todoist tasks → process each
-2. MC check: cross-reference done tasks
-3. ggv.molt inbox scan → flag relevant items
+### Phase 1: Pre-standup prep (4:30–5:00 PM)
+
+**What I check before sending:**
+
+| Source | What | Why |
+|--------|------|-----|
+| ✅ Todoist | Tasks due today + overdue | Core task list |
+| ✅ MC | In_progress tasks per agent | Squad status |
+| ✅ ggv.molt inbox | Important emails | Flag for review |
+| ❌ Notion task DB | **Not checked** | Dropped in v3.0 |
+| 📄 Notion docs | Only if context needed | Specs, briefs |
+
+Steps:
+1. Fetch Todoist tasks → categorize (today/overdue)
+2. Query MC → get squad in_progress tasks
+3. Scan ggv.molt inbox → flag important emails
 4. Form clarifying questions (genuine uncertainty only)
 5. Write prep state file
 
 ### Phase 2: Standup delivery (5:00 PM)
 
-**Send to webchat** (or Telegram if Guillermo is mobile):
+**Send to webchat** (primary) or Telegram (backup if mobile):
 
 ```
 📋 Daily Standup — {Day}, {Date}
@@ -60,14 +72,16 @@ OVERDUE:
 4. ⚠️ Task C (due Mar 12)
 
 SQUAD:
-• Raphael: [status]
-• Leonardo: [status]
+• Raphael: [in_progress task or 'clear']
+• Leonardo: [in_progress task or 'clear']
 
 ❓ QUESTIONS:
 • [clarifying question if any]
 
 TOMORROW'S FOCUS?
 → What's the ONE thing?
+
+_Reply inline: "1 done, 2 drop" etc. Then state tomorrow's focus._
 ```
 
 ### Phase 3: Guillermo replies inline
@@ -77,13 +91,22 @@ Example response:
 
 ### Phase 4: Post-review processing
 
-On Guillermo's reply:
-1. Parse inline decisions (done/drop/reschedule/delegate)
-2. Tomorrow's Focus → calendar event (first free slot 9–13 HKT)
-3. Close Todoist + MC for completed items
-4. Reschedule items as specified
-5. Delegate to agents via webhook if owner changed
-6. Confirm actions taken
+**What I do after your reply:**
+
+| Action | System | Details |
+|--------|--------|---------|
+| 1. Parse decisions | — | done/drop/reschedule/delegate |
+| 2. Close "done" items | Todoist + MC | Both systems, same response |
+| 3. Reschedule items | Todoist | Update due date as specified |
+| 4. Delegate to agents | Webhook | Full context to Raphael/Leonardo |
+| 5. Book Tomorrow's Focus | Calendar | First free slot 9–13 HKT |
+| 6. Confirm actions | Webchat | Summary of what was done |
+
+**Calendar booking rules:**
+- Check ALL 3 calendars for conflicts (Brinc, Personal, Shenanigans)
+- Tomorrow's Focus → morning slot preferred (9–13 HKT)
+- Non-Brinc bookings → also add "Busy [private]" on Brinc calendar
+- Respect protected slots (school drop-off, pick-up, focus time)
 
 ### Phase 5: Overnight
 - Raphael 00:30 → Leonardo 01:30 → Molty 03:00
