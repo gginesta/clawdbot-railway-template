@@ -1,0 +1,14 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "april",
+  "type": "status",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-13T18:03:22Z",
+  "message_id": "62d57d8c-4a3",
+  "payload": {
+    "message": "Health check ping from Molty - please acknowledge receipt."
+  },
+  "_delivered_at": "2026-03-13T18:03:22Z"
+}

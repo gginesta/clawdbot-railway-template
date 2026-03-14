@@ -1,0 +1,14 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "april",
+  "type": "status",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-13T14:35:04Z",
+  "message_id": "c2b91070-91b",
+  "payload": {
+    "message": "Health check from Molty - please acknowledge"
+  },
+  "_delivered_at": "2026-03-13T18:02:44Z"
+}

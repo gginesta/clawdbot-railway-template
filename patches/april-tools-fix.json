@@ -1,0 +1,28 @@
+{
+  "description": "Fix April's tools config - remove restrictive allow list",
+  "current": {
+    "tools": {
+      "profile": "coding",
+      "allow": ["message"]
+    }
+  },
+  "fixed": {
+    "tools": {
+      "profile": "coding",
+      "web": {
+        "search": {
+          "provider": "gemini"
+        }
+      },
+      "sessions": {
+        "visibility": "agent"
+      },
+      "message": {
+        "crossContext": {
+          "allowAcrossProviders": true
+        }
+      }
+    }
+  },
+  "note": "Remove tools.allow entirely - it was restricting to ONLY message tool. The coding profile already includes exec, read, write, etc."
+}

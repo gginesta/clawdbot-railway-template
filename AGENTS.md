@@ -5,8 +5,9 @@
 2. Read `USER.md` — who you're helping
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday)
 4. **Main session only:** Read `MEMORY.md`
-5. Read `PRIORITY_BRIEFING.md` — surface priorities FIRST when Guillermo messages
-6. Check `REGRESSIONS.md` — hard rules from past failures. Do not repeat them.
+5. **Main session only:** Read `TODO.md` — my active task list
+6. Read `PRIORITY_BRIEFING.md` — surface priorities FIRST when Guillermo messages
+7. Check `REGRESSIONS.md` — hard rules from past failures. Do not repeat them.
 
 ## Before Any Calendar Operation
 - Use SA token ONLY: `google-service-account.json` + no delegation. See `memory/refs/standup-process.md`.

@@ -1,0 +1,36 @@
+overnight_sync — 2026-03-14 04:00 HKT
+
+overnight_sync — 2026-03-14 04:00 HKT
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-13
+
+1. Fetching MC overnight completions...
+  MC: 203 total tasks, 13 done in overnight window
+  • [molty] Update Raphael + Leonardo to v2026.3.12 (updated: 1773425451210)
+  • [molty] Debug PLAN-015: Fix agent-link webhook delivery (updated: 1773425167860)
+  • [leonardo] Spotlight: Tests + PR + deploy (updated: 1773423156746)
+  • [leonardo] Spotlight: Backfill grace period + Day5Nudge removal (updated: 1773423155934)
+  • [leonardo] Spotlight: Client (useSpotlight hook + SpotlightModal + Spot (updated: 1773423155572)
+  • [leonardo] Spotlight: Config registry (spotlightConfig.ts + 5 definitio (updated: 1773423154755)
+  • [leonardo] Spotlight: Server endpoints (GET /spotlights, POST engage, P (updated: 1773423153919)
+  • [leonardo] Spotlight: DB migration (user_spotlights table) (updated: 1773423153540)
+  • [leonardo] Feature Spotlight System — Build & Ship (updated: 1773397789157)
+  • [leonardo] Feature Spotlight System — Build & Ship (updated: 1773397789175)
+  • [leonardo] Discuss beta onboarding strategy with Guillermo (updated: 1773397788764)
+  • [leonardo] Beta: In-app Day-5 check-in nudge (automated) (updated: 1773398783404)
+  • [leonardo] Phase 2 spec: Contact Sharing / v1.1 Network Connections (updated: 1773399960286)
+
+2. Fetching open Todoist tasks...
+  11 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-13...
+  Notion: 5 rows for standup date 2026-03-13
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  MC tasks done overnight:   13
+  Todoist tasks closed:      0
+  Notion rows marked done:   0

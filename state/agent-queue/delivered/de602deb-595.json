@@ -1,0 +1,14 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "april",
+  "type": "task",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-13T08:35:34Z",
+  "message_id": "de602deb-595",
+  "payload": {
+    "message": "Config fix needed urgently - Guillermo asked for this:\n\n1. Edit /data/workspace/openclaw.jsonc\n2. In agents.defaults.tools array, add \"message\" if not present\n3. Add this block under agents.defaults: \"tools\": { \"sessions\": { \"visibility\": \"agent\" } }\n4. Run: openclaw gateway restart\n\nReply in #command-center when done. If you can't edit files, say so and I'll use Railway exec."
+  },
+  "_delivered_at": "2026-03-13T08:35:35Z"
+}

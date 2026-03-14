@@ -53,10 +53,13 @@
 - **Pikachu article:** "What AI Agents Actually Do For Me" — not started
 - **Personal finance tasks:** Life insurance, car estimate, health insurance, joint accounts, last will, credit card — all need Guillermo to drive
 
-## 📣 Standup Delivery (directive 2026-03-05)
-Send daily standup to **both** webchat AND Telegram going forward.
-- Webchat: primary (Guillermo at computer)
-- Telegram: backup (convenient on phone)
+## 📣 Standup System v3.0 (directive 2026-03-14)
+**Webchat-native standup. Notion task DB dropped.**
+- Primary: Webchat (Guillermo at computer)
+- Backup: Telegram (when mobile)
+- Notion: Docs hub only — NO task sync, NO standup pages
+- Flow: I send formatted review → Guillermo replies inline → I process
+- Full spec: `memory/refs/standup-process.md`
 
 ## ⚠️ Core Rules
 1. **PPEE:** Pause → Plan → Evaluate → Execute. One fix, not many.
@@ -66,6 +69,7 @@ Send daily standup to **both** webchat AND Telegram going forward.
 5. **Before answering "what's the status of X"** — search Notion + plans/ + memory/ first. Never claim "nothing exists" without checking all sources.
 
 ## 📖 Reference Pointers
+- **My task list → `TODO.md`** (check at session start, update after work)
 - Technical lessons → `memory/refs/lessons-learned.md`
 - Standup/calendar rules → `memory/refs/standup-process.md`
 - Code-enforced rules → `memory/refs/code-enforced-rules.md`
@@ -96,7 +100,9 @@ Send daily standup to **both** webchat AND Telegram going forward.
 138. **April missing `message` tool config (Mar 12 2026):** April's OpenClaw config lacks `message` tool in `agents.defaults.tools` array. Instruction sent to patch. Needed for Discord/Telegram sends.
 139. **TOOLS.md + AGENTS.md over cap (Mar 12 2026):** TOOLS.md +900B, AGENTS.md +500B. Both need trim to meet project caps. Action: consolidate/archive to memory/refs/ where appropriate. Size check: `wc -c /data/workspace/TOOLS.md /data/workspace/AGENTS.md`.
 
-140. **Discord heartbeat goes in channels.discord.channels, NOT guilds.*.channels (Mar 13 2026):** The `heartbeat: true` flag belongs in `channels.discord.channels.{channelId}` (top-level), not inside `channels.discord.guilds.*.channels.*`. Putting it in guilds causes 'Unrecognized key: heartbeat' error. Structure: top-level channels = name/heartbeat; guilds.channels = allow/requireMention.
+140. **Standup v3.0 — webchat-native, Notion dropped (Mar 14 2026):** Notion task DB was the weakest link — extra sync points, API failures, friction. New flow: I send formatted review to webchat → Guillermo replies inline (1 done, 2 drop, etc.) → I process. Telegram as backup when mobile. Notion stays as docs hub only. Updated cron `bdb28765` and `memory/refs/standup-process.md`.
+
+141. **Discord heartbeat goes in channels.discord.channels, NOT guilds.*.channels (Mar 13 2026):** The `heartbeat: true` flag belongs in `channels.discord.channels.{channelId}` (top-level), not inside `channels.discord.guilds.*.channels.*`. Putting it in guilds causes 'Unrecognized key: heartbeat' error. Structure: top-level channels = name/heartbeat; guilds.channels = allow/requireMention.
 141. **Heartbeat target config location CORRECTED (Mar 13 2026):** Heartbeat destination goes in `agents.defaults.heartbeat.target` + `agents.defaults.heartbeat.to`, NOT in Discord channel config. There is NO `heartbeat` key in `channels.discord.guilds.*.channels.*` OR `channels.discord.channels`. Schema: `agents.defaults.heartbeat: {every, model, target: "discord", to: "<channel_id>"}`. Always use gateway config.schema.lookup before guessing config structure.
 142. **Email check format locked in (Mar 13 2026):** One line per email, max 5 items, state WHAT is needed (not "replied"). ⚠️ = action today, 📧 = FYI. Silent if nothing important — no "all clear" spam. Skip newsletters/promos/Google alerts. Cron: `25bd223c-78d0-428f-b0d3-f8dd5f959d02`. Full spec: `memory/refs/notification-formats.md`.
 143. **Morning briefing v3.3 FINAL approved (Mar 13 2026):** Bold headers, full readable descriptions, no truncation. Calendar max 3 events vertical list. Noise filters: Mayleen, Mie, helpers, school events, focus/busy blocks. Cron now `sessionTarget: isolated` + `wakeMode: now`. Commits: `b713fc0c`, `1bb6336a`. Spec: `memory/refs/notification-formats.md`.
