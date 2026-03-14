@@ -72,6 +72,7 @@
 - **My task list → `TODO.md`** (check at session start, update after work)
 - Technical lessons → `memory/refs/lessons-learned.md`
 - Standup/calendar rules → `memory/refs/standup-process.md`
+- **Fleet updates → `memory/refs/fleet-updates.md`** (how to update OpenClaw on Railway)
 - Code-enforced rules → `memory/refs/code-enforced-rules.md`
 - Mistake tracking → `memory/refs/mistake-tracker.md`
 - Infrastructure → `memory/refs/infrastructure.md`
