@@ -228,6 +228,22 @@ RUN printf '%s\n' \
   '  export GOG_KEYRING_PASSWORD="molty2026"' \
   '  /usr/local/bin/gog auth credentials "$GOG_CREDS_BACKUP" 2>/dev/null && echo "[startup] gog credentials registered"' \
   'fi' \
+  '# Restore gws (Google Workspace CLI) config from persistent volume backup' \
+  'GWS_BACKUP="/data/workspace/credentials/gws-config-backup"' \
+  'GWS_CONFIG="/root/.config/gws"' \
+  'if [ -d "$GWS_BACKUP" ]; then' \
+  '  mkdir -p "$GWS_CONFIG"' \
+  '  cp -a "$GWS_BACKUP"/* "$GWS_CONFIG/" 2>/dev/null' \
+  '  cp "$GWS_BACKUP/.encryption_key" "$GWS_CONFIG/" 2>/dev/null' \
+  '  # gws 0.16+ expects credentials.enc not credentials.{base64}.enc' \
+  '  if [ -f "$GWS_CONFIG/credentials.Z2d2Lm1vbHRAZ21haWwuY29t.enc" ] && [ ! -f "$GWS_CONFIG/credentials.enc" ]; then' \
+  '    cp "$GWS_CONFIG/credentials.Z2d2Lm1vbHRAZ21haWwuY29t.enc" "$GWS_CONFIG/credentials.enc"' \
+  '  fi' \
+  '  if [ -f "$GWS_CONFIG/token_cache.Z2d2Lm1vbHRAZ21haWwuY29t.json" ] && [ ! -f "$GWS_CONFIG/token_cache.json" ]; then' \
+  '    cp "$GWS_CONFIG/token_cache.Z2d2Lm1vbHRAZ21haWwuY29t.json" "$GWS_CONFIG/token_cache.json"' \
+  '  fi' \
+  '  echo "[startup] gws config restored"' \
+  'fi' \
   'AGENT_NAME="${OPENCLAW_AGENT_NAME:-molty}"' \
   'DIRECTIVES_SCRIPT="/data/shared/scripts/check_directives.py"' \
   'PENDING_DIR="/data/shared/pending-directives/$AGENT_NAME"' \
