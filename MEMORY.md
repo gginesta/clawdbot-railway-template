@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: 2026-03-14 | Target: <15KB*
+*Last updated: molty | 2026-03-15 | Nightly curation: removed resolved lesson 126 | Target: <15KB*
 
 ---
 
@@ -95,7 +95,6 @@
 *Full lesson archive: `memory/refs/lessons-learned.md`*
 
 122. **Policy: no fleet infrastructure changes without explicit Guillermo sign-off** — Guillermo's words after the Rough Monday outage: "Every time you try to update OpenClaw you break the fleet." Do not push version bumps, startCommands, or config patches fleet-wide without approval.
-126. **Webchat device auth is an OpenClaw core bug (Mar 10 2026):** `dangerouslyDisableDeviceAuth: true` IS recognized (log: "security warning: dangerous config flags enabled") but device auth still enforced anyway. Issue is in OpenClaw core, not our wrapper config. GitHub issue #41878 opened. Workaround: Tailscale as intended (keep auth on).
 127. **Dockerfile container user mismatch causes fleet outage (REG-025, Mar 10 2026):** arjunkomath upstream uses `root`; ours uses `openclaw`. Upstream merge changed container user → secrets unreadable → total outage. Always check `USER` in Dockerfile before any upstream merge. Our Dockerfile (233 lines) has Tailscale/Brave/Syncthing — must cherry-pick manually, never `git merge`. Audit: `plans/upstream-audit-2026-03-10.md`.
 129. **Railway volume duplication causes startup failure (Mar 11 2026):** `railway.toml requiredMountPath` auto-creates a volume. Adding another via API → two volumes at `/data` → no-boot, no logs. Check existing volumes before creating. Delete extras via UI.
 130. **Webchat URL token workaround for device auth (Mar 11 2026):** Device auth resets on gateway restart, locking users out. Workaround: append gateway token as URL param — `https://<host>/?token=<gateway_token>`. Avoids repeated setup wizard. Applies to all agents.
