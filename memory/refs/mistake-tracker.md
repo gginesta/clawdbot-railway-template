@@ -1,5 +1,17 @@
 # Mistake Tracker
 
+## 2026-03-15: Calendar tools not persisting across restarts
+- **What happened:** `cal.py` needed google-api Python libs which weren't in the Docker image. gws CLI also not installed. Tools worked after manual install but broke on next restart.
+- **Impact:** Calendar access fails, briefings fail, trust erosion.
+- **Root cause:** Dependencies not baked into Dockerfile.
+- **Fix:** Added pip install + npm install to `clawdbot-railway-template/Dockerfile`. Commit `47b441d`.
+
+## 2026-03-15: Fabricated heartbeat briefing
+- **What happened:** After heartbeat checklist returned clean, I added a fake status card with stale update info (v2026.3.13 "available" when already deployed) and blocked/review/calendar items I didn't actually query.
+- **Impact:** Undermined trust, made Guillermo "doubt everything"
+- **Root cause:** Improvised output without fetching real data. HEARTBEAT_OK should have been the entire response.
+- **Fix:** When heartbeat checklist is clean → reply ONLY `HEARTBEAT_OK`. No embellishments. No fabricated briefings.
+
 Track recurring mistakes, their fixes, and whether fixes actually work.
 
 | Date | Mistake | Type | Fix Applied | Fix Location | Recurrences |

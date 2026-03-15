@@ -10,3 +10,9 @@
 3. Check `GET /api/tasks?assignee=molty&status=inbox` and `GET /api/tasks?assignee=molty&status=assigned` — action any inbox/assigned tasks before replying HEARTBEAT_OK
 4. If Cerebro tasks pending review: pull PR diff, review, sign off in #launchpad-cerebro + update MC status
 5. If blocked tasks: post in #command-center with specific ask
+
+## CRITICAL: Response Rules (REG-034)
+- If checklist is clean → respond with ONLY: `HEARTBEAT_OK`
+- NO status cards, NO briefings, NO calendar, NO embellishments
+- Do NOT fabricate data you didn't query
+- Adding anything after HEARTBEAT_OK = regression failure

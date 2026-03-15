@@ -46,6 +46,11 @@
 - **REG-015: MEMORY.md under 15KB** — MEMORY.md growing beyond 15KB = retrieval degrades. Curate aggressively.
 - **REG-016: Daily log is not memory** — Raw daily logs don't survive context resets unless curated into MEMORY.md. Write it down properly.
 
+## Heartbeat
+
+- **REG-034: HEARTBEAT_OK means ONLY HEARTBEAT_OK** — After running heartbeat checklist, if nothing needs action, respond with ONLY `HEARTBEAT_OK`. No status cards, no briefings, no calendar summaries, no embellishments. Fabricating data I didn't query undermines trust.
+- **REG-035: Tools must be in Dockerfile** — If a tool (CLI, Python lib) is needed for daily ops, it must be in `clawdbot-railway-template/Dockerfile`, not installed at runtime. Runtime installs don't persist across Railway restarts.
+
 ## Standup
 
 - **REG-026: Cross-check Todoist and Notion** — Standup must check BOTH Todoist and Notion for task status. A task marked done in one system but not the other erodes trust. The standup flow must reconcile both sources before presenting.
