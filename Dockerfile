@@ -99,6 +99,11 @@ RUN set -eux; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends brave-browser; \
   rm -rf /var/lib/apt/lists/*
 
+# Install Google API Python libraries for calendar access (REG-005: SA token)
+RUN pip3 install --break-system-packages --no-cache-dir \
+  google-auth>=2.0.0 \
+  google-auth-oauthlib>=1.0.0 \
+  google-api-python-client>=2.0.0
 
 # Install gogcli (Google Workspace CLI for Gmail, Calendar, Drive)
 # Baked in so it survives container restarts/redeployments
@@ -118,6 +123,9 @@ RUN curl -fsSL https://bun.sh/install | bash \
   && /root/.bun/bin/bun install -g @tobilu/qmd \
   && ln -sf /root/.bun/bin/qmd /usr/local/bin/qmd
 ENV PATH="/root/.bun/bin:${PATH}"
+
+# Install global npm tools (gws for Google Workspace, todoist for task management)
+RUN npm install -g @googleworkspace/cli todoist-ts-cli
 
 ENV CHROME_PATH=/usr/bin/chromium
 ENV BRAVE_PATH=/usr/bin/brave-browser
