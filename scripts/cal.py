@@ -28,7 +28,21 @@ CALENDARS = {
     'shenanigans': 'vuce6sc8mts8rfgvbsqtl62m1c@group.calendar.google.com',
 }
 
+# Noise filters (lesson 143): skip these in briefings
+NOISE_PATTERNS = [
+    'mayleen', 'maylene', 'mie',  # helpers
+    'focus time', 'busy [private]', 'busy block',  # focus/busy blocks
+    'school drop', 'school pick',  # school logistics
+]
+
 HKT = timezone(timedelta(hours=8))
+
+def is_noise(summary: str) -> bool:
+    """Check if event should be filtered from briefings."""
+    if not summary:
+        return False
+    s = summary.lower()
+    return any(pattern in s for pattern in NOISE_PATTERNS)
 
 def get_service():
     creds = service_account.Credentials.from_service_account_file(SA_FILE, scopes=SCOPES)
@@ -72,6 +86,8 @@ def agenda(args):
             ).execute()
             
             items = events.get('items', [])
+            # Filter noise (lesson 143)
+            items = [e for e in items if not is_noise(e.get('summary', ''))]
             if not items:
                 print("  (no events)")
             for e in items:
