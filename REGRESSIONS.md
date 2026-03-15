@@ -51,6 +51,10 @@
 - **REG-034: HEARTBEAT_OK means ONLY HEARTBEAT_OK** — After running heartbeat checklist, if nothing needs action, respond with ONLY `HEARTBEAT_OK`. No status cards, no briefings, no calendar summaries, no embellishments. Fabricating data I didn't query undermines trust.
 - **REG-035: Tools must be in Dockerfile** — If a tool (CLI, Python lib) is needed for daily ops, it must be in `clawdbot-railway-template/Dockerfile`, not installed at runtime. Runtime installs don't persist across Railway restarts.
 
+## Task Ownership
+
+- **REG-036: Personal tasks without 🦎 are Guillermo's** — Tasks in Todoist "personal" project without 🦎 marker belong to Guillermo. Do NOT close, modify, or "complete" them. Only tasks with 🦎 prefix are Molty's to execute. Overnight workers and sync scripts must skip personal tasks without the marker.
+
 ## Standup
 
 - **REG-026: Cross-check Todoist and Notion** — Standup must check BOTH Todoist and Notion for task status. A task marked done in one system but not the other erodes trust. The standup flow must reconcile both sources before presenting.

@@ -144,6 +144,9 @@ def close_todoist_task(task_id):
     except Exception:
         return False
 
+# Todoist project IDs (REG-036: personal without 🦎 = Guillermo's)
+PERSONAL_PROJECT_ID = "6M5rpGfw5jR9Qg9R"
+
 def sync_to_todoist(done_mc_tasks, open_todoist_tasks):
     """Close Todoist tasks that MC marked done overnight. Returns list of closed task titles."""
     closed = []
@@ -156,6 +159,11 @@ def sync_to_todoist(done_mc_tasks, open_todoist_tasks):
             # Find the task object
             for t in open_todoist_tasks:
                 if t.get("content", "") == match:
+                    # REG-036: Personal tasks without 🦎 are Guillermo's — DO NOT TOUCH
+                    if t.get("project_id") == PERSONAL_PROJECT_ID and "🦎" not in t.get("content", ""):
+                        log(f"  ⏭ Skipped (personal task, no 🦎): {match[:60]}")
+                        break
+                    
                     # Safety check: only close tasks created/due in last 7 days
                     # (avoid accidentally closing old backlog items)
                     import re
