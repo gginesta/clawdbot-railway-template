@@ -1,175 +1,252 @@
-# PLAN Registry — TMNT Squad
-*Compiled by Molty 🦎 | Updated: 2026-03-13*
-*Source: /data/workspace/plans/ + Mission Control*
+# PLAN Registry — Master Index
+**Last Updated:** 2026-03-17 00:50 HKT (Molty)  
+**Scope:** All PLAN-XXX files across `/plans/` and `/plans/archive/`
 
 ---
 
 ## Summary
-| Status | Count |
-|--------|-------|
-| ✅ Complete | 13 |
-| 🔄 In Progress | 3 |
-| ⏸ Parked/Deferred | 0 |
-| ❌ Superseded | 1 |
+
+| Status | Count | List |
+|--------|-------|------|
+| ✅ COMPLETE | 8 | 001, 003, 004, 005, 006, 007, 008, 013 |
+| 🔄 IN PROGRESS | 4 | 009, 011, 014, 016 |
+| ⏳ BLOCKED/DEFERRED | 3 | 010, 012, 015 Phase 2 |
+| 📝 DRAFT | 1 | 017 |
+| 📚 ARCHIVED | 3 | PLAN-002, PLAN-004 (squad), PLAN-007, PLAN-008 |
 
 ---
 
-## PLAN-001 — Bidirectional Todoist ↔ Mission Control Sync
-**File:** `plans/PLAN-001-standup-sync-fix.md`  
-**Created:** 2026-02-24  
-**Status:** ✅ COMPLETE  
-**What it did:** Established bidirectional sync between Todoist and Mission Control. Daily standup now cross-checks both systems. MC is source of truth; Todoist gets project tags.  
-**Key output:** `process_standup.py` three-way routing, `standup-audit-YYYY-MM-DD.md` post-standup audit.
+## Active Plans (2026)
+
+### ✅ PLAN-001: Bidirectional Todoist ↔ MC Sync (v1)
+- **Created:** 2026-02-24
+- **Status:** ✅ COMPLETE
+- **Implemented:** 2026-02-24
+- **Owner:** Molty
+- **Summary:** Initial sync framework. Script-based, one-way polling. Works but limited.
+- **Note:** Superseded by PLAN-016 (v2, full bidirectional)
+- **File:** `/plans/PLAN-001-standup-sync-fix.md`
+
+### ✅ PLAN-003: Persistent Standup Database
+- **Created:** 2026-02-24
+- **Status:** ✅ COMPLETE (2026-02-26)
+- **Owner:** Molty
+- **Summary:** Mission Control as task database. Live and running.
+- **File:** `/plans/PLAN-003-persistent-standup-db.md`
+
+### ✅ PLAN-004: Morning Briefing Integration
+- **Created:** 2026-02-24
+- **Status:** ✅ COMPLETE → **SUPERSEDED by PLAN-013**
+- **Owner:** Molty
+- **Summary:** Early briefing system. Replaced by v3.0 (condensed format).
+- **File:** `/plans/PLAN-004-morning-briefing-squad.md`
+
+### ✅ PLAN-005: Fleet Update Manager
+- **Created:** 2026-02-26
+- **Status:** ✅ COMPLETE (2026-02-27)
+- **Owner:** Molty
+- **Summary:** Molty owns fleet OpenClaw version updates. Manual review required.
+- **File:** `/plans/PLAN-005-molty-fleet-update-manager.md`
+
+### ✅ PLAN-006: Fleet Directive System
+- **Created:** 2026-02-27
+- **Status:** ✅ COMPLETE (core live, secrets migration deferred)
+- **Owner:** Molty
+- **Summary:** cron job system for sending tasks to agents. SEC-008 in use.
+- **File:** `/plans/PLAN-006-fleet-directives.md`
+
+### ✅ PLAN-007: Fleet Security Hardening
+- **Created:** 2026-03-02
+- **Status:** ✅ COMPLETE
+- **Owner:** Molty
+- **Summary:** Tailscale, REG-025 (Docker user), REG-027 (allowBots). All hardened.
+- **File:** `/plans/PLAN-007-SECURITY-HARDENING.md`
+
+### ✅ PLAN-008: Smart Calendar Booking Logic
+- **Created:** 2026-03-02
+- **Status:** ✅ COMPLETE
+- **Owner:** Molty
+- **Summary:** Brinc busy block automation. REG-006 enforced in code.
+- **File:** `/plans/PLAN-008-CALENDAR-BOOKING-LOGIC.md`
+
+### 🔄 PLAN-009: Phase 3 Features
+- **Created:** 2026-03-01
+- **Status:** 🔄 IN PROGRESS
+- **Owner:** Molty
+- **Target:** Tonight (03:00 HKT)
+- **Summary:** MC UI improvements (C4 Splinter Den, D1 Templates, D2 Notifs, D6 Auth, etc.)
+- **File:** `/plans/PLAN-009-phase3-features.md`
+
+### ⏳ PLAN-010: Memory System Overhaul
+- **Created:** 2026-03-04
+- **Status:** ⏳ AWAITING GUILLERMO APPROVAL
+- **Owner:** Molty
+- **Summary:** MEMORY.md size management, lesson curation, meta-learning loops.
+- **File:** `/plans/PLAN-010-memory-system-overhaul.md`
+
+### 🔄 PLAN-011: Agent Performance Reviews
+- **Created:** 2026-03-05
+- **Status:** ✅ COMPLETE (2026-03-16)
+- **Owner:** Molty
+- **Summary:** Monthly review framework + template. First reviews due April 7.
+- **File:** `/plans/PLAN-011-agent-management-improvements.md`
+
+### ⏳ PLAN-012: Meta-Learning Loops
+- **Created:** 2026-03-06
+- **Status:** ⏳ PLANNING
+- **Owner:** Molty
+- **Summary:** Predictions + outcomes logging. Tied to REG audits.
+- **File:** `/plans/PLAN-012-meta-learning-loops.md`
+
+### ✅ PLAN-013: Morning Briefing v3.0
+- **Created:** 2026-03-12
+- **Status:** ✅ COMPLETE
+- **Owner:** Molty
+- **Summary:** Condensed format. Live since 2026-03-12.
+- **File:** `/plans/PLAN-013-briefing-v3-condensed.md`
+
+### 🔄 PLAN-014: April Full Squad Integration
+- **Created:** 2026-03-12
+- **Status:** 🔄 IN PROGRESS
+- **Owner:** Molty
+- **Summary:** April deployment to all comms (Discord ✅, WhatsApp ✅, Calendar ✅, agent-link ✅). Config fixed 2026-03-16.
+- **File:** `/plans/PLAN-014-april-full-squad-integration.md`
+- **Status:** Ready for next phase (messaging integration)
+
+### ⏳ PLAN-015: Agent-Link v2 (Reliable Fleet Communication)
+- **Created:** 2026-03-12
+- **Status:** ✅ APPROVED | ⏳ Phase 2 (HMAC) in progress
+- **Owner:** Molty
+- **Summary:** Fleet messaging with queue + retry + health-aware routing. Core live. Phase 2 (HMAC signing) implemented 2026-03-17.
+- **File:** `/plans/PLAN-015-agent-link-v2.md`
+- **Progress:**
+  - Phase 1: ✅ DONE (tmnt-v1 envelope + queue)
+  - Phase 2: 🔄 IN PROGRESS (HMAC signing — code done, integration pending)
+  - Phase 3: ⏳ DEFERRED (strict mode after rollout)
+
+### 🔄 PLAN-016: Todoist↔MC Sync v2 (Full Bidirectional)
+- **Created:** 2026-03-14
+- **Status:** 🔄 IN PROGRESS (overdue)
+- **Owner:** Molty
+- **Summary:** Replace PLAN-001 with full sync (both directions, completion sync, live updates).
+- **File:** `/plans/PLAN-016-todoist-mc-sync-v2.md`
+- **Note:** Implementation slipped Sat/Sun. Needed ASAP (MC data is stale).
+
+### 📝 PLAN-017: Behavior Enforcement Architecture
+- **Created:** 2026-03-16 → 2026-03-17
+- **Status:** 📝 DRAFT (overnight session, completed)
+- **Owner:** Molty
+- **Summary:** Why documentation doesn't work. 3-layer approach: automatic (80%), retrieval (15%), human escalation (5%).
+- **File:** `/plans/PLAN-017-behavior-enforcement.md`
+- **Note:** Honest assessment. Proposes code enforcement over docs.
 
 ---
 
-## PLAN-002 — Autonomous Nightly Task Worker
-**File:** `plans/PLAN-002-task-worker.md`  
-**Created:** 2026-02-24  
-**Status:** ✅ COMPLETE (LIVE — this cron)  
-**What it did:** Created the overnight cron system. Molty runs at 03:00 HKT, picks 1-3 tasks from Todoist/MC, executes, logs results.  
-**Key output:** Overnight cron `80105aa4`, this very task worker prompt.
+## Archived Plans (Legacy)
+
+### 📚 PLAN-002: Autonomous Task Worker
+- **Status:** Approved, archived
+- **Reason:** Core logic evolved into PLAN-003/006/009
+
+### 📚 PLAN-004: Squad Overnight Workflow
+- **Status:** Archived (superseded by PLAN-006)
+- **Reason:** Directives system replaces manual scheduling
+
+### 📚 PLAN-007: Overnight Workflow Overhaul
+- **Status:** Archived
+- **Reason:** Integrated into PLAN-006 (fleet directives)
+
+### 📚 PLAN-008: Overnight Consolidation
+- **Status:** Archived
+- **Reason:** Consolidation logic now in `overnight_sync.py`
 
 ---
 
-## PLAN-003 — Persistent Standup Database
-**File:** `plans/PLAN-003-persistent-standup-db.md`  
-**Created:** 2026-02-24  
-**Status:** ✅ COMPLETE (2026-02-26)  
-**What it did:** Replaced ephemeral per-day standup pages with a single persistent Notion DB reused daily. `get_or_create_persistent_db()` in `daily_standup.py`.  
-**Key output:** Notion DB `2fe39dd69afd81f189f7e58925dad602`.
+## Critical Dependencies (Execution Order)
+
+### Tier 1: Required Before Others
+- ✅ PLAN-001 (sync foundation)
+- ✅ PLAN-003 (MC database)
+- ✅ PLAN-006 (cron directives)
+
+### Tier 2: Required for Agent Work
+- ✅ PLAN-007 (security)
+- ✅ PLAN-014 (April deployment)
+- ⏳ PLAN-015 Phase 1 (webhooks)
+
+### Tier 3: Quality + Optimization
+- 🔄 PLAN-009 (UI improvements)
+- 🔄 PLAN-016 (sync v2)
+- 📝 PLAN-017 (enforcement strategy)
+
+### Tier 4: Meta + Learning
+- ⏳ PLAN-010 (memory overhaul)
+- ⏳ PLAN-012 (meta-loops)
 
 ---
 
-## PLAN-004 — Squad Overnight Workflow + Morning Briefing Squad
-**Files:** `plans/PLAN-004-morning-briefing-squad.md`, `plans/PLAN-004-squad-overnight-workflow.md`  
-**Created:** 2026-02-24 / 2026-02-25  
-**Status:** ✅ COMPLETE → morning briefing component SUPERSEDED by PLAN-013  
-**What it did:** Established overnight workflow for all three agents (Raphael 00:30, Leonardo 01:30, Molty 03:00). MC discipline rules. Todoist queue routing. Morning briefing squad section.  
-**Key output:** Overnight crons for all agents, MC task lifecycle (Backlog→In Progress→Under Review→Done).
+## Delivery Timeline
+
+| Plan | Started | Done | Days | Owner | Next |
+|------|---------|------|------|-------|------|
+| 001 | Feb 24 | Feb 24 | 0 | Molty | v2 (PLAN-016) |
+| 003 | Feb 24 | Feb 26 | 2 | Molty | ✅ |
+| 005 | Feb 26 | Feb 27 | 1 | Molty | ✅ |
+| 006 | Feb 27 | Feb 27 | 0 | Molty | ✅ |
+| 007 | Mar 02 | Mar 02 | 0 | Molty | ✅ |
+| 008 | Mar 02 | Mar 02 | 0 | Molty | ✅ |
+| 013 | Mar 12 | Mar 12 | 0 | Molty | v4 (TBD) |
+| 014 | Mar 12 | Mar 16 | 4 | Molty | Config fix done, integration next |
+| 015 | Mar 12 | Mar 16 | 4 | Molty | Phase 2 done, deploy next |
+| 011 | Mar 05 | Mar 16 | 11 | Molty | ✅ |
 
 ---
 
-## PLAN-005 — Fleet Update Manager
-**File:** `plans/PLAN-005-molty-fleet-update-manager.md`  
-**Created:** 2026-02-26  
-**Status:** ✅ COMPLETE (2026-02-27)  
-**What it did:** Molty owns OpenClaw version updates for the whole fleet. Release monitor cron, staged rollout script, health checks.  
-**Key output:** `check-openclaw-releases.py`, `fleet-update.py`, cron `c0705ffd` (05:15 HKT daily).  
-**Latest run:** Fleet updated to v2026.3.7 on Mar 9.
+## Status by Urgency
+
+### 🔴 URGENT (Blocking Work)
+- **PLAN-016:** Todoist sync incomplete. MC data stale. Caused cleanup work Mar 16.
+  - **Blocker:** Estimation: 4-6 hours
+  - **Recommended:** Start this week
+
+### 🟡 HIGH (In Progress)
+- **PLAN-009:** Phase 3 features. Design-complete, implementation pending.
+- **PLAN-015 Phase 2:** HMAC integration — code done, needs rollout.
+- **PLAN-014:** April config fixed, ready for next phase.
+
+### 🟢 MEDIUM (Planned)
+- **PLAN-010:** Memory overhaul. Needs Guillermo direction.
+- **PLAN-012:** Meta-learning. Depends on PLAN-010.
+- **PLAN-017:** Output for Guillermo review (delivered this session).
 
 ---
 
-## PLAN-006 — Fleet Directive System
-**File:** `plans/PLAN-006-fleet-directives.md`  
-**Created:** 2026-02-27  
-**Status:** ✅ COMPLETE (core live; secrets migration deferred)  
-**What it did:** Standardized how Molty broadcasts config/behavior changes to Raphael and Leonardo. Breaking change automation for config patches.  
-**Key output:** Fleet directive broadcast pattern, config patch automation.
+## Metrics
+
+**Completion Rate:**
+- 8 / 17 active = 47% done
+- 4 / 17 in progress = 24% active
+- 3 / 17 deferred = 18% blocked
+- 1 / 17 draft = 6% new
+
+**Velocity:** ~1.5 plans/week (Feb 24 – Mar 17 = 22 days, 8 done)
+
+**Risk:** PLAN-016 overdue by 3 days. PLAN-015 Phase 2 needs integration.
 
 ---
 
-## PLAN-007 — Overnight Workflow Overhaul (Model B) + Security Hardening
-**Files:** `plans/PLAN-007-overnight-workflow-overhaul.md`, `plans/PLAN-007-SECURITY-HARDENING.md`  
-**Created:** 2026-02-28 / 2026-03-02  
-**Status:** ✅ COMPLETE  
-**What it did (workflow):** Replaced memory_search with exec+cat pre-flight (faster, more reliable). All three agents patched to use cat+curl overnight.  
-**What it did (security):** Remediated `dangerouslyDisableDeviceAuth`, `HostHeaderOriginFallback`, `hooks.defaultSessionKey`, multi-user sandboxing. Credentials dir fixed.
+## Approvals & Status
+
+| Plan | Approved By | Approval Date | Status |
+|------|------------|---------------|--------|
+| 001-008, 013 | Guillermo | Various (Feb-Mar 2) | ✅ LIVE |
+| 011 | Guillermo | Mar 16 afternoon | ✅ LIVE |
+| 014, 015, 016 | Guillermo | Mar 14-16 | 🔄 IN PROGRESS |
+| 009 | Design-complete | — | Pending start |
+| 010, 012 | — | — | ⏳ AWAITING DIRECTION |
+| 017 | — | Under review | 📝 DRAFT |
 
 ---
 
-## PLAN-008 — Overnight Consolidation + Calendar Booking Logic
-**Files:** `plans/PLAN-008-overnight-consolidation.md`, `plans/PLAN-008-CALENDAR-BOOKING-LOGIC.md`  
-**Created:** 2026-03-01 / 2026-03-02  
-**Status:** ✅ COMPLETE  
-**What it did (consolidation):** Molty 03:00 now reads Raphael+Leonardo shared logs, posts ONE consolidated message to #squad-updates. Morning briefing reads consolidated log first.  
-**What it did (calendar):** Standardized calendar booking rules — 3 calendars, SA token, Brinc busy blocks automatic, protected time slots.
-
----
-
-## PLAN-009 — MC Phase 3 Feature Sprint
-**File:** `plans/PLAN-009-phase3-features.md`  
-**Created:** 2026-03-01  
-**Status:** ✅ COMPLETE (all tier-1 + tier-2 features shipped; tier-3 mostly done)  
-**What it did:** 20-feature sprint for Mission Control UI. Metrics dashboard, cost tracking, drag-and-drop kanban, weekly digest, Todoist sync, project views, mobile polish, analytics, stale agent detection, etc.  
-**Key output:** Deployed to `tmnt-mission-control.vercel.app`. Most features live. [B2] Dark Mode + [C4] Splinter Den + [D1] Task Templates still parked.
-
----
-
-## PLAN-010 — Memory System Overhaul
-**File:** `plans/PLAN-010-memory-system-overhaul.md`  
-**Created:** 2026-03-04  
-**Status:** ✅ COMPLETE (all 7 phases executed 2026-03-04)  
-**What it did:** Shrank session loading from 51KB→30.8KB. MEMORY.md from 16.7KB→1.9KB. SOUL.md 10.6KB→3KB. Created REGRESSIONS.md, mistake-tracker, monthly review cron.  
-**Key output:** `REGRESSIONS.md`, `memory/refs/mistake-tracker.md`, cron for monthly reviews.
-
----
-
-## PLAN-011 — Agent Management Improvements
-**File:** `plans/PLAN-011-agent-management-improvements.md`  
-**Created:** 2026-03-05  
-**Status:** 🔄 IN PROGRESS (partial — some items complete, article in review)  
-**What it did so far:** Last-updated headers on shared files, agent performance review framework, TMNT article drafted.  
-**Remaining:** TMNT article in MC "review" status (needs Guillermo final approval + publish). Agent reviews cadence running monthly.
-
----
-
-## PLAN-012 — Meta-Learning Loops Integration
-**File:** `plans/PLAN-012-meta-learning-loops.md`  
-**Created:** 2026-03-06  
-**Status:** ✅ COMPLETE (implemented overnight 2026-03-06/07)  
-**What it did:** REGRESSIONS.md as session-load rule. Prediction-outcome system in `memory/predictions/`. Friction log at `memory/friction-log.md`. Nightly synthesis. Active holds system.
-
----
-
-## PLAN-013 — Morning Briefing v3.0 Condensed
-**File:** `plans/PLAN-013-briefing-v3-condensed.md`  
-**Created:** 2026-03-12  
-**Status:** ✅ COMPLETE  
-**What it did:** Compressed morning brief from 4-screen wall to ~1 screen. 6 sections: Focus / Blocked / Ready for Review / Today / Heads Up / Weather + OpenClaw status.  
-**Key output:** `morning_briefing.py` `build_message()` rewritten. Commits `1c785f33`, `6f74558d`.
-
----
-
-## PLAN-014 — April Full Squad Integration
-**File:** `plans/PLAN-014-april-full-squad-integration.md`  
-**Created:** 2026-03-12  
-**Status:** 🔄 IN PROGRESS (core live; webhook latency issue outstanding)  
-**What it did so far:** April deployed on Railway. Discord bot live. WhatsApp connected. Calendars (Shenanigans + personal) accessible. Heartbeat, overnight (02:00 HKT), Steph briefing (06:30 HKT) crons running. Overnight log writing confirmed.  
-**Outstanding:** April webhook (`/hooks/agent`) hangs on delivery — queued via Agent-Link v2. April needs `message` tool patch (Discord send capability).
-
----
-
-## PLAN-015 — Agent-Link v2 (Reliable Fleet Communication)
-**File:** `plans/PLAN-015-agent-link-v2.md`  
-**Created:** 2026-03-12  
-**Status:** ✅ COMPLETE (approved + implemented 2026-03-12)  
-**What it did:** Replaced direct webhook calls with queued delivery system. `tmnt-v1` envelope format for trusted fleet messages. Retry backoff (30s→2m→10m→1h). Health-aware routing via `/data/shared/health/`. Queue processor cron every 5 min.  
-**Key output:** `/data/workspace/scripts/agent-link-worker.py`, cron `57a4956a`. Raphael ✅ delivering; Leonardo ⚠️ retry loop.
-
----
-
-## Other Notable Documents
-| File | Description |
-|------|-------------|
-| `plans/APRIL-DEPLOYMENT-PLAN-V2.md` | April's deployment playbook (v2 with lessons) |
-| `plans/WHOOP-INTEGRATION-STATUS.md` | Whoop spec — parked until Mar 17 |
-| `plans/ginesta-io-website-brief.md` | ginesta.io brief — in MC review |
-| `plans/IDEAS-BACKLOG.md` | Unplanned ideas/opportunities |
-| `plans/cerebro-crm-reminders-spec.md` | Cerebro CRM reminder spec |
-| `plans/cerebro-future-paid-acquisition.md` | Cerebro growth ideas |
-
----
-
-## What's Next (No Plan Yet)
-- **Donatello deployment** — R&D/tinkerer agent, no plan created yet
-- **Michelangelo deployment** — Mana Capital, no plan created yet
-- **Waalaxy Chrome extension access** — blocked (PLAN-???)
-- **Stripe Live migration** — needs Guillermo
-- **Personal finance batch** — needs Guillermo input
-- **Discrawl exploration** — research task queued
-
----
-
-*Auto-generated by Molty overnight worker. Source: /data/workspace/plans/ + MC task history.*
-*Next update: when a new plan is created or status changes significantly.*
+*Registry compiled during overnight session (2026-03-17 00:50 HKT).*  
+*Next audit: 2026-04-01 (monthly review).*
