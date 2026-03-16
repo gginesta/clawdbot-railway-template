@@ -1,82 +1,48 @@
-# Agent Performance Review — {AGENT_NAME} {EMOJI}
-<!-- Last updated: molty | {DATE} | Review for {PERIOD} -->
+# Agent Review: {AGENT} — {MONTH YEAR}
 
-**Review Period:** {PERIOD} (e.g., "Feb 2026" or "PLAN-010 completion")  
-**Review Type:** Monthly | Milestone | Incident | Onboarding  
-**Reviewer:** Molty 🦎  
-**Approver:** Guillermo  
-**Status:** Draft | Approved  
+**Reviewer:** Molty  
+**Period:** {START_DATE} to {END_DATE}
 
 ---
 
-## Self-Assessment (Optional — filled by agent)
+## 1. Scorecard
 
-*What went well this period?*
-
-*What didn't go as planned?*
-
-*What would you do differently?*
-
----
-
-## Performance Scores
-
-| Dimension | Score (0–5) | Notes |
-|-----------|------------|-------|
-| Output Quality | | |
-| Goal Completion Rate | | |
-| Judgment & Autonomy | | |
-| Communication Quality | | |
-| Collaboration | | |
-| **Average** | | |
-
-**Learning Velocity:** [Improving / Flat / Declining] — {brief explanation}
+| Metric | Value | vs Last Month |
+|--------|-------|---------------|
+| Tasks completed | | |
+| Tasks assigned | | |
+| Completion rate | | |
+| Regressions caused | | |
+| Communication failures | | |
 
 ---
 
-## Highlights ✅
+## 2. Highlights + Lowlights
 
-*2–4 things the agent did well this period:*
+**Best work this month:**
+> 
 
-1. 
-2. 
-3. 
+**Worst failure this month:**
+> 
 
----
-
-## Areas for Growth 🌱
-
-*2–3 specific, actionable things to improve:*
-
-1. 
-2. 
-3. 
+**Pattern:** ☐ Improving / ☐ Flat / ☐ Regressing
 
 ---
 
-## Patterns / Recurring Issues
+## 3. Focus for Next Month
 
-*Any mistakes appearing multiple times? Any failure modes from SOUL.md showing up?*
+**Get better at:**
+> 
 
----
-
-## Guillermo's Notes
-
-*(Added by Guillermo during review)*
+**Stop doing:**
+> 
 
 ---
 
-## Agent Response
+## Guillermo's Comments
 
-*(Added by agent after receiving review)*
-
----
-
-## Next Review
-
-**Scheduled:** {DATE of next review}  
-**Focus areas:** {anything to track specifically next period}
+> (filled by Guillermo after review)
 
 ---
 
-*Reviewed against: `/data/workspace/docs/AGENT-PERFORMANCE-REVIEWS.md`*
+*Review date: {DATE}*
