@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-16 | Journal audit prune — back under 10KB | Target: <15KB*
+*Last updated: molty | 2026-03-16 | Daily curation with key fixes and lessons | Target: <15KB*
 
 ---
 
@@ -93,3 +93,7 @@
 - **Discord @mentions:** Must use `<@USER_ID>` format — plain `@Name` doesn't ping.
 - **Standup cron:** `delivery.mode: "none"` required on any cron that sends via message tool.
 - **Never narrate tool failures or debugging to public Discord channels.** Fail silently or report the actual problem.
+- **REG-034:** Briefing fabrication fix — script-based `morning-briefing.py` and `heartbeat-check.sh` enforce accurate output (added 2026-03-16).
+- **REG-036:** Personal task guard — `overnight_sync.py` skips personal tasks without 🦎 marker (added 2026-03-16).
+- **Lesson:** Documentation/regressions don't change behavior; code enforcement is required for consistency (2026-03-16).
+- **Community Context:** Brad Mills (@bradmillscan) OpenClaw issue — stale `skillsSnapshot` cache in sessions.json; not applicable to us (2026-03-16).
