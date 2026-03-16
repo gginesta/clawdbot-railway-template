@@ -211,3 +211,58 @@ Token location: `/data/shared/credentials/agent-link-token.txt`
 - [ ] Delivery rate > 95% (currently ~33%)
 - [ ] Full audit trail in delivery log
 - [ ] Token rotation works via shared file
+
+---
+
+## Phase 2: HMAC Authentication (Added 2026-03-16)
+
+**Problem:** `tmnt-v1` envelope has no cryptographic proof of sender identity. Any request with a valid webhook token can claim `"from": "molty"`. April rejected legitimate fleet messages as prompt injection because she can't verify the sender.
+
+**Solution:** HMAC-SHA256 signing of the message payload.
+
+### Envelope v2 (backward compatible)
+
+```json
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "april",
+  "type": "task",
+  "sent_at": "2026-03-16T14:00:00Z",
+  "message_id": "abc-123",
+  "signature": "hmac-sha256:<hex-digest>",
+  "payload": {
+    "message": "The actual content"
+  }
+}
+```
+
+### Signing Process
+
+1. **Shared secret:** `/data/shared/credentials/agent-link-token.txt` (all agents via Syncthing)
+2. **Canonical string:** `{from}:{to}:{sent_at}:{message_id}:{payload_json}`
+3. **Signature:** `HMAC-SHA256(shared_secret, canonical_string)` → hex digest
+4. **Header:** `"signature": "hmac-sha256:<hex>"` in envelope
+
+### Verification Process (receiving agent)
+
+1. Extract `signature` from envelope
+2. Rebuild canonical string from envelope fields
+3. Compute HMAC-SHA256 with shared secret
+4. Compare → match = trusted, no match = reject
+5. Check `sent_at` within 5-minute window (replay protection)
+
+### Implementation
+
+1. Update `agent-link-worker.py` — add `sign_message()` and `verify_message()` functions
+2. Update AGENTS.md template — add verification instructions for all agents
+3. All agents: on webhook receipt, verify signature before processing
+4. Backward compat: if no `signature` field → reject (strict mode after rollout)
+
+### Rollout
+
+1. Deploy updated worker to `/data/shared/scripts/` (Syncthing distributes)
+2. Update each agent's AGENTS.md with verification instructions
+3. Test with one agent (April) first
+4. Roll out to all agents
+5. After 48h: enable strict mode (reject unsigned messages)

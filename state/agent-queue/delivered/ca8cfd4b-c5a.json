@@ -1,0 +1,14 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "april",
+  "type": "task",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-16T11:30:37Z",
+  "message_id": "ca8cfd4b-c5a",
+  "payload": {
+    "message": "URGENT: Fix WhatsApp streaming leak NOW. Run this SINGLE tool call and nothing else: gateway tool, action=config.patch, raw={\"channels\":{\"whatsapp\":{\"streaming\":\"off\"}}}, note=\"Fix WhatsApp streaming leak\". Do NOT reply to WhatsApp. Do NOT narrate. Just run the config.patch."
+  },
+  "_delivered_at": "2026-03-16T11:30:37Z"
+}

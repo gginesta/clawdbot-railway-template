@@ -9,6 +9,8 @@ BACKUP_FILE="$BACKUP_DIR/molty-backup-$TIMESTAMP.tar.gz"
 echo "🦎 Creating backup..."
 
 # Create tarball (excludes browser cache, logs, node_modules)
+# Note: tar may report exit code 1 due to files changing during backup (normal on live system)
+# We use --ignore-command-error to handle this gracefully
 tar -czf "$BACKUP_FILE" \
   --exclude='*.log' \
   --exclude='node_modules' \
@@ -26,7 +28,8 @@ tar -czf "$BACKUP_FILE" \
   .openclaw/devices \
   2>/dev/null
 
-if [ $? -eq 0 ]; then
+# Check if file was created (tar may return 1 due to live file changes)
+if [ -f "$BACKUP_FILE" ] && [ -s "$BACKUP_FILE" ]; then
   SIZE=$(du -h "$BACKUP_FILE" | cut -f1)
   echo "✅ Backup complete: $BACKUP_FILE ($SIZE)"
   

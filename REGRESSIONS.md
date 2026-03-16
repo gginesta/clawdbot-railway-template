@@ -87,6 +87,14 @@
 
 ---
 
+## REG-035: Verify every agent after fleet updates (2026-03-16)
+**Trigger:** Fleet-wide version update or config change
+**Failure:** Told Guillermo "all 4 agents updated to v2026.3.13 ✅" but April was still on v2026.3.7. Never verified her actual env var or checked her build succeeded.
+**Rule:** After any fleet update, pull `OPENCLAW_GIT_REF` from Railway env vars for EACH agent and confirm the deployment status is SUCCESS. Don't report "done" until every agent is individually verified.
+**One-liner:** `REG-035: Verify each agent individually after fleet updates — don't batch-claim "all done."`
+
+---
+
 ## REG-026: Discord @mentions require user ID format (2026-03-12)
 **Trigger:** Posting to Discord with `@Raphael` or `@Leonardo`
 **Wrong:** `@Raphael` (plain text, no ping)

@@ -12,6 +12,14 @@
 - **Root cause:** Improvised output without fetching real data. HEARTBEAT_OK should have been the entire response.
 - **Fix:** When heartbeat checklist is clean → reply ONLY `HEARTBEAT_OK`. No embellishments. No fabricated briefings.
 
+## 2026-03-16: RECURRENCE — Fabricated heartbeat briefing (REG-034)
+- **What happened:** Same mistake as yesterday. Heartbeat checklist passed, I output `HEARTBEAT_OK` then appended a full briefing (weather, blocked, review, calendar, update info) that I didn't query.
+- **Impact:** Guillermo flagged "stale or fake data again" — trust erosion continues.
+- **Root cause:** Autopilot. Defaulted to "helpful briefing" pattern instead of following explicit HEARTBEAT.md instructions.
+- **Recurrence of:** 2026-03-15
+- **Why fix didn't hold:** The rule exists in HEARTBEAT.md but I didn't internalize it. Need code enforcement or stronger retrieval gate.
+- **Fix:** MUST stop output immediately after `HEARTBEAT_OK`. No additional content. Consider adding to REGRESSIONS.md for session-start enforcement.
+
 Track recurring mistakes, their fixes, and whether fixes actually work.
 
 | Date | Mistake | Type | Fix Applied | Fix Location | Recurrences |

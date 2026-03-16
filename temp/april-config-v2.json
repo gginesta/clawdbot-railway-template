@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-16T12:29:44.248Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-11T11:06:39.610Z",
+    "lastRunVersion": "2026.3.7",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "browser": {
+    "enabled": true,
+    "executablePath": "/usr/bin/brave-browser",
+    "headless": true,
+    "noSandbox": true,
+    "defaultProfile": "openclaw",
+    "profiles": {
+      "openclaw": {
+        "cdpPort": 18800,
+        "color": "#FF69B4"
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-sonnet-4-6",
+        "fallbacks": [
+          "anthropic/claude-haiku-4-5",
+          "openrouter/anthropic/claude-sonnet-4"
+        ]
+      },
+      "workspace": "/data/workspace",
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "1h"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "1h",
+        "model": "anthropic/claude-haiku-4-5",
+        "target": "discord",
+        "to": "1481169326395490334"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "provider": "gemini"
+      }
+    },
+    "sessions": {
+      "visibility": "agent"
+    },
+    "message": {
+      "crossContext": {
+        "allowAcrossProviders": true
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions",
+    "tts": {
+      "auto": "tagged",
+      "provider": "edge",
+      "modelOverrides": {
+        "enabled": true,
+        "allowProvider": false
+      },
+      "edge": {
+        "enabled": true,
+        "voice": "en-GB-SoniaNeural",
+        "lang": "en-GB",
+        "outputFormat": "audio-24khz-48kbitrate-mono-mp3",
+        "pitch": "-3%",
+        "rate": "+0%"
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "cron": {
+    "enabled": true
+  },
+  "hooks": {
+    "enabled": true,
+    "path": "/hooks",
+    "token": "7159178afb1c2c24b1e98bbbac0f0f02dc759aa038cd49ae7fac7873d8acf3ee",
+    "defaultSessionKey": "hook:ingress"
+  },
+  "channels": {
+    "whatsapp": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "+85254055953",
+        "+85263485843"
+      ],
+      "groupAllowFrom": [
+        "+85254055953",
+        "+85263485843"
+      ],
+      "groupPolicy": "allowlist",
+      "groups": {
+        "120363425112793183@g.us": {
+          "requireMention": false
+        }
+      },
+      "debounceMs": 3000,
+      "mediaMaxMb": 50
+    },
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "botToken": "8779671794:AAGzuXJJ8Lp7vZiuu1Hj0Pnt51hsjhlnNVM",
+      "allowFrom": [
+        "1097408992"
+      ],
+      "groupPolicy": "allowlist",
+      "streaming": "partial"
+    },
+    "discord": {
+      "enabled": true,
+      "token": "MTQ4MTE2Nzc3MDE5MTQwMTAyMQ.Gse9tE.MEwkCzqnuFp67yXbyaqABbovCA8c-alQUXXmbY",
+      "allowBots": true,
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
+      "actions": {
+        "reactions": true,
+        "messages": true,
+        "threads": true,
+        "pins": true,
+        "search": true,
+        "memberInfo": true,
+        "channelInfo": true
+      },
+      "dmPolicy": "pairing",
+      "guilds": {
+        "1468161542473121932": {
+          "slug": "tmnt-squad",
+          "requireMention": true,
+          "users": [
+            "779143499655151646"
+          ],
+          "channels": {
+            "1481169326395490334": {
+              "allow": true,
+              "requireMention": false
+            },
+            "command-center": {
+              "allow": true,
+              "requireMention": true
+            },
+            "squad-updates": {
+              "allow": true,
+              "requireMention": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowedOrigins": [
+        "https://april-agent-production.up.railway.app"
+      ],
+      "dangerouslyAllowHostHeaderOriginFallback": true,
+      "dangerouslyDisableDeviceAuth": false
+    },
+    "auth": {
+      "mode": "token",
+      "token": "ec314e8e2c268dd0e1efcdfcb98dc974283349bf8fa25a78299d9d4c9b457ce5"
+    },
+    "trustedProxies": [
+      "127.0.0.1",
+      "100.64.0.0/10"
+    ],
+    "tailscale": {
+      "mode": "serve",
+      "resetOnExit": false
+    },
+    "remote": {
+      "token": "ec314e8e2c268dd0e1efcdfcb98dc974283349bf8fa25a78299d9d4c9b457ce5"
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {}
+  }
+}
