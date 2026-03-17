@@ -19,6 +19,41 @@ Paperclip replaces all of this with one purpose-built system: org charts, goal h
 
 **What it obsoletes:** MC task system, agent-link for task routing, PLAN-016 (Todoist sync), parts of PLAN-017
 
+## Key Discovery: Native OpenClaw Adapter
+
+Paperclip has a **dedicated OpenClaw gateway adapter** (`@paperclipai/adapter-openclaw-gateway`).
+- Connects via **WebSocket** to each agent's OpenClaw gateway (not HTTP POST)
+- Sends structured wake messages with full Paperclip context (run ID, task ID, company ID, goal chain)
+- The wake message includes exact API instructions — agents know what to do immediately
+- **Cost tracking is automatic** — adapter extracts usage/cost from OpenClaw's response
+- Device auth, auto-pairing, and session management are built in
+- **This eliminates the #1 risk** (webhook payload compatibility)
+
+Config per agent:
+```json
+{
+  "adapter_type": "openclaw_gateway",
+  "adapter_config": {
+    "url": "wss://ggvmolt.up.railway.app/ws",
+    "authToken": "<gateway-token>",
+    "timeoutSec": 120
+  }
+}
+```
+
+## Key Discovery: Built-in Paperclip Skill (309 lines)
+
+Paperclip ships `/skills/paperclip/SKILL.md` — a complete agent skill covering:
+- Full heartbeat procedure (9 steps)
+- Authentication via auto-injected env vars
+- Atomic task checkout with conflict handling
+- Comment threading, status updates, delegation
+- Budget awareness
+- Self-test playbook
+- Full API quick reference table
+
+**We don't need to write our own skill. We deploy theirs via Syncthing.**
+
 ---
 
 ## Architecture
@@ -72,41 +107,27 @@ Paperclip replaces all of this with one purpose-built system: org charts, goal h
 - [ ] Create project: "Spike Testing"
 - [ ] Note company ID, goal ID, project ID
 
-### 0.3 Critical Test: HTTP Adapter ↔ OpenClaw Webhook Compatibility
-**This is the #1 risk. If this fails, Paperclip doesn't work for us.**
+### 0.3 Test OpenClaw Gateway Adapter
+**Risk level: LOW** — Paperclip has a native OpenClaw adapter. No payload compatibility concern.
 
-OpenClaw webhooks expect:
-```json
-{"message": "...", "wakeMode": "now"}
-```
-
-Paperclip HTTP adapter sends (via `payloadTemplate`):
-```json
-{"agentId": "{{agent.id}}", "runId": "{{run.id}}"}
-```
-
-- [ ] Create agent "Molty-Test" with adapter_type: `http`
-- [ ] Configure adapter_config with `payloadTemplate` that matches OpenClaw format:
+- [ ] Create agent "Molty-Test" with adapter_type: `openclaw_gateway`
+- [ ] Configure adapter_config:
   ```json
   {
-    "url": "https://ggvmolt.up.railway.app/hooks/agent",
-    "method": "POST",
-    "headers": {"Authorization": "Bearer <molty-webhook-token>"},
-    "timeoutMs": 15000,
-    "payloadTemplate": {
-      "message": "Paperclip heartbeat: You have pending tasks. Check Paperclip API for assigned work. Run ID: {{run.id}}",
-      "wakeMode": "now"
-    }
+    "url": "wss://ggvmolt.up.railway.app/ws",
+    "authToken": "<molty-gateway-token>",
+    "timeoutSec": 120,
+    "sessionKeyStrategy": "issue"
   }
   ```
-- [ ] Generate API key for test agent
+- [ ] Generate Paperclip API key for test agent
 - [ ] Trigger manual heartbeat: `POST /agents/:agentId/heartbeat/invoke`
-- [ ] **VERIFY:** Does Molty receive the webhook? Check OpenClaw logs.
-- [ ] **VERIFY:** Is the payload format correct? Does OpenClaw parse it?
-- [ ] **VERIFY:** What context does the heartbeat include? (`context_mode: thin` vs `fat`)
-- [ ] **DOCUMENT:** Exact payload received by OpenClaw — this determines the skill design
+- [ ] **VERIFY:** Does Molty receive the wake message via WebSocket?
+- [ ] **VERIFY:** Does the wake message include task context + API instructions?
+- [ ] **VERIFY:** Does cost/usage data flow back from OpenClaw to Paperclip?
+- [ ] **DOCUMENT:** Any device auth / pairing steps needed
 
-**If this step fails:** Check if payloadTemplate supports our format. If not, we may need to write a proxy or contribute an OpenClaw adapter upstream. Document and assess.
+**If adapter fails:** Check WebSocket connectivity (Railway may need specific config). The adapter has auto-pairing built in, so device auth should self-resolve.
 
 ### 0.4 Test Task Flow (Agent-Side API)
 - [ ] Create task: `POST /companies/:id/issues` — "Test: respond with status"
@@ -136,11 +157,12 @@ Paperclip HTTP adapter sends (via `payloadTemplate`):
 - [ ] Activity log — audit trail readable?
 - [ ] **Guillermo's gut reaction:** would he use this daily?
 
-### 0.7 Check Paperclip's Built-in SKILL.md
-- [ ] Does Paperclip ship a SKILL.md for agents? (Docs say yes)
-- [ ] Read it — what does it cover?
-- [ ] Can we use it as-is, or do we need to extend it for OpenClaw?
-- [ ] Decision: use theirs / extend theirs / write our own
+### 0.7 Verify Built-in Skill Works
+- [x] Paperclip ships SKILL.md — 309 lines, complete heartbeat procedure ✅
+- [x] Covers: auth, checkout, comments, status, delegation, budget, self-test ✅
+- [ ] Copy `skills/paperclip/` to `/data/shared/skills/paperclip/` via Syncthing
+- [ ] Verify skill appears in agent skill discovery
+- [ ] Decision: extend with TMNT-specific context? (Discord posting, etc.)
 
 ### 0.8 Spike Report + GO/NO-GO
 - [ ] Write findings: `/data/workspace/reports/paperclip-spike-report.md`
@@ -363,27 +385,16 @@ Done tasks stay in MC as archive. No point migrating completed history.
 **Depends on:** Phase 2 verified
 **Critical:** Agents must be updated BEFORE cutover — they should never see both systems
 
-### 3.1 Create Paperclip Skill (shared)
-**Note:** Paperclip ships its own SKILL.md that agents can use for runtime context discovery. Evaluate it in Phase 0.7 first.
+### 3.1 Deploy Paperclip Skill (shared)
+**Paperclip ships a complete 309-line SKILL.md. We use theirs.**
 
-- [ ] Check Paperclip's built-in SKILL.md (Phase 0.7 finding)
-- [ ] Decision: use theirs as-is / extend / write our own
-- [ ] Write `/data/shared/skills/paperclip/SKILL.md` (or adapt theirs)
-- [ ] Contents MUST include:
-  - Paperclip API base URL + auth (Bearer agent API key)
-  - How to discover assigned tasks: `GET /companies/:id/issues?assignee=<agentId>&status=todo,in_progress`
-  - How to checkout a task (atomic): `POST /issues/:id/checkout`
-  - How to post progress comments: `POST /issues/:id/comments`
-  - How to update task status: `PATCH /issues/:id`
-  - How to report cost events: `POST /companies/:id/cost-events`
-  - How to read goal context (the "why"): goal chain on issue response
-  - How to create subtasks for delegation: `POST /companies/:id/issues` with `parent_id`
-  - How to handle budget pause: check response codes, stop work gracefully
-  - How to report session costs: use `session_status` → POST to Paperclip
-- [ ] Include curl examples for each operation
-- [ ] Include error handling (409 checkout conflict, 403 budget exceeded, 422 invalid transition)
-- [ ] Deploy to `/data/shared/skills/paperclip/` (Syncthing distributes to all agents)
-- [ ] Verify skill appears in each agent's available skills
+- [ ] Copy `paperclip-deploy/skills/paperclip/` → `/data/shared/skills/paperclip/`
+- [ ] Copy `paperclip-deploy/skills/paperclip/references/` too (full API reference)
+- [ ] Syncthing distributes to all agents automatically
+- [ ] Verify skill appears in each agent's available skills list
+- [ ] Optional: add TMNT-specific wrapper (Discord summary posting after task completion)
+- [ ] The skill covers: auth, 9-step heartbeat procedure, checkout, comments, status, delegation, budget, self-test
+- [ ] **Cost tracking is automatic** — the OpenClaw adapter extracts usage from the response. No manual reporting needed.
 
 ### 3.2 Update Molty's AGENTS.md
 - [ ] Replace MC task references with Paperclip
@@ -586,8 +597,9 @@ This is approximate (session-level, not task-level), but it's infinitely better 
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|--------|-----------|
-| **HTTP adapter payload incompatible with OpenClaw** | **Medium** | **CRITICAL** | Phase 0.3 tests this FIRST. payloadTemplate must produce `{"message":"...","wakeMode":"now"}`. If it can't, we need a proxy or upstream PR. |
-| Paperclip V1 has bugs | High | Medium | Phase 0 spike tests critical paths first. We're early adopters. |
+| ~~HTTP adapter payload incompatible with OpenClaw~~ | ~~Medium~~ | ~~CRITICAL~~ | **ELIMINATED** — native OpenClaw gateway adapter exists, connects via WebSocket |
+| Paperclip V1 has bugs | High | Medium | Phase 0 spike tests critical paths. We're early adopters. |
+| WebSocket connectivity from Railway→Railway | Low | Medium | Both services on Railway, should work. Test in Phase 0.3. |
 | Migration loses task data | Low | Medium | Keep MC read-only as archive, export backup |
 | Agents confused during transition | Medium | Medium | Update AGENTS.md BEFORE cutover, test individually |
 | Paperclip goes down overnight | Medium | High | Self-hosted on Railway, add health check + alert |
