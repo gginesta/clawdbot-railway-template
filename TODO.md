@@ -1,10 +1,21 @@
 # TODO.md - Molty's Task Tracker
 
-*Last updated: 2026-03-14 20:57 HKT*
+*Last updated: 2026-03-17 18:36 HKT*
 
 ---
 
-## 🔴 Tonight (Tue 03:00 HKT) — PLAN-015 Phase 2 Full Deploy
+## 🔴 URGENT: Cerebro Deploy Debugging (Tue 18:36 HKT)
+**Status:** Blocking Leonardo | **Issue:** Server starts but Railway kills container after schedulers init
+
+| Task | Detail |
+|------|--------|
+| Monitor Leonardo's fix | Waiting on enrichment queue / violation decay scheduler review |
+| Stand by for retest | Next deploy attempt will show if the background scheduler was the issue |
+| Escalate if still failing | May need to revert migrations 019+ or add timeout guards |
+
+---
+
+## 🔴 Tonight (Tue 03:00 HKT) — PLAN-015 Phase 2 Full Deploy [PARKED]
 **MC Task:** jn7empmf7mavh1tjad5j39aswn833f0d | **Priority:** P1
 
 | # | Task | Effort | Detail |
