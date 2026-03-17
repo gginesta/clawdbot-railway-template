@@ -95,6 +95,15 @@
 
 ---
 
+## REG-037: Never close Personal Todoist tasks without 🦎 marker (2026-03-17)
+**Trigger:** Closing ANY Todoist task
+**Failure:** Closed Guillermo's "Do a journal audit" task (Personal project, no 🦎) FOUR TIMES. REG-036 guard existed in overnight_sync.py but I bypassed it by closing directly via API during overnight sessions.
+**Rule:** ALL Todoist closures MUST go through `scripts/todoist-close.sh`. No direct API calls. The script blocks Personal project tasks without 🦎.
+**Code enforcement:** `todoist-close.sh` — tested, blocks the exact task.
+**One-liner:** `REG-037: Use todoist-close.sh for ALL task closures. Never call Todoist close API directly.`
+
+---
+
 ## REG-026: Discord @mentions require user ID format (2026-03-12)
 **Trigger:** Posting to Discord with `@Raphael` or `@Leonardo`
 **Wrong:** `@Raphael` (plain text, no ping)
