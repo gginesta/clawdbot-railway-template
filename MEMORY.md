@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-16 | Daily curation with key fixes and lessons | Target: <15KB*
+*Last updated: molty | 2026-03-17 | Daily curation: PLAN-018 Paperclip, REG-037, Railway healthcheck rule, Cerebro fix | Target: <15KB*
 
 ---
 
@@ -33,27 +33,30 @@
 - **Full rules:** `memory/refs/standup-process.md`
 
 ## 📋 Active Projects
-- **Cerebro:** www.meetcerebro.com — 10 customers in 12 weeks
-- **WHOOP:** Research done, blocked on CLIENT_ID/SECRET from Guillermo. Notion spec: `31939dd6...`. Due date passed (Mar 17 target) — needs reschedule at standup.
+- **Cerebro:** www.meetcerebro.com — 10 customers in 12 weeks. Deploy pipeline fixed 2026-03-17 22:22 HKT (dashboard healthcheck was silently overriding railway.toml — deleted dashboard settings, toml-only now).
+- **WHOOP:** Research done, blocked on CLIENT_ID/SECRET from Guillermo. Notion spec: `31939dd6...`. Mar 17 target PASSED — needs new date at standup.
 - **MC Phase 3:** Assigned tasks: D1 Templates, D2 Notif Prefs, D4 Memory Timeline, D6 Auth, C4 Splinter Den, C5 File Attachments
-- **ginesta.io:** Brief in Notion → https://www.notion.so/Personal-Website-Brief-www-ginesta-io-31a39dd69afd81cea223fbb9f2b2fe39. MC status: review. Waiting on Guillermo's content checklist. ⚠️ 2+ weeks in review — surface at standup.
-- **April (agent):** FULLY OPERATIONAL ✅ Deployed 2026-03-11. Discord ✅ WhatsApp ✅ Calendar ✅ agent-link ✅. Steph USER.md interview pending Guillermo.
-- **Agent Performance Review:** Framework DONE. Docs: `docs/AGENT-PERFORMANCE-REVIEWS.md`, template: `templates/agent-review-template.md`. Cadence: monthly (first Monday).
-- **gws CLI:** v0.4.4 primary tool. Gmail ✅ Calendar ✅ Drive ✅ Docs ✅ Sheets ✅ (all 9 scopes). Config: `~/.config/gws/`. gog deprecated as fallback.
-- **Agent-Link v2 (PLAN-015):** FULLY OPERATIONAL ✅ All webhooks working after v2026.3.13 (Mar 14). Worker: `/data/shared/scripts/agent-link-worker.py`.
+- **ginesta.io:** Brief in Notion → https://www.notion.so/Personal-Website-Brief-www-ginesta-io-31a39dd69afd81cea223fbb9f2b2fe39. MC status: review. Waiting Guillermo content checklist. ⚠️ 2+ weeks stalled.
+- **April (agent):** FULLY OPERATIONAL ✅ Deployed 2026-03-11. Steph USER.md interview pending Guillermo.
+- **Agent Performance Review:** Framework DONE. Docs: `docs/AGENT-PERFORMANCE-REVIEWS.md`. Cadence: monthly (first Monday).
+- **gws CLI:** v0.4.4 primary tool. All 9 scopes active. Config: `~/.config/gws/`. gog deprecated.
+- **Agent-Link v2 (PLAN-015):** FULLY OPERATIONAL ✅ Phase 2 (HMAC signing) COMPLETE 2026-03-17. Queue processor cron: `a8699238-a487-462e-bcd8-db0a344e053f`. Worker: `/data/shared/scripts/agent-link-worker.py`.
+- **PLAN-017: Behavior Enforcement** — APPROVED 2026-03-17. 6 MC tasks created. Schedule: Tue (PLAN-015 done), Wed (stale escalation, close notifications, Discord validation), Thu-Fri (PLAN-016 Todoist sync), Sat (full test).
+- **PLAN-018: Paperclip Adoption** — APPROVED 2026-03-17. 5 phases: Spike→Deploy→Migrate→Agent Onboarding→Cutover. Replaces MC tasks + agent-link task routing + PLAN-016 Todoist sync. MC task: `jn736xwrt4n2k4fptjn7p6yxnh833vp1`. Plan: `/plans/PLAN-018-paperclip-adoption.md`. Guillermo: "don't straddle MC and Paperclip."
+- **Paperclip:** DEPLOYED ✅ https://paperclip-production-83f5.up.railway.app | Railway project: `03da4228-5b2e-4b15-be2e-44f81352224f` | Fork: `gginesta/paperclip`. Login: guillermo.ginesta@gmail.com / TmntPaperclip2026!. ⚠️ Still needs `PAPERCLIP_ADMIN_EMAIL=guillermo.ginesta@gmail.com` env var + restart to auto-promote Guillermo as admin. Companies (Brinc/Cerebro/Mana/Molty's Den) not yet created.
 - **Browser relay:** PARKED. Resume when Guillermo wants Raphael to control Waalaxy.
-- **Content/Pikachu:** Tamagotchi Trap posted 2026-03-05. Next article: "What AI Agents Actually Do For Me" — not started. ⚠️ In "review" for 2+ weeks.
-- **PLAN-016:** Todoist↔MC Sync v2 — approved 2026-03-14. Implementation slipped (Sat/Sun nights missed). Needs reschedule at Monday standup.
+- **Content/Pikachu:** Tamagotchi Trap posted 2026-03-05. Next: "What AI Agents Actually Do For Me" — not started. ⚠️ 2+ weeks stalled.
+- **PLAN-016:** Todoist↔MC Sync v2 — SUPERSEDED by PLAN-018 Paperclip adoption. Keep Todoist for personal tasks only.
 
-## ⏳ Pending (as of 2026-03-16)
+## ⏳ Pending (as of 2026-03-17)
 - **Molty webchat device auth:** Bug — `dangerouslyDisableDeviceAuth` auth still enforced. Workaround: `?token=<gateway_token>` URL param.
 - **Leonardo:** CRM Pipelines Phase B PR #76 — 724 lines, 3 features. Needs Guillermo review before deploy.
 - **Raphael:** G4a test decks — awaiting Guillermo review. A8 blocked — needs live Brinc proposal deck (Feb 2026 branding) from Guillermo.
 - **April:** Steph's interview page ready to share — Guillermo sends to Steph when ready.
 - **Pikachu article:** "What AI Agents Actually Do For Me" — not started.
 - **Personal finance tasks:** Life insurance, car estimate, health insurance, joint accounts, last will, credit card — all need Guillermo to drive.
-- **PLAN-016:** Implementation phases 1-2 pending (slipped Sat). Reschedule at standup.
 - **WHOOP:** Target was Mar 17 — needs new date + CLIENT_ID/SECRET from Guillermo.
+- **Paperclip admin:** Set `PAPERCLIP_ADMIN_EMAIL=guillermo.ginesta@gmail.com` on Railway service + restart → then create companies + configure OpenClaw adapters for each agent.
 
 ## 📣 Standup System v3.0 (directive 2026-03-14)
 **Webchat-native standup. Notion task DB dropped.**
@@ -95,5 +98,9 @@
 - **Never narrate tool failures or debugging to public Discord channels.** Fail silently or report the actual problem.
 - **REG-034:** Briefing fabrication fix — script-based `morning-briefing.py` and `heartbeat-check.sh` enforce accurate output (added 2026-03-16).
 - **REG-036:** Personal task guard — `overnight_sync.py` skips personal tasks without 🦎 marker (added 2026-03-16).
+- **REG-037:** Todoist personal task guard extended — `scripts/todoist-close.sh` single gate for ALL Todoist closures; blocks Personal project tasks without 🦎 marker (added 2026-03-17).
 - **Lesson:** Documentation/regressions don't change behavior; code enforcement is required for consistency (2026-03-16).
+- **Railway healthcheck rule:** NEVER configure healthcheck in both Railway dashboard AND railway.toml. Dashboard silently overrides toml → causes 503 "service unavailable" probe failures on every fresh deploy. Fix: delete dashboard settings, use toml-only. (2026-03-17)
+- **Alert discipline:** Don't send operational noise (SIGTERM, heartbeat timeouts, internal errors) to Guillermo. Alerts only when something needs his specific input. (2026-03-17)
+- **PPEE reminder (Paperclip):** Read docs BEFORE attempting deployment. Upstream source builds may be broken — check for pre-built npm packages first. (2026-03-17)
 - **Community Context:** Brad Mills (@bradmillscan) OpenClaw issue — stale `skillsSnapshot` cache in sessions.json; not applicable to us (2026-03-16).
