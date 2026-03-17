@@ -8,10 +8,9 @@
 
 | Status | Count | List |
 |--------|-------|------|
-| ✅ COMPLETE | 8 | 001, 003, 004, 005, 006, 007, 008, 013 |
-| 🔄 IN PROGRESS | 4 | 009, 011, 014, 016 |
-| ⏳ BLOCKED/DEFERRED | 3 | 010, 012, 015 Phase 2 |
-| 📝 DRAFT | 1 | 017 |
+| ✅ COMPLETE | 9 | 001, 003, 004, 005, 006, 007, 008, 011, 013 |
+| 🔄 IN PROGRESS | 5 | 009, 014, 015, 016, 017 |
+| ⏳ BLOCKED/DEFERRED | 2 | 010, 012 |
 | 📚 ARCHIVED | 3 | PLAN-002, PLAN-004 (squad), PLAN-007, PLAN-008 |
 
 ---
@@ -113,16 +112,17 @@
 - **File:** `/plans/PLAN-014-april-full-squad-integration.md`
 - **Status:** Ready for next phase (messaging integration)
 
-### ⏳ PLAN-015: Agent-Link v2 (Reliable Fleet Communication)
+### 🔄 PLAN-015: Agent-Link v2 (Reliable Fleet Communication)
 - **Created:** 2026-03-12
-- **Status:** ✅ APPROVED | ⏳ Phase 2 (HMAC) in progress
+- **Status:** ✅ APPROVED | 🔄 Phase 2 deploying tonight (Tue)
 - **Owner:** Molty
-- **Summary:** Fleet messaging with queue + retry + health-aware routing. Core live. Phase 2 (HMAC signing) implemented 2026-03-17.
+- **Summary:** Fleet messaging with queue + retry + health-aware routing. Core live. Phase 2 (HMAC signing) deploying Tue night.
 - **File:** `/plans/PLAN-015-agent-link-v2.md`
+- **MC Task:** jn7empmf7mavh1tjad5j39aswn833f0d
 - **Progress:**
   - Phase 1: ✅ DONE (tmnt-v1 envelope + queue)
-  - Phase 2: 🔄 IN PROGRESS (HMAC signing — code done, integration pending)
-  - Phase 3: ⏳ DEFERRED (strict mode after rollout)
+  - Phase 2: 🔄 TONIGHT (HMAC integration + health fix + queue cron + e2e test)
+  - Phase 3: After 48h — strict mode (reject unsigned messages)
 
 ### 🔄 PLAN-016: Todoist↔MC Sync v2 (Full Bidirectional)
 - **Created:** 2026-03-14
@@ -132,13 +132,18 @@
 - **File:** `/plans/PLAN-016-todoist-mc-sync-v2.md`
 - **Note:** Implementation slipped Sat/Sun. Needed ASAP (MC data is stale).
 
-### 📝 PLAN-017: Behavior Enforcement Architecture
+### 🔄 PLAN-017: Behavior Enforcement Architecture
 - **Created:** 2026-03-16 → 2026-03-17
-- **Status:** 📝 DRAFT (overnight session, completed)
+- **Status:** ✅ APPROVED (2026-03-17) | 🔄 IN PROGRESS
 - **Owner:** Molty
-- **Summary:** Why documentation doesn't work. 3-layer approach: automatic (80%), retrieval (15%), human escalation (5%).
+- **Summary:** Replace documentation-only rules with code enforcement. 3-layer approach: automatic (80%), retrieval (15%), human escalation (5%).
 - **File:** `/plans/PLAN-017-behavior-enforcement.md`
-- **Note:** Honest assessment. Proposes code enforcement over docs.
+- **Schedule:**
+  - Tue night: PLAN-015 Phase 2 (HMAC fleet deploy)
+  - Wed night: 017a (stale escalation), 017b (close notifications), 017c (Discord validation)
+  - Thu-Fri: PLAN-016 (Todoist↔MC sync)
+  - Sat: Full test + close
+- **MC Tasks:** jn7c22vy..., jn73rprd..., jn7c18qa..., jn780mb8..., jn711ngj...
 
 ---
 
