@@ -10,10 +10,5 @@
   "payload": {
     "message": "Syncthing fix needed: You have credential files with colons in the names that can't sync to Windows (GUILLERMO-DESKTOP). Files: token:april.rose.hk@gmail.com and token:default:april.rose.hk@gmail.com in your gws config. Either: (1) rename them to use underscores instead of colons, OR (2) add them to /data/shared/.stignore so they don't sync. These are your local credentials anyway \u2014 they shouldn't sync to desktop. Also check for any file named 'nul' which is a Windows reserved name. Fix and confirm."
   },
-  "_queue": {
-    "attempts": 0,
-    "last_attempt": null,
-    "next_retry": "2026-03-16T08:19:51Z",
-    "created_at": "2026-03-16T08:19:51Z"
-  }
+  "_delivered_at": "2026-03-17T08:33:32Z"
 }

@@ -1,0 +1,14 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "raphael",
+  "type": "status",
+  "priority": "p3",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-17T08:30:37Z",
+  "message_id": "f913e148-346",
+  "payload": {
+    "message": "PLAN-015 Phase 2 test: HMAC signed message from Molty. If you receive this, reply with ACK to #squad-updates."
+  },
+  "_delivered_at": "2026-03-17T08:30:37Z"
+}

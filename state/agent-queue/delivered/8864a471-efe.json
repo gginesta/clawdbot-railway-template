@@ -1,0 +1,15 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "april",
+  "type": "status",
+  "priority": "p3",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-17T08:32:55Z",
+  "message_id": "8864a471-efe",
+  "payload": {
+    "message": "PLAN-015 HMAC test v2 \u2014 this message should be signed. Ignore, no action needed."
+  },
+  "signature": "hmac-sha256:f814d05b085cc0ba202c6c9fb20a3d20e1383edf5606afb9dcba2e69fa44f21a",
+  "_delivered_at": "2026-03-17T08:32:56Z"
+}
