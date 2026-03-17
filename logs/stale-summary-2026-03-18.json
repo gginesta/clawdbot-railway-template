@@ -1,0 +1,17 @@
+{
+  "date": "2026-03-18",
+  "ask_to_drop": [
+    {
+      "id": "jn7byyk7kmpsnxzr9qteyr2v9981pxg4",
+      "title": "A8 (BLOCKED Fri): Use live proposal deck as master PPTX template",
+      "status": "blocked",
+      "age_days": 22.5,
+      "assignees": "raphael",
+      "project": "brinc",
+      "desc": "When Guillermo provides live deck: download, extract slide master, use as Presentation(template_path) base in ProposalAs"
+    }
+  ],
+  "escalate_review": [],
+  "escalate_blocked": [],
+  "total": 1
+}

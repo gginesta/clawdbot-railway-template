@@ -1,0 +1,21 @@
+mc-stale-escalation — 2026-03-18 02:04 HKT
+
+=== mc-stale-escalation START 2026-03-18 02:04 HKT ===
+[DRY RUN MODE]
+Fetching MC tasks...
+Found 1 under_review/blocked tasks to check
+Escalate (review >3d): 0
+Escalate (blocked >5d): 0
+Ask to drop (>7d): 1
+
+DISCORD MESSAGE PREVIEW:
+🔔 **Stale Task Escalation — 2026-03-18** <@779143499655151646>
+
+**🗑️ Drop These? (1 tasks >7 days stale)**
+  • **A8 (BLOCKED Fri): Use live proposal deck as master PPTX template** — blocked, 22.5d | raphael | #brinc
+    _When Guillermo provides live deck: download, extract slide master, use as Presen_
+
+_Reply to unblock / drop / escalate — or silence this until tomorrow._
+
+Message written to /data/workspace/logs/stale-escalation-discord-2026-03-18.txt
+Summary JSON: /data/workspace/logs/stale-summary-2026-03-18.json
