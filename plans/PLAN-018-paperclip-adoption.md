@@ -50,82 +50,110 @@ Paperclip replaces all of this with one purpose-built system: org charts, goal h
 
 ---
 
-## Phase 0: Local Spike — Prove It Works
+## Phase 0: Spike — Prove It Works
 **Goal:** Verify Paperclip works with our OpenClaw agents before committing
 **Time:** ~2h | **When:** Now (Mar 17 afternoon)
+**Where:** Deploy directly to Railway (no local dev — we need Guillermo to see the UI)
 
-### 0.1 Install & Boot
-- [ ] Clone repo: `git clone https://github.com/paperclipai/paperclip.git`
-- [ ] Install deps: `cd paperclip && pnpm install`
-- [ ] Start dev server: `pnpm dev`
-- [ ] Verify API: `curl http://localhost:3100/api/health`
-- [ ] Verify UI loads in browser: `http://localhost:3100`
-- [ ] Note: embedded PGlite DB auto-created, no config needed
+### 0.1 Deploy Spike Instance to Railway
+- [ ] Create Railway project: "Paperclip-spike" (separate from production)
+- [ ] Add Postgres database
+- [ ] Deploy from GitHub: `paperclipai/paperclip`
+- [ ] Set env: `DATABASE_URL` → Railway Postgres
+- [ ] Set env: `NODE_ENV=production`
+- [ ] Add Railway domain
+- [ ] Verify API: `GET /api/health`
+- [ ] Verify UI loads in browser
+- [ ] ⚠️ Auth: starts as `local_trusted` (anyone with URL = board). OK for spike, NOT for production.
 
-### 0.2 Create Test Company
-- [ ] Create company "TMNT Test" via UI or API
-- [ ] Create a company-level goal: "Test fleet integration"
-- [ ] Create a project: "Spike Testing"
-- [ ] Note company ID for later steps
+### 0.2 Create Test Company + Goal
+- [ ] Create company "TMNT Test" via API: `POST /api/companies`
+- [ ] Create company-level goal: "Test fleet integration"
+- [ ] Create project: "Spike Testing"
+- [ ] Note company ID, goal ID, project ID
 
-### 0.3 Configure Test Agent (Molty)
-- [ ] Create agent "Molty" with role "Fleet Coordinator"
-- [ ] Set adapter_type: `http`
-- [ ] Configure adapter_config:
+### 0.3 Critical Test: HTTP Adapter ↔ OpenClaw Webhook Compatibility
+**This is the #1 risk. If this fails, Paperclip doesn't work for us.**
+
+OpenClaw webhooks expect:
+```json
+{"message": "...", "wakeMode": "now"}
+```
+
+Paperclip HTTP adapter sends (via `payloadTemplate`):
+```json
+{"agentId": "{{agent.id}}", "runId": "{{run.id}}"}
+```
+
+- [ ] Create agent "Molty-Test" with adapter_type: `http`
+- [ ] Configure adapter_config with `payloadTemplate` that matches OpenClaw format:
   ```json
   {
     "url": "https://ggvmolt.up.railway.app/hooks/agent",
     "method": "POST",
     "headers": {"Authorization": "Bearer <molty-webhook-token>"},
-    "timeoutMs": 15000
+    "timeoutMs": 15000,
+    "payloadTemplate": {
+      "message": "Paperclip heartbeat: You have pending tasks. Check Paperclip API for assigned work. Run ID: {{run.id}}",
+      "wakeMode": "now"
+    }
   }
   ```
-- [ ] Generate API key for Molty agent
-- [ ] Note agent ID and API key
-
-### 0.4 Test Heartbeat Invocation
+- [ ] Generate API key for test agent
 - [ ] Trigger manual heartbeat: `POST /agents/:agentId/heartbeat/invoke`
-- [ ] Verify Molty receives the webhook (check OpenClaw logs)
-- [ ] Verify the payload format — what does the agent receive?
-- [ ] Document: does the heartbeat include task context? Or just a wake signal?
+- [ ] **VERIFY:** Does Molty receive the webhook? Check OpenClaw logs.
+- [ ] **VERIFY:** Is the payload format correct? Does OpenClaw parse it?
+- [ ] **VERIFY:** What context does the heartbeat include? (`context_mode: thin` vs `fat`)
+- [ ] **DOCUMENT:** Exact payload received by OpenClaw — this determines the skill design
 
-### 0.5 Test Task Flow
-- [ ] Create a task in Paperclip: "Test task — respond with status update"
-- [ ] Assign task to Molty agent
-- [ ] Verify: can Molty read assigned tasks via `GET /companies/:id/issues?assignee=<agentId>`
-- [ ] Verify: can Molty checkout task via `POST /issues/:id/checkout`
-- [ ] Verify: can Molty post a comment via `POST /issues/:id/comments`
-- [ ] Verify: can Molty update status via `PATCH /issues/:id`
-- [ ] Verify: can Molty report cost via `POST /companies/:id/cost-events`
+**If this step fails:** Check if payloadTemplate supports our format. If not, we may need to write a proxy or contribute an OpenClaw adapter upstream. Document and assess.
 
-### 0.6 Test Budget Controls
-- [ ] Set Molty agent budget to $1/month
-- [ ] Report cost event of $0.50
+### 0.4 Test Task Flow (Agent-Side API)
+- [ ] Create task: `POST /companies/:id/issues` — "Test: respond with status"
+- [ ] Assign to Molty-Test agent
+- [ ] Test agent reads tasks: `GET /companies/:id/issues?assignee=<agentId>&status=todo`
+- [ ] Test atomic checkout: `POST /issues/:id/checkout {"agentId": "...", "expectedStatuses": ["todo"]}`
+- [ ] Test comment: `POST /issues/:id/comments {"body": "Working on this", "author_agent_id": "..."}`
+- [ ] Test status update: `PATCH /issues/:id {"status": "done"}`
+- [ ] Test cost report: `POST /companies/:id/cost-events {"agentId":"...","provider":"anthropic","model":"claude-opus-4","inputTokens":1000,"outputTokens":500,"costCents":5,"occurredAt":"..."}`
+- [ ] **DOCUMENT:** Exact API calls that work — these go into the Paperclip skill
+
+### 0.5 Test Budget Controls
+- [ ] Set agent budget: `PATCH /agents/:id/budgets {"budget_monthly_cents": 100}` ($1)
+- [ ] Report cost event of $0.50 (50 cents)
 - [ ] Verify dashboard shows spend
-- [ ] Report cost event pushing over $1
-- [ ] Verify agent auto-pauses at budget limit
+- [ ] Report cost event of $0.60 (pushing over $1)
+- [ ] Verify agent auto-pauses
+- [ ] Verify board can override and resume
 
-### 0.7 Evaluate UI
-- [ ] Dashboard — is it clear at a glance?
-- [ ] Task board — is it usable for daily work?
-- [ ] Agent status — can you see who's running/idle/paused?
+### 0.6 Evaluate UI (with Guillermo)
+- [ ] Share URL with Guillermo
+- [ ] Dashboard — clear at a glance?
+- [ ] Task board — usable for daily work?
+- [ ] Agent status — who's running/idle/paused?
 - [ ] Cost view — useful?
-- [ ] Mobile — does it work on phone?
-- [ ] Activity log — is the audit trail readable?
+- [ ] Mobile — works on phone? (Guillermo tests)
+- [ ] Activity log — audit trail readable?
+- [ ] **Guillermo's gut reaction:** would he use this daily?
 
-### 0.8 Spike Report
-- [ ] Write findings: what works, what doesn't, blockers
+### 0.7 Check Paperclip's Built-in SKILL.md
+- [ ] Does Paperclip ship a SKILL.md for agents? (Docs say yes)
+- [ ] Read it — what does it cover?
+- [ ] Can we use it as-is, or do we need to extend it for OpenClaw?
+- [ ] Decision: use theirs / extend theirs / write our own
+
+### 0.8 Spike Report + GO/NO-GO
+- [ ] Write findings: `/data/workspace/reports/paperclip-spike-report.md`
+- [ ] Document: what works, what doesn't, blockers, workarounds
 - [ ] **GO/NO-GO decision** with Guillermo
-- [ ] If GO → proceed to Phase 1
-- [ ] If NO-GO → document why, assess if fixable, keep building our own
 
 **Go criteria (ALL must pass):**
-- ✅ HTTP adapter can wake an OpenClaw agent
-- ✅ Agent can read tasks via API
-- ✅ Agent can update task status + post comments
-- ✅ Cost events work
-- ✅ Dashboard is usable
-- ❌ Any critical failure → stop, assess
+- ✅ HTTP adapter can wake an OpenClaw agent (0.3)
+- ✅ Agent can read tasks via API (0.4)
+- ✅ Agent can update task status + post comments (0.4)
+- ✅ Cost events work (0.5)
+- ✅ Dashboard is usable — Guillermo says yes (0.6)
+- ❌ Any critical failure → document, assess if fixable, decide
 
 ---
 
@@ -134,17 +162,20 @@ Paperclip replaces all of this with one purpose-built system: org charts, goal h
 **Time:** ~4h | **When:** After GO decision
 **Depends on:** Phase 0 GO
 
-### 1.1 Railway Deployment
-- [ ] Create new Railway project: "Paperclip"
-- [ ] Add Postgres database service
-- [ ] Deploy Paperclip server (Node.js)
-- [ ] Set `DATABASE_URL` env var → Railway Postgres
+### 1.1 Railway Deployment (Production)
+- [ ] **Option A:** Promote spike instance to production (rename project, keep data)
+- [ ] **Option B:** Fresh deploy with production Postgres (clean slate)
+- [ ] Decision: ______ (decide after spike)
+- [ ] Set `DATABASE_URL` → Railway Postgres (with backups enabled)
 - [ ] Set `NODE_ENV=production`
-- [ ] Configure auth mode (local_trusted for now, authenticated later)
+- [ ] ⚠️ **Switch auth mode to `authenticated`** — `local_trusted` is NOT safe for production
+- [ ] Configure board operator credentials for Guillermo
 - [ ] Verify API health: `GET /api/health`
 - [ ] Add Railway domain (e.g., `tmnt-paperclip.up.railway.app`)
 - [ ] Verify UI accessible via domain
-- [ ] Add to Tailscale if needed for private access
+- [ ] Add to Tailscale for private access (recommended — keeps dashboard off public internet)
+- [ ] Set up Railway health check (restart on failure)
+- [ ] **Estimated Railway cost:** ~$5-10/month (Node.js service + Postgres)
 
 ### 1.2 Create Companies
 - [ ] **Brinc** — Company
@@ -160,27 +191,43 @@ Paperclip replaces all of this with one purpose-built system: org charts, goal h
 
 ### 1.3 Create Goal Hierarchies
 
-**Brinc:**
-- [ ] Company goal: "Drive AP revenue and pipeline"
-  - [ ] Project: "Sales Proposals"
-    - [ ] Goal: "Close active proposals"
+**Brinc:** (52 MC tasks, 14 active)
+- [ ] Company goal: "Drive Asia Pacific revenue as Managing Partner"
+  - [ ] Project: "Proposal Engine"
+    - [ ] Goal: "Ship proposal generator v2 (Streams A-D)"
+    - *Tasks: A8 blocked deck, B2-B8 bootstrap, D2-D3 assembler*
+  - [ ] Project: "Outbound Sales"
+    - [ ] Goal: "Waalaxy pipeline automation (W1-W5)"
+    - [ ] Goal: "Reactivate on-hold deals"
   - [ ] Project: "Marketing"
-    - [ ] Goal: "Brinc brand content"
+    - [ ] Goal: "LinkedIn content batch + brand"
 
-**Cerebro:**
+**Cerebro:** (115 MC tasks, 38 active)
 - [ ] Company goal: "10 paying customers in 12 weeks"
   - [ ] Project: "CRM Platform"
-    - [ ] Goal: "Ship Phase B features"
-    - [ ] Goal: "Ship Phase C features"
-  - [ ] Project: "Growth"
-    - [ ] Goal: "Customer acquisition pipeline"
+    - [ ] Goal: "Ship v1.6 (Sprints A-D)"
+    - [ ] Goal: "Meeting Notes (Phases A-C)"
+    - [ ] Goal: "Fix onboarding camera permissions"
+  - [ ] Project: "Beta Program"
+    - [ ] Goal: "Final 20 beta selection (M1.1)"
+    - [ ] Goal: "Customer interviews + conversion (M4-M5)"
+  - [ ] Project: "Growth Features"
+    - [ ] Goal: "Referral system (Phases C-D)"
+    - [ ] Goal: "Public API + auth"
 
-**Molty's Den:**
-- [ ] Company goal: "Keep fleet running, support Guillermo"
+**Molty's Den:** (83 MC tasks across fleet+personal, 21 active)
+- [ ] Company goal: "Keep fleet running, support Guillermo's ventures"
   - [ ] Project: "Fleet Infrastructure"
-    - [ ] Goal: "Agent reliability + observability"
+    - [ ] Goal: "Paperclip migration (this plan)"
+    - [ ] Goal: "Agent reliability (PLAN-015/017)"
   - [ ] Project: "Personal Assistant"
-    - [ ] Goal: "Calendar, email, daily operations"
+    - [ ] Goal: "Daily ops (calendar, email, briefings)"
+  - [ ] Project: "Content"
+    - [ ] Goal: "TMNT article + Pikachu content"
+  
+**Mana Capital:** (1 MC task, placeholder)
+- [ ] Create company (paused)
+- [ ] Activate when Guillermo defines scope
 
 ### 1.4 Create Agents
 
@@ -240,6 +287,20 @@ Paperclip replaces all of this with one purpose-built system: org charts, goal h
 - [ ] `GET /api/tasks` from MC API
 - [ ] Count total tasks by status and project
 - [ ] Save raw export: `/data/workspace/migration/mc-tasks-export.json`
+
+**Current MC state (as of Mar 17):**
+| Status | Count |
+|--------|-------|
+| done | 180 |
+| inbox | 43 |
+| assigned | 17 |
+| in_progress | 7 |
+| review | 5 |
+| blocked | 1 |
+| **TOTAL** | **253** |
+
+**Migration scope:** Only active tasks (non-done) = **73 tasks**
+Done tasks stay in MC as archive. No point migrating completed history.
 
 ### 2.2 Build Migration Map
 
@@ -303,20 +364,26 @@ Paperclip replaces all of this with one purpose-built system: org charts, goal h
 **Critical:** Agents must be updated BEFORE cutover — they should never see both systems
 
 ### 3.1 Create Paperclip Skill (shared)
-- [ ] Write `/data/shared/skills/paperclip/SKILL.md`
-- [ ] Contents:
-  - Paperclip API base URL + auth pattern
-  - How to discover assigned tasks
-  - How to checkout a task (atomic)
-  - How to post progress comments
-  - How to update task status
-  - How to report cost events (tokens, model, cost)
-  - How to read goal context (why am I doing this?)
-  - How to create subtasks for delegation
-  - How to handle budget pause (what to do when stopped)
-- [ ] Include code examples for each operation
-- [ ] Include error handling (409 checkout conflict, 403 budget exceeded)
-- [ ] Verify skill is accessible via Syncthing on all agents
+**Note:** Paperclip ships its own SKILL.md that agents can use for runtime context discovery. Evaluate it in Phase 0.7 first.
+
+- [ ] Check Paperclip's built-in SKILL.md (Phase 0.7 finding)
+- [ ] Decision: use theirs as-is / extend / write our own
+- [ ] Write `/data/shared/skills/paperclip/SKILL.md` (or adapt theirs)
+- [ ] Contents MUST include:
+  - Paperclip API base URL + auth (Bearer agent API key)
+  - How to discover assigned tasks: `GET /companies/:id/issues?assignee=<agentId>&status=todo,in_progress`
+  - How to checkout a task (atomic): `POST /issues/:id/checkout`
+  - How to post progress comments: `POST /issues/:id/comments`
+  - How to update task status: `PATCH /issues/:id`
+  - How to report cost events: `POST /companies/:id/cost-events`
+  - How to read goal context (the "why"): goal chain on issue response
+  - How to create subtasks for delegation: `POST /companies/:id/issues` with `parent_id`
+  - How to handle budget pause: check response codes, stop work gracefully
+  - How to report session costs: use `session_status` → POST to Paperclip
+- [ ] Include curl examples for each operation
+- [ ] Include error handling (409 checkout conflict, 403 budget exceeded, 422 invalid transition)
+- [ ] Deploy to `/data/shared/skills/paperclip/` (Syncthing distributes to all agents)
+- [ ] Verify skill appears in each agent's available skills
 
 ### 3.2 Update Molty's AGENTS.md
 - [ ] Replace MC task references with Paperclip
@@ -467,12 +534,60 @@ For EACH agent (Molty, Raphael, Leonardo, April):
 
 ---
 
+## Rollback Plan
+
+If Paperclip fails after partial deployment:
+
+| Phase Failed | Rollback Action |
+|-------------|----------------|
+| **Phase 0** | Delete spike Railway project. Nothing changed. Zero cost. |
+| **Phase 1-2** | Agents still running on MC/crons (unchanged). Delete Paperclip Railway project. |
+| **Phase 3** | Revert agent AGENTS.md to pre-Paperclip versions (git revert). Agents go back to MC. |
+| **Phase 4** | Keep Paperclip running but switch agents back to MC. Debug issues, retry. |
+| **Phase 5** | Can't easily rollback after MC decommission. Don't cutover until Phase 4 is solid. |
+
+**Key safety:** We don't touch agent AGENTS.md (Phase 3) until Phases 0-2 are verified. And we don't decommission MC (Phase 5) until overnight runs work. At every stage, the old system still works.
+
+---
+
+## Cost Reporting: How It Actually Works
+
+OpenClaw doesn't natively report token usage to external APIs. The agent needs to:
+
+1. **Read its own usage** — `session_status` tool gives token counts and cost
+2. **POST to Paperclip** — `POST /companies/:id/cost-events` with model, tokens, cost
+3. **When:** At the end of each heartbeat/work session
+
+**Implementation in Paperclip skill:**
+```
+After completing work:
+1. Call session_status to get current session usage
+2. Calculate delta since last report
+3. POST cost_event to Paperclip API
+```
+
+This is approximate (session-level, not task-level), but it's infinitely better than the zero visibility we have now. We can refine per-task attribution later.
+
+---
+
+## Security Considerations
+
+| Concern | Mitigation |
+|---------|-----------|
+| **Auth mode** | Spike: `local_trusted` (OK). Production: MUST switch to `authenticated` |
+| **Public URL** | Add Tailscale serve or restrict via Railway private networking |
+| **Agent API keys** | Unique per agent, hashed at rest, revocable |
+| **Credential storage** | API keys in agent TOOLS.md (same pattern as current webhook tokens) |
+| **Data isolation** | Company-scoped by design — agents can't see other companies |
+
+---
+
 ## Risks & Mitigations
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|--------|-----------|
-| Paperclip V1 has bugs | High | Medium | Phase 0 spike tests critical paths first |
-| HTTP adapter incompatible with OpenClaw webhooks | Medium | High | Phase 0 tests this explicitly — go/no-go gate |
+| **HTTP adapter payload incompatible with OpenClaw** | **Medium** | **CRITICAL** | Phase 0.3 tests this FIRST. payloadTemplate must produce `{"message":"...","wakeMode":"now"}`. If it can't, we need a proxy or upstream PR. |
+| Paperclip V1 has bugs | High | Medium | Phase 0 spike tests critical paths first. We're early adopters. |
 | Migration loses task data | Low | Medium | Keep MC read-only as archive, export backup |
 | Agents confused during transition | Medium | Medium | Update AGENTS.md BEFORE cutover, test individually |
 | Paperclip goes down overnight | Medium | High | Self-hosted on Railway, add health check + alert |
