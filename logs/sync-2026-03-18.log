@@ -1,0 +1,48 @@
+[04:00:27] === mc-todoist-sync-v2 START ===
+[04:00:27] Fetching Todoist active tasks...
+[04:00:27]   → 11 active Todoist tasks
+[04:00:27] Fetching MC tasks...
+[04:00:28]   → 253 MC tasks
+[04:00:28] 
+[04:00:28] --- Block 1: Todoist → MC (new tasks from synced projects) ---
+[04:00:28]   MC tasks already linked to Todoist: 6
+[04:00:28]   Block 1 done: 0 tasks created in MC
+[04:00:28] 
+[04:00:28] --- Block 2: MC → Todoist (Guillermo tasks missing todoistId) ---
+[04:00:28]   MC tasks for Guillermo without Todoist link: 0
+[04:00:28]   Block 2 done: 0 tasks pushed to Todoist
+[04:00:28] 
+[04:00:28] --- Block 3: Completion sync (bidirectional) ---
+[04:00:28]   Open MC tasks with todoistId: 0
+[04:00:28]   Done MC tasks with todoistId: 6
+[04:00:28]   Block 3 done: closed 0 in MC, closed 0 in Todoist
+[04:00:28] 
+[04:00:28] === SYNC COMPLETE ===
+[04:00:28]   Block 1 (Todoist→MC):  0 tasks created in MC
+[04:00:28]   Block 2 (MC→Todoist):  0 tasks pushed to Todoist
+[04:00:28]   Block 3 (completion):  0 closed in MC, 0 closed in Todoist
+[04:00:28]   Log: /data/workspace/logs/sync-2026-03-18.log
+[17:00:10] === mc-todoist-sync-v2 START ===
+[17:00:10] Fetching Todoist active tasks...
+[17:00:11]   → 11 active Todoist tasks
+[17:00:11] Fetching MC tasks...
+[17:00:12]   → 253 MC tasks
+[17:00:12] 
+[17:00:12] --- Block 1: Todoist → MC (new tasks from synced projects) ---
+[17:00:12]   MC tasks already linked to Todoist: 6
+[17:00:12]   Block 1 done: 0 tasks created in MC
+[17:00:12] 
+[17:00:12] --- Block 2: MC → Todoist (Guillermo tasks missing todoistId) ---
+[17:00:12]   MC tasks for Guillermo without Todoist link: 0
+[17:00:12]   Block 2 done: 0 tasks pushed to Todoist
+[17:00:12] 
+[17:00:12] --- Block 3: Completion sync (bidirectional) ---
+[17:00:12]   Open MC tasks with todoistId: 0
+[17:00:12]   Done MC tasks with todoistId: 6
+[17:00:12]   Block 3 done: closed 0 in MC, closed 0 in Todoist
+[17:00:12] 
+[17:00:12] === SYNC COMPLETE ===
+[17:00:12]   Block 1 (Todoist→MC):  0 tasks created in MC
+[17:00:12]   Block 2 (MC→Todoist):  0 tasks pushed to Todoist
+[17:00:12]   Block 3 (completion):  0 closed in MC, 0 closed in Todoist
+[17:00:12]   Log: /data/workspace/logs/sync-2026-03-18.log
