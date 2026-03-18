@@ -71,6 +71,10 @@ TODAY'S TASKS:
 OVERDUE:
 4. ⚠️ Task C (due Mar 12)
 
+UPCOMING:
+• Apr 30 — 💼 Personal finance batch (7 subtasks)
+  → Life insurance, car estimate, health insurance, joint accounts, last will, credit cards
+
 SQUAD:
 • Raphael: [in_progress task or 'clear']
 • Leonardo: [in_progress task or 'clear']
@@ -83,6 +87,8 @@ TOMORROW'S FOCUS?
 
 _Reply inline: "1 done, 2 drop" etc. Then state tomorrow's focus._
 ```
+
+**Subtask display rule (REG-039):** Tasks with `parent_id` set MUST be grouped under their parent in the standup. Never show subtasks as standalone items. Show parent with count + summary line of subtasks. Example: `Apr 30 — 💼 Personal finance batch (7 subtasks)` followed by `→ Life insurance, car estimate, ...` on the next line.
 
 ### Phase 3: Guillermo replies inline
 
