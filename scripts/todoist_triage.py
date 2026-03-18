@@ -176,7 +176,9 @@ def main():
 
     tasks = fetch_tasks()
     inbox_raw = [t for t in tasks if
-                 not is_processed(t) and t.get("project_id") == INBOX_ID]
+                 not is_processed(t)
+                 and t.get("project_id") == INBOX_ID
+                 and not t.get("parent_id")]  # REG-038: NEVER touch subtasks
 
     log(f"  {len(tasks)} active tasks total")
     log(f"  {len(inbox_raw)} unprocessed inbox tasks to triage")
