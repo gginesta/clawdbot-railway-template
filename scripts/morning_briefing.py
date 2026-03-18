@@ -1183,7 +1183,11 @@ def _get_openclaw_update_summary() -> str | None:
     """Check actual OpenClaw update status by running `openclaw update status`.
     
     Returns a concise status line for the briefing.
+    Compares available version against BOTH the local install AND the fleet's
+    deployed version (from MEMORY.md) to avoid false "update available" when
+    the fleet already deployed the newer version.
     """
+    import re
     try:
         result = subprocess.run(
             ["openclaw", "update", "status"],
@@ -1193,12 +1197,20 @@ def _get_openclaw_update_summary() -> str | None:
         
         # Parse the output for update status
         if "Update available" in output or "npm update" in output:
-            # Extract version number
-            import re
+            # Extract available version number
             match = re.search(r'npm update (\d+\.\d+\.\d+)', output)
-            if match:
-                return f"Update available: v{match.group(1)}"
-            return "Update available"
+            if not match:
+                return "Update available"
+            available_version = match.group(1)
+            
+            # Get the fleet's deployed version from MEMORY.md
+            fleet_version = _get_fleet_version_from_memory()
+            
+            # If fleet is already on this version (or newer), it's up to date
+            if fleet_version and _version_gte(fleet_version, available_version):
+                return None  # Fleet already deployed this version
+            
+            return f"Update available: v{available_version}"
         elif "up to date" in output.lower() or "deps ok" in output:
             # Check if actually on latest
             if "available" not in output.lower():
@@ -1206,6 +1218,36 @@ def _get_openclaw_update_summary() -> str | None:
         return None
     except Exception:
         return None
+
+
+def _get_fleet_version_from_memory() -> str | None:
+    """Extract the fleet's deployed version from MEMORY.md."""
+    import re
+    memory_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "MEMORY.md")
+    try:
+        with open(memory_path, "r") as f:
+            text = f.read()
+        # Match patterns like "v2026.3.13 (deployed" or "Version:** v2026.3.13"
+        match = re.search(r'v(\d+\.\d+\.\d+)\s*\(deployed', text)
+        if match:
+            return match.group(1)
+        # Fallback: look for "Version:" line in fleet table
+        match = re.search(r'\*\*Version:\*\*\s*v(\d+\.\d+\.\d+)', text)
+        if match:
+            return match.group(1)
+    except Exception:
+        pass
+    return None
+
+
+def _version_gte(version_a: str, version_b: str) -> bool:
+    """Return True if version_a >= version_b (dotted numeric comparison)."""
+    try:
+        parts_a = [int(x) for x in version_a.split(".")]
+        parts_b = [int(x) for x in version_b.split(".")]
+        return parts_a >= parts_b
+    except (ValueError, AttributeError):
+        return False
 
 
 def build_message(
