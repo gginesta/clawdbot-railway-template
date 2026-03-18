@@ -37,6 +37,8 @@ NOTABLE_KW = ["birthday", "anniversary", "flight", "travel", "trip",
 
 AGENT_EMOJI = {"molty": "🦎", "raphael": "🔴", "leonardo": "🔵", "april": "🌸", "guillermo": "👤"}
 
+GWS_BIN = "gws"
+
 
 def run(cmd, timeout=15):
     try:
@@ -198,6 +200,65 @@ def _parse_agent_log(path):
         return None
 
 
+def get_email_highlights():
+    """Check ggv.molt inbox for important unread emails using gws CLI.
+    
+    Returns (ok: bool, items: list[str]).
+    ok=False means email access is broken — surface that clearly.
+    """
+    try:
+        # Pre-flight: can we reach gmail at all?
+        triage = run([GWS_BIN, "gmail", "+triage", "--max", "10"], timeout=20)
+        if not triage or "error" in triage.lower():
+            return False, ["⚠️ Email access broken — gws triage failed"]
+
+        # Parse triage output (table format: date | from | id | subject)
+        lines = triage.strip().split("\n")
+        # Find data lines (skip header + separator)
+        data_lines = []
+        past_header = False
+        for line in lines:
+            if line.startswith("──"):
+                past_header = True
+                continue
+            if past_header and line.strip():
+                data_lines.append(line)
+
+        if not data_lines:
+            return True, []  # No unread emails — that's fine
+
+        # For each email, extract sender + subject from the table
+        highlights = []
+        for row in data_lines[:5]:
+            # Split by multiple spaces (table columns)
+            parts = [p.strip() for p in row.split("  ") if p.strip()]
+            if len(parts) >= 4:
+                sender = parts[1]
+                subject = parts[3]
+                # Clean sender name
+                if "<" in sender:
+                    sender = sender.split("<")[0].strip().strip('"')
+                # Flag emails from Guillermo
+                prefix = "⭐" if "guillermo" in sender.lower() else "📧"
+                highlights.append(f"{prefix} {sender}: {subject}")
+            elif len(parts) >= 2:
+                highlights.append(f"📧 {parts[-1]}")
+
+        # Dedupe by subject
+        seen_subjects = set()
+        deduped = []
+        for h in highlights:
+            # Extract subject part after ": "
+            subj = h.split(": ", 1)[-1].lower().strip() if ": " in h else h.lower()
+            if subj not in seen_subjects:
+                seen_subjects.add(subj)
+                deduped.append(h)
+        return True, deduped[:5]
+
+    except Exception as e:
+        return False, [f"⚠️ Email check failed: {e}"]
+
+
 def blocker_summary(task):
     """Make a human-readable blocker description."""
     title = task.get("title", "?")
@@ -276,7 +337,21 @@ def main():
         lines.append(f"🌤 HK: {weather}")
         lines.append("")
 
-    # --- 7. 🔧 OpenClaw ---
+    # --- 7. 📬 Email ---
+    email_ok, email_items = get_email_highlights()
+    if not email_ok:
+        # Email is broken — say so clearly
+        lines.append("📬 " + email_items[0] if email_items else "📬 ⚠️ Email check failed")
+        lines.append("")
+    elif email_items:
+        lines.append("📬 **Email** (unread)")
+        for item in email_items[:3]:
+            lines.append(f"  → {item}")
+        if len(email_items) > 3:
+            lines.append(f"  + {len(email_items) - 3} more")
+        lines.append("")
+
+    # --- 8. 🔧 OpenClaw ---
     try:
         out = run(["openclaw", "update", "status"])
         if "Update available" in out or "npm update" in out:
