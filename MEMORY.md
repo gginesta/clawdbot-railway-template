@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-17 | Daily curation: PLAN-018 Paperclip, REG-037, Railway healthcheck rule, Cerebro fix | Target: <15KB*
+*Last updated: molty | 2026-03-18 | Daily curation: PLAN-018 Phase 2 deployment complete, REG-038/039, cron cleanup, TMN work planning | Target: <15KB*
 
 ---
 
@@ -42,13 +42,13 @@
 - **gws CLI:** v0.4.4 primary tool. All 9 scopes active. Config: `~/.config/gws/`. gog deprecated.
 - **Agent-Link v2 (PLAN-015):** FULLY OPERATIONAL ✅ Phase 2 (HMAC signing) COMPLETE 2026-03-17. Queue processor cron: `a8699238-a487-462e-bcd8-db0a344e053f`. Worker: `/data/shared/scripts/agent-link-worker.py`.
 - **PLAN-017: Behavior Enforcement** — APPROVED 2026-03-17. 6 MC tasks created. Schedule: Tue (PLAN-015 done), Wed (stale escalation, close notifications, Discord validation), Thu-Fri (PLAN-016 Todoist sync), Sat (full test).
-- **PLAN-018: Paperclip Adoption** — Phase 2 COMPLETE ✅ 2026-03-18. All agents onboarded, all heartbeats passing. Phase 3 (Migration): squad leads migrating MC tasks this week. Phase 4 (Cutover): sunset MC next week. Sub-agents (Pikachu etc.) don't go in Paperclip — only persistent Railway agents. Plan: `/plans/PLAN-018-paperclip-adoption.md`.
-- **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app | Railway project: `03da4228-5b2e-4b15-be2e-44f81352224f` | Fork: `gginesta/paperclip`. Login: guillermo.ginesta@gmail.com / TmntPaperclip2026!. 3 companies: TMNT Squad, Brinc, Cerebro. Molty = CEO in all 3. Raphael registered in Brinc, Leonardo in Cerebro, April in TMNT Squad. All agents have `PAPERCLIP_API_KEY`+`PAPERCLIP_API_URL` env vars set. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. Skill: `/data/shared/skills/paperclip/`. ⚠️ Raphael/Leonardo/April need device pairing approved on first heartbeat (same scope fix as Molty needed).
+- **PLAN-018: Paperclip Adoption** — Phase 2 COMPLETE ✅ 2026-03-18 21:47 HKT. All agents onboarded, all heartbeats passing. **4 issues filed for Phase 3:** TMN-4 (overnight cron → Paperclip), TMN-5 (briefing version check), TMN-6 (brief Raphael/Leonardo on MC migration), TMN-7 (standup → Paperclip). Phase 3 (Migration): squad leads migrating MC tasks this week. Phase 4 (Cutover): sunset MC next week. Sub-agents (Pikachu etc.) don't go in Paperclip — only persistent Railway agents. Plan: `/plans/PLAN-018-paperclip-adoption.md`.
+- **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app | Railway project: `03da4228-5b2e-4b15-be2e-44f81352224f` | Fork: `gginesta/paperclip`. Login: guillermo.ginesta@gmail.com / TmntPaperclip2026!. 3 companies: TMNT Squad, Brinc, Cerebro. Molty = CEO in all 3. Raphael registered in Brinc, Leonardo in Cerebro, April in TMNT Squad. **All agents heartbeats passing 17:13 HKT 2026-03-18** ✅. All agents have `PAPERCLIP_API_KEY`+`PAPERCLIP_API_URL` env vars set. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. Skill: `/data/shared/skills/paperclip/`.
 - **Browser relay:** PARKED. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted 2026-03-05. Next: "What AI Agents Actually Do For Me" — not started. ⚠️ 2+ weeks stalled.
 - **PLAN-016:** Todoist↔MC Sync v2 — SUPERSEDED by PLAN-018 Paperclip adoption. Keep Todoist for personal tasks only.
 
-## ⏳ Pending (as of 2026-03-17)
+## ⏳ Pending (as of 2026-03-18)
 - **Molty webchat device auth:** Bug — `dangerouslyDisableDeviceAuth` auth still enforced. Workaround: `?token=<gateway_token>` URL param.
 - **Leonardo:** CRM Pipelines Phase B PR #76 — 724 lines, 3 features. Needs Guillermo review before deploy.
 - **Raphael:** G4a test decks — awaiting Guillermo review. A8 blocked — needs live Brinc proposal deck (Feb 2026 branding) from Guillermo.
@@ -56,6 +56,7 @@
 - **Pikachu article:** "What AI Agents Actually Do For Me" — not started.
 - **Personal finance tasks:** Life insurance, car estimate, health insurance, joint accounts, last will, credit card — all need Guillermo to drive.
 - **WHOOP:** Target was Mar 17 — needs new date + CLIENT_ID/SECRET from Guillermo.
+- **Paperclip task wake model:** Overnight cron (03:00 HKT) is only execution window. After TMN-4: Paperclip-triggered heartbeats will wake agents immediately on issue assign/comment.
 - **MC Migration:** Squad leads migrating active MC tasks to Paperclip this week. MC sunset next week. Todoist stays for Guillermo's personal tasks.
 
 ## 📣 Standup System v3.0 (directive 2026-03-14)
@@ -108,3 +109,6 @@
 - **REG-039:** Standup must group subtasks under parent task. Never show subtasks as standalone items. Show parent + count + summary line. (2026-03-18)
 - **Paperclip device pairing:** `openclaw devices approve` only grants `operator.admin`. Must manually edit `paired.json` to add `operator.approvals` + `operator.pairing` scopes, then restart gateway. (2026-03-18)
 - **Paperclip API notes:** Company creation = board access only (UI). Agent role promotion works via `PATCH /api/agents/{id}` with `{"role":"ceo"}`. Issue cancellation via `PATCH /api/issues/{id}` with `{"status":"cancelled"}`. (2026-03-18)
+- **Morning briefing:** Enhanced to use `gws gmail +triage` pre-flight check. Shows top 3 unread emails (sender+subject). Cron `25bd223c` (email check 3x daily) removed — baked into morning briefing now. (2026-03-18)
+- **Cron cleanup (2026-03-18):** Removed email check (3x daily, `25bd223c`) — baked into morning briefing. Removed agent-link queue processor (every 5min, `a8699238`) — always empty. (2026-03-18)
+- **Data quality reminder (Guillermo 17:24 HKT):** "I feel we've had an issue every day." Need tighter quality gates on standup/briefing automation. (2026-03-18)
