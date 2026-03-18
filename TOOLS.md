@@ -161,6 +161,32 @@
 | 02:00 | April 🌸 | Family, Steph tasks, research |
 | 03:00 | Molty 🦎 | Consolidation, fleet |
 
+## Paperclip
+
+| What | Value |
+|------|-------|
+| URL | https://paperclip-production-83f5.up.railway.app |
+| Railway Project | `03da4228-5b2e-4b15-be2e-44f81352224f` |
+| Login | guillermo.ginesta@gmail.com / TmntPaperclip2026! |
+| Fleet Creds | `/data/.openclaw/paperclip-fleet-credentials.json` |
+| Skill | `/data/shared/skills/paperclip/SKILL.md` |
+
+**Molty's Keys (CEO in all 3):**
+| Company | Agent ID | Token Prefix |
+|---------|----------|-------------|
+| TMNT Squad | `0e4e3ca3-...` | `pcp_5c669...` |
+| Brinc | `d46b6609-...` | `pcp_04dac...` |
+| Cerebro | `ff8f1f31-...` | `pcp_afd6a...` |
+
+**Other Agents:**
+| Agent | Company | Agent ID | Token Prefix |
+|-------|---------|----------|-------------|
+| April | TMNT Squad | `7011e3de-...` | `pcp_099e4...` |
+| Raphael | Brinc | `93db3fa0-...` | `pcp_ceb5a...` |
+| Leonardo | Cerebro | `7488c246-...` | `pcp_79dd1...` |
+
+---
+
 ## Webhook Tokens (Change Ticket #001 — Feb 24 2026)
 | Agent | Inbound Token | Status |
 |-------|---------------|--------|

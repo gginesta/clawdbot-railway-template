@@ -42,8 +42,8 @@
 - **gws CLI:** v0.4.4 primary tool. All 9 scopes active. Config: `~/.config/gws/`. gog deprecated.
 - **Agent-Link v2 (PLAN-015):** FULLY OPERATIONAL ✅ Phase 2 (HMAC signing) COMPLETE 2026-03-17. Queue processor cron: `a8699238-a487-462e-bcd8-db0a344e053f`. Worker: `/data/shared/scripts/agent-link-worker.py`.
 - **PLAN-017: Behavior Enforcement** — APPROVED 2026-03-17. 6 MC tasks created. Schedule: Tue (PLAN-015 done), Wed (stale escalation, close notifications, Discord validation), Thu-Fri (PLAN-016 Todoist sync), Sat (full test).
-- **PLAN-018: Paperclip Adoption** — APPROVED 2026-03-17. 5 phases: Spike→Deploy→Migrate→Agent Onboarding→Cutover. Replaces MC tasks + agent-link task routing + PLAN-016 Todoist sync. MC task: `jn736xwrt4n2k4fptjn7p6yxnh833vp1`. Plan: `/plans/PLAN-018-paperclip-adoption.md`. Guillermo: "don't straddle MC and Paperclip."
-- **Paperclip:** DEPLOYED ✅ https://paperclip-production-83f5.up.railway.app | Railway project: `03da4228-5b2e-4b15-be2e-44f81352224f` | Fork: `gginesta/paperclip`. Login: guillermo.ginesta@gmail.com / TmntPaperclip2026!. ⚠️ Still needs `PAPERCLIP_ADMIN_EMAIL=guillermo.ginesta@gmail.com` env var + restart to auto-promote Guillermo as admin. Companies (Brinc/Cerebro/Mana/Molty's Den) not yet created.
+- **PLAN-018: Paperclip Adoption** — Phase 2 (Agent Onboarding) COMPLETE 2026-03-18. Molty operational + tested. Raphael/Leonardo/April registered, env vars set, awaiting first heartbeat device pairing. Phase 3 (Migration) next. Plan: `/plans/PLAN-018-paperclip-adoption.md`. Guillermo: "don't straddle MC and Paperclip."
+- **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app | Railway project: `03da4228-5b2e-4b15-be2e-44f81352224f` | Fork: `gginesta/paperclip`. Login: guillermo.ginesta@gmail.com / TmntPaperclip2026!. 3 companies: TMNT Squad, Brinc, Cerebro. Molty = CEO in all 3. Raphael registered in Brinc, Leonardo in Cerebro, April in TMNT Squad. All agents have `PAPERCLIP_API_KEY`+`PAPERCLIP_API_URL` env vars set. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. Skill: `/data/shared/skills/paperclip/`. ⚠️ Raphael/Leonardo/April need device pairing approved on first heartbeat (same scope fix as Molty needed).
 - **Browser relay:** PARKED. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted 2026-03-05. Next: "What AI Agents Actually Do For Me" — not started. ⚠️ 2+ weeks stalled.
 - **PLAN-016:** Todoist↔MC Sync v2 — SUPERSEDED by PLAN-018 Paperclip adoption. Keep Todoist for personal tasks only.
@@ -56,7 +56,7 @@
 - **Pikachu article:** "What AI Agents Actually Do For Me" — not started.
 - **Personal finance tasks:** Life insurance, car estimate, health insurance, joint accounts, last will, credit card — all need Guillermo to drive.
 - **WHOOP:** Target was Mar 17 — needs new date + CLIENT_ID/SECRET from Guillermo.
-- **Paperclip admin:** Set `PAPERCLIP_ADMIN_EMAIL=guillermo.ginesta@gmail.com` on Railway service + restart → then create companies + configure OpenClaw adapters for each agent.
+- **Paperclip agent pairing:** Raphael/Leonardo/April need device pairing approved on their gateways when Paperclip first pings them. Instructions sent — each agent must: `openclaw devices approve <id>` then fix scopes in `paired.json`.
 
 ## 📣 Standup System v3.0 (directive 2026-03-14)
 **Webchat-native standup. Notion task DB dropped.**
@@ -104,3 +104,6 @@
 - **Alert discipline:** Don't send operational noise (SIGTERM, heartbeat timeouts, internal errors) to Guillermo. Alerts only when something needs his specific input. (2026-03-17)
 - **PPEE reminder (Paperclip):** Read docs BEFORE attempting deployment. Upstream source builds may be broken — check for pre-built npm packages first. (2026-03-17)
 - **Community Context:** Brad Mills (@bradmillscan) OpenClaw issue — stale `skillsSnapshot` cache in sessions.json; not applicable to us (2026-03-16).
+- **REG-038:** Todoist triage must skip subtasks (`parent_id` filter). Without this, shopping list subtasks in Inbox get orphaned as standalone tasks. (2026-03-18)
+- **Paperclip device pairing:** `openclaw devices approve` only grants `operator.admin`. Must manually edit `paired.json` to add `operator.approvals` + `operator.pairing` scopes, then restart gateway. (2026-03-18)
+- **Paperclip API notes:** Company creation = board access only (UI). Agent role promotion works via `PATCH /api/agents/{id}` with `{"role":"ceo"}`. Issue cancellation via `PATCH /api/issues/{id}` with `{"status":"cancelled"}`. (2026-03-18)
