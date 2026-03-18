@@ -649,11 +649,25 @@ def _fmt_duration(mins: int | None) -> str:
 
 
 # -----------------------------
-# Mission Control — Squad Status
+# Paperclip — Squad Status (replaces Mission Control)
 # -----------------------------
 
-MC_API = "https://resilient-chinchilla-241.convex.site"
-MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+# Fleet credentials — Molty's CEO tokens per company
+PAPERCLIP_API = "https://paperclip-production-83f5.up.railway.app"
+PAPERCLIP_COMPANIES = {
+    "TMNT Squad": {
+        "id": "4d845c5e-5c36-4fc5-827d-5a577e683cdb",
+        "token": "pcp_5c66968515127b7b30f95a688a8477955f197666c7cfafbe",
+    },
+    "Brinc": {
+        "id": "bd625bc3-1268-4b0f-a591-06bf06ca8d27",
+        "token": "pcp_04dac50473349650e58d3d6cf68447e318c2fb4ec21325a4",
+    },
+    "Cerebro": {
+        "id": "722bc707-271b-43be-a073-059270e031d2",
+        "token": "pcp_afd6a737d85638e3ecf1b01ec5fb672785128e03fccd2ea0",
+    },
+}
 
 AGENT_EMOJI = {
     "molty":     "🦎",
@@ -663,45 +677,61 @@ AGENT_EMOJI = {
     "april":     "📰",
 }
 
+# Legacy MC credentials (kept for overnight report fallback only)
+MC_API = "https://resilient-chinchilla-241.convex.site"
+MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+
 
 @dataclass
 class SquadStatus:
     p0_tasks: list[dict]
     blocked_tasks: list[dict]
-    agent_tasks: dict[str, dict]   # agent_id → their top active task
-    guillermo_queue: list[dict]    # tasks assigned to guillermo, not done
+    agent_tasks: dict[str, dict]   # agent_name → their top active issue
+    guillermo_queue: list[dict]    # issues needing Guillermo's attention
 
 
 def get_squad_status(errors: list[str]) -> SquadStatus | None:
-    """Fetch a compact squad snapshot from Mission Control for the morning briefing."""
-    status, payload = _http_json(
-        f"{MC_API}/api/tasks",
-        headers={"Authorization": f"Bearer {MC_KEY}"},
-        timeout=10,
-    )
-    if status != 200 or not payload:
-        errors.append(f"MC squad status unavailable (HTTP {status})")
+    """Fetch a compact squad snapshot from Paperclip for the morning briefing.
+
+    Queries all 3 companies for active issues. Format: agent name + in_progress issues.
+    """
+    all_issues: list[dict] = []
+
+    for company_name, cfg in PAPERCLIP_COMPANIES.items():
+        url = f"{PAPERCLIP_API}/api/companies/{cfg['id']}/issues?status=todo,in_progress,blocked"
+        status, payload = _http_json(
+            url,
+            headers={"Authorization": f"Bearer {cfg['token']}"},
+            timeout=10,
+        )
+        if status != 200:
+            errors.append(f"Paperclip {company_name} unavailable (HTTP {status})")
+            continue
+        issues = payload if isinstance(payload, list) else []
+        for issue in issues:
+            issue["_company"] = company_name
+        all_issues.extend(issues)
+
+    if not all_issues:
         return None
 
-    tasks = payload if isinstance(payload, list) else payload.get("tasks", [])
+    # High-priority issues (Paperclip uses "critical", "high", "medium", "low")
+    p0 = [i for i in all_issues if i.get("priority") in ("critical",)][:3]
 
-    active = [t for t in tasks if t.get("status") not in ("done",)]
+    blocked = [i for i in all_issues if i.get("status") == "blocked"][:3]
 
-    p0 = [t for t in active if t.get("priority") == "p0"][:3]
-    blocked = [t for t in active if t.get("status") == "blocked"][:3]
-
-    # Top active task per non-Guillermo agent (in_progress first, then assigned)
+    # Top active issue per agent (in_progress first, then todo)
     agent_tasks: dict[str, dict] = {}
-    status_rank = {"in_progress": 0, "review": 1, "assigned": 2, "inbox": 3, "blocked": 4}
-    for t in sorted(active, key=lambda x: status_rank.get(x.get("status", ""), 9)):
-        for ag in t.get("assignees", []):
-            if ag != "guillermo" and ag not in agent_tasks:
-                agent_tasks[ag] = t
+    status_rank = {"in_progress": 0, "todo": 1, "blocked": 2}
+    for issue in sorted(all_issues, key=lambda x: status_rank.get(x.get("status", ""), 9)):
+        agent_key = issue.get("executionAgentNameKey") or ""
+        if agent_key and agent_key != "guillermo" and agent_key not in agent_tasks:
+            agent_tasks[agent_key] = issue
 
-    # Guillermo's open queue (he should see this)
+    # Issues needing Guillermo's review (assigned to user, not agent)
     g_queue = [
-        t for t in active
-        if "guillermo" in t.get("assignees", [])
+        i for i in all_issues
+        if i.get("assigneeUserId") and not i.get("assigneeAgentId")
     ][:5]
 
     return SquadStatus(
@@ -915,24 +945,40 @@ def get_yesterdays_focus(today: date) -> str | None:
 
 
 def get_mc_attention_items(errors: list[str]) -> tuple[list[dict], list[dict]]:
-    """Return (under_review_tasks, blocked_tasks) from MC that need Guillermo's attention."""
-    MC_API = "https://resilient-chinchilla-241.convex.site"
-    MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
-    try:
-        req = urllib.request.Request(
-            f"{MC_API}/api/tasks",
-            headers={"Authorization": f"Bearer {MC_KEY}"}
-        )
-        with urllib.request.urlopen(req, timeout=10) as r:
-            tasks = json.loads(r.read())
-        if not isinstance(tasks, list):
-            tasks = tasks.get("tasks", [])
-        under_review = [t for t in tasks if t.get("status") in ("under_review", "review")][:5]
-        blocked = [t for t in tasks if t.get("status") == "blocked"][:5]
-        return under_review, blocked
-    except Exception as e:
-        errors.append(f"MC attention items unavailable: {e}")
-        return [], []
+    """Return (under_review_issues, blocked_issues) from Paperclip that need Guillermo's attention.
+
+    Queries all 3 Paperclip companies. Maps Paperclip fields to the dict keys
+    expected by build_message() (title, assignees, description, status).
+    """
+    under_review: list[dict] = []
+    blocked: list[dict] = []
+
+    for company_name, cfg in PAPERCLIP_COMPANIES.items():
+        for status_filter, target_list in [("blocked", blocked)]:
+            url = f"{PAPERCLIP_API}/api/companies/{cfg['id']}/issues?status={status_filter}"
+            try:
+                st, payload = _http_json(
+                    url,
+                    headers={"Authorization": f"Bearer {cfg['token']}"},
+                    timeout=10,
+                )
+                if st != 200:
+                    continue
+                issues = payload if isinstance(payload, list) else []
+                for issue in issues:
+                    agent_name = issue.get("executionAgentNameKey") or "unassigned"
+                    target_list.append({
+                        "title": issue.get("title", "?"),
+                        "description": issue.get("description", ""),
+                        "status": issue.get("status", ""),
+                        "assignees": [agent_name],
+                        "_company": company_name,
+                        "_identifier": issue.get("identifier", ""),
+                    })
+            except Exception:
+                continue
+
+    return under_review[:5], blocked[:5]
 
 
 def _get_overnight_squad_report(now: datetime) -> list[str] | None:

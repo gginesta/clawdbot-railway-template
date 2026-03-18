@@ -127,9 +127,55 @@ def todoist_update(task_id, body):
     except Exception:
         return False
 
-# ── MC helpers ────────────────────────────────────────────────────────────────
+# ── Paperclip helpers (replaces MC) ───────────────────────────────────────────
 
+PAPERCLIP_API = "https://paperclip-production-83f5.up.railway.app"
+PAPERCLIP_COMPANIES = {
+    "TMNT Squad": {
+        "id": "4d845c5e-5c36-4fc5-827d-5a577e683cdb",
+        "token": "pcp_5c66968515127b7b30f95a688a8477955f197666c7cfafbe",
+    },
+    "Brinc": {
+        "id": "bd625bc3-1268-4b0f-a591-06bf06ca8d27",
+        "token": "pcp_04dac50473349650e58d3d6cf68447e318c2fb4ec21325a4",
+    },
+    "Cerebro": {
+        "id": "722bc707-271b-43be-a073-059270e031d2",
+        "token": "pcp_afd6a737d85638e3ecf1b01ec5fb672785128e03fccd2ea0",
+    },
+}
+
+
+def paperclip_issues_all() -> list[dict]:
+    """Fetch active issues from all Paperclip companies. Returns MC-compatible dicts."""
+    all_issues = []
+    for company_name, cfg in PAPERCLIP_COMPANIES.items():
+        for status_q in ["todo,in_progress,blocked"]:
+            url = f"{PAPERCLIP_API}/api/companies/{cfg['id']}/issues?status={status_q}"
+            try:
+                resp = http_get(url, {"Authorization": f"Bearer {cfg['token']}"})
+                issues = resp if isinstance(resp, list) else []
+                for issue in issues:
+                    # Map to MC-compatible keys for downstream compat
+                    agent_name = issue.get("executionAgentNameKey") or "unassigned"
+                    all_issues.append({
+                        "title": issue.get("title", ""),
+                        "status": issue.get("status", ""),
+                        "priority": issue.get("priority", "medium"),
+                        "assignees": [agent_name],
+                        "updatedAt": issue.get("updatedAt", ""),
+                        "_company": company_name,
+                        "_identifier": issue.get("identifier", ""),
+                        "_paperclip_id": issue.get("id", ""),
+                    })
+            except Exception as e:
+                print(f"  Paperclip {company_name} fetch failed: {e}")
+    return all_issues
+
+
+# Legacy MC (kept for backward compat during migration)
 def mc_tasks():
+    """Fetch tasks from MC — DEPRECATED, use paperclip_issues_all() instead."""
     try:
         resp = http_get(f"{MC_API}/api/tasks", MH)
         return resp if isinstance(resp, list) else []
@@ -489,11 +535,12 @@ def main():
             squad_lines.append(f"{emoji} {agent.capitalize()}: ⚠️ webhook failed — no update received")
     prep["squad_status"] = "\n".join(squad_lines) if squad_lines else "No pre-standup check sent"
 
-    # ── Step 3: MC → Todoist sync ──────────────────────────────────────────────
-    print("\n3. Syncing MC completions to Todoist...")
-    mc_list = mc_tasks()
+    # ── Step 3: Paperclip → Todoist sync ────────────────────────────────────────
+    print("\n3. Syncing Paperclip completions to Todoist...")
+    # Use Paperclip as primary source; MC kept as fallback during migration
+    paperclip_list = paperclip_issues_all()
     tasks_refreshed = todoist_tasks()  # refresh after triage changes
-    synced = sync_mc_completions_to_todoist(tasks_refreshed, mc_list)
+    synced = sync_mc_completions_to_todoist(tasks_refreshed, paperclip_list)
     prep["mc_synced"] = synced
     print(f"   Synced {len(synced)} completions")
 
