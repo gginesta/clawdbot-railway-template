@@ -109,3 +109,10 @@ Every time this happens, I erode trust. He has to drop what he's doing to fix my
 
 **Guillermo said:** 'Whatever you did totally broke it. So annoying constantly having to fix your mistakes'
 
+
+## 2026-03-18: Todoist subtask handling (REG-038 + REG-039)
+- **What:** Triage script orphaned 13 shopping list subtasks. Standup showed finance subtasks as standalone items.
+- **Impact:** Guillermo's shopping list broken while actively shopping. Finance tasks looked orphaned.
+- **Root cause:** No `parent_id` filter in triage. No subtask grouping in standup.
+- **Fix:** Code enforcement (parent_id filter) + standup display rule.
+- **Pattern:** This is the 3rd Todoist-related regression (REG-036, REG-037, REG-038). Guillermo: "I feel we've had an issue every day." Automated Todoist scripts need more rigorous testing before deployment.

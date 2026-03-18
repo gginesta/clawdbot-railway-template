@@ -104,6 +104,23 @@
 
 ---
 
+## REG-038: Todoist triage must skip subtasks (2026-03-18)
+**Trigger:** Hourly Todoist inbox triage (`todoist_triage.py`)
+**Failure:** Shopping list had 26 subtasks in Inbox. Triage script treated them as standalone inbox items, moved 13 out as orphaned tasks in Personal project, breaking Guillermo's shopping list mid-shopping-trip.
+**Rule:** Triage script must filter out any task with `parent_id` set. Subtasks belong to their parent — never process them independently.
+**Code enforcement:** Added `and not t.get("parent_id")` filter to `todoist_triage.py`.
+**One-liner:** `REG-038: Triage skips subtasks (parent_id filter). Never process child tasks independently.`
+
+---
+
+## REG-039: Standup must group subtasks under parent (2026-03-18)
+**Trigger:** Daily standup generation
+**Failure:** Showed 7 finance subtasks as standalone "UNSCHEDULED P1s" instead of grouped under "💼 Personal finance batch (7 subtasks)". Made it look like tasks were orphaned when they weren't.
+**Rule:** Tasks with `parent_id` must display grouped under their parent. Show parent + subtask count + one-line summary. Never list subtasks as standalone items.
+**One-liner:** `REG-039: Subtasks display under parent in standup. Never show as standalone items.`
+
+---
+
 ## REG-026: Discord @mentions require user ID format (2026-03-12)
 **Trigger:** Posting to Discord with `@Raphael` or `@Leonardo`
 **Wrong:** `@Raphael` (plain text, no ping)
