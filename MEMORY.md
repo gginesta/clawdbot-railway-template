@@ -105,5 +105,6 @@
 - **PPEE reminder (Paperclip):** Read docs BEFORE attempting deployment. Upstream source builds may be broken — check for pre-built npm packages first. (2026-03-17)
 - **Community Context:** Brad Mills (@bradmillscan) OpenClaw issue — stale `skillsSnapshot` cache in sessions.json; not applicable to us (2026-03-16).
 - **REG-038:** Todoist triage must skip subtasks (`parent_id` filter). Without this, shopping list subtasks in Inbox get orphaned as standalone tasks. (2026-03-18)
+- **REG-039:** Standup must group subtasks under parent task. Never show subtasks as standalone items. Show parent + count + summary line. (2026-03-18)
 - **Paperclip device pairing:** `openclaw devices approve` only grants `operator.admin`. Must manually edit `paired.json` to add `operator.approvals` + `operator.pairing` scopes, then restart gateway. (2026-03-18)
 - **Paperclip API notes:** Company creation = board access only (UI). Agent role promotion works via `PATCH /api/agents/{id}` with `{"role":"ceo"}`. Issue cancellation via `PATCH /api/issues/{id}` with `{"status":"cancelled"}`. (2026-03-18)
