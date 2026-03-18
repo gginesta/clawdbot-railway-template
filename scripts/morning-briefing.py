@@ -23,6 +23,21 @@ from datetime import datetime, timedelta, timezone
 HKT = timezone(timedelta(hours=8))
 MC_API = "https://resilient-chinchilla-241.convex.site"
 MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+
+# Paperclip (primary, MC sunset pending)
+PCP_URL = "https://paperclip-production-83f5.up.railway.app"
+PCP_TOKEN = "pcp_5c66968515127b7b30f95a688a8477955f197666c7cfafbe"
+PCP_COMPANIES = {
+    "tmnt":    ("4d845c5e-5c36-4fc5-827d-5a577e683cdb", "TMNT"),
+    "brinc":   ("bd625bc3-1268-4b0f-a591-06bf06ca8d27", "Brinc"),
+    "cerebro": ("722bc707-271b-43be-a073-059270e031d2", "Cerebro"),
+}
+PCP_AGENTS = {
+    "molty":    "0e4e3ca3-0cc0-4370-83ea-2e82fbf3ee1d",
+    "raphael":  "93db3fa0-5c56-4028-84b8-8a4e4d37c7a9",
+    "leonardo": "7488c246-9c65-4d73-a41e-1e0ef0f3e94e",
+    "april":    "7011e3de-62b0-4a2c-b15a-f3b6c64f0f8a",
+}
 SA_FILE = "/data/workspace/credentials/google-service-account.json"
 CALENDARS = [
     ("guillermo.ginesta@gmail.com", "Personal"),
@@ -115,6 +130,61 @@ def get_mc_tasks(status):
         return json.loads(out) if out else []
     except Exception:
         return []
+
+
+def get_paperclip_issues(statuses=None, agent_id=None, company_key=None):
+    """Query Paperclip for issues. Returns list of issue dicts.
+    If company_key given, query that company only. Otherwise query all 3.
+    statuses: comma-separated string e.g. 'blocked,in_review'
+    """
+    results = []
+    companies = [PCP_COMPANIES[company_key]] if company_key else list(PCP_COMPANIES.values())
+    params = ""
+    if statuses:
+        params += f"&status={statuses}"
+    if agent_id:
+        params += f"&assigneeAgentId={agent_id}"
+    for company_id, company_name in companies:
+        try:
+            url = f"{PCP_URL}/api/companies/{company_id}/issues?1=1{params}"
+            out = run(["curl", "-s", "-H", f"Authorization: Bearer {PCP_TOKEN}", url], timeout=10)
+            if not out:
+                continue
+            data = json.loads(out)
+            if isinstance(data, list):
+                for issue in data:
+                    issue["_company"] = company_name
+                results.extend(data)
+        except Exception:
+            continue
+    return results
+
+
+def get_paperclip_fleet_summary():
+    """Get compact per-agent open issue counts across all companies."""
+    agent_counts = {}
+    for company_id, company_name in PCP_COMPANIES.values():
+        try:
+            url = f"{PCP_URL}/api/companies/{company_id}/issues?status=todo,in_progress,blocked,in_review"
+            out = run(["curl", "-s", "-H", f"Authorization: Bearer {PCP_TOKEN}", url], timeout=10)
+            if not out:
+                continue
+            issues = json.loads(out)
+            if not isinstance(issues, list):
+                continue
+            for issue in issues:
+                aid = issue.get("assigneeAgentId", "")
+                # Find agent name from ID
+                agent_name = next((k for k, v in PCP_AGENTS.items() if v == aid), None)
+                if agent_name:
+                    if agent_name not in agent_counts:
+                        agent_counts[agent_name] = {"open": 0, "blocked": 0}
+                    agent_counts[agent_name]["open"] += 1
+                    if issue.get("status") == "blocked":
+                        agent_counts[agent_name]["blocked"] += 1
+        except Exception:
+            continue
+    return agent_counts
 
 
 def get_focus():
@@ -292,22 +362,46 @@ def main():
         lines.append("")
 
     # --- 2. 🚧 Blocked ---
-    blocked = get_mc_tasks("blocked")
-    if blocked:
+    # Pull from Paperclip (primary), fall back to MC
+    pcp_blocked = get_paperclip_issues(statuses="blocked", agent_id=PCP_AGENTS["molty"])
+    if pcp_blocked:
         lines.append("🚧 **Blocked** (needs your input)")
-        for t in blocked[:3]:
-            lines.append(f"  → {blocker_summary(t)}")
+        for t in pcp_blocked[:3]:
+            label = t.get("identifier", "")
+            title = t.get("title", "?")
+            company = t.get("_company", "")
+            lines.append(f"  → [{label}] {title} ({company})")
         lines.append("")
+    else:
+        # MC fallback (deprecated — remove after MC sunset)
+        blocked = get_mc_tasks("blocked")
+        if blocked:
+            lines.append("🚧 **Blocked** (needs your input)")
+            for t in blocked[:3]:
+                lines.append(f"  → {blocker_summary(t)}")
+            lines.append("")
 
     # --- 3. 👀 Review ---
-    review = get_mc_tasks("review")
-    if not review:
-        review = get_mc_tasks("under_review")
-    if review:
+    # Pull from Paperclip (primary), fall back to MC
+    pcp_review = get_paperclip_issues(statuses="in_review", agent_id=PCP_AGENTS["molty"])
+    if pcp_review:
         lines.append("👀 **Ready for review**")
-        for t in review[:3]:
-            lines.append(f"  → {review_summary(t)}")
+        for t in pcp_review[:3]:
+            label = t.get("identifier", "")
+            title = t.get("title", "?")
+            company = t.get("_company", "")
+            lines.append(f"  → [{label}] {title} ({company})")
         lines.append("")
+    else:
+        # MC fallback (deprecated — remove after MC sunset)
+        review = get_mc_tasks("review")
+        if not review:
+            review = get_mc_tasks("under_review")
+        if review:
+            lines.append("👀 **Ready for review**")
+            for t in review[:3]:
+                lines.append(f"  → {review_summary(t)}")
+            lines.append("")
 
     # --- 4. 📅 Today ---
     events = get_calendar_events(day_offset=0, days=1)
@@ -356,9 +450,31 @@ def main():
         out = run(["openclaw", "update", "status"])
         if "Update available" in out or "npm update" in out:
             import re
-            m = re.search(r"(\d+\.\d+\.\d+)", out)
-            ver = m.group(1) if m else "?"
-            lines.append(f"🔧 OpenClaw v{ver} available — reply /update to install")
+            # Extract current version (e.g. "stable (v2026.3.12)")
+            current_m = re.search(r"Channel\s*.*?v?(\d{4}\.\d+\.\d+)", out)
+            # Extract available version (e.g. "npm update 2026.3.13")
+            avail_m = re.search(r"npm update\s+(\d{4}\.\d+\.\d+)", out)
+            current = current_m.group(1) if current_m else "?"
+            avail = avail_m.group(1) if avail_m else "?"
+            lines.append(f"🔧 OpenClaw update: v{current} → v{avail} — reply /update to install")
+    except Exception:
+        pass
+
+    # --- Fleet status (Paperclip) ---
+    try:
+        fleet = get_paperclip_fleet_summary()
+        if fleet:
+            fleet_parts = []
+            for name in ["molty", "raphael", "leonardo", "april"]:
+                if name in fleet:
+                    counts = fleet[name]
+                    emoji = AGENT_EMOJI.get(name, "🤖")
+                    part = f"{emoji}{counts['open']}"
+                    if counts["blocked"] > 0:
+                        part += f"🚧{counts['blocked']}"
+                    fleet_parts.append(part)
+            if fleet_parts:
+                lines.append("🏭 Fleet: " + " · ".join(fleet_parts))
     except Exception:
         pass
 
