@@ -3,44 +3,60 @@
 overnight_sync.py — Post-overnight auto-sync (runs at 04:00 HKT)
 
 After all agents complete their overnight runs (Raphael 00:30, Leonardo 01:30, Molty 03:00),
-this script syncs the results back into Todoist and the Notion standup DB.
+this script syncs results back into Todoist and the Notion standup DB.
 
-What it does:
-  1. Query MC for tasks marked done in the last 10 hours (the overnight window)
-  2. For each done task: close matching open Todoist task (fuzzy match)
-  3. For each done task: update matching Notion standup row Action → "✔️ Done"
-  4. Log results + write to /data/workspace/logs/overnight-sync-YYYY-MM-DD.log
-
-Why:
-  Without this, agents complete MC tasks overnight but Todoist + Notion still show them
-  as open → morning briefing shows stale "overdue" items → Guillermo sees false workload.
+UPDATED 2026-03-19 (TMN-4): Pulls from Paperclip instead of MC.
+- Primary source: Paperclip issues with status=done, completed in last 10h
+- Todoist: close matching 🦎 tasks only (REG-036)
+- Notion standup DB: mark matching rows done
 """
 
-import difflib, json, os, sys, urllib.request, urllib.parse
+import difflib, json, os, re, sys, urllib.request, urllib.parse
 from datetime import datetime, timedelta, timezone
 
 HKT   = timezone(timedelta(hours=8))
 NOW   = datetime.now(HKT)
 TODAY = NOW.strftime("%Y-%m-%d")
-# "Yesterday" = the standup date (5PM generated page — previous calendar day at 04:00 HKT)
 YESTERDAY = (NOW - timedelta(days=1)).strftime("%Y-%m-%d")
 
 LOG_FILE = f"/data/workspace/logs/overnight-sync-{TODAY}.log"
 
 # ── Credentials ───────────────────────────────────────────────────────────────
 TODOIST_TOKEN = "9a26743814658c9e82d92aa716b46a9b0a2257c4"
-MC_API        = "https://resilient-chinchilla-241.convex.site"
-MC_TOKEN      = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
 NOTION_KEY    = "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"
 STANDUP_DB_ID = "31239dd6-9afd-81ad-8ffd-d1db09b1dd36"
 
+# Paperclip
+PCP_BASE  = "https://paperclip-production-83f5.up.railway.app"
+
+# Each company requires its own Molty token (different agent registrations per company)
+PCP_COMPANIES = {
+    "4d845c5e-5c36-4fc5-827d-5a577e683cdb": {
+        "name": "TMNT",
+        "token": "pcp_5c66968515127b7b30f95a688a8477955f197666c7cfafbe",
+        "agent_id": "0e4e3ca3-0cc0-4370-83ea-2e82fbf3ee1d",
+    },
+    "bd625bc3-1268-4b0f-a591-06bf06ca8d27": {
+        "name": "Brinc",
+        "token": "pcp_04dac50473349650e58d3d6cf68447e318c2fb4ec21325a4",
+        "agent_id": "d46b6609-f79d-4313-802c-0b64c3c1c969",
+    },
+    "722bc707-271b-43be-a073-059270e031d2": {
+        "name": "Cerebro",
+        "token": "pcp_afd6a737d85638e3ecf1b01ec5fb672785128e03fccd2ea0",
+        "agent_id": "ff8f1f31-f3eb-44c6-9cd8-a892c61d72fc",
+    },
+}
+
 TH = {"Authorization": f"Bearer {TODOIST_TOKEN}"}
-MH = {"Authorization": f"Bearer {MC_TOKEN}", "Content-Type": "application/json"}
 NH = {"Authorization": f"Bearer {NOTION_KEY}", "Notion-Version": "2022-06-28",
       "Content-Type": "application/json"}
 
-# Overnight window: last 10 hours (covers all agent runs + buffer)
-OVERNIGHT_WINDOW_MS = 10 * 60 * 60 * 1000
+# Overnight window: last 10 hours
+OVERNIGHT_WINDOW_HOURS = 10
+
+# Todoist project IDs (REG-036: personal without 🦎 = Guillermo's)
+PERSONAL_PROJECT_ID = "6M5rpGfw5jR9Qg9R"
 
 _log_lines = []
 
@@ -92,8 +108,6 @@ def fuzzy_match(query, candidates, threshold=0.55):
     """Return (best_match, score) or (None, 0)."""
     best, best_score = None, 0
     q = query.lower().strip()
-    # Strip 🦎 marker and time estimates from candidate titles
-    import re
     for c in candidates:
         c_clean = re.sub(r'\s*—\s*\d+\w+\+?\s*🦎\s*$', '', c).strip().lower()
         score = difflib.SequenceMatcher(None, q, c_clean).ratio()
@@ -101,26 +115,40 @@ def fuzzy_match(query, candidates, threshold=0.55):
             best_score, best = score, c
     return (best, best_score) if best_score >= threshold else (None, 0)
 
-# ── MC: fetch done tasks from overnight window ────────────────────────────────
+# ── Paperclip: fetch done issues from overnight window ────────────────────────
 
-def get_overnight_done_tasks():
-    """Fetch MC tasks marked done within the overnight window."""
-    cutoff_ms = int(NOW.timestamp() * 1000) - OVERNIGHT_WINDOW_MS
-    try:
-        tasks = http_get(f"{MC_API}/api/tasks", MH)
-        if not isinstance(tasks, list):
-            log("  ⚠️ MC returned unexpected format")
-            return []
-        done = [
-            t for t in tasks
-            if t.get("status") == "done"
-            and (t.get("updatedAt") or t.get("completedAt") or 0) >= cutoff_ms
-        ]
-        log(f"  MC: {len(tasks)} total tasks, {len(done)} done in overnight window")
-        return done
-    except Exception as e:
-        log(f"  ⚠️ MC fetch failed: {e}")
-        return []
+def get_overnight_done_issues():
+    """Fetch Paperclip issues completed within the overnight window across all companies."""
+    cutoff = NOW - timedelta(hours=OVERNIGHT_WINDOW_HOURS)
+    cutoff_iso = cutoff.isoformat()
+    all_done = []
+
+    for company_id, info in PCP_COMPANIES.items():
+        company_name = info["name"]
+        token = info["token"]
+        agent_id = info["agent_id"]
+        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+        try:
+            url = f"{PCP_BASE}/api/companies/{company_id}/issues?assigneeAgentId={agent_id}&status=done"
+            issues = http_get(url, headers)
+            if not isinstance(issues, list):
+                log(f"  ⚠️ Paperclip ({company_name}) returned unexpected format: {type(issues)}")
+                continue
+
+            # Filter to issues completed in the overnight window
+            recent = []
+            for issue in issues:
+                completed_at = issue.get("completedAt") or issue.get("updatedAt") or ""
+                if completed_at and completed_at >= cutoff_iso:
+                    issue["_company"] = company_name
+                    recent.append(issue)
+
+            log(f"  Paperclip ({company_name}): {len(issues)} done total, {len(recent)} in overnight window")
+            all_done.extend(recent)
+        except Exception as e:
+            log(f"  ⚠️ Paperclip ({company_name}) fetch failed: {e}")
+
+    return all_done
 
 # ── Todoist: close matching tasks ─────────────────────────────────────────────
 
@@ -144,37 +172,28 @@ def close_todoist_task(task_id):
     except Exception:
         return False
 
-# Todoist project IDs (REG-036: personal without 🦎 = Guillermo's)
-PERSONAL_PROJECT_ID = "6M5rpGfw5jR9Qg9R"
-
-def sync_to_todoist(done_mc_tasks, open_todoist_tasks):
-    """Close Todoist tasks that MC marked done overnight. Returns list of closed task titles."""
+def sync_to_todoist(done_issues, open_todoist_tasks):
+    """Close Todoist tasks that Paperclip marked done overnight. Returns list of closed task titles."""
     closed = []
     todoist_contents = [t.get("content", "") for t in open_todoist_tasks]
 
-    for mc_task in done_mc_tasks:
-        mc_title = mc_task.get("title", "")
-        match, score = fuzzy_match(mc_title, todoist_contents)
+    for issue in done_issues:
+        title = issue.get("title", "")
+        match, score = fuzzy_match(title, todoist_contents)
         if match:
-            # Find the task object
             for t in open_todoist_tasks:
                 if t.get("content", "") == match:
                     # REG-036: Personal tasks without 🦎 are Guillermo's — DO NOT TOUCH
                     if t.get("project_id") == PERSONAL_PROJECT_ID and "🦎" not in t.get("content", ""):
                         log(f"  ⏭ Skipped (personal task, no 🦎): {match[:60]}")
                         break
-                    
-                    # Safety check: only close tasks created/due in last 7 days
-                    # (avoid accidentally closing old backlog items)
-                    import re
+
                     created = t.get("created_at", "")
-                    due = (t.get("due") or {}).get("date", "")
-                    # Always safe to close if it's a recent task or the match is very strong
                     if score >= 0.75 or created >= YESTERDAY:
                         ok = close_todoist_task(t["id"])
                         if ok:
                             closed.append(f"{match[:60]} (score: {score:.0%})")
-                            log(f"  ✅ Todoist closed: {match[:60]} [MC: {mc_title[:50]}] ({score:.0%})")
+                            log(f"  ✅ Todoist closed: {match[:60]} [PCP: {title[:50]}] ({score:.0%})")
                         else:
                             log(f"  ⚠️ Todoist close failed: {match[:60]}")
                     else:
@@ -186,7 +205,6 @@ def sync_to_todoist(done_mc_tasks, open_todoist_tasks):
 # ── Notion: update standup DB rows ───────────────────────────────────────────
 
 def get_standup_rows_for_date(standup_date: str):
-    """Fetch all standup DB rows for a given standup date."""
     body = {
         "filter": {
             "property": "Standup Date",
@@ -207,19 +225,16 @@ def get_standup_rows_for_date(standup_date: str):
         return []
 
 def get_row_title(row):
-    """Extract task title from a Notion DB row."""
     title_prop = row.get("properties", {}).get("Task", {})
     parts = title_prop.get("title", [])
     return "".join(p.get("plain_text", "") for p in parts).strip()
 
 def get_row_action(row):
-    """Get current Action select value."""
     action_prop = row.get("properties", {}).get("Action", {})
     sel = action_prop.get("select")
     return sel.get("name") if sel else None
 
 def mark_notion_row_done(page_id: str):
-    """Update Action → '✔️ Done' on a Notion standup DB row."""
     body = {
         "properties": {
             "Action": {"select": {"name": "✔️ Done"}}
@@ -228,26 +243,24 @@ def mark_notion_row_done(page_id: str):
     resp = http_patch(f"https://api.notion.com/v1/pages/{page_id}", NH, body)
     return bool(resp.get("id"))
 
-def sync_to_notion(done_mc_tasks, standup_rows):
-    """Update Notion standup rows where MC task completed overnight. Returns list of updated rows."""
+def sync_to_notion(done_issues, standup_rows):
     updated = []
     row_titles = [get_row_title(r) for r in standup_rows]
 
-    for mc_task in done_mc_tasks:
-        mc_title = mc_task.get("title", "")
-        match, score = fuzzy_match(mc_title, row_titles)
+    for issue in done_issues:
+        title = issue.get("title", "")
+        match, score = fuzzy_match(title, row_titles)
         if match:
             for row in standup_rows:
                 if get_row_title(row) == match:
                     current_action = get_row_action(row)
-                    # Don't overwrite if already actioned (Done/Drop)
                     if current_action in ("✔️ Done", "🗑️ Drop", "📦 Archive"):
                         log(f"  ⏭ Notion row already actioned ({current_action}): {match[:50]}")
                         break
                     ok = mark_notion_row_done(row["id"])
                     if ok:
                         updated.append(f"{match[:60]} (score: {score:.0%})")
-                        log(f"  ✅ Notion row → Done: {match[:60]} [MC: {mc_title[:50]}] ({score:.0%})")
+                        log(f"  ✅ Notion row → Done: {match[:60]} [PCP: {title[:50]}] ({score:.0%})")
                     else:
                         log(f"  ⚠️ Notion update failed: {match[:60]}")
                     break
@@ -258,21 +271,22 @@ def sync_to_notion(done_mc_tasks, standup_rows):
 
 def main():
     log(f"overnight_sync — {TODAY} {NOW.strftime('%H:%M')} HKT")
-    log(f"Overnight window: last 10 hours (cutoff: {(NOW - timedelta(hours=10)).strftime('%H:%M')} HKT)")
+    log(f"Source: Paperclip (MC deprecated)")
+    log(f"Overnight window: last {OVERNIGHT_WINDOW_HOURS} hours (cutoff: {(NOW - timedelta(hours=OVERNIGHT_WINDOW_HOURS)).strftime('%H:%M')} HKT)")
     log(f"Syncing against standup date: {YESTERDAY}\n")
 
-    # 1. Fetch MC done tasks from overnight window
-    log("1. Fetching MC overnight completions...")
-    done_mc = get_overnight_done_tasks()
+    # 1. Fetch Paperclip done issues from overnight window
+    log("1. Fetching Paperclip overnight completions...")
+    done_issues = get_overnight_done_issues()
 
-    if not done_mc:
+    if not done_issues:
         log("  Nothing completed overnight — nothing to sync.")
         flush_log()
         return 0
 
-    for t in done_mc:
-        log(f"  • [{t.get('assignees',['?'])[0] if t.get('assignees') else '?'}] "
-            f"{t.get('title','?')[:60]} (updated: {t.get('updatedAt', 0)})")
+    for issue in done_issues:
+        log(f"  • [{issue.get('_company','?')}] [{issue.get('identifier','?')}] "
+            f"{issue.get('title','?')[:60]} (completed: {issue.get('completedAt', issue.get('updatedAt', '?'))})")
 
     # 2. Fetch open Todoist tasks
     log("\n2. Fetching open Todoist tasks...")
@@ -281,7 +295,7 @@ def main():
 
     # 3. Sync to Todoist
     log("\n3. Closing completed tasks in Todoist...")
-    closed = sync_to_todoist(done_mc, todoist_tasks)
+    closed = sync_to_todoist(done_issues, todoist_tasks)
 
     # 4. Fetch Notion standup rows
     log(f"\n4. Fetching Notion standup rows for {YESTERDAY}...")
@@ -289,13 +303,13 @@ def main():
 
     # 5. Sync to Notion
     log("\n5. Updating Notion standup rows...")
-    updated_notion = sync_to_notion(done_mc, standup_rows)
+    updated_notion = sync_to_notion(done_issues, standup_rows)
 
     # 6. Summary
     log(f"\n── Summary ──────────────────────────────────")
-    log(f"  MC tasks done overnight:   {len(done_mc)}")
-    log(f"  Todoist tasks closed:      {len(closed)}")
-    log(f"  Notion rows marked done:   {len(updated_notion)}")
+    log(f"  Paperclip issues done overnight: {len(done_issues)}")
+    log(f"  Todoist tasks closed:            {len(closed)}")
+    log(f"  Notion rows marked done:         {len(updated_notion)}")
     if closed:
         for c in closed:
             log(f"    Todoist: {c}")
