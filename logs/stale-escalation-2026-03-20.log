@@ -1,0 +1,9 @@
+mc-stale-escalation — 2026-03-20 01:00 HKT
+
+=== mc-stale-escalation START 2026-03-20 01:00 HKT ===
+Fetching MC tasks...
+Found 0 under_review/blocked tasks to check
+Escalate (review >3d): 0
+Escalate (blocked >5d): 0
+Ask to drop (>7d): 0
+✅ No stale tasks — all clear

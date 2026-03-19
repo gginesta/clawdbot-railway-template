@@ -1,0 +1,29 @@
+overnight_sync — 2026-03-19 04:00 HKT
+
+overnight_sync — 2026-03-19 04:00 HKT
+Source: Paperclip (MC deprecated)
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-18
+
+1. Fetching Paperclip overnight completions...
+  Paperclip (TMNT): 5 done total, 3 in overnight window
+  Paperclip (Brinc): 0 done total, 0 in overnight window
+  Paperclip (Cerebro): 0 done total, 0 in overnight window
+  • [TMNT] [TMN-4] Update overnight cron to pull from Paperclip instead of MC (completed: 2026-03-18T18:11:43.347Z)
+  • [TMNT] [TMN-7] Update daily standup to pull squad status from Paperclip (completed: 2026-03-18T18:08:35.121Z)
+  • [TMNT] [TMN-5] Fix morning briefing OpenClaw version check (completed: 2026-03-18T18:05:25.870Z)
+
+2. Fetching open Todoist tasks...
+  11 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-18...
+  Notion: 0 rows for standup date 2026-03-18
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  Paperclip issues done overnight: 3
+  Todoist tasks closed:            0
+  Notion rows marked done:         0
