@@ -45,9 +45,15 @@ When you learn something reusable:
 - **Project-specific** → Update your project's KB folder
 - **Cross-project insight** → Flag to Molty: `LEARNING: [topic] — [insight]`
 
-### 2. Molty Curates (Weekly)
+### 2. Molty Curates (Nightly + Weekly)
 
-Every week, Molty:
+**Nightly (23:00 HKT) — PARA Demotion:**
+When MEMORY.md exceeds 15KB, items are demoted here before removal:
+- Classify each item: Project / Area / Resource / Archive
+- Write to appropriate vault path with metadata header
+- Only remove from MEMORY.md after vault write confirms
+
+**Weekly (Monday 01:00 HKT) — Deep Curation:**
 - Reviews flagged learnings from all team leads
 - Migrates insights to appropriate PARA locations
 - Cross-pollinates: shares relevant learnings across agents

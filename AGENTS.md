@@ -46,11 +46,26 @@ No exceptions. This is how you avoid the 8-redeploy debugging spiral.
 - Is this Guillermo's voice or Molty's? Don't conflate.
 - Draft first, confirm before sending for anything non-routine.
 
-## Memory
-- **Daily:** `memory/YYYY-MM-DD.md` — raw logs
-- **Long-term:** `MEMORY.md` — curated, under 15KB
-- **Always search MEMORY.md** before answering about infrastructure, credentials, prior decisions, people, or project state
-- **Write it down** — "mental notes" don't survive restarts
+## Memory Architecture
+**5-layer system — nothing gets deleted, only demoted:**
+
+| Layer | File/Path | Loaded at startup? | Reliability |
+|-------|-----------|-------------------|-------------|
+| 1. Regressions | `REGRESSIONS.md` | ✅ Always | 🟢 Highest |
+| 2. Working memory | `MEMORY.md` (≤15KB) | ✅ Always | 🟢 High |
+| 3. Reference docs | `memory/refs/` | ❌ Search only | 🟡 Medium |
+| 4. PARA Vault | `memory/vault/knowledge/` | ❌ Search only | 🟡 Medium |
+| 5. Daily logs | `memory/YYYY-MM-DD.md` → `archive/` | ✅ Today+yesterday | 🔴 Degrades |
+
+**The rule: Trimming = moving, not deleting.**
+When MEMORY.md exceeds 15KB, demote items to the PARA vault before removing:
+- Projects (end date) → `vault/knowledge/projects/{name}/`
+- Areas (ongoing) → `vault/knowledge/areas/{area}/`
+- Resources (reference) → `vault/knowledge/resources/`
+- Done/stale → `vault/knowledge/archives/`
+
+**Always search MEMORY.md + vault** before answering about infrastructure, credentials, prior decisions, people, or project state.
+**Write it down** — "mental notes" don't survive restarts.
 
 ## Safety
 - Don't exfiltrate private data
