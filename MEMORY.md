@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-18 | Daily curation: PLAN-018 Phase 2 deployment complete, REG-038/039, cron cleanup, TMN work planning | Target: <15KB*
+*Last updated: molty | 2026-03-19 | TMN-4/5/7 complete (Paperclip migration), PARA demotion protocol documented | Target: <15KB*
 
 ---
 
@@ -42,7 +42,7 @@
 - **gws CLI:** v0.4.4 primary tool. All 9 scopes active. Config: `~/.config/gws/`. gog deprecated.
 - **Agent-Link v2 (PLAN-015):** FULLY OPERATIONAL ✅ Phase 2 (HMAC signing) COMPLETE 2026-03-17. Queue processor cron: `a8699238-a487-462e-bcd8-db0a344e053f`. Worker: `/data/shared/scripts/agent-link-worker.py`.
 - **PLAN-017: Behavior Enforcement** — APPROVED 2026-03-17. 6 MC tasks created. Schedule: Tue (PLAN-015 done), Wed (stale escalation, close notifications, Discord validation), Thu-Fri (PLAN-016 Todoist sync), Sat (full test).
-- **PLAN-018: Paperclip Adoption** — Phase 2 COMPLETE ✅ 2026-03-18 21:47 HKT. All agents onboarded, all heartbeats passing. **4 issues filed for Phase 3:** TMN-4 (overnight cron → Paperclip), TMN-5 (briefing version check), TMN-6 (brief Raphael/Leonardo on MC migration), TMN-7 (standup → Paperclip). Phase 3 (Migration): squad leads migrating MC tasks this week. Phase 4 (Cutover): sunset MC next week. Sub-agents (Pikachu etc.) don't go in Paperclip — only persistent Railway agents. Plan: `/plans/PLAN-018-paperclip-adoption.md`.
+- **PLAN-018: Paperclip Adoption** — Phase 2 COMPLETE ✅ 2026-03-18 21:47 HKT. Phase 3 (Migration): **TMN-4 ✅ overnight cron migrate (2026-03-19), TMN-5 ✅ briefing version check (2026-03-19), TMN-7 ✅ standup pull Paperclip status (2026-03-19)**. TMN-6 pending (brief Raphael/Leonardo). Squad leads migrating MC tasks this week. Phase 4 (Cutover): sunset MC next week. Sub-agents (Pikachu etc.) don't go in Paperclip — only persistent Railway agents. Plan: `/plans/PLAN-018-paperclip-adoption.md`.
 - **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app | Railway project: `03da4228-5b2e-4b15-be2e-44f81352224f` | Fork: `gginesta/paperclip`. Login: guillermo.ginesta@gmail.com / TmntPaperclip2026!. 3 companies: TMNT Squad, Brinc, Cerebro. Molty = CEO in all 3. Raphael registered in Brinc, Leonardo in Cerebro, April in TMNT Squad. **All agents heartbeats passing 17:13 HKT 2026-03-18** ✅. All agents have `PAPERCLIP_API_KEY`+`PAPERCLIP_API_URL` env vars set. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. Skill: `/data/shared/skills/paperclip/`.
 - **Browser relay:** PARKED. Resume when Guillermo wants Raphael to control Waalaxy.
 - **Content/Pikachu:** Tamagotchi Trap posted 2026-03-05. Next: "What AI Agents Actually Do For Me" — not started. ⚠️ 2+ weeks stalled.
