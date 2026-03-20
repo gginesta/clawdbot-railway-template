@@ -1,4 +1,5 @@
 # PLAN-009: Phase 3 Feature Sprint
+**Status:** 🚫 CLOSED (2026-03-20) — Superseded by PLAN-018 (Paperclip) and ongoing MC work
 **Created:** 2026-03-01 | **Owner:** Molty | **Target:** Tonight 03:00 HKT
 
 ---

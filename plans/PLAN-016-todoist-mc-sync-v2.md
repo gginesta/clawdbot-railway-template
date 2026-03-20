@@ -1,6 +1,6 @@
 # PLAN-016: Todoist↔MC Sync v2
 
-**Status:** Approved for implementation
+**Status:** 🚫 CLOSED (2026-03-20) — Superseded by PLAN-018 (Paperclip adoption). Todoist stays for personal tasks only.
 **Created:** 2026-03-14
 **Owner:** Molty
 
