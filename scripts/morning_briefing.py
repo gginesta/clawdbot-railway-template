@@ -482,6 +482,9 @@ class Task:
     due_dt: datetime | None
     due_date: date | None
     duration_min: int | None
+    parent_id: str | None = None
+    subtask_count: int = 0
+    subtask_summary: str = ""
 
 
 def _todoist_auth_headers(token: str) -> dict:
@@ -515,9 +518,27 @@ def get_todoist(token: str, *, errors: list[str]) -> list[Task]:
 
     tasks_raw = _unwrap_todoist(_todoist_get(f"{base}/tasks?limit=200", token, errors) or [])
 
+    # REG-038/REG-039: Group subtasks under parent tasks, never show standalone
+    # Step 1: Index all tasks by ID, track parent→children relationships
+    all_by_id: dict[str, dict] = {}
+    children_of: dict[str, list[dict]] = {}  # parent_id → list of child raw dicts
+    for t in tasks_raw:
+        tid = str(t.get("id", ""))
+        all_by_id[tid] = t
+        parent_id = t.get("parent_id")
+        if parent_id:
+            parent_id = str(parent_id)
+            children_of.setdefault(parent_id, []).append(t)
+
     tasks: list[Task] = []
     for t in tasks_raw:
         prio = int(t.get("priority", 1))
+        parent_id = t.get("parent_id")
+
+        # Skip subtasks entirely — they'll be counted under their parent
+        if parent_id:
+            continue
+
         if prio < 3:
             continue  # only P1 (4) and P2 (3)
 
@@ -549,8 +570,19 @@ def get_todoist(token: str, *, errors: list[str]) -> list[Task]:
             except Exception:
                 duration_min = None
 
-        pid = str(t.get("project_id", ""))
-        pname = proj_map.get(pid, "(No project)")
+        pid_str = str(t.get("project_id", ""))
+        pname = proj_map.get(pid_str, "(No project)")
+
+        # Count and summarize subtasks
+        tid = str(t.get("id", ""))
+        kids = children_of.get(tid, [])
+        subtask_count = len(kids)
+        subtask_summary = ""
+        if kids:
+            names = [k.get("content", "?")[:25] for k in kids[:3]]
+            subtask_summary = ", ".join(names)
+            if len(kids) > 3:
+                subtask_summary += f", +{len(kids) - 3} more"
 
         tasks.append(
             Task(
@@ -560,6 +592,9 @@ def get_todoist(token: str, *, errors: list[str]) -> list[Task]:
                 due_dt=due_dt,
                 due_date=due_d,
                 duration_min=duration_min,
+                parent_id=None,
+                subtask_count=subtask_count,
+                subtask_summary=subtask_summary,
             )
         )
 
