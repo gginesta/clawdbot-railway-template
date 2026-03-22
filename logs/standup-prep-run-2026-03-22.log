@@ -1,0 +1,29 @@
+
+🦎 Standup prep — 2026-03-22 08:30 HKT
+
+Last standup: 2026-03-13
+
+1. Fetching Todoist tasks...
+   13 active tasks
+   0 unprocessed inbox tasks
+   Processed 0 new tasks
+
+2. Pinging squad agents...
+  Webhook raphael: ✅ sent
+  Webhook leonardo: ✅ sent
+   Waiting 30 seconds for responses...
+   Proceeding regardless of responses
+
+3. Syncing Paperclip completions to Todoist...
+   Synced 0 completions
+
+3b. Syncing Todoist completions to Notion (REG-026)...
+  Todoist completed fetch failed: HTTP Error 410: Gone
+   No Todoist completions today
+   Synced 0 completions to Notion
+
+4. Scanning ggv.molt inbox...
+  Email: 0 unread, 0 highlights
+
+✅ Prep state written to /data/workspace/logs/standup-prep-2026-03-22.json
+   Summary: All caught up — no new items to process
