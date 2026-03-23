@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-23 | Full memory audit — purged stale items, added verification dates, REG-041 | Target: <15KB*
+*Last updated: molty | 2026-03-23 | Paperclip migration COMPLETE — all MC tasks migrated, fleet creds fixed | Target: <15KB*
 
 ---
 
@@ -37,18 +37,22 @@
 - **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-23]
 - **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-23]
 - **ginesta.io:** Notion brief → https://www.notion.so/Personal-Website-Brief-www-ginesta-io-31a39dd69afd81cea223fbb9f2b2fe39. Guillermo wants to tackle today (2026-03-23). [verified: 2026-03-23]
-- **PLAN-018: Paperclip Adoption** — Phases 0-2 DONE ✅. Phase 3 partially done (TMN-4,5,7 ✅). **Paperclip shows: "Migrate active MC tasks" still BLOCKED, "Fleet config management" IN_REVIEW.** TMN-6 (brief R/L) not done. Guillermo wants migration finished today. [verified: 2026-03-23]
-- **Paperclip:** Running at https://paperclip-production-83f5.up.railway.app. 3 companies, all agents registered. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. [verified: 2026-03-23]
-- **Leonardo PR #76:** CLOSED (not merged) since 2026-03-14. Status unknown — may have been superseded. [verified: 2026-03-23]
+- **PLAN-018: Paperclip Adoption** — COMPLETE ✅ All phases done. MC tasks migrated 2026-03-23: 24 Cerebro tasks (CER-109→CER-132), 2 TMNT ops tasks (TMN-10, TMN-11). MC can be decommissioned. [verified: 2026-03-23]
+- **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json` (fixed Leonardo/April agent IDs 2026-03-23). [verified: 2026-03-23]
+
+| Company | Agents | Active Issues |
+|---------|--------|--------------|
+| TMNT Squad | Molty (CEO), April | 2 |
+| Brinc | Molty (CEO), Raphael (CTO) | 1 (BRI-44 blocked) |
+| Cerebro | Molty (CEO), Leonardo (CTO) | 121 |
 
 ## ✅ Completed (archive candidates)
 - **April (agent):** FULLY OPERATIONAL ✅ Deployed 2026-03-11.
-- **Agent-Link v2 (PLAN-015):** FULLY OPERATIONAL ✅ HMAC signing complete 2026-03-17. Queue processor cron removed (always empty).
-- **Content/Pikachu:** "What AI Agents Actually Do For Me" — DONE ✅ https://www.notion.so/30b39dd69afd81c49baaf35c4ef1e269
-- **Agent Performance Review:** Framework DONE. Docs: `docs/AGENT-PERFORMANCE-REVIEWS.md`.
-- **gws CLI:** v0.4.4, 9 scopes active. gog deprecated.
-- **PLAN-016:** SUPERSEDED by PLAN-018. Todoist for personal tasks only.
-- **PLAN-017:** APPROVED but schedule (week of Mar 17) passed. Status unclear — needs audit. [verified: 2026-03-23]
+- **Agent-Link v2 (PLAN-015):** FULLY OPERATIONAL ✅
+- **Content/Pikachu:** "What AI Agents Actually Do For Me" — DONE ✅ (edited 2026-03-23, Cerebro removed, new visuals)
+- **PLAN-016:** SUPERSEDED by PLAN-018.
+- **PLAN-017:** SUPERSEDED — behavior enforcement tasks closed with MC sunset.
+- **MC → Paperclip migration:** COMPLETE ✅ 2026-03-23. All 44 active MC tasks categorized: 24 migrated to Cerebro, 2 to TMNT, 6 MC features cancelled (sunset), 11 obsolete closed, 1 closed (REG-010).
 
 ## 🅿️ Parked
 - **WHOOP:** No clear use case. Idea in Todoist. [verified: 2026-03-23]
