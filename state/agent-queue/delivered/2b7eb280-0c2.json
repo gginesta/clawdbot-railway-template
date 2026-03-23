@@ -1,0 +1,15 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "april",
+  "type": "task",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-21T01:51:07Z",
+  "message_id": "2b7eb280-0c2",
+  "payload": {
+    "message": "Please apply this compaction config upgrade. Run this exact config.patch via your gateway tool:\n\n{\"agents\":{\"defaults\":{\"compaction\":{\"mode\":\"safeguard\",\"memoryFlush\":{\"enabled\":true},\"qualityGuard\":{\"enabled\":true,\"maxRetries\":1},\"postCompactionSections\":[\"Every Session\",\"Safety\"],\"recentTurnsPreserve\":5}}}}\n\nThis enables: memory flush before compaction, quality guard with 1 retry, post-compaction section re-injection, and 5 recent turns preserved. Approved by Guillermo."
+  },
+  "signature": "hmac-sha256:5e77f26fc2db5b5ddb14c783fc7d7d57c3a28d07c0dd6e45b99f68c5736c2740",
+  "_delivered_at": "2026-03-21T01:51:07Z"
+}

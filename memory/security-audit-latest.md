@@ -1,11 +1,11 @@
-OpenClaw Security Audit — March 16, 2026 03:00 HKT
+OpenClaw Security Audit — March 23, 2026 03:00 HKT
 Summary: 2 critical · 4 warn · 3 info
 
 CRITICAL
 hooks.allowed_agent_ids_unrestricted Hook agent routing allows any configured agent
   hooks.allowedAgentIds is unset or includes '*', so authenticated hook callers may route to any configured agent id.
   Fix: Set hooks.allowedAgentIds to an explicit allowlist (for example, ["hooks", "main"]) or [] to deny explicit agent routing.
-  [NEW — NOT IN ACCEPTED RISKS]
+  [UNRESOLVED — flagged continuously since Mar 16]
 
 skills.code_safety Skill "notion-enhanced" contains dangerous code patterns
   Found 1 critical issue(s) in 9 scanned file(s) under /data/workspace/skills/notion-enhanced:
@@ -17,12 +17,12 @@ WARN
 gateway.control_ui.host_header_origin_fallback DANGEROUS: Host-header origin fallback enabled
   gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback=true enables Host-header origin fallback for Control UI/WebChat websocket checks and weakens DNS rebinding protections.
   Fix: Disable gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback and configure explicit gateway.controlUi.allowedOrigins.
-  [NEW — NOT IN ACCEPTED RISKS]
+  [UNRESOLVED — flagged continuously since Mar 16]
 
 config.insecure_or_dangerous_flags Insecure or dangerous config flags enabled
   Detected 1 enabled flag(s): gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback=true.
   Fix: Disable these flags when not actively debugging, or keep deployment scoped to trusted/local-only networks.
-  [ACCEPTED RISK — flagged due to dangerouslyDisableDeviceAuth=true reference]
+  [ACCEPTED RISK — dangerouslyDisableDeviceAuth=true reference]
 
 models.weak_tier Some configured models are below recommended tiers
   Smaller/older models are generally more susceptible to prompt injection and tool misuse.
@@ -57,50 +57,51 @@ config.secrets.hooks_token_in_config Hooks token is stored in config
 
 ---
 
-## Comparison: March 9 → March 16, 2026
+## Comparison: March 16 → March 23, 2026 (7-day delta)
 
-### Summary Changes
-- **Critical findings:** 2 → 2 (stable)
-- **Warn findings:** 4 → 4 (stable)
-- **Info findings:** 3 → 3 (unchanged)
+### Summary Status
+- **Critical findings:** 2 → 2 (STABLE)
+- **Warn findings:** 4 → 4 (STABLE)
+- **Info findings:** 3 → 3 (STABLE)
+- **Overall posture:** No improvement or degradation
 
-### Issues Resolved ✅
-- **gateway.control_ui.device_auth_disabled** (CRITICAL) — GONE
-  - Was marked ACCEPTED RISK on Mar 9, now not appearing
-  - dangerouslyDisableDeviceAuth is no longer in current config
-- **gateway.trusted_proxies_missing** (WARN) — GONE
-  - No longer flagged (loopback binding only, reverse proxy config not required)
+### Issues Still Outstanding (Not Resolved)
 
-### ⚠️ NEW Findings (NOT in Accepted Risks)
+**🔴 CRITICAL (2 unresolved):**
+1. **hooks.allowed_agent_ids_unrestricted** [flagged Mar 16, UNRESOLVED]
+   - Authenticated hook callers can route to ANY configured agent
+   - hooks.allowedAgentIds is unset or '*'
+   - Requires explicit allowlist config
 
-**🔴 CRITICAL:**
-1. **hooks.allowed_agent_ids_unrestricted**
-   - Impact: Authenticated hook callers can route to ANY configured agent id
-   - Current state: hooks.allowedAgentIds is unset or contains '*'
-   - Fix: Set hooks.allowedAgentIds to explicit allowlist ["hooks", "main"] or [] to deny explicit agent routing
-   - **Action required:** Review webhook routing configuration and restrict allowedAgentIds
+2. **skills.code_safety notion-enhanced** [ongoing, ACCEPTED RISK]
+   - env-harvesting pattern in scripts/notion-utils.js:14
+   - Marked as accepted risk (skill is in use)
 
-**🟡 WARN:**
-1. **gateway.control_ui.host_header_origin_fallback**
-   - Impact: Host-header origin fallback enabled, weakens DNS rebinding protections
-   - Current state: gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback=true
-   - Fix: Disable the flag and configure explicit gateway.controlUi.allowedOrigins
-   - **Action required:** Decide if this flag is still needed; disable if not actively debugging
+**🟡 WARN (1 unresolved, 3 accepted):**
+1. **gateway.control_ui.host_header_origin_fallback** [flagged Mar 16, UNRESOLVED]
+   - dangerouslyAllowHostHeaderOriginFallback=true
+   - Weakens DNS rebinding protections
+   - Requires config change to disable
 
-### Persistent Issues (Accepted Risks)
-✓ skills.code_safety notion-enhanced env-harvesting (accepted)
-✓ models.weak_tier Haiku (accepted — Sonnet 4 weak tier warning)
-✓ security.trust_model.multi_user_heuristic (accepted — Discord allowlist warning)
-✓ config.insecure_or_dangerous_flags (accepted)
+2. ✓ config.insecure_or_dangerous_flags (accepted risk)
+3. ✓ models.weak_tier Haiku (accepted risk)
+4. ✓ security.trust_model.multi_user_heuristic (accepted risk)
 
-### Software Version
-- Installed: v2026.3.12 (current stable)
-- Update available: v2026.3.13 (npm)
-- Status: Deps ok, update pending (no critical blockers)
+### Software Version Status
+- **Installed:** v2026.3.12 (stable)
+- **Available:** v2026.3.13 (npm)
+- **Deps:** OK
+- **Update:** Recommended (non-critical)
 
 ---
 
-**Audit Time:** Monday, March 16, 2026 — 03:00 HKT
-**Previous audit:** Sunday, March 9, 2026 — 03:00 HKT
-**Days elapsed:** 7 days
-**Next audit:** Monday, March 23, 2026 — 03:00 HKT
+## NEW Findings (Not Previously Accepted)
+
+✅ **NONE.** The two unresolved findings (hooks.allowed_agent_ids_unrestricted and gateway.control_ui.host_header_origin_fallback) are **persistent** from March 16 — they remain flagged but are neither new nor accepted in risk whitelist.
+
+---
+
+**Audit Timestamp:** Monday, March 23, 2026 — 03:00 HKT
+**Days Since Last Audit:** 7 days
+**Audit Command:** `openclaw security audit --deep`
+**Update Status:** v2026.3.13 available (defer unless urgent)

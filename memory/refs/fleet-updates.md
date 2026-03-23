@@ -63,8 +63,8 @@ openclaw --version
 | Agent | Project ID | Service ID |
 |-------|------------|------------|
 | Molty | 3f47a8ad-232e-4074-8a2a-1af45ab3c047 | 3daf200b-6fdb-4ead-a850-b7d33301f3b0 |
-| Raphael | (check Railway) | (check Railway) |
-| Leonardo | (check Railway) | leonardo service ID |
+| Raphael | (check Railway) | fc8720f0-cd59-48b1-93a2-c8b53e7faa90 |
+| Leonardo | (check Railway) | 02713288-b633-4f01-8bfe-e8ef9a739605 |
 | April | 2501cb81-c58d-495c-9e39-642e30826d07 | ea026a0b-79e0-433d-907e-5cc4f75385e2 |
 
 ---

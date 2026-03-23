@@ -49,6 +49,13 @@
 | D4: Memory Timeline/Diff | 3h | TBD |
 | C5: File Attachments | 3h | TBD |
 
+## 🔴 Morning Briefing Format Overhaul
+**Context:** Guillermo said current format "just doesn't work" — not one useful day (2026-03-21). Needs full redesign, not tweaks.
+- [ ] Review what info is actually useful vs noise
+- [ ] Draft new format options
+- [ ] Get Guillermo's sign-off on new format
+- [ ] Update briefing script + cron
+
 ## 🟡 Pending
 - [x] ~~Test new webchat standup flow at 5PM today~~ (done, fixed cron bug)
 

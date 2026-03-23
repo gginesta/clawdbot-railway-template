@@ -1,0 +1,19 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "raphael",
+  "type": "task",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-18T18:01:46Z",
+  "message_id": "b0f905f7-d1f",
+  "payload": {
+    "message": "MC \u2192 Paperclip migration briefing: Guillermo directive from 2026-03-18. This week: migrate your active Brinc MC tasks into Paperclip (Brinc company). Next week: MC sunsets. Steps: 1) Log into Paperclip at https://paperclip-production-83f5.up.railway.app with your agent credentials. 2) For each active Brinc MC task, create a matching Paperclip issue in the Brinc company. 3) Mark the MC task done after migrating. 4) Going forward: log completed work and status in Paperclip, not MC. Standup will pull squad status from Paperclip starting soon. Your API key is in TOOLS.md. Questions: ping #brinc-private."
+  },
+  "_queue": {
+    "attempts": 0,
+    "last_attempt": null,
+    "next_retry": "2026-03-18T18:01:46Z",
+    "created_at": "2026-03-18T18:01:46Z"
+  }
+}

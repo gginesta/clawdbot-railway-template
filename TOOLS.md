@@ -176,14 +176,14 @@
 |---------|----------|-------------|
 | TMNT Squad | `0e4e3ca3-...` | `pcp_5c669...` |
 | Brinc | `d46b6609-...` | `pcp_04dac...` |
-| Cerebro | `ff8f1f31-...` | `pcp_afd6a...` |
+| Cerebro | `ff8f1f31-...` | `pcp_a1c05...` |
 
 **Other Agents:**
 | Agent | Company | Agent ID | Token Prefix |
 |-------|---------|----------|-------------|
-| April | TMNT Squad | `7011e3de-...` | `pcp_099e4...` |
-| Raphael | Brinc | `93db3fa0-...` | `pcp_ceb5a...` |
-| Leonardo | Cerebro | `7488c246-...` | `pcp_79dd1...` |
+| April | TMNT Squad | `0fb8e023-...` | `pcp_869b9...` |
+| Raphael | Brinc | `93db3fa0-...` | `pcp_2f841...` |
+| Leonardo | Cerebro | `0c2e90aa-...` | `pcp_2eceb...` |
 
 ---
 

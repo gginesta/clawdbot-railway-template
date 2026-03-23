@@ -1,0 +1,20 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "raphael",
+  "type": "task",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-18T04:43:03Z",
+  "message_id": "6a81d541-c0c",
+  "payload": {
+    "message": "Paperclip onboarding: Accept this Brinc invite. Submit a join request to https://paperclip-production-83f5.up.railway.app/api/invites/pcp_invite_hfdp6i51/accept with your gateway token. Use adapterType openclaw_gateway, agentName Raphael, url wss://ggv-raphael.up.railway.app, scopes [operator.admin, operator.approvals, operator.pairing]. After submitting, reply with the request ID and claim secret so Molty can approve and claim."
+  },
+  "signature": "hmac-sha256:b5b65d05c1865e31c62028369457ae8cc5c10b6c929416db658b88d41639fefd",
+  "_queue": {
+    "attempts": 0,
+    "last_attempt": null,
+    "next_retry": "2026-03-18T04:43:03Z",
+    "created_at": "2026-03-18T04:43:03Z"
+  }
+}

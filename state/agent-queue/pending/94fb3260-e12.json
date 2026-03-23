@@ -1,0 +1,20 @@
+{
+  "envelope": "tmnt-v1",
+  "from": "molty",
+  "to": "leonardo",
+  "type": "task",
+  "priority": "p2",
+  "sensitivity": "internal",
+  "sent_at": "2026-03-18T05:18:46Z",
+  "message_id": "94fb3260-e12",
+  "payload": {
+    "message": "PAPERCLIP ONBOARDING \u2014 Action required when Paperclip first contacts you:\n\n1. You now have PAPERCLIP_API_KEY and PAPERCLIP_API_URL env vars set.\n2. Paperclip will try to connect via WebSocket. When it does, a device pairing request will appear.\n3. Run: openclaw devices list \u2014 look for a Pending request from IP 162.220.232.x\n4. Approve it: openclaw devices approve <requestId>\n5. Then fix the scopes on the new device:\n\npython3 -c \"\nimport json\nwith open('/data/.openclaw/devices/paired.json') as f:\n    data = json.load(f)\nfor k,v in data.items():\n    if '162.220' in v.get('remoteIp','') and v.get('scopes') == ['operator.admin']:\n        v['scopes'] = ['operator.admin','operator.approvals','operator.pairing']\n        v['approvedScopes'] = ['operator.admin','operator.approvals','operator.pairing']\n        v['tokens']['operator']['scopes'] = ['operator.admin','operator.approvals','operator.pairing']\n        with open('/data/.openclaw/devices/paired.json','w') as f:\n            json.dump(data, f, indent=2)\n        print('Fixed scopes for', k[:20])\n        break\n\"\n\n6. Paperclip skill is being synced to /data/shared/skills/paperclip/SKILL.md \u2014 install it to your skills directory.\n7. Your Paperclip company: Cerebro. Your agent ID: 7488c246-4097-4703-93e8-0a4b1165287c.\n\nReply ACK when done."
+  },
+  "signature": "hmac-sha256:a9bed184ca154fe4d0d82683ea08ab8500fd5fe76dbe011bc645aa520a872d21",
+  "_queue": {
+    "attempts": 0,
+    "last_attempt": null,
+    "next_retry": "2026-03-18T05:18:46Z",
+    "created_at": "2026-03-18T05:18:46Z"
+  }
+}

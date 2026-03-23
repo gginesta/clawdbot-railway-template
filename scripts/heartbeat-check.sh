@@ -4,32 +4,28 @@
 
 set -e
 
-MC_API="https://resilient-chinchilla-241.convex.site"
-MC_KEY="232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+PCP_URL="https://paperclip-production-83f5.up.railway.app"
+PCP_TOKEN="pcp_5c66968515127b7b30f95a688a8477955f197666c7cfafbe"
+PCP_AGENT="0e4e3ca3-0cc0-4370-83ea-2e82fbf3ee1d"
+TMNT_CID="4d845c5e-5c36-4fc5-827d-5a577e683cdb"
 ALERTS=""
 
-# 1. Usage report (silent, just run it)
-bash /data/workspace/scripts/mc-usage-report.sh molty 2>/dev/null || true
-
-# 2. Update agent-link health
+# 1. Update agent-link health
 python3 /data/shared/scripts/agent-link-worker.py update-health molty up 2>/dev/null || true
 
-# 3. Check April health
+# 2. Check April health
 APRIL_HEALTH=$(curl -s --max-time 10 https://april-agent-production.up.railway.app/setup/healthz 2>/dev/null || echo '{"ok":false}')
 if [[ "$APRIL_HEALTH" != '{"ok":true}' ]]; then
     ALERTS="${ALERTS}⚠️ April health check failed: $APRIL_HEALTH\n"
 fi
 
-# 4. Check for inbox tasks (should be processed)
-INBOX=$(curl -s -H "Authorization: Bearer $MC_KEY" "$MC_API/api/tasks?assignee=molty&status=inbox" 2>/dev/null)
-INBOX_COUNT=$(echo "$INBOX" | python3 -c "import sys,json; d=json.load(sys.stdin); print(len(d) if isinstance(d,list) else 0)" 2>/dev/null || echo "0")
+# 3. Check for blocked Paperclip issues (TMNT)
+BLOCKED=$(curl -s -H "Authorization: Bearer $PCP_TOKEN" "$PCP_URL/api/companies/$TMNT_CID/issues?status=blocked&assigneeAgentId=$PCP_AGENT" 2>/dev/null)
+BLOCKED_COUNT=$(echo "$BLOCKED" | python3 -c "import sys,json; d=json.load(sys.stdin); print(len(d) if isinstance(d,list) else 0)" 2>/dev/null || echo "0")
 
-if [[ "$INBOX_COUNT" -gt 0 ]]; then
-    ALERTS="${ALERTS}📥 $INBOX_COUNT inbox task(s) need triage\n"
+if [[ "$BLOCKED_COUNT" -gt 0 ]]; then
+    ALERTS="${ALERTS}🚧 $BLOCKED_COUNT blocked Paperclip issue(s) assigned to Molty\n"
 fi
-
-# 5. Check for urgent assigned tasks (P0/P1 due today)
-# Skip for now - could add date filtering
 
 # Output
 if [[ -z "$ALERTS" ]]; then

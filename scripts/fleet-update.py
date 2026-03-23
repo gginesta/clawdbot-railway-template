@@ -24,8 +24,8 @@ REPORT_FILE = "/data/workspace/state/fleet-update-report.json"
 GITHUB_TOKEN = "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"
 RAILWAY_TOKEN = "1d318b62-a713-4fd6-80cf-c54c0934f5d8"
 RAILWAY_API = "https://backboard.railway.app/graphql/v2"
-MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
-MC_API = "https://resilient-chinchilla-241.convex.site"
+# MC_KEY removed — MC sunset 2026-03-23
+# MC_API removed — MC sunset 2026-03-23
 DISCORD_COMMAND_CENTER = "1468164160398557216"
 TELEGRAM_GUILLERMO = "1097408992"
 DOCKERFILE_REPO = "gginesta/clawdbot-railway-template"

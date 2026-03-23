@@ -14,9 +14,12 @@
     "express": "^5.1.0",
     "http-proxy": "^1.18.1",
     "node-pty": "^1.0.0",
+    "puppeteer": "^24.40.0",
     "ws": "^8.18.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["node-pty"]
+    "onlyBuiltDependencies": [
+      "node-pty"
+    ]
   }
 }
