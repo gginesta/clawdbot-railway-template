@@ -56,6 +56,7 @@
 - **MC Phase 3 sprint:** D1 Templates, D2 Notif Prefs, D4 Memory Timeline, D6 Auth — may be superseded by Paperclip migration. Needs decision.
 
 ## ⏳ Pending [verified: 2026-03-23]
+- **Leonardo version:** Still on v2026.3.12 (should be v2026.3.13-1). Overnight work cron erroring. Needs Railway redeploy. [verified: 2026-03-23]
 - **Webchat device auth:** Bug — auth still enforced despite `dangerouslyDisableDeviceAuth`. Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-03-23]
 - **Webhook spoofing:** Two suspicious tmnt-v1 messages (2026-03-21). Security audit planned for Guillermo's return. [verified: 2026-03-23]
 - **WhatsApp SIM:** +34 677 43 78 34 (Spanish, purchased London 2026-03-22). Needs QR pairing when Guillermo is ready. [verified: 2026-03-23]
