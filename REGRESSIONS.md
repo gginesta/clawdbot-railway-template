@@ -121,6 +121,15 @@
 
 ---
 
+## REG-041: Verify pending items before reporting to Guillermo (2026-03-23)
+**Trigger:** Any time I report task/project status to Guillermo (standup, briefing, ad-hoc question)
+**Failure:** Reported Pikachu article as "not started" — it was done for weeks. Also resurfaced April/Steph (done), Raphael A8 (delivered), WHOOP (parked). All stale MEMORY.md entries I parroted without checking.
+**Rule:** Before reporting ANY pending/blocked/stalled item to Guillermo, verify its current state against the actual source (Notion, GitHub, Paperclip, agent). Never parrot MEMORY.md status without same-session verification. Every pending item in MEMORY.md must have a `[verified: YYYY-MM-DD]` date. Items >7 days without verification are STALE and must be re-verified before reporting.
+**Code enforcement:** `scripts/memory-audit.py` — scans for stale/unverified items. Run before standups.
+**One-liner:** `REG-041: Verify every pending item against source before reporting. Stale MEMORY.md entries erode trust.`
+
+---
+
 ## REG-026: Discord @mentions require user ID format (2026-03-12)
 **Trigger:** Posting to Discord with `@Raphael` or `@Leonardo`
 **Wrong:** `@Raphael` (plain text, no ping)

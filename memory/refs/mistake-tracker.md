@@ -116,3 +116,10 @@ Every time this happens, I erode trust. He has to drop what he's doing to fix my
 - **Root cause:** No `parent_id` filter in triage. No subtask grouping in standup.
 - **Fix:** Code enforcement (parent_id filter) + standup display rule.
 - **Pattern:** This is the 3rd Todoist-related regression (REG-036, REG-037, REG-038). Guillermo: "I feel we've had an issue every day." Automated Todoist scripts need more rigorous testing before deployment.
+
+
+## 2026-03-23: Stale memory — reported finished work as "not started"
+- **What:** Told Guillermo the Pikachu article "What AI Agents Actually Do For Me" wasn't started. It's been done for weeks in Notion. Also kept resurfacing: April/Steph interview (done), Raphael A8 deck (delivered weeks ago), WHOOP (no use case).
+- **Impact:** Wasted Guillermo's time, eroded trust. He had to correct me — again.
+- **Root cause:** MEMORY.md had stale entries never verified against actual state. Kept parroting old status across sessions.
+- **Fix:** Before reporting any item as "pending/blocked/not started" to Guillermo, verify against source (Notion, agent, actual deliverable). Never parrot MEMORY.md without verification. Need a periodic memory audit — stale items rot fast.
