@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helm Consulting Limited</title>
+  <meta name="description" content="Strategic advisory and principal investments in global trade, logistics, and emerging industries.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FAFAFA;
+      --text: #1A1A1A;
+      --text-soft: #333333;
+      --text-muted: #6B6863;
+      --accent: #1B3A5C;
+      --accent-soft: rgba(27, 58, 92, 0.5);
+      --divider: rgba(26, 26, 26, 0.10);
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Texture ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 48px 0;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-line {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 72px;
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    /* ── Sectors ── */
+    .sectors {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      max-width: 700px;
+      width: 100%;
+      border-top: 1px solid var(--divider);
+      margin-bottom: 72px;
+    }
+
+    .sector-group {
+      padding: 36px 32px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .sector-group:nth-child(odd) {
+      border-right: 1px solid var(--divider);
+    }
+
+    .sector-label {
+      font-weight: 400;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .sector-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sector-list li {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--text-soft);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Leadership ── */
+    .leadership {
+      text-align: center;
+      max-width: 560px;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    .leadership-label {
+      font-weight: 400;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .leader-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .leader-name a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .leader-name a:hover {
+      color: var(--accent);
+    }
+
+    .leader-role {
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .leader-bio {
+      font-weight: 300;
+      font-size: 0.82rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+    }
+
+    .leader-divider {
+      width: 24px;
+      height: 1px;
+      background: var(--divider);
+      margin: 24px auto;
+    }
+
+    /* ── Presence ── */
+    .presence {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .presence-label {
+      font-weight: 400;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 10px;
+    }
+
+    .presence-locations {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px;
+      text-align: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero { padding: 60px 24px 0; }
+      .sectors { grid-template-columns: 1fr; max-width: 360px; }
+      .sector-group:nth-child(odd) { border-right: none; }
+      footer { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="hero">
+      <h1 class="hero-title">Helm Consulting</h1>
+      <div class="hero-line"></div>
+      <p class="hero-subtitle">Strategic advisory and principal investments across global trade, logistics, and emerging industries</p>
+
+      <div class="sectors">
+        <div class="sector-group">
+          <div class="sector-label">Advisory</div>
+          <ul class="sector-list">
+            <li>Global Shipping</li>
+            <li>Logistics & Supply Chain</li>
+            <li>Intermodal Operations</li>
+          </ul>
+        </div>
+        <div class="sector-group">
+          <div class="sector-label">Investments</div>
+          <ul class="sector-list">
+            <li>Sports & Hospitality</li>
+            <li>Infrastructure</li>
+            <li>Agriculture</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="leadership">
+        <div class="leadership-label">Leadership</div>
+
+        <div class="leader-name"><a href="https://www.linkedin.com/in/guillermo-ginesta-bascu%C3%B1%C3%A1n-5642bb61/" target="_blank" rel="noopener">Guillermo Ginesta Bascuñán</a></div>
+        <div class="leader-role">Founder & Senior Executive Advisor</div>
+        <div class="leader-bio">30+ years in global shipping and logistics. Former Managing Director Greater China at Hapag-Lloyd, President & CEO of CSAV Norasia, and senior executive across CSAV and Compañía Sud Americana de Vapores.</div>
+
+
+      </div>
+
+      <div class="presence">
+        <div class="presence-label">Presence</div>
+        <div class="presence-locations">Hong Kong · Santiago · with portfolio across the Americas and Europe</div>
+      </div>
+    </main>
+
+    <footer>&copy; 2026 Helm Consulting Limited</footer>
+  </div>
+</body>
+</html>
