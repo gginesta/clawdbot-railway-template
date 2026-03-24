@@ -90,12 +90,13 @@ RUN set -eux; \
   rm -rf /var/lib/apt/lists/*
 
 # Install Brave browser (works better than Chromium with OpenClaw browser control)
+# Retry apt-get update up to 3 times — Brave's CDN occasionally serves stale indices
 RUN set -eux; \
   curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg \
     https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg; \
   echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" \
     > /etc/apt/sources.list.d/brave-browser-release.list; \
-  apt-get update; \
+  for i in 1 2 3; do apt-get update && break || sleep 15; done; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends brave-browser; \
   rm -rf /var/lib/apt/lists/*
 
