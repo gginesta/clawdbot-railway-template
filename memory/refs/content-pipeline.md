@@ -1,9 +1,11 @@
 # Content Pipeline
 
-*Created: 2026-02-12 | Last updated: 2026-02-12*
+*Created: 2026-02-12 | Last updated: 2026-03-24*
 
 ## Published
-- (none yet — first post published 2026-02-12)
+| Date | Title | X | LinkedIn | Notion |
+|------|-------|---|----------|--------|
+| 2026-03-24 | What AI Agents Actually Do For Me — Beyond the Cool Setup | [tweet](https://x.com/gginesta/status/2036346565154029603/) | [article](https://www.linkedin.com/pulse/what-ai-agents-actually-do-me-beyond-cool-setup-guillermo-ginesta-etuae/) | [source](https://www.notion.so/What-AI-Agents-Actually-Do-For-Me-Beyond-the-Cool-Setup-30b39dd69afd81c49baaf35c4ef1e269) |
 
 ## Pipeline
 
