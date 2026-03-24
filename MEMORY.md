@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-24 | ginesta.io + helmcl.com deployed live, Namecheap API documented, content published | Target: <15KB*
+*Last updated: molty | 2026-03-25 | Added Hitster project, fixed autoplay audio unlock | Target: <15KB*
 
 ---
 
@@ -34,6 +34,7 @@
 - **Full rules:** `memory/refs/standup-process.md`
 
 ## 📋 Active Projects
+- **Hitster:** Multiplayer music trivia game. Repo: `gginesta/Hitster`. Railway project `658ca522`, service `2478865e`, domain: `hitster.up.railway.app`. Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io. 500+ songs, 4 game modes. [verified: 2026-03-25]
 - **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-24]
 - **Content pipeline:** Article #4 "What AI Agents Actually Do For Me" published 2026-03-24. X: https://x.com/gginesta/status/2036346565154029603 | LinkedIn published. [verified: 2026-03-24]
 - **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-24]
