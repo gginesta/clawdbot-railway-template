@@ -118,6 +118,12 @@ Every time this happens, I erode trust. He has to drop what he's doing to fix my
 - **Pattern:** This is the 3rd Todoist-related regression (REG-036, REG-037, REG-038). Guillermo: "I feel we've had an issue every day." Automated Todoist scripts need more rigorous testing before deployment.
 
 
+## 2026-03-24: Promised overnight work, never wrote the task (REG-042)
+- **What:** 2-hour ginesta.io scoping conversation with Guillermo ending 02:09 HKT. Said "I'll build it tonight" twice. Never created a Todoist or Paperclip task. Overnight worker found nothing to do.
+- **Impact:** Guillermo woke up to zero progress after investing 2 hours of his time at 1am. Trust damaged.
+- **Root cause:** Verbal commitment ≠ written task. Session amnesia means promises evaporate. Nightly curation doesn't scan transcripts for unfulfilled commitments.
+- **Fix:** REG-042 — write the task immediately when committing. Also: update nightly curation to scan recent session transcripts for commitments ("I'll", "tonight", "tomorrow") not captured in any task system.
+
 ## 2026-03-23: Stale memory — reported finished work as "not started"
 - **What:** Told Guillermo the Pikachu article "What AI Agents Actually Do For Me" wasn't started. It's been done for weeks in Notion. Also kept resurfacing: April/Steph interview (done), Raphael A8 deck (delivered weeks ago), WHOOP (no use case).
 - **Impact:** Wasted Guillermo's time, eroded trust. He had to correct me — again.

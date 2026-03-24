@@ -130,6 +130,14 @@
 
 ---
 
+## REG-042: Write task IMMEDIATELY when committing to work (2026-03-24)
+**Trigger:** Saying "I'll do X tonight/later/tomorrow" to Guillermo
+**Failure:** Told Guillermo "I'll build ginesta.io tonight" at 02:09 HKT. Never wrote it to Todoist or Paperclip. Overnight worker had nothing to execute. Guillermo woke up to zero progress on a 2-hour scoping conversation.
+**Rule:** When you commit to doing something — in ANY session, on ANY channel — write it as a Todoist 🦎 task or Paperclip issue IMMEDIATELY in the same response. "I'll do it" without a written task = it won't happen.
+**One-liner:** `REG-042: Commit to work = write the task in the same breath. No task = no memory = broken promise.`
+
+---
+
 ## REG-026: Discord @mentions require user ID format (2026-03-12)
 **Trigger:** Posting to Discord with `@Raphael` or `@Leonardo`
 **Wrong:** `@Raphael` (plain text, no ping)
