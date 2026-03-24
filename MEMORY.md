@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-23 | Paperclip migration COMPLETE — all MC tasks migrated, fleet creds fixed | Target: <15KB*
+*Last updated: molty | 2026-03-24 | ginesta.io + helmcl.com deployed live, Namecheap API documented, content published | Target: <15KB*
 
 ---
 
@@ -34,11 +34,12 @@
 - **Full rules:** `memory/refs/standup-process.md`
 
 ## 📋 Active Projects
-- **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-23]
-- **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-23]
+- **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-24]
+- **Content pipeline:** Article #4 "What AI Agents Actually Do For Me" published 2026-03-24. X: https://x.com/gginesta/status/2036346565154029603 | LinkedIn published. [verified: 2026-03-24]
+- **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-24]
 - **ginesta.io:** LIVE ✅ https://ginesta.io | Vercel project: ginesta-site | GitHub: gginesta/ginesta-io. Family landing page + /guillermo profile. [verified: 2026-03-24]
 - **helmcl.com:** LIVE ✅ https://helmcl.com | Vercel project: helmcl. Helm Consulting placeholder. helmconsulting.io + helmconsultingltd.com redirect here. [verified: 2026-03-24]
-- **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app. All agent tokens regenerated + deployed 2026-03-23. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. [verified: 2026-03-23]
+- **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app. All agent tokens regenerated + deployed 2026-03-23. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. [verified: 2026-03-24]
 - **MC sunset:** COMPLETE ✅ Announced 2026-03-23. Paperclip = single source of truth for all task management.
 
 | Company | Agents | Active Issues |
@@ -56,11 +57,11 @@
 - **Browser relay:** Parked. Resume when Guillermo wants Raphael on Waalaxy. [verified: 2026-03-23]
 - **MC Phase 3 sprint:** D1 Templates, D2 Notif Prefs, D4 Memory Timeline, D6 Auth — may be superseded by Paperclip migration. Needs decision.
 
-## ⏳ Pending [verified: 2026-03-23]
-- **Leonardo version:** Still on v2026.3.12 (should be v2026.3.13-1). Overnight work cron erroring. Needs Railway redeploy. [verified: 2026-03-23]
-- **Webchat device auth:** Bug — auth still enforced despite `dangerouslyDisableDeviceAuth`. Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-03-23]
-- **Webhook spoofing:** Two suspicious tmnt-v1 messages (2026-03-21). Security audit planned for Guillermo's return. [verified: 2026-03-23]
-- **WhatsApp SIM:** +34 677 43 78 34 (Spanish, purchased London 2026-03-22). Needs QR pairing when Guillermo is ready. [verified: 2026-03-23]
+## ⏳ Pending [verified: 2026-03-24]
+- **Leonardo version:** Still on v2026.3.12 (should be v2026.3.13-1). Overnight work cron erroring. Needs Railway redeploy. [verified: 2026-03-24]
+- **Webchat device auth:** Bug — auth still enforced despite `dangerouslyDisableDeviceAuth`. Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-03-24]
+- **Webhook spoofing:** Two suspicious tmnt-v1 messages (2026-03-21). Security audit planned for Guillermo's return. [verified: 2026-03-24]
+- **WhatsApp SIM:** +34 677 43 78 34 (Spanish, purchased London 2026-03-22). Needs QR pairing when Guillermo is ready. [verified: 2026-03-24]
 
 ## 📣 Standup System v3.0 (directive 2026-03-14)
 **Webchat-native standup. Notion task DB dropped.**

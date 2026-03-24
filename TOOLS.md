@@ -129,6 +129,31 @@
 | Project | tmnt-mission-control |
 | URL | https://tmnt-mission-control.vercel.app |
 
+**Vercel Projects (Domain/Hosting):**
+| Project | URL | Purpose |
+|---------|-----|---------|
+| ginesta-site | https://ginesta.io | Guillermo family landing page |
+| helmcl | https://helmcl.com | Helm Consulting placeholder |
+
+---
+
+## Namecheap
+
+**Account:** gginesta
+**API Key:** `fd3a6f8b61794e23aef787c6ac4a1233`
+**Whitelisted IP:** `54.241.162.49` (Railway outbound)
+
+**Domain Portfolio:**
+australvc.com, australventures.com, digitalfingerprint.io, findinggiants.blog, ginesta.io, helmcl.com, helmconsulting.io, helmconsultingltd.com, manacapital.io, manacapital.xyz, manainnovation.com, meetcerebro.com, seltzersake.com
+
+**Domains in Use (2026-03-24):**
+| Domain | Points To | Status |
+|--------|-----------|--------|
+| ginesta.io | Vercel (76.76.21.21) | ✅ Live |
+| helmcl.com | Vercel (76.76.21.21) | ✅ Live |
+| helmconsulting.io | → helmcl.com redirect | ✅ Live |
+| helmconsultingltd.com | → helmcl.com redirect | ✅ Live |
+
 ---
 
 ## Convex / Mission Control
