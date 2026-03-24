@@ -3,9 +3,12 @@
 *Created: 2026-02-12 | Last updated: 2026-03-24*
 
 ## Published
-| Date | Title | X | LinkedIn | Notion |
-|------|-------|---|----------|--------|
-| 2026-03-24 | What AI Agents Actually Do For Me — Beyond the Cool Setup | [tweet](https://x.com/gginesta/status/2036346565154029603/) | [article](https://www.linkedin.com/pulse/what-ai-agents-actually-do-me-beyond-cool-setup-guillermo-ginesta-etuae/) | [source](https://www.notion.so/What-AI-Agents-Actually-Do-For-Me-Beyond-the-Cool-Setup-30b39dd69afd81c49baaf35c4ef1e269) |
+| # | Date | Title | X | LinkedIn |
+|---|------|-------|---|----------|
+| 1 | 2026-02 | We Spent 4 Days on AI Memory — Here's What Actually Worked | posted | posted |
+| 2 | 2026-02-26 | Sub-Agent Design — What We Actually Learned | [tweet](https://x.com/gginesta/status/2026860823830999411) | [article](https://www.linkedin.com/pulse/sub-agent-design-what-we-actually-learned-guillermo-ginesta-mtnte/) |
+| 3 | 2026-03-05 | The Tamagotchi Trap | posted | posted |
+| 4 | 2026-03-24 | What AI Agents Actually Do For Me — Beyond the Cool Setup | [tweet](https://x.com/gginesta/status/2036346565154029603/) | [article](https://www.linkedin.com/pulse/what-ai-agents-actually-do-me-beyond-cool-setup-guillermo-ginesta-etuae/) |
 
 ## Pipeline
 
