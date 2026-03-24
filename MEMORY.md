@@ -36,7 +36,8 @@
 ## 📋 Active Projects
 - **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-23]
 - **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-23]
-- **ginesta.io:** Notion brief → https://www.notion.so/Personal-Website-Brief-www-ginesta-io-31a39dd69afd81cea223fbb9f2b2fe39. Guillermo wants to tackle today (2026-03-23). [verified: 2026-03-23]
+- **ginesta.io:** LIVE ✅ https://ginesta.io | Vercel project: ginesta-site | GitHub: gginesta/ginesta-io. Family landing page + /guillermo profile. [verified: 2026-03-24]
+- **helmcl.com:** LIVE ✅ https://helmcl.com | Vercel project: helmcl. Helm Consulting placeholder. helmconsulting.io + helmconsultingltd.com redirect here. [verified: 2026-03-24]
 - **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app. All agent tokens regenerated + deployed 2026-03-23. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. [verified: 2026-03-23]
 - **MC sunset:** COMPLETE ✅ Announced 2026-03-23. Paperclip = single source of truth for all task management.
 
