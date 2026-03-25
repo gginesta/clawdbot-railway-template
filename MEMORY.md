@@ -61,7 +61,7 @@
 ## ⏳ Pending [verified: 2026-03-24]
 - ~~Leonardo version~~ RESOLVED: All agents updated to v2026.3.23-2 on 2026-03-25. [verified: 2026-03-25]
 - **Webchat device auth:** Bug — auth still enforced despite `dangerouslyDisableDeviceAuth`. Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-03-24]
-- **Webhook spoofing:** Two suspicious tmnt-v1 messages (2026-03-21). Security audit planned for Guillermo's return. [verified: 2026-03-24]
+- **Agent-link security (PLAN-021):** Plan written. HMAC signing exists but isn't enforced on receiving side. Need gateway-level verification so agents auto-trust signed messages and reject unsigned ones. [verified: 2026-03-25]
 - **WhatsApp SIM:** +34 677 43 78 34 (Spanish, purchased London 2026-03-22). Needs QR pairing when Guillermo is ready. [verified: 2026-03-24]
 
 ## 📣 Standup System v3.0 (directive 2026-03-14)
