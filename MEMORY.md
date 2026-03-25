@@ -12,7 +12,7 @@
 - **Style:** Casual, efficient, no fluff. Likes tables.
 
 ## 🖥️ Fleet
-**Version:** v2026.3.13-1 (deployed 2026-03-21, all 4 agents ✅)
+**Version:** v2026.3.23-2 (deployed 2026-03-25, all 4 agents ✅)
 | Agent | URL | Model |
 |-------|-----|-------|
 | Molty 🦎 | ggvmolt.up.railway.app | Opus (primary) |
@@ -59,7 +59,7 @@
 - **MC Phase 3 sprint:** D1 Templates, D2 Notif Prefs, D4 Memory Timeline, D6 Auth — may be superseded by Paperclip migration. Needs decision.
 
 ## ⏳ Pending [verified: 2026-03-24]
-- **Leonardo version:** Still on v2026.3.12 (should be v2026.3.13-1). Overnight work cron erroring. Needs Railway redeploy. [verified: 2026-03-24]
+- ~~Leonardo version~~ RESOLVED: All agents updated to v2026.3.23-2 on 2026-03-25. [verified: 2026-03-25]
 - **Webchat device auth:** Bug — auth still enforced despite `dangerouslyDisableDeviceAuth`. Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-03-24]
 - **Webhook spoofing:** Two suspicious tmnt-v1 messages (2026-03-21). Security audit planned for Guillermo's return. [verified: 2026-03-24]
 - **WhatsApp SIM:** +34 677 43 78 34 (Spanish, purchased London 2026-03-22). Needs QR pairing when Guillermo is ready. [verified: 2026-03-24]
@@ -85,6 +85,7 @@
 
 ## 📖 Reference Pointers
 - **My task list → `TODO.md`** (check at session start, update after work)
+- **Fleet update SOP → `memory/refs/fleet-update-sop.md`** (mandatory checklist for version updates)
 - Technical lessons → `memory/refs/lessons-learned.md`
 - Standup/calendar rules → `memory/refs/standup-process.md`
 - **Fleet updates → `memory/refs/fleet-updates.md`** (how to update OpenClaw on Railway)
