@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-25 | Added Hitster project, fixed autoplay audio unlock | Target: <15KB*
+*Last updated: molty | 2026-03-25 | PLAN-021 completion, April bot fix, fleet update SOP, Hitster merges | Target: <15KB*
 
 ---
 
@@ -34,7 +34,7 @@
 - **Full rules:** `memory/refs/standup-process.md`
 
 ## 📋 Active Projects
-- **Hitster:** Multiplayer music trivia game. **Built by Guillermo + Claude Code.** Molty: deployment + minor improvements. Repo: `gginesta/Hitster`. Railway project `658ca522`, service `2478865e`, domain: `hitster.up.railway.app`. Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io. 500+ songs, 4 game modes. [verified: 2026-03-25]
+- **Hitster:** Multiplayer music trivia game. **Built by Guillermo + Claude Code.** Molty: deployment + minor improvements. Repo: `gginesta/Hitster`. Railway project `658ca522`, service `2478865e`, domain: `hitster.up.railway.app`. Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io + SQLite. Volume `6fa153a6` at `/app/data` for persistence. 500+ songs, 4 game modes, preview mode (no Spotify), leaderboards, player stats, genre/decade/regional packs, fuzzy matching. Recent merges: autoplay unlock (green banner + global tap listener), turn timer top bar (commits `734dc47`, `edf005b`, `4dadad5`). [verified: 2026-03-25]
 - **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-24]
 - **Content pipeline:** Article #4 "What AI Agents Actually Do For Me" published 2026-03-24. X: https://x.com/gginesta/status/2036346565154029603 | LinkedIn published. [verified: 2026-03-24]
 - **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-24]
@@ -50,7 +50,9 @@
 | Cerebro | Molty (CEO), Leonardo (CTO) | 21 (cleaned from 132) |
 
 ## ✅ Completed (archive candidates)
+- **PLAN-021 (Agent-Link Security):** COMPLETE ✅ 2026-03-25. Discord-first trust model (webhooks = informational only, commands via Discord). All 3 agents adopted. Phase 1 (gateway HMAC) paused due to path resolution crash — needs Guillermo re-approval. Phase 2 research complete (clawctl evaluated, Discord trust model confirmed). [verified: 2026-03-25]
 - **PLAN-018 + MC migration:** COMPLETE ✅ 2026-03-23. Cerebro board cleaned: 132→21 active issues (73 cancelled: duplicates, stale, phantom planning). Lesson: don't bulk-migrate without auditing staleness.
+- **Fleet update to v2026.3.23-2:** 2026-03-25. All 4 agents verified SUCCESS via Railway API. SOP created: `memory/refs/fleet-update-sop.md`. [verified: 2026-03-25]
 - **Paperclip token fix:** 2026-03-23. Root cause: wrong agent IDs + claim tokens stored during Mar 18 registration. Generated new keys via board session, deployed to Railway. All 6 tokens working.
 
 ## 🅿️ Parked
@@ -58,10 +60,9 @@
 - **Browser relay:** Parked. Resume when Guillermo wants Raphael on Waalaxy. [verified: 2026-03-23]
 - **MC Phase 3 sprint:** D1 Templates, D2 Notif Prefs, D4 Memory Timeline, D6 Auth — may be superseded by Paperclip migration. Needs decision.
 
-## ⏳ Pending [verified: 2026-03-24]
-- ~~Leonardo version~~ RESOLVED: All agents updated to v2026.3.23-2 on 2026-03-25. [verified: 2026-03-25]
+## ⏳ Pending [verified: 2026-03-25]
 - **Webchat device auth:** Bug — auth still enforced despite `dangerouslyDisableDeviceAuth`. Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-03-24]
-- **Agent-link security (PLAN-021):** Plan written. HMAC signing exists but isn't enforced on receiving side. Need gateway-level verification so agents auto-trust signed messages and reject unsigned ones. [verified: 2026-03-25]
+- **April bot visibility (allowBots):** April cannot see bot-authored messages in Discord (allowBots defaults false). Fix: `config patch --json '{"channels":{"discord":{"allowBots":true}}}'`. Needs gateway restart. [verified: 2026-03-25]
 - **WhatsApp SIM:** +34 677 43 78 34 (Spanish, purchased London 2026-03-22). Needs QR pairing when Guillermo is ready. [verified: 2026-03-24]
 
 ## 📣 Standup System v3.0 (directive 2026-03-14)
@@ -89,6 +90,7 @@
 - Technical lessons → `memory/refs/lessons-learned.md`
 - Standup/calendar rules → `memory/refs/standup-process.md`
 - **Fleet updates → `memory/refs/fleet-updates.md`** (how to update OpenClaw on Railway)
+- **Fleet update SOP → `memory/refs/fleet-update-sop.md`** (6-step checklist, mandatory verification)
 - Code-enforced rules → `memory/refs/code-enforced-rules.md`
 - Mistake tracking → `memory/refs/mistake-tracker.md`
 - Infrastructure → `memory/refs/infrastructure.md`
