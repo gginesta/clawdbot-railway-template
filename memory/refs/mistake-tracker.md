@@ -129,3 +129,10 @@ Every time this happens, I erode trust. He has to drop what he's doing to fix my
 - **Impact:** Wasted Guillermo's time, eroded trust. He had to correct me — again.
 - **Root cause:** MEMORY.md had stale entries never verified against actual state. Kept parroting old status across sessions.
 - **Fix:** Before reporting any item as "pending/blocked/not started" to Guillermo, verify against source (Notion, agent, actual deliverable). Never parrot MEMORY.md without verification. Need a periodic memory audit — stale items rot fast.
+
+## 2026-03-25: Gateway crash from bad transform path (PLAN-021)
+- **What:** Patched hooks config with a transform module (`verify-tmnt.cjs`) but `transformsDir` defaulted to `/data/.openclaw/hooks/transforms/` instead of `/data/workspace/hooks/` where the file was
+- **Impact:** Gateway crashed on restart, Molty completely offline. Guillermo had to manually edit config JSON on Railway with Raphael's help
+- **Root cause:** Didn't verify the resolved path before applying config. Rushed the deployment.
+- **Fix:** Raphael told Guillermo to remove the `transform` block from the mapping config, then redeploy
+- **Rule:** NEVER add `hooks.mappings[].transform` without first confirming: (1) `transformsDir` is set to the correct directory, (2) the module file exists at that path, (3) test locally with `node -e "require('<path>')"` before patching config
