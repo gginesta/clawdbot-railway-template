@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-25 | PLAN-021 completion, April bot fix, fleet update SOP, Hitster merges | Target: <15KB*
+*Last updated: molty | 2026-03-26 | Hitster CI auto-merge workflow, Spotify rate-limit fixes | Target: <15KB*
 
 ---
 
@@ -34,7 +34,7 @@
 - **Full rules:** `memory/refs/standup-process.md`
 
 ## 📋 Active Projects
-- **Hitster:** Multiplayer music trivia game. **Built by Guillermo + Claude Code.** Molty: deployment + minor improvements. Repo: `gginesta/Hitster`. Railway project `658ca522`, service `2478865e`, domain: `hitster.up.railway.app`. Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io + SQLite. Volume `6fa153a6` at `/app/data` for persistence. 500+ songs, 4 game modes, preview mode (no Spotify), leaderboards, player stats, genre/decade/regional packs, fuzzy matching. Recent merges: autoplay unlock (green banner + global tap listener), turn timer top bar (commits `734dc47`, `edf005b`, `4dadad5`). [verified: 2026-03-25]
+- **Hitster:** Multiplayer music trivia game. **Built by Guillermo + Claude Code.** Molty: deployment + minor improvements. Repo: `gginesta/Hitster`. Railway project `658ca522`, service `2478865e`, domain: `hitster.up.railway.app`. Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io + SQLite. Volume `6fa153a6` at `/app/data` for persistence. 500+ songs, 4 game modes, preview mode (no Spotify), leaderboards, player stats, genre/decade/regional packs, fuzzy matching. Recent merges: autoplay unlock (green banner + global tap listener), turn timer top bar (commits `734dc47`, `edf005b`, `4dadad5`). **CI Auto-Merge:** Merged Spotify rate-limit fixes (merges 4-5, commits `72bd2d8`, `c36d32e`). Set up GitHub Actions workflow (`.github/workflows/auto-merge.yml`) to auto-merge any `claude/hitster-spotify-game-*` branch to `main` — eliminates need for manual Claude→main pushes (Claude's GitHub integration token lacks permissions). Commit `13f53d7`. [verified: 2026-03-26]
 - **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-24]
 - **Content pipeline:** Article #4 "What AI Agents Actually Do For Me" published 2026-03-24. X: https://x.com/gginesta/status/2036346565154029603 | LinkedIn published. [verified: 2026-03-24]
 - **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-24]
