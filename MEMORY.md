@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-26 | Hitster CI auto-merge workflow, Spotify rate-limit fixes | Target: <15KB*
+*Last updated: molty | 2026-03-28 | BuzzRounds project active, Tunes rename complete, custom domain SSL debugging | Target: <15KB*
 
 ---
 
@@ -34,7 +34,9 @@
 - **Full rules:** `memory/refs/standup-process.md`
 
 ## 📋 Active Projects
-- **Hitster:** Multiplayer music trivia game. **Built by Guillermo + Claude Code.** Molty: deployment + minor improvements. Repo: `gginesta/Hitster`. Railway project `658ca522`, service `2478865e`, domain: `hitster.up.railway.app`. Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io + SQLite. Volume `6fa153a6` at `/app/data` for persistence. 500+ songs, 4 game modes, preview mode (no Spotify), leaderboards, player stats, genre/decade/regional packs, fuzzy matching. Recent merges: autoplay unlock (green banner + global tap listener), turn timer top bar (commits `734dc47`, `edf005b`, `4dadad5`). **CI Auto-Merge:** Merged Spotify rate-limit fixes (merges 4-5, commits `72bd2d8`, `c36d32e`). Set up GitHub Actions workflow (`.github/workflows/auto-merge.yml`) to auto-merge any `claude/hitster-spotify-game-*` branch to `main` — eliminates need for manual Claude→main pushes (Claude's GitHub integration token lacks permissions). Commit `13f53d7`. [verified: 2026-03-26]
+- **BuzzRounds:** Party games hub. Domain: `buzzrounds.com` (Namecheap, bought 2026-03-28). Vercel project `prj_4lz2Cc50Ilao7XBEP9LA4dgmh6em`. Repo: `gginesta/buzzrounds`. Next.js 15 + TypeScript + Tailwind. DNS: `@` → Vercel, `www` → Vercel, `tunes` → `3s82uf9z.up.railway.app`. Jackbox-inspired concept — collection of multiplayer browser games. [verified: 2026-03-28]
+- **Tunes (formerly Hitster):** Renamed 2026-03-28. Multiplayer music trivia game. **Built by Guillermo + Claude Code.** Repo: `gginesta/Tunes`. Railway project `658ca522`, service `2478865e`. Domains: `tunes.up.railway.app` + `tunes.buzzrounds.com` (custom domain SSL **PENDING** — see below). Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io + SQLite. Volume `6fa153a6` at `/app/data`. 500+ songs, 4 game modes. CI auto-merge workflow updated to `claude/tunes-*` branch pattern (GitHub Actions). Env vars updated: `VITE_SERVER_URL` + `VITE_SPOTIFY_REDIRECT_URI` → `tunes.buzzrounds.com`. Full codebase rename: 32 files (commit `301ac19`), all `@hitster/*` → `@tunes/*`, type aliases, UI text, localStorage keys. Claude Code PR #18 done directly (timeouts/503s), PR left open — can close without merging. [verified: 2026-03-28]
+- **YDKJ:** You Don't Know Jack-inspired trivia game (in development). Railway project `5cea0add` (no services deployed yet). Repo: `gginesta/YDKJ`. Will be at `ydkj.buzzrounds.com` when ready. [verified: 2026-03-28]
 - **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-24]
 - **Content pipeline:** Article #4 "What AI Agents Actually Do For Me" published 2026-03-24. X: https://x.com/gginesta/status/2036346565154029603 | LinkedIn published. [verified: 2026-03-24]
 - **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-24]
@@ -60,7 +62,8 @@
 - **Browser relay:** Parked. Resume when Guillermo wants Raphael on Waalaxy. [verified: 2026-03-23]
 - **MC Phase 3 sprint:** D1 Templates, D2 Notif Prefs, D4 Memory Timeline, D6 Auth — may be superseded by Paperclip migration. Needs decision.
 
-## ⏳ Pending [verified: 2026-03-25]
+## ⏳ Pending [verified: 2026-03-28]
+- **Custom domain SSL (tunes.buzzrounds.com):** Railway custom domain stuck on `CERTIFICATE_STATUS_TYPE_VALIDATING_OWNERSHIP`. Root cause: deleted + re-created domain to reset cert, Railway assigned NEW CNAME target `hkhjmdcx.up.railway.app` (was `3s82uf9z.up.railway.app`). Updated DNS. Waiting for propagation + cert issuance. Fallback: `tunes.up.railway.app` works fine. [verified: 2026-03-28]
 - **Webchat device auth:** Bug — auth still enforced despite `dangerouslyDisableDeviceAuth`. Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-03-24]
 - **April bot visibility (allowBots):** April cannot see bot-authored messages in Discord (allowBots defaults false). Fix: `config patch --json '{"channels":{"discord":{"allowBots":true}}}'`. Needs gateway restart. [verified: 2026-03-25]
 - **WhatsApp SIM:** +34 677 43 78 34 (Spanish, purchased London 2026-03-22). Needs QR pairing when Guillermo is ready. [verified: 2026-03-24]
