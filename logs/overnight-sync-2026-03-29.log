@@ -1,0 +1,27 @@
+overnight_sync — 2026-03-29 04:00 HKT
+
+overnight_sync — 2026-03-29 04:00 HKT
+Source: Paperclip (MC deprecated)
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-28
+
+1. Fetching Paperclip overnight completions...
+  Paperclip (TMNT): 10 done total, 1 in overnight window
+  Paperclip (Brinc): 0 done total, 0 in overnight window
+  Paperclip (Cerebro): 0 done total, 0 in overnight window
+  • [TMNT] [TMN-12] Build autoresearch skill for auto-improving OpenClaw skills (completed: 2026-03-28T18:04:06.795Z)
+
+2. Fetching open Todoist tasks...
+  14 open tasks
+
+3. Closing completed tasks in Todoist...
+
+4. Fetching Notion standup rows for 2026-03-28...
+  Notion: 0 rows for standup date 2026-03-28
+
+5. Updating Notion standup rows...
+
+── Summary ──────────────────────────────────
+  Paperclip issues done overnight: 1
+  Todoist tasks closed:            0
+  Notion rows marked done:         0
