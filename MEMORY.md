@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-28 | BuzzRounds project active, Tunes rename complete, custom domain SSL debugging | Target: <15KB*
+*Last updated: molty | 2026-03-29 | Autoresearch skill complete, TMN-12 closed, daily log created | Target: <15KB*
 
 ---
 
@@ -34,6 +34,8 @@
 - **Full rules:** `memory/refs/standup-process.md`
 
 ## 📋 Active Projects
+- **Autoresearch Skill:** ✅ COMPLETE 2026-03-29. Self-improving OpenClaw prompt skill infrastructure. Karpathy-style scoring loop (sample → score → improve → iterate). Includes 3-phase SOP, gap patterns (137 lines), scoring rubric (64 lines), Python scorer (81 lines). Compiled to `skills/dist/autoresearch.skill`. [verified: 2026-03-29]
+- **Patagonia Land Search:** Family compound project. Notion page: https://www.notion.so/Patagonia-Land-Search-Family-Compound-Project-33239dd69afd81dcbfdee6acbc2fee86. Local files: `projects/patagonia-land/`. Phase 1-2 complete (40+ sources, 9 regions analyzed). Top 3 regions: Coyhaique (practical), Lago General Carrera (best climate), Puerto Natales (best scenery). Guillermo is Chilean national = no DIFROL restrictions. Phase 3 next: populate listings DB. [verified: 2026-03-29]
 - **BuzzRounds:** Party games hub. Domain: `buzzrounds.com` (Namecheap, bought 2026-03-28). Vercel project `prj_4lz2Cc50Ilao7XBEP9LA4dgmh6em`. Repo: `gginesta/buzzrounds`. Next.js 15 + TypeScript + Tailwind. DNS: `@` → Vercel, `www` → Vercel, `tunes` → `3s82uf9z.up.railway.app`. Jackbox-inspired concept — collection of multiplayer browser games. [verified: 2026-03-28]
 - **Tunes (formerly Hitster):** Renamed 2026-03-28. Multiplayer music trivia game. **Built by Guillermo + Claude Code.** Repo: `gginesta/Tunes`. Railway project `658ca522`, service `2478865e`. Domains: `tunes.up.railway.app` + `tunes.buzzrounds.com` (custom domain SSL **PENDING** — see below). Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io + SQLite. Volume `6fa153a6` at `/app/data`. 500+ songs, 4 game modes. CI auto-merge workflow updated to `claude/tunes-*` branch pattern (GitHub Actions). Env vars updated: `VITE_SERVER_URL` + `VITE_SPOTIFY_REDIRECT_URI` → `tunes.buzzrounds.com`. Full codebase rename: 32 files (commit `301ac19`), all `@hitster/*` → `@tunes/*`, type aliases, UI text, localStorage keys. Claude Code PR #18 done directly (timeouts/503s), PR left open — can close without merging. [verified: 2026-03-28]
 - **YDKJ:** You Don't Know Jack-inspired trivia game (in development). Railway project `5cea0add` (no services deployed yet). Repo: `gginesta/YDKJ`. Will be at `ydkj.buzzrounds.com` when ready. [verified: 2026-03-28]
@@ -52,6 +54,7 @@
 | Cerebro | Molty (CEO), Leonardo (CTO) | 21 (cleaned from 132) |
 
 ## ✅ Completed (archive candidates)
+- **TMN-12 (Autoresearch Skill):** COMPLETE ✅ 2026-03-29. Built self-improving skill infrastructure with Karpathy-style scoring loop, gap patterns, and Python scorer. Compiled to dist binary. Foundation for scaling skill quality. [verified: 2026-03-29]
 - **PLAN-021 (Agent-Link Security):** COMPLETE ✅ 2026-03-25. Discord-first trust model (webhooks = informational only, commands via Discord). All 3 agents adopted. Phase 1 (gateway HMAC) paused due to path resolution crash — needs Guillermo re-approval. Phase 2 research complete (clawctl evaluated, Discord trust model confirmed). [verified: 2026-03-25]
 - **PLAN-018 + MC migration:** COMPLETE ✅ 2026-03-23. Cerebro board cleaned: 132→21 active issues (73 cancelled: duplicates, stale, phantom planning). Lesson: don't bulk-migrate without auditing staleness.
 - **Fleet update to v2026.3.23-2:** 2026-03-25. All 4 agents verified SUCCESS via Railway API. SOP created: `memory/refs/fleet-update-sop.md`. [verified: 2026-03-25]
