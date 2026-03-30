@@ -1,0 +1,47 @@
+round	top_sector	yield_pct	composite_score	status	notes
+1	Pest Control Services	18.0	82.2	keep	High recurring rev 70-85%, 3.26-6.5x EBITDA entry, strong bolt-on story
+1	Healthcare RCM	17.0	78.3	keep	90%+ recurring, 5-6x entry multiple, recession-resilient billing
+1	Funeral Homes/Death Care	15.0	77.2	keep	5-8x entry, inelastic demand, geographic moats
+1	Accounting/Bookkeeping Firms	16.0	74.5	keep	5x entry, 85% FCF conversion, rollup potential
+1	Commercial Cleaning/Facilities	16.0	73.9	keep	4-6x entry, 70-80% contracted, labor risk
+1	Laundromats	18.0	73.4	keep	3.44-4.85x entry, low capex model, needs portfolio approach
+1	Waste Collection/Environmental	11.0	71.3	keep	6-8x entry, municipal contracts, essential service
+1	Fire Protection/Life Safety	11.0	68.9	keep	Mandatory inspection contracts, 75-85% recurring
+2	Pest Control Services	15.0	79.5	keep	$26B market growing 6.5% CAGR; 70-85% recurring rev; 5-6x entry realistic; LatAm/APAC upside
+2	Funeral Homes/Death Care	14.5	76.5	keep	50% owners retiring by 2028; 5.5-6x entry; death recession-proof; LatAm potential
+2	Accounting/CPA Firms	15.0	72.0	keep	5x entry; offshoring expands margins to 40%; partner risk managed via earnout
+2	Healthcare RCM	12.0	70.3	keep	90%+ recurring; 6-7x entry; US-only geography limits score
+2	Fire Protection/Life Safety	11.0	68.9	keep	Mandatory annual inspections; 7-8x entry; 5-7% market growth
+2	Waste Collection	11.0	67.7	keep	7x entry; municipal contracts; fleet capex limits yield
+3	Pest Control Services	15.0	82.5	keep	Recession: only -2.2% commercial; COVID: residential surged. Low disruption. Clear winner.
+3	Funeral Homes/Death Care	14.5	75.5	keep	Zero concentration risk; boomer tailwind; moderate cremation disruption managed
+3	Fire Protection/Life Safety	11.0	70.9	keep	Mandatory compliance = recession-proof; tech is tailwind not threat
+3	Waste Collection/Environmental	11.0	67.7	keep	Municipal contracts recession-proof; physical collection can't be automated
+3	Accounting/CPA Firms	15.0	67.0	keep	Good yield but AI + partner dependency are real risks; weakest of Top 5
+4	Pest Control (US+LatAm)	14.0	82.5	keep	$25M platform + $25M bolt-ons; 14% unlevered Yr3; LatAm 2nd geography adds 5.7% CAGR market
+4	Funeral Homes	14.3	75.5	keep	12 locations × $3.85M = $46.2M; $8.4M EBITDA; real estate embedded value; 0% concentration
+4	Accounting/CPA Firms	15.8	67.0	keep	5 firms × $9M = $45M; $9M EBITDA; offshoring play to 38%; but partner risk is primary concern
+4	Fire Protection/Life Safety	10.0	70.9	keep	$30M platform + $20M bolt-ons; 10% yield; exit multiple arbitrage (7-8x in → 15-20x out)
+5	Pest Control (US) Platform+BoltOns	14.0	82.5	keep	$30M platform+bolt-ons; 14% Yr3; 20%+ Yr5; clear winner on risk-adjusted basis
+5	Pest Control (APAC variant)	15.5	81.0	keep	8.5% CAGR market; Guillermo HK base = oversight advantage; lower entry multiples
+5	Funeral Homes Portfolio	14.3	75.5	keep	12 locations $46M; zero concentration; boomer tailwind 15-20yr; real estate buffer
+5	Death Care Ecosystem (combo)	12.0	74.0	keep	Funeral + cremation direct + pet cremation; hedge cremation wave; Yr5 17%
+5	Fire Protection Platform	10.0	70.9	keep	Mandatory compliance; exit arb at 15-20x vs 7-8x entry; tech as tailwind
+5	Septic Services (radical)	16.0	70.0	keep	Near-miss; less PE competition; 3-4x entry; but limited geography
+5	Waste Collection	11.1	67.7	keep	Solid but capex drag + limited geography fit vs. mandate
+6	Pest Control Platform (WINNER)	14.2	82.5	FINAL	$30M allocation; 14.2% Yr3; 20%+ Yr5; platform+bolt-on structure; US Sun Belt + LatAm option
+6	Funeral Homes Portfolio	14.5	75.5	FINAL	$15M allocation; 12-15 locations over 3 years; 14.5% Yr3; real estate buffer; boomer tailwind
+6	Fire Protection Platform	10.8	70.9	FINAL	Not allocated in base case; 10.8% Yr3; exit arbitrage to 15-20x at platform scale
+5	Accounting/CPA	15.8	67.0	keep	Highest stated yield but AI+partner risk = structural discount
+4	Waste Collection	11.1	67.7	keep	$30M + bolt-ons; municipal contracts; capex drag limits yield to 11%
+3	Healthcare RCM	12.0	63.3	cut	AI disruption imminent; concentration risk; US-only geography; eliminated
+2	Commercial Cleaning	18.0	67.1	cut	High unit yield but labor risk + $50M scale problem
+2	Laundromats	18.0	66.9	cut	Low multiples but $50M = 100+ units; operationally untenable
+1	Car Wash	9.0	61.9	cut	Entry multiples 9-12x, subscription upside but priced in
+1	HVAC/Plumbing	11.0	59.5	cut	Only 20-30% recurring, high PE competition drives 8-12x multiples
+1	Self-Storage	8.0	60.2	cut	Excellent unit economics but entry multiples 12-15x compress yield
+1	Dental Practices (DSO)	12.0	63.0	cut	Dentist dependency risk, 6-11x multiples
+1	Veterinary Clinics	10.0	59.9	cut	Multiple compression from 2021 highs, vet dependency
+1	MSP Managed IT	10.0	63.5	cut	11.4x median multiple too high for yield target
+1	Parking Lots	8.0	52.0	cut	Real estate heavy, entry multiples too high
+1	Home Health/Senior Care	10.0	63.75	cut	Low margins 10-20%, labor intensive, regulatory complex
