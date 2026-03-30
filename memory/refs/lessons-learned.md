@@ -279,3 +279,15 @@ This authenticates the session directly, bypassing device identity requirement.
 **Root cause:** `json.load()` crashes silently on JSONC → script never completes → supervisord never starts → healthcheck fails.
 **Fix:** Removed the startCommand entirely. The config patching it did was already correct, and it violated REG-017.
 **Lesson:** Never use Python `json.load()` on OpenClaw configs. If you need to patch config at startup, use a shell script or the openclaw CLI.
+
+### Railway custom domain cert stuck on VALIDATING_OWNERSHIP (2026-03-30)
+**Problem:** BuzzRounds custom domains `tunes.buzzrounds.com` and `ydkj.buzzrounds.com` showed "Not Found" after deletion + recreation. Certificates stuck at `CERTIFICATE_STATUS_TYPE_VALIDATING_OWNERSHIP` — never progressed to issued.
+**Root cause:** When deleting a Railway custom domain, the cert attempt is tied to that domain record. Re-creating the same domain doesn't reuse the cert — Railway issues a **new CNAME target** and starts cert validation from scratch.
+**Fix:** 
+1. Delete custom domain in Railway console → deletes cert attempt
+2. Re-create domain → Railway assigns NEW CNAME target (e.g., `9n6r6da5.up.railway.app`)
+3. Update DNS immediately to point to the **new** CNAME target
+4. Wait for cert issuance (typically 5-10 mins if DNS is correct)
+5. **DO NOT keep deleting/recreating** — each cycle wastes a new CNAME slot
+
+**Lesson:** Railway custom domain certs can get stuck if DNS is incorrect during initial validation. If you need to fix DNS: delete the domain cleanly, wait for cert cleanup, then re-create once (not repeatedly). Fallback to Railway's default domain (`*.up.railway.app`) while waiting for cert. Update DNS IMMEDIATELY after domain creation to avoid validation timeouts.

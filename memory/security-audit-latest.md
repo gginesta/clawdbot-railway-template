@@ -1,4 +1,4 @@
-OpenClaw Security Audit — March 23, 2026 03:00 HKT
+OpenClaw Security Audit — March 30, 2026 03:00 HKT
 Summary: 2 critical · 4 warn · 3 info
 
 CRITICAL
@@ -57,7 +57,7 @@ config.secrets.hooks_token_in_config Hooks token is stored in config
 
 ---
 
-## Comparison: March 16 → March 23, 2026 (7-day delta)
+## Comparison: March 23 → March 30, 2026 (7-day delta)
 
 ### Summary Status
 - **Critical findings:** 2 → 2 (STABLE)
@@ -88,20 +88,20 @@ config.secrets.hooks_token_in_config Hooks token is stored in config
 4. ✓ security.trust_model.multi_user_heuristic (accepted risk)
 
 ### Software Version Status
-- **Installed:** v2026.3.12 (stable)
-- **Available:** v2026.3.13 (npm)
+- **Installed:** v2026.3.23-2 (stable)
+- **Available:** v2026.3.28 (npm)
 - **Deps:** OK
-- **Update:** Recommended (non-critical)
+- **Update:** Available (non-critical)
 
 ---
 
 ## NEW Findings (Not Previously Accepted)
 
-✅ **NONE.** The two unresolved findings (hooks.allowed_agent_ids_unrestricted and gateway.control_ui.host_header_origin_fallback) are **persistent** from March 16 — they remain flagged but are neither new nor accepted in risk whitelist.
+✅ **NONE.** The two unresolved findings (hooks.allowed_agent_ids_unrestricted and gateway.control_ui.host_header_origin_fallback) remain persistent from March 16 — no new findings introduced, posture stable.
 
 ---
 
-**Audit Timestamp:** Monday, March 23, 2026 — 03:00 HKT
+**Audit Timestamp:** Monday, March 30, 2026 — 03:00 HKT
 **Days Since Last Audit:** 7 days
 **Audit Command:** `openclaw security audit --deep`
-**Update Status:** v2026.3.13 available (defer unless urgent)
+**Update Status:** v2026.3.28 available (non-critical, npm ready)
