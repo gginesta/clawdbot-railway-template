@@ -1,0 +1,12 @@
+overnight_sync — 2026-03-30 04:00 HKT
+
+overnight_sync — 2026-03-30 04:00 HKT
+Source: Paperclip (MC deprecated)
+Overnight window: last 10 hours (cutoff: 18:00 HKT)
+Syncing against standup date: 2026-03-29
+
+1. Fetching Paperclip overnight completions...
+  Paperclip (TMNT): 10 done total, 0 in overnight window
+  Paperclip (Brinc): 0 done total, 0 in overnight window
+  Paperclip (Cerebro): 0 done total, 0 in overnight window
+  Nothing completed overnight — nothing to sync.

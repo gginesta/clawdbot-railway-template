@@ -8,3 +8,35 @@ todoist_triage — 2026-03-23 06:00 HKT
   Nothing to triage — inbox clean.
 [2026-03-25 15:00 HKT] Todoist API returned HTTP 503 (Service Unavailable) — will retry next hour
 [2026-03-27 16:00 HKT] Todoist Inbox Triage: API 503 — Service Unavailable. Will retry next hour.
+todoist_triage — 2026-03-30 14:00 HKT
+Traceback (most recent call last):
+  File "/data/workspace/scripts/todoist_triage.py", line 224, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/data/workspace/scripts/todoist_triage.py", line 177, in main
+    tasks = fetch_tasks()
+            ^^^^^^^^^^^^^
+  File "/data/workspace/scripts/todoist_triage.py", line 148, in fetch_tasks
+    resp = http_get("https://api.todoist.com/api/v1/tasks?limit=200", TH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/workspace/scripts/todoist_triage.py", line 55, in http_get
+    with urllib.request.urlopen(req, timeout=15) as r:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 525, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 503: Service Unavailable
