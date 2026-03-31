@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-29 | Autoresearch skill complete, TMN-12 closed, daily log created | Target: <15KB*
+*Last updated: molty | 2026-03-31 | Nightly curation - added BuzzRounds SSL lesson, Mana Capital PE status, Brinc updates, Paperclip API bug | Target: <15KB*
 
 ---
 
@@ -104,6 +104,21 @@
 - Infrastructure → `memory/refs/infrastructure.md`
 - Credentials → `TOOLS.md`
 - **Journal audit → `memory/journal-audit-2026-03-16.md`**
+
+## Recent Lessons Learned
+- **Railway Custom Domain Certs (2026-03-31)**: SSL validation requires BOTH a CNAME record and a TXT `_railway-verify.{subdomain}` record with a Railway-provided token. Just adding the CNAME is insufficient; cert issuance fails without the TXT record. (Source: /data/workspace/memory/2026-03-31.md)
+
+## Project Status
+### Mana Capital PE Autoresearch (Updated 2026-03-31)
+- **Status**: 6-round research run completed. Winner: Pest Control Platform (14.2% Yr3 cash-on-cash yield, unlevered).
+- **Thesis**: `/data/workspace/projects/mana-capital/pe-autoresearch/thesis.md` (includes investor summary).
+- **Pending Decisions**: Guillermo to review thesis + 3 memos, decide on APAC vs. US focus, M&A advisor engagement (Capstone/Harris Williams), and NFDA outreach for funeral homes.
+
+### Brinc Updates (Updated 2026-03-31)
+- **Raphael Work**: BRI-53 LinkedIn sequences completed (7 prospects). File: `/data/workspace/brinc/outreach/BRI-53-linkedin-outreach-sequences-v2.md`.
+
+## Infrastructure Issues
+- **Paperclip API Bug (Noticed 2026-03-31)**: Cron-spawned sessions fail to update issue status ("Agent run id required"). Affects Raphael and potentially all agents in overnight runs. Fix pending investigation of PAPERCLIP_RUN_ID requirement in non-interactive sessions.
 
 ---
 

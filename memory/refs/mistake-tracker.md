@@ -1,5 +1,11 @@
 # Mistake Tracker
 
+## 2026-03-31: NO_REPLY appended to actual response (leaked to user)
+- **What happened:** Subagent completed PE autoresearch and I sent results to Telegram via `message` tool, but then appended `NO_REPLY` to the actual response text instead of making it the entire standalone message.
+- **Impact:** Guillermo saw raw `NO_REPLY` token — looks like a system leak.
+- **Rule:** `NO_REPLY` must be the ENTIRE message body, never appended to real content. If using `message` tool to send, reply with ONLY `NO_REPLY` as a separate response.
+- **Fix:** Already documented in system prompt rules. Just need to follow them.
+
 ## 2026-03-15: Calendar tools not persisting across restarts
 - **What happened:** `cal.py` needed google-api Python libs which weren't in the Docker image. gws CLI also not installed. Tools worked after manual install but broke on next restart.
 - **Impact:** Calendar access fails, briefings fail, trust erosion.
