@@ -55,12 +55,9 @@
 | Brinc | Molty (CEO), Raphael (CTO) | 1 (BRI-44 blocked) |
 | Cerebro | Molty (CEO), Leonardo (CTO) | 21 (cleaned from 132) |
 
-## ✅ Completed (archive candidates)
-- **TMN-12 (Autoresearch Skill):** COMPLETE ✅ 2026-03-29. Built self-improving skill infrastructure with Karpathy-style scoring loop, gap patterns, and Python scorer. Compiled to dist binary. Foundation for scaling skill quality. [verified: 2026-03-29]
-- **PLAN-021 (Agent-Link Security):** COMPLETE ✅ 2026-03-25. Discord-first trust model (webhooks = informational only, commands via Discord). All 3 agents adopted. Phase 1 (gateway HMAC) paused due to path resolution crash — needs Guillermo re-approval. Phase 2 research complete (clawctl evaluated, Discord trust model confirmed). [verified: 2026-03-25]
-- **PLAN-018 + MC migration:** COMPLETE ✅ 2026-03-23. Cerebro board cleaned: 132→21 active issues (73 cancelled: duplicates, stale, phantom planning). Lesson: don't bulk-migrate without auditing staleness.
-- **Fleet update to v2026.3.23-2:** 2026-03-25. All 4 agents verified SUCCESS via Railway API. SOP created: `memory/refs/fleet-update-sop.md`. [verified: 2026-03-25]
-- **Paperclip token fix:** 2026-03-23. Root cause: wrong agent IDs + claim tokens stored during Mar 18 registration. Generated new keys via board session, deployed to Railway. All 6 tokens working.
+## ✅ Completed
+- **PLAN-021 (Agent-Link Security):** COMPLETE ✅ 2026-03-25. Discord-first trust model active. Phase 1 (HMAC) paused. [verified: 2026-03-25]
+- Autoresearch Skill, MC migration, Paperclip tokens, Fleet v2026.3.23-2 → archived to `memory/vault/knowledge/archives/`
 
 ## 🅿️ Parked
 - **WHOOP:** No clear use case. Idea in Todoist. [verified: 2026-03-23]
