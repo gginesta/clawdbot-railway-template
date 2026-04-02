@@ -13,16 +13,17 @@
 
 ## 🔴 Morning Briefing Format Overhaul
 **Context:** Guillermo said current format "just doesn't work" — not one useful day (2026-03-21). Needs full redesign, not tweaks.
-- [ ] Review what info is actually useful vs noise
-- [ ] Draft new format options
-- [ ] Get Guillermo's sign-off on new format
-- [ ] Update briefing script + cron
+- [x] Review what info is actually useful vs noise
+- [x] Draft new format options (A/B/C) — see `docs/morning-briefing-redesign.md`
+- [ ] 👀 **Under Review** — Get Guillermo's sign-off on format (Options A, B, or C)
+- [ ] Update briefing script + cron (after format decision)
 
 ---
 
 ## 🟡 Pending
+- [x] **2026-03-30 ✅ Patagonia Land Search Phases 3+4** — 49 properties analyzed, top 15 scored/ranked. Notion updated. Files: `projects/patagonia-land/`. Deep dive (Phase 5) pending Guillermo decision.
 - [ ] WhatsApp SIM pairing — +34 677 43 78 34, needs QR link when Guillermo is ready
-- [ ] Hitster — monitor Claude Code feature branch, merge + deploy when ready
+- [ ] Hitster → Tunes rename complete. Monitor for issues. (Both tunes.buzzrounds.com + ydkj.buzzrounds.com SSL confirmed live 2026-04-03 ✅)
 
 ---
 
