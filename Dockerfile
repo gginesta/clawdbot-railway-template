@@ -22,10 +22,10 @@ WORKDIR /openclaw
 
 # Pin to a known-good ref (tag/branch). Override in Railway template settings if needed.
 # Using a released tag avoids build breakage when `main` temporarily references unpublished packages.
-ARG CACHE_BUST=1775620661
+ARG CACHE_BUST=1775638745
 ARG OPENCLAW_GIT_REF=v2026.4.7
-ADD https://api.github.com/repos/openclaw/openclaw/git/refs/tags/v2026.4.7 /tmp/version.json
-RUN git clone --depth 1 --branch "${OPENCLAW_GIT_REF}" https://github.com/openclaw/openclaw.git .
+RUN echo "cache-bust: 1775638745" > /tmp/bust.txt
+RUN git clone --depth 1 --branch "v2026.4.7" https://github.com/openclaw/openclaw.git .
 
 # Patch: relax version requirements for packages that may reference unpublished versions.
 # Apply to all extension package.json files to handle workspace protocol (workspace:*).
