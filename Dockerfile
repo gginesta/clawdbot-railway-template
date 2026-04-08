@@ -24,6 +24,8 @@ WORKDIR /openclaw
 # Using a released tag avoids build breakage when `main` temporarily references unpublished packages.
 ARG CACHE_BUST=1775620661
 ARG OPENCLAW_GIT_REF=v2026.4.7
+ADD https://api.github.com/repos/openclaw/openclaw/git/refs/tags/v2026.4.7 /tmp/version.json
+ADD https://api.github.com/repos/openclaw/openclaw/git/refs/tags/v2026.4.7 /tmp/version.json
 RUN git clone --depth 1 --branch "${OPENCLAW_GIT_REF}" https://github.com/openclaw/openclaw.git .
 
 # Patch: relax version requirements for packages that may reference unpublished versions.
@@ -38,6 +40,18 @@ RUN pnpm install --no-frozen-lockfile
 RUN pnpm build
 ENV OPENCLAW_PREFER_PNPM=1
 RUN pnpm ui:install && pnpm ui:build
+# Persist user-installed tools across redeploys (upstream ec73de5)
+ENV NPM_CONFIG_PREFIX=/data/npm
+ENV NPM_CONFIG_CACHE=/data/npm-cache
+ENV PNPM_HOME=/data/pnpm
+ENV PNPM_STORE_DIR=/data/pnpm-store
+ENV PATH="/data/npm/bin:/data/pnpm:${PATH}"
+# Persist user-installed tools across redeploys (upstream ec73de5)
+ENV NPM_CONFIG_PREFIX=/data/npm
+ENV NPM_CONFIG_CACHE=/data/npm-cache
+ENV PNPM_HOME=/data/pnpm
+ENV PNPM_STORE_DIR=/data/pnpm-store
+ENV PATH="/data/npm/bin:/data/pnpm:${PATH}"
 
 
 # Runtime image
