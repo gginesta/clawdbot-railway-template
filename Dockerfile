@@ -25,7 +25,6 @@ WORKDIR /openclaw
 ARG CACHE_BUST=1775620661
 ARG OPENCLAW_GIT_REF=v2026.4.7
 ADD https://api.github.com/repos/openclaw/openclaw/git/refs/tags/v2026.4.7 /tmp/version.json
-ADD https://api.github.com/repos/openclaw/openclaw/git/refs/tags/v2026.4.7 /tmp/version.json
 RUN git clone --depth 1 --branch "${OPENCLAW_GIT_REF}" https://github.com/openclaw/openclaw.git .
 
 # Patch: relax version requirements for packages that may reference unpublished versions.
