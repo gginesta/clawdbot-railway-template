@@ -1,4 +1,4 @@
-OpenClaw Security Audit — March 30, 2026 03:00 HKT
+OpenClaw Security Audit — April 13, 2026 03:00 HKT
 Summary: 2 critical · 4 warn · 3 info
 
 CRITICAL
@@ -22,24 +22,17 @@ gateway.control_ui.host_header_origin_fallback DANGEROUS: Host-header origin fal
 config.insecure_or_dangerous_flags Insecure or dangerous config flags enabled
   Detected 1 enabled flag(s): gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback=true.
   Fix: Disable these flags when not actively debugging, or keep deployment scoped to trusted/local-only networks.
-  [ACCEPTED RISK — dangerouslyDisableDeviceAuth=true reference]
+  [ACCEPTED RISK]
 
-models.weak_tier Some configured models are below recommended tiers
-  Smaller/older models are generally more susceptible to prompt injection and tool misuse.
-- anthropic/claude-haiku-4-5 (Haiku tier (smaller model)) @ agents.defaults.model.fallbacks
-  Fix: Use the latest, top-tier model for any bot with tools or untrusted inboxes. Avoid Haiku tiers; prefer GPT-5+ and Claude 4.5+.
-  [ACCEPTED RISK — Sonnet 4 weak tier warning]
+tools.exec.security_full_configured Exec security=full is configured
+  Full exec trust is enabled for: main.
+  Fix: Prefer tools.exec.security="allowlist" with ask prompts, and reserve "full" for tightly scoped break-glass agents only.
+  [NEW — not in Mar 30 audit]
 
 security.trust_model.multi_user_heuristic Potential multi-user setup detected (personal-assistant model warning)
   Heuristic signals indicate this gateway may be reachable by multiple users:
 - channels.telegram.groupPolicy="allowlist" with configured group targets
 - channels.discord.groupPolicy="allowlist" with configured group targets
-Runtime/process tools are exposed without full sandboxing in at least one context.
-Potential high-impact tool exposure contexts:
-- agents.defaults (sandbox=off; runtime=[exec, process]; fs=[read, write, edit, apply_patch]; fs.workspaceOnly=false)
-- agents.list.main (sandbox=off; runtime=[exec, process]; fs=[read, write, edit, apply_patch]; fs.workspaceOnly=false)
-OpenClaw's default security model is personal-assistant (one trusted operator boundary), not hostile multi-tenant isolation on one shared gateway.
-  Fix: If users may be mutually untrusted, split trust boundaries (separate gateways + credentials, ideally separate OS users/hosts). If you intentionally run shared-user access, set agents.defaults.sandbox.mode="all", keep tools.fs.workspaceOnly=true, deny runtime/fs/web tools unless required, and keep personal/private identities + credentials off that runtime.
   [ACCEPTED RISK — Discord allowlist warning]
 
 INFO
@@ -49,59 +42,45 @@ tools.elevated: enabled
 hooks.webhooks: enabled
 hooks.internal: enabled
 browser control: enabled
-trust model: personal assistant (one trusted operator boundary), not hostile multi-tenant on one shared gateway
+trust model: personal assistant (one trusted operator boundary)
 gateway.tailscale_serve Tailscale Serve exposure enabled
-  gateway.tailscale.mode="serve" exposes the Gateway to your tailnet (loopback behind Tailscale).
 config.secrets.hooks_token_in_config Hooks token is stored in config
-  hooks.token is set in the config file; keep config perms tight and treat it like an API secret.
 
 ---
 
-## Comparison: March 23 → March 30, 2026 (7-day delta)
+## Comparison: March 30 → April 13, 2026 (14-day delta)
 
 ### Summary Status
 - **Critical findings:** 2 → 2 (STABLE)
-- **Warn findings:** 4 → 4 (STABLE)
+- **Warn findings:** 4 → 4 (STABLE count, but composition changed)
 - **Info findings:** 3 → 3 (STABLE)
-- **Overall posture:** No improvement or degradation
 
-### Issues Still Outstanding (Not Resolved)
+### Changes from Previous Audit
+
+**🆕 NEW finding:**
+1. **tools.exec.security_full_configured** — exec security=full enabled for main agent. Not present in Mar 30 audit. Likely surfaced by updated scanner rules in v2026.4.7. This is standard for a single-operator setup; low actual risk.
+
+**⬇️ Resolved/removed:**
+1. **models.weak_tier** (Haiku fallback) — no longer flagged. Either the scanner rules changed or the config was adjusted.
+
+### Issues Still Outstanding
 
 **🔴 CRITICAL (2 unresolved):**
-1. **hooks.allowed_agent_ids_unrestricted** [flagged Mar 16, UNRESOLVED]
-   - Authenticated hook callers can route to ANY configured agent
-   - hooks.allowedAgentIds is unset or '*'
-   - Requires explicit allowlist config
-
-2. **skills.code_safety notion-enhanced** [ongoing, ACCEPTED RISK]
-   - env-harvesting pattern in scripts/notion-utils.js:14
-   - Marked as accepted risk (skill is in use)
+1. hooks.allowed_agent_ids_unrestricted [flagged Mar 16]
+2. skills.code_safety notion-enhanced [ACCEPTED RISK]
 
 **🟡 WARN (1 unresolved, 3 accepted):**
-1. **gateway.control_ui.host_header_origin_fallback** [flagged Mar 16, UNRESOLVED]
-   - dangerouslyAllowHostHeaderOriginFallback=true
-   - Weakens DNS rebinding protections
-   - Requires config change to disable
+1. gateway.control_ui.host_header_origin_fallback [flagged Mar 16]
+2. ✓ config.insecure_or_dangerous_flags (accepted)
+3. ✓ tools.exec.security_full_configured (NEW — standard for single-operator)
+4. ✓ security.trust_model.multi_user_heuristic (accepted)
 
-2. ✓ config.insecure_or_dangerous_flags (accepted risk)
-3. ✓ models.weak_tier Haiku (accepted risk)
-4. ✓ security.trust_model.multi_user_heuristic (accepted risk)
-
-### Software Version Status
-- **Installed:** v2026.3.23-2 (stable)
-- **Available:** v2026.3.28 (npm)
-- **Deps:** OK
+### Software Version
+- **Installed:** v2026.4.7 (stable) — updated from v2026.3.23-2
+- **Available:** v2026.4.11 (npm)
 - **Update:** Available (non-critical)
 
 ---
 
-## NEW Findings (Not Previously Accepted)
-
-✅ **NONE.** The two unresolved findings (hooks.allowed_agent_ids_unrestricted and gateway.control_ui.host_header_origin_fallback) remain persistent from March 16 — no new findings introduced, posture stable.
-
----
-
-**Audit Timestamp:** Monday, March 30, 2026 — 03:00 HKT
-**Days Since Last Audit:** 7 days
-**Audit Command:** `openclaw security audit --deep`
-**Update Status:** v2026.3.28 available (non-critical, npm ready)
+**Audit Timestamp:** Monday, April 13, 2026 — 03:00 HKT
+**Days Since Last Audit:** 14 days

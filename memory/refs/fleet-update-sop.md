@@ -148,3 +148,4 @@ Only after Step 5 passes. Update the Fleet section:
 3. **Verify actual state, not MEMORY.md.** MEMORY.md can be stale.
 4. **All 4 or nothing.** Don't leave agents on different versions.
 5. **REG-033 applies:** No fleet updates without Guillermo's explicit approval in the same session.
+6. **Never update env vars on offline agents.** Changing a Railway env var triggers an automatic redeploy — even if disconnected from GitHub. Only update services that should be running. (Lesson from Apr 12 incident where Raphael, Leonardo, April were accidentally reactivated.)
