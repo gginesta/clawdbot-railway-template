@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-03-31 | Nightly curation - added BuzzRounds SSL lesson, Mana Capital PE status, Brinc updates, Paperclip API bug | Target: <15KB*
+*Last updated: molty | 2026-04-20 | Weekly memory audit — verified all pending items against live sources | Target: <15KB*
 
 ---
 
@@ -9,19 +9,19 @@
 - **Email:** guillermo.ginesta@gmail.com | **Mobile:** +852 5405 5953
 - **WhatsApp:** +34 677 43 78 34 (Spanish SIM, purchased London 2026-03-22, needs QR pairing)
 - **Timezone:** HKT (GMT+8) — **ALWAYS think in HKT**
-- **⚠️ TRAVEL:** In London until 2026-03-30 (back to HK Mar 31). HAS REMINDED ME 7+ TIMES.
+- **Location:** Back in Hong Kong (arrived Mar 31 from London trip).
 - **Style:** Casual, efficient, no fluff. Likes tables.
 
 ## 🖥️ Fleet
-**Version:** v2026.3.23-2 (deployed 2026-03-25, all 4 agents ✅)
+**Version:** v2026.4.11 (deployed 2026-04-12, all 4 agents ✅)
 | Agent | URL | Model |
 |-------|-----|-------|
-| Molty 🦎 | ggvmolt.up.railway.app | Opus (primary) |
+| Molty 🦎 | ggvmolt.up.railway.app | Z.AI GLM-5.1 (primary) |
 | Raphael 🔴 | ggv-raphael.up.railway.app | Sonnet |
 | Leonardo 🔵 | leonardo-production.up.railway.app | Sonnet |
 | April 🌸 | april-agent-production.up.railway.app | Sonnet |
 
-**Cron model:** Haiku direct | **Fallback:** Codex/GPT-5.2
+**Cron model:** xai/grok-3-fast | **Fallback:** grok-3-fast → grok-3
 
 ## 🐢 Mission Control
 - **URL:** https://tmnt-mission-control.vercel.app
@@ -35,47 +35,38 @@
 - **Full rules:** `memory/refs/standup-process.md`
 
 ## 📋 Active Projects
-- **Autoresearch Skill:** ✅ COMPLETE 2026-03-29. Self-improving OpenClaw prompt skill infrastructure. Karpathy-style scoring loop (sample → score → improve → iterate). Includes 3-phase SOP, gap patterns (137 lines), scoring rubric (64 lines), Python scorer (81 lines). Compiled to `skills/dist/autoresearch.skill`. [verified: 2026-03-29]
-- **Patagonia Land Search:** Family compound project. Notion page: https://www.notion.so/Patagonia-Land-Search-Family-Compound-Project-33239dd69afd81dcbfdee6acbc2fee86. Local files: `projects/patagonia-land/`. Phase 1-2 complete (40+ sources, 9 regions analyzed). Top 3 regions: Coyhaique (practical), Lago General Carrera (best climate), Puerto Natales (best scenery). Guillermo is Chilean national = no DIFROL restrictions. Phase 3 next: populate listings DB. [verified: 2026-03-29]
-- **BuzzRounds:** Party games hub. Domain: `buzzrounds.com` (Namecheap, bought 2026-03-28). Vercel project `prj_4lz2Cc50Ilao7XBEP9LA4dgmh6em`. Repo: `gginesta/buzzrounds`. Next.js 15 + TypeScript + Tailwind. DNS updated 2026-03-30. Jackbox-inspired concept — collection of multiplayer browser games. [verified: 2026-03-30]
-- **Tunes (formerly Hitster):** Renamed 2026-03-28. Multiplayer music trivia game. **Built by Guillermo + Claude Code.** Repo: `gginesta/Tunes`. Railway project `658ca522`, service `2478865e`. Domains: `tunes.up.railway.app` + `tunes.buzzrounds.com` (custom domain SSL **FIXED 2026-03-30** — see lesson below). Spotify Web Playback SDK + PKCE OAuth. Auto-deploys from `main`. Tech: React 19/Vite/Zustand + Node/Express/Socket.io + SQLite. Volume `6fa153a6` at `/app/data`. 500+ songs, 4 game modes. CI auto-merge workflow updated to `claude/tunes-*` branch pattern (GitHub Actions). Env vars updated: `VITE_SERVER_URL` + `VITE_SPOTIFY_REDIRECT_URI` → `tunes.buzzrounds.com`. Full codebase rename: 32 files (commit `301ac19`), all `@hitster/*` → `@tunes/*`, type aliases, UI text, localStorage keys. Claude Code PR #18 done directly (timeouts/503s), PR left open — can close without merging. [verified: 2026-03-30]
-- **YDKJ:** You Don't Know Jack-inspired trivia game (in development). Railway project `5cea0add`, service created 2026-03-30. Repo: `gginesta/YDKJ`. Custom domain `ydkj.buzzrounds.com` created, DNS updated to `4o69dlkz.up.railway.app`. Cert **VALIDATING** as of 2026-03-30 15:42 HKT. Fallback: `ydkj.up.railway.app` works. [verified: 2026-03-30]
-- **Mana Capital PE Autoresearch:** Adapted Karpathy's autoresearch pattern for PE investment thesis validation. Framework: mutation loop on `thesis.md`, cash-on-cash yield % as metric, 6-round autonomous Sonnet run. Constraints: $50M fund size, global (prefer EU/LatAm/APAC), no vice, hold forever. Session: `mana-pe-autoresearch` spawned 2026-03-30. Guillermo landing HK Tue Mar 31 morning — expects results. Framework improvements needed for reusability. [verified: 2026-03-30]
-- **Cerebro:** www.meetcerebro.com — active development. Deploy pipeline fixed 2026-03-17. [verified: 2026-03-24]
-- **Content pipeline:** Article #4 "What AI Agents Actually Do For Me" published 2026-03-24. X: https://x.com/gginesta/status/2036346565154029603 | LinkedIn published. [verified: 2026-03-24]
-- **Morning briefing format overhaul:** Guillermo: "just doesn't work" (2026-03-21). Needs full rethink on return from London (~2026-03-25). [verified: 2026-03-24]
-- **ginesta.io:** LIVE ✅ https://ginesta.io | Vercel project: ginesta-site | GitHub: gginesta/ginesta-io. Family landing page + /guillermo profile. [verified: 2026-03-24]
-- **helmcl.com:** LIVE ✅ https://helmcl.com | Vercel project: helmcl. Helm Consulting placeholder. helmconsulting.io + helmconsultingltd.com redirect here. [verified: 2026-03-24]
-- **Paperclip:** FULLY OPERATIONAL ✅ https://paperclip-production-83f5.up.railway.app. All agent tokens regenerated + deployed 2026-03-23. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. [verified: 2026-03-24]
-- **MC sunset:** COMPLETE ✅ Announced 2026-03-23. Paperclip = single source of truth for all task management.
+- **BuzzRounds:** Party games hub. Domain: `buzzrounds.com` (200 ✅). Tunes + YDKJ games. SSL certs fixed (TXT records added 2026-03-31). [verified: 2026-04-20]
+- **Tunes:** Multiplayer music trivia. Repo: `gginesta/Tunes`. Railway project `658ca522`. Domain: `tunes.buzzrounds.com` (200 ✅). ⚠️ Railway service shows FAILED. Built by Guillermo + Claude Code. [verified: 2026-04-20]
+- **YDKJ:** Trivia game. Repo: `gginesta/YDKJ`. Railway project `5cea0add`. Domain: `ydkj.buzzrounds.com` (200 ✅). [verified: 2026-04-20]
+- **Mana Capital PE Autoresearch:** 6-round run completed. Winner: Pest Control Platform (14.2% Yr3 cash-on-cash). Thesis: `projects/mana-capital/pe-autoresearch/thesis.md`. Awaiting Guillermo review. [verified: 2026-04-03]
+- **Cerebro:** www.meetcerebro.com (200 ✅) — active development. Leonardo owns board. ⚠️ Railway cerebro service shows FAILED. [verified: 2026-04-20]
+- **Patagonia Land Search:** Phase 1-2 complete. Phase 3 (listings DB) pending. Notion page + `projects/patagonia-land/`. [verified: 2026-03-29]
+- **Paperclip:** Operational (API 200 ✅). All agent tokens active. Fleet creds: `/data/.openclaw/paperclip-fleet-credentials.json`. [verified: 2026-04-20]
 
-| Company | Agents | Active Issues |
-|---------|--------|--------------|
-| TMNT Squad | Molty (CEO), April | 2 |
-| Brinc | Molty (CEO), Raphael (CTO) | 1 (BRI-44 blocked) |
-| Cerebro | Molty (CEO), Leonardo (CTO) | 21 (cleaned from 132) |
+| Company | Agents | Notes |
+|---------|--------|-------|
+| TMNT Squad | Molty (CEO), April | |
+| Brinc | Molty (CEO), Raphael (CTO) | BRI-44 blocked on Guillermo |
+| Cerebro | Molty (CEO), Leonardo (CTO) | ~59 active issues |
 
-## ✅ Completed
-- **PLAN-021 (Agent-Link Security):** COMPLETE ✅ 2026-03-25. Discord-first trust model active. Phase 1 (HMAC) paused. [verified: 2026-03-25]
-- Autoresearch Skill, MC migration, Paperclip tokens, Fleet v2026.3.23-2 → archived to `memory/vault/knowledge/archives/`
+## ✅ Completed (recent)
+- PLAN-021, Autoresearch Skill, MC migration, Paperclip tokens, Fleet v2026.3.23-2 → archived
+- **LLM Quota Resolved (2026-04-08):** Fleet-wide quota block resolved after April's backup ran at 21:01 HKT. Guillermo claimed $200 credit. Cron jobs should resume normally. [verified: 2026-04-08]
 
 ## 🅿️ Parked
-- **WHOOP:** No clear use case. Idea in Todoist. [verified: 2026-03-23]
-- **Browser relay:** Parked. Resume when Guillermo wants Raphael on Waalaxy. [verified: 2026-03-23]
-- **MC Phase 3 sprint:** D1 Templates, D2 Notif Prefs, D4 Memory Timeline, D6 Auth — may be superseded by Paperclip migration. Needs decision.
+- WHOOP, Browser relay (Waalaxy), MC Phase 3 sprint — all parked. [verified: 2026-04-20]
 
-## ⏳ Pending [verified: 2026-03-28]
-- **Custom domain SSL (tunes.buzzrounds.com):** Railway custom domain stuck on `CERTIFICATE_STATUS_TYPE_VALIDATING_OWNERSHIP`. Root cause: deleted + re-created domain to reset cert, Railway assigned NEW CNAME target `hkhjmdcx.up.railway.app` (was `3s82uf9z.up.railway.app`). Updated DNS. Waiting for propagation + cert issuance. Fallback: `tunes.up.railway.app` works fine. [verified: 2026-03-28]
-- **Webchat device auth:** Bug — auth still enforced despite `dangerouslyDisableDeviceAuth`. Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-03-24]
-- **April bot visibility (allowBots):** April cannot see bot-authored messages in Discord (allowBots defaults false). Fix: `config patch --json '{"channels":{"discord":{"allowBots":true}}}'`. Needs gateway restart. [verified: 2026-03-25]
-- **WhatsApp SIM:** +34 677 43 78 34 (Spanish, purchased London 2026-03-22). Needs QR pairing when Guillermo is ready. [verified: 2026-03-24]
+## ⏳ Pending
+- **Fleet-wide exec block (2026-04-03):** All 4 agents lost shell exec access mid-day Apr 3. Molty exec now working ✅ (verified 2026-04-20). Other agents' status unknown (April/Leonardo Railway services FAILED). [verified: 2026-04-20]
+- **Model Migration to Z.AI (2026-04-10):** Molty on Z.AI GLM-5.1 ✅. Raphael on Sonnet, Railway SUCCESS. April & Leonardo Railway services FAILED — may need redeploy/model update. [verified: 2026-04-20]
+- **Webchat device auth:** Workaround: `?token=<gateway_token>`. Low priority. Unchanged. [verified: 2026-04-20]
+- **April bot visibility (allowBots):** Needs gateway restart + config patch. Unchanged. [verified: 2026-04-20]
+- **WhatsApp SIM:** +34 677 43 78 34. Needs QR pairing. Unchanged. [verified: 2026-04-20]
+- **Upstream Template Audit (`vignesh07/clawdbot-railway-template`):** Fork behind upstream. 1 important commit to apply (NPM/PNPM persistence, `ec73de5` #139). Full audit: `/data/workspace/plans/dockerfile-rebase-audit.md`. [verified: 2026-04-20]
+- **Fix Plan (OpenClaw Update):** Add cache-bust `ADD` line for v2026.4.7 and 5-line persistence ENV vars block. Awaiting push to `gginesta/clawdbot-railway-template`. [verified: 2026-04-20]
 
-## 📣 Standup System v3.0 (directive 2026-03-14)
-**Webchat-native standup. Notion task DB dropped.**
-- Primary: Webchat (Guillermo at computer) | Backup: Telegram (when mobile)
-- Notion: Docs hub only — NO task sync, NO standup pages
-- Flow: I send formatted review → Guillermo replies inline → I process
-- Full spec: `memory/refs/standup-process.md`
+## 📣 Standup System v3.0
+Webchat-native. Full spec: `memory/refs/standup-process.md`
 
 ## ⚠️ Core Rules
 1. **PPEE:** Pause → Plan → Evaluate → Execute. One fix, not many.
@@ -90,32 +81,26 @@
 10. **Never post API tokens in Discord** — even private servers. Use direct env var updates or agent-link. (2026-03-23)
 
 ## 📖 Reference Pointers
-- **My task list → `TODO.md`** (check at session start, update after work)
-- **Fleet update SOP → `memory/refs/fleet-update-sop.md`** (mandatory checklist for version updates)
-- Technical lessons → `memory/refs/lessons-learned.md`
-- Standup/calendar rules → `memory/refs/standup-process.md`
-- **Fleet updates → `memory/refs/fleet-updates.md`** (how to update OpenClaw on Railway)
-- **Fleet update SOP → `memory/refs/fleet-update-sop.md`** (6-step checklist, mandatory verification)
-- Code-enforced rules → `memory/refs/code-enforced-rules.md`
-- Mistake tracking → `memory/refs/mistake-tracker.md`
-- Infrastructure → `memory/refs/infrastructure.md`
-- Credentials → `TOOLS.md`
-- **Journal audit → `memory/journal-audit-2026-03-16.md`**
+- Task list → `TODO.md` | Fleet update SOP → `memory/refs/fleet-update-sop.md`
+- Lessons → `memory/refs/lessons-learned.md` | Mistakes → `memory/refs/mistake-tracker.md`
+- Standup → `memory/refs/standup-process.md` | Infrastructure → `memory/refs/infrastructure.md`
+- Credentials → `TOOLS.md` | Code-enforced rules → `memory/refs/code-enforced-rules.md`
 
 ## Recent Lessons Learned
 - **Railway Custom Domain Certs (2026-03-31)**: SSL validation requires BOTH a CNAME record and a TXT `_railway-verify.{subdomain}` record with a Railway-provided token. Just adding the CNAME is insufficient; cert issuance fails without the TXT record. (Source: /data/workspace/memory/2026-03-31.md)
 
-## Project Status
-### Mana Capital PE Autoresearch (Updated 2026-03-31)
-- **Status**: 6-round research run completed. Winner: Pest Control Platform (14.2% Yr3 cash-on-cash yield, unlevered).
-- **Thesis**: `/data/workspace/projects/mana-capital/pe-autoresearch/thesis.md` (includes investor summary).
-- **Pending Decisions**: Guillermo to review thesis + 3 memos, decide on APAC vs. US focus, M&A advisor engagement (Capstone/Harris Williams), and NFDA outreach for funeral homes.
-
-### Brinc Updates (Updated 2026-03-31)
-- **Raphael Work**: BRI-53 LinkedIn sequences completed (7 prospects). File: `/data/workspace/brinc/outreach/BRI-53-linkedin-outreach-sequences-v2.md`.
+## Brinc Updates (Updated 2026-04-03)
+- **BRI-44:** 16 Gmail drafts staged since Mar 18 — blocked on Guillermo send confirmation.
+- **BRI-53 APAC Lead Research:** Now at v4 (17 prospects across 4 batches). Latest: Korea batch (4 prospects). Files: `brinc/outreach/BRI-53-linkedin-outreach-sequences-v*.md`.
+- **HARO:** First published comment Apr 2 (Website Builder Expert). Pipeline active.
 
 ## Infrastructure Issues
-- **Paperclip API Bug (Noticed 2026-03-31)**: Cron-spawned sessions fail to update issue status ("Agent run id required"). Affects Raphael and potentially all agents in overnight runs. Fix pending investigation of PAPERCLIP_RUN_ID requirement in non-interactive sessions.
+- **Fleet-wide exec block (Apr 3):** Molty exec working ✅. April/Leonardo status unknown (Railway FAILED). [verified: 2026-04-20]
+- **Paperclip API Bug:** Cron sessions fail status updates ("Agent run id required"). Persists. [verified: 2026-04-03]
+- **Apr 2 API degradation:** Anthropic API was slow/hanging, caused fleet-wide cron timeouts. All agents bumped timeouts to 600s as buffer. Resolved by Apr 3. [verified: 2026-04-03]
+- **Leonardo MEMORY.md bloat:** Was 21KB, trimmed to 8.7KB. Root cause of his curation timeouts. [verified: 2026-04-03]
+- **OpenClaw Update Issue (v2026.4.7):** Railway build cache not picking up `OPENCLAW_GIT_REF`. Pending cache-bust fix. [verified: 2026-04-20]
+- **⚠️ FAILED Railway services (2026-04-20):** Tunes, april-agent, leonardo, cerebro all show FAILED. Domains still serve (200) for BuzzRounds and meetcerebro. Needs investigation. [verified: 2026-04-20]
 
 ---
 
