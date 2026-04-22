@@ -266,6 +266,23 @@ RUN printf '%s\n' \
   '  echo "[startup] Running pending directives for $AGENT_NAME..."' \
   '  python3 "$DIRECTIVES_SCRIPT" "$AGENT_NAME" && echo "[startup] Directives complete"' \
   'fi' \
+  '# Enforce primary model from OPENCLAW_PRIMARY_MODEL env var (survives redeploye)' \
+  'if [ -n "${OPENCLAW_PRIMARY_MODEL:-}" ] && [ -f "/data/.openclaw/openclaw.json" ]; then' \
+  '  python3 -c "' \
+  'import json, os' \
+  'path = "/data/.openclaw/openclaw.json"' \
+  'with open(path) as f: d = json.load(f)' \
+  'model = os.environ["OPENCLAW_PRIMARY_MODEL"]' \
+  'fallbacks = os.environ.get("OPENCLAW_FALLBACK_MODELS", "openrouter/google/gemini-2.5-flash,openrouter/anthropic/claude-sonnet-4.6").split(",")' \
+  'd.setdefault("agents", {}).setdefault("defaults", {}).setdefault("model", {})["primary"] = model' \
+  'd["agents"]["defaults"]["model"]["fallbacks"] = fallbacks' \
+  'd["agents"]["defaults"].setdefault("heartbeat", {})["model"] = model' \
+  'd["agents"]["defaults"].setdefault("subagents", {}).setdefault("model", {})["primary"] = model' \
+  'd["agents"]["defaults"]["subagents"]["model"]["fallbacks"] = fallbacks' \
+  'with open(path, "w") as f: json.dump(d, f, indent=2)' \
+  'print("[startup] Model enforced:", model)' \
+  '" 2>&1 || echo "[startup] Model patch failed (non-fatal)"' \
+  'fi' \
   'exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' \
   > /usr/local/bin/startup.sh \
   && chmod +x /usr/local/bin/startup.sh
