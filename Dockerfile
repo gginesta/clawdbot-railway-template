@@ -12,7 +12,8 @@ RUN apt-get update \
     zip \
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g openclaw@2026.3.13
+ARG OPENCLAW_VERSION=2026.4.21
+RUN npm install -g openclaw@${OPENCLAW_VERSION}
 
 WORKDIR /app
 
@@ -37,6 +38,12 @@ ENV HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
 
 ENV PORT=8080
 ENV OPENCLAW_ENTRY=/usr/local/lib/node_modules/openclaw/dist/entry.js
+
+# Persistence: runtime npm/pnpm installs survive redeploys
+ENV NPM_CONFIG_PREFIX=/data/npm
+ENV PNPM_HOME=/data/pnpm
+ENV PNPM_STORE_DIR=/data/pnpm-store
+
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
