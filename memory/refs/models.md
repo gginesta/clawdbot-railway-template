@@ -1,15 +1,13 @@
 ## 🤖 Model Configuration
 
-### Primary Stack (Updated 2026-02-06)
+### Molty Primary Stack (Updated 2026-04-22)
 | Role | Model | Provider | Notes |
 |------|-------|----------|-------|
-| **Primary** | **Claude Opus 4.6** | Anthropic | 1M context, adaptive thinking, agent teams |
-| **Fallback 1** | Claude Sonnet 4.0 | Anthropic | |
-| **Fallback 2** | GPT-5.3 | OpenAI Codex (OAuth) | ⏳ API "coming soon" — 5.2 backup in chain |
-| **Fallback 3** | GPT-5.2 | OpenAI Codex (OAuth) | Active fallback until 5.3 API live |
-| **Fallback 4** | Grok 3 | xAI | |
-| **Images** | Qwen Vision | Qwen Portal (free!) | |
-| **Subagents** | Qwen Coder | Cheap/fast for background work | |
+| **Primary** | **Claude Sonnet 4.6** | Anthropic (subscription token) | `sk-ant-oat01-...` — subscription billing |
+| **Fallback 1** | Gemini 2.5 Flash | OpenRouter | Fast, cheap |
+| **Fallback 2** | Claude Sonnet 4.6 | OpenRouter | Same model, different provider |
+| **Images** | Grok 3 | xAI | |
+| **Cron** | Grok 3 Fast | xAI | Cron/background jobs |
 
 ### Opus 4.6 New Features
 - **1M token context** (beta) — 5x larger!
@@ -44,7 +42,7 @@
 
 | Agent | Primary | Fallback Chain | Notes |
 |-------|---------|----------------|-------|
-| **Molty 🦎** | Claude Opus 4.6 | Sonnet 4 → GPT-5.2 → Grok 3 | Coordinator, heavy reasoning |
+| **Molty 🦎** | Claude Sonnet 4.6 (Anthropic direct) | Gemini 2.5 Flash → OR Sonnet 4.6 | Z.AI discontinued; moved to Anthropic subscription |
 | **Raphael 🔴** | Claude Opus 4.6 | Sonnet 4 → GPT-5.2 → Grok 3 | Brinc lead |
 | **Leonardo 🔵** | GPT-5.2 | GLM-5 → Gemini Flash → Grok 3 → Opus → DeepSeek R1 → Sonnet | Alternates providers (no same-provider adjacency) |
 

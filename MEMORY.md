@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-04-20 | Weekly memory audit — verified all pending items against live sources | Target: <15KB*
+*Last updated: molty | 2026-04-23 | Nightly curation: Raphael model confirmed, lessons from auth debugging | Target: <15KB*
 
 ---
 
@@ -13,14 +13,16 @@
 - **Style:** Casual, efficient, no fluff. Likes tables.
 
 ## 🖥️ Fleet
-**Version:** v2026.4.11 (deployed 2026-04-12, all 4 agents ✅)
+**Version:** v2026.4.21 (Dockerfile updated 2026-04-22, deployed via Railway)
 | Agent | URL | Model |
 |-------|-----|-------|
-| Molty 🦎 | ggvmolt.up.railway.app | Z.AI GLM-5.1 (primary) |
-| Raphael 🔴 | ggv-raphael.up.railway.app | Sonnet |
+| Molty 🦎 | ggvmolt.up.railway.app | Anthropic Claude Sonnet 4.6 (subscription token) |
+| Raphael 🔴 | ggv-raphael.up.railway.app | Anthropic Claude Sonnet 4.6 ✅ (v2026.4.21, confirmed 2026-04-23) |
 | Leonardo 🔵 | leonardo-production.up.railway.app | Sonnet |
 | April 🌸 | april-agent-production.up.railway.app | Sonnet |
 
+**Primary:** `anthropic/claude-sonnet-4-6` (subscription token `sk-ant-oat01-...`)
+**Fallbacks:** `openrouter/google/gemini-2.5-flash` → `openrouter/anthropic/claude-sonnet-4.6`
 **Cron model:** xai/grok-3-fast | **Fallback:** grok-3-fast → grok-3
 
 ## 🐢 Mission Control
@@ -58,15 +60,24 @@
 
 ## ⏳ Pending
 - **Fleet-wide exec block (2026-04-03):** All 4 agents lost shell exec access mid-day Apr 3. Molty exec now working ✅ (verified 2026-04-20). Other agents' status unknown (April/Leonardo Railway services FAILED). [verified: 2026-04-20]
-- **Model Migration to Z.AI (2026-04-10):** Molty on Z.AI GLM-5.1 ✅. Raphael on Sonnet, Railway SUCCESS. April & Leonardo Railway services FAILED — may need redeploy/model update. [verified: 2026-04-20]
+- **Model Migration (2026-04-22→23):** Molty switched from Z.AI GLM-5.1 → **Anthropic Claude Sonnet 4.6** via subscription token. Z.AI being discontinued end of month. Raphael confirmed on Sonnet 4.6 ✅ (2026-04-23). April 404 since Apr 22 — needs redeploy. Leonardo still on old stack — needs update. [verified: 2026-04-23]
 - **Webchat device auth:** Workaround: `?token=<gateway_token>`. Low priority. Unchanged. [verified: 2026-04-20]
 - **April bot visibility (allowBots):** Needs gateway restart + config patch. Unchanged. [verified: 2026-04-20]
 - **WhatsApp SIM:** +34 677 43 78 34. Needs QR pairing. Unchanged. [verified: 2026-04-20]
 - **Upstream Template Audit (`vignesh07/clawdbot-railway-template`):** Fork behind upstream. 1 important commit to apply (NPM/PNPM persistence, `ec73de5` #139). Full audit: `/data/workspace/plans/dockerfile-rebase-audit.md`. [verified: 2026-04-20]
-- **Fix Plan (OpenClaw Update):** Add cache-bust `ADD` line for v2026.4.7 and 5-line persistence ENV vars block. Awaiting push to `gginesta/clawdbot-railway-template`. [verified: 2026-04-20]
+- **Fix Plan (OpenClaw Update):** ✅ DONE. Dockerfile bumped to v2026.4.21, pushed to `gginesta/clawdbot-railway-template`. Persistence ENV vars added. [resolved: 2026-04-22]
 
 ## 📣 Standup System v3.0
 Webchat-native. Full spec: `memory/refs/standup-process.md`
+
+## 🔑 Key Rotation (2026-04-22)
+Accidental push of workspace repo to GitHub exposed API keys. All keys rotated:
+- ✅ Railway, Notion, Vercel, GitHub, OpenRouter, xAI, Z.AI, Google/Gemini, Todoist, Namecheap, Discord bot token, Google SA JSON
+- ✅ TOOLS.md scrubbed — all plaintext values replaced with `$ENV_VAR` references
+- ✅ GitHub `master` branch (leak) deleted. `main` branch clean (no secrets in history)
+- ✅ Dockerfile security fixes: `GOG_KEYRING_PASSWORD` now from env var, gws credential paths use globs (no hardcoded email)
+- ⚠️ Anthropic token in `token` mode only (never `oauth`). See `memory/refs/credentials-reference.md`
+- ⏳ Contact GitHub Support to GC dangling commit `7afb95aa`
 
 ## ⚠️ Core Rules
 1. **PPEE:** Pause → Plan → Evaluate → Execute. One fix, not many.
@@ -87,6 +98,10 @@ Webchat-native. Full spec: `memory/refs/standup-process.md`
 - Credentials → `TOOLS.md` | Code-enforced rules → `memory/refs/code-enforced-rules.md`
 
 ## Recent Lessons Learned
+- **Empty webchat bubbles = auth failure (2026-04-23):** When model label shows but bubble is blank, check Anthropic token auth mode (`token` for `sk-ant-oat01-` keys).
+- **Don't share Anthropic tokens across agents (2026-04-23):** Each agent needs their own token. Sharing caused empty responses.
+- **GLM falls back to Chinese (2026-04-23):** If primary fails and GLM is in fallback chain, it responds in Chinese by default.
+- **`openclaw doctor --fix` restores stale tokens (2026-04-23):** Always re-check Discord/Anthropic tokens after running it.
 - **Railway Custom Domain Certs (2026-03-31)**: SSL validation requires BOTH a CNAME record and a TXT `_railway-verify.{subdomain}` record with a Railway-provided token. Just adding the CNAME is insufficient; cert issuance fails without the TXT record. (Source: /data/workspace/memory/2026-03-31.md)
 
 ## Brinc Updates (Updated 2026-04-03)

@@ -168,7 +168,7 @@
 
 77. **Verify current state:** Check config files, APIs, and MC before claiming something isn't done.
 
-80. **Anthropic token is fleet-wide:** Same `sk-ant-*` token for Molty, Raphael, Leonardo.
+80. **Anthropic token is fleet-wide:** Same token for Molty, Raphael, Leonardo. Auth mode must be `token` (not `oauth`). OAuth mode causes "OAuth + SecretRef not supported" error. Updated in `/data/shared/credentials/secrets.json` → `profiles.anthropic:default.token`. Env var: `ANTHROPIC_API_KEY`.
 
 82. **Fleet Directive System:** Queue: `/data/shared/pending-directives/<agent>/`.
 
