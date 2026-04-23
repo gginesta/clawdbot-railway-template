@@ -229,35 +229,34 @@ RUN printf '%s\n' \
   '  rm -f "$profile_dir/SingletonLock" "$profile_dir/SingletonSocket" "$profile_dir/SingletonCookie"' \
   '  echo "[startup] Cleared browser locks in $profile_dir"' \
   'done' \
-  '# Restore gog credentials + keyring from persistent volume backup' \
-  '# (/root/.config is ephemeral -- wiped on every container restart/redeploy)' \
-  'GOG_KEYRING_BACKUP="/data/workspace/credentials/gogcli-keyring/keyring"' \
-  'GOG_KEYRING_DIR="/root/.config/gogcli/keyring"' \
-  'GOG_CREDS_BACKUP="/data/workspace/credentials/google-oauth-client.json"' \
-  'GOG_CREDS_DIR="/root/.config/gogcli/credentials.json"' \
-  'if [ -d "$GOG_KEYRING_BACKUP" ] && [ "$(ls -A "$GOG_KEYRING_BACKUP" 2>/dev/null)" ]; then' \
-  '  mkdir -p "$GOG_KEYRING_DIR"' \
-  '  cp -f "$GOG_KEYRING_BACKUP"/token:* "$GOG_KEYRING_DIR/" 2>/dev/null && echo "[startup] gog keyring restored"' \
-  'fi' \
-  'if [ -f "$GOG_CREDS_BACKUP" ]; then' \
-  '  export GOG_KEYRING_PASSWORD="${GOG_KEYRING_PASSWORD:?GOG_KEYRING_PASSWORD is required}"' \
-  '  /usr/local/bin/gog auth credentials "$GOG_CREDS_BACKUP" 2>/dev/null && echo "[startup] gog credentials registered"' \
-  'fi' \
-  '# Restore gws (Google Workspace CLI) config from persistent volume backup' \
-  'GWS_BACKUP="/data/workspace/credentials/gws-config-backup"' \
-  'GWS_CONFIG="/root/.config/gws"' \
-  'if [ -d "$GWS_BACKUP" ]; then' \
-  '  mkdir -p "$GWS_CONFIG"' \
-  '  cp -a "$GWS_BACKUP"/* "$GWS_CONFIG/" 2>/dev/null' \
-  '  cp "$GWS_BACKUP/.encryption_key" "$GWS_CONFIG/" 2>/dev/null' \
-  '  # gws 0.16+ expects credentials.enc not credentials.{base64}.enc' \
-  '  for src in "$GWS_CONFIG"/credentials.*.enc; do' \
-  '    [ -f "$src" ] && [ ! -f "$GWS_CONFIG/credentials.enc" ] && cp "$src" "$GWS_CONFIG/credentials.enc" && break' \
-  '  done' \
-  '  for src in "$GWS_CONFIG"/token_cache.*.json; do' \
-  '    [ -f "$src" ] && [ ! -f "$GWS_CONFIG/token_cache.json" ] && cp "$src" "$GWS_CONFIG/token_cache.json" && break' \
-  '  done' \
-  '  echo "[startup] gws config restored"' \
+  '# Restore gog/gws credentials -- only for molty (agent-scoped, /root/.config is ephemeral)' \
+  '_AGENT_FOR_CREDS="${OPENCLAW_AGENT_NAME:-molty}"' \
+  'if [ "$_AGENT_FOR_CREDS" = "molty" ]; then' \
+  '  GOG_KEYRING_BACKUP="/data/workspace/credentials/gogcli-keyring/keyring"' \
+  '  GOG_KEYRING_DIR="/root/.config/gogcli/keyring"' \
+  '  GOG_CREDS_BACKUP="/data/workspace/credentials/google-oauth-client.json"' \
+  '  if [ -d "$GOG_KEYRING_BACKUP" ] && [ "$(ls -A "$GOG_KEYRING_BACKUP" 2>/dev/null)" ]; then' \
+  '    mkdir -p "$GOG_KEYRING_DIR"' \
+  '    cp -f "$GOG_KEYRING_BACKUP"/token:* "$GOG_KEYRING_DIR/" 2>/dev/null && echo "[startup] gog keyring restored"' \
+  '  fi' \
+  '  if [ -f "$GOG_CREDS_BACKUP" ]; then' \
+  '    export GOG_KEYRING_PASSWORD="${GOG_KEYRING_PASSWORD:?GOG_KEYRING_PASSWORD is required}"' \
+  '    /usr/local/bin/gog auth credentials "$GOG_CREDS_BACKUP" 2>/dev/null && echo "[startup] gog credentials registered"' \
+  '  fi' \
+  '  GWS_BACKUP="/data/workspace/credentials/gws-config-backup"' \
+  '  GWS_CONFIG="/root/.config/gws"' \
+  '  if [ -d "$GWS_BACKUP" ]; then' \
+  '    mkdir -p "$GWS_CONFIG"' \
+  '    cp -a "$GWS_BACKUP"/* "$GWS_CONFIG/" 2>/dev/null' \
+  '    cp "$GWS_BACKUP/.encryption_key" "$GWS_CONFIG/" 2>/dev/null' \
+  '    for src in "$GWS_CONFIG"/credentials.*.enc; do' \
+  '      [ -f "$src" ] && [ ! -f "$GWS_CONFIG/credentials.enc" ] && cp "$src" "$GWS_CONFIG/credentials.enc" && break' \
+  '    done' \
+  '    for src in "$GWS_CONFIG"/token_cache.*.json; do' \
+  '      [ -f "$src" ] && [ ! -f "$GWS_CONFIG/token_cache.json" ] && cp "$src" "$GWS_CONFIG/token_cache.json" && break' \
+  '    done' \
+  '    echo "[startup] gws config restored"' \
+  '  fi' \
   'fi' \
   'AGENT_NAME="${OPENCLAW_AGENT_NAME:-molty}"' \
   'DIRECTIVES_SCRIPT="/data/shared/scripts/check_directives.py"' \
