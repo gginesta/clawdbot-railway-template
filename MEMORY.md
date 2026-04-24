@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-04-23 | Nightly curation: Raphael model confirmed, lessons from auth debugging | Target: <15KB*
+*Last updated: molty | 2026-04-24 | Nightly curation: GPT-5.5 noted, Leonardo redeploy plan added | Target: <15KB*
 
 ---
 
@@ -60,7 +60,9 @@
 
 ## ⏳ Pending
 - **Fleet-wide exec block (2026-04-03):** All 4 agents lost shell exec access mid-day Apr 3. Molty exec now working ✅ (verified 2026-04-20). Other agents' status unknown (April/Leonardo Railway services FAILED). [verified: 2026-04-20]
-- **Model Migration (2026-04-22→23):** Molty switched from Z.AI GLM-5.1 → **Anthropic Claude Sonnet 4.6** via subscription token. Z.AI being discontinued end of month. Raphael confirmed on Sonnet 4.6 ✅ (2026-04-23). April 404 since Apr 22 — needs redeploy. Leonardo still on old stack — needs update. [verified: 2026-04-23]
+- **Model Migration (2026-04-22→23):** Molty switched from Z.AI GLM-5.1 → **Anthropic Claude Sonnet 4.6** via subscription token. Z.AI being discontinued end of month. Raphael confirmed on Sonnet 4.6 ✅ (2026-04-23). April 404 (`Application not found`) since Apr 22 — needs redeploy. Leonardo still on old stack — needs update. [verified: 2026-04-24]
+- **Leonardo Redeploy Plan (2026-04-24):** Agreed approach with Guillermo: (1) rotate all Apr 22 exposed env vars, (2) update `OPENCLAW_GIT_REF` to `v2026.4.21`, (3) set `OPENCLAW_PRIMARY_MODEL=anthropic/claude-sonnet-4-6` (or gpt-5.5 if Codex OAuth ready), (4) add fallback chain, (5) send startup briefing. Keys to rotate: `ANTHROPIC_TOKEN`, `DISCORD_BOT_TOKEN`, `NOTION_API_KEY`, `OPENAI_API_KEY`, `OPENROUTER_API_KEY`, `TAILSCALE_AUTHKEY`, `TELEGRAM_BOT_TOKEN`, `TODOIST_API_TOKEN`, `XAI_API_KEY`, `BRAVE_API_KEY`. Safe: `PAPERCLIP_API_KEY`, `SETUP_PASSWORD`. Full detail: `memory/2026-04-24.md`. [verified: 2026-04-24]
+- **GPT-5.5 (2026-04-24):** OpenAI released GPT-5.5 — available via `openai-codex/gpt-5.5` through Codex OAuth (needs ChatGPT Plus/Pro). Guillermo getting subscription. Test plan: Molty first → Leonardo. Key stats: 82.7% Terminal-Bench. [verified: 2026-04-24]
 - **Webchat device auth:** Workaround: `?token=<gateway_token>`. Low priority. Unchanged. [verified: 2026-04-20]
 - **April bot visibility (allowBots):** Needs gateway restart + config patch. Unchanged. [verified: 2026-04-20]
 - **WhatsApp SIM:** +34 677 43 78 34. Needs QR pairing. Unchanged. [verified: 2026-04-20]
@@ -96,6 +98,7 @@ Accidental push of workspace repo to GitHub exposed API keys. All keys rotated:
 - Lessons → `memory/refs/lessons-learned.md` | Mistakes → `memory/refs/mistake-tracker.md`
 - Standup → `memory/refs/standup-process.md` | Infrastructure → `memory/refs/infrastructure.md`
 - Credentials → `TOOLS.md` | Code-enforced rules → `memory/refs/code-enforced-rules.md`
+- **Credential isolation rules** → `memory/refs/credential-isolation.md` ⚠️ READ BEFORE ANY AGENT REDEPLOY
 
 ## Recent Lessons Learned
 - **Empty webchat bubbles = auth failure (2026-04-23):** When model label shows but bubble is blank, check Anthropic token auth mode (`token` for `sk-ant-oat01-` keys).
