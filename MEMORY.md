@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-04-24 | Nightly curation: GPT-5.5 noted, Leonardo redeploy plan added | Target: <15KB*
+*Last updated: molty | 2026-04-25 | Nightly curation: daily log created, stale promotion artifact removed | Target: <15KB*
 
 ---
 
@@ -131,3 +131,5 @@ Accidental push of workspace repo to GitHub exposed API keys. All keys rotated:
 - **REG-036/037:** Never close Todoist personal tasks without 🦎. All closures via `todoist-close.sh`.
 - **Alert discipline:** No operational noise to Guillermo. Alerts only when he needs to act.
 - **Memory audit:** Weekly cron (Mon 10:00 HKT). Script: `scripts/memory-audit.py`. All pending items need `[verified: YYYY-MM-DD]`.
+
+
