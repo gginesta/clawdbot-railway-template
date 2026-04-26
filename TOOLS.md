@@ -81,9 +81,21 @@ Channel map + user IDs: `memory/refs/fleet-channels.md`
 ## Railway
 
 **Auth:** Workspace API token (scope: gginesta's Projects)
-**Token:** `$RAILWAY_API_TOKEN` (Railway env var)
+**Token:** `$RAILWAY_API_TOKEN` (Railway env var) — rotated 2026-04-26
 **API:** `https://backboard.railway.app/graphql/v2` (Bearer auth)
-**Projects:** Molty, Raphael, Leonardo, webclaw, cerebro, wonderful-harmony
+**⚠️ `me {}` query blocked** (project-scoped token). Use `projects {}` instead.
+**CLI:** `npm install -g @railway/cli` (not persistent — reinstall each session)
+**Projects:**
+| Name | ID |
+|------|----|
+| Molty | `3f47a8ad-232e-4074-8a2a-1af45ab3c047` |
+| April | `2501cb81-c58d-495c-9e39-642e30826d07` |
+| Leonardo | `56793cec-6283-4af0-ae1f-ac10ec622e58` |
+| Raphael | `d1b3e2b7-10f9-444f-829d-e77975554175` |
+| Cerebro | `efcddaea-6972-4d59-b307-e16567f078ae` |
+| Tunes | `658ca522-fd02-4cab-afcf-a05fd157a203` |
+| YDKJ | `5cea0add-b247-4d06-b9fb-dc574d267e40` |
+| webclaw | `78ac3947-86c9-41f5-9303-f4576c6e3002` |
 
 ---
 
@@ -134,7 +146,8 @@ Channel map + user IDs: `memory/refs/fleet-channels.md`
 ## GitHub
 
 **Token:** `$GITHUB_API_TOKEN` (Railway env var) — rotated 2026-04-26
-**Note:** Env var name is `GITHUB_API_TOKEN` (not `GITHUB_TOKEN`). Redeploy required after rotation to take effect.
+**⚠️ Name is `GITHUB_API_TOKEN` (NOT `GITHUB_TOKEN`).** Redeploy required after rotation to take effect.
+**Repo:** `gginesta/clawdbot-railway-template` | Remote: `backup`
 
 ---
 
