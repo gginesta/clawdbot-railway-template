@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-04-26 | Fleet rehab session: April + Leonardo configs fixed, tokens rotated, Railway/GitHub access restored | Target: <15KB*
+*Last updated: molty | 2026-04-26 | Nightly curation: Dockerfile+entrypoint fixed, cron ran OK | Target: <15KB*
 
 ---
 
@@ -65,7 +65,7 @@
 - **GPT-5.5:** Available via `openai-codex/gpt-5.5` (Codex OAuth, needs ChatGPT Plus/Pro). Guillermo getting subscription. [verified: 2026-04-24]
 - **Webchat device auth:** Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-04-20]
 - **WhatsApp SIM:** +34 677 43 78 34. Needs QR pairing. [verified: 2026-04-20]
-- **Nightly memory curation cron:** Failing (3x timeout). Model locked to Anthropic which hangs. Needs model updated to `zai/glm-5.1`. [verified: 2026-04-25]
+- **Nightly memory curation cron:** Previously failing (3x timeout). `git safe.directory` fix added to `entrypoint.sh` (commit `3d319e1f`). Cron ran successfully 2026-04-26. Monitor for recurrence.
 
 ## 📣 Standup System v3.0
 Webchat-native. Full spec: `memory/refs/standup-process.md`
@@ -110,7 +110,7 @@ Accidental push exposed API keys — all rotated. TOOLS.md scrubbed. GitHub `mas
 - **HARO:** First published comment Apr 2. Pipeline active.
 
 ## Infrastructure Issues
-- **Nightly curation cron:** 3x timeout — Anthropic hanging. Fix pending (switch to glm-5.1).
+- **Nightly curation cron:** Previously 3x timeout. `git safe.directory` + GitHub remote auto-config added to `entrypoint.sh` (2026-04-26). Cron ran OK on Apr 26 — monitor.
 - **Paperclip API Bug:** Cron sessions fail status updates ("Agent run id required"). Persists. [verified: 2026-04-03]
 - **⚠️ FAILED Railway services:** Tunes, cerebro still FAILED. Domains serve 200. [verified: 2026-04-20]
 
