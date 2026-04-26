@@ -13,7 +13,7 @@
 - **Style:** Casual, efficient, no fluff. Likes tables.
 
 ## 🖥️ Fleet
-**Version:** v2026.4.21 (Dockerfile updated 2026-04-22, deployed via Railway)
+**Version:** v2026.4.21 (Dockerfile bumped to v2026.4.23 on 2026-04-25, pending fleet rebuild)
 | Agent | URL | Model |
 |-------|-----|-------|
 | Molty 🦎 | ggvmolt.up.railway.app | Anthropic Claude Sonnet 4.6 (subscription token) |
@@ -101,6 +101,9 @@ Accidental push of workspace repo to GitHub exposed API keys. All keys rotated:
 - **Credential isolation rules** → `memory/refs/credential-isolation.md` ⚠️ READ BEFORE ANY AGENT REDEPLOY
 
 ## Recent Lessons Learned
+- **Railway API token scope (2026-04-26):** Project-scoped tokens reject `me { }` query but work fine for `projects { }`. Don't assume 401 on `me` means bad token — test with `projects` query instead.
+- **Railway/GitHub tokens need redeploy to activate (2026-04-26):** Env var changes don't hot-reload. Always trigger a redeploy after updating tokens in Railway.
+- **Railway CLI not persistent (2026-04-26):** `@railway/cli` doesn't survive redeployment — must reinstall each session if needed. Consider adding to Dockerfile.
 - **Empty webchat bubbles = auth failure (2026-04-23):** When model label shows but bubble is blank, check Anthropic token auth mode (`token` for `sk-ant-oat01-` keys).
 - **Don't share Anthropic tokens across agents (2026-04-23):** Each agent needs their own token. Sharing caused empty responses.
 - **GLM falls back to Chinese (2026-04-23):** If primary fails and GLM is in fallback chain, it responds in Chinese by default.

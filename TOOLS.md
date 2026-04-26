@@ -1,45 +1,26 @@
 # TOOLS.md - Local Notes
 
-## 🧾 Summarize CLI (`@steipete/summarize`)
+## 📧 Email Lanes (STRICT — no cross-contamination)
+| Agent | Email | Use for |
+|-------|-------|--------|
+| **Molty 🦎** | `ggv.molt@gmail.com` | Fleet coordination, personal assistant tasks |
+| **Raphael 🔴** | `salesops@brinc.io` | Brinc sales, outreach, CRM |
+| **April 🌸** | `april.rose.hk@gmail.com` | Personal/family tasks for Guillermo |
+| **Leonardo 🔵** | TBD | Cerebro/venture work |
 
-| What | Value |
-|------|-------|
-| Binary | `summarize` v0.11.1 — globally installed |
-| yt-dlp | v2026.02.21 — `/usr/local/bin/yt-dlp` |
-| ffmpeg | v7.0.2 static — `/usr/local/bin/ffmpeg` |
-| Config | `~/.summarize/config.json` — Gemini 2.5 Flash default |
-| Skill | `/openclaw/skills/summarize/SKILL.md` (auto-discovered) |
-| Works | Web articles, direct audio/video URLs |
-| Blocked | YouTube + podcast RSS — Railway IPs blocked by Google |
+**Rule:** Never authenticate or send email from another agent's account. Credentials are agent-scoped. gog/gws credentials only restore for Molty on startup (enforced in Dockerfile).
+**⚠️ REG-042:** Agent credentials MUST live in `/data/.openclaw/` (private), NEVER `/data/shared/` (synced to all agents). Full isolation rules: `memory/refs/credential-isolation.md`
+
+## 🧾 Summarize CLI
+`summarize` v0.11.1 | yt-dlp `/usr/local/bin/yt-dlp` | ffmpeg `/usr/local/bin/ffmpeg`
+Config: `~/.summarize/config.json` (Gemini 2.5 Flash). Skill: `/openclaw/skills/summarize/SKILL.md`
+Works: web articles, direct audio/video. Blocked: YouTube + podcast RSS (Railway IPs blocked)
 
 
 
-## Discord Channel Ownership
-
-| Channel | ID | Owner |
-|---------|-----|-------|
-| `#command-center` | 1468164160398557216 | **Molty** 🦎 |
-| `#squad-updates` | 1468164181155909743 | **Molty** 🦎 |
-| `#brinc-general` | 1468164121420628081 | **Raphael** 🔴 |
-| `#brinc-private` | 1468164139674238976 | **Raphael** 🔴 |
-| `#brinc-marketing` | 1469590792900186245 | **Raphael** 🔴 |
-| `#brinc-sales` | 1470416628272463976 | **Raphael** 🔴 |
-| `#launchpad-general` | 1470919420791619758 | **Leonardo** 🔵 |
-| `#launchpad-private` | 1470919437975814226 | **Leonardo** 🔵 |
-| `#launchpad-cerebro` | 1472224798158618735 | **Leonardo** 🔵 |
-
-**Rule:** Don't own it → stay silent unless @mentioned or Guillermo asks.
-
-## Discord User IDs (for @mentions)
-| User | ID | Mention Format |
-|------|-----|----------------|
-| Guillermo | `779143499655151646` | `<@779143499655151646>` |
-| Molty | `1468162520958107783` | `<@1468162520958107783>` |
-| Raphael | `1468164929285783644` | `<@1468164929285783644>` |
-| Leonardo | `1470919061763522570` | `<@1470919061763522570>` |
-| April | `1481167770191401021` | `<@1481167770191401021>` |
-
-**Note:** Plain `@Name` doesn't ping. Must use `<@USER_ID>` format.
+## Discord
+Channel map + user IDs: `memory/refs/fleet-channels.md`
+**Rule:** Don't own a channel → stay silent unless @mentioned or Guillermo asks.
 
 ---
 
@@ -81,11 +62,7 @@
 | Skills | gws-calendar, gws-gmail, gws-drive, gws-docs, gws-sheets + shared |
 
 ### Legacy: gog CLI (deprecated)
-| What | Value |
-|------|-------|
-| CLI | `gog` v0.11.0 |
-| Keyring | `GOG_KEYRING_PASSWORD="molty2026"` |
-| Status | Superseded by gws — keep as fallback |
+`gog` v0.11.0 — superseded by gws. Keyring: `GOG_KEYRING_PASSWORD="molty2026"`
 
 ---
 
@@ -93,7 +70,7 @@
 
 | What | Value |
 |------|-------|
-| API Key | `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` |
+| API Key | `$NOTION_API_KEY` (Railway env var) |
 | Space ID | `375629bd-cc72-4ad8-a3be-84139fa2fb3b` |
 | Standup DB | `2fe39dd69afd81f189f7e58925dad602` |
 | token_v2 | `/data/workspace/credentials/notion-token-v2.txt` (session cookie — expires) |
@@ -104,7 +81,7 @@
 ## Railway
 
 **Auth:** Workspace API token (scope: gginesta's Projects)
-**Token:** `1d318b62-a713-4fd6-80cf-c54c0934f5d8`
+**Token:** `$RAILWAY_API_TOKEN` (Railway env var)
 **API:** `https://backboard.railway.app/graphql/v2` (Bearer auth)
 **Projects:** Molty, Raphael, Leonardo, webclaw, cerebro, wonderful-harmony
 
@@ -114,7 +91,7 @@
 
 | What | Value |
 |------|-------|
-| API Key (Molty) | `AIzaSyApzvaLAGWebLU2kRdx8qxC00uBbfYC_bY` |
+| API Key (Molty) | `$GEMINI_API_KEY` (Railway env var) |
 | Project | gen-lang-client-0128730112 (project 226575193033) |
 | Creds file | `/data/workspace/credentials/gemini.env` |
 | Status | Free tier |
@@ -125,34 +102,21 @@
 
 | What | Value |
 |------|-------|
-| Token | `vcp_7dd90Ihydd6STMuelqNXRCb7eOTfe4oX2HvTDmyLw4PnNpQ4FF1A1Jcg` |
+| Token | `$VERCEL_TOKEN` (Railway env var) |
 | Project | tmnt-mission-control |
 | URL | https://tmnt-mission-control.vercel.app |
 
-**Vercel Projects (Domain/Hosting):**
-| Project | URL | Purpose |
-|---------|-----|---------|
-| ginesta-site | https://ginesta.io | Guillermo family landing page |
-| helmcl | https://helmcl.com | Helm Consulting placeholder |
+**Vercel Projects:** ginesta-site (ginesta.io), helmcl (helmcl.com)
 
 ---
 
 ## Namecheap
 
 **Account:** gginesta
-**API Key:** `fd3a6f8b61794e23aef787c6ac4a1233`
+**API Key:** `$NAMECHEAP_API_KEY` (Railway env var)
 **Whitelisted IP:** `54.241.162.49` (Railway outbound)
 
-**Domain Portfolio:**
-australvc.com, australventures.com, digitalfingerprint.io, findinggiants.blog, ginesta.io, helmcl.com, helmconsulting.io, helmconsultingltd.com, manacapital.io, manacapital.xyz, manainnovation.com, meetcerebro.com, seltzersake.com
-
-**Domains in Use (2026-03-24):**
-| Domain | Points To | Status |
-|--------|-----------|--------|
-| ginesta.io | Vercel (76.76.21.21) | ✅ Live |
-| helmcl.com | Vercel (76.76.21.21) | ✅ Live |
-| helmconsulting.io | → helmcl.com redirect | ✅ Live |
-| helmconsultingltd.com | → helmcl.com redirect | ✅ Live |
+**Active domains:** ginesta.io + helmcl.com → Vercel. Full portfolio in `memory/refs/infrastructure.md`
 
 ---
 
@@ -161,7 +125,7 @@ australvc.com, australventures.com, digitalfingerprint.io, findinggiants.blog, g
 | What | Value |
 |------|-------|
 | HTTP API | https://resilient-chinchilla-241.convex.site |
-| MC API Key | `232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc` |
+| MC API Key | `$MC_API_KEY` (Railway env var) |
 | MC Heartbeat Cron | `46d1ca32-0bd0-43f4-bfa9-3e9e385271cd` (every 2h, Haiku) |
 | MC Skill | `/data/workspace/skills/mission-control/SKILL.md` |
 
@@ -169,7 +133,8 @@ australvc.com, australventures.com, digitalfingerprint.io, findinggiants.blog, g
 
 ## GitHub
 
-**Token:** `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` (classic PAT, expires May 28 2026 — active)
+**Token:** `$GITHUB_TOKEN` (Railway env var) — rotated 2026-04-26
+**Note:** Env var name is `GITHUB_TOKEN`. Redeploy required after rotation to take effect.
 
 ---
 
@@ -179,54 +144,16 @@ australvc.com, australventures.com, digitalfingerprint.io, findinggiants.blog, g
 ---
 
 ## Overnight Schedule (HKT)
-| Time | Agent | Focus |
-|------|-------|-------|
-| 00:30 | Raphael 🔴 | Brinc proposals, sales |
-| 01:30 | Leonardo 🔵 | Cerebro, ventures |
-| 02:00 | April 🌸 | Family, Steph tasks, research |
-| 03:00 | Molty 🦎 | Consolidation, fleet |
+Raphael 00:30 | Leonardo 01:30 | April 02:00 | Molty 03:00
 
 ## Paperclip
+URL: https://paperclip-production-83f5.up.railway.app | Login: `$PAPERCLIP_LOGIN`/`$PAPERCLIP_PASSWORD`
+Fleet creds + agent IDs: `memory/refs/paperclip-creds.md`
 
-| What | Value |
-|------|-------|
-| URL | https://paperclip-production-83f5.up.railway.app |
-| Railway Project | `03da4228-5b2e-4b15-be2e-44f81352224f` |
-| Login | guillermo.ginesta@gmail.com / TmntPaperclip2026! |
-| Fleet Creds | `/data/.openclaw/paperclip-fleet-credentials.json` |
-| Skill | `/data/shared/skills/paperclip/SKILL.md` |
-
-**Molty's Keys (CEO in all 3):**
-| Company | Agent ID | Token Prefix |
-|---------|----------|-------------|
-| TMNT Squad | `0e4e3ca3-...` | `pcp_5c669...` |
-| Brinc | `d46b6609-...` | `pcp_04dac...` |
-| Cerebro | `ff8f1f31-...` | `pcp_a1c05...` |
-
-**Other Agents:**
-| Agent | Company | Agent ID | Token Prefix |
-|-------|---------|----------|-------------|
-| April | TMNT Squad | `0fb8e023-...` | `pcp_869b9...` |
-| Raphael | Brinc | `93db3fa0-...` | `pcp_2f841...` |
-| Leonardo | Cerebro | `0c2e90aa-...` | `pcp_2eceb...` |
-
----
-
-## Webhook Tokens (Change Ticket #001 — Feb 24 2026)
-| Agent | Inbound Token | Status |
-|-------|---------------|--------|
-| Molty | `ab0100a52e5476e61ae531a5d8df789ead150027d4cd07232b150144f5a5c562` | ✅ Active |
-| Raphael | `ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd` | ✅ Active (old shared) |
-| Leonardo | `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758` | ✅ Active (new) |
-| April | `7159178afb1c2c24b1e98bbbac0f0f02dc759aa038cd49ae7fac7873d8acf3ee` | ✅ Active |
-
-## Leonardo Webhook
-- **URL:** `https://leonardo-production.up.railway.app/hooks/agent`
-- **Token (active):** `08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758`
-
-## April Webhook
-- **URL:** `https://april-agent-production.up.railway.app/hooks/agent`
-- **Token (active):** `7159178afb1c2c24b1e98bbbac0f0f02dc759aa038cd49ae7fac7873d8acf3ee`
+## Webhooks
+All tokens in Railway env vars (`$WEBHOOK_TOKEN_<AGENT>`). All active.
+- Leonardo: `https://leonardo-production.up.railway.app/hooks/agent`
+- April: `https://april-agent-production.up.railway.app/hooks/agent`
 
 ---
 
@@ -236,7 +163,7 @@ australvc.com, australventures.com, digitalfingerprint.io, findinggiants.blog, g
 |------|-------|
 | URL | https://www.meetcerebro.com |
 | Email | molty@meetcerebro.com |
-| Password | Molty2026!Cerebro |
+| Password | `$CEREBRO_PASSWORD` (Railway env var) |
 | Tier | owner |
 | is_admin | TRUE |
 | Dashboard | https://www.meetcerebro.com/admin/dashboard |
