@@ -133,8 +133,8 @@ Channel map + user IDs: `memory/refs/fleet-channels.md`
 
 ## GitHub
 
-**Token:** `$GITHUB_TOKEN` (Railway env var) — rotated 2026-04-26
-**Note:** Env var name is `GITHUB_TOKEN`. Redeploy required after rotation to take effect.
+**Token:** `$GITHUB_API_TOKEN` (Railway env var) — rotated 2026-04-26
+**Note:** Env var name is `GITHUB_API_TOKEN` (not `GITHUB_TOKEN`). Redeploy required after rotation to take effect.
 
 ---
 
