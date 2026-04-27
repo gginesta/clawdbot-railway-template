@@ -10,6 +10,7 @@ RUN apt-get update \
     python3 \
     build-essential \
     zip \
+    supervisor \
   && rm -rf /var/lib/apt/lists/*
 
 ARG OPENCLAW_VERSION=2026.4.23
@@ -22,6 +23,7 @@ RUN corepack enable && pnpm install --frozen-lockfile --prod
 
 COPY src ./src
 COPY --chmod=755 entrypoint.sh ./entrypoint.sh
+COPY config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN useradd -m -s /bin/bash openclaw \
   && chown -R openclaw:openclaw /app \
