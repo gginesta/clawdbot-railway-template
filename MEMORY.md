@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-04-26 | Nightly curation: Dockerfile+entrypoint fixed, cron ran OK | Target: <15KB*
+*Last updated: molty | 2026-04-27 | Nightly curation: v4.25 bump documented, daily log created | Target: <15KB*
 
 ---
 
@@ -12,13 +12,13 @@
 - **Style:** Casual, efficient, no fluff. Likes tables.
 
 ## 🖥️ Fleet
-**Version:** v2026.4.23 (✅ fleet-wide as of 2026-04-27)
+**Version:** v2026.4.25 (Dockerfile bumped 2026-04-27 21:17 HKT — redeploy pending across all agents)
 | Agent | URL | Model Chain | Status |
 |-------|-----|-------------|--------|
-| Molty 🦎 | ggvmolt.up.railway.app | Sonnet 4.6 → glm-5.1 → or-flash → or-sonnet | ✅ v4.23 |
-| Raphael 🔴 | ggv-raphael.up.railway.app | Sonnet 4.6 | ✅ v4.23 |
-| Leonardo 🔵 | leonardo-production.up.railway.app | Sonnet 4.6 → glm-5.1 → or-flash → or-sonnet | ✅ v4.23 |
-| April 🌸 | april-agent-production.up.railway.app | Sonnet 4.6 → glm-5.1 → or-flash → or-sonnet | ✅ v4.23 |
+| Molty 🦎 | ggvmolt.up.railway.app | Sonnet 4.6 → glm-5.1 → or-flash → or-sonnet | ⏳ redeploy pending (v4.25) |
+| Raphael 🔴 | ggv-raphael.up.railway.app | Sonnet 4.6 | ⏳ redeploy pending (v4.25) |
+| Leonardo 🔵 | leonardo-production.up.railway.app | Sonnet 4.6 → glm-5.1 → or-flash → or-sonnet | ⏳ redeploy pending (v4.25) |
+| April 🌸 | april-agent-production.up.railway.app | Sonnet 4.6 → glm-5.1 → or-flash → or-sonnet | ⏳ redeploy pending (v4.25) |
 
 **Primary:** `anthropic/claude-sonnet-4-6` (subscription token `sk-ant-oat01-...`)
 **Fallbacks:** `zai/glm-5.1` → `openrouter/google/gemini-2.5-flash` → `openrouter/anthropic/claude-sonnet-4-6`
@@ -51,7 +51,8 @@
 | Cerebro | Molty (CEO), Leonardo (CTO) | ~59 active issues |
 
 ## ✅ Completed (recent)
-- **Fleet v4.23 upgrade (2026-04-27):** All 4 agents on v2026.4.23. Root causes fixed: `pnpm-lock.yaml` out of sync (puppeteer), `supervisor` missing from Dockerfile, Railway watching `main` while we pushed to `master`. Now fixed: supervisor in apt-get + conf copied, master→main force-synced, master branch deleted.
+- **Fleet v4.25 Dockerfile bump (2026-04-27 21:17 HKT):** `OPENCLAW_VERSION` bumped to `2026.4.25` (commit `8d8f1fa5`). Redeploy pending for all 4 agents. v4.25 features: Google Meet plugin, browser coordinate clicks, 60s action timeout, DeepSeek V4 Flash/Pro, voice call consult.
+- **Fleet v4.23 upgrade (2026-04-27):** Root causes fixed: `pnpm-lock.yaml` out of sync (puppeteer), `supervisor` missing from Dockerfile, Railway watching `main` while we pushed to `master`. Now fixed: supervisor in apt-get + conf copied, master→main force-synced, master branch deleted.
 - **Fleet Rehab (2026-04-24):** April + Leonardo redeployed after ~1 month down. Configs updated: model chain standardised (Sonnet → glm-5.1 → or-flash → or-sonnet), heartbeat → xai/grok-3-fast, `dangerouslyAllowHostHeaderOriginFallback` added, hardcoded keys removed, version bumped to 2026.4.21. [done: 2026-04-24]
 - **Railway API access restored (2026-04-26):** `RAILWAY_API_TOKEN` updated. `me {}` query blocked (project-scoped token) but `projects {}` works fine. Railway CLI reinstalled per session.
 - **GitHub access restored (2026-04-26):** Token is `$GITHUB_API_TOKEN` (not `GITHUB_TOKEN`). Remote URL updated. Push working.
@@ -61,7 +62,7 @@
 - WHOOP, Browser relay (Waalaxy), MC Phase 3 sprint — all parked. [verified: 2026-04-20]
 
 ## ⏳ Pending
-- **Fleet v2026.4.24-25 upgrade:** Latest stable is 4.24 (4.25 still pre-release/beta). Key new: Google Meet plugin, browser coordinate clicks, 60s action default timeout, DeepSeek V4 Flash/Pro, voice call consult. Upgrade when 4.25 goes stable — bump `OPENCLAW_VERSION` in Dockerfile + push to `main`.
+- **Fleet v4.25 redeploy:** Dockerfile bumped to v2026.4.25 (2026-04-27). All 4 agents need Railway redeploy to activate. Trigger via `serviceInstanceRedeploy` API or Railway dashboard.
 - **Leonardo Anthropic + xAI tokens failing:** Empty responses — Anthropic and xAI keys in Railway may be wrong/stale. Currently running on glm-5.1 fallback. Needs key verification. [verified: 2026-04-24]
 - **GPT-5.5:** Available via `openai-codex/gpt-5.5` (Codex OAuth, needs ChatGPT Plus/Pro). Guillermo getting subscription. [verified: 2026-04-24]
 - **Webchat device auth:** Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-04-20]
@@ -94,17 +95,17 @@ Accidental push exposed API keys — all rotated. TOOLS.md scrubbed. GitHub `mas
 - Credentials → `TOOLS.md` | Code-enforced rules → `memory/refs/code-enforced-rules.md`
 - **Credential isolation rules** → `memory/refs/credential-isolation.md` ⚠️ READ BEFORE ANY AGENT REDEPLOY
 
-## 🚀 Active OpenClaw Features (v4.23)
+## 🚀 Active OpenClaw Features (v4.25 — redeploy pending)
 | Feature | Status | Notes |
 |---------|--------|-------|
 | Forked subagent context | ✅ Available | Pass `context:"fork"` in sessions_spawn when child needs transcript |
 | Per-call timeoutMs | ✅ Available | Pass `timeoutMs` in image_generate/video_generate for slow gens |
 | Memory QMD repair | ✅ Auto-applied | Memory search narrows to MEMORY.md correctly |
 | Block streaming fix | ✅ Auto-applied | No more duplicate replies |
-| Browser 60s default timeout | ✅ Auto (v4.24) | Upgrade pending — no config change needed |
-| Browser coordinate clicks | ⏳ v4.24 pending | Useful for tricky UI automation |
-| DeepSeek V4 Flash/Pro | ⏳ v4.24 pending | Potential cheap fallback model |
-| Google Meet plugin | ⏳ v4.24 pending | Client meetings / transcript capture |
+| Browser 60s default timeout | ✅ In v4.25 | Active after redeploy |
+| Browser coordinate clicks | ✅ In v4.25 | Active after redeploy |
+| DeepSeek V4 Flash/Pro | ✅ In v4.25 | Active after redeploy |
+| Google Meet plugin | ✅ In v4.25 | Active after redeploy |
 
 ## Recent Lessons Learned
 - **Railway deploy SOP (2026-04-27):** Railway watches `main` branch. Always push to `main`. Trigger fresh builds via `serviceInstanceRedeploy` API (not `deploymentRedeploy` which reuses cached image). `supervisor` must be in Dockerfile apt-get — Railway start command uses it.
