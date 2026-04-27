@@ -60,12 +60,12 @@
 - WHOOP, Browser relay (Waalaxy), MC Phase 3 sprint — all parked. [verified: 2026-04-20]
 
 ## ⏳ Pending
-- **Fleet v2026.4.23 rebuild:** Dockerfile bumped. Needs Railway redeploy for all 4 agents (Molty currently on 4.21 post-rebuild — cache issue). Key fixes in 4.23: webchat blank bubble fix, memory QMD repair, block streaming dupes. [2026-04-25]
+- **Fleet v2026.4.23 rebuild:** Dockerfile at `OPENCLAW_VERSION=2026.4.23`. Molty redeployed & running (glm-5.1 model). Other agents (Raphael, Leonardo, April) may need redeploy to pick up 4.23. Key fixes: webchat blank bubble, memory QMD repair, block streaming dupes. [verified: 2026-04-27]
 - **Leonardo Anthropic + xAI tokens failing:** Empty responses — Anthropic and xAI keys in Railway may be wrong/stale. Currently running on glm-5.1 fallback. Needs key verification. [verified: 2026-04-24]
 - **GPT-5.5:** Available via `openai-codex/gpt-5.5` (Codex OAuth, needs ChatGPT Plus/Pro). Guillermo getting subscription. [verified: 2026-04-24]
 - **Webchat device auth:** Workaround: `?token=<gateway_token>`. Low priority. [verified: 2026-04-20]
 - **WhatsApp SIM:** +34 677 43 78 34. Needs QR pairing. [verified: 2026-04-20]
-- **Nightly memory curation cron:** Previously failing (3x timeout). `git safe.directory` fix added to `entrypoint.sh` (commit `3d319e1f`). Cron ran successfully 2026-04-26. Monitor for recurrence.
+- **Nightly memory curation cron:** `git safe.directory` fix in `entrypoint.sh` (commit `3d319e1f`). Ran successfully 2026-04-25 and 2026-04-26. Issue resolved. [verified: 2026-04-27]
 
 ## 📣 Standup System v3.0
 Webchat-native. Full spec: `memory/refs/standup-process.md`
