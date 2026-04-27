@@ -13,7 +13,7 @@ RUN apt-get update \
     supervisor \
   && rm -rf /var/lib/apt/lists/*
 
-ARG OPENCLAW_VERSION=2026.4.23
+ARG OPENCLAW_VERSION=2026.4.25
 RUN npm install -g openclaw@${OPENCLAW_VERSION} @railway/cli
 
 WORKDIR /app
