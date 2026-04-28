@@ -29,6 +29,7 @@
 **⚠️ Anthropic token dead (2026-04-28):** `sk-ant-oat01-...` returns `invalid x-api-key`. Needs new key. Molty switched to Codex; other 3 agents still use Anthropic as primary (will fail → fall back to GLM).
 **⚠️ Other agents need Codex auth:** Raphael/Leonardo/April still on Anthropic primary. Each needs `railway shell` + device-code flow to activate Codex OAuth.
 **GitHub:** Single remote (`origin`), single branch (`main`). Local `master` tracks `origin/main`. Repo: `gginesta/clawdbot-railway-template`.
+**Setup page auth (v4.25):** `/setup` now returns 401. Access via `https://<agent>.up.railway.app/setup?token=<gateway_token>`. `/debug` and `/config` still open.
 
 ## 🐢 Mission Control
 - **URL:** https://tmnt-mission-control.vercel.app
