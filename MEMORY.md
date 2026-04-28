@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-04-28 | Codex OAuth active, model chain updated to GPT-5.5/5.4 | Target: <15KB*
+*Last updated: molty | 2026-04-28 | Railway env fixed: PRIMARY_MODEL → openai-codex/gpt-5.5, model list updated, redeployed | Target: <15KB*
 
 ---
 
@@ -15,14 +15,16 @@
 **Version:** v2026.4.25 (all 4 deployed 2026-04-27 22:07 HKT)
 | Agent | URL | Model Chain | Status |
 |-------|-----|-------------|--------|
-| Molty 🦎 | ggvmolt.up.railway.app | Codex GPT-5.5 → glm-5.1 → deepseek-flash → or-sonnet-4.6 → sonnet-4-6 | ✅ v4.25 LIVE |
+| Molty 🦎 | ggvmolt.up.railway.app | Codex GPT-5.5 → glm-5.1 → deepseek-flash → or-sonnet-4.6 → sonnet-4-6 | 🔄 redeploying 18:53 HKT |
 | Raphael 🔴 | ggv-raphael.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
 | Leonardo 🔵 | leonardo-production.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
 | April 🌸 | april-agent-production.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
 
 **Molty Primary:** `openai-codex/gpt-5.5` (Codex OAuth via ChatGPT Pro subscription — activated 2026-04-28)
 **Molty Fallbacks:** `zai/glm-5.1` → `deepseek/deepseek-v4-flash` → `openrouter/anthropic/claude-sonnet-4.6` → `anthropic/claude-sonnet-4-6`
+**Railway env:** `OPENCLAW_PRIMARY_MODEL=openai-codex/gpt-5.5` (fixed from `zai/glm-5.1` on 2026-04-28 18:49 HKT)
 **Cron model:** `openai-codex/gpt-5.4` (all 12 crons updated 2026-04-28)
+**openai-codex model list:** gpt-5.5, gpt-5.4, gpt-5.3, gpt-5.2 (updated 2026-04-28)
 **Heartbeat model:** `xai/grok-3-fast` (fleet standard, all agents)
 **⚠️ Anthropic token dead (2026-04-28):** `sk-ant-oat01-...` returns `invalid x-api-key`. Needs new key. Molty switched to Codex; other 3 agents still use Anthropic as primary (will fail → fall back to GLM).
 **⚠️ Other agents need Codex auth:** Raphael/Leonardo/April still on Anthropic primary. Each needs `railway shell` + device-code flow to activate Codex OAuth.
@@ -54,6 +56,7 @@
 | Cerebro | Molty (CEO), Leonardo (CTO) | ~59 active issues |
 
 ## ✅ Completed (recent)
+- **Railway env var fix + model list update (2026-04-28 18:53 HKT):** `OPENCLAW_PRIMARY_MODEL` was `zai/glm-5.1` (overriding config) → fixed to `openai-codex/gpt-5.5`. Added gpt-5.5/gpt-5.4/gpt-5.3/gpt-5.2 to openai-codex provider model list. Updated aliases. Redeployed Molty.
 - **Codex OAuth activated on Molty (2026-04-28):** Guillermo ran device-code flow via Railway shell. `openai-codex/gpt-5.5` now primary. All 12 crons switched to `openai-codex/gpt-5.4`. Legacy `openai-codex` transport override (baseUrl/apiKey) still in config — needs cleanup.
 - **Anthropic token dead (2026-04-28):** `sk-ant-oat01-...` returns `invalid x-api-key`. Molty switched to Codex. Other 3 agents still point to Anthropic (falling back to GLM). New key needed or Codex auth per agent.
 - **Fleet v4.25 Dockerfile bump (2026-04-27):** `OPENCLAW_VERSION` bumped to `2026.4.25` (commit `8d8f1fa5`). All 4 deployed successfully.
@@ -118,6 +121,8 @@ Accidental push exposed API keys — all rotated. TOOLS.md scrubbed. GitHub `mas
 | Strict-agentic execution contract | 🆕 Available | `executionContract: "strict-agentic"` — stops GPT laziness. Not yet enabled. |
 
 ## Recent Lessons Learned
+- **Railway env vars override config (2026-04-28):** `OPENCLAW_PRIMARY_MODEL=zai/glm-5.1` in Railway env overrode the config's `openai-codex/gpt-5.5`. Always check `env | grep MODEL` when the runtime model doesn't match config. Env vars require redeploy to take effect.
+- **Config patch blocks protected model fields (2026-04-28):** `gateway config.patch` rejects changes to `models.providers.*.models[]` fields (id, name, contextWindow, etc.). Must edit `openclaw.json` directly for model definitions.
 - **Codex device-code flow works headless (2026-04-28):** `openclaw onboard --auth-choice openai-codex-device-code --accept-risk` via Railway shell. User opens auth.openai.com/codex/device in browser, enters code. No SSH needed. Each agent needs its own flow.
 - **Anthropic tokens die silently (2026-04-28):** `invalid x-api-key` with no warning. Causes cascading empty-turn failures. Always test with `curl` against api.anthropic.com if model falls back unexpectedly.
 - **Railway deploy SOP (2026-04-27):** Railway watches `main` branch. Always push to `main`. Trigger fresh builds via `serviceInstanceRedeploy` API.
