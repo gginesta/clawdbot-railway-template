@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-04-28 | Railway env fixed: PRIMARY_MODEL → openai-codex/gpt-5.5, model list updated, redeployed | Target: <15KB*
+*Last updated: molty | 2026-04-28 22:31 HKT | Codex OAuth active, GitHub consolidated to single branch, fleet Codex migration planned | Target: <15KB*
 
 ---
 
@@ -15,7 +15,7 @@
 **Version:** v2026.4.25 (all 4 deployed 2026-04-27 22:07 HKT)
 | Agent | URL | Model Chain | Status |
 |-------|-----|-------------|--------|
-| Molty 🦎 | ggvmolt.up.railway.app | Codex GPT-5.5 → glm-5.1 → deepseek-flash → or-sonnet-4.6 → sonnet-4-6 | 🔄 redeploying 18:53 HKT |
+| Molty 🦎 | ggvmolt.up.railway.app | Codex GPT-5.5 → glm-5.1 → deepseek-flash → or-sonnet-4.6 → sonnet-4-6 | ✅ v4.25 LIVE |
 | Raphael 🔴 | ggv-raphael.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
 | Leonardo 🔵 | leonardo-production.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
 | April 🌸 | april-agent-production.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
@@ -28,6 +28,7 @@
 **Heartbeat model:** `xai/grok-3-fast` (fleet standard, all agents)
 **⚠️ Anthropic token dead (2026-04-28):** `sk-ant-oat01-...` returns `invalid x-api-key`. Needs new key. Molty switched to Codex; other 3 agents still use Anthropic as primary (will fail → fall back to GLM).
 **⚠️ Other agents need Codex auth:** Raphael/Leonardo/April still on Anthropic primary. Each needs `railway shell` + device-code flow to activate Codex OAuth.
+**GitHub:** Single remote (`origin`), single branch (`main`). Local `master` tracks `origin/main`. Repo: `gginesta/clawdbot-railway-template`.
 
 ## 🐢 Mission Control
 - **URL:** https://tmnt-mission-control.vercel.app
@@ -56,6 +57,9 @@
 | Cerebro | Molty (CEO), Leonardo (CTO) | ~59 active issues |
 
 ## ✅ Completed (recent)
+- **GitHub branch consolidation (2026-04-28 22:31 HKT):** Cleaned up from 14 remote branches + 3 remotes to 1 remote (`origin`) + 1 branch (`main`). Local `master` tracks `origin/main`. Deleted stale `local main` (Jan 31 commit), `backup/master`, `backup/chore/bump-openclaw-ref`. Removed `vignesh` remote.
+- **Codex native harness: staying on PI (2026-04-28 19:41 HKT):** Reviewed docs. Guillermo decided OpenClaw PI stays in control. Codex is just a model, not the runtime. (Guillermo decision)
+- **GitHub force push fix (2026-04-28 20:00 HKT):** Railway builds were failing because `main` pointed to a Jan 31 commit with no Dockerfile. Force-pushed `master:main` to fix. Build succeeded.
 - **Railway env var fix + model list update (2026-04-28 18:53 HKT):** `OPENCLAW_PRIMARY_MODEL` was `zai/glm-5.1` (overriding config) → fixed to `openai-codex/gpt-5.5`. Added gpt-5.5/gpt-5.4/gpt-5.3/gpt-5.2 to openai-codex provider model list. Updated aliases. Redeployed Molty.
 - **Codex OAuth activated on Molty (2026-04-28):** Guillermo ran device-code flow via Railway shell. `openai-codex/gpt-5.5` now primary. All 12 crons switched to `openai-codex/gpt-5.4`. Legacy `openai-codex` transport override (baseUrl/apiKey) still in config — needs cleanup.
 - **Anthropic token dead (2026-04-28):** `sk-ant-oat01-...` returns `invalid x-api-key`. Molty switched to Codex. Other 3 agents still point to Anthropic (falling back to GLM). New key needed or Codex auth per agent.
@@ -70,14 +74,12 @@
 - WHOOP, Browser relay (Waalaxy), MC Phase 3 sprint — all parked. [verified: 2026-04-20]
 
 ## ⏳ Pending
-- **Codex auth for other 3 agents:** Raphael, Leonardo, April each need `railway shell` + device-code flow. Same steps as Molty.
-- **Anthropic token replacement:** Dead key needs replacing. Either get new key or switch all agents to Codex OAuth.
+- **🚨 Fleet Codex migration (approved 2026-04-28):** Migrate Raphael, Leonardo, April from Anthropic → Codex OAuth. See plan: `plans/fleet-codex-migration.md`
 - **Clean up legacy openai-codex transport override:** `models.providers.openai-codex` still has old `baseUrl`/`apiKey` from pre-OAuth. `openclaw doctor` warns about this. Remove the legacy transport fields.
 - **DeepSeek API key needed:** Plugin enabled, fallback chain updated, key missing. Get from platform.deepseek.com.
 - **April TTS persona:** `april-voice` defined, needs Railway env update.
 - **Webchat device auth:** Workaround: `?token=<gateway_token>`. Low priority.
 - **WhatsApp SIM:** +34 677 43 78 34. Needs QR pairing.
-- **Strict-agentic execution contract:** `agents.defaults.embeddedPi.executionContract = "strict-agentic"` available in v4.25. Tells GPT-5.x to keep working instead of stopping at "here's the plan." See @steipete tweet. Evaluate for Molty.
 - **GitHub dangling commit:** Contact GitHub Support to GC `7afb95aa`.
 
 ## 📣 Standup System v3.0
@@ -121,6 +123,8 @@ Accidental push exposed API keys — all rotated. TOOLS.md scrubbed. GitHub `mas
 | Strict-agentic execution contract | 🆕 Available | `executionContract: "strict-agentic"` — stops GPT laziness. Not yet enabled. |
 
 ## Recent Lessons Learned
+- **GitHub branch must have Dockerfile for Railway (2026-04-28):** Railway watches `main` branch. If `main` points to an old commit without Dockerfile, build fails silently. Always verify `git show origin/main:Dockerfile` before expecting Railway builds to succeed.
+- **Local `main` vs `master` divergence (2026-04-28):** Local `main` was stuck at Jan 31 commit while all work happened on `master`. Force push `master:main` to fix. Now consolidated: single remote, single branch.
 - **Railway env vars override config (2026-04-28):** `OPENCLAW_PRIMARY_MODEL=zai/glm-5.1` in Railway env overrode the config's `openai-codex/gpt-5.5`. Always check `env | grep MODEL` when the runtime model doesn't match config. Env vars require redeploy to take effect.
 - **Config patch blocks protected model fields (2026-04-28):** `gateway config.patch` rejects changes to `models.providers.*.models[]` fields (id, name, contextWindow, etc.). Must edit `openclaw.json` directly for model definitions.
 - **Codex device-code flow works headless (2026-04-28):** `openclaw onboard --auth-choice openai-codex-device-code --accept-risk` via Railway shell. User opens auth.openai.com/codex/device in browser, enters code. No SSH needed. Each agent needs its own flow.

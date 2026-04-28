@@ -303,3 +303,9 @@ This authenticates the session directly, bypassing device identity requirement.
 **Root cause:** OpenClaw protects model definition fields from being modified via the patch API to prevent accidental corruption.
 **Fix:** Edited `/data/.openclaw/openclaw.json` directly with a Python script to update `models.providers.openai-codex.models` array.
 **Lesson:** For model list changes (adding new model IDs, changing context windows, etc.), edit openclaw.json directly. Config patch only works for non-protected paths.
+
+### GitHub branch divergence breaks Railway builds (2026-04-28)
+**Problem:** Two Railway deploys failed because the `main` branch on GitHub pointed to a Jan 31 commit that had no Dockerfile. All actual code was on local `master`.
+**Root cause:** The repo had diverged branch histories. `main` (what Railway watches) was stuck at an ancient commit while `master` had all recent work. A force push accidentally sent the wrong local branch.
+**Fix:** Force-pushed `master:main` to align. Then consolidated to 1 remote, 1 branch. Deleted all stale branches and remotes.
+**Lesson:** When Railway builds fail after a push, check `git show origin/main:Dockerfile` first. The remote `main` must have the Dockerfile. Keep one branch, one remote. Never let local branches diverge from what Railway watches.
