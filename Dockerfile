@@ -31,6 +31,32 @@ ARG OPENCLAW_VERSION=2026.4.25
 ARG CACHE_BUST=1777337021
 RUN npm install -g openclaw@${OPENCLAW_VERSION} @railway/cli
 
+# Write tailscale-up one-shot script
+RUN printf '%s\n' \
+  '#!/usr/bin/env bash' \
+  'set -euo pipefail' \
+  '' \
+  'echo "[tailscale-up] starting"' \
+  ': "${TAILSCALE_AUTHKEY:?TAILSCALE_AUTHKEY is required}"' \
+  'mkdir -p "${TAILSCALE_STATE_DIR:-/data/.tailscale}"' \
+  '' \
+  '# Wait for tailscaled socket' \
+  'for i in $(seq 1 30); do' \
+  '  [ -S /tmp/tailscaled.sock ] && break' \
+  '  echo "[tailscale-up] waiting for tailscaled ($i/30)..."' \
+  '  sleep 1' \
+  'done' \
+  '' \
+  'tailscale --socket=/tmp/tailscaled.sock up \\' \
+  '  --authkey="${TAILSCALE_AUTHKEY}" \\' \
+  '  --hostname="${TAILSCALE_HOSTNAME:-openclaw}" \\' \
+  '  --accept-routes \\' \
+  '  --reset' \
+  '' \
+  'echo "[tailscale-up] done"' \
+  > /usr/local/bin/tailscale-up.sh \
+  && chmod +x /usr/local/bin/tailscale-up.sh
+
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
