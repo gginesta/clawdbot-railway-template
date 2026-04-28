@@ -14,6 +14,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 ARG OPENCLAW_VERSION=2026.4.25
+ARG CACHE_BUST=1777337021
 RUN npm install -g openclaw@${OPENCLAW_VERSION} @railway/cli
 
 WORKDIR /app
