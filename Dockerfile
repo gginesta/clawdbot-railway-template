@@ -13,6 +13,20 @@ RUN apt-get update \
     supervisor \
   && rm -rf /var/lib/apt/lists/*
 
+# Install Tailscale
+RUN curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg | tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null \
+  && curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list | tee /etc/apt/sources.list.d/tailscale.list \
+  && apt-get update \
+  && apt-get install -y tailscale \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Syncthing
+RUN curl -fsSL https://syncthing.net/release-key.gpg | tee /usr/share/keyrings/syncthing-archive-keyring.gpg >/dev/null \
+  && echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | tee /etc/apt/sources.list.d/syncthing.list \
+  && apt-get update \
+  && apt-get install -y syncthing \
+  && rm -rf /var/lib/apt/lists/*
+
 ARG OPENCLAW_VERSION=2026.4.25
 ARG CACHE_BUST=1777337021
 RUN npm install -g openclaw@${OPENCLAW_VERSION} @railway/cli
