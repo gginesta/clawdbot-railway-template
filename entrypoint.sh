@@ -20,4 +20,8 @@ fi
 rm -rf /home/linuxbrew/.linuxbrew
 ln -sfn /data/.linuxbrew /home/linuxbrew/.linuxbrew
 
-exec gosu openclaw node src/server.js
+if [ "${OPENCLAW_DIRECT_RUN:-}" = "1" ]; then
+  exec gosu openclaw node src/server.js
+fi
+
+exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
