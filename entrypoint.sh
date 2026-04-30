@@ -1,11 +1,16 @@
 #!/bin/bash
 set -e
 
+export HOME="${OPENCLAW_RUNTIME_HOME:-/data}"
+export OPENCLAW_HOME="${OPENCLAW_HOME:-/data}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-/data/.config}"
+
+mkdir -p "$HOME" "$XDG_CONFIG_HOME"
 chown -R openclaw:openclaw /data
 chmod 700 /data
 
 # Git safe.directory — prevents "dubious ownership" errors on /data/workspace
-git config --global --add safe.directory /data/workspace 2>/dev/null || true
+gosu openclaw git config --global --add safe.directory /data/workspace 2>/dev/null || true
 
 # Set GitHub remote URL with current token (if set)
 if [ -n "${GITHUB_API_TOKEN}" ] && [ -d /data/workspace/.git ]; then
