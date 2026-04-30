@@ -1,6 +1,6 @@
 # MEMORY.md - Working Memory
 
-*Last updated: molty | 2026-04-28 22:31 HKT | Codex OAuth active, GitHub consolidated to single branch, fleet Codex migration planned | Target: <15KB*
+*Last updated: molty | 2026-04-29 09:40 HKT | Codex OAuth fixed on Molty via local-auth-copy flow; fleet migration paused until Raphael verified | Target: <15KB*
 
 ---
 
@@ -16,18 +16,18 @@
 | Agent | URL | Model Chain | Status |
 |-------|-----|-------------|--------|
 | Molty 🦎 | ggvmolt.up.railway.app | Codex GPT-5.5 → glm-5.1 → deepseek-flash → or-sonnet-4.6 → sonnet-4-6 | ✅ v4.25 LIVE |
-| Raphael 🔴 | ggv-raphael.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
+| Raphael 🔴 | ggv-raphael.up.railway.app | glm-5.1 (primary, env override) → Codex GPT-5.5 → deepseek-flash → or-sonnet-4.6 → sonnet-4-6 | ✅ Recovered 2026-04-29 (env override to glm-5.1 after incident) |
 | Leonardo 🔵 | leonardo-production.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
 | April 🌸 | april-agent-production.up.railway.app | Sonnet 4.6 → glm-5.1 → deepseek-flash → or-sonnet → or-flash | ✅ v4.25 LIVE |
 
-**Molty Primary:** `openai-codex/gpt-5.5` (Codex OAuth via ChatGPT Pro subscription — activated 2026-04-28)
+**Molty Primary:** `openai-codex/gpt-5.5` (Codex OAuth via ChatGPT Pro subscription — fresh profile copied into container 2026-04-29; verified active via session_status)
 **Molty Fallbacks:** `zai/glm-5.1` → `deepseek/deepseek-v4-flash` → `openrouter/anthropic/claude-sonnet-4.6` → `anthropic/claude-sonnet-4-6`
 **Railway env:** `OPENCLAW_PRIMARY_MODEL=openai-codex/gpt-5.5` (fixed from `zai/glm-5.1` on 2026-04-28 18:49 HKT)
 **Cron model:** `openai-codex/gpt-5.4` (all 12 crons updated 2026-04-28)
 **openai-codex model list:** gpt-5.5, gpt-5.4, gpt-5.3, gpt-5.2 (updated 2026-04-28)
 **Heartbeat model:** `xai/grok-3-fast` (fleet standard, all agents)
-**⚠️ Anthropic token dead (2026-04-28):** `sk-ant-oat01-...` returns `invalid x-api-key`. Needs new key. Molty switched to Codex; other 3 agents still use Anthropic as primary (will fail → fall back to GLM).
-**⚠️ Other agents need Codex auth:** Raphael/Leonardo/April still on Anthropic primary. Each needs `railway shell` + device-code flow to activate Codex OAuth.
+**⚠️ Anthropic token dead (2026-04-28):** `sk-ant-oat01-...` returns `invalid x-api-key`. Needs new key. Molty + Raphael now on Codex; Leonardo/April still use Anthropic as primary (will fail → fall back to GLM).
+**⚠️ Leonardo/April need Codex auth:** Migration requires a fresh per-agent local PowerShell device-code flow, then copying that agent's local `auth-profiles.json` OAuth profile into its Railway container. Remote onboarding alone does NOT store OAuth on the agent. Local OpenClaw CLI points at one remote gateway at a time; repoint before each agent and paste/copy the resulting profile immediately. Never reuse one refresh token across multiple agents. Access tokens last ~10 days but should auto-refresh from the container if correctly copied. SOP: `memory/refs/codex-oauth-migration.md`.
 **GitHub:** Single remote (`origin`), single branch (`main`). Local `master` tracks `origin/main`. Repo: `gginesta/clawdbot-railway-template`.
 **Setup page auth (v4.25):** `/setup` now returns 401. Access via `https://<agent>.up.railway.app/setup?token=<gateway_token>`. `/debug` and `/config` still open.
 
@@ -62,8 +62,11 @@
 - **Codex native harness: staying on PI (2026-04-28 19:41 HKT):** Reviewed docs. Guillermo decided OpenClaw PI stays in control. Codex is just a model, not the runtime. (Guillermo decision)
 - **GitHub force push fix (2026-04-28 20:00 HKT):** Railway builds were failing because `main` pointed to a Jan 31 commit with no Dockerfile. Force-pushed `master:main` to fix. Build succeeded.
 - **Railway env var fix + model list update (2026-04-28 18:53 HKT):** `OPENCLAW_PRIMARY_MODEL` was `zai/glm-5.1` (overriding config) → fixed to `openai-codex/gpt-5.5`. Added gpt-5.5/gpt-5.4/gpt-5.3/gpt-5.2 to openai-codex provider model list. Updated aliases. Redeployed Molty.
-- **Codex OAuth activated on Molty (2026-04-28):** Guillermo ran device-code flow via Railway shell. `openai-codex/gpt-5.5` now primary. All 12 crons switched to `openai-codex/gpt-5.4`. Legacy `openai-codex` transport override (baseUrl/apiKey) still in config — needs cleanup.
+- **Codex OAuth fixed on Molty (2026-04-29):** Discovered 2026-04-28 device-code flow only wrote OAuth locally; Railway container still had an expired Feb token. Guillermo pasted local `auth-profiles.json`; fresh `openai-codex:default` profile copied into container and verified via `session_status` as `openai-codex/gpt-5.5 · oauth`. All 12 crons already switched to `openai-codex/gpt-5.4`. Legacy `openai-codex` transport override (baseUrl/apiKey) still in config — needs cleanup.
 - **Anthropic token dead (2026-04-28):** `sk-ant-oat01-...` returns `invalid x-api-key`. Molty switched to Codex. Other 3 agents still point to Anthropic (falling back to GLM). New key needed or Codex auth per agent.
+- **Supervisor entrypoint fix (2026-04-29):** `entrypoint.sh` patched to start supervisord instead of running OpenClaw directly. Sidecars (Tailscale, Syncthing) now launch. Commit `93ec0e9b`.
+- **Raphael recovery from incident (2026-04-29):** Supervisor patch caused agent run failures. Recovered by setting `OPENCLAW_PRIMARY_MODEL=zai/glm-5.1` in Railway env + config patch. Tailscale still unresolved.
+- **Memory search restored (2026-04-29):** Switched to OpenAI embeddings (`text-embedding-3-small`). Verified working. Gemini fallback available but quota-limited.
 - **Fleet v4.25 Dockerfile bump (2026-04-27):** `OPENCLAW_VERSION` bumped to `2026.4.25` (commit `8d8f1fa5`). All 4 deployed successfully.
 - **Fleet v4.25 feature rollout (2026-04-27 22:07 HKT):** DeepSeek V4 Flash in fallback chain, TTS personas, DeepSeek plugin enabled.
 - **Fleet v4.23 upgrade (2026-04-27):** Fixed: pnpm-lock.yaml sync, supervisor in Dockerfile, main branch alignment.
@@ -112,7 +115,7 @@ Accidental push exposed API keys — all rotated. TOOLS.md scrubbed. GitHub `mas
 ## 🚀 Active OpenClaw Features (v4.25 — all deployed)
 | Feature | Status | Notes |
 |---------|--------|-------|
-| Codex OAuth (GPT-5.5/5.4) | ✅ Molty only | Device-code flow via Railway shell. Other 3 agents pending. |
+| Codex OAuth (GPT-5.5/5.4) | ✅ Molty + Raphael | Local PowerShell device-code + manual auth-profile copy into container. Leonardo/April pending. |
 | Forked subagent context | ✅ Available | Pass `context:"fork"` in sessions_spawn |
 | Per-call timeoutMs | ✅ Available | For slow gens |
 | Memory QMD repair | ✅ Auto-applied | Memory search narrows correctly |
@@ -124,22 +127,11 @@ Accidental push exposed API keys — all rotated. TOOLS.md scrubbed. GitHub `mas
 | Strict-agentic execution contract | 🆕 Available | `executionContract: "strict-agentic"` — stops GPT laziness. Not yet enabled. |
 
 ## Recent Lessons Learned
-- **GitHub branch must have Dockerfile for Railway (2026-04-28):** Railway watches `main` branch. If `main` points to an old commit without Dockerfile, build fails silently. Always verify `git show origin/main:Dockerfile` before expecting Railway builds to succeed.
-- **Local `main` vs `master` divergence (2026-04-28):** Local `main` was stuck at Jan 31 commit while all work happened on `master`. Force push `master:main` to fix. Now consolidated: single remote, single branch.
-- **Railway env vars override config (2026-04-28):** `OPENCLAW_PRIMARY_MODEL=zai/glm-5.1` in Railway env overrode the config's `openai-codex/gpt-5.5`. Always check `env | grep MODEL` when the runtime model doesn't match config. Env vars require redeploy to take effect.
-- **Config patch blocks protected model fields (2026-04-28):** `gateway config.patch` rejects changes to `models.providers.*.models[]` fields (id, name, contextWindow, etc.). Must edit `openclaw.json` directly for model definitions.
-- **Codex device-code flow works headless (2026-04-28):** `openclaw onboard --auth-choice openai-codex-device-code --accept-risk` via Railway shell. User opens auth.openai.com/codex/device in browser, enters code. No SSH needed. Each agent needs its own flow.
-- **Anthropic tokens die silently (2026-04-28):** `invalid x-api-key` with no warning. Causes cascading empty-turn failures. Always test with `curl` against api.anthropic.com if model falls back unexpectedly.
-- **Railway deploy SOP (2026-04-27):** Railway watches `main` branch. Always push to `main`. Trigger fresh builds via `serviceInstanceRedeploy` API.
-- **pnpm-lock.yaml must stay in sync (2026-04-27):** If `package.json` changes, run `pnpm install --no-frozen-lockfile` and commit.
-- **Railway API token scope (2026-04-26):** Project-scoped tokens reject `me { }` but `projects { }` works.
-- **Railway/GitHub tokens need redeploy to activate (2026-04-26):** Env var changes don't hot-reload.
-- **Railway CLI not persistent (2026-04-26):** Must reinstall each session.
-- **GitHub token is `GITHUB_API_TOKEN` not `GITHUB_TOKEN` (2026-04-26):** Always use `$GITHUB_API_TOKEN`.
-- **Empty webchat bubbles = auth failure (2026-04-23):** Check Anthropic token auth mode.
-- **Don't share Anthropic tokens across agents (2026-04-23):** Each needs their own.
-- **GLM falls back to Chinese (2026-04-23):** Default behavior when primary fails.
-- **Railway Custom Domain Certs (2026-03-31):** Needs BOTH CNAME + TXT record.
+- **Railway env vars override config (2026-04-28):** `OPENCLAW_PRIMARY_MODEL` in Railway env overrides config. Always check `env | grep MODEL` when runtime model doesn't match config. Env vars require redeploy.
+- **Codex device-code flow (corrected 2026-04-29):** OAuth writes to local Windows auth store, NOT Railway container. Correct flow: generate locally → paste → copy into target container → clear stale cooldown → verify. SOP: `memory/refs/codex-oauth-migration.md`.
+- **Supervisor entrypoint must launch supervisord (2026-04-29):** If `entrypoint.sh` runs OpenClaw directly instead of supervisord, sidecars (Tailscale, Syncthing) never start. Fix committed `93ec0e9b`. Check with `supervisorctl status`.
+- **Sharp required for image tool (2026-04-29):** OpenClaw's image-ops.js needs `sharp`. If not installed, screenshots fail with 'Failed to optimize image'. Install: `npm install --prefix /usr/local/lib/node_modules/openclaw sharp`.
+- **Memory search needs separate embeddings key (2026-04-29):** Codex OAuth only covers chat/completions. `memory_search` needs embeddings provider (OpenAI `text-embedding-3-small` working; Gemini hit quota). Keep embeddings config separate.
 
 ## Brinc Updates (Updated 2026-04-03)
 - **BRI-44:** 16 Gmail drafts staged since Mar 18 — blocked on Guillermo send confirmation.
@@ -147,10 +139,11 @@ Accidental push exposed API keys — all rotated. TOOLS.md scrubbed. GitHub `mas
 - **HARO:** First published comment Apr 2. Pipeline active.
 
 ## Infrastructure Issues
-- **Anthropic token dead:** `sk-ant-oat01-...` returns invalid x-api-key. Molty on Codex. Other 3 agents fall back to GLM. [verified: 2026-04-28]
+- **Anthropic token dead:** `sk-ant-oat01-...` returns invalid x-api-key. Molty verified on Codex OAuth after fresh profile copy. Other 3 agents fall back to GLM until migrated. [verified: 2026-04-29]
 - **Legacy Codex transport override:** `models.providers.openai-codex` has stale `baseUrl`/`apiKey`. Needs cleanup (doctor warns). [verified: 2026-04-28]
 - **Paperclip API Bug:** Cron sessions fail status updates ("Agent run id required"). Persists. [verified: 2026-04-03]
 - **⚠️ FAILED Railway services:** Tunes, cerebro still FAILED. Domains serve 200. [verified: 2026-04-20]
+- **Raphael Tailscale:** Supervisor fix committed but Tailscale serve still failing in logs. Needs separate investigation pass with Guillermo approval. [2026-04-29]
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-27T19:00:15.331Z",
+  "updatedAt": "2026-04-29T08:56:45.758Z",
   "entries": {
     "memory:memory/2026-04-10.md:1:15": {
       "key": "memory:memory/2026-04-10.md:1:15",
@@ -39309,12 +39309,12 @@
       "source": "memory",
       "snippet": "Key Rotation Incident: Accidentally pushed entire `/data/workspace` (with TOOLS.md, credentials, API keys) to `gginesta/clawdbot-railway-template` as `master` branch; GitHub/Discord/xAI/OpenAI all sent secret scanning alerts; Old backup file `openclaw-pre-a1-20260217.json` was al",
       "recallCount": 0,
-      "dailyCount": 4,
+      "dailyCount": 5,
       "groundedCount": 0,
-      "totalScore": 2.48,
+      "totalScore": 3.1,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-22T19:00:00.306Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "7b7a9134bc2c"
       ],
@@ -39324,7 +39324,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-27",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "backup",
@@ -39345,12 +39346,12 @@
       "source": "memory",
       "snippet": "Key Rotation Incident: Deleted `master` branch from GitHub; Scrubbed TOOLS.md — all secrets replaced with `$ENV_VAR` references; All keys rotated in Railway: Railway API, Notion, Vercel, GitHub, OpenRouter, xAI, Z.AI, Google/Gemini, Todoist, Namecheap, Discord bot token, Anthropi",
       "recallCount": 0,
-      "dailyCount": 4,
+      "dailyCount": 5,
       "groundedCount": 0,
-      "totalScore": 2.48,
+      "totalScore": 3.1,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-22T19:00:00.306Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "7b7a9134bc2c"
       ],
@@ -39360,7 +39361,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-27",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "router",
@@ -39381,12 +39383,12 @@
       "source": "memory",
       "snippet": "Key Rotation Incident: Dockerfile bumped to v2026.4.21 and pushed to correct repo",
       "recallCount": 0,
-      "dailyCount": 4,
+      "dailyCount": 5,
       "groundedCount": 0,
-      "totalScore": 2.48,
+      "totalScore": 3.1,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-22T19:00:00.306Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "7b7a9134bc2c"
       ],
@@ -39396,7 +39398,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-27",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "v2026.4.21",
@@ -39417,12 +39420,12 @@
       "source": "memory",
       "snippet": "OpenClaw Update: Updated from v2026.4.7 → v2026.4.21 via Dockerfile change (not in-container); In-container updates broke gateway twice (REG-045); Persistence ENV vars added to Dockerfile (NPM_CONFIG_PREFIX, PNPM_HOME, PNPM_STORE_DIR)",
       "recallCount": 0,
-      "dailyCount": 4,
+      "dailyCount": 5,
       "groundedCount": 0,
-      "totalScore": 2.48,
+      "totalScore": 3.1,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-22T19:00:00.306Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "7b7a9134bc2c"
       ],
@@ -39432,7 +39435,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-27",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "gateway",
@@ -39453,12 +39457,12 @@
       "source": "memory",
       "snippet": "Regressions Added: REG-044: Never push workspace repo to external remotes; REG-045: OpenClaw updates = Dockerfile only, never in-container; REG-046: REGRESSIONS.md is append-only (overwrote 41 rules); REG-047: Anthropic auth = token mode only, never oauth",
       "recallCount": 0,
-      "dailyCount": 4,
+      "dailyCount": 5,
       "groundedCount": 0,
-      "totalScore": 2.48,
+      "totalScore": 3.1,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-22T19:00:00.306Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "7b7a9134bc2c"
       ],
@@ -39468,7 +39472,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-27",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "reg-044",
@@ -39489,12 +39494,12 @@
       "source": "memory",
       "snippet": "Model Switch (21:47 HKT): Switched Molty primary model from Z.AI GLM-5.1 → **Anthropic Claude Sonnet 4.6**; Using subscription token (`sk-ant-oat01-...`) — subscription billing, not per-token; Fallbacks: `openrouter/google/gemini-2.5-flash` → `openrouter/anthropic/claude-sonnet-4",
       "recallCount": 0,
-      "dailyCount": 4,
+      "dailyCount": 5,
       "groundedCount": 0,
-      "totalScore": 2.48,
+      "totalScore": 3.1,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-22T19:00:00.306Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "7b7a9134bc2c"
       ],
@@ -39504,7 +39509,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-27",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "router",
@@ -46763,12 +46769,12 @@
       "source": "memory",
       "snippet": "Raphael 🔴: **Model:** Now on `anthropic/claude-sonnet-4-6` ✅ (applied manually via webchat + Discord confirm); **Webchat:** Now responding ✅ (was empty bubbles — fixed by deleting `filemain` secrets provider); **Auth fix:** Deleted `filemain` provider from his secrets config → n",
       "recallCount": 0,
-      "dailyCount": 3,
+      "dailyCount": 4,
       "groundedCount": 0,
-      "totalScore": 1.8599999999999999,
+      "totalScore": 2.48,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-23T19:00:00.339Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "b7fd25b71b44"
       ],
@@ -46777,7 +46783,8 @@
         "2026-04-23",
         "2026-04-27",
         "2026-04-26",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "anthropic/claude-sonnet-4-6",
@@ -46798,12 +46805,12 @@
       "source": "memory",
       "snippet": "Raphael 🔴: **GOG:** Broken — needs `salesops@brinc.io` OAuth re-authorization via browser on Guillermo's Windows machine; Raphael's proposed keyring password: `brinc-salesops-2026` (needs `GOG_KEYRING_PASSWORD` set in Railway env); Raphael's plan: store refresh token in Railway",
       "recallCount": 0,
-      "dailyCount": 3,
+      "dailyCount": 4,
       "groundedCount": 0,
-      "totalScore": 1.8599999999999999,
+      "totalScore": 2.48,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-23T19:00:00.339Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "b7fd25b71b44"
       ],
@@ -46812,7 +46819,8 @@
         "2026-04-23",
         "2026-04-27",
         "2026-04-26",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "brinc.io",
@@ -46833,12 +46841,12 @@
       "source": "memory",
       "snippet": "Raphael 🔴: **Chinese output:** Was caused by falling back to `zai/glm-5.1` — now fixed; **Dockerfile:** Updated with `OPENCLAW_PRIMARY_MODEL` enforcement + gog credential lane gating",
       "recallCount": 0,
-      "dailyCount": 3,
+      "dailyCount": 4,
       "groundedCount": 0,
-      "totalScore": 1.8599999999999999,
+      "totalScore": 2.48,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-23T19:00:00.339Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "b7fd25b71b44"
       ],
@@ -46847,7 +46855,8 @@
         "2026-04-23",
         "2026-04-27",
         "2026-04-26",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "zai/glm-5.1",
@@ -46868,12 +46877,12 @@
       "source": "memory",
       "snippet": "Molty 🦎: **Model:** `anthropic/claude-sonnet-4-6` ✅; **Email:** `ggv.molt@gmail.com` ✅ clean; **Calendar:** ✅ Working (new SA key `d788de83`); **Gmail:** ✅ Working",
       "recallCount": 0,
-      "dailyCount": 3,
+      "dailyCount": 4,
       "groundedCount": 0,
-      "totalScore": 1.8599999999999999,
+      "totalScore": 2.48,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-23T19:00:00.339Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "b7fd25b71b44"
       ],
@@ -46882,7 +46891,8 @@
         "2026-04-23",
         "2026-04-27",
         "2026-04-26",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "anthropic/claude-sonnet-4-6",
@@ -46903,12 +46913,12 @@
       "source": "memory",
       "snippet": "April 🌸: **Status:** 404 \"Application not found\" — Railway service down, needs investigation + redeploy; **Email lane:** `april.rose.hk@gmail.com`",
       "recallCount": 0,
-      "dailyCount": 3,
+      "dailyCount": 4,
       "groundedCount": 0,
-      "totalScore": 1.8599999999999999,
+      "totalScore": 2.48,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-23T19:00:00.339Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "b7fd25b71b44"
       ],
@@ -46917,7 +46927,8 @@
         "2026-04-23",
         "2026-04-27",
         "2026-04-26",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "april.rose.hk",
@@ -46938,12 +46949,12 @@
       "source": "memory",
       "snippet": "Leonardo 🔵: **Model:** Still on old stack — needs update to `anthropic/claude-sonnet-4-6` (not yet done)",
       "recallCount": 0,
-      "dailyCount": 3,
+      "dailyCount": 4,
       "groundedCount": 0,
-      "totalScore": 1.8599999999999999,
+      "totalScore": 2.48,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-23T19:00:00.339Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "b7fd25b71b44"
       ],
@@ -46952,7 +46963,8 @@
         "2026-04-23",
         "2026-04-27",
         "2026-04-26",
-        "2026-04-28"
+        "2026-04-28",
+        "2026-04-29"
       ],
       "conceptTags": [
         "anthropic/claude-sonnet-4-6",
@@ -51330,12 +51342,12 @@
       "source": "memory",
       "snippet": "GPT-5.5 Released: OpenAI released GPT-5.5 (https://openai.com/index/introducing-gpt-5-5/); Available via `openai-codex/gpt-5.5` through Codex OAuth subscription (no API key needed); Key stats: 82.7% Terminal-Bench, 58.6% SWE-Bench Pro, same latency as GPT-5.4; **Plan:** Guillermo",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-24T19:00:00.390Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -51343,7 +51355,8 @@
         "2026-04-25",
         "2026-04-24",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "gpt",
@@ -51364,12 +51377,12 @@
       "source": "memory",
       "snippet": "GPT-5.5 Released: **Test plan:** Switch Molty to GPT-5.5 first → if good, bring Leonardo up on it too",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-24T19:00:00.390Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -51377,7 +51390,8 @@
         "2026-04-25",
         "2026-04-24",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "gpt",
@@ -51398,12 +51412,12 @@
       "source": "memory",
       "snippet": "Leonardo Redeploy Plan: Guillermo wants to bring Leonardo back online. Agreed approach:",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-24T19:00:00.390Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -51411,7 +51425,8 @@
         "2026-04-25",
         "2026-04-24",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "leonardo",
@@ -51432,12 +51447,12 @@
       "source": "memory",
       "snippet": "Leonardo Redeploy Plan: Rotate all exposed Leonardo env vars (see list below); Update `OPENCLAW_GIT_REF` to `v2026.4.21`; Add `OPENCLAW_PRIMARY_MODEL=anthropic/claude-sonnet-4-6` (or gpt-5.5 if subscription ready); Add `OPENCLAW_FALLBACK_MODELS=zai/glm-5.1,openrouter/anthropic/cl",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-24T19:00:00.390Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -51445,7 +51460,8 @@
         "2026-04-25",
         "2026-04-24",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "gpt",
@@ -51466,12 +51482,12 @@
       "source": "memory",
       "snippet": "Leonardo Redeploy Plan: Send startup briefing to catch him up on fleet changes; Molty to draft Leonardo briefing directive (pending Guillermo confirmation)",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-24T19:00:00.390Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -51479,7 +51495,8 @@
         "2026-04-25",
         "2026-04-24",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "leonardo",
@@ -51500,12 +51517,12 @@
       "source": "memory",
       "snippet": "Leonardo Env Vars — Keys to Rotate: | Key | Reason | |-----|--------| | `ANTHROPIC_TOKEN` | Exposed in Apr 22 leak | | `DISCORD_BOT_TOKEN` / `DISCORD_TOKEN` | Exposed |",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-24T19:00:00.390Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -51513,7 +51530,8 @@
         "2026-04-25",
         "2026-04-24",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "anthropic-token",
@@ -57278,12 +57296,12 @@
       "source": "memory",
       "snippet": "Memory Log — 2026-04-25: *Last updated: molty | 2026-04-25 23:00 HKT | Nightly curation*",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-25T19:00:00.437Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -57291,7 +57309,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "log",
@@ -57311,12 +57330,12 @@
       "source": "memory",
       "snippet": "Status: Quiet Saturday: No new user sessions today. Nightly curation cron ran at 23:00 HKT.",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-25T19:00:00.437Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -57324,7 +57343,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "status",
@@ -57345,12 +57365,12 @@
       "source": "memory",
       "snippet": "Fleet Status — Leonardo & April: **Leonardo:** Was on v4.7 as of Apr 24. Fresh redeploy triggered (no-cache). Final version confirmation pending.; **April:** Same — was on v4.7, redeploy triggered. Railway service had been returning 404 (`Application not found`). Redeploy may res",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-25T19:00:00.437Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -57358,7 +57378,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "v4.7",
@@ -57379,12 +57400,12 @@
       "source": "memory",
       "snippet": "GPT-5.5 / Codex OAuth: Guillermo needs ChatGPT Plus/Pro subscription to unlock Codex OAuth for `openai-codex/gpt-5.5`.; Molty to test first → then bring Leonardo up on it.; Status: **Pending Guillermo subscription action**.",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-25T19:00:00.437Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -57392,7 +57413,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "gpt",
@@ -57413,12 +57435,12 @@
       "source": "memory",
       "snippet": "Leonardo Env Vars Rotation: Keys exposed in Apr 22 leak (see MEMORY.md) — still need rotating before Leonardo is considered fully clean.; Paperclip: `PAPERCLIP_API_KEY` and `SETUP_PASSWORD` confirmed safe.",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-25T19:00:00.437Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -57426,7 +57448,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "memory.md",
@@ -57447,12 +57470,12 @@
       "source": "memory",
       "snippet": "BRI-44: 16 Gmail drafts staged since Mar 18. Still blocked on Guillermo send confirmation. No escalation.",
       "recallCount": 0,
-      "dailyCount": 2,
+      "dailyCount": 3,
       "groundedCount": 0,
-      "totalScore": 1.24,
+      "totalScore": 1.8599999999999999,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-25T19:00:00.437Z",
-      "lastRecalledAt": "2026-04-27T19:00:13.809Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -57460,7 +57483,8 @@
         "2026-04-26",
         "2026-04-25",
         "2026-04-28",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-29"
       ],
       "conceptTags": [
         "bri-44",
@@ -69566,6 +69590,2285 @@
         "now",
         "truncated",
         "what"
+      ]
+    },
+    "memory:memory/2026-04-28.md:7:7": {
+      "key": "memory:memory/2026-04-28.md:7:7",
+      "path": "memory/2026-04-28.md",
+      "startLine": 7,
+      "endLine": 7,
+      "source": "memory",
+      "snippet": "Summary: Major model migration day. Anthropic token died, causing cascading failures. Switched Molty to Codex OAuth (GPT-5.5/5.4) via ChatGPT Pro subscription. Updated all 12 crons.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "gpt-5.5/5.4",
+        "summary",
+        "major",
+        "model",
+        "migration",
+        "day",
+        "anthropic"
+      ]
+    },
+    "memory:memory/2026-04-28.md:14:16": {
+      "key": "memory:memory/2026-04-28.md:14:16",
+      "path": "memory/2026-04-28.md",
+      "startLine": 14,
+      "endLine": 16,
+      "source": "memory",
+      "snippet": "Anthropic Token Dead (11:19 HKT): `ANTHROPIC_API_KEY` returns `invalid x-api-key` from api.anthropic.com; Caused cascading empty-turn failures throughout the morning session; Immediate fix: switched primary to `zai/glm-5.1` as interim",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "anthropic-api-key",
+        "x-api-key",
+        "api.anthropic.com",
+        "empty-turn",
+        "zai/glm-5.1",
+        "anthropic",
+        "token",
+        "dead"
+      ]
+    },
+    "memory:memory/2026-04-28.md:19:22": {
+      "key": "memory:memory/2026-04-28.md:19:22",
+      "path": "memory/2026-04-28.md",
+      "startLine": 19,
+      "endLine": 22,
+      "source": "memory",
+      "snippet": "Codex OAuth Activation (17:35 HKT): Guillermo ran device-code flow via Railway shell from PowerShell; `openclaw onboard --auth-choice openai-codex-device-code --accept-risk`; Opened https://auth.openai.com/codex/device in browser, entered code; Codex OAuth active, default set to",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "openai",
+        "device-code",
+        "auth-choice",
+        "openai-codex-device-code",
+        "accept-risk",
+        "auth.openai.com/codex/device",
+        "codex",
+        "oauth"
+      ]
+    },
+    "memory:memory/2026-04-28.md:23:23": {
+      "key": "memory:memory/2026-04-28.md:23:23",
+      "path": "memory/2026-04-28.md",
+      "startLine": 23,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "Codex OAuth Activation (17:35 HKT): Molty primary bumped to `openai-codex/gpt-5.5`",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "openai-codex/gpt-5.5",
+        "codex",
+        "oauth",
+        "activation",
+        "hkt",
+        "molty"
+      ]
+    },
+    "memory:memory/2026-04-28.md:26:29": {
+      "key": "memory:memory/2026-04-28.md:26:29",
+      "path": "memory/2026-04-28.md",
+      "startLine": 26,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "Model Chain Update (17:44 HKT): **Molty primary:** `openai-codex/gpt-5.5`; **Molty fallbacks:** `zai/glm-5.1` → `deepseek/deepseek-v4-flash` → `openrouter/anthropic/claude-sonnet-4.6` → `anthropic/claude-sonnet-4-6`; **All 12 crons:** switched to `openai-codex/gpt-5.4`; **Other 3",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "router",
+        "openai-codex/gpt-5.5",
+        "zai/glm-5.1",
+        "deepseek/deepseek-v4-flash",
+        "anthropic/claude-sonnet-4-6",
+        "openai-codex/gpt-5.4"
+      ]
+    },
+    "memory:memory/2026-04-28.md:32:35": {
+      "key": "memory:memory/2026-04-28.md:32:35",
+      "path": "memory/2026-04-28.md",
+      "startLine": 32,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "Cron Fixes (17:44 HKT): Daily Backup: `anthropic/claude-haiku-4-5` → `openai-codex/gpt-5.4`; Nightly Memory Curation: `anthropic/claude-sonnet-4-6` → `openai-codex/gpt-5.4`; Weekly PARA Curation: timeout 180→600s; Security Audit: timeout 180→600s",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "backup",
+        "gpt",
+        "openai",
+        "anthropic/claude-haiku-4-5",
+        "openai-codex/gpt-5.4",
+        "anthropic/claude-sonnet-4-6",
+        "cron",
+        "fixes"
+      ]
+    },
+    "memory:memory/2026-04-28.md:36:38": {
+      "key": "memory:memory/2026-04-28.md:36:38",
+      "path": "memory/2026-04-28.md",
+      "startLine": 36,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "Cron Fixes (17:44 HKT): Monthly Core Files Review: channel error fixed (added `channel: discord`); Deleted disabled one-shot \"Upgrade fleet to v4.24\"; All remaining `zai/glm-5.1` crons → `openai-codex/gpt-5.4`",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "one-shot",
+        "v4.24",
+        "zai/glm-5.1",
+        "openai-codex/gpt-5.4",
+        "cron",
+        "fixes"
+      ]
+    },
+    "memory:memory/2026-04-28.md:41:43": {
+      "key": "memory:memory/2026-04-28.md:41:43",
+      "path": "memory/2026-04-28.md",
+      "startLine": 41,
+      "endLine": 43,
+      "source": "memory",
+      "snippet": "Setup Page Change (v4.25): `/setup` now returns 401 (auth required) — new in v4.25; `/debug` and `/config` still accessible (200); Access via: `https://ggvmolt.up.railway.app/setup?token=<gateway_token>`",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gateway",
+        "v4.25",
+        "ggvmolt.up.railway.app/setup",
+        "gateway-token",
+        "setup",
+        "page",
+        "change",
+        "now"
+      ]
+    },
+    "memory:memory/2026-04-28.md:46:47": {
+      "key": "memory:memory/2026-04-28.md:46:47",
+      "path": "memory/2026-04-28.md",
+      "startLine": 46,
+      "endLine": 47,
+      "source": "memory",
+      "snippet": "Twitter Research (17:50 HKT): **@cherry_mx_reds:** `/models add openai-codex gpt-5.5` command for quick setup. Also covers `commands.ownerAllowFrom` permissions fix.; **@steipete (OpenClaw dev):** `executionContract: \"strict-agentic\"` stops GPT-5.x laziness. Tells model to keep w",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "cherry-mx-reds",
+        "openai-codex",
+        "gpt-5.5",
+        "commands.ownerallowfrom",
+        "strict-agentic",
+        "gpt-5.x"
+      ]
+    },
+    "memory:memory/2026-04-28.md:52:55": {
+      "key": "memory:memory/2026-04-28.md:52:55",
+      "path": "memory/2026-04-28.md",
+      "startLine": 52,
+      "endLine": 55,
+      "source": "memory",
+      "snippet": "Pending: Codex auth for Raphael, Leonardo, April (each needs Railway shell + device-code flow); Clean up legacy `openai-codex` transport override in config; Evaluate `strict-agentic` execution contract; Anthropic token replacement or full migration away from Anthropic",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "openai",
+        "device-code",
+        "openai-codex",
+        "strict-agentic",
+        "pending",
+        "codex",
+        "auth",
+        "raphael"
+      ]
+    },
+    "memory:memory/2026-04-28.md:58:61": {
+      "key": "memory:memory/2026-04-28.md:58:61",
+      "path": "memory/2026-04-28.md",
+      "startLine": 58,
+      "endLine": 61,
+      "source": "memory",
+      "snippet": "Railway Env Var Fix (18:49 HKT): **Problem:** `OPENCLAW_PRIMARY_MODEL=zai/glm-5.1` in Railway env was overriding config's `openai-codex/gpt-5.5`; **Fix:** Updated Railway env var to `openai-codex/gpt-5.5` via GraphQL API `variableUpsert`; **Also:** Updated `OPENCLAW_FALLBACK_MODE",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "openclaw-primary-model",
+        "zai/glm-5.1",
+        "openai-codex/gpt-5.5",
+        "openclaw-fallback-mode",
+        "railway",
+        "env"
+      ]
+    },
+    "memory:memory/2026-04-28.md:62:64": {
+      "key": "memory:memory/2026-04-28.md:62:64",
+      "path": "memory/2026-04-28.md",
+      "startLine": 62,
+      "endLine": 64,
+      "source": "memory",
+      "snippet": "Railway Env Var Fix (18:49 HKT): **Aliases:** `codex` → gpt-5.5, added gpt-5.4; **Redeploy:** Triggered via `serviceInstanceRedeploy` API at 18:53 HKT; **Lesson:** Always `env | grep MODEL` when runtime model doesn't match config. Railway env overrides local config.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "gpt-5.5",
+        "gpt-5.4",
+        "railway",
+        "env",
+        "var",
+        "fix",
+        "hkt"
+      ]
+    },
+    "memory:memory/2026-04-28.md:68:68": {
+      "key": "memory:memory/2026-04-28.md:68:68",
+      "path": "memory/2026-04-28.md",
+      "startLine": 68,
+      "endLine": 68,
+      "source": "memory",
+      "snippet": "Railway Env Var Fix (18:49 HKT): *Auto-curated from session activity*",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "auto-curated",
+        "railway",
+        "env",
+        "var",
+        "fix",
+        "hkt",
+        "auto",
+        "curated"
+      ]
+    },
+    "memory:memory/2026-04-28.md:71:74": {
+      "key": "memory:memory/2026-04-28.md:71:74",
+      "path": "memory/2026-04-28.md",
+      "startLine": 71,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "GitHub Branch Consolidation (22:31 HKT): **Problem:** Repo had 14 remote branches across 3 remotes, local `main` stuck at Jan 31 commit, local `master` had all actual work; **Root cause:** Historical divergence — code developed on `master`, Railway watched `main`, force pushes re",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "github",
+        "branch",
+        "consolidation",
+        "hkt",
+        "problem",
+        "repo",
+        "had",
+        "remote"
+      ]
+    },
+    "memory:memory/2026-04-28.md:75:78": {
+      "key": "memory:memory/2026-04-28.md:75:78",
+      "path": "memory/2026-04-28.md",
+      "startLine": 75,
+      "endLine": 78,
+      "source": "memory",
+      "snippet": "GitHub Branch Consolidation (22:31 HKT): Deleted stale remote branches: `backup/master`, `backup/chore/bump-openclaw-ref`; Deleted local `main` (stuck at Jan 31); Removed `vignesh` remote (upstream template, unused); Renamed `backup` → `origin`",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "backup",
+        "backup/master",
+        "backup/chore/bump-openclaw-ref",
+        "github",
+        "branch",
+        "consolidation",
+        "hkt",
+        "deleted"
+      ]
+    },
+    "memory:memory/2026-04-28.md:79:81": {
+      "key": "memory:memory/2026-04-28.md:79:81",
+      "path": "memory/2026-04-28.md",
+      "startLine": 79,
+      "endLine": 81,
+      "source": "memory",
+      "snippet": "GitHub Branch Consolidation (22:31 HKT): Set local `master` to track `origin/main`; **Final state:** 1 remote, 1 remote branch, 1 local branch. Clean.; **Lesson:** Always verify `git show origin/main:Dockerfile` before expecting Railway to build.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "origin/main",
+        "github",
+        "branch",
+        "consolidation",
+        "hkt",
+        "set",
+        "local",
+        "master"
+      ]
+    },
+    "memory:memory/2026-04-28.md:84:87": {
+      "key": "memory:memory/2026-04-28.md:84:87",
+      "path": "memory/2026-04-28.md",
+      "startLine": 84,
+      "endLine": 87,
+      "source": "memory",
+      "snippet": "Fleet Codex Migration Planned (22:31 HKT): Guillermo approved migrating Raphael, Leonardo, April from Anthropic → Codex OAuth; Plan: `plans/fleet-codex-migration.md`; Requires 3 device-code flows (~2 min each) from Guillermo; Pending scheduling",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "1174d07d7efc"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "plans/fleet-codex-migration.md",
+        "device-code",
+        "fleet",
+        "codex",
+        "migration",
+        "planned",
+        "hkt",
+        "guillermo"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:25:25": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:25:25",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 25,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "Assistant: Ready for the next thing. Want me to start the Codex auth for the other 3 agents, or is there something else first?",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "ready",
+        "thing",
+        "want",
+        "start",
+        "codex",
+        "auth",
+        "other",
+        "agents"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:26:26": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:26:26",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 26,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "User: Your railway env var has an openclaw primary as zai, you may need to update that no?",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "railway",
+        "env",
+        "var",
+        "has",
+        "openclaw",
+        "primary",
+        "zai",
+        "may"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:27:27": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:27:27",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 27,
+      "endLine": 27,
+      "source": "memory",
+      "snippet": "Assistant: Good catch. Let me check the current config state.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "good",
+        "catch",
+        "let",
+        "check",
+        "current",
+        "config",
+        "state"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:28:28": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:28:28",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 28,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "Assistant: You're right to flag this. Looking at the runtime: - **Config says:** `primary: \"openai-codex/gpt-5.5\"` - **Actually running:** `zai/glm-5.1` via `ZAI_API_KEY` Two issues: 1. **The openai-codex provider only defines `gpt-5.3` and `gpt-5.2`** — there's no `gpt-5.5` mode",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "openai-codex/gpt-5.5",
+        "zai/glm-5.1",
+        "zai-api-key",
+        "openai-codex",
+        "gpt-5.3",
+        "gpt-5.2"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:29:29": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:29:29",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 29,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "Assistant: the provider config.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "provider",
+        "config"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:30:30": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:30:30",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 30,
+      "endLine": 30,
+      "source": "memory",
+      "snippet": "User: Update the railway en var primary model to GPT and update the model list",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "update",
+        "railway",
+        "var",
+        "primary",
+        "model",
+        "list"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:31:31": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:31:31",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 31,
+      "endLine": 31,
+      "source": "memory",
+      "snippet": "Assistant: Let me check the current Railway env var and the openai-codex provider config.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "openai",
+        "openai-codex",
+        "let",
+        "check",
+        "current",
+        "railway",
+        "env",
+        "var"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:32:32": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:32:32",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 32,
+      "endLine": 32,
+      "source": "memory",
+      "snippet": "Assistant: Found the problem. **Railway env var `OPENCLAW_PRIMARY_MODEL=zai/glm-5.1`** overrides the config. Two fixes needed: 1. **Update Railway env var** → `openai-codex/gpt-5.5` 2. **Add `gpt-5.5` and `gpt-5.4` to openai-codex model list** + aliases Let me do both.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "openclaw-primary-model",
+        "zai/glm-5.1",
+        "openai-codex/gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.4",
+        "openai-codex"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:33:33": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:33:33",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 33,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "Assistant: Config patch blocks model definitions (protected paths). I'll edit the config file directly and use Railway CLI for the env var.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "config",
+        "patch",
+        "blocks",
+        "model",
+        "definitions",
+        "protected",
+        "paths",
+        "i'll"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:34:34": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:34:34",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 34,
+      "endLine": 34,
+      "source": "memory",
+      "snippet": "Assistant: Railway env var updated. Now let me also update `OPENCLAW_FALLBACK_MODELS` to match the current config chain, then restart to pick everything up.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "openclaw-fallback-models",
+        "railway",
+        "env",
+        "var",
+        "updated",
+        "now",
+        "let",
+        "update"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:35:35": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:35:35",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 35,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "Assistant: Done. Here's what I changed: | Change | Before | After | |--------|--------|-------| | **Railway `OPENCLAW_PRIMARY_MODEL`** | `zai/glm-5.1` | `openai-codex/gpt-5.5` | | **Railway `OPENCLAW_FALLBACK_MODELS`** | `anthropic/claude-sonnet-4-6,zai/glm-5.1,...` | `zai/glm-5.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "openclaw-primary-model",
+        "zai/glm-5.1",
+        "openai-codex/gpt-5.5",
+        "openclaw-fallback-models",
+        "anthropic/claude-sonnet-4-6",
+        "zai/glm-5"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:36:36": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:36:36",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 36,
+      "endLine": 36,
+      "source": "memory",
+      "snippet": "User: Yes redeploy. You are still defaulting to glm5.1",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "glm5.1",
+        "yes",
+        "redeploy",
+        "still",
+        "defaulting"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:37:37": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:37:37",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 37,
+      "endLine": 37,
+      "source": "memory",
+      "snippet": "User: Working… • read from /data/workspace/TOOLS.md",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "data/workspace/tools.md",
+        "working",
+        "read",
+        "data",
+        "tools.md"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:38:38": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:38:38",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 38,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "User: Done. TOOLS.md trimmed from 6.3 KB → ~2.2 KB (well under the 5 KB cap). Removed the verbose OAuth credential detail that's already fully documented in MEMORY.md — kept just the operational one-liners needed at runtime.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "tools.md",
+        "6.3",
+        "2.2",
+        "memory.md",
+        "one-liners",
+        "done",
+        "trimmed",
+        "well"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:39:39": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:39:39",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 39,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "User: Already handled — TOOLS.md is now 2.2 KB, well under cap",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "tools.md",
+        "2.2",
+        "already",
+        "handled",
+        "now",
+        "well",
+        "under",
+        "cap"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:40:40": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:40:40",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 40,
+      "endLine": 40,
+      "source": "memory",
+      "snippet": "User: Already handled — TOOLS.md is now 2.2 KB, well under cap. The guardrail and action-needed messages were likely queued before my fix landed.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "tools.md",
+        "2.2",
+        "action-needed",
+        "already",
+        "handled",
+        "now",
+        "well",
+        "under"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:41:41": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:41:41",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 41,
+      "endLine": 41,
+      "source": "memory",
+      "snippet": "User: FYI noted — those files aren't loaded into runtime context so",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "fyi",
+        "noted",
+        "those",
+        "aren't",
+        "loaded",
+        "runtime",
+        "context"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:42:42": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:42:42",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 42,
+      "endLine": 42,
+      "source": "memory",
+      "snippet": "User: FYI noted — those files aren't loaded into runtime context so no action needed from me. Guillermo can decide if they want caps set or archiving done.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "fyi",
+        "noted",
+        "those",
+        "aren't",
+        "loaded",
+        "runtime",
+        "context",
+        "action"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:43:43": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:43:43",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 43,
+      "endLine": 43,
+      "source": "memory",
+      "snippet": "User: **Leonardo 🔵 — Daily Status | Tue Apr 28, 2026 | 09:00 HKT** **Cron Jobs** ``` | Job | Schedule HKT | Last Run | Status | | ----------------------------- | ------------ | --------- | ---------- | | cerebro-beta-daily-activation | 09:00 daily | 3 min ago | 🟡 Running | | da",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "cerebro-beta-daily-activation",
+        "leonardo",
+        "status",
+        "tue",
+        "apr",
+        "hkt",
+        "cron",
+        "jobs"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:44:44": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:44:44",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 44,
+      "endLine": 44,
+      "source": "memory",
+      "snippet": "Assistant: Leonardo's `Daily MEMORY.md Curation` cron is erroring — same issue Molty had. Leonardo, can you share the error output from that cron run?",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "memory.md",
+        "leonardo's",
+        "curation",
+        "cron",
+        "erroring",
+        "issue",
+        "molty",
+        "had"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:45:45": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:45:45",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 45,
+      "endLine": 45,
+      "source": "memory",
+      "snippet": "User: **OpenClaw:** v2026.4.25 (aa36ee6)",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "v2026.4.25",
+        "openclaw",
+        "aa36ee6"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:46:46": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:46:46",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 46,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "User: That's Leonardo's domain — not something I can diagn",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "that's",
+        "leonardo's",
+        "domain",
+        "not",
+        "something",
+        "can",
+        "diagn"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:47:47": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:47:47",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 47,
+      "endLine": 47,
+      "source": "memory",
+      "snippet": "User: That's Leonardo's domain — not something I can diagnose or fix. Leonardo or Molty should investigate the cron error directly.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "that's",
+        "leonardo's",
+        "domain",
+        "not",
+        "something",
+        "can",
+        "diagnose",
+        "fix"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:48:48": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:48:48",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 48,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "Assistant: On it — pinging Leonardo directly to investigate the cron error. If it's the same `git safe.directory` issue Molty had, the fix is a one-liner in `entrypoint.sh`. I'll follow up once I get a response.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "safe.directory",
+        "one-liner",
+        "entrypoint.sh",
+        "pinging",
+        "leonardo",
+        "directly",
+        "investigate",
+        "cron"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-29.txt:1:1": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-29.txt:1:1",
+      "path": "memory/.dreams/session-corpus/2026-04-29.txt",
+      "startLine": 1,
+      "endLine": 1,
+      "source": "memory",
+      "snippet": "User: ⚠️ Cron job \"raphael-overnight-work\" failed: FallbackSummaryError: All models failed (3): anthropic/claude-sonnet-4-6: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"You're out of extra usage. Add more at claude.ai/settings/usage and keep going.\"},\"r",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "401e1af52a6f"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "raphael-overnight-work",
+        "anthropic/claude-sonnet-4-6",
+        "invalid-request-error",
+        "claude.ai/settings/usage",
+        "cron",
+        "job",
+        "raphael",
+        "overnight"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-29.txt:2:2": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-29.txt:2:2",
+      "path": "memory/.dreams/session-corpus/2026-04-29.txt",
+      "startLine": 2,
+      "endLine": 2,
+      "source": "memory",
+      "snippet": "Assistant: Known issue — Raphael's Anthropic token is dead (same as logged 2026-04-28) and OpenRouter is returning 403s. He needs Codex OAuth activation, which is on the pending migration list (`plans/fleet-codex-migration.md`). No action needed overnight. Will address during wor",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "401e1af52a6f"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "router",
+        "plans/fleet-codex-migration.md",
+        "known",
+        "issue",
+        "raphael's",
+        "anthropic",
+        "token",
+        "dead"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:49:49": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:49:49",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 49,
+      "endLine": 49,
+      "source": "memory",
+      "snippet": "Assistant: Redeploy triggered. Molty is rebuilding now with `OPENCLAW_PRIMARY_MODEL=openai-codex/gpt-5.5` and the updated model list. This session will go down during the redeploy. When it comes back up, the primary should be GPT-5.5 via Codex OAuth. I'll be running on the new mo",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "openclaw-primary-model",
+        "openai-codex/gpt-5.5",
+        "gpt-5.5",
+        "redeploy",
+        "triggered",
+        "molty"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:50:50": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:50:50",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 50,
+      "endLine": 50,
+      "source": "memory",
+      "snippet": "User: OK. Update your documentation to match. Be thorough",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "update",
+        "documentation",
+        "match",
+        "thorough"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:51:51": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:51:51",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 51,
+      "endLine": 51,
+      "source": "memory",
+      "snippet": "User: All ok?",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "all"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:52:52": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:52:52",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 52,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "Assistant: Still on GLM (redeploy in progress). Let me update all the docs now.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "still",
+        "glm",
+        "redeploy",
+        "progress",
+        "let",
+        "update",
+        "all",
+        "docs"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:53:53": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:53:53",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 53,
+      "endLine": 53,
+      "source": "memory",
+      "snippet": "Assistant: Still on GLM — redeploy hasn't landed yet. Let me update all docs now.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "still",
+        "glm",
+        "redeploy",
+        "hasn't",
+        "landed",
+        "yet",
+        "let",
+        "update"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:54:54": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:54:54",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 54,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "Assistant: Now update the Completed section and add a new lesson learned:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "now",
+        "update",
+        "completed",
+        "section",
+        "add",
+        "new",
+        "lesson",
+        "learned"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:55:55": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:55:55",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 55,
+      "endLine": 55,
+      "source": "memory",
+      "snippet": "Assistant: Add the new lesson learned:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "add",
+        "new",
+        "lesson",
+        "learned"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:56:56": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:56:56",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 56,
+      "endLine": 56,
+      "source": "memory",
+      "snippet": "Assistant: Now update the Infrastructure Issues and Active OpenClaw Features sections:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "now",
+        "update",
+        "infrastructure",
+        "issues",
+        "active",
+        "openclaw",
+        "features",
+        "sections"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:57:57": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:57:57",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 57,
+      "endLine": 57,
+      "source": "memory",
+      "snippet": "Assistant: That section was already correct. Now let me update the daily log:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "section",
+        "was",
+        "already",
+        "correct",
+        "now",
+        "let",
+        "update",
+        "log"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:58:58": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:58:58",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 58,
+      "endLine": 58,
+      "source": "memory",
+      "snippet": "Assistant: Now update the lessons-learned file:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "lessons-learned",
+        "now",
+        "update",
+        "lessons",
+        "learned"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:59:59": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:59:59",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 59,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "Assistant: Now let me check the redeploy status:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "now",
+        "let",
+        "check",
+        "redeploy",
+        "status"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:60:60": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:60:60",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 60,
+      "endLine": 60,
+      "source": "memory",
+      "snippet": "Assistant: Redeploy succeeded! But I'm still on GLM in this session because the running process needs the restart to pick up the new env var. The gateway config file already has the right model list. Let me commit all the doc changes:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gateway",
+        "redeploy",
+        "succeeded",
+        "but",
+        "i'm",
+        "still",
+        "glm",
+        "running"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:61:61": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:61:61",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 61,
+      "endLine": 61,
+      "source": "memory",
+      "snippet": "User: 🔒 Backup: leonardo-backup-20260428-213156.tar.gz 352M at 2026-04-28 21:31 HKT",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "backup",
+        "leonardo",
+        "tar.gz",
+        "352m",
+        "hkt"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:62:62": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:62:62",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 62,
+      "endLine": 62,
+      "source": "memory",
+      "snippet": "Assistant: **🧠 Nightly Memory Curation — 2026-04-28** 1 gap found **Added:** `/setup` page auth requirement in v4.25 (returns 401, needs gateway token) **MEMORY.md:** 13.4KB — under cap **Archive:** 2026-04-17 daily log → archive/",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gateway",
+        "v4.25",
+        "memory.md",
+        "13.4kb",
+        "nightly",
+        "curation",
+        "gap",
+        "found"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:63:63": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:63:63",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 63,
+      "endLine": 63,
+      "source": "memory",
+      "snippet": "User: ⚠️ Cron job \"Nightly Memory Curation (11PM HKT)\" failed: cron: job interrupted by gateway restart",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gateway",
+        "cron",
+        "job",
+        "nightly",
+        "curation",
+        "11pm",
+        "hkt",
+        "failed"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-28.txt:64:64": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-28.txt:64:64",
+      "path": "memory/.dreams/session-corpus/2026-04-28.txt",
+      "startLine": 64,
+      "endLine": 64,
+      "source": "memory",
+      "snippet": "Assistant: Noted — transient failure from a gateway restart. It'll retry next cycle. No action needed.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-28T19:00:00.918Z",
+      "lastRecalledAt": "2026-04-28T19:00:00.918Z",
+      "queryHashes": [
+        "8a4254b47642"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gateway",
+        "noted",
+        "transient",
+        "failure",
+        "restart",
+        "it'll",
+        "retry",
+        "cycle"
+      ]
+    },
+    "memory:memory/archive/2026-02-03.md:125:167": {
+      "key": "memory:memory/archive/2026-02-03.md:125:167",
+      "path": "memory/archive/2026-02-03.md",
+      "startLine": 125,
+      "endLine": 167,
+      "source": "memory",
+      "snippet": "1. `brinc-company-overview.md` — Company profile, services, footprint 2. `brinc-icp-qualification.md` — ICP personas and qualification criteria 3. `brinc-sales-system-plan.md` — Phase-based sales automation roadmap **Key context for Raphael:** - Brinc = VCaaS (venture accelerator as a service) - Target: Fortune 500s, govs, family offices seeking startup innovation - Sales cycle: 3-12 months (long, complex) - User pain points: Lead qualification, proposal building, metrics ## Raphael SOUL Draft ✅ Created `/data/workspace/research/tmnt-team-architecture/templates/SOUL-raphael.md` Character: Formal, direct, results-driven \"AI SDR\" Domain expertise: B2B enterprise sales, lead qualification T",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.47795026565902443,
+      "maxScore": 0.47795026565902443,
+      "firstRecalledAt": "2026-04-29T03:44:32.338Z",
+      "lastRecalledAt": "2026-04-29T03:44:32.338Z",
+      "queryHashes": [
+        "ec67638a84dc"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "brinc-company-overview.md",
+        "brinc-icp-qualification.md",
+        "brinc-sales-system-plan.md",
+        "phase-based",
+        "3-12",
+        "results-driven",
+        "brinc",
+        "company"
+      ]
+    },
+    "memory:memory/archive/2026-02-03.md:277:330": {
+      "key": "memory:memory/archive/2026-02-03.md:277:330",
+      "path": "memory/archive/2026-02-03.md",
+      "startLine": 277,
+      "endLine": 330,
+      "source": "memory",
+      "snippet": "|------|-------| | Group Name | \"TMNT - Molty and Raphael\" (was \"G & Raphael\") | | Chat ID | `-5298647132` | | Invite Link | `t.me/+Lna4WcdhCX1jYmM1` | | Members | Guillermo (owner), @MoltyBot, @RaphaelBrincBot | ### Molty Telegram Config Applied ```json { \"telegram\": { \"enabled\": true, \"botToken\": \"8292515315:...\", \"allowFrom\": [\"1097408992\"], \"groupAllowFrom\": [\"-5298647132\"], \"requireMention\": false } } ``` - Saved group config to `/data/.openclaw/credentials/telegram-groups.json` ### Status - ✅ Molty receiving group messages - ✅ Molty sending to group (tested multiple times) - ❌ **Raphael NOT responding** — blocker ### Raphael Troubleshooting Done 1. ✅ Telegram",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4518286875676677,
+      "maxScore": 0.4518286875676677,
+      "firstRecalledAt": "2026-04-29T03:44:32.338Z",
+      "lastRecalledAt": "2026-04-29T03:44:32.338Z",
+      "queryHashes": [
+        "ec67638a84dc"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "t.me",
+        "group",
+        "name",
+        "tmnt",
+        "molty",
+        "raphael",
+        "was",
+        "chat"
+      ]
+    },
+    "memory:memory/archive/2026-03-04.md:19:54": {
+      "key": "memory:memory/archive/2026-03-04.md:19:54",
+      "path": "memory/archive/2026-03-04.md",
+      "startLine": 19,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "- Raphael had a leftover `chr()`-encoded Python script as Railway start command from prior failed attempts. - Cleared to `null` via Railway GraphQL mutation so Railway uses default supervisor command. ## WHOOP Integration Research ✅ - Notion page created: `https://www.notion.so/31939dd69afd818fa450e08fb77dc9d8` - Under Molty's Mission Control section. - WHOOP spec saved locally: `/data/workspace/scripts/WHOOP-INTEGRATION-SPEC.md` - Blocked on: `WHOOP_CLIENT_ID` + `WHOOP_CLIENT_SECRET` — need Guillermo to register app at developer.whoop.com ## April & Donatello Planning Interview ✅ - Already booked: Wednesday Mar 4, 15:45–16:15 HKT - Calendar: `guillermo.ginesta@gmail.com` (Personal) - Brin",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4318906605526459,
+      "maxScore": 0.4318906605526459,
+      "firstRecalledAt": "2026-04-29T03:44:32.338Z",
+      "lastRecalledAt": "2026-04-29T03:44:32.338Z",
+      "queryHashes": [
+        "ec67638a84dc"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "whoop-client-id",
+        "whoop-client-secret",
+        "developer.whoop.com",
+        "guillermo.ginesta",
+        "gmail.com",
+        "raphael",
+        "had",
+        "leftover"
+      ]
+    },
+    "memory:memory/archive/2026-03-09.md:33:74": {
+      "key": "memory:memory/archive/2026-03-09.md:33:74",
+      "path": "memory/archive/2026-03-09.md",
+      "startLine": 33,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "2. **Raphael** — DOWN all day. I had added a Python startCommand (to patch config) that used `json.load()` on JSONC files → crashed on comments. Guillermo fixed via Railway dashboard redeploy. 3. **Leonardo Discord** — Went offline. Fixed with redeploy at 14:52. 4. **Molty Webchat** — Broken from ~14:58. Still fixing as of 15:43. ### Root Causes (My Mistakes) 1. Added untested `startCommand` to Raphael that crashed on JSONC config 2. Pushed fleet version bump that triggered problematic deploys 3. Made config patches (`allowInsecureAuth`, `allowedOrigins`) that may have broken webchat ### Regressions Added - **REG-017**: Never `json.load()` OpenClaw configs — they're JSON5/JSONC - **REG-018",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4300493594213118,
+      "maxScore": 0.4300493594213118,
+      "firstRecalledAt": "2026-04-29T03:44:32.338Z",
+      "lastRecalledAt": "2026-04-29T03:44:32.338Z",
+      "queryHashes": [
+        "ec67638a84dc"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "json.load",
+        "reg-017",
+        "json5/jsonc",
+        "reg-018",
+        "raphael",
+        "down",
+        "all",
+        "day"
+      ]
+    },
+    "memory:memory/archive/2026-03-04.md:1:24": {
+      "key": "memory:memory/archive/2026-03-04.md:1:24",
+      "path": "memory/archive/2026-03-04.md",
+      "startLine": 1,
+      "endLine": 24,
+      "source": "memory",
+      "snippet": "# Daily Log — 2026-03-04 (Wednesday) ## Raphael Outage — Root Cause & Fix ✅ - **Cause 1:** `channels.discord.dm.policy` key in openclaw.json — deprecated format, crashes gateway. Remove entirely; new format uses `channels.discord.dmPolicy` at top level. - **Cause 2:** `gateway.bind = \"auto\"` with `gateway.tailscale.mode = \"serve\"` — invalid combo. Must be `bind = \"loopback\"`. - **Fix applied:** Guillermo manually patched Raphael's config via Railway UI. Raphael back online. - **Molty self-fix:** Set `gateway.bind = \"loopback\"` in `/data/.openclaw/openclaw.json` (tailscale.mode was already serve, dm key already absent). - **Leonardo:** Notified via webhook + directive `/data/shared/pending-d",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8047400058098166,
+      "maxScore": 0.4211626143045753,
+      "firstRecalledAt": "2026-04-29T03:44:32.338Z",
+      "lastRecalledAt": "2026-04-29T04:04:04.352Z",
+      "queryHashes": [
+        "ec67638a84dc",
+        "3dfbd508577e"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "gateway",
+        "channels.discord.dm.policy",
+        "openclaw.json",
+        "channels.discord.dmpolicy",
+        "gateway.bind",
+        "gateway.tailscale.mode",
+        "self-fix",
+        "openclaw/openclaw.json"
+      ]
+    },
+    "memory:memory/2026-04-29.md:1:32": {
+      "key": "memory:memory/2026-04-29.md:1:32",
+      "path": "memory/2026-04-29.md",
+      "startLine": 1,
+      "endLine": 32,
+      "source": "memory",
+      "snippet": "# Daily Log — 2026-04-29 (Wednesday) ## Codex OAuth Migration Correction ### What happened - Guillermo ran Codex device-code OAuth locally from PowerShell. - Initial assumption was wrong: `openclaw onboard --mode remote` does not store OAuth on the remote Railway gateway. - It configures the local CLI remote target, then the device-code flow writes OAuth to Guillermo's local Windows auth store: - `C:\\Users\\guill\\.openclaw\\agents\\main\\agent\\auth-profiles.json` - Molty's Railway container still had an expired February Codex token, explaining ZAI fallback popups. ### Fix applied to Molty - Guillermo pasted fresh local `auth-profiles.json` Codex OAuth profile. - Copied fresh `openai-codex`",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.468728368031341,
+      "maxScore": 0.8164456688913304,
+      "firstRecalledAt": "2026-04-29T03:45:46.929Z",
+      "lastRecalledAt": "2026-04-29T03:46:08.893Z",
+      "queryHashes": [
+        "960cf98aaa91",
+        "1571ad4caaa5"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "gateway",
+        "openai",
+        "device-code",
+        "auth-profiles.json",
+        "openai-codex",
+        "log",
+        "wednesday",
+        "codex"
+      ]
+    },
+    "memory:memory/2026-04-29.md:50:61": {
+      "key": "memory:memory/2026-04-29.md:50:61",
+      "path": "memory/2026-04-29.md",
+      "startLine": 50,
+      "endLine": 61,
+      "source": "memory",
+      "snippet": "- Previous config was pinned to OpenAI embeddings (`text-embedding-3-small`) with an invalid `OPENAI_API_KEY`, causing 401 errors. - Attempted fix 1: switched `agents.defaults.memorySearch` to Gemini embeddings using `GEMINI_API_KEY` SecretRef. Runtime config validated and `openclaw memory status --deep --agent main` showed provider `gemini`, embeddings ready, but actual search hit Gemini quota exhaustion / 429 RESOURCE_EXHAUSTED. - Attempted fix 2: installed `node-llama-cpp` and tried local embeddings (`embeddinggemma-300m-qat-Q8_0.gguf`, auto-downloaded ~329MB). Local status became ready, but full reindex was killed with exit 137 and search hung/failed on Railway resources. Not viable on c",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5659072325658323,
+      "maxScore": 0.5659072325658323,
+      "firstRecalledAt": "2026-04-29T03:45:46.929Z",
+      "lastRecalledAt": "2026-04-29T03:45:46.929Z",
+      "queryHashes": [
+        "960cf98aaa91"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "embedding",
+        "embeddings",
+        "openai",
+        "text-embedding-3-small",
+        "openai-api-key",
+        "agents.defaults.memorysearch",
+        "gemini-api-key",
+        "resource-exhausted"
+      ]
+    },
+    "memory:memory/archive/2026-02-25.md:47:66": {
+      "key": "memory:memory/archive/2026-02-25.md:47:66",
+      "path": "memory/archive/2026-02-25.md",
+      "startLine": 47,
+      "endLine": 66,
+      "source": "memory",
+      "snippet": "- **`daily_standup.py` updated**: Now writes `/data/workspace/logs/standup-state.json` after page creation (page ID + date). - **Trigger**: Conversational — Guillermo says \"standup done\" → Molty runs `process_standup.py`. No cron. - **First live run**: Tonight's 5PM standup (cron `bdb28765`). ### OpenAI / Codex Audit - **OpenAI total billing**: $29 since Jan 26 — two spikes: Feb 15-16 ($10.02, QMD indexer) + Feb 22-23 ($13.82, heavy dev). All via API key `key_HCYy03GX0yR69yDc`, NOT OAuth. - **ChatGPT Plus OAuth ≠ free API access**: OAuth token only authenticates chat interface. API calls still bill per-token regardless. Need ChatGPT Pro ($200/mo) for subscription-covered API. - **Codex OAu",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5535560653130871,
+      "maxScore": 0.5535560653130871,
+      "firstRecalledAt": "2026-04-29T03:45:46.929Z",
+      "lastRecalledAt": "2026-04-29T03:45:46.929Z",
+      "queryHashes": [
+        "960cf98aaa91"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "qmd",
+        "daily-standup.py",
+        "process-standup.py",
+        "15-16",
+        "10.02",
+        "22-23"
+      ]
+    },
+    "memory:memory/2026-04-29.md:26:42": {
+      "key": "memory:memory/2026-04-29.md:26:42",
+      "path": "memory/2026-04-29.md",
+      "startLine": 26,
+      "endLine": 42,
+      "source": "memory",
+      "snippet": "- Raphael: device-code flow completed locally; still needs fresh OAuth profile copied into Raphael's container and verified. - Leonardo/April: paused until Molty/Raphael flow is proven end-to-end. ### Lesson Do not claim Codex OAuth is active after device-code success alone. Verify the token inside the target container and confirm runtime model via `session_status` or `/status`. ### PowerShell switching lesson - Local OpenClaw CLI has one active remote gateway target at a time. - No new PowerShell process is required to move from Molty to Raphael; re-run `openclaw onboard --mode remote --remote-url ... --remote-token ... --flow manual --accept-risk` for the target agent. - Then run `opencl",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5035281091928482,
+      "maxScore": 0.5035281091928482,
+      "firstRecalledAt": "2026-04-29T03:46:08.893Z",
+      "lastRecalledAt": "2026-04-29T03:46:08.893Z",
+      "queryHashes": [
+        "1571ad4caaa5"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "gateway",
+        "device-code",
+        "leonardo/april",
+        "molty/raphael",
+        "end-to-end",
+        "session-status",
+        "re-run",
+        "remote-url"
+      ]
+    },
+    "memory:memory/2026-04-28.md:1:36": {
+      "key": "memory:memory/2026-04-28.md:1:36",
+      "path": "memory/2026-04-28.md",
+      "startLine": 1,
+      "endLine": 36,
+      "source": "memory",
+      "snippet": "# Daily Log — 2026-04-28 (Tuesday) --- ## Summary Major model migration day. Anthropic token died, causing cascading failures. Switched Molty to Codex OAuth (GPT-5.5/5.4) via ChatGPT Pro subscription. Updated all 12 crons. --- ## Key Events ### Anthropic Token Dead (11:19 HKT) - `ANTHROPIC_API_KEY` returns `invalid x-api-key` from api.anthropic.com - Caused cascading empty-turn failures throughout the morning session - Immediate fix: switched primary to `zai/glm-5.1` as interim ### Codex OAuth Activation (17:35 HKT) - Guillermo ran device-code flow via Railway shell from PowerShell - `openclaw onboard --auth-choice openai-codex-device-code --accept-risk` - Opened https://auth.openai.c",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4958397656679153,
+      "maxScore": 0.4958397656679153,
+      "firstRecalledAt": "2026-04-29T03:46:08.893Z",
+      "lastRecalledAt": "2026-04-29T03:46:08.893Z",
+      "queryHashes": [
+        "1571ad4caaa5"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "gpt",
+        "openai",
+        "gpt-5.5/5.4",
+        "anthropic-api-key",
+        "x-api-key",
+        "api.anthropic.com",
+        "empty-turn",
+        "zai/glm-5.1"
+      ]
+    },
+    "memory:memory/archive/2026-02-06.md:34:61": {
+      "key": "memory:memory/archive/2026-02-06.md:34:61",
+      "path": "memory/archive/2026-02-06.md",
+      "startLine": 34,
+      "endLine": 61,
+      "source": "memory",
+      "snippet": "**Note:** Raphael actually DID backup before his update (the log shows it). The rule was followed in practice, just not documented explicitly enough for autonomy. ### Molty Update Applied - git pull + pnpm install + pnpm build succeeded - Gateway restart triggered - Now at latest commit --- ## Discord Channel Discipline Reminder - **Issue:** I responded in #brinc-private when Guillermo asked Raphael a question. That's Raphael's channel — I should have stayed silent. - **Rule:** If I don't own the channel, STAY SILENT unless @mentioned or Guillermo explicitly asks me something. - **Discord Pairing:** Guillermo tried to pair (code WG9RM84X) but it expired. Need fresh code. ## Tailscale Se",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3852885454893112,
+      "maxScore": 0.3852885454893112,
+      "firstRecalledAt": "2026-04-29T04:04:04.352Z",
+      "lastRecalledAt": "2026-04-29T04:04:04.352Z",
+      "queryHashes": [
+        "3dfbd508577e"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "backup",
+        "gateway",
+        "brinc-private",
+        "raphael",
+        "actually",
+        "did",
+        "his",
+        "update"
+      ]
+    },
+    "memory:memory/2026-04-29.md:79:85": {
+      "key": "memory:memory/2026-04-29.md:79:85",
+      "path": "memory/2026-04-29.md",
+      "startLine": 79,
+      "endLine": 85,
+      "source": "memory",
+      "snippet": "## Raphael Recovery Incident - 16:26 HKT Guillermo reported Raphael down after the Tailscale/supervisor recovery attempt. - Railway latest deploy was SUCCESS and public UI responded, but logs showed agent runs failing: Codex network connection errors and direct Anthropic out-of-usage. `/setup/healthz` initially had `gatewayReachable=false`. - Immediate recovery: set Railway env `OPENCLAW_PRIMARY_MODEL=zai/glm-5.1`, then patched Raphael's persisted live config via gateway `config.patch` because env vars did not override `/data/.openclaw/openclaw.json`. - Redeployed Raphael. Verification: deployment `5aa9c005-adeb-40f1-880c-d72b2e5aecb5` SUCCESS; logs show `agent model: zai/glm-5.1`; `/setup/h",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.49753181040287014,
+      "maxScore": 0.49753181040287014,
+      "firstRecalledAt": "2026-04-29T08:56:45.758Z",
+      "lastRecalledAt": "2026-04-29T08:56:45.758Z",
+      "queryHashes": [
+        "9a9cadbccfca"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "gateway",
+        "network",
+        "tailscale/supervisor",
+        "out-of-usage",
+        "setup/healthz",
+        "openclaw-primary-model",
+        "zai/glm-5.1",
+        "config.patch"
+      ]
+    },
+    "memory:memory/2026-04-29.md:73:81": {
+      "key": "memory:memory/2026-04-29.md:73:81",
+      "path": "memory/2026-04-29.md",
+      "startLine": 73,
+      "endLine": 81,
+      "source": "memory",
+      "snippet": "- 12:10 HKT cron check: Raphael replied to read-only diagnostic; Leonardo had not replied yet. - Raphael findings: public `/setup/healthz` OK, but `supervisorctl` socket missing, no `tailscale`/`tailscaled` processes, `tailscale --socket=/tmp/tailscaled.sock status` fails, `/tmp/supervisord.log` missing. `TAILSCALE_AUTHKEY` present and `TAILSCALE_HOSTNAME=raphael-railway`. - Root cause for Raphael: container is running OpenClaw directly, not supervisord, so Tailscale and Syncthing are not started. Source files confirm `entrypoint.sh` ends with `exec gosu openclaw node src/server.js` while Dockerfile copies supervisor config and uses `ENTRYPOINT [\"./entrypoint.sh\"]`. - Safe local fix prepared",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4774456739425659,
+      "maxScore": 0.4774456739425659,
+      "firstRecalledAt": "2026-04-29T08:56:45.758Z",
+      "lastRecalledAt": "2026-04-29T08:56:45.758Z",
+      "queryHashes": [
+        "9a9cadbccfca"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "read-only",
+        "setup/healthz",
+        "tmp/tailscaled.sock",
+        "tmp/supervisord.log",
+        "tailscale-authkey",
+        "tailscale-hostname",
+        "raphael-railway",
+        "entrypoint.sh"
+      ]
+    },
+    "memory:memory/2026-04-29.md:58:74": {
+      "key": "memory:memory/2026-04-29.md:58:74",
+      "path": "memory/2026-04-29.md",
+      "startLine": 58,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "- Updated `MEMORY.md` fleet table and Codex status to show Molty + Raphael on Codex, with Leonardo/April still pending. - Updated `memory/refs/codex-oauth-migration.md` current verified/user-reported state. - Note: Raphael status is user-reported; if debugging later, verify via Raphael `/status` or `session_status`. ## Fleet Infra Recovery Plan Started - Guillermo asked to plan properly: fix memory first, then Tailscale/Raphael/Leonardo access, then Syncthing across fleet workspaces/shared drives/memory vault. - Created plan: `/data/workspace/plans/fleet-infra-recovery-2026-04-29.md`. - Live embedding tests after env updates: - OpenAI embeddings direct API: OK (`text-embedding-3-small`, 1",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4397773176431656,
+      "maxScore": 0.4397773176431656,
+      "firstRecalledAt": "2026-04-29T08:56:45.758Z",
+      "lastRecalledAt": "2026-04-29T08:56:45.758Z",
+      "queryHashes": [
+        "9a9cadbccfca"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "embedding",
+        "embeddings",
+        "openai",
+        "memory.md",
+        "leonardo/april",
+        "verified/user-reported",
+        "user-reported",
+        "session-status"
       ]
     }
   }

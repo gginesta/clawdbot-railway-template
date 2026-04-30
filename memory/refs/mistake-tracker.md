@@ -142,3 +142,22 @@ Every time this happens, I erode trust. He has to drop what he's doing to fix my
 - **Root cause:** Didn't verify the resolved path before applying config. Rushed the deployment.
 - **Fix:** Raphael told Guillermo to remove the `transform` block from the mapping config, then redeploy
 - **Rule:** NEVER add `hooks.mappings[].transform` without first confirming: (1) `transformsDir` is set to the correct directory, (2) the module file exists at that path, (3) test locally with `node -e "require('<path>')"` before patching config
+
+## 2026-04-29 — Repeated similar messages / replied to empty turns
+- **What:** Guillermo flagged I was sending very similar messages twice during the Codex migration flow. I repeated the same call-to-action after an empty/implicit turn instead of staying silent.
+- **Impact:** Noise and frustration while debugging a sensitive auth migration.
+- **Root cause:** Treated empty runtime/control-ui turns as prompts needing a user-visible response.
+- **Fix:** If an empty turn follows a complete instruction/status, reply `NO_REPLY` unless there is genuinely new information or an action completed that matters.
+
+## 2026-04-29 — Overclaimed Codex OAuth activation without container verification
+- **What:** Claimed Codex OAuth was active after device-code completion, but the token had only been written to Guillermo's local Windows auth store. Molty's Railway container still had an expired February token and was falling back to ZAI.
+- **Impact:** Wasted time, confusion, and risk of migrating the fleet onto a non-working auth path.
+- **Root cause:** Did not verify the target container's `/data/.openclaw/agents/main/agent/auth-profiles.json` or runtime `session_status` before claiming success.
+- **Fix:** Device-code completion is not sufficient. Always verify inside the target container: fresh token expiry/JWT iat, clear auth cooldowns if needed, then confirm active model via `session_status` or `/status`.
+
+### 2026-04-29 — Raphael recovery broke agent responsiveness before full verification
+- **What:** During Raphael Tailscale recovery, I pushed the team toward a Tailscale/supervisor fix and then initially treated public health as sufficient. Raphael became effectively unusable for Guillermo because the active model path was still `openai-codex/gpt-5.5` (network errors) with direct Anthropic fallback exhausted.
+- **Impact:** Guillermo reported Raphael was down; Brinc agent responsiveness was interrupted.
+- **Root cause:** I focused on Tailscale process health before proving the agent could complete an end-to-end run. Env var changes did not override Raphael's persisted `/data/.openclaw/openclaw.json`, so the first model recovery attempt was incomplete until I patched the live gateway config.
+- **Fix:** Patched Raphael's live OpenClaw config to `zai/glm-5.1` primary, redeployed/restarted, verified gateway health, Discord/Telegram channel status, and a direct `chat.send` smoke test returning `OK` on provider `zai/glm-5.1`.
+- **Prevention:** For any fleet recovery, the required done gate is: deployment SUCCESS + `/setup/healthz` reachable + channel status running + direct agent turn succeeds. Public health alone is not enough.
