@@ -14,7 +14,7 @@ DRY_RUN=false
 
 # ── Config ─────────────────────────────────────────────────────────────────
 export MC_API="https://resilient-chinchilla-241.convex.site"
-export MC_KEY="232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+export MC_KEY="${MC_API_KEY}"
 export TODOIST_TOKEN="9a26743814658c9e82d92aa716b46a9b0a2257c4"
 export DRY_RUN
 export SYNC_DATE

@@ -6,7 +6,13 @@ export OPENCLAW_HOME="${OPENCLAW_HOME:-/data}"
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-/data/.config}"
 
 mkdir -p "$HOME" "$XDG_CONFIG_HOME"
-chown -R openclaw:openclaw /data
+# Targeted ownership repair: avoid expensive recursive chown of all shared/project data.
+for dir in /data/.openclaw /data/workspace /data/.syncthing /data/npm /data/pnpm /data/pnpm-store /data/.config; do
+  if [ -e "$dir" ]; then
+    chown -R openclaw:openclaw "$dir"
+  fi
+done
+chown openclaw:openclaw /data
 chmod 700 /data
 
 # Git safe.directory — prevents "dubious ownership" errors on /data/workspace
@@ -26,7 +32,7 @@ rm -rf /home/linuxbrew/.linuxbrew
 ln -sfn /data/.linuxbrew /home/linuxbrew/.linuxbrew
 
 if [ "${OPENCLAW_DIRECT_RUN:-}" = "1" ]; then
-  exec gosu openclaw node src/server.js
+  exec /usr/local/bin/openclaw-start-guard.sh
 fi
 
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf

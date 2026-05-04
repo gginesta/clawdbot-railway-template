@@ -11,6 +11,7 @@ RUN apt-get update \
     build-essential \
     zip \
     supervisor \
+    tini \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Tailscale
@@ -65,6 +66,7 @@ RUN corepack enable && pnpm install --frozen-lockfile --prod
 
 COPY src ./src
 COPY --chmod=755 entrypoint.sh ./entrypoint.sh
+COPY --chmod=755 scripts/openclaw-start-guard.sh /usr/local/bin/openclaw-start-guard.sh
 COPY config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN useradd -m -s /bin/bash openclaw \
@@ -94,4 +96,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
   CMD curl -f http://localhost:8080/setup/healthz || exit 1
 
 USER root
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["tini", "--", "./entrypoint.sh"]

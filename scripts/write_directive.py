@@ -21,7 +21,7 @@ HKT = ZoneInfo("Asia/Hong_Kong")
 DIRECTIVES_ROOT = "/data/shared/pending-directives"
 AGENTS = ["molty", "raphael", "leonardo"]
 
-RAILWAY_TOKEN = "1d318b62-a713-4fd6-80cf-c54c0934f5d8"
+RAILWAY_TOKEN = os.getenv("RAILWAY_API_TOKEN") or os.getenv("RAILWAY_TOKEN", "")
 RAILWAY_API = "https://backboard.railway.app/graphql/v2"
 RAILWAY_IDS = {
     "molty":    {"svc": "3daf200b-6fdb-4ead-a850-b7d33301f3b0", "env": "f55df1f4-35ed-4ae7-9300-ec74ee9035be"},

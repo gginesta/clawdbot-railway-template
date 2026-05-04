@@ -3,7 +3,7 @@
 set -euo pipefail
 
 MC_API="https://resilient-chinchilla-241.convex.site"
-MC_KEY="232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_KEY="${MC_API_KEY}"
 TODOIST_TOKEN="9a26743814658c9e82d92aa716b46a9b0a2257c4"
 
 echo "[1/2] Fetching Todoist tasks and projects..."
@@ -84,7 +84,7 @@ try:
     mc_response = subprocess.run(
         ['curl', '-s', '-X', 'POST', 
          'https://resilient-chinchilla-241.convex.site/api/todoist-sync',
-         '-H', 'Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc',
+         '-H', 'Authorization: Bearer ${MC_API_KEY}',
          '-H', 'Content-Type: application/json',
          '-d', json.dumps({'tasks': mc_tasks})],
         capture_output=True, text=True, timeout=10

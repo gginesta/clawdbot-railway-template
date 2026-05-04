@@ -37,7 +37,7 @@ For each release, Molty extracts:
 ```
 Molty → verify → Raphael → verify → Leonardo → verify → done
 ```
-- Update Molty via `openclaw update` in-place
+- DEPRECATED: old plan said to update Molty via in-place `openclaw update`; current Railway rule is Dockerfile/template change + audited redeploy/canary only.
 - Run health check (gog, webhook, cron, subagent test)
 - If clean: trigger Raphael Railway redeploy (bump OPENCLAW_GIT_REF)
 - Verify Raphael health (webhook ping, wait for ack)
@@ -105,7 +105,7 @@ Nothing. Molty handles it. They get a #squad-updates post telling them what chan
 ---
 
 ## Notes
-- Railway API token `1d318b62-a713-4fd6-80cf-c54c0934f5d8` — currently limited (serviceInstanceRedeploy needs environmentId, works)
-- GitHub token `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` — can push to clawdbot-railway-template
+- Railway API token `${RAILWAY_API_TOKEN}` — currently limited (serviceInstanceRedeploy needs environmentId, works)
+- GitHub token `${GITHUB_API_TOKEN}` — can push to clawdbot-railway-template
 - Raphael Railway service: check via API (project: ggv-raphael.up.railway.app)
 - Leonardo Railway service: leonardo-production.up.railway.app

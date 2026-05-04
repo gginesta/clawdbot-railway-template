@@ -406,8 +406,9 @@ app.get("/setup/healthz", async (_req, res) => {
     } catch {}
   }
 
-  res.json({
-    ok: true,
+  const ok = !configured || gatewayReachable || starting;
+  res.status(ok ? 200 : 503).json({
+    ok,
     wrapper: true,
     configured,
     gatewayRunning,
@@ -582,8 +583,17 @@ function buildOnboardArgs(payload) {
 
 function runCmd(cmd, args, opts = {}) {
   return new Promise((resolve) => {
+    const timeoutMs = Number.isFinite(opts.timeoutMs) ? opts.timeoutMs : 120_000;
+    let settled = false;
+    let timedOut = false;
+    let killTimer = null;
+    let forceResolveTimer = null;
+
+    const childOpts = { ...opts };
+    delete childOpts.timeoutMs;
+
     const proc = childProcess.spawn(cmd, args, {
-      ...opts,
+      ...childOpts,
       env: {
         ...process.env,
         OPENCLAW_STATE_DIR: STATE_DIR,
@@ -595,12 +605,35 @@ function runCmd(cmd, args, opts = {}) {
     proc.stdout?.on("data", (d) => (out += d.toString("utf8")));
     proc.stderr?.on("data", (d) => (out += d.toString("utf8")));
 
+    const finish = (code, output = out) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      if (killTimer) clearTimeout(killTimer);
+      if (forceResolveTimer) clearTimeout(forceResolveTimer);
+      resolve({ code, output });
+    };
+
+    const timer = setTimeout(() => {
+      timedOut = true;
+      out += `
+[timeout] Command exceeded ${timeoutMs}ms and was terminated.
+`;
+      try { proc.kill("SIGTERM"); } catch {}
+      killTimer = setTimeout(() => {
+        try { proc.kill("SIGKILL"); } catch {}
+      }, 2_000);
+      forceResolveTimer = setTimeout(() => finish(124), 7_000);
+    }, timeoutMs);
+
     proc.on("error", (err) => {
-      out += `\n[spawn error] ${String(err)}\n`;
-      resolve({ code: 127, output: out });
+      out += `
+[spawn error] ${String(err)}
+`;
+      finish(127);
     });
 
-    proc.on("close", (code) => resolve({ code: code ?? 0, output: out }));
+    proc.on("close", (code) => finish(timedOut ? 124 : code ?? 0));
   });
 }
 
@@ -643,10 +676,15 @@ if (payload.authChoice && !VALID_AUTH_CHOICES.includes(payload.authChoice)) {
 }
 
 app.post("/setup/api/run", requireSetupAuth, async (req, res) => {
+  const respondJson = (status, body) => {
+    if (res.writableEnded || res.headersSent) return;
+    return res.status(status).json(body);
+  };
+
   try {
     if (isConfigured()) {
       await ensureGatewayRunning();
-      return res.json({
+      return respondJson(200, {
         ok: true,
         output:
           "Already configured.\nUse Reset setup if you want to rerun onboarding.\n",
@@ -659,9 +697,10 @@ app.post("/setup/api/run", requireSetupAuth, async (req, res) => {
     const payload = req.body || {};
     const validationError = validatePayload(payload);
     if (validationError) {
-      return res.status(400).json({ ok: false, output: validationError });
+      return respondJson(400, { ok: false, output: validationError });
     }
     const onboardArgs = buildOnboardArgs(payload);
+    const prefix = "[setup] running openclaw onboard...\n";
     const onboard = await runCmd(OPENCLAW_NODE, clawArgs(onboardArgs));
 
     let extra = "";
@@ -768,17 +807,25 @@ app.post("/setup/api/run", requireSetupAuth, async (req, res) => {
       extra += "[setup] Gateway started.\n";
     }
 
-    return res.status(ok ? 200 : 500).json({
+    return respondJson(ok ? 200 : 500, {
       ok,
-      output: `${onboard.output}${extra}`,
+      output: `${prefix}${onboard.output}${extra}`,
     });
   } catch (err) {
     log.error("setup", `run error: ${String(err)}`);
-    return res
-      .status(500)
-      .json({ ok: false, output: `Internal error: ${String(err)}` });
+    return respondJson(500, { ok: false, output: `Internal error: ${String(err)}` });
   }
 });
+
+function redactSecrets(text) {
+  return String(text || "")
+    .replace(/("?(?:token|botToken|appToken|apiKey|password|secret)"?\s*[:=]\s*)"?[^",\n\s}]+"?/gi, "$1[REDACTED]")
+    .replace(/(sk-[A-Za-z0-9_-]{10,})/g, "[REDACTED]")
+    .replace(/(gho_[A-Za-z0-9_]{10,})/g, "[REDACTED]")
+    .replace(/(xox[baprs]-[A-Za-z0-9-]{10,})/g, "[REDACTED]")
+    .replace(/(\d{5,}:[A-Za-z0-9_-]{10,})/g, "[REDACTED]")
+    .replace(/(AA[A-Za-z0-9_-]{10,}:\S{10,})/g, "[REDACTED]");
+}
 
 app.get("/setup/api/debug", requireSetupAuth, async (_req, res) => {
   const v = await runCmd(OPENCLAW_NODE, clawArgs(["--version"]));
@@ -786,6 +833,11 @@ app.get("/setup/api/debug", requireSetupAuth, async (_req, res) => {
     OPENCLAW_NODE,
     clawArgs(["channels", "add", "--help"]),
   );
+  const tg = await runCmd(OPENCLAW_NODE, clawArgs(["config", "get", "channels.telegram"]));
+  const dc = await runCmd(OPENCLAW_NODE, clawArgs(["config", "get", "channels.discord"]));
+  const tgOut = redactSecrets(tg.output || "");
+  const dcOut = redactSecrets(dc.output || "");
+
   res.json({
     wrapper: {
       node: process.version,
@@ -797,6 +849,7 @@ app.get("/setup/api/debug", requireSetupAuth, async (_req, res) => {
       gatewayTokenPersisted: fs.existsSync(
         path.join(STATE_DIR, "gateway.token"),
       ),
+      gatewayRunning: Boolean(gatewayProc),
       railwayCommit: process.env.RAILWAY_GIT_COMMIT_SHA || null,
     },
     openclaw: {
@@ -804,6 +857,26 @@ app.get("/setup/api/debug", requireSetupAuth, async (_req, res) => {
       node: OPENCLAW_NODE,
       version: v.output.trim(),
       channelsAddHelpIncludesTelegram: help.output.includes("telegram"),
+      channels: {
+        telegram: {
+          exit: tg.code,
+          configuredEnabled:
+            /"enabled"\s*:\s*true/.test(tg.output || "") ||
+            /enabled\s*[:=]\s*true/.test(tg.output || ""),
+          botTokenPresent: /(\d{5,}:[A-Za-z0-9_-]{10,})/.test(tg.output || ""),
+          output: tgOut,
+        },
+        discord: {
+          exit: dc.code,
+          configuredEnabled:
+            /"enabled"\s*:\s*true/.test(dc.output || "") ||
+            /enabled\s*[:=]\s*true/.test(dc.output || ""),
+          tokenPresent:
+            /"token"\s*:\s*"?\S+"?/.test(dc.output || "") ||
+            /token\s*[:=]\s*\S+/.test(dc.output || ""),
+          output: dcOut,
+        },
+      },
     },
   });
 });
@@ -825,18 +898,33 @@ app.post("/setup/api/pairing/approve", requireSetupAuth, async (req, res) => {
 });
 
 app.post("/setup/api/reset", requireSetupAuth, async (_req, res) => {
+  const wasShuttingDown = shuttingDown;
+  shuttingDown = true;
   try {
+    try {
+      if (gatewayProc) {
+        try { gatewayProc.kill("SIGTERM"); } catch {}
+        await sleep(750);
+        gatewayProc = null;
+      }
+      await runCmd(OPENCLAW_NODE, clawArgs(["gateway", "stop"]), { timeoutMs: 30_000 });
+    } catch {
+      // best-effort reset cleanup only
+    }
+
     fs.rmSync(configPath(), { force: true });
     res
       .type("text/plain")
-      .send("OK - deleted config file. You can rerun setup now.");
+      .send("OK - stopped gateway and deleted config file. You can rerun setup now.");
   } catch (err) {
     res.status(500).type("text/plain").send(String(err));
+  } finally {
+    shuttingDown = wasShuttingDown;
   }
 });
 
 app.post("/setup/api/doctor", requireSetupAuth, async (_req, res) => {
-  const args = ["doctor", "--non-interactive", "--repair"];
+  const args = ["doctor", "--non-interactive"];
   const result = await runCmd(OPENCLAW_NODE, clawArgs(args));
   return res.status(result.code === 0 ? 200 : 500).json({
     ok: result.code === 0,
@@ -1138,6 +1226,13 @@ const PROXY_ORIGIN = process.env.RAILWAY_PUBLIC_DOMAIN
   ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
   : GATEWAY_TARGET;
 
+function attachGatewayAuthHeader(req) {
+  if (req?.url?.startsWith("/hooks/")) return;
+  if (!req?.headers?.authorization && OPENCLAW_GATEWAY_TOKEN) {
+    req.headers.authorization = `Bearer ${OPENCLAW_GATEWAY_TOKEN}`;
+  }
+}
+
 proxy.on("proxyReq", (proxyReq, req, res) => {
   if (!req.url?.startsWith("/hooks/")) {
     proxyReq.setHeader("Authorization", `Bearer ${OPENCLAW_GATEWAY_TOKEN}`);
@@ -1177,6 +1272,7 @@ app.use(async (req, res) => {
     return res.redirect(`/openclaw?token=${OPENCLAW_GATEWAY_TOKEN}`);
   }
 
+  attachGatewayAuthHeader(req);
   return proxy.web(req, res, { target: GATEWAY_TARGET });
 });
 
@@ -1189,12 +1285,16 @@ const server = app.listen(PORT, () => {
   if (isConfigured()) {
     (async () => {
       try {
-        log.info("wrapper", "running openclaw doctor --fix...");
-        const dr = await runCmd(OPENCLAW_NODE, clawArgs(["doctor", "--fix"]));
-        log.info("wrapper", `doctor --fix exit=${dr.code}`);
+        fs.mkdirSync(path.join(STATE_DIR, "credentials"), { recursive: true });
+        fs.chmodSync(STATE_DIR, 0o700);
+      } catch {}
+      try {
+        log.info("wrapper", "running openclaw doctor (read-only)...");
+        const dr = await runCmd(OPENCLAW_NODE, clawArgs(["doctor"]), { timeoutMs: 60_000 });
+        log.info("wrapper", `doctor exit=${dr.code}`);
         if (dr.output) log.info("wrapper", dr.output);
       } catch (err) {
-        log.warn("wrapper", `doctor --fix failed: ${err.message}`);
+        log.warn("wrapper", `doctor failed: ${err.message}`);
       }
       await ensureGatewayRunning();
     })().catch((err) => {
@@ -1244,6 +1344,7 @@ server.on("upgrade", async (req, socket, head) => {
     socket.destroy();
     return;
   }
+  attachGatewayAuthHeader(req);
   proxy.ws(req, socket, head, { target: GATEWAY_TARGET });
 });
 

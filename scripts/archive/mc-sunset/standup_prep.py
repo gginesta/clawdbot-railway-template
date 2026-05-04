@@ -25,7 +25,7 @@ TODAY = NOW.strftime("%Y-%m-%d")
 # ── Credentials ──────────────────────────────────────────────────────────────
 NOTION_KEY    = "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"
 TODOIST_TOKEN = "9a26743814658c9e82d92aa716b46a9b0a2257c4"
-MC_TOKEN      = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_TOKEN      = "${MC_API_KEY}"
 MC_API        = "https://resilient-chinchilla-241.convex.site"
 TG_BOT_TOKEN  = "8292515315:AAETOvDJgl4r13qF3_32qhpn8h7jIOVJQDA"
 TG_CHAT_ID    = "1097408992"
@@ -57,9 +57,9 @@ PROJECT_NAMES = {
 # Webhook endpoints
 WEBHOOKS = {
     "raphael":  ("https://ggv-raphael.up.railway.app/hooks/agent",
-                 "ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd"),
+                 "${RAPHAEL_WEBHOOK_TOKEN}"),
     "leonardo": ("https://leonardo-production.up.railway.app/hooks/agent",
-                 "08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758"),
+                 "${LEONARDO_WEBHOOK_TOKEN}"),
 }
 
 STATE_FILE = "/data/workspace/logs/standup-state.json"

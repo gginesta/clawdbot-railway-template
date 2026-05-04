@@ -33,7 +33,7 @@ AGENTS = {
     }
 }
 
-RAILWAY_TOKEN = os.getenv("RAILWAY_TOKEN", "1d318b62-a713-4fd6-80cf-c54c0934f5d8")
+RAILWAY_TOKEN = os.getenv("RAILWAY_API_TOKEN") or os.getenv("RAILWAY_TOKEN", "")
 RAILWAY_API = "https://backboard.railway.app/graphql/v2"
 DISCORD_SQUAD_UPDATES = "1468164181155909743"
 

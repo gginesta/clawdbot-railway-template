@@ -714,7 +714,7 @@ AGENT_EMOJI = {
 
 # Legacy MC credentials (kept for overnight report fallback only)
 MC_API = "https://resilient-chinchilla-241.convex.site"
-MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_KEY = "${MC_API_KEY}"
 
 
 @dataclass

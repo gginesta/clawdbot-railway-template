@@ -45,11 +45,11 @@ AGENTS = {
     },
     "raphael": {
         "webhook": "https://ggv-raphael.up.railway.app/hooks/agent",
-        "token": "ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd",
+        "token": "${RAPHAEL_WEBHOOK_TOKEN}",
     },
     "leonardo": {
         "webhook": "https://leonardo-production.up.railway.app/hooks/agent",
-        "token": "08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758",
+        "token": "${LEONARDO_WEBHOOK_TOKEN}",
     },
     "april": {
         "webhook": "https://april-agent-production.up.railway.app/hooks/agent",

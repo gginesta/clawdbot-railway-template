@@ -110,7 +110,7 @@ Step 2 — Get open Todoist tasks:
 exec: curl -s "https://api.todoist.com/api/v1/tasks" -H "Authorization: Bearer 9a26743814658c9e82d92aa716b46a9b0a2257c4" | python3 -c "import json,sys; data=json.load(sys.stdin); tasks=data.get('results',data) if isinstance(data,dict) else data; [print(f'[{t[\"id\"]}] {t.get(\"content\",\"\")}') for t in (tasks if isinstance(tasks,list) else [])]"
 
 Step 3 — Query MC for all Molty tasks (all statuses):
-exec: curl -s "https://resilient-chinchilla-241.convex.site/api/tasks?assignee=molty" -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+exec: curl -s "https://resilient-chinchilla-241.convex.site/api/tasks?assignee=molty" -H "Authorization: Bearer ${MC_API_KEY}"
 
 Step 4 — Cross-reference. For each open Todoist task:
 - Search the memory log content (from Step 1) for any mention of the task topic
@@ -140,7 +140,7 @@ For each AUTO task:
 3. Writing → produce as Notion page
 4. After each completion:
    - Close in Todoist: POST https://api.todoist.com/api/v1/tasks/{id}/close -H "Authorization: Bearer 9a26743814658c9e82d92aa716b46a9b0a2257c4"
-   - Mark done in MC: PATCH https://resilient-chinchilla-241.convex.site/api/task -d '{"id":"<mc_id>","status":"done"}' -H "Authorization: Bearer 232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+   - Mark done in MC: PATCH https://resilient-chinchilla-241.convex.site/api/task -d '{"id":"<mc_id>","status":"done"}' -H "Authorization: Bearer ${MC_API_KEY}"
 5. Can't finish → log in_progress, do NOT close in Todoist
 
 ## PHASE 3: REPORT

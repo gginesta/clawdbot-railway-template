@@ -895,8 +895,8 @@ ACTION_MAP = {
 }
 
 WEBHOOK_TOKENS = {
-    "raphael":  "ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd",
-    "leonardo": "08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758",
+    "raphael":  os.getenv("RAPHAEL_WEBHOOK_TOKEN", ""),
+    "leonardo": os.getenv("LEONARDO_WEBHOOK_TOKEN", ""),
 }
 WEBHOOK_URLS = {
     "raphael":  "https://ggv-raphael.up.railway.app/hooks/agent",
@@ -904,7 +904,7 @@ WEBHOOK_URLS = {
 }
 
 MC_API_URL = "https://resilient-chinchilla-241.convex.site"
-MC_TOKEN   = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_TOKEN   = "${MC_API_KEY}"
 MC_HDR     = {"Authorization": f"Bearer {MC_TOKEN}", "Content-Type": "application/json"}
 
 def _mc_close_by_title(title: str) -> bool:
@@ -1099,7 +1099,7 @@ def _post_standup_audit(today: str) -> None:
     """
     import requests as _req
     MC_API_URL = "https://resilient-chinchilla-241.convex.site"
-    MC_TOKEN   = os.environ.get("MC_API_KEY", "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc")
+    MC_TOKEN   = os.environ.get("MC_API_KEY", "${MC_API_KEY}")
     MC_HDR     = {"Authorization": f"Bearer {MC_TOKEN}", "Content-Type": "application/json"}
     TD_TOKEN   = os.environ.get("TODOIST_API_TOKEN", "")
     TD_HDR     = {"Authorization": f"Bearer {TD_TOKEN}"}
