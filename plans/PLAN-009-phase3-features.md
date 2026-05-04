@@ -8,7 +8,7 @@
 
 ### Assets confirmed
 - All 3 cron scripts already exist: `mc-usage-report.sh`, `mc-weekly-digest.sh`, `mc-todoist-sync.sh`
-- GitHub token valid: `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`
+- GitHub token valid: `${GITHUB_API_TOKEN}`
 - Vercel auto-deploys on push to main (connected Feb 27)
 - MC repo: `gginesta/tmnt-mission-control`
 - Overnight window: 03:00 HKT (~90 min, hard stop 2h)

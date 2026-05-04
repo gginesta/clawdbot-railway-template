@@ -20,7 +20,7 @@ from datetime import datetime, timedelta, timezone
 DRY_RUN = "--dry-run" in sys.argv
 
 MC_API   = "https://resilient-chinchilla-241.convex.site"
-MC_TOKEN = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_TOKEN = "${MC_API_KEY}"
 
 # Discord
 DISCORD_COMMAND_CENTER_ID = "1468164160398557216"

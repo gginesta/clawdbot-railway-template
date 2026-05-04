@@ -4,7 +4,7 @@
 set -euo pipefail
 
 MC_API="https://resilient-chinchilla-241.convex.site"
-MC_KEY="232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_KEY="${MC_API_KEY}"
 OR_KEY="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"
 AGENT_ID="${1:-molty}"
 TODAY=$(date -u +%Y-%m-%d)

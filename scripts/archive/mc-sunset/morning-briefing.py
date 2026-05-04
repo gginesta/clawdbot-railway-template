@@ -22,7 +22,7 @@ from datetime import datetime, timedelta, timezone
 
 HKT = timezone(timedelta(hours=8))
 MC_API = "https://resilient-chinchilla-241.convex.site"
-MC_KEY = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_KEY = "${MC_API_KEY}"
 
 # Paperclip (primary, MC sunset pending)
 PCP_URL = "https://paperclip-production-83f5.up.railway.app"

@@ -48,7 +48,7 @@ TELEGRAM_CHAT_ID   = "1097408992"
 
 # Mission Control
 MC_API_URL = "https://resilient-chinchilla-241.convex.site"
-MC_TOKEN   = "232e4ddf7d69c31e01ad0fa0a61f70c29e4837ed018a153cce1a429842bb7cbc"
+MC_TOKEN   = os.getenv("MC_API_KEY", "")
 MC_HDR     = {"Authorization": f"Bearer {MC_TOKEN}", "Content-Type": "application/json"}
 
 # Todoist project IDs
@@ -61,8 +61,8 @@ WEBHOOK_URLS   = {
     "leonardo": "https://leonardo-production.up.railway.app/hooks/agent",
 }
 WEBHOOK_TOKENS = {
-    "raphael":  "ed691e4167448ee7be98025a57d40f69553408c0b181890a015265712159c6bd",
-    "leonardo": "08d506d4eed31e3117e1c357e30f5606fd342ebcfc912373d18b8eaf3f723758",
+    "raphael":  os.getenv("RAPHAEL_WEBHOOK_TOKEN", ""),
+    "leonardo": os.getenv("LEONARDO_WEBHOOK_TOKEN", ""),
 }
 
 # Todoist project → MC project name
