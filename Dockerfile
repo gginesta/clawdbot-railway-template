@@ -27,8 +27,8 @@ RUN curl -fsSL https://syncthing.net/release-key.gpg | tee /usr/share/keyrings/s
   && apt-get install -y syncthing \
   && rm -rf /var/lib/apt/lists/*
 
-ARG OPENCLAW_VERSION=2026.4.25
-ARG CACHE_BUST=1777339800
+ARG OPENCLAW_VERSION=2026.5.2
+ARG CACHE_BUST=1777830600
 RUN npm install -g openclaw@${OPENCLAW_VERSION} @railway/cli
 
 # Write tailscale-up one-shot script
