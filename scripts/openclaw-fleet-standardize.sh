@@ -9,6 +9,7 @@ export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-/data/.config}"
 
 CHROME_BIN="${OPENCLAW_FLEET_CHROME_BIN:-/usr/bin/google-chrome-stable}"
 BRAVE_PLUGIN_SPEC="${OPENCLAW_FLEET_BRAVE_PLUGIN_SPEC:-npm:@openclaw/brave-plugin@2026.5.4}"
+DISCORD_PLUGIN_SPEC="${OPENCLAW_FLEET_DISCORD_PLUGIN_SPEC:-@openclaw/discord@2026.5.3}"
 PATCH_FILE="$(mktemp)"
 trap 'rm -f "$PATCH_FILE"' EXIT
 
@@ -39,6 +40,18 @@ fi
 if ! openclaw plugins inspect brave --json >/dev/null 2>&1; then
   log "Brave Search plugin still unavailable after install"
   exit 1
+fi
+
+if openclaw config get plugins.entries.discord.enabled --json 2>/dev/null | grep -qx 'true'; then
+  if ! openclaw plugins inspect discord --json >/dev/null 2>&1; then
+    log "Discord plugin configured but missing; installing $DISCORD_PLUGIN_SPEC"
+    openclaw plugins install "$DISCORD_PLUGIN_SPEC"
+  fi
+
+  if ! openclaw plugins inspect discord --json >/dev/null 2>&1; then
+    log "Discord plugin still unavailable after install"
+    exit 1
+  fi
 fi
 
 if [ -n "${BRAVE_API_KEY:-}" ]; then
