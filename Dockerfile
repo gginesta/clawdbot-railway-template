@@ -5,6 +5,7 @@ RUN apt-get update \
     ca-certificates \
     curl \
     git \
+    gnupg \
     gosu \
     procps \
     python3 \
@@ -12,6 +13,18 @@ RUN apt-get update \
     zip \
     supervisor \
     tini \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Google Chrome Stable for OpenClaw browser automation
+RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub \
+    | gpg --dearmor -o /usr/share/keyrings/google-linux-signing-keyring.gpg \
+  && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-linux-signing-keyring.gpg] https://dl.google.com/linux/chrome/deb/ stable main" \
+    > /etc/apt/sources.list.d/google-chrome.list \
+  && apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    google-chrome-stable \
+    fonts-liberation \
+  && /usr/bin/google-chrome-stable --version \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Tailscale
@@ -69,6 +82,7 @@ RUN corepack enable && pnpm install --frozen-lockfile --prod
 COPY src ./src
 COPY --chmod=755 entrypoint.sh ./entrypoint.sh
 COPY --chmod=755 scripts/openclaw-start-guard.sh /usr/local/bin/openclaw-start-guard.sh
+COPY --chmod=755 scripts/openclaw-fleet-standardize.sh /usr/local/bin/openclaw-fleet-standardize.sh
 COPY config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN useradd -m -s /bin/bash openclaw \

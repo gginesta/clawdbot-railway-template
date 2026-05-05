@@ -18,6 +18,9 @@ chmod 700 /data
 # Git safe.directory — prevents "dubious ownership" errors on /data/workspace
 gosu openclaw git config --global --add safe.directory /data/workspace 2>/dev/null || true
 
+# Converge durable fleet browser/search infrastructure before the Gateway starts.
+gosu openclaw /usr/local/bin/openclaw-fleet-standardize.sh
+
 # Set GitHub remote URL with current token (if set)
 if [ -n "${GITHUB_API_TOKEN}" ] && [ -d /data/workspace/.git ]; then
   git -C /data/workspace remote set-url backup \
