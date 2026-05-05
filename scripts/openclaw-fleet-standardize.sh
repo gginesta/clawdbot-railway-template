@@ -32,14 +32,18 @@ else
   log "skipping Chrome executable check"
 fi
 
-if ! openclaw plugins inspect brave --json >/dev/null 2>&1; then
-  log "Brave Search plugin missing; installing $BRAVE_PLUGIN_SPEC"
-  openclaw plugins install "$BRAVE_PLUGIN_SPEC"
-fi
+REQUESTED_SEARCH_PROVIDER="${OPENCLAW_FLEET_SEARCH_PROVIDER:-duckduckgo}"
 
-if ! openclaw plugins inspect brave --json >/dev/null 2>&1; then
-  log "Brave Search plugin still unavailable after install"
-  exit 1
+if [ "$REQUESTED_SEARCH_PROVIDER" = "brave" ]; then
+  if ! openclaw plugins inspect brave --json >/dev/null 2>&1; then
+    log "Brave Search plugin missing; installing $BRAVE_PLUGIN_SPEC"
+    openclaw plugins install "$BRAVE_PLUGIN_SPEC"
+  fi
+
+  if ! openclaw plugins inspect brave --json >/dev/null 2>&1; then
+    log "Brave Search plugin still unavailable after install"
+    exit 1
+  fi
 fi
 
 if [ -n "${DISCORD_BOT_TOKEN:-}" ]; then
@@ -54,11 +58,15 @@ if [ -n "${DISCORD_BOT_TOKEN:-}" ]; then
   fi
 fi
 
-if [ -n "${BRAVE_API_KEY:-}" ]; then
+if [ "${REQUESTED_SEARCH_PROVIDER:-duckduckgo}" = "brave" ] && [ -n "${BRAVE_API_KEY:-}" ]; then
   SEARCH_PROVIDER="brave"
 else
   SEARCH_PROVIDER="duckduckgo"
-  log "BRAVE_API_KEY is not present; using keyless duckduckgo search fallback for this container"
+  if [ "${REQUESTED_SEARCH_PROVIDER:-duckduckgo}" = "brave" ]; then
+    log "Brave requested but BRAVE_API_KEY is not present; using keyless duckduckgo search fallback for this container"
+  else
+    log "using bundled keyless duckduckgo search provider"
+  fi
 fi
 export SEARCH_PROVIDER
 
