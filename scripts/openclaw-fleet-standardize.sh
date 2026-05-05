@@ -42,9 +42,9 @@ if ! openclaw plugins inspect brave --json >/dev/null 2>&1; then
   exit 1
 fi
 
-if openclaw config get plugins.entries.discord.enabled --json 2>/dev/null | grep -qx 'true'; then
+if [ -n "${DISCORD_BOT_TOKEN:-}" ]; then
   if ! openclaw plugins inspect discord --json >/dev/null 2>&1; then
-    log "Discord plugin configured but missing; installing $DISCORD_PLUGIN_SPEC"
+    log "Discord bot token present but plugin missing; installing $DISCORD_PLUGIN_SPEC"
     openclaw plugins install "$DISCORD_PLUGIN_SPEC"
   fi
 
@@ -101,6 +101,9 @@ if os.environ.get("GEMINI_API_KEY"):
             },
         },
     }
+
+if os.environ.get("DISCORD_BOT_TOKEN"):
+    entries["discord"] = {"enabled": True, "config": {}}
 
 if os.environ.get("OPENROUTER_API_KEY"):
     entries["perplexity"] = {
