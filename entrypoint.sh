@@ -7,7 +7,7 @@ export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-/data/.config}"
 
 mkdir -p "$HOME" "$XDG_CONFIG_HOME"
 # Targeted ownership repair: avoid expensive recursive chown of all shared/project data.
-for dir in /data/.openclaw /data/workspace /data/.syncthing /data/npm /data/pnpm /data/pnpm-store /data/.config; do
+for dir in /data/.openclaw /data/workspace /data/.syncthing /data/npm /data/.npm /data/pnpm /data/pnpm-store /data/.config /data/.cache /data/.local; do
   if [ -e "$dir" ]; then
     chown -R openclaw:openclaw "$dir"
   fi

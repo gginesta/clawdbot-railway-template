@@ -20,7 +20,8 @@ if [ "${OPENCLAW_FLEET_STANDARDIZE:-1}" = "0" ]; then
   exit 0
 fi
 
-mkdir -p "$OPENCLAW_STATE_DIR" "$XDG_CONFIG_HOME" "$OPENCLAW_WORKSPACE_DIR"
+mkdir -p "$OPENCLAW_STATE_DIR" "$XDG_CONFIG_HOME" "$OPENCLAW_WORKSPACE_DIR" /data/npm-cache
+export npm_config_cache="${NPM_CONFIG_CACHE:-/data/npm-cache}"
 
 if [ "${OPENCLAW_FLEET_SKIP_CHROME_CHECK:-0}" != "1" ]; then
   if [ ! -x "$CHROME_BIN" ]; then
