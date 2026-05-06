@@ -33,6 +33,16 @@ else
   log "skipping Chrome executable check"
 fi
 
+# Repair stale persisted config before plugin inspection. Some older Railway
+# volumes contain legacy provider overrides (for example openai-codex.baseUrl
+# without a value) that make every OpenClaw CLI config read fail before Gateway
+# can start. Doctor knows these migrations; run it as the app user via entrypoint.
+if ! openclaw config validate >/dev/null 2>&1; then
+  log "config validation failed before standardization; running openclaw doctor --fix"
+  openclaw doctor --fix >/dev/null
+fi
+openclaw config validate >/dev/null
+
 REQUESTED_SEARCH_PROVIDER="${OPENCLAW_FLEET_SEARCH_PROVIDER:-duckduckgo}"
 
 if [ "$REQUESTED_SEARCH_PROVIDER" = "brave" ]; then
