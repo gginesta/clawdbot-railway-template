@@ -25,6 +25,10 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub \
     google-chrome-stable \
     fonts-liberation \
   && /usr/bin/google-chrome-stable --version \
+  && ln -sf /usr/bin/google-chrome-stable /usr/bin/chromium \
+  && ln -sf /usr/bin/google-chrome-stable /usr/bin/brave-browser \
+  && /usr/bin/chromium --version \
+  && /usr/bin/brave-browser --version \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Tailscale
