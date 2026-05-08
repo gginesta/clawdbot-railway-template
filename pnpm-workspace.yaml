@@ -1,2 +1,6 @@
+allowBuilds:
+  node-pty: true
+  puppeteer: true
 onlyBuiltDependencies:
   - node-pty
+  - puppeteer

@@ -19,7 +19,8 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "node-pty"
+      "node-pty",
+      "puppeteer"
     ]
   }
 }
