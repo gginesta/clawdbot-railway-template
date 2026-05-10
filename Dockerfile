@@ -86,6 +86,7 @@ RUN corepack enable && pnpm install --frozen-lockfile --prod
 COPY src ./src
 COPY --chmod=755 entrypoint.sh ./entrypoint.sh
 COPY --chmod=755 scripts/openclaw-start-guard.sh /usr/local/bin/openclaw-start-guard.sh
+COPY --chmod=755 scripts/syncthing-start-guard.sh /usr/local/bin/syncthing-start-guard.sh
 COPY --chmod=755 scripts/openclaw-fleet-standardize.sh /usr/local/bin/openclaw-fleet-standardize.sh
 COPY config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
