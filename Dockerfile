@@ -45,9 +45,10 @@ RUN curl -fsSL https://syncthing.net/release-key.gpg | tee /usr/share/keyrings/s
   && apt-get install -y syncthing \
   && rm -rf /var/lib/apt/lists/*
 
-ARG OPENCLAW_VERSION=2026.5.12
-ARG CACHE_BUST=1778938149
+ARG OPENCLAW_VERSION=2026.5.19
+ARG CACHE_BUST=1779320013
 RUN echo "Installing OpenClaw ${OPENCLAW_VERSION} (cache bust ${CACHE_BUST})" \
+  && node -e "const [major, minor] = process.versions.node.split('.').map(Number); if (major !== 22 || minor < 19) { throw new Error('OpenClaw 2026.5.19 requires Node.js 22.19+; found ' + process.versions.node); }" \
   && npm install -g --force openclaw@${OPENCLAW_VERSION} @railway/cli \
   && node -p "require('/usr/local/lib/node_modules/openclaw/package.json').version" | grep -Fx "${OPENCLAW_VERSION}" \
   && npm install --prefix /usr/local/lib/node_modules/openclaw sharp
