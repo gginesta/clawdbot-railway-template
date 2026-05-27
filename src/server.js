@@ -128,6 +128,8 @@ const TUI_MAX_SESSION_MS = Number.parseInt(
   process.env.TUI_MAX_SESSION_MS ?? "1800000",
   10,
 );
+const RUN_STARTUP_DOCTOR =
+  process.env.RUN_STARTUP_DOCTOR?.toLowerCase() === "true";
 
 function clawArgs(args) {
   return [OPENCLAW_ENTRY, ...args];
@@ -592,8 +594,18 @@ function runCmd(cmd, args, opts = {}) {
     const childOpts = { ...opts };
     delete childOpts.timeoutMs;
 
+    const killChild = (signal) => {
+      if (!proc.pid) return;
+      try {
+        process.kill(-proc.pid, signal);
+      } catch {
+        try { proc.kill(signal); } catch {}
+      }
+    };
+
     const proc = childProcess.spawn(cmd, args, {
       ...childOpts,
+      detached: true,
       env: {
         ...process.env,
         OPENCLAW_STATE_DIR: STATE_DIR,
@@ -619,9 +631,9 @@ function runCmd(cmd, args, opts = {}) {
       out += `
 [timeout] Command exceeded ${timeoutMs}ms and was terminated.
 `;
-      try { proc.kill("SIGTERM"); } catch {}
+      killChild("SIGTERM");
       killTimer = setTimeout(() => {
-        try { proc.kill("SIGKILL"); } catch {}
+        killChild("SIGKILL");
       }, 2_000);
       forceResolveTimer = setTimeout(() => finish(124), 7_000);
     }, timeoutMs);
@@ -1288,13 +1300,17 @@ const server = app.listen(PORT, () => {
         fs.mkdirSync(path.join(STATE_DIR, "credentials"), { recursive: true });
         fs.chmodSync(STATE_DIR, 0o700);
       } catch {}
-      try {
-        log.info("wrapper", "running openclaw doctor (read-only)...");
-        const dr = await runCmd(OPENCLAW_NODE, clawArgs(["doctor"]), { timeoutMs: 60_000 });
-        log.info("wrapper", `doctor exit=${dr.code}`);
-        if (dr.output) log.info("wrapper", dr.output);
-      } catch (err) {
-        log.warn("wrapper", `doctor failed: ${err.message}`);
+      if (RUN_STARTUP_DOCTOR) {
+        try {
+          log.info("wrapper", "running openclaw doctor (read-only)...");
+          const dr = await runCmd(OPENCLAW_NODE, clawArgs(["doctor", "--non-interactive"]), { timeoutMs: 60_000 });
+          log.info("wrapper", `doctor exit=${dr.code}`);
+          if (dr.output) log.info("wrapper", dr.output);
+        } catch (err) {
+          log.warn("wrapper", `doctor failed: ${err.message}`);
+        }
+      } else {
+        log.info("wrapper", "skipping startup doctor; set RUN_STARTUP_DOCTOR=true to enable boot diagnostics");
       }
       await ensureGatewayRunning();
     })().catch((err) => {
