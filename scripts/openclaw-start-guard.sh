@@ -15,4 +15,8 @@ fi
 
 chmod 700 "$OPENCLAW_STATE_DIR" 2>/dev/null || true
 
+if [ -x /usr/local/bin/openclaw-browser-profile-guard.sh ]; then
+  /usr/local/bin/openclaw-browser-profile-guard.sh || true
+fi
+
 exec gosu "$OPENCLAW_USER" node /app/src/server.js

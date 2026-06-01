@@ -45,7 +45,7 @@ RUN curl -fsSL https://syncthing.net/release-key.gpg | tee /usr/share/keyrings/s
   && apt-get install -y syncthing \
   && rm -rf /var/lib/apt/lists/*
 
-ARG OPENCLAW_VERSION=2026.5.22
+ARG OPENCLAW_VERSION=2026.5.20
 ARG CACHE_BUST=1779782234
 RUN echo "Installing OpenClaw ${OPENCLAW_VERSION} (cache bust ${CACHE_BUST})" \
   && node -e "const [major, minor] = process.versions.node.split('.').map(Number); if (major !== 22 || minor < 19) { throw new Error('OpenClaw requires Node.js 22.19+; found ' + process.versions.node); }" \
@@ -87,6 +87,7 @@ RUN corepack enable && pnpm install --frozen-lockfile --prod
 COPY src ./src
 COPY --chmod=755 entrypoint.sh ./entrypoint.sh
 COPY --chmod=755 scripts/openclaw-start-guard.sh /usr/local/bin/openclaw-start-guard.sh
+COPY --chmod=755 scripts/openclaw-browser-profile-guard.sh /usr/local/bin/openclaw-browser-profile-guard.sh
 COPY --chmod=755 scripts/syncthing-start-guard.sh /usr/local/bin/syncthing-start-guard.sh
 COPY --chmod=755 scripts/openclaw-fleet-standardize.sh /usr/local/bin/openclaw-fleet-standardize.sh
 COPY config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
