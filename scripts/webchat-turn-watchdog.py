@@ -213,7 +213,10 @@ def scan_once(args: argparse.Namespace) -> int:
             args.log_file,
             f"lost_turn event_id={lost.event_id} session_key={lost.session_key} marked={marked} alert_ok={ok} output={output[:500]!r}",
         )
-        processed.add(lost.event_id)
+        if ok:
+            processed.add(lost.event_id)
+        else:
+            log_line(args.log_file, f"lost_turn_retry_pending event_id={lost.event_id}")
     state["last_scan_ms"] = max_seen
     state["processed"] = sorted(processed)[-200:]
     save_state(args.state_file, state)
