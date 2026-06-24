@@ -9,6 +9,7 @@ import os
 import subprocess
 import time
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -18,6 +19,7 @@ DEFAULT_WORKSPACE_DIR = Path(os.environ.get("OPENCLAW_WORKSPACE_DIR", "/data/wor
 DEFAULT_STATE_FILE = DEFAULT_WORKSPACE_DIR / ".webchat-turn-watchdog-state.json"
 DEFAULT_LOG_FILE = DEFAULT_WORKSPACE_DIR / "logs" / "webchat-turn-watchdog.log"
 DEFAULT_SESSIONS_DIR = DEFAULT_STATE_DIR / "agents" / "main" / "sessions"
+DEFAULT_SCAN_LOOKBACK_SECONDS = int(os.environ.get("WEBCHAT_WATCHDOG_SCAN_LOOKBACK_SECONDS", "86400"))
 ERROR_NEEDLE = "client closed before turn completed"
 
 
@@ -39,15 +41,16 @@ def now_ms() -> int:
 def parse_ts_ms(ts: str | None) -> int:
     if not ts:
         return 0
+    normalized = ts.strip()
+    if normalized.endswith("Z"):
+        normalized = f"{normalized[:-1]}+00:00"
     try:
-        # Python 3.11 accepts +00:00 but not bare Z.
-        parsed = time.strptime(ts.replace("Z", "+0000"), "%Y-%m-%dT%H:%M:%S.%f%z")
+        parsed = datetime.fromisoformat(normalized)
     except ValueError:
-        try:
-            parsed = time.strptime(ts.replace("Z", "+0000"), "%Y-%m-%dT%H:%M:%S%z")
-        except ValueError:
-            return 0
-    return int(time.mktime(parsed) * 1000)
+        return 0
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return int(parsed.timestamp() * 1000)
 
 
 def load_state(path: Path, initial_lookback_seconds: int) -> dict[str, Any]:
@@ -194,9 +197,10 @@ def scan_once(args: argparse.Namespace) -> int:
     state = load_state(args.state_file, args.initial_lookback_seconds)
     processed = set(str(x) for x in state.get("processed", []) if x)
     since_ms = int(state.get("last_scan_ms") or 0)
+    scan_since_ms = max(0, since_ms - max(0, args.scan_lookback_seconds) * 1000)
     found: list[LostTurn] = []
-    for path in iter_candidate_trajectories(args.sessions_dir, since_ms):
-        found.extend(scan_trajectory(path, since_ms, processed))
+    for path in iter_candidate_trajectories(args.sessions_dir, scan_since_ms):
+        found.extend(scan_trajectory(path, scan_since_ms, processed))
     max_seen = max([since_ms, now_ms() - 60_000, *[turn.ts_ms for turn in found]])
     for lost in found:
         marked = False if args.dry_run else mark_session_interrupted(args.sessions_dir / "sessions.json", lost)
@@ -223,6 +227,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--log-file", type=Path, default=DEFAULT_LOG_FILE)
     parser.add_argument("--interval-seconds", type=int, default=int(os.environ.get("WEBCHAT_WATCHDOG_INTERVAL_SECONDS", "60")))
     parser.add_argument("--initial-lookback-seconds", type=int, default=int(os.environ.get("WEBCHAT_WATCHDOG_INITIAL_LOOKBACK_SECONDS", "900")))
+    parser.add_argument("--scan-lookback-seconds", type=int, default=DEFAULT_SCAN_LOOKBACK_SECONDS)
     parser.add_argument("--loop", action="store_true")
     parser.add_argument("--no-alert", action="store_true")
     parser.add_argument("--dry-run", action="store_true", help="Scan without mutating session state or sending alerts")
