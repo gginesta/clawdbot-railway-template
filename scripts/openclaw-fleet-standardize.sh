@@ -44,6 +44,7 @@ fi
 openclaw config validate >/dev/null
 
 REQUESTED_SEARCH_PROVIDER="${OPENCLAW_FLEET_SEARCH_PROVIDER:-duckduckgo}"
+REQUESTED_SEARCH_PROVIDER="$(printf '%s' "$REQUESTED_SEARCH_PROVIDER" | tr '[:upper:]' '[:lower:]')"
 
 if [ "$REQUESTED_SEARCH_PROVIDER" = "brave" ]; then
   if ! openclaw plugins inspect brave --json >/dev/null 2>&1; then
@@ -71,10 +72,14 @@ fi
 
 if [ "${REQUESTED_SEARCH_PROVIDER:-duckduckgo}" = "brave" ] && [ -n "${BRAVE_API_KEY:-}" ]; then
   SEARCH_PROVIDER="brave"
+elif { [ "${REQUESTED_SEARCH_PROVIDER:-duckduckgo}" = "google" ] || [ "${REQUESTED_SEARCH_PROVIDER:-duckduckgo}" = "gemini" ]; } && [ -n "${GEMINI_API_KEY:-}" ]; then
+  SEARCH_PROVIDER="google"
 else
   SEARCH_PROVIDER="duckduckgo"
   if [ "${REQUESTED_SEARCH_PROVIDER:-duckduckgo}" = "brave" ]; then
     log "Brave requested but BRAVE_API_KEY is not present; using keyless duckduckgo search fallback for this container"
+  elif [ "${REQUESTED_SEARCH_PROVIDER:-duckduckgo}" = "google" ] || [ "${REQUESTED_SEARCH_PROVIDER:-duckduckgo}" = "gemini" ]; then
+    log "Google search requested but GEMINI_API_KEY is not present; using keyless duckduckgo search fallback for this container"
   else
     log "using bundled keyless duckduckgo search provider"
   fi
@@ -111,7 +116,7 @@ if os.environ.get("BRAVE_API_KEY"):
         },
     }
 
-if os.environ.get("GEMINI_API_KEY"):
+if os.environ.get("SEARCH_PROVIDER") == "google" and os.environ.get("GEMINI_API_KEY"):
     entries["google"] = {
         "enabled": True,
         "config": {
